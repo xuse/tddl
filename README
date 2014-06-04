@@ -1,4 +1,4 @@
-Merge branch 'tddl-3.3.2.1' of https://github.com/alibaba/tb_tddl.git
+Merge branch 'tddl-3.3.x' of https://github.com/alibaba/tb_tddl.git
 
 Changes:
 Maven code refactoring to make it can be successfully compiled and easier to understand.
