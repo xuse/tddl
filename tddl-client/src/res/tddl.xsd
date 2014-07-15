@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.taobao.com/schema/tddl"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.taobao.com/schema/tddl"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xsd:element name="sqlMap">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:sequence>
+					<xsd:element name="select" type="selectType"/>
+				</xsd:sequence>
+			</xsd:complexContent>
+		</xsd:complexType>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:sequence>
+					<xsd:element name="resultMap" type="resultMapType" />
+				</xsd:sequence>
+			</xsd:complexContent>
+		</xsd:complexType>
+
+	</xsd:element>
+
+	<xsd:complexType name="selectType">
+		<xsd:attribute name="id" type="xsd:string" />
+		<xsd:attribute name="resultMap" type="xsd:string" />
+		<xsd:attribute name="resultClass" type="xsd:string" />
+	</xsd:complexType>
+
+
+	<xsd:complexType name="resultMapType">
+		<xsd:attribute name="id" type="xsd:string" />
+		<xsd:attribute name="resultClass" type="xsd:string" />
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:sequence>
+					<xsd:element name="result" type="resultType"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:complexType>
+
+	<xsd:complexType name="resultType">
+		<xsd:attribute name="column" type="xsd:string" />
+		<xsd:attribute name="property" type="xsd:string" />
+	</xsd:complexType>
+</xsd:schema>
