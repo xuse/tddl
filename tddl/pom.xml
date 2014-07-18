@@ -314,6 +314,18 @@
 
 
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.alibaba.toolkit.common.lang</groupId>
+            <artifactId>lang</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba.unit.rule</groupId>
             <artifactId>unitrouter</artifactId>
             <version>1.0.8</version>
@@ -322,11 +334,6 @@
             <groupId>com.taobao.eagleeye</groupId>
             <artifactId>eagleeye-core</artifactId>
             <version>1.2.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.0.2</version>
         </dependency>
         <dependency>
             <groupId>com.taobao.tbdatasource</groupId>
@@ -354,11 +361,6 @@
             <groupId>com.taobao.logstat</groupId>
             <artifactId>logstat-common</artifactId>
             <version>1.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.toolkit.common.lang</groupId>
-            <artifactId>lang</artifactId>
-            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>com.taobao.diamond</groupId>
