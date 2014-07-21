@@ -10,7 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import com.taobao.tddl.interact.rule.bean.AdvancedParameter;
 
 /**
- * ¹æÔòµÄ×Ü³éÏó ¹æÔòÓÉ²ÎÊıºÍ±í´ïÊ½×é³É
+ * è§„åˆ™çš„æ€»æŠ½è±¡ è§„åˆ™ç”±å‚æ•°å’Œè¡¨è¾¾å¼ç»„æˆ
  * 
  * @author shenxun
  * @author junyu
@@ -18,27 +18,27 @@ import com.taobao.tddl.interact.rule.bean.AdvancedParameter;
 public abstract class AbstractRule {
 	Log log = LogFactory.getLog(AbstractRule.class);
 	/**
-	 * µ±Ç°¹æÔòĞèÒªÓÃµ½µÄ²ÎÊı
+	 * å½“å‰è§„åˆ™éœ€è¦ç”¨åˆ°çš„å‚æ•°
 	 */
 	protected Set<AdvancedParameter> parameters;
 
 	private boolean inited = false;
 
 	/**
-	 * µ±Ç°¹æÔòĞèÒªÓÃµ½µÄ±í´ïÊ½
+	 * å½“å‰è§„åˆ™éœ€è¦ç”¨åˆ°çš„è¡¨è¾¾å¼
 	 */
 	protected String expression;
 	
 	/**
-	 * ÓÃ»§×Ô¶¨Òåjar°üpackage
+	 * ç”¨æˆ·è‡ªå®šä¹‰jaråŒ…package
 	 */
 	protected String extraPackagesStr;
 
 	/*
-	 * Í¨¹ı·ÖÎö¿â±í½á¹¹¹æÔòÖÇÄÜ¼ÆËãµş¼Ó´ÎÊı£¬²¢setµ½¹æÔòÖĞ£¬ĞèÒª×¢ÒâµÄÊÇ Èç¹ûÓĞ¶à¸öÖµ²ÎÓëÁËÒ»¸ö¼ÆËãÊ½£¬ÕâÖÖ·ÖÎöÊÇ²»×¼È·µÄ£¬ÕâÊ±ºò¿ÉÒÔÍ¨¹ıÅäÖÃÎÄ¼ş
-	 * ÊÖ¶¯µÄÓÅÏÈÉèÖÃÕë¶ÔÃ¿Ò»¸ö²ÎÓëÔËËãµÄ²ÎÊıµÄµş¼Ó´ÎÊı¡£
+	 * é€šè¿‡åˆ†æåº“è¡¨ç»“æ„è§„åˆ™æ™ºèƒ½è®¡ç®—å åŠ æ¬¡æ•°ï¼Œå¹¶setåˆ°è§„åˆ™ä¸­ï¼Œéœ€è¦æ³¨æ„çš„æ˜¯ å¦‚æœæœ‰å¤šä¸ªå€¼å‚ä¸äº†ä¸€ä¸ªè®¡ç®—å¼ï¼Œè¿™ç§åˆ†ææ˜¯ä¸å‡†ç¡®çš„ï¼Œè¿™æ—¶å€™å¯ä»¥é€šè¿‡é…ç½®æ–‡ä»¶
+	 * æ‰‹åŠ¨çš„ä¼˜å…ˆè®¾ç½®é’ˆå¯¹æ¯ä¸€ä¸ªå‚ä¸è¿ç®—çš„å‚æ•°çš„å åŠ æ¬¡æ•°ã€‚
 	 * 
-	 * ÏÖÔÚ»¹Ã»ÆôÓÃ£¬ÒòÎª±È½Ï¸´ÔÓ
+	 * ç°åœ¨è¿˜æ²¡å¯ç”¨ï¼Œå› ä¸ºæ¯”è¾ƒå¤æ‚
 	 * 
 	 * @param cumulativeTimes
 	 * 
@@ -50,7 +50,7 @@ public abstract class AbstractRule {
 	protected abstract void initInternal();
 
 	/**
-	 * È·±£¹æÔòÖ»³õÊ¼»¯Ò»´Î
+	 * ç¡®ä¿è§„åˆ™åªåˆå§‹åŒ–ä¸€æ¬¡
 	 */
 	public void initRule() {
 		if (inited) {
@@ -62,7 +62,7 @@ public abstract class AbstractRule {
 	}
 
 	/**
-	 * spring×¢Èë´øÓĞÄ¬ÈÏ×ÔÔö×Ö¶ÎµÄÖµ,»á½«ËùÓĞÖµ±äÎªĞ¡Ğ´
+	 * springæ³¨å…¥å¸¦æœ‰é»˜è®¤è‡ªå¢å­—æ®µçš„å€¼,ä¼šå°†æ‰€æœ‰å€¼å˜ä¸ºå°å†™
 	 * 
 	 * @param parameters
 	 */
@@ -77,7 +77,7 @@ public abstract class AbstractRule {
 	}
 
 	/**
-	 * Spring×¢Èë¶à¸ö
+	 * Springæ³¨å…¥å¤šä¸ª
 	 * 
 	 * @param parameters
 	 */
@@ -91,7 +91,7 @@ public abstract class AbstractRule {
 	}
 
 	/**
-	 * spring×¢ÈëÒ»¸ö
+	 * springæ³¨å…¥ä¸€ä¸ª
 	 * 
 	 * @param parameter
 	 */

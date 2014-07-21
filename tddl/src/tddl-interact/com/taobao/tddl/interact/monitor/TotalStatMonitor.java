@@ -15,12 +15,12 @@ import org.apache.commons.logging.LogFactory;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-8-25ÏÂÎç03:12:25
+ * @date 2011-8-25ä¸‹åˆ03:12:25
  */
 public class TotalStatMonitor {
 	private static Log logger=LogFactory.getLog(TotalStatMonitor.class);
 	private volatile long statInterval = 30 * 1000;
-//  ²âÊÔÓÃ	
+//  æµ‹è¯•ç”¨	
 //	private volatile long statInterval = 100;
 	public static final String logFieldSep = "#@#";
 	public static final String linesep = System.getProperty("line.separator");
@@ -46,7 +46,7 @@ public class TotalStatMonitor {
 	private boolean started = false;
 	
 	public synchronized void start() {
-		//Èç¹ûÒÑ¾­startÁË»òÕß²»ĞèÒªstat£¬ÄÇÃ´·µ»Ø
+		//å¦‚æœå·²ç»startäº†æˆ–è€…ä¸éœ€è¦statï¼Œé‚£ä¹ˆè¿”å›
 		if (started||!needDbTabStat) {
 			return;
 		}

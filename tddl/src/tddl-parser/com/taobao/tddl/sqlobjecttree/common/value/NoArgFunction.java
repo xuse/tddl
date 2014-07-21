@@ -9,7 +9,7 @@ import com.taobao.tddl.sqlobjecttree.Function;
 public abstract class NoArgFunction implements Function{
 	public void setValue(List<Object> values) {
 		if(values.size()!=0){
-			throw new IllegalArgumentException("参数不为零个");
+			throw new IllegalArgumentException("鍙傛暟涓嶄负闆朵釜");
 		}
 	}
 

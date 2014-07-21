@@ -18,7 +18,7 @@ import com.taobao.tddl.jdbc.atom.common.TAtomConfParser;
 import com.taobao.tddl.jdbc.atom.common.TAtomConstants;
 
 /**
- * 密码管理器Diamond实现
+ * 瀵嗙爜绠＄悊鍣―iamond瀹炵幇
  * 
  * @author qihao
  * 

@@ -11,11 +11,11 @@
 //public abstract class CartesianProductBasedBooleanResultRule extends BooleanAbstractResultRule{
 //	
 //	/**
-//	 * ÊÇ·ñĞèÒª¶Ô½»¼¯ÄÚµÄÊı¾İÈ¡³éÑùµã
+//	 * æ˜¯å¦éœ€è¦å¯¹äº¤é›†å†…çš„æ•°æ®å–æŠ½æ ·ç‚¹
 //	 */
 //	private boolean needMergeValueInCloseInterval = false;
 //	
-//	//TODO:boolean¼ÆËã´ÓÔ­ÔòÉÏÒ²Ó¦¸Ã·ÖÎªÁ½¸ö²½Öè£¬µÚÒ»¸ö²½ÖèÊÇËãº¯Êı£¬µÚ¶ş¸ö²¿·ÖÊÇ¾ÛºÏÔËËã
+//	//TODO:booleanè®¡ç®—ä»åŸåˆ™ä¸Šä¹Ÿåº”è¯¥åˆ†ä¸ºä¸¤ä¸ªæ­¥éª¤ï¼Œç¬¬ä¸€ä¸ªæ­¥éª¤æ˜¯ç®—å‡½æ•°ï¼Œç¬¬äºŒä¸ªéƒ¨åˆ†æ˜¯èšåˆè¿ç®—
 //	public boolean eval(Map<String,SharedValueElement> sharedValueElementMap){
 //		
 //		Map<String, Set<Object>> enumeratedMap = CartesianProductUtils.getSamplingField(sharedValueElementMap, needMergeValueInCloseInterval);
@@ -23,7 +23,7 @@
 //				enumeratedMap);
 //	
 //		for(SamplingField samplingField:cartiesianProductCalculator){
-//			//Ã¶¾ÙµÑ¿¨¶û»ıÀïÃæµÄÃ¿Ò»¸öÖµ£¬½øĞĞÔËËã£¬Èç¹ûÎªtrueÔòÖ±½Ó·µ»Ø
+//			//æšä¸¾ç¬›å¡å°”ç§¯é‡Œé¢çš„æ¯ä¸€ä¸ªå€¼ï¼Œè¿›è¡Œè¿ç®—ï¼Œå¦‚æœä¸ºtrueåˆ™ç›´æ¥è¿”å›
 //			boolean isTrue = evalueateSamplingField(samplingField);
 //			if(isTrue){
 //				return true;
@@ -32,7 +32,7 @@
 //		return false;
 //	}
 //	/**
-//	 * ¸ù¾İÒ»×é²ÎÊı£¬¼ÆËã³öÒ»¸ö½á¹û
+//	 * æ ¹æ®ä¸€ç»„å‚æ•°ï¼Œè®¡ç®—å‡ºä¸€ä¸ªç»“æœ
 //	 * @return
 //	 */
 //	public abstract boolean evalueateSamplingField(SamplingField samplingField);

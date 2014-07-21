@@ -9,7 +9,7 @@ import java.util.List;
 import com.taobao.tddl.common.config.beans.TableRule.ParseException;
 
 /**
- * ¹ÜÀí½âÎöÏÂ±ê
+ * ç®¡ç†è§£æä¸‹æ ‡
  * @author liang.chenl
  *
  */
@@ -26,7 +26,7 @@ public class SuffixManager {
 	public void init(String[] dbIndexes) {
 		Suffix suf = listSuffix.get(0);
 		if (suf.getTbSuffixTo() == -1) {
-			//tbSuffixToÄ¬ÈÏ¸ù¾İdbIndexµÄ¸öÊı¼ÆËã
+			//tbSuffixToé»˜è®¤æ ¹æ®dbIndexçš„ä¸ªæ•°è®¡ç®—
 			suf.setTbSuffixTo(dbIndexes);
 		}
 		suf.setTbType("throughAllDB");
@@ -35,7 +35,7 @@ public class SuffixManager {
 	
 	
 	/**
-	 * ½âÎöÒ»¸örange [_00-_99]
+	 * è§£æä¸€ä¸ªrange [_00-_99]
 	 * @param part
 	 * @param suf
 	 * @throws ParseException 
@@ -44,7 +44,7 @@ public class SuffixManager {
 		if(!part.startsWith("[") || !part.endsWith("]")) {
 			throw new ParseException();
 		}		
-		//È¥µô[]
+		//å»æ‰[]
 		part = part.substring(1, part.length() - 1);
 	
 		String[] temp = part.split("-");
@@ -101,7 +101,7 @@ public class SuffixManager {
 	}
 	
 	/**
-	 * ½âÎöÖ§³Ö2ÁĞµÄ±íÃû (twoColumnForEachDB: [_00-_99],[_00-_11])
+	 * è§£ææ”¯æŒ2åˆ—çš„è¡¨å (twoColumnForEachDB: [_00-_99],[_00-_11])
 	 * @param dbIndexes
 	 * @throws ParseException 
 	 */
@@ -121,7 +121,7 @@ public class SuffixManager {
 	}
 	
 	/**
-	 * ½âÎöºÍdbindexÒ»ÑùÏÂ±êµÄ±íÃû 
+	 * è§£æå’Œdbindexä¸€æ ·ä¸‹æ ‡çš„è¡¨å 
 	 * @param dbIndexes
 	 * @throws ParseException 
 	 */
@@ -134,24 +134,24 @@ public class SuffixManager {
 	protected void parseTbSuffix(String[] dbIndexes) throws ParseException {
 		Suffix suf = listSuffix.get(0);
 		String type;
-		//ÇĞ·Ö·Ö¿âÄ£Ê½ºÍ¾ßÌåºó×ºÊıÖµ
+		//åˆ‡åˆ†åˆ†åº“æ¨¡å¼å’Œå…·ä½“åç¼€æ•°å€¼
 		String[] temp = tbSuffix.split(":");
 		if(temp.length != 2) {
 			throw new ParseException();
 		}
-		//·Ö±íÄ£Ê½
+		//åˆ†è¡¨æ¨¡å¼
 		type = temp[0].trim();
 		suf.setTbType(type);
-		//·Ö±íµÄ¾ßÌåÄ£Ê½×Ö¶Î
+		//åˆ†è¡¨çš„å…·ä½“æ¨¡å¼å­—æ®µ
 		String part2 = temp[1].trim();
 		if("twoColumnForEachDB".equals(type)) {
-			//Á½¸ö²ÎÊı·Ö±í
+			//ä¸¤ä¸ªå‚æ•°åˆ†è¡¨
 			parseTwoColumn(part2, dbIndexes.length);
 		} else if("dbIndexForEachDB".equals(type)) {
-			//°´ÕÕdbIndex·Ö±í
+			//æŒ‰ç…§dbIndexåˆ†è¡¨
 			parseDbIndex(part2, dbIndexes.length);
 		} else {
-			//×ßÒÔÇ°µÄÂß¼­£¬Ã¿¸ö¿âÄÚµÄ±í¶¼ÊÇÒ»ÖÂµÄ
+			//èµ°ä»¥å‰çš„é€»è¾‘ï¼Œæ¯ä¸ªåº“å†…çš„è¡¨éƒ½æ˜¯ä¸€è‡´çš„
 			parseOneRange(part2, suf, dbIndexes.length);
 		}
 	}

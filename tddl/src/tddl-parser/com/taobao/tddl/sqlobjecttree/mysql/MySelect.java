@@ -52,13 +52,13 @@ public class MySelect extends Select {
 	
 	public StringBuilder regTableModifiable(Set<String> oraTabName,
 			List<Object> list, StringBuilder sb) {
-		//bugfix:Ô­À´µÄ´úÂëÖĞÇ¶Ì×µÄsql limit·´ÏòÊä³öºóÔÚÀ¨ºÅÍâ
+		//bugfix:åŸæ¥çš„ä»£ç ä¸­åµŒå¥—çš„sql limitåå‘è¾“å‡ºååœ¨æ‹¬å·å¤–
 		sb = buildSqlStringWithModifiable(oraTabName, list, sb);
 		sb = limit.regTableModifiable(oraTabName, list, sb);
 		return sb;
 	}
 	
-	//ÒÑ¾­½«Distinct µ±×öÁËÒ»¸ö·½·¨£¬ Distinct ºÍºóÃæµÄcol£¬Ò»Æğ×÷ÎªÒ»¸öcol
+	//å·²ç»å°†Distinct å½“åšäº†ä¸€ä¸ªæ–¹æ³•ï¼Œ Distinct å’Œåé¢çš„colï¼Œä¸€èµ·ä½œä¸ºä¸€ä¸ªcol
 	//fixed by mazhidan.pt
 //	@Override
 //	public List<String> getDistinctColumn() {

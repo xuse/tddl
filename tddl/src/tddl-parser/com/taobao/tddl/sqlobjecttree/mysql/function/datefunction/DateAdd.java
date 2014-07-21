@@ -8,8 +8,8 @@ public class DateAdd extends OperationBeforTwoArgsFunction{
 	}
 	
 //	/**
-//	 * 默认超类里面第一个参数为时间
-//	 * 第二个参数为Interval 函数
+//	 * 榛樿瓒呯被閲岄潰绗竴涓弬鏁颁负鏃堕棿
+//	 * 绗簩涓弬鏁颁负Interval 鍑芥暟
 //	 */
 //	public Comparable<?> getVal(List<Object> args) {
 //		Calendar cal=Calendar.getInstance();

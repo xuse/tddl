@@ -17,19 +17,19 @@ public class DatabaseExecutionContextImp implements DatabaseExecutionContext
 	}
 
 	/**
-	 * Õâ¸ö¿âÔÚTDatasourceË÷ÒıÖĞµÄË÷Òı
+	 * è¿™ä¸ªåº“åœ¨TDatasourceç´¢å¼•ä¸­çš„ç´¢å¼•
 	 */
 	private String dbIndex;
 	
 	private Map<String, Field> realTableFieldMap;
 
 	/**
-	 * Õâ¸ö¹æÔòÏÂµÄ·ûºÏ²éÑ¯Ìõ¼şµÄ±íÃûÁĞ±í
+	 * è¿™ä¸ªè§„åˆ™ä¸‹çš„ç¬¦åˆæŸ¥è¯¢æ¡ä»¶çš„è¡¨ååˆ—è¡¨
 	 */
-	private final List/*¶à¸ösql*/</*Ã¿Ò»¸ösqlÄÚĞèÒªÌæ»»µÄ±íÃû*/Map<String/* logic table name */, String/* real table name */>> tableNames;
+	private final List/*å¤šä¸ªsql*/</*æ¯ä¸€ä¸ªsqlå†…éœ€è¦æ›¿æ¢çš„è¡¨å*/Map<String/* logic table name */, String/* real table name */>> tableNames;
 	
 	/**
-	 * ·´ÏòÊä³öµÄsql,Èç¹ûreverseOutput²»Îªfalse,ÔòÕâÀï²»»áÎªnull. µ«ÈÔÈ»¿ÉÄÜÎªÒ»¸öempty list
+	 * åå‘è¾“å‡ºçš„sql,å¦‚æœreverseOutputä¸ä¸ºfalse,åˆ™è¿™é‡Œä¸ä¼šä¸ºnull. ä½†ä»ç„¶å¯èƒ½ä¸ºä¸€ä¸ªempty list
 	 */
 	private List<ReverseOutput> outputSQL;
 
@@ -49,9 +49,9 @@ public class DatabaseExecutionContextImp implements DatabaseExecutionContext
 	}
 
 	/**
-	 * Ìí¼ÓÒ»¸ö ±íÃû¶Ô
+	 * æ·»åŠ ä¸€ä¸ª è¡¨åå¯¹
 	 * 
-	 * Map<String Ô´±íÃû, String Ä¿±ê±íÃû>
+	 * Map<String æºè¡¨å, String ç›®æ ‡è¡¨å>
 	 * @param pair
 	 */
 	public void addTablePair(Map<String, String> pair)
@@ -83,7 +83,7 @@ public class DatabaseExecutionContextImp implements DatabaseExecutionContext
 		for(Map<String, String> map : tableNames)
 		{
 			if(1 != map.size()){
-				throw new IllegalArgumentException("¼æÈİÄ£Ê½²»Ö§³Ö¶à¸ö±í»ò0¸ö±í:"+map.size());
+				throw new IllegalArgumentException("å…¼å®¹æ¨¡å¼ä¸æ”¯æŒå¤šä¸ªè¡¨æˆ–0ä¸ªè¡¨:"+map.size());
 			}
 			targetDB.addOneTable(map.values().iterator().next());
 		}

@@ -5,12 +5,12 @@ import java.util.Map;
 import com.taobao.tddl.interact.rule.bean.ExtraParameterContext;
 
 /**
- * ExtraParameterContext的一个默认实现类
- * 里面包含两个Map<Object,Object>对象，分别是dbMap,tabMap
- * 可分别用来存储db的相关的参数
- * 和tab的相关的参数
+ * ExtraParameterContext鐨勪竴涓粯璁ゅ疄鐜扮被
+ * 閲岄潰鍖呭惈涓や釜Map<Object,Object>瀵硅薄锛屽垎鍒槸dbMap,tabMap
+ * 鍙垎鍒敤鏉ュ瓨鍌╠b鐨勭浉鍏崇殑鍙傛暟
+ * 鍜宼ab鐨勭浉鍏崇殑鍙傛暟
  * 
- * @author xudanhui.pt 2010-10-18,上午11:33:44
+ * @author xudanhui.pt 2010-10-18,涓婂崍11:33:44
  */
 public class DefaultExtraParameterContext implements ExtraParameterContext {
 

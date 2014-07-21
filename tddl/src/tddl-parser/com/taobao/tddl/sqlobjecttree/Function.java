@@ -7,7 +7,7 @@ import com.taobao.tddl.common.sqlobjecttree.Value;
 public interface Function extends Value{
 	public void setValue(List<Object> values);
 	/**
-	 * 获得在函数中的列名，如果有两个参数都为列名则抛出异常
+	 * 鑾峰緱鍦ㄥ嚱鏁颁腑鐨勫垪鍚嶏紝濡傛灉鏈変袱涓弬鏁伴兘涓哄垪鍚嶅垯鎶涘嚭寮傚父
 	 * @return	the column name in function,
 	 * 		 null if no nestedColName
 	 */

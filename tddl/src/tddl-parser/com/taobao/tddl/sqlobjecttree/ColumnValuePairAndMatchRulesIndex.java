@@ -6,7 +6,7 @@ import com.taobao.tddl.interact.sqljep.Comparative;
 
 /*
  * @author guangxia
- * @since 1.0, 2009-10-22 ÏÂÎç02:57:32
+ * @since 1.0, 2009-10-22 ä¸‹åˆ02:57:32
  */
 public class ColumnValuePairAndMatchRulesIndex {
 	

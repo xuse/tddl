@@ -2,9 +2,9 @@ package com.taobao.tddl.rule.ruleengine.entities.abstractentities;
 
 
 /**
- * Ö÷ÒªÌá¹©ÁËÒ»Ğ©¹«¹²µÄ·½·¨
+ * ä¸»è¦æä¾›äº†ä¸€äº›å…¬å…±çš„æ–¹æ³•
  * 
- * ¸ù½Úµã³éÏó
+ * æ ¹èŠ‚ç‚¹æŠ½è±¡
  * 
  * @author shenxun
  * 
@@ -25,7 +25,7 @@ public abstract class SharedElement implements Cloneable,OneToMany {
 	public void init() {
 	}
 	/**
-	 * ¼æÈİĞÔ·½·¨£¬ÒòÎªÒÔÇ°TableRule±©Â¶ÁËinit·½·¨¸øÍâ²¿Ê¹ÓÃ¡£
+	 * å…¼å®¹æ€§æ–¹æ³•ï¼Œå› ä¸ºä»¥å‰TableRuleæš´éœ²äº†initæ–¹æ³•ç»™å¤–éƒ¨ä½¿ç”¨ã€‚
 	 * @param invokeBySpring
 	 */
 	public void init(boolean invokeBySpring){
@@ -33,8 +33,8 @@ public abstract class SharedElement implements Cloneable,OneToMany {
 	}
 
 	/**
-	 * Èç¹ûÓÃ»§Í¨¹ımapµÄ·½Ê½ÉèÖÃ×Ó½Úµã£¬ÔòÔÚinitµÄ¹ı³ÌÖĞ»á½«mapµÄkey×÷Îª×Ó½ÚµãµÄidÉèÖÃ½øÀ´¡£
-	 * Èç¹ûÓÃ»§²ÉÓÃlistµÄ·½Ê½ÉèÖÃ×Ó½Úµã£¬ÔòlistµÄÏÂ±êµÄstring»á³ÉÎª×Ó½ÚµãµÄid.
+	 * å¦‚æœç”¨æˆ·é€šè¿‡mapçš„æ–¹å¼è®¾ç½®å­èŠ‚ç‚¹ï¼Œåˆ™åœ¨initçš„è¿‡ç¨‹ä¸­ä¼šå°†mapçš„keyä½œä¸ºå­èŠ‚ç‚¹çš„idè®¾ç½®è¿›æ¥ã€‚
+	 * å¦‚æœç”¨æˆ·é‡‡ç”¨listçš„æ–¹å¼è®¾ç½®å­èŠ‚ç‚¹ï¼Œåˆ™listçš„ä¸‹æ ‡çš„stringä¼šæˆä¸ºå­èŠ‚ç‚¹çš„id.
 	 */
 	public void setId(String id) {
 		this.id = id;

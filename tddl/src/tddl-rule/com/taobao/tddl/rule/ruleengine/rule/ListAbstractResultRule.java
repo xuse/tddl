@@ -10,31 +10,31 @@ import com.taobao.tddl.interact.sqljep.Comparative;
 
 public abstract class ListAbstractResultRule extends AbstractRule {
 	/**
-	 * ´Ë·½·¨ÒÑ¾­Î´Ê¹ÓÃ£¬Ìæ»»µÄ·½·¨ÏÂÃæ£¬ÎªÁËµ¥Ôª²âÊÔ¼æÈİĞÔ
-	 * ÓÃ×÷·Ö¿â
+	 * æ­¤æ–¹æ³•å·²ç»æœªä½¿ç”¨ï¼Œæ›¿æ¢çš„æ–¹æ³•ä¸‹é¢ï¼Œä¸ºäº†å•å…ƒæµ‹è¯•å…¼å®¹æ€§
+	 * ç”¨ä½œåˆ†åº“
 	 * 
 	 * 
 	 * @param sharedValueElementMap
-	 * @return ·µ»ØµÄmap²»»áÎªnull,µ«ÓĞ¿ÉÄÜÎª¿ÕµÄmap£¬Èç¹ûmap²»Îª¿Õ£¬ÔòÄÚ²¿µÄ×Ómap±Ø¶¨²»Îª¿Õ¡£×îÉÙ»áÓĞÒ»¸öÖµ
+	 * @return è¿”å›çš„mapä¸ä¼šä¸ºnull,ä½†æœ‰å¯èƒ½ä¸ºç©ºçš„mapï¼Œå¦‚æœmapä¸ä¸ºç©ºï¼Œåˆ™å†…éƒ¨çš„å­mapå¿…å®šä¸ä¸ºç©ºã€‚æœ€å°‘ä¼šæœ‰ä¸€ä¸ªå€¼
 	 */
 /*	public abstract Map<String column , Field> eval(
 			Map<String, Comparative> sharedValueElementMap);
 */
 	/**
-	 * ´Ë·½·¨ÒÑ¾­Î´Ê¹ÓÃ£¬Ìæ»»µÄ·½·¨ÏÂÃæ£¬ÎªÁËµ¥Ôª²âÊÔ¼æÈİĞÔ
+	 * æ­¤æ–¹æ³•å·²ç»æœªä½¿ç”¨ï¼Œæ›¿æ¢çš„æ–¹æ³•ä¸‹é¢ï¼Œä¸ºäº†å•å…ƒæµ‹è¯•å…¼å®¹æ€§
 	 * 
-	 * ÓÃ×÷·Ö±í¡£²»´øÓĞ¶Ô¼ÆËã³öµ±Ç°ÖµµÄº¯ÊıµÄÔ´µÄ×·×ÙĞÅÏ¢
+	 * ç”¨ä½œåˆ†è¡¨ã€‚ä¸å¸¦æœ‰å¯¹è®¡ç®—å‡ºå½“å‰å€¼çš„å‡½æ•°çš„æºçš„è¿½è¸ªä¿¡æ¯
 	 * 
 	 * @param enumeratedMap
-	 *            ÁĞÃû->Ã¶¾Ù ¶ÔÓ¦±í
+	 *            åˆ—å->æšä¸¾ å¯¹åº”è¡¨
 	 * @param mappingTargetColumn
-	 *            Ó³Éä¹æÔòÁĞ
+	 *            æ˜ å°„è§„åˆ™åˆ—
 	 * @param mappingKeys
-	 *            Ó³Éä¹æÔòÖµ
+	 *            æ˜ å°„è§„åˆ™å€¼
 	 * 
-	 * @return ½á¹û¼¯×Ö¶Î£¬²»»áÎª¿Õ Èç¹û×ÓÀà·½·¨ÉèÖÃÁËÔÚsetÎª¿ÕÊ±Å×Òì³££¬Ôò»á×Ô¶¯Å×³ö
+	 * @return ç»“æœé›†å­—æ®µï¼Œä¸ä¼šä¸ºç©º å¦‚æœå­ç±»æ–¹æ³•è®¾ç½®äº†åœ¨setä¸ºç©ºæ—¶æŠ›å¼‚å¸¸ï¼Œåˆ™ä¼šè‡ªåŠ¨æŠ›å‡º
 	 */
-/*	public abstract Map<String ½á¹ûµÄÖµ , Field> evalElement(
+/*	public abstract Map<String ç»“æœçš„å€¼ , Field> evalElement(
 			Map<String, Set<Object>> enumeratedMap);*/
 
 	// public abstract Set<String> evalWithoutSourceTrace(Map<String,
@@ -44,12 +44,12 @@ public abstract class ListAbstractResultRule extends AbstractRule {
 			Map<String, Comparative> sharedValueElementMap,
 			ExtraParameterContext extraParameterContext);
 
-	public abstract Map<String/* ½á¹ûµÄÖµ */, Field> evalElement(
+	public abstract Map<String/* ç»“æœçš„å€¼ */, Field> evalElement(
 			Map<String, Set<Object>> enumeratedMap,
 			ExtraParameterContext extraParameterContext);
 	
 	/**
-	 * µÃµ½Ãèµã²ÎÊıÖµ
+	 * å¾—åˆ°æç‚¹å‚æ•°å€¼
 	 * @param argumentsMap
 	 * @return
 	 */
@@ -57,7 +57,7 @@ public abstract class ListAbstractResultRule extends AbstractRule {
 			Map<String, Comparative> argumentsMap);
 	
 	/**
-	 * Õë¶Ô¶àcolumn,¶àvalueµÄ¹æÔò¼ÆËã
+	 * é’ˆå¯¹å¤šcolumn,å¤švalueçš„è§„åˆ™è®¡ç®—
 	 * @param samplingField
 	 * @param extraParameterContext
 	 * @return
@@ -66,7 +66,7 @@ public abstract class ListAbstractResultRule extends AbstractRule {
 			SamplingField samplingField,ExtraParameterContext extraParameterContext);
 	
 	/**
-	 * Õë¶Ôµ¥column,µ¥valueµÄ¹æÔò¼ÆËã
+	 * é’ˆå¯¹å•column,å•valueçš„è§„åˆ™è®¡ç®—
 	 * @param column
 	 * @param value
 	 * @param extraParameterContext

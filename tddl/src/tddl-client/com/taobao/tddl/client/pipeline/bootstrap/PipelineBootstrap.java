@@ -33,12 +33,12 @@ import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteConditi
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.SimpleCondition;
 
 /**
- * @description ¹ÜÏßÈÎÎñÁ÷×ªÆô¶¯Æ÷½Ó¿ÚÊµÏÖÀà
+ * @description ç®¡çº¿ä»»åŠ¡æµè½¬å¯åŠ¨å™¨æ¥å£å®ç°ç±»
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-09-14ÉÏÎç11:45:43
+ * @date 2010-09-14ä¸Šåˆ11:45:43
  */
 public class PipelineBootstrap implements Bootstrap {
 	protected PipelineFactory pipelineFactory;
@@ -52,11 +52,11 @@ public class PipelineBootstrap implements Bootstrap {
 
 	public ExecutionPlan bootstrap(StartInfo startInfo) throws SQLException {
 		DataBus dataBus = null;
-		//×îºÃ²»Òª×ö¶à´Î
+		//æœ€å¥½ä¸è¦åšå¤šæ¬¡
 //		RouteCondition rcFromHint = HintParser.convertHint2RouteCondition(startInfo);
 		RouteCondition rcFromHint = SimpleHintParser.convertHint2RouteCondition(startInfo);
-		// Èç¹ûhintÖĞÃ»ÓĞÖ¸¶¨ÈÎºÎÖ¸Ê¾ĞÔµÄĞÅÏ¢£¬×ßÔ­À´Âß¼­
-		// TDDL HintºÍThreadLocalÖĞÖ¸¶¨µÄÊı¾İÒÔTDDL HintÓÅÏÈ
+		// å¦‚æœhintä¸­æ²¡æœ‰æŒ‡å®šä»»ä½•æŒ‡ç¤ºæ€§çš„ä¿¡æ¯ï¼Œèµ°åŸæ¥é€»è¾‘
+		// TDDL Hintå’ŒThreadLocalä¸­æŒ‡å®šçš„æ•°æ®ä»¥TDDL Hintä¼˜å…ˆ
 		if (rcFromHint == null) {
 			DirectlyRouteCondition condition = pipelineFactory.sqlPreParse(startInfo.getSql());
 			if (null == condition) {
@@ -65,9 +65,9 @@ public class PipelineBootstrap implements Bootstrap {
 				dataBus = this.bootstrap0Direct(startInfo, condition);
 			}
 		} else {
-			//TDDL hintÍê³ÉÊ¹Ãü£¬ÒÆ³ı£¬·ÀÖ¹sql½âÎöºÍºóĞø²Ù×÷³ö´í
+			//TDDL hintå®Œæˆä½¿å‘½ï¼Œç§»é™¤ï¼Œé˜²æ­¢sqlè§£æå’Œåç»­æ“ä½œå‡ºé”™
 			HintParserHelper.removeTddlHintAndParameter(startInfo);
-			//Èç¹ûhintÖĞÓĞÖ¸Ê¾ĞÔĞÅÏ¢£¬Ôò²»ĞèÒª½øĞĞSQLÔ¤½âÎö
+			//å¦‚æœhintä¸­æœ‰æŒ‡ç¤ºæ€§ä¿¡æ¯ï¼Œåˆ™ä¸éœ€è¦è¿›è¡ŒSQLé¢„è§£æ
 			dataBus = this.bootstrap0(startInfo,rcFromHint);
 		}
 
@@ -103,7 +103,7 @@ public class PipelineBootstrap implements Bootstrap {
 	}
 
 	/**
-	 * ´Ó×ÜÏßÖĞÈ¡µÃDispatcherResult
+	 * ä»æ€»çº¿ä¸­å–å¾—DispatcherResult
 	 * 
 	 * @param dataBus
 	 * @return
@@ -115,7 +115,7 @@ public class PipelineBootstrap implements Bootstrap {
 	}
 
 	/**
-	 * ´Ó×ÜÏßÖĞÈ¡µÃExecutionPlan
+	 * ä»æ€»çº¿ä¸­å–å¾—ExecutionPlan
 	 * 
 	 * @param dataBus
 	 * @return
@@ -131,7 +131,7 @@ public class PipelineBootstrap implements Bootstrap {
 	}
 
 	/**
-	 * ¼æÈİĞÔ·½·¨,±ÜÃâĞŞ¸Ä¹ı¶àµÄ²âÊÔ
+	 * å…¼å®¹æ€§æ–¹æ³•,é¿å…ä¿®æ”¹è¿‡å¤šçš„æµ‹è¯•
 	 * 
 	 * @param rc
 	 * @param sql
@@ -169,7 +169,7 @@ public class PipelineBootstrap implements Bootstrap {
 	}
 
 	/**
-	 * ×¨ÃÅÌá¹©¸øÅúÁ¿sqlÊ¹ÓÃ
+	 * ä¸“é—¨æä¾›ç»™æ‰¹é‡sqlä½¿ç”¨
 	 * 
 	 * @param sql
 	 * @param originalParameterSettings
@@ -189,7 +189,7 @@ public class PipelineBootstrap implements Bootstrap {
 			Map<String, List<String>> targetSqls,
 			Map<String, Map<String, List<List<ParameterContext>>>> prePareTargetSqls)
 			throws SQLException {
-		// BatchÖ§³ÖThreadLocal,ÉèÖÃ²ÎÊıÎ»ÖÃ.
+		// Batchæ”¯æŒThreadLocal,è®¾ç½®å‚æ•°ä½ç½®.
 		SimpleCondition rc = (SimpleCondition) getRouteContiongFromThreadLocal(ThreadLocalString.ROUTE_CONDITION);
 		DirectlyRouteCondition condition = pipelineFactory
 				.sqlPreParse(startInfo.getSql());
@@ -247,7 +247,7 @@ public class PipelineBootstrap implements Bootstrap {
 	}
 
 	/**
-	 * ¸øÆÕÍ¨²éÑ¯¸üĞÂÊ¹ÓÃ
+	 * ç»™æ™®é€šæŸ¥è¯¢æ›´æ–°ä½¿ç”¨
 	 * 
 	 * @param sql
 	 * @param originalParameterSettings
@@ -260,15 +260,15 @@ public class PipelineBootstrap implements Bootstrap {
 		RouteCondition rc = null;
 		DirectlyRouteCondition ruleCondition = null;
 		DirectlyRouteCondition directlyRouteCondition = null;
-		//Èç¹ûTDDL HINTÎª¿Õ£¬ÄÇÃ´×ßÔ­À´µÄÂ·
+		//å¦‚æœTDDL HINTä¸ºç©ºï¼Œé‚£ä¹ˆèµ°åŸæ¥çš„è·¯
 		if (null == fromHintRc) {
 			rc = (RouteCondition) getRouteContiongFromThreadLocal(ThreadLocalString.ROUTE_CONDITION);
 			ruleCondition = (DirectlyRouteCondition) getRouteContiongFromThreadLocal(ThreadLocalString.RULE_SELECTOR);
 			directlyRouteCondition = (DirectlyRouteCondition) getRouteContiongFromThreadLocal(ThreadLocalString.DB_SELECTOR);
 		} else {
 			if (fromHintRc instanceof DirectlyRouteCondition) {
-                //FIXME:ÈçºÎÇø·ÖÕâ¸öruleCondition»¹ÊÇdirectlyRouteCondition,ÏÖÔÚÄ¬ÈÏ´¦ÀíÎªdirectlyRouteCondition
-				//Ò²¾ÍÊÇ²»Ö§³Ö¶àÌ×¹æÔòµÄÑ¡Ôñ
+                //FIXME:å¦‚ä½•åŒºåˆ†è¿™ä¸ªruleConditionè¿˜æ˜¯directlyRouteCondition,ç°åœ¨é»˜è®¤å¤„ç†ä¸ºdirectlyRouteCondition
+				//ä¹Ÿå°±æ˜¯ä¸æ”¯æŒå¤šå¥—è§„åˆ™çš„é€‰æ‹©
 				directlyRouteCondition=(DirectlyRouteCondition) fromHintRc;
 			} else {
 				rc = fromHintRc;
@@ -282,24 +282,24 @@ public class PipelineBootstrap implements Bootstrap {
 			String dbRuleId = ((DirectlyRouteCondition) directlyRouteCondition)
 					.getDbRuleID();
 			if (connectionManager.containDBIndex(dbRuleId)) {
-				flowType = FlowType.DIRECT; // Ö±½ÓÖ´ĞĞsql£¬²»×ö½âÎöºÍÂ·ÓÉ
+				flowType = FlowType.DIRECT; // ç›´æ¥æ‰§è¡Œsqlï¼Œä¸åšè§£æå’Œè·¯ç”±
 				sqlMetaData = generateSqlMetaData(startInfo.getSql());
 			} else {
-				throw new SQLException("ÕÒ²»µ½Ä¿±êÖ´ĞĞ¿â: " + dbRuleId);
+				throw new SQLException("æ‰¾ä¸åˆ°ç›®æ ‡æ‰§è¡Œåº“: " + dbRuleId);
 			}
 		} else if (ruleCondition != null) {
 			ruleId = ((DirectlyRouteCondition) ruleCondition).getDbRuleID();
 			if (rc != null) {
-				flowType = FlowType.NOSQLPARSE; // Ñ¡Ôñ¹æÔò£¬²¢ÇÒÌø¹ısql½âÎö
+				flowType = FlowType.NOSQLPARSE; // é€‰æ‹©è§„åˆ™ï¼Œå¹¶ä¸”è·³è¿‡sqlè§£æ
 				sqlMetaData = generateSqlMetaData(startInfo.getSql(), rc.getVirtualTableName());
 			} else {
-				flowType = FlowType.DEFAULT; // Ñ¡Ôñ¹æÔò£¬²¢ÇÒÄ¬ÈÏÖ´ĞĞ
+				flowType = FlowType.DEFAULT; // é€‰æ‹©è§„åˆ™ï¼Œå¹¶ä¸”é»˜è®¤æ‰§è¡Œ
 			}
 		} else if (null != rc) {
-			flowType = FlowType.NOSQLPARSE; // ²»Ñ¡Ôñ¹æÔò£¬µ«ÊÇÌø¹ısql½âÎö
+			flowType = FlowType.NOSQLPARSE; // ä¸é€‰æ‹©è§„åˆ™ï¼Œä½†æ˜¯è·³è¿‡sqlè§£æ
 			sqlMetaData = generateSqlMetaData(startInfo.getSql(), rc.getVirtualTableName());
 		} else {
-			flowType = FlowType.DEFAULT; // ¼È²»Ñ¡Ôñ¹æÔò£¬Ò²²»Ìø¹ısql½âÎö£¬Ä¬ÈÏÖ´ĞĞ
+			flowType = FlowType.DEFAULT; // æ—¢ä¸é€‰æ‹©è§„åˆ™ï¼Œä¹Ÿä¸è·³è¿‡sqlè§£æï¼Œé»˜è®¤æ‰§è¡Œ
 		}
 
 		PipelineContextDataBus dataBus = getPluginDataBus(startInfo,
@@ -323,7 +323,7 @@ public class PipelineBootstrap implements Bootstrap {
 	}
 
 	/**
-	 * Ö±½ÓÖ´ĞĞsql£¬Ö÷ÒªÌá¹©¸øsqlÔ¤½âÎöºó·¢ÏÖ¹æÔòÖĞÃ»ÓĞ ¶¨Òå¸Ã±íµÄ¹æÔò£¬ÄÇÃ´Ö±½ÓÔÚdefaultDbIndexÉÏÖ´ĞĞSQL
+	 * ç›´æ¥æ‰§è¡Œsqlï¼Œä¸»è¦æä¾›ç»™sqlé¢„è§£æåå‘ç°è§„åˆ™ä¸­æ²¡æœ‰ å®šä¹‰è¯¥è¡¨çš„è§„åˆ™ï¼Œé‚£ä¹ˆç›´æ¥åœ¨defaultDbIndexä¸Šæ‰§è¡ŒSQL
 	 * 
 	 * @param sql
 	 * @param originalParameterSettings
@@ -342,7 +342,7 @@ public class PipelineBootstrap implements Bootstrap {
 			if (connectionManager.containDBIndex(dbRuleId)) {
 				flowType = FlowType.DIRECT;
 			} else {
-				throw new SQLException("ÕÒ²»µ½Ä¿±êÖ´ĞĞ¿â: " + dbRuleId);
+				throw new SQLException("æ‰¾ä¸åˆ°ç›®æ ‡æ‰§è¡Œåº“: " + dbRuleId);
 			}
 		}
 
@@ -360,7 +360,7 @@ public class PipelineBootstrap implements Bootstrap {
 	}
 
 	/**
-	 * »ñÈ¡Ò»ÌõÊı¾İ×ÜÏß£¬ÕâÌõ×ÜÏßÖĞ×¢²á×Ô¶¨ÒåÅäÖÃ£¬¿É×¢²á¶à¸ö¡£ Ã¿´Î³õÊ¼»¯Ò»ÌõÊı¾İ×ÜÏß£¬Ó¦¶Ô¶àÏß³ÌÎÊÌâ¡£ add by junyu
+	 * è·å–ä¸€æ¡æ•°æ®æ€»çº¿ï¼Œè¿™æ¡æ€»çº¿ä¸­æ³¨å†Œè‡ªå®šä¹‰é…ç½®ï¼Œå¯æ³¨å†Œå¤šä¸ªã€‚ æ¯æ¬¡åˆå§‹åŒ–ä¸€æ¡æ•°æ®æ€»çº¿ï¼Œåº”å¯¹å¤šçº¿ç¨‹é—®é¢˜ã€‚ add by junyu
 	 * 
 	 * @return
 	 * @throws SQLException
@@ -388,7 +388,7 @@ public class PipelineBootstrap implements Bootstrap {
 	}
 
 	/**
-	 * ´ÓthreadLocalÖĞÈ¡µÃRouteCondition,²¢ÇÒ°´ĞèÇóÇå³ıThreadLocalMapÀïÃæµÄÖµ
+	 * ä»threadLocalä¸­å–å¾—RouteCondition,å¹¶ä¸”æŒ‰éœ€æ±‚æ¸…é™¤ThreadLocalMapé‡Œé¢çš„å€¼
 	 * 
 	 * @param key
 	 * @return

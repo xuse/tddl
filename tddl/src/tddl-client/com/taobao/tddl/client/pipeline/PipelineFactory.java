@@ -9,38 +9,38 @@ import com.taobao.tddl.interact.rule.bean.DBType;
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteCondition;
 
 /**
- * @description ¹ÜÏß¹¤³§½Ó¿Ú¶¨Òå,AbstractPipelineFactoryÊµÏÖÁËÕâ¸ö½Ó¿Ú,
- *              µ«Õâ¸öÊµÏÖÀàÊÇ³éÏóÀà,getPipelineÁô¸ø¾ßÌåµÄ×ÓÀàÈ¥ÊµÏÖ,ÒÔ´ïµ½
- *              ¶¨Òå²»Í¬handlerµÄ¹ÜÏßÒÔ¼°Ìá¹©Ò»Ğ©ÏàÍ¬·şÎñµÄÄ¿µÄ
+ * @description ç®¡çº¿å·¥å‚æ¥å£å®šä¹‰,AbstractPipelineFactoryå®ç°äº†è¿™ä¸ªæ¥å£,
+ *              ä½†è¿™ä¸ªå®ç°ç±»æ˜¯æŠ½è±¡ç±»,getPipelineç•™ç»™å…·ä½“çš„å­ç±»å»å®ç°,ä»¥è¾¾åˆ°
+ *              å®šä¹‰ä¸åŒhandlerçš„ç®¡çº¿ä»¥åŠæä¾›ä¸€äº›ç›¸åŒæœåŠ¡çš„ç›®çš„
  *           
- *              Ò»°ãÊµÏÖ×Ô¶¨ÒåPipelineFactory²»Ö±½ÓÊµÏÖ±¾½Ó¿Ú,¼Ì³Ğ
- *              AbstractPipelineFactoryÊÇÒ»ÖÖÕıÈ·ÇÒ¼ò±ãµÄ·½·¨.
+ *              ä¸€èˆ¬å®ç°è‡ªå®šä¹‰PipelineFactoryä¸ç›´æ¥å®ç°æœ¬æ¥å£,ç»§æ‰¿
+ *              AbstractPipelineFactoryæ˜¯ä¸€ç§æ­£ç¡®ä¸”ç®€ä¾¿çš„æ–¹æ³•.
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-08-15ÏÂÎç03:45:43
+ * @date 2010-08-15ä¸‹åˆ03:45:43
  */
 public interface PipelineFactory {
 	/**
-	 * È¡µÃ¹ÜÏß
+	 * å–å¾—ç®¡çº¿
 	 * @return
 	 */
 	public Pipeline getPipeline();
 	
 	/**
-	 * ÉèÖÃÄ¬ÈÏsqlDispatcher
+	 * è®¾ç½®é»˜è®¤sqlDispatcher
 	 * @param defaultDispatcher
 	 */
 	public void setDefaultDispatcher(SqlDispatcher defaultDispatcher);
 	
 	/**
-	 * Éè¶¨dispatcherMap,³õÊ¼»¯Ê±ºòÊ¹ÓÃ
+	 * è®¾å®šdispatcherMap,åˆå§‹åŒ–æ—¶å€™ä½¿ç”¨
 	 * @param dispatcherMap
 	 */
 	public void setDispatcherMap(Map<String, SqlDispatcher> dispatcherMap);
 	
 	/**
-	 * ¸ù¾İÖ¸¶¨µÄ¹æÔò¼ü£¬Ñ¡Ôñ¹æÔò
+	 * æ ¹æ®æŒ‡å®šçš„è§„åˆ™é”®ï¼Œé€‰æ‹©è§„åˆ™
 	 * @param selectKey
 	 * @return
 	 * @throws SQLException
@@ -48,7 +48,7 @@ public interface PipelineFactory {
 	public SqlDispatcher selectSqlDispatcher(String selectKey) throws SQLException;
 	
 	/**
-	 * sqlÔ¤½âÎö£¬×Ô¶¯ÅĞ¶¨ÊÇ·ñ×Ô¶¯Ö´ĞĞ
+	 * sqlé¢„è§£æï¼Œè‡ªåŠ¨åˆ¤å®šæ˜¯å¦è‡ªåŠ¨æ‰§è¡Œ
 	 * @param sql
 	 * @return
 	 * @throws SQLException
@@ -56,7 +56,7 @@ public interface PipelineFactory {
 	public DirectlyRouteCondition sqlPreParse(String sql) throws SQLException ;
 	
 	/**
-	 * Ö§³Ö¶à¹æÔò¶à±íµÄDBType»ìÓÃ
+	 * æ”¯æŒå¤šè§„åˆ™å¤šè¡¨çš„DBTypeæ··ç”¨
 	 * @param sql
 	 * @return
 	 * @throws SQLException

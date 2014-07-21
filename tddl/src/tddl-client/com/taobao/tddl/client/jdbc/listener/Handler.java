@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 /*
  * @author guangxia
- * @since 1.0, 2010-4-12 ÏÂÎç02:19:53
+ * @since 1.0, 2010-4-12 ä¸‹åˆ02:19:53
  */
 public abstract class Handler {
 	

@@ -8,7 +8,7 @@ import java.util.Map;
 import com.taobao.tddl.interact.rule.bean.DBType;
 
 /**
- * ¶ÔÓ¦Ò»ÕÅĞéÄâ±íµÄ¶à¸ö×ÓDBRule
+ * å¯¹åº”ä¸€å¼ è™šæ‹Ÿè¡¨çš„å¤šä¸ªå­DBRule
  * 
  * @author shenxun
  * 
@@ -16,7 +16,7 @@ import com.taobao.tddl.interact.rule.bean.DBType;
 @SuppressWarnings("unchecked")
 public class LogicTabMatrix {
 	/**
-	 * ÔÊĞí·´ÏòÊä³ö
+	 * å…è®¸åå‘è¾“å‡º
 	 */
 	private boolean allowReverseOutput;
 
@@ -25,38 +25,38 @@ public class LogicTabMatrix {
 	}*/
 
 	/**
-	 * Ä¬ÈÏµÄ½âÎö¹æÔò
+	 * é»˜è®¤çš„è§£æè§„åˆ™
 	 */
 	private DBType dbType = DBType.MYSQL;
 	/**
-	 * ĞéÄâ±íÃû£¬Ö»ÓÃÔÚ±íÃûÌæ»»µÄÊ±ºò£¬Òò´ËÕâ¸ötableName»¹±£³ÖÔ­À´µÄ´óĞ¡Ğ´
+	 * è™šæ‹Ÿè¡¨åï¼Œåªç”¨åœ¨è¡¨åæ›¿æ¢çš„æ—¶å€™ï¼Œå› æ­¤è¿™ä¸ªtableNameè¿˜ä¿æŒåŸæ¥çš„å¤§å°å†™
 	 */
 	private String tableName;
 
 	/**
-	 * ¹©Ñ¡ĞéÄâ¿â¹æÔòMap
+	 * ä¾›é€‰è™šæ‹Ÿåº“è§„åˆ™Map
 	 */
 	private Map<String, DBRule> depositedRules = Collections.EMPTY_MAP;
 
 	/**
-	 * ËùÓĞ¹æÔò´æ·ÅµÄMap,°üº¬ÄÇĞ©Ã»ÓĞexpression String×Ö¶Î£¬Ö»ÓÃÓÚdefaultRuleµÄkeyvalue¶Ô
+	 * æ‰€æœ‰è§„åˆ™å­˜æ”¾çš„Map,åŒ…å«é‚£äº›æ²¡æœ‰expression Stringå­—æ®µï¼Œåªç”¨äºdefaultRuleçš„keyvalueå¯¹
 	 */
 	private Map<String, DBRule> allRules = Collections.EMPTY_MAP;
 
 	/**
-	 * Ä¬ÈÏĞéÄâ¿â¹æÔòÁĞ±í
+	 * é»˜è®¤è™šæ‹Ÿåº“è§„åˆ™åˆ—è¡¨
 	 */
 	private List<DBRule> defaultRules = new ArrayList<DBRule>();
 
 	private TabRule globalTableRule = null;
 
 	/**
-	 * ÊÇ·ñĞèÒª·´ÏòÊä³ö
+	 * æ˜¯å¦éœ€è¦åå‘è¾“å‡º
 	 */
 	private boolean needRowCopy = false;
 
 	/**
-	 * ±íÉú³ÉÒò×Ó ÓÃÓÚÔÚĞéÄâ±íÃûºÍ±íºó×ºÖ®¼äµÄ·Ö¸î
+	 * è¡¨ç”Ÿæˆå› å­ ç”¨äºåœ¨è™šæ‹Ÿè¡¨åå’Œè¡¨åç¼€ä¹‹é—´çš„åˆ†å‰²
 	 */
 	private String tableFactor = null;
 
@@ -77,7 +77,7 @@ public class LogicTabMatrix {
 	}
 
 	/**
-	 * Ö»ÓÃÔÚ±íÃûÌæ»»µÄÊ±ºò£¬Òò´ËÕâ¸ötableName»¹±£³ÖÔ­À´µÄ´óĞ¡Ğ´
+	 * åªç”¨åœ¨è¡¨åæ›¿æ¢çš„æ—¶å€™ï¼Œå› æ­¤è¿™ä¸ªtableNameè¿˜ä¿æŒåŸæ¥çš„å¤§å°å†™
 	 * 
 	 * @return
 	 */

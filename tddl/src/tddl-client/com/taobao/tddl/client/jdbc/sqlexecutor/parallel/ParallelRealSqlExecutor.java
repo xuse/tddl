@@ -21,14 +21,14 @@ import com.taobao.tddl.client.jdbc.sqlexecutor.RealSqlExecutorCommon;
 import com.taobao.tddl.client.jdbc.sqlexecutor.UpdateReturn;
 
 /**
- * ²¢ĞĞsqlÖ´ĞĞÆ÷£¬²ÉÓÃÏß³Ì³ØÄ£Ê½²¢ĞĞÖ´ĞĞ²»Í¬¿âsql,´Ó¶ø
- * ³ä·ÖÀûÓÃÊı¾İ¿âIO
+ * å¹¶è¡Œsqlæ‰§è¡Œå™¨ï¼Œé‡‡ç”¨çº¿ç¨‹æ± æ¨¡å¼å¹¶è¡Œæ‰§è¡Œä¸åŒåº“sql,ä»è€Œ
+ * å……åˆ†åˆ©ç”¨æ•°æ®åº“IO
  * <br>
- * Ê¹ÓÃ»Øµ÷½«½á¹ûÉèÖÃµ½½á¹û¶ÓÁĞ£¬Èç¹ûÄ³¸öÏß³ÌÖ´ĞĞ·¢ÉúÒì³££¬
- * ÖĞ¶ÏÖ÷Ïß³Ì£¬Ê¹Ö÷Ïß³ÌÍË³öcountdownlatch.await(),²¢ÇÒ
- * ÔÚÒì³£¿éÀïÈ¡Ïû´Ë´ÎÈÎÎñµÄÆäËûsqlÖ´ĞĞ ,²¢ÇÒÇåÀí¶ÓÁĞÄÚÒÑ
- * ¾­Ö´ĞĞÍê±Ï·µ»ØµÄ½á¹û,¹Ø±ÕÁ´½Ó¡££¨Õâ¶ÎÂß¼­ĞèÒªÓÅ»¯£¬
- * È¡ÏûÈÎÎñÎÒÊ¼ÖÕ¾õµÃÓĞ·çÏÕ£¬Ôö¼Ó¸´ÔÓĞÔ£©
+ * ä½¿ç”¨å›è°ƒå°†ç»“æœè®¾ç½®åˆ°ç»“æœé˜Ÿåˆ—ï¼Œå¦‚æœæŸä¸ªçº¿ç¨‹æ‰§è¡Œå‘ç”Ÿå¼‚å¸¸ï¼Œ
+ * ä¸­æ–­ä¸»çº¿ç¨‹ï¼Œä½¿ä¸»çº¿ç¨‹é€€å‡ºcountdownlatch.await(),å¹¶ä¸”
+ * åœ¨å¼‚å¸¸å—é‡Œå–æ¶ˆæ­¤æ¬¡ä»»åŠ¡çš„å…¶ä»–sqlæ‰§è¡Œ ,å¹¶ä¸”æ¸…ç†é˜Ÿåˆ—å†…å·²
+ * ç»æ‰§è¡Œå®Œæ¯•è¿”å›çš„ç»“æœ,å…³é—­é“¾æ¥ã€‚ï¼ˆè¿™æ®µé€»è¾‘éœ€è¦ä¼˜åŒ–ï¼Œ
+ * å–æ¶ˆä»»åŠ¡æˆ‘å§‹ç»ˆè§‰å¾—æœ‰é£é™©ï¼Œå¢åŠ å¤æ‚æ€§ï¼‰
  * 
  * @author junyu
  * 
@@ -42,7 +42,7 @@ public class ParallelRealSqlExecutor extends RealSqlExecutorCommon {
 	}
 
 	/**
-	 * ²¢ĞĞ²éÑ¯£¬Ê¹ÓÃ¹Ì¶¨Ïß³Ì³Ø½øĞĞ²éÑ¯²Ù×÷¡£
+	 * å¹¶è¡ŒæŸ¥è¯¢ï¼Œä½¿ç”¨å›ºå®šçº¿ç¨‹æ± è¿›è¡ŒæŸ¥è¯¢æ“ä½œã€‚
 	 * 
 	 * @param queryReturnList
 	 * @param executionPlan
@@ -58,7 +58,7 @@ public class ParallelRealSqlExecutor extends RealSqlExecutorCommon {
 		setSpecialProperty(tStatementImp, executionPlan);
 		
 		/**
-		 * ´´½¨»Øµ÷Àà
+		 * åˆ›å»ºå›è°ƒç±»
 		 */
 		final ExecuteCompleteListener<QueryReturn> ec = new ExecuteCompleteListener<QueryReturn>(
 				queryReturnQueue);
@@ -79,7 +79,7 @@ public class ParallelRealSqlExecutor extends RealSqlExecutorCommon {
 							
 							try {
 								/**
-								 * µÚÒ»´Î²éÑ¯Ö®Ç°£¬¼ì²éÏÂµ±Ç°Ïß³ÌÓĞÃ»ÓĞ±»ÖÃÎª interrupted
+								 * ç¬¬ä¸€æ¬¡æŸ¥è¯¢ä¹‹å‰ï¼Œæ£€æŸ¥ä¸‹å½“å‰çº¿ç¨‹æœ‰æ²¡æœ‰è¢«ç½®ä¸º interrupted
 								 */
 								checkThreadState();
 
@@ -94,7 +94,7 @@ public class ParallelRealSqlExecutor extends RealSqlExecutorCommon {
 									QueryReturn qr = null;
 
 									/**
-									 * Ã¿Ò»´Î²éÑ¯Ö®Ç°£¬¼ì²éÏÂµ±Ç°Ïß³ÌÓĞÃ»ÓĞ±»ÖÃÎª interrupted
+									 * æ¯ä¸€æ¬¡æŸ¥è¯¢ä¹‹å‰ï¼Œæ£€æŸ¥ä¸‹å½“å‰çº¿ç¨‹æœ‰æ²¡æœ‰è¢«ç½®ä¸º interrupted
 									 */
 									checkThreadState();
 
@@ -121,7 +121,7 @@ public class ParallelRealSqlExecutor extends RealSqlExecutorCommon {
 										"Parallel Query SQLException Happen!",
 										e);
 						        
-								// ÈÃcountdownlatchÏìÓ¦interruptException;
+								// è®©countdownlatchå“åº”interruptException;
 								if (!mainThread.isInterrupted()) {
 									mainThread.interrupt();
 								}
@@ -130,14 +130,14 @@ public class ParallelRealSqlExecutor extends RealSqlExecutorCommon {
 										"Parallel Query Unknow Exception Happen!",
 										e);
 								
-								// ÈÃcountdownlatchÏìÓ¦interruptException;
+								// è®©countdownlatchå“åº”interruptException;
 								if (!mainThread.isInterrupted()) {
 									mainThread.interrupt();
 								}
 							}
 
 							/**
-							 * Í¨ÖªÖ÷Ïß³ÌÍê³É²éÑ¯
+							 * é€šçŸ¥ä¸»çº¿ç¨‹å®ŒæˆæŸ¥è¯¢
 							 */
 							latch.countDown();
 						}
@@ -151,7 +151,7 @@ public class ParallelRealSqlExecutor extends RealSqlExecutorCommon {
 	}
 
 	/**
-	 * ²¢ĞĞ¸üĞÂ£¬Ê¹ÓÃ¹Ì¶¨Ïß³Ì³Ø½øĞĞupdate²Ù×÷
+	 * å¹¶è¡Œæ›´æ–°ï¼Œä½¿ç”¨å›ºå®šçº¿ç¨‹æ± è¿›è¡Œupdateæ“ä½œ
 	 * 
 	 * @param updateReturnList
 	 * @param executionPlan
@@ -168,7 +168,7 @@ public class ParallelRealSqlExecutor extends RealSqlExecutorCommon {
 		setSpecialProperty(tStatementImp, executionPlan);
 		
 		/**
-		 * ´´½¨»Øµ÷Àà
+		 * åˆ›å»ºå›è°ƒç±»
 		 */
 		final ExecuteCompleteListener<UpdateReturn> ec = new ExecuteCompleteListener<UpdateReturn>(
 				updateReturnQueue);
@@ -207,7 +207,7 @@ public class ParallelRealSqlExecutor extends RealSqlExecutorCommon {
 							ec.addResult(ur);
 
 							/**
-							 * Í¨ÖªÖ÷Ïß³Ì¸üĞÂ²Ù×÷Íê³É
+							 * é€šçŸ¥ä¸»çº¿ç¨‹æ›´æ–°æ“ä½œå®Œæˆ
 							 */
 							latch.countDown();
 						}
@@ -216,7 +216,7 @@ public class ParallelRealSqlExecutor extends RealSqlExecutorCommon {
 	}
 
 	/**
-	 * ÄÚ²¿»Øµ÷Àà£¬µ±×ÓÏß³ÌÍê³ÉÈÎÎñÊ±Íê³É½á¹ûÉèÖÃ
+	 * å†…éƒ¨å›è°ƒç±»ï¼Œå½“å­çº¿ç¨‹å®Œæˆä»»åŠ¡æ—¶å®Œæˆç»“æœè®¾ç½®
 	 * 
 	 * @author junyu
 	 * 

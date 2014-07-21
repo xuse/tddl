@@ -22,7 +22,7 @@ import com.taobao.tddl.jdbc.group.TGroupDataSource;
 /**
  * @description
  * @author <a href="junyu@taobao.com">junyu</a>
- * @date 2013-5-7ÏÂÎç02:03:52
+ * @date 2013-5-7ä¸‹åˆ02:03:52
  */
 public class UnitGroupSequenceDao extends GroupSequenceDao implements
 		RouterUnitsListener {
@@ -31,9 +31,9 @@ public class UnitGroupSequenceDao extends GroupSequenceDao implements
 	public static final String DUMMY_OFF_DBGROUPKEY = "DUMMY-OFF";
 
 	/**
-	 * ÕæÕıµÄdbGroupKey
+	 * çœŸæ­£çš„dbGroupKey
 	 * 
-	 * µ¥ÔªÊıÁ¿´óÓÚ1µÄÇ°ÌáÏÂ£¬²¢ÇÒunitindexÎªÕıÊı£¬ÄÇÃ´Òª½øĞĞµ¥Ôª»¯²¿ÊğµÄÅäÖÃ±ä¸ü£¬·ñÔò ²»Òª¸ã£¬ºóÃæ»¹»á¶¯Ì¬±ä»¯£¬ÕâÀïµÄÂß¼­Ö÷ÒªÎªÁË³õÊ¼»¯Êı¾İ
+	 * å•å…ƒæ•°é‡å¤§äº1çš„å‰æä¸‹ï¼Œå¹¶ä¸”unitindexä¸ºæ­£æ•°ï¼Œé‚£ä¹ˆè¦è¿›è¡Œå•å…ƒåŒ–éƒ¨ç½²çš„é…ç½®å˜æ›´ï¼Œå¦åˆ™ ä¸è¦æï¼Œåé¢è¿˜ä¼šåŠ¨æ€å˜åŒ–ï¼Œè¿™é‡Œçš„é€»è¾‘ä¸»è¦ä¸ºäº†åˆå§‹åŒ–æ•°æ®
 	 * 
 	 * @return
 	 * @throws SequenceException
@@ -60,25 +60,25 @@ public class UnitGroupSequenceDao extends GroupSequenceDao implements
 	}
 
 	/**
-	 * ³õÊÔ»¯
+	 * åˆè¯•åŒ–
 	 * 
 	 * @throws SequenceException
 	 */
 	public void init() throws SequenceException {
-		// Èç¹ûÓ¦ÓÃÃûÎª¿Õ£¬Ö±½ÓÅ×³ö
+		// å¦‚æœåº”ç”¨åä¸ºç©ºï¼Œç›´æ¥æŠ›å‡º
 		if (StringUtils.isEmpty(appName)) {
 			SequenceException sequenceException = new SequenceException(
 					"appName is Null ");
-			log.error("Ã»ÓĞÅäÖÃappName", sequenceException);
+			log.error("æ²¡æœ‰é…ç½®appName", sequenceException);
 			throw sequenceException;
 		}
 
 		if (dbGroupKeys == null || dbGroupKeys.size() == 0) {
-			log.error("Ã»ÓĞÅäÖÃdbgroupKeys");
-			throw new SequenceException("dbgroupKeysÎª¿Õ£¡");
+			log.error("æ²¡æœ‰é…ç½®dbgroupKeys");
+			throw new SequenceException("dbgroupKeysä¸ºç©ºï¼");
 		}
 
-		// È¡µÃunitÊı¾İ
+		// å–å¾—unitæ•°æ®
 		this.changeConfig(false, null);
 		Router.registerUnitsListener(this);
 		dataSourceMap = new HashMap<String, DataSource>();
@@ -154,7 +154,7 @@ public class UnitGroupSequenceDao extends GroupSequenceDao implements
 				this.dbGroupKeys = oriDbGroupKeys;
 				this.dscount = dbGroupKeys.size();
 				this.outStep = innerStep * dscount;
-				//²»ÓÃµ¥Ôª»¯ÄÇÃ´½«statusÖÃÎªnull
+				//ä¸ç”¨å•å…ƒåŒ–é‚£ä¹ˆå°†statusç½®ä¸ºnull
 				this.status = status;
 			}
 		} finally {
@@ -168,15 +168,15 @@ public class UnitGroupSequenceDao extends GroupSequenceDao implements
 
 	private void outputInitResult() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("GroupSequenceDao³õÊ¼»¯Íê³É£º\r\n ");
+		sb.append("GroupSequenceDaoåˆå§‹åŒ–å®Œæˆï¼š\r\n ");
 		sb.append("appName:").append(appName).append("\r\n");
 		sb.append("innerStep:").append(this.innerStep).append("\r\n");
-		sb.append("dataSource:").append(dscount).append("¸ö:");
+		sb.append("dataSource:").append(dscount).append("ä¸ª:");
 		for (String str : dbGroupKeys) {
-			sb.append("[").append(str).append("]¡¢");
+			sb.append("[").append(str).append("]ã€");
 		}
 		sb.append("\r\n");
-		sb.append("adjust£º").append(adjust).append("\r\n");
+		sb.append("adjustï¼š").append(adjust).append("\r\n");
 		sb.append("retryTimes:").append(retryTimes).append("\r\n");
 		sb.append("tableName:").append(tableName).append("\r\n");
 		sb.append("switchTempTable:").append(switchTempTable).append("\r\n");
@@ -188,7 +188,7 @@ public class UnitGroupSequenceDao extends GroupSequenceDao implements
 	}
 
 	public String getOriTableName() {
-		// È«Á´Â·Ñ¹²âĞèÇó
+		// å…¨é“¾è·¯å‹æµ‹éœ€æ±‚
 		String t = EagleEye.getUserData("t");
 		if (!StringUtils.isBlank(t) && t.equals("1")) {
 			return this.testTableName;
@@ -198,7 +198,7 @@ public class UnitGroupSequenceDao extends GroupSequenceDao implements
 	}
 	
 	public String getSwitchTableName() {
-		// È«Á´Â·Ñ¹²âĞèÇó
+		// å…¨é“¾è·¯å‹æµ‹éœ€æ±‚
 		String t = EagleEye.getUserData("t");
 		if (!StringUtils.isBlank(t) && t.equals("1")) {
 			return this.testSwitchTempTable;

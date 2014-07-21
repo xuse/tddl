@@ -31,7 +31,7 @@ import com.taobao.tddl.rule.le.util.StringXmlApplicationContext;
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-4-21ÏÂÎç01:15:22
+ * @date 2011-4-21ä¸‹åˆ01:15:22
  */
 public class TddlRuleConfig {
 	private static Log logger = LogFactory.getLog(TddlRuleConfig.class);
@@ -45,11 +45,11 @@ public class TddlRuleConfig {
 	private boolean needDbTabStat = false;
 	private volatile ConfigDataHandlerFactory cdhf;
 
-	// ±¾µØ¹æÔò
+	// æœ¬åœ°è§„åˆ™
 	private String appRuleFile;
 	private String appRuleString;
 
-	// ¶àÌ×¹æÔò(¶¯Ì¬ÍÆ)
+	// å¤šå¥—è§„åˆ™(åŠ¨æ€æ¨)
 	private volatile ConfigDataHandler versionHandler;
 	private volatile Map<String, ConfigDataHandler> ruleHandlers = new HashMap<String, ConfigDataHandler>();
 	protected volatile Map<String, VirtualTableRoot> vtrs = new HashMap<String, VirtualTableRoot>();
@@ -63,7 +63,7 @@ public class TddlRuleConfig {
 	protected volatile Map<Integer, String> versionIndex = new HashMap<Integer, String>();
 	private volatile Map<String, AbstractXmlApplicationContext> oldCtxs = new HashMap<String, AbstractXmlApplicationContext>();
 
-	// µ¥Ì×¹æÔò(¶¯Ì¬ÍÆ+±¾µØ¹æÔò)
+	// å•å¥—è§„åˆ™(åŠ¨æ€æ¨+æœ¬åœ°è§„åˆ™)
 	protected VirtualTableRoot vtr = null;
 	protected String ruleStr = null;
 	private AbstractXmlApplicationContext oldCtx;
@@ -80,7 +80,7 @@ public class TddlRuleConfig {
 			return vtr;
 		
 		if(vtrs.size() > 0) {
-			//·µ»ØµÚÒ»¸ö¹æÔò
+			//è¿”å›ç¬¬ä¸€ä¸ªè§„åˆ™
 			for(VirtualTableRoot virtualTableRoot : vtrs.values())
 				return virtualTableRoot;
 		}
@@ -88,7 +88,7 @@ public class TddlRuleConfig {
 	}
 
 	public void init() {
-		// Æô¶¯ÈÕÖ¾
+		// å¯åŠ¨æ—¥å¿—
 		statMonitor.setAppName(appName);
 		statMonitor.setNeedDbTabStat(needDbTabStat);
 		statMonitor.start();
@@ -186,7 +186,7 @@ public class TddlRuleConfig {
 					index++;
 				}
 				this.versionIndex = tempIndexMap;
-				// ¼ÇÏÂÈÕÖ¾,·½±ã·ÖÎö
+				// è®°ä¸‹æ—¥å¿—,æ–¹ä¾¿åˆ†æ
 				TotalStatMonitor.recieveRuleLog(versionData);
 			}
 		}
@@ -229,7 +229,7 @@ public class TddlRuleConfig {
 		} else if (this.ruleStr != null) {
 			return this.ruleStr;
 		} else {
-			throw new RuntimeException("¹æÔò¶ÔÏóÎª¿Õ!Çë¼ì²édiamondÉÏÊÇ·ñ´æÔÚ¶¯Ì¬¹æÔò!");
+			throw new RuntimeException("è§„åˆ™å¯¹è±¡ä¸ºç©º!è¯·æ£€æŸ¥diamondä¸Šæ˜¯å¦å­˜åœ¨åŠ¨æ€è§„åˆ™!");
 		}
 	}
 
@@ -319,11 +319,11 @@ public class TddlRuleConfig {
 
 		VirtualTableRoot tempvtr = (VirtualTableRoot) ctx.getBean("vtabroot");
 		if (version != null && tempvtr != null) {
-			// Ö±½Ó¸²¸Ç
+			// ç›´æ¥è¦†ç›–
 			this.vtrs.put(version, tempvtr);
 			this.ruleStrs.put(version, data);
 			oldCtx = this.oldCtxs.get(version);
-			// Ïú»Ù¾ÉÓĞÈİÆ÷
+			// é”€æ¯æ—§æœ‰å®¹å™¨
 			if (oldCtx != null) {
 				oldCtx.close();
 			}
@@ -453,7 +453,7 @@ public class TddlRuleConfig {
 
 					String[] versions = data.split(",");
 					Map<String, String> checkMap = new HashMap<String, String>();
-					// Ìí¼ÓĞÂÔöµÄ¹æÔò¶©ÔÄ
+					// æ·»åŠ æ–°å¢çš„è§„åˆ™è®¢é˜…
 					int index = 0;
 					Map<Integer, String> tempIndexMap = new HashMap<Integer, String>();
 					for (String version : versions) {
@@ -477,7 +477,7 @@ public class TddlRuleConfig {
 					}
 					versionIndex = tempIndexMap;
 
-					// É¾³ıÃ»ÓĞÔÚversionÖĞ´æÔÚµÄ¶©ÔÄ
+					// åˆ é™¤æ²¡æœ‰åœ¨versionä¸­å­˜åœ¨çš„è®¢é˜…
 					List<String> needRemove = new ArrayList<String>();
 					for (Map.Entry<String, ConfigDataHandler> handler : ruleHandlers
 							.entrySet()) {
@@ -486,7 +486,7 @@ public class TddlRuleConfig {
 						}
 					}
 
-					// ÇåÀí
+					// æ¸…ç†
 					for (String version : needRemove) {
 						ConfigDataHandler handler = ruleHandlers.get(version);
 						handler.closeUnderManager();
@@ -498,8 +498,8 @@ public class TddlRuleConfig {
 					}
 					// versionIndex = tempIndexMap;
 
-					// ÔÚversions dataÊÕµ½Îªnull,»òÕßÎª¿Õ,²»µ÷ÓÃ,±£»¤AppServer
-					// µ÷ÓÃlistener,µ«Ö»·µ»ØÎ»ÁĞµÚÒ»¸öµÄVirtualTableRoot
+					// åœ¨versions dataæ”¶åˆ°ä¸ºnull,æˆ–è€…ä¸ºç©º,ä¸è°ƒç”¨,ä¿æŠ¤AppServer
+					// è°ƒç”¨listener,ä½†åªè¿”å›ä½åˆ—ç¬¬ä¸€ä¸ªçš„VirtualTableRoot
 					for (RuleChangeListener listener : listeners) {
 						try {
 							// may be wrong,so try catch it ,not to affect
@@ -513,7 +513,7 @@ public class TddlRuleConfig {
 					shardColumnCache.clear();
 				}
 
-				// ¼ÇÏÂÈÕÖ¾,·½±ã·ÖÎö
+				// è®°ä¸‹æ—¥å¿—,æ–¹ä¾¿åˆ†æ
 				TotalStatMonitor.recieveRuleLog(data);
 			} finally {
 				lock.unlock();

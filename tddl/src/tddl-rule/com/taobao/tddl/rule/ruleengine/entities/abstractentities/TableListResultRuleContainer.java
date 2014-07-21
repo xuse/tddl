@@ -6,9 +6,9 @@ import com.taobao.tddl.rule.ruleengine.rule.ListAbstractResultRule;
 
 public interface TableListResultRuleContainer {
 	/**
-	 * ½«È«¾Ö±í¹æÔòÉèÖÃ¸ø±í¹æÔòÈİÆ÷¡£
-	 * Èç¹ûÉèÖÃ³É¹¦Ôò·µ»Øtrue;
-	 * Èç¹ûÉèÖÃÊ§°ÜÔò·µ»Øfalse;
+	 * å°†å…¨å±€è¡¨è§„åˆ™è®¾ç½®ç»™è¡¨è§„åˆ™å®¹å™¨ã€‚
+	 * å¦‚æœè®¾ç½®æˆåŠŸåˆ™è¿”å›true;
+	 * å¦‚æœè®¾ç½®å¤±è´¥åˆ™è¿”å›false;
 	 * 
 	 * @param listResultRule
 	 * @return

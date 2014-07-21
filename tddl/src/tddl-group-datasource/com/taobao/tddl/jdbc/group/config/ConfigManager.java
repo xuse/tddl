@@ -49,20 +49,20 @@ import com.taobao.tddl.jdbc.group.exception.ConfigException;
 import com.taobao.tddl.jdbc.group.exception.TAtomDataSourceException;
 
 /**
- * Ò»¸öConfigManager¶ÔÓ¦Ò»¸öTGroupDataSource£¬
- * Ö÷ÒªÓÃÓÚ½«¸ù¾İGroupµÄdataIDÈ¡µÃµÄ¶ÔÓ¦ÅäÖÃ×Ö·û´®ĞÅ£¨±ÈÈçdb0:rwp1q1i0, db1:rwp0q0i1£©£¬
- * ×ª»¯ÎªÕæÕıµÄGroup²ãµÄÅäÖÃÌåÏµ½á¹¹£ºÒ»¸öGroup²ã¹Ò×ÅÁ½¸öAtom db0 Óë db1 £¬ ÔòÎÒÃÇÊ¹ÓÃÒ»¸ö Map<String,
- * DataSourceWrapper> À´±íÊ¾ ÆäÖĞµÄString ÎªÃ¿¸öAtom DS µÄdbKey £¬DataSourceWrapper
- * Îª¾­¹ı·â×°µÄTAtomDataSource
- * ---ÕâÀïĞèÒª½âÊÍÒ»ÏÂ£¬ÎªÊ²Ã´²»Ö±½ÓÊ¹ÓÃAtomDataSource£¿ÒòÎªÃ¿¸öAtomDataSource»¹ÓĞÏàÓ¦µÄÈ¨ÖØºÍÓÅÏÈ¼¶ĞÅÏ¢ Òò´Ë£¬ĞèÒª***·½·¨
+ * ä¸€ä¸ªConfigManagerå¯¹åº”ä¸€ä¸ªTGroupDataSourceï¼Œ
+ * ä¸»è¦ç”¨äºå°†æ ¹æ®Groupçš„dataIDå–å¾—çš„å¯¹åº”é…ç½®å­—ç¬¦ä¸²ä¿¡ï¼ˆæ¯”å¦‚db0:rwp1q1i0, db1:rwp0q0i1ï¼‰ï¼Œ
+ * è½¬åŒ–ä¸ºçœŸæ­£çš„Groupå±‚çš„é…ç½®ä½“ç³»ç»“æ„ï¼šä¸€ä¸ªGroupå±‚æŒ‚ç€ä¸¤ä¸ªAtom db0 ä¸ db1 ï¼Œ åˆ™æˆ‘ä»¬ä½¿ç”¨ä¸€ä¸ª Map<String,
+ * DataSourceWrapper> æ¥è¡¨ç¤º å…¶ä¸­çš„String ä¸ºæ¯ä¸ªAtom DS çš„dbKey ï¼ŒDataSourceWrapper
+ * ä¸ºç»è¿‡å°è£…çš„TAtomDataSource
+ * ---è¿™é‡Œéœ€è¦è§£é‡Šä¸€ä¸‹ï¼Œä¸ºä»€ä¹ˆä¸ç›´æ¥ä½¿ç”¨AtomDataSourceï¼Ÿå› ä¸ºæ¯ä¸ªAtomDataSourceè¿˜æœ‰ç›¸åº”çš„æƒé‡å’Œä¼˜å…ˆçº§ä¿¡æ¯ å› æ­¤ï¼Œéœ€è¦***æ–¹æ³•
  *
  *
- * ÆäÖĞ£¬ÅäÖÃµÄÃ¿Ò»¸öAtom DataSourceÒ²Ö»ÊÇÓÃAtom
- * µÄdbKey±íÊ¾£¬Òò´Ë£¬ÎÒÃÇ»¹ĞèÒª¸ù¾İ´ËdbKeyÈ¡µÃAtomµÄÅäÖÃĞÅÏ¢£¬²¢ÇÒ½«Ëü·â×°³ÉÒ»¸öAtomDataSource¶ÔÏó¡£ Òò´ËĞèÒª***·½·¨
+ * å…¶ä¸­ï¼Œé…ç½®çš„æ¯ä¸€ä¸ªAtom DataSourceä¹Ÿåªæ˜¯ç”¨Atom
+ * çš„dbKeyè¡¨ç¤ºï¼Œå› æ­¤ï¼Œæˆ‘ä»¬è¿˜éœ€è¦æ ¹æ®æ­¤dbKeyå–å¾—Atomçš„é…ç½®ä¿¡æ¯ï¼Œå¹¶ä¸”å°†å®ƒå°è£…æˆä¸€ä¸ªAtomDataSourceå¯¹è±¡ã€‚ å› æ­¤éœ€è¦***æ–¹æ³•
  *
- * ÓĞÁËÕâ¸ömapÄÜ¸ù¾İdbKeyÑ¸ËÙµÄÕÒµ½¶ÔÓ¦µÄDatasourceÒ²ÊÇ²»¹»µÄ£¬ÎÒÃÇµÄGroup²ãÓ¦¸ÃÊÇ¶ÔÓ¦ÓÃÍ¸Ã÷µÄ£¬
- * Òò´Ë£¬µ±ÎÒÃÇµÄ¶ÁĞ´ÇëÇó½øÀ´Ê±£¬Group²ãÓ¦¸ÃÄÜ¹»¸ù¾İÅäÖÃµÄÈ¨ÖØºÍÓÅÏÈ¼¶£¬×Ô¶¯µÄÑ¡ÔñÒ»¸öºÏÊÊµÄDBÉÏ½øĞĞ¶ÁĞ´£¬
- * ËùÒÔ£¬ÎÒÃÇ»¹ĞèÒª½«ÅäÖÃĞÅÏ¢Éú³ÉÒ»¸öDBSelectorÀ´×Ô¶¯µÄÍê³É¸ù¾İÈ¨ÖØ¡¢ÓÅÏÈ¼¶Ñ¡ÔñºÏÊÊµÄÄ¿±ê¿â Òò´Ë£¬ĞèÒª***·½·¨
+ * æœ‰äº†è¿™ä¸ªmapèƒ½æ ¹æ®dbKeyè¿…é€Ÿçš„æ‰¾åˆ°å¯¹åº”çš„Datasourceä¹Ÿæ˜¯ä¸å¤Ÿçš„ï¼Œæˆ‘ä»¬çš„Groupå±‚åº”è¯¥æ˜¯å¯¹åº”ç”¨é€æ˜çš„ï¼Œ
+ * å› æ­¤ï¼Œå½“æˆ‘ä»¬çš„è¯»å†™è¯·æ±‚è¿›æ¥æ—¶ï¼ŒGroupå±‚åº”è¯¥èƒ½å¤Ÿæ ¹æ®é…ç½®çš„æƒé‡å’Œä¼˜å…ˆçº§ï¼Œè‡ªåŠ¨çš„é€‰æ‹©ä¸€ä¸ªåˆé€‚çš„DBä¸Šè¿›è¡Œè¯»å†™ï¼Œ
+ * æ‰€ä»¥ï¼Œæˆ‘ä»¬è¿˜éœ€è¦å°†é…ç½®ä¿¡æ¯ç”Ÿæˆä¸€ä¸ªDBSelectoræ¥è‡ªåŠ¨çš„å®Œæˆæ ¹æ®æƒé‡ã€ä¼˜å…ˆçº§é€‰æ‹©åˆé€‚çš„ç›®æ ‡åº“ å› æ­¤ï¼Œéœ€è¦***æ–¹æ³•
  *
  *
  *
@@ -73,7 +73,7 @@ import com.taobao.tddl.jdbc.group.exception.TAtomDataSourceException;
 public class ConfigManager {
 	private static final Log logger = LogFactory.getLog(ConfigManager.class);
 
-	private final ConfigDataListener configReceiver; // //¶¯Ì¬½ÓÊÕDiamondÍÆËÍ¹ıÀ´µÄĞÅÏ¢
+	private final ConfigDataListener configReceiver; // //åŠ¨æ€æ¥æ”¶Diamondæ¨é€è¿‡æ¥çš„ä¿¡æ¯
 	private ConfigDataHandlerFactory configFactory;
 	private ConfigDataHandler globalHandler;
 
@@ -86,7 +86,7 @@ public class ConfigManager {
 
 	private boolean createTAtomDataSource = true;
 
-	private Map<String/* Atom dbIndex */, DataSourceWrapper/* Wrapper¹ıµÄAtom DS */> dataSourceWrapperMap = new HashMap<String, DataSourceWrapper>();
+	private Map<String/* Atom dbIndex */, DataSourceWrapper/* Wrapperè¿‡çš„Atom DS */> dataSourceWrapperMap = new HashMap<String, DataSourceWrapper>();
 
 	private volatile GroupExtraConfig groupExtraConfig = new GroupExtraConfig();
 
@@ -97,18 +97,18 @@ public class ConfigManager {
 	}
 
 	/**
-	 * ´ÓDiamondÅäÖÃÖĞĞÄÌáÈ¡ĞÅÏ¢£¬¹¹ÔìTAtomDataSource¡¢¹¹ÔìÓĞÓÅÏÈ¼¶ĞÅÏ¢µÄ¶ÁĞ´DBSelector ---add by
+	 * ä»Diamondé…ç½®ä¸­å¿ƒæå–ä¿¡æ¯ï¼Œæ„é€ TAtomDataSourceã€æ„é€ æœ‰ä¼˜å…ˆçº§ä¿¡æ¯çš„è¯»å†™DBSelector ---add by
 	 * mazhidan.pt
 	 */
 	public void init() {
-		// ¾¯¸æ: ²»ÒªÔÚ¹¹ÔìDefaultDiamondManagerÊ±¾Í×¢²áManagerListener(±ÈÈç:configReceiver)
-		// Ò²¾ÍÊÇËµ£¬²»ÒªÕâÑùÓÃ: new DefaultDiamondManager(dbGroupKey, configReceiver)£¬
-		// ¶øÊÇÒªÉè³Énull£¬µÈµÚÒ»´ÎÈ¡µÃĞÅÏ¢²¢½âÎöÍê³ÉºóÔÙ×¢²á£¬ÕâÑù¿ÉÒÔ²»ÓÃÍ¬²½£¬±ÜÃâÈÎºÎÓë²¢·¢Ïà¹ØµÄÎÊÌâ£¬
-		// ÒòÎªÓĞ¿ÉÄÜÔÚµÚÒ»´Î¸ÕÈ¡»ØĞÅÏ¢ºó£¬DiamondÅäÖÃÖĞĞÄÄÇ±ßÂíÉÏĞŞ¸ÄÁË¼ÇÂ¼£¬µ¼ÖÂManagerListenerÕâ¸öÏß³ÌÁ¢¿ÌÊÕµ½ĞÅÏ¢£¬
-		// Ôì³É³õÊ¼»¯Ïß³ÌºÍManagerListenerÏß³ÌÍ¬Ê±½âÎöĞÅÏ¢¡£
+		// è­¦å‘Š: ä¸è¦åœ¨æ„é€ DefaultDiamondManageræ—¶å°±æ³¨å†ŒManagerListener(æ¯”å¦‚:configReceiver)
+		// ä¹Ÿå°±æ˜¯è¯´ï¼Œä¸è¦è¿™æ ·ç”¨: new DefaultDiamondManager(dbGroupKey, configReceiver)ï¼Œ
+		// è€Œæ˜¯è¦è®¾æˆnullï¼Œç­‰ç¬¬ä¸€æ¬¡å–å¾—ä¿¡æ¯å¹¶è§£æå®Œæˆåå†æ³¨å†Œï¼Œè¿™æ ·å¯ä»¥ä¸ç”¨åŒæ­¥ï¼Œé¿å…ä»»ä½•ä¸å¹¶å‘ç›¸å…³çš„é—®é¢˜ï¼Œ
+		// å› ä¸ºæœ‰å¯èƒ½åœ¨ç¬¬ä¸€æ¬¡åˆšå–å›ä¿¡æ¯åï¼ŒDiamondé…ç½®ä¸­å¿ƒé‚£è¾¹é©¬ä¸Šä¿®æ”¹äº†è®°å½•ï¼Œå¯¼è‡´ManagerListenerè¿™ä¸ªçº¿ç¨‹ç«‹åˆ»æ”¶åˆ°ä¿¡æ¯ï¼Œ
+		// é€ æˆåˆå§‹åŒ–çº¿ç¨‹å’ŒManagerListenerçº¿ç¨‹åŒæ—¶è§£æä¿¡æ¯ã€‚
 		
-		//³õÊ¼»¯ÅäÖÃ¹¤³Ì£¬ÅúÁ¿»ñÈ¡ÅäÖÃ¡£
-		//µ¥´¿group dsÅúÁ¿Ğ§¹û²»´ó£¬ÇÒÍ¬Ò»¸öappName
+		//åˆå§‹åŒ–é…ç½®å·¥ç¨‹ï¼Œæ‰¹é‡è·å–é…ç½®ã€‚
+		//å•çº¯group dsæ‰¹é‡æ•ˆæœä¸å¤§ï¼Œä¸”åŒä¸€ä¸ªappName
 		//initConfigHoderFactory();
 		
 		configFactory = ConfigDataHandlerCity.getFactory(tGroupDataSource.getAppName());
@@ -136,16 +136,16 @@ public class ConfigManager {
 		((ConfigReceiver)this.configReceiver).setConfigManager(this);
 		globalHandler.addListener(configReceiver, null);
 
-		//ÒÑ¾­Ê¹ÓÃ¹ıµÄÅäÖÃÒÆ³ı
+		//å·²ç»ä½¿ç”¨è¿‡çš„é…ç½®ç§»é™¤
 		//destoryConfigHoderFactory();
 	}
 
 	/**
-	 * ¸ù¾İÆÕÍ¨µÄDataSource¹¹Ôì¶ÁĞ´DBSelector
+	 * æ ¹æ®æ™®é€šçš„DataSourceæ„é€ è¯»å†™DBSelector
 	 */
 	public void init(List<DataSourceWrapper> dataSourceWrappers) {
 		if ((dataSourceWrappers == null) || dataSourceWrappers.size() < 1) {
-			throw new ConfigException("dataSourceWrappers²»ÄÜÎªnullÇÒ³¤¶ÈÒª´óÓÚ0");
+			throw new ConfigException("dataSourceWrappersä¸èƒ½ä¸ºnullä¸”é•¿åº¦è¦å¤§äº0");
 		}
 		createTAtomDataSource = false;
 		// update(createDBSelectors2(dataSourceWrappers));
@@ -178,7 +178,7 @@ public class ConfigManager {
 				throw new IllegalArgumentException("do not have this datasource type : " + tGroupDataSource.getDataSourceType());
 			}
 		} catch (Exception e) {
-			throw new TAtomDataSourceException("TAtomDataSourceÎŞ·¨³õÊ¼»¯: dsKey=" + dsKey, e);
+			throw new TAtomDataSourceException("TAtomDataSourceæ— æ³•åˆå§‹åŒ–: dsKey=" + dsKey, e);
 		}
 	}
 
@@ -210,7 +210,7 @@ public class ConfigManager {
 		}
 	};
 
-	// configInfoÑùÀı: db1:rw, db2:r, db3:r
+	// configInfoæ ·ä¾‹: db1:rw, db2:r, db3:r
 	private void parse(String dsWeightCommaStr) {
 		List<DataSourceWrapper> dswList = parse2DataSourceWrapperList(dsWeightCommaStr);
 		resetByDataSourceWrapper(dswList);
@@ -323,31 +323,31 @@ public class ConfigManager {
 	}
 
 	/**
-	 * ¾¯¸æ: ¶ººÅµÄÎ»ÖÃºÜÖØÒª£¬ÒªÊÇÓĞÁ¬ĞøµÄÁ½¸ö¶ººÅÒ²²»ÒªÈËÎªµÄÊ¡ÂÔµô£¬ Êı¾İ¿âµÄ¸öÊı =
-	 * ¶ººÅµÄ¸öÊı+1£¬ÓÃ0¡¢1¡¢2...±àºÅ£¬±ÈÈç"db1,,db3"£¬Êµ¼ÊÉÏÓĞ3¸öÊı¾İ¿â£¬
-	 * ÒµÎñ²ãÍ¨¹ı´«Ò»¸öThreadLocal½øÀ´£¬ThreadLocalÖĞ¾ÍÊÇÕâÖÖË÷Òı±àºÅ¡£
+	 * è­¦å‘Š: é€—å·çš„ä½ç½®å¾ˆé‡è¦ï¼Œè¦æ˜¯æœ‰è¿ç»­çš„ä¸¤ä¸ªé€—å·ä¹Ÿä¸è¦äººä¸ºçš„çœç•¥æ‰ï¼Œ æ•°æ®åº“çš„ä¸ªæ•° =
+	 * é€—å·çš„ä¸ªæ•°+1ï¼Œç”¨0ã€1ã€2...ç¼–å·ï¼Œæ¯”å¦‚"db1,,db3"ï¼Œå®é™…ä¸Šæœ‰3ä¸ªæ•°æ®åº“ï¼Œ
+	 * ä¸šåŠ¡å±‚é€šè¿‡ä¼ ä¸€ä¸ªThreadLocalè¿›æ¥ï¼ŒThreadLocalä¸­å°±æ˜¯è¿™ç§ç´¢å¼•ç¼–å·ã€‚
 	 */
 	private List<DataSourceWrapper> parse2DataSourceWrapperList(String dsWeightCommaStr) {
 		logger.warn("[parse2DataSourceWrapperList]dsWeightCommaStr=" + dsWeightCommaStr);
 		this.tGroupDataSource.setDsKeyAndWeightCommaArray(dsWeightCommaStr);
 		if ((dsWeightCommaStr == null)
 				|| (dsWeightCommaStr = dsWeightCommaStr.trim()).length() == 0) {
-			throw new ConfigException("ÓëdbGroupKey:'"
+			throw new ConfigException("ä¸dbGroupKey:'"
 					+ tGroupDataSource.getFullDbGroupKey()
-					+ "'¶ÔÓ¦µÄÅäÖÃĞÅÏ¢²»ÄÜÎªnullÇÒ³¤¶ÈÒª´óÓÚ0");
+					+ "'å¯¹åº”çš„é…ç½®ä¿¡æ¯ä¸èƒ½ä¸ºnullä¸”é•¿åº¦è¦å¤§äº0");
 		}
 		return buildDataSourceWrapperParallel(dsWeightCommaStr,
 				new MyDataSourceFetcher());
 	}
 
 	/**
-	 * ½«·â×°ºÃµÄAtomDataSourceµÄÁĞ±í£¬½øÒ»²½·â×°Îª¿ÉÒÔ¸ù¾İÈ¨ÖØÓÅÏÈ¼¶Ëæ»úÑ¡ÔñÄ£°å¿âµÄDBSelector ---add by
+	 * å°†å°è£…å¥½çš„AtomDataSourceçš„åˆ—è¡¨ï¼Œè¿›ä¸€æ­¥å°è£…ä¸ºå¯ä»¥æ ¹æ®æƒé‡ä¼˜å…ˆçº§éšæœºé€‰æ‹©æ¨¡æ¿åº“çš„DBSelector ---add by
 	 * mazhidan.pt
 	 *
 	 * @param dswList
 	 */
 	private void resetByDataSourceWrapper(List<DataSourceWrapper> dswList) {
-		// É¾µôÒÑ¾­²»´æÔÚµÄDataSourceWrapper
+		// åˆ æ‰å·²ç»ä¸å­˜åœ¨çš„DataSourceWrapper
 		Map<String, DataSourceWrapper> newDataSourceWrapperMap = new HashMap<String, DataSourceWrapper>(
 				dswList.size());
 		for (DataSourceWrapper dsw : dswList) {
@@ -361,15 +361,15 @@ public class ConfigManager {
 		DBSelector r_DBSelector = null;
 		DBSelector w_DBSelector = null;
 
-		// Èç¹ûÖ»ÓĞÒ»¸ödb£¬ÔòÓÃOneDBSelector
+		// å¦‚æœåªæœ‰ä¸€ä¸ªdbï¼Œåˆ™ç”¨OneDBSelector
 		if (dswList.size() == 1) {
 			DataSourceWrapper dsw2 = dswList.get(0);
 			r_DBSelector = new OneDBSelector(dsw2);
 			r_DBSelector.setDbType(dsw2.getDBType());
 			w_DBSelector = r_DBSelector;
 		} else {
-			// ¶ÁĞ´ÓÅÏÈ¼¶Map
-			Map<Integer/* ÓÅÏÈ¼¶ */, List<DataSourceWrapper>/* ÓÅÏÈ¼¶ÎªkeyµÄDS ÁĞ±í */> rPriority2DswList = new HashMap<Integer, List<DataSourceWrapper>>();
+			// è¯»å†™ä¼˜å…ˆçº§Map
+			Map<Integer/* ä¼˜å…ˆçº§ */, List<DataSourceWrapper>/* ä¼˜å…ˆçº§ä¸ºkeyçš„DS åˆ—è¡¨ */> rPriority2DswList = new HashMap<Integer, List<DataSourceWrapper>>();
 			Map<Integer, List<DataSourceWrapper>> wPriority2DswList = new HashMap<Integer, List<DataSourceWrapper>>();
 			for (DataSourceWrapper dsw1 : dswList) {
 				add2LinkedListMap(rPriority2DswList, dsw1.getWeight().p, dsw1);
@@ -391,7 +391,7 @@ public class ConfigManager {
 
 		// System.out.println("dataSourceWrapperMap=" + dataSourceWrapperMap);
 		if (this.dataSourceChangeListener != null) {
-			dataSourceChangeListener.onDataSourceChanged(null);// ÒµÎñÍ¨¹ıgetDataSource()»ñÈ¡¸üĞÂºóµÄ½á¹û
+			dataSourceChangeListener.onDataSourceChanged(null);// ä¸šåŠ¡é€šè¿‡getDataSource()è·å–æ›´æ–°åçš„ç»“æœ
 		}
 	}
 
@@ -403,14 +403,14 @@ public class ConfigManager {
 	}
 
 	/*
-	 * //·µ»ØµÄÊı×éÔªËØ¸öÊı¹Ì¶¨ÊÇ2£¬µÚ1¸öÊÇread£¬µÚ¶ş¸öÊÇwrite private DBSelector[]
+	 * //è¿”å›çš„æ•°ç»„å…ƒç´ ä¸ªæ•°å›ºå®šæ˜¯2ï¼Œç¬¬1ä¸ªæ˜¯readï¼Œç¬¬äºŒä¸ªæ˜¯write private DBSelector[]
 	 * createDBSelectors(List<String> dbKeyAndWeightList) { DBSelector
 	 * r_DBSelector = null; DBSelector w_DBSelector = null;
 	 *
-	 * //Èç¹ûÖ»ÓĞÒ»¸ödb£¬ÔòÓÃOneDBSelector if (dbKeyAndWeightList.size() == 1) { String[]
+	 * //å¦‚æœåªæœ‰ä¸€ä¸ªdbï¼Œåˆ™ç”¨OneDBSelector if (dbKeyAndWeightList.size() == 1) { String[]
 	 * dbKeyAndWeight = split(dbKeyAndWeightList.get(0), ":"); DataSourceWrapper
 	 * dsw = createDataSourceWrapper(dbKeyAndWeight[0], (dbKeyAndWeight.length
-	 * == 2 ? dbKeyAndWeight[1] : null), 0); //Ö»ÓĞÒ»¸öÊı¾İÔ´Ê±£¬Êı¾İÔ´Ë÷ÒıÎª0
+	 * == 2 ? dbKeyAndWeight[1] : null), 0); //åªæœ‰ä¸€ä¸ªæ•°æ®æºæ—¶ï¼Œæ•°æ®æºç´¢å¼•ä¸º0
 	 *
 	 * r_DBSelector = new OneDBSelector(dsw);
 	 * r_DBSelector.setDbType(dsw.getDBType()); w_DBSelector = r_DBSelector; }
@@ -436,34 +436,34 @@ public class ConfigManager {
 	 */
 
 	/**
-	 * ½«¸ø¶¨µÄk ÓÅÏÈ¼¶ ¼ÓÈëÕâ¸öÓÅÏÈ¼¶¶ÔÓ¦µÄV list ÀïÃæ¡£ ----ÒòÎª¿ÉÄÜÓĞ¶à¸öDS¾ßÓĞÏàÍ¬µÄÓÅÏÈ¼¶ ---add by
+	 * å°†ç»™å®šçš„k ä¼˜å…ˆçº§ åŠ å…¥è¿™ä¸ªä¼˜å…ˆçº§å¯¹åº”çš„V list é‡Œé¢ã€‚ ----å› ä¸ºå¯èƒ½æœ‰å¤šä¸ªDSå…·æœ‰ç›¸åŒçš„ä¼˜å…ˆçº§ ---add by
 	 * mazhidan.pt
 	 */
 	private static <K, V> void add2LinkedListMap(Map<K, List<V>> m, K key,
 			V value) {
-		// ´ÓMapÖĞÏÈÈ¡³öÕâ¸öÓÅÏÈ¼¶µÄList
+		// ä»Mapä¸­å…ˆå–å‡ºè¿™ä¸ªä¼˜å…ˆçº§çš„List
 		List<V> c = (List<V>) m.get(key);
-		// Èç¹ûÎª¿Õ£¬ÔònewÒ»¸ö
+		// å¦‚æœä¸ºç©ºï¼Œåˆ™newä¸€ä¸ª
 		if (c == null) {
 			c = new LinkedList<V>();
 			m.put(key, c);
 		}
-		// ²»Îª¿Õ£¬ÔÚºóÃæadd()
+		// ä¸ä¸ºç©ºï¼Œåœ¨åé¢add()
 		c.add(value);
 	}
 
 	/**
 	 * @param dsWeightCommaStr
-	 *            : ÀıÈç db0:rwp1q1i0, db1:rwp0q0i1
+	 *            : ä¾‹å¦‚ db0:rwp1q1i0, db1:rwp0q0i1
 	 */
 	public static List<DataSourceWrapper> buildDataSourceWrapper(
 			String dsWeightCommaStr, DataSourceFetcher fetcher) {
-		String[] dsWeightArray = dsWeightCommaStr.split(","); // ¶ººÅ·Ö¸ô£ºdb0:rwp1q1i0,
+		String[] dsWeightArray = dsWeightCommaStr.split(","); // é€—å·åˆ†éš”ï¼šdb0:rwp1q1i0,
 																// db1:rwp0q0i1
 		List<DataSourceWrapper> dss = new ArrayList<DataSourceWrapper>(
 				dsWeightArray.length);
 		for (int i = 0; i < dsWeightArray.length; i++) {
-			String[] dsAndWeight = dsWeightArray[i].split(":"); // Ã°ºÅ·Ö¸ô£ºdb0:rwp1q1i0
+			String[] dsAndWeight = dsWeightArray[i].split(":"); // å†’å·åˆ†éš”ï¼šdb0:rwp1q1i0
 			String dsKey = dsAndWeight[0].trim();
 			String weightStr = dsAndWeight.length == 2 ? dsAndWeight[1] : null;
 			
@@ -474,8 +474,8 @@ public class ConfigManager {
 	}
 	
 	public static DataSourceWrapper getDataSourceWrapper(String dsKey, String weightStr, int index, DataSourceFetcher fetcher){
-		// Èç¹û¶à¸ögroup¸´ÓÃÒ»¸öÕæÊµdataSource£¬»áÔì³ÉËùÓĞgroupÒıÓÃ
-		// Õâ¸ödataSourceµÄÅäÖÃ »áÒÔ×îºóÒ»¸ödataSourceµÄÅäÖÃÎª×¼
+		// å¦‚æœå¤šä¸ªgroupå¤ç”¨ä¸€ä¸ªçœŸå®dataSourceï¼Œä¼šé€ æˆæ‰€æœ‰groupå¼•ç”¨
+		// è¿™ä¸ªdataSourceçš„é…ç½® ä¼šä»¥æœ€åä¸€ä¸ªdataSourceçš„é…ç½®ä¸ºå‡†
 		DataSource dataSource = fetcher.getDataSource(dsKey);
 		DBType fetcherDbType = fetcher.getDataSourceDBType(dsKey);
 		// dbType = fetcherDbType == null ? dbType :
@@ -488,7 +488,7 @@ public class ConfigManager {
 
 	public static List<DataSourceWrapper> buildDataSourceWrapperParallel(
 			String dsWeightCommaStr, final DataSourceFetcher fetcher) {
-		final String[] dsWeightArray = dsWeightCommaStr.split(","); // ¶ººÅ·Ö¸ô£ºdb0:rwp1q1i0,
+		final String[] dsWeightArray = dsWeightCommaStr.split(","); // é€—å·åˆ†éš”ï¼šdb0:rwp1q1i0,
 		// db1:rwp0q0i1
 		List<DataSourceWrapper> dss = new ArrayList<DataSourceWrapper>(
 				dsWeightArray.length);
@@ -501,7 +501,7 @@ public class ConfigManager {
 		Map<String, Future<DataSourceWrapper>> m = new HashMap<String, Future<DataSourceWrapper>>();
 		for (int i = 0; i < dsWeightArray.length; i++) {
 			final int j = i;
-			final String[] dsAndWeight = dsWeightArray[j].split(":"); // Ã°ºÅ·Ö¸ô£ºdb0:rwp1q1i0
+			final String[] dsAndWeight = dsWeightArray[j].split(":"); // å†’å·åˆ†éš”ï¼šdb0:rwp1q1i0
 			final String dsKey = dsAndWeight[0].trim();
 			Future<DataSourceWrapper> f = executor
 					.submit(new Callable<DataSourceWrapper>() {
@@ -530,29 +530,29 @@ public class ConfigManager {
 	}
 
 	/**
-	 * ¸ù¾İ¸ø¶¨µÄ¾ßÓĞ¶ÁĞ´ÓÅÏÈ¼¶¼°Ã¿¸öÓÅÏÈ¼¶¶ÔÓ¦µÄDataSourceÁ´±íµÄMap£¬¹¹ÔìDBSelector---add by mazhidan.pt
+	 * æ ¹æ®ç»™å®šçš„å…·æœ‰è¯»å†™ä¼˜å…ˆçº§åŠæ¯ä¸ªä¼˜å…ˆçº§å¯¹åº”çš„DataSourceé“¾è¡¨çš„Mapï¼Œæ„é€ DBSelector---add by mazhidan.pt
 	 *
 	 * @param priority2DswList
 	 * @param isRead
 	 * @return
 	 */
 	private DBSelector createDBSelector(
-			Map<Integer/* ÓÅÏÈ¼¶ */, List<DataSourceWrapper>> priority2DswList,
+			Map<Integer/* ä¼˜å…ˆçº§ */, List<DataSourceWrapper>> priority2DswList,
 			boolean isRead) {
-		if (priority2DswList.size() == 1) { // Ö»ÓĞÒ»¸öÓÅÏÈ¼¶Ö±½ÓÊ¹ÓÃEquityDbManager
+		if (priority2DswList.size() == 1) { // åªæœ‰ä¸€ä¸ªä¼˜å…ˆçº§ç›´æ¥ä½¿ç”¨EquityDbManager
 			return createDBSelector2(priority2DswList.entrySet().iterator()
 					.next().getValue(), isRead);
 		} else {
 			List<Integer> priorityKeys = new LinkedList<Integer>();
 			priorityKeys.addAll(priority2DswList.keySet());
-			Collections.sort(priorityKeys); // ÓÅÏÈ¼¶´ÓĞ¡µ½´óÅÅĞò
+			Collections.sort(priorityKeys); // ä¼˜å…ˆçº§ä»å°åˆ°å¤§æ’åº
 			EquityDbManager[] priorityGroups = new EquityDbManager[priorityKeys
 					.size()];
-			for (int i = 0; i < priorityGroups.length; i++) { // ×î´óµÄÓÅÏÈ¼¶·Åµ½×îÇ°Ãæ
+			for (int i = 0; i < priorityGroups.length; i++) { // æœ€å¤§çš„ä¼˜å…ˆçº§æ”¾åˆ°æœ€å‰é¢
 				List<DataSourceWrapper> dswList = priority2DswList
-						.get(priorityGroups.length - 1 - i); // µ¹Ğò
-				// PriorityDbGroupSelectorÒÀÀµEquityDbManagerÅ×³öµÄNoMoreDataSourceExceptionÀ´ÊµÏÖ£¬
-				// ËùÒÔÕâÀï¼´Ê¹Ö»ÓĞÒ»¸ödsÒ²Ö»ÄÜÈÔÈ»ÓÃEquityDbManager
+						.get(priorityGroups.length - 1 - i); // å€’åº
+				// PriorityDbGroupSelectorä¾èµ–EquityDbManageræŠ›å‡ºçš„NoMoreDataSourceExceptionæ¥å®ç°ï¼Œ
+				// æ‰€ä»¥è¿™é‡Œå³ä½¿åªæœ‰ä¸€ä¸ªdsä¹Ÿåªèƒ½ä»ç„¶ç”¨EquityDbManager
 				priorityGroups[i] = createEquityDbManager(dswList, isRead, groupExtraConfig);
 
 
@@ -579,8 +579,8 @@ public class ConfigManager {
 	 * private DBSelector createDBSelector(List<List<DataSourceWrapper>> list,
 	 * boolean isRead) {
 	 *
-	 * int size = list.size(); //ÓÅÏÈ¼¶±ğ¸öÊı if (size == 1) {
-	 * //Ö»ÓĞÒ»¸öÓÅÏÈ¼¶Ö±½ÓÊ¹ÓÃEquityDbManager return createEquityDbManager(list.get(0),
+	 * int size = list.size(); //ä¼˜å…ˆçº§åˆ«ä¸ªæ•° if (size == 1) {
+	 * //åªæœ‰ä¸€ä¸ªä¼˜å…ˆçº§ç›´æ¥ä½¿ç”¨EquityDbManager return createEquityDbManager(list.get(0),
 	 * isRead); } else { EquityDbManager[] priorityGroups = new
 	 * EquityDbManager[size]; for (int i = 0; i < size; i++) { priorityGroups[i]
 	 * = createEquityDbManager(list.get(i), isRead); } return new
@@ -613,23 +613,23 @@ public class ConfigManager {
 	}
 
 	/**
-	 * ÒòÎªÊı¾İÔ´¸öÊıÍ¨³£ÔÚ3¸ö×óÓÒ£¬ËùÒÔÕâÀïÊ¹ÓÃÁË¼òµ¥µÄ²åÈëÅÅĞòËã·¨£¬
-	 * Á½¼¶List(Èç:List<List<DataSourceWrapper>>)ÀàËÆÏÂÃæÕâÖÖ½á¹¹£¬
-	 * µÚÒ»¼¶List(×İÁĞ)´ú±íÓÅÏÈ¼¶£¬ÓÅÏÈ¼¶×î¸ßµÄÅÅÔÚListµÄ0ºÅÎ»ÖÃ´¦£¬Æä´ÎÊÇ1ºÅÎ»ÖÃ£¬ÒÀ´ËÀàÍÆ£¬
-	 * µÚ¶ş¼¶List(ºáÁĞ)±íÊ¾ÏàÍ¬ÓÅÏÈ¼¶µÄ¶à¸öÊı¾İÔ´¡£ ---- |p9|-->|db0|-->|db2| ---- |p8|-->|db1|
+	 * å› ä¸ºæ•°æ®æºä¸ªæ•°é€šå¸¸åœ¨3ä¸ªå·¦å³ï¼Œæ‰€ä»¥è¿™é‡Œä½¿ç”¨äº†ç®€å•çš„æ’å…¥æ’åºç®—æ³•ï¼Œ
+	 * ä¸¤çº§List(å¦‚:List<List<DataSourceWrapper>>)ç±»ä¼¼ä¸‹é¢è¿™ç§ç»“æ„ï¼Œ
+	 * ç¬¬ä¸€çº§List(çºµåˆ—)ä»£è¡¨ä¼˜å…ˆçº§ï¼Œä¼˜å…ˆçº§æœ€é«˜çš„æ’åœ¨Listçš„0å·ä½ç½®å¤„ï¼Œå…¶æ¬¡æ˜¯1å·ä½ç½®ï¼Œä¾æ­¤ç±»æ¨ï¼Œ
+	 * ç¬¬äºŒçº§List(æ¨ªåˆ—)è¡¨ç¤ºç›¸åŒä¼˜å…ˆçº§çš„å¤šä¸ªæ•°æ®æºã€‚ ---- |p9|-->|db0|-->|db2| ---- |p8|-->|db1|
 	 * ---- |p7|-->|db3| ----
 	 *
 	 * @param priorityList
-	 *            ÉÏÒ»´ÎÒÑÅÅºÃĞòµÄÊı¾İÔ´ÁĞ±í£¬ÓÉµ÷ÓÃÕßÈ·±£²»Îªnull¡£
+	 *            ä¸Šä¸€æ¬¡å·²æ’å¥½åºçš„æ•°æ®æºåˆ—è¡¨ï¼Œç”±è°ƒç”¨è€…ç¡®ä¿ä¸ä¸ºnullã€‚
 	 * @param dsw
-	 *            µ±Ç°ĞèÒª²åÈëµ½ÁĞ±íµÄÊı¾İÔ´
+	 *            å½“å‰éœ€è¦æ’å…¥åˆ°åˆ—è¡¨çš„æ•°æ®æº
 	 * @param isRead
-	 *            ÒòÎªÓÅÏÈ¼¶·Ö¶ÁĞ´ÓÅÏÈ¼¶£¬¶ÁÓÃp±íÊ¾£¬Ğ´ÓÃq±íÊ¾£¬Èç¹ûisReadÎªtrue¾ÍÊ¹ÓÃP£¬·ñÔòÓÃq¡£
+	 *            å› ä¸ºä¼˜å…ˆçº§åˆ†è¯»å†™ä¼˜å…ˆçº§ï¼Œè¯»ç”¨pè¡¨ç¤ºï¼Œå†™ç”¨qè¡¨ç¤ºï¼Œå¦‚æœisReadä¸ºtrueå°±ä½¿ç”¨Pï¼Œå¦åˆ™ç”¨qã€‚
 	 */
 	/*
 	 * public static void insertSort(List<List<DataSourceWrapper>> priorityList,
 	 * DataSourceWrapper dsw, boolean isRead) {
-	 * //Èç¹û¶Á»òĞ´µÄÈ¨ÖØÎª0£¬ÄÇÃ´¾Í±íÊ¾´ËÊı¾İÔ´¶ÔÓ¦µÄÊı¾İ¿â²»¿É¶Á»ò²»¿ÉĞ´£¬´ËÊ±Ê²Ã´¶¼²»×ö£¬ºöÂÔ´ËÊı¾İÔ´¡£ // if ((isRead &&
+	 * //å¦‚æœè¯»æˆ–å†™çš„æƒé‡ä¸º0ï¼Œé‚£ä¹ˆå°±è¡¨ç¤ºæ­¤æ•°æ®æºå¯¹åº”çš„æ•°æ®åº“ä¸å¯è¯»æˆ–ä¸å¯å†™ï¼Œæ­¤æ—¶ä»€ä¹ˆéƒ½ä¸åšï¼Œå¿½ç•¥æ­¤æ•°æ®æºã€‚ // if ((isRead &&
 	 * dsw.getWeight().r == 0) || (!isRead && dsw.getWeight().w == 0)) //
 	 * return;
 	 *
@@ -642,18 +642,18 @@ public class ConfigManager {
 	 * while (index < size) { samePriorityDataSourceWrappers =
 	 * priorityList.get(index);
 	 *
-	 * //È¥³ıpriorityListÖĞµÄÎŞĞ§ÔªËØ£¬·ÀÖ¹¿ÕÖ¸ÕëÒì³£ºÍÏÂ±êÔ½½çÒì³£¡£ if (samePriorityDataSourceWrappers
+	 * //å»é™¤priorityListä¸­çš„æ— æ•ˆå…ƒç´ ï¼Œé˜²æ­¢ç©ºæŒ‡é’ˆå¼‚å¸¸å’Œä¸‹æ ‡è¶Šç•Œå¼‚å¸¸ã€‚ if (samePriorityDataSourceWrappers
 	 * == null || samePriorityDataSourceWrappers.size() == 0) {
 	 * priorityList.remove(index); size--; continue; }
 	 *
 	 * Weight oldWeight = samePriorityDataSourceWrappers.get(0).getWeight(); int
 	 * oldPriority = isRead ? oldWeight.p : oldWeight.q;
 	 *
-	 * if (newPriority == oldPriority) { //ÕâÀï²»ÓÃ°´È¨ÖØÅÅĞòÁË
+	 * if (newPriority == oldPriority) { //è¿™é‡Œä¸ç”¨æŒ‰æƒé‡æ’åºäº†
 	 * samePriorityDataSourceWrappers.add(dsw); return; } else if (newPriority >
 	 * oldPriority) { break; } else { index++; } }
 	 *
-	 * //Ã»ÓĞÕÒµ½ÏàÍ¬ÓÅÏÈ¼¶Ê±ĞÂ²åÈëÒ»¸öÓÅÏÈ¼¶ (µ±size=0Ê±Ò²»á×ßµ½ÕâÀï) samePriorityDataSourceWrappers =
+	 * //æ²¡æœ‰æ‰¾åˆ°ç›¸åŒä¼˜å…ˆçº§æ—¶æ–°æ’å…¥ä¸€ä¸ªä¼˜å…ˆçº§ (å½“size=0æ—¶ä¹Ÿä¼šèµ°åˆ°è¿™é‡Œ) samePriorityDataSourceWrappers =
 	 * new ArrayList<DataSourceWrapper>();
 	 * samePriorityDataSourceWrappers.add(dsw); priorityList.add(index,
 	 * samePriorityDataSourceWrappers); }
@@ -673,15 +673,15 @@ public class ConfigManager {
 	 */
 	
 	/**
-	 * ¸ù¾İµ±Ç°µÄ¶ÁĞ´×´Ì¬£¬¼ì²éÊı¾İÔ´ÊÇ·ñ¿ÉÓÃ£¬Êı¾İÔ´·ÖÁ½ÖÖ£ºTAtomDataSourceºÍÆÕÍ¨µÄÊı¾İÔ´(ÈçDBCPÊı¾İÔ´)
-	 * ĞÂÌí¼ÓÒ»¸öÊı¾İÔ´ druid
+	 * æ ¹æ®å½“å‰çš„è¯»å†™çŠ¶æ€ï¼Œæ£€æŸ¥æ•°æ®æºæ˜¯å¦å¯ç”¨ï¼Œæ•°æ®æºåˆ†ä¸¤ç§ï¼šTAtomDataSourceå’Œæ™®é€šçš„æ•°æ®æº(å¦‚DBCPæ•°æ®æº)
+	 * æ–°æ·»åŠ ä¸€ä¸ªæ•°æ®æº druid
 	 * 
 	 * @param ds
-	 *            Òª¼ì²éµÄÊı¾İÔ´
+	 *            è¦æ£€æŸ¥çš„æ•°æ®æº
 	 * @param isRead
-	 *            ÊÇ¶ÔÊı¾İÔ´½øĞĞ¶Á²Ù×÷(isRead=true)£¬»¹ÊÇĞ´²Ù×÷(isRead=false)
-	 * @return ÆÕÍ¨µÄÊı¾İÔ´²»¹Üµ±Ç°µÄ¶ÁĞ´×´Ì¬ÊÇÊ²Ã´£¬×ÜÊÇ¿ÉÓÃµÄ£¬·µ»Øtrue¡£
-	 *         TAtomDataSourceÈç¹ûµ±Ç°µÄ×´Ì¬ÊÇNA·µ»Øfalse, ·ñÔò¸ù¾İWR×´Ì¬ÒÔ¼°isReadµÄÖµ¾ö¶¨
+	 *            æ˜¯å¯¹æ•°æ®æºè¿›è¡Œè¯»æ“ä½œ(isRead=true)ï¼Œè¿˜æ˜¯å†™æ“ä½œ(isRead=false)
+	 * @return æ™®é€šçš„æ•°æ®æºä¸ç®¡å½“å‰çš„è¯»å†™çŠ¶æ€æ˜¯ä»€ä¹ˆï¼Œæ€»æ˜¯å¯ç”¨çš„ï¼Œè¿”å›trueã€‚
+	 *         TAtomDataSourceå¦‚æœå½“å‰çš„çŠ¶æ€æ˜¯NAè¿”å›false, å¦åˆ™æ ¹æ®WRçŠ¶æ€ä»¥åŠisReadçš„å€¼å†³å®š
 	 */
 	public static boolean isDataSourceAvailable(DataSource ds, boolean isRead) {
 		if (ds instanceof DataSourceWrapper)
@@ -704,26 +704,26 @@ public class ConfigManager {
 	}
 
 	/**
-	 * ²»ÄÜÔÚTGroupDataSource»òTGroupConnection»òÆäËûµØ·½°ÑDBSelector×öÎªÒ»¸ö×Ö¶Î±£´æÏÂÀ´£¬
-	 * ·ñÔòdbÈ¨ÖØÅäÖÃ±äÁËÖ®ºóÎŞ·¨Ê¹ÓÃ×îĞÂµÄÈ¨ÖØÅäÖÃ
+	 * ä¸èƒ½åœ¨TGroupDataSourceæˆ–TGroupConnectionæˆ–å…¶ä»–åœ°æ–¹æŠŠDBSelectoråšä¸ºä¸€ä¸ªå­—æ®µä¿å­˜ä¸‹æ¥ï¼Œ
+	 * å¦åˆ™dbæƒé‡é…ç½®å˜äº†ä¹‹åæ— æ³•ä½¿ç”¨æœ€æ–°çš„æƒé‡é…ç½®
 	 */
 	private volatile DBSelector readDBSelectorWrapper;
 	private volatile DBSelector writeDBSelectorWrapper;
 	private volatile DBSelector runtimeWritableAtomDBSelectorWrapper;
 
 	/**
-	 * ¸ù¾İÊÇ¶Á»¹ÊÇĞ´À´Ñ¡Ôñ¶ÔÓ¦µÄDBSelector---add by mazhidan.pt
+	 * æ ¹æ®æ˜¯è¯»è¿˜æ˜¯å†™æ¥é€‰æ‹©å¯¹åº”çš„DBSelector---add by mazhidan.pt
 	 */
 	public DBSelector getDBSelector(boolean isRead,
 			boolean autoSelectWriteDataSource) {
 		DBSelector dbSelector = isRead ? readDBSelectorWrapper
 				: writeDBSelectorWrapper;
 		if (!isRead && autoSelectWriteDataSource) {
-			// ÒòÎªËùÓĞdbSelectorÄÚ²¿µÄTAtomDataSource¶¼ÊÇÖ¸ÏòÍ¬Ò»¸öÊµÀı£¬Èç¹ûÄ³Ò»¸öTAtomDataSourceµÄ×´Ì¬¸ÄÁË£¬
-			// ÄÇÃ´ËùÓĞ°üº¬Õâ¸öTAtomDataSourceµÄdbSelector¶¼»áÖªµÀ×´Ì¬¸Ä±äÁË£¬
-			// ËùÒÔÖ»ÒªÓĞÒ»¸öTAtomDataSourceµÄ×´Ì¬±ä³ÉW£¬
-			// ÄÇÃ´²»¹ÜÕâ¸ödbSelectorÊÇ×¨ÃÅÓÃÓÚ¶ÁµÄ£¬»¹ÊÇ×¨ÃÅÓÃÓÚĞ´µÄ£¬Ò²²»¹ÜÊÇ²»ÊÇruntimeWritableAtomDBSelector£¬
-			// Ö»Òªµ÷ÓÃÁËhasWritableDataSource()¶¼»á·µ»Øtrue
+			// å› ä¸ºæ‰€æœ‰dbSelectorå†…éƒ¨çš„TAtomDataSourceéƒ½æ˜¯æŒ‡å‘åŒä¸€ä¸ªå®ä¾‹ï¼Œå¦‚æœæŸä¸€ä¸ªTAtomDataSourceçš„çŠ¶æ€æ”¹äº†ï¼Œ
+			// é‚£ä¹ˆæ‰€æœ‰åŒ…å«è¿™ä¸ªTAtomDataSourceçš„dbSelectoréƒ½ä¼šçŸ¥é“çŠ¶æ€æ”¹å˜äº†ï¼Œ
+			// æ‰€ä»¥åªè¦æœ‰ä¸€ä¸ªTAtomDataSourceçš„çŠ¶æ€å˜æˆWï¼Œ
+			// é‚£ä¹ˆä¸ç®¡è¿™ä¸ªdbSelectoræ˜¯ä¸“é—¨ç”¨äºè¯»çš„ï¼Œè¿˜æ˜¯ä¸“é—¨ç”¨äºå†™çš„ï¼Œä¹Ÿä¸ç®¡æ˜¯ä¸æ˜¯runtimeWritableAtomDBSelectorï¼Œ
+			// åªè¦è°ƒç”¨äº†hasWritableDataSource()éƒ½ä¼šè¿”å›true
 
 			// if(!dbSelector.hasWritableDataSource())
 			dbSelector = runtimeWritableAtomDBSelectorWrapper;
@@ -744,7 +744,7 @@ public class ConfigManager {
 				logger.warn("group ds data received !dataId:" + dataId + ", new data:" + data + ", old data:" + oldData);
 				parse(data);
 			} catch (Throwable t) {
-				logger.error("¶¯Ì¬½âÎöÅäÖÃĞÅÏ¢Ê±³öÏÖ´íÎó:" + data, t);
+				logger.error("åŠ¨æ€è§£æé…ç½®ä¿¡æ¯æ—¶å‡ºç°é”™è¯¯:" + data, t);
 			}
 		}
 	}
@@ -757,12 +757,12 @@ public class ConfigManager {
 		}
 	}
 
-	// ½öÓÃÓÚ²âÊÔ
+	// ä»…ç”¨äºæµ‹è¯•
 	public void receiveConfigInfo(String configInfo) {
 		configReceiver.onDataRecieved(null, configInfo);
 	}
 
-	// ½öÓÃÓÚ²âÊÔ
+	// ä»…ç”¨äºæµ‹è¯•
 	public void resetDbGroup(String configInfo) {
 		try {
 			parse(configInfo);
@@ -773,7 +773,7 @@ public class ConfigManager {
 	}
 	
 	public void destroyDataSource() throws Exception {
-		//¹Ø±ÕÏÂ²ãDataSource
+		//å…³é—­ä¸‹å±‚DataSource
 		if(dataSourceWrapperMap != null)
 		{
 			for(DataSourceWrapper dsw : dataSourceWrapperMap.values())
@@ -794,7 +794,7 @@ public class ConfigManager {
 				}
 			}
 		}
-		//¹Ø±Õglobal datasource handler 
+		//å…³é—­global datasource handler 
 		try {
 			if(globalHandler != null)
 			{
@@ -803,7 +803,7 @@ public class ConfigManager {
 		} catch (Exception e) {
 			logger.error("we got exception when close datasource .",e);
 		}
-		//¹Ø±ÕextraDataSource handler.
+		//å…³é—­extraDataSource handler.
 		try {
 			if(extraHandler != null)
 			{

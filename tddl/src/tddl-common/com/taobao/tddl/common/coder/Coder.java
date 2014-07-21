@@ -7,8 +7,8 @@ import com.taobao.tddl.common.SyncCommand;
 /**
  * @author huali
  *
- * Êı¾İ¿â²Ù×÷ÃüÁî±à½âÂëÆ÷
- * Íê³ÉÊı¾İ¿â²Ù×÷ÃüÁîÁĞ±íµ½×Ö·û´®µÄ±àÂëºÍ½âÂë¹ı³Ì
+ * æ•°æ®åº“æ“ä½œå‘½ä»¤ç¼–è§£ç å™¨
+ * å®Œæˆæ•°æ®åº“æ“ä½œå‘½ä»¤åˆ—è¡¨åˆ°å­—ç¬¦ä¸²çš„ç¼–ç å’Œè§£ç è¿‡ç¨‹
  */
 public interface Coder {
 	List<SyncCommand> decode(String content);

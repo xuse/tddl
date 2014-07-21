@@ -2,7 +2,7 @@ package com.taobao.tddl.jdbc.atom.listener;
 
 import com.taobao.tddl.common.standard.atom.AtomDbStatusEnum;
 
-/**数据库状态变化监听器
+/**鏁版嵁搴撶姸鎬佸彉鍖栫洃鍚櫒
  * 
  * @author qihao
  *

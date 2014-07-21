@@ -20,7 +20,7 @@ import javax.management.ReflectionException;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-4-19ÏÂÎç04:23:35
+ * @date 2011-4-19ä¸‹åˆ04:23:35
  */
 public class TDDLMBean implements DynamicMBean{
 	private Map<String,Attribute> attributesMap=new HashMap<String,Attribute>();

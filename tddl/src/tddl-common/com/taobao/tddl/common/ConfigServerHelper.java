@@ -15,7 +15,7 @@ import com.taobao.tddl.common.config.ConfigDataListener;
 import com.taobao.tddl.common.config.impl.ConfigDataHandlerCity;
 
 /**
- * ¶©ÔÄ³Ö¾Ã»¯Êı¾İµÄ¸¨ÖúÀà
+ * è®¢é˜…æŒä¹…åŒ–æ•°æ®çš„è¾…åŠ©ç±»
  * 
  * @author linxuan
  * 
@@ -36,26 +36,26 @@ public final class ConfigServerHelper {
 	public static final String DATA_ID_DB_GROUP_KEYS = DATA_ID_PREFIX + "{0}_dbgroups";
 
 	/**
-	 * syncServer±éÀúÒµÎñÁĞ±í£¬¶©ÔÄ¸ÃÅäÖÃ£¬²¢ÇÒÕë¶ÔÃ¿¸öÒµÎñID£¬±¾µØÅäÖÃÒ»¸öTDatasource£¬ÓÃÆä³õÊ¼»¯replication
+	 * syncServeréå†ä¸šåŠ¡åˆ—è¡¨ï¼Œè®¢é˜…è¯¥é…ç½®ï¼Œå¹¶ä¸”é’ˆå¯¹æ¯ä¸ªä¸šåŠ¡IDï¼Œæœ¬åœ°é…ç½®ä¸€ä¸ªTDatasourceï¼Œç”¨å…¶åˆå§‹åŒ–replication
 	 */
 	public static final String DATA_ID_REPLICATION = DATA_ID_PREFIX + "{0}_replication";
 
 	/**
-	 * ÈÕÖ¾¿âµÄÕ¼Î»·û²»ÊÇÒµÎñID¶øÊÇÈÕÖ¾¿â»òsyncServerµÄID£¬ÒòÎª¶à¸öÒµÎñ¿ÉÄÜ¹²ÓÃÒ»Ì×ÈÕÖ¾¿â
+	 * æ—¥å¿—åº“çš„å ä½ç¬¦ä¸æ˜¯ä¸šåŠ¡IDè€Œæ˜¯æ—¥å¿—åº“æˆ–syncServerçš„IDï¼Œå› ä¸ºå¤šä¸ªä¸šåŠ¡å¯èƒ½å…±ç”¨ä¸€å¥—æ—¥å¿—åº“
 	 */
 	public static final String DATA_ID_SYNCLOG_DBSET = DATA_ID_PREFIX + "{0}_synclog.dbset";
 
 	public static final String DATA_ID_SYNCLOG_DBWEIGHT = DATA_ID_PREFIX + "{0}_synclog.dbweight";
 
 	/**
-	 * ÕûÌåºÍ¾Ö²¿µÄ¹ØÏµ£¬È¨ÖØÓĞÈıÖÖ²ßÂÔ£º
-	 * 1. Ã¿¸ödbIndexÒ»¸öÈ¨ÖØdataId£¬ÄÚÈİÎª¸ÃdbIndexÏÂÏ½¿âµÄÈ¨ÖØÅäÖÃ
-	 * 2. Ò»¸öTDataSource(Ò»¸öÓ¦ÓÃ)Ò»¸öÈ¨ÖØdataId£»°üº¬ËùÓĞdbIndexµÄÈ¨ÖØÅäÖÃ
-	 * 3. Á½Õß¶¼ÓĞ£¬Í¬Ê±Ê¹ÓÃ£¬dbIndexµÄÈ¨ÖØÅäÖÃ£¬¸²¸ÇÓ¦ÓÃµÄ´ó¶øÈ«µÄÈ¨ÖØÅäÖÃ
-	 * ²ÉÓÃ²ßÂÔ2
+	 * æ•´ä½“å’Œå±€éƒ¨çš„å…³ç³»ï¼Œæƒé‡æœ‰ä¸‰ç§ç­–ç•¥ï¼š
+	 * 1. æ¯ä¸ªdbIndexä¸€ä¸ªæƒé‡dataIdï¼Œå†…å®¹ä¸ºè¯¥dbIndexä¸‹è¾–åº“çš„æƒé‡é…ç½®
+	 * 2. ä¸€ä¸ªTDataSource(ä¸€ä¸ªåº”ç”¨)ä¸€ä¸ªæƒé‡dataIdï¼›åŒ…å«æ‰€æœ‰dbIndexçš„æƒé‡é…ç½®
+	 * 3. ä¸¤è€…éƒ½æœ‰ï¼ŒåŒæ—¶ä½¿ç”¨ï¼ŒdbIndexçš„æƒé‡é…ç½®ï¼Œè¦†ç›–åº”ç”¨çš„å¤§è€Œå…¨çš„æƒé‡é…ç½®
+	 * é‡‡ç”¨ç­–ç•¥2
 	 * 
-	 * Ò»¸öTDataSource(Ò»¸öÓ¦ÓÃ)Ò»¸öÈ¨ÖØdataId£» {0}:Ó¦ÓÃÃû³ÆappName,ÈçIC
-	 * ÄÚÈİ¸ñÊ½£º
+	 * ä¸€ä¸ªTDataSource(ä¸€ä¸ªåº”ç”¨)ä¸€ä¸ªæƒé‡dataIdï¼› {0}:åº”ç”¨åç§°appName,å¦‚IC
+	 * å†…å®¹æ ¼å¼ï¼š
 	 *   slave_1=R10W10,R20W0
 	 *   slave_3=R10W20,R20W10
 	 *   slave_5=RW
@@ -64,11 +64,11 @@ public final class ConfigServerHelper {
 	public static final String DATA_ID_APP_DBWEIGHT = DATA_ID_PREFIX + "{0}.dbweight";
 
 	/**
-	 * Ã¿¸ödbIndexÒ»¸öÈ¨ÖØdataId
-	 * {0} Ó¦ÓÃÃû³ÆappName,ÈçIC
-	 * {1} dbIndex£ºTDataSourceÖĞdataSourcePoolµÄkey
+	 * æ¯ä¸ªdbIndexä¸€ä¸ªæƒé‡dataId
+	 * {0} åº”ç”¨åç§°appName,å¦‚IC
+	 * {1} dbIndexï¼šTDataSourceä¸­dataSourcePoolçš„key
 	 * 
-	 * ÄÚÈİ¸ñÊ½£º
+	 * å†…å®¹æ ¼å¼ï¼š
 	 *   dbindex_0=R10W10,R20W0,R10W0 
 	 */
 	public static final String DATA_ID_GLOBAL_DBINFO = DATA_ID_PREFIX + "{0}.global.dbinfo";
@@ -81,84 +81,84 @@ public final class ConfigServerHelper {
 
 	public enum TDDLConfigKey {
 		statKeyRecordType, statKeyLeftCutLen, statKeyRightCutLen, statKeyExcludes, StatRealDbInWrapperDs, //
-		StatChannelMask, statDumpInterval/*Ãë*/, statCacheSize, statAtomSql, statKeyIncludes, //
+		StatChannelMask, statDumpInterval/*ç§’*/, statCacheSize, statAtomSql, statKeyIncludes, //
 		SmoothValveProperties,CountPunisherProperties,//
 		//add by junyu
-		sqlExecTimeOutMilli/*sql³¬Ê±Ê±¼ä*/,atomSqlSamplingRate/*atom²ãsqlÍ³¼ÆµÄ²ÉÑùÂÊ*/;
+		sqlExecTimeOutMilli/*sqlè¶…æ—¶æ—¶é—´*/,atomSqlSamplingRate/*atomå±‚sqlç»Ÿè®¡çš„é‡‡æ ·ç‡*/;
 	}
 
 	/**
-	 * ¶©ÔÄÓ¦ÓÃµÄ·Ö¿â·Ö±íÅäÖÃ
+	 * è®¢é˜…åº”ç”¨çš„åˆ†åº“åˆ†è¡¨é…ç½®
 	 */
 	public static Object subscribeShardRuleConfig(String appName, DataListener listener) {
 		if (appName == null || appName.length() == 0) {
-			throw new IllegalStateException("Ã»ÓĞÖ¸¶¨Ó¦ÓÃÃû³ÆappName");
+			throw new IllegalStateException("æ²¡æœ‰æŒ‡å®šåº”ç”¨åç§°appName");
 		}
 		String dataId = new MessageFormat(DATA_ID_TDDL_SHARD_RULE).format(new Object[] { appName });
 		return ConfigServerHelper.subscribePersistentData(appName, getCallerClassName(), dataId, listener);
 	}
 
 	/**
-	 * ¶©ÔÄÓ¦ÓÃµÄÊı¾İ¿âÈ¨ÖØÅäÖÃ
+	 * è®¢é˜…åº”ç”¨çš„æ•°æ®åº“æƒé‡é…ç½®
 	 */
 	public static Object subscribeAppDbWeight(String appName, DataListener listener) {
 		if (appName == null || appName.length() == 0) {
-			throw new IllegalStateException("Ã»ÓĞÖ¸¶¨Ó¦ÓÃÃû³ÆappName");
+			throw new IllegalStateException("æ²¡æœ‰æŒ‡å®šåº”ç”¨åç§°appName");
 		}
 		String dataId = new MessageFormat(DATA_ID_APP_DBWEIGHT).format(new Object[] { appName });
 		return ConfigServerHelper.subscribePersistentData(appName, getCallerClassName(), dataId, listener);
 	}
 
 	/**
-	 * ¶©ÔÄÓ¦ÓÃµÄĞĞ¸´ÖÆÅäÖÃ
+	 * è®¢é˜…åº”ç”¨çš„è¡Œå¤åˆ¶é…ç½®
 	 */
 	public static Object subscribeReplicationConfig(String appName, DataListener listener) {
 		if (appName == null || appName.length() == 0) {
-			throw new IllegalStateException("Ã»ÓĞÖ¸¶¨Ó¦ÓÃÃû³ÆappName");
+			throw new IllegalStateException("æ²¡æœ‰æŒ‡å®šåº”ç”¨åç§°appName");
 		}
 		String dataId = new MessageFormat(DATA_ID_REPLICATION).format(new Object[] { appName });
 		return ConfigServerHelper.subscribePersistentData(appName, getCallerClassName(), dataId, listener);
 	}
 
 	/**
-	 * ¶©ÔÄÓ¦ÓÃµÄĞĞ¸´ÖÆ¿ª¹Ø
+	 * è®¢é˜…åº”ç”¨çš„è¡Œå¤åˆ¶å¼€å…³
 	 */
 	public static Object subscribeReplicationSwitch(String appName, DataListener listener) {
 		if (appName == null || appName.length() == 0) {
-			throw new IllegalStateException("Ã»ÓĞÖ¸¶¨Ó¦ÓÃÃû³ÆappName");
+			throw new IllegalStateException("æ²¡æœ‰æŒ‡å®šåº”ç”¨åç§°appName");
 		}
 		String dataId = new MessageFormat(DATA_ID_REPLICATION_SWITCH).format(new Object[] { appName });
 		return ConfigServerHelper.subscribePersistentData(appName, getCallerClassName(), dataId, listener);
 	}
 
 	/**
-	 * ¶©ÔÄÈÕÖ¾¿âÅäÖÃ
+	 * è®¢é˜…æ—¥å¿—åº“é…ç½®
 	 */
 	public static Object subscribeSyncLogDbConfig(String syncServerID, DataListener listener) {
 		if (syncServerID == null || syncServerID.length() == 0) {
-			throw new IllegalStateException("Ã»ÓĞÖ¸¶¨²¹³¥·şÎñÆ÷ID£ºsyncServerID");
+			throw new IllegalStateException("æ²¡æœ‰æŒ‡å®šè¡¥å¿æœåŠ¡å™¨IDï¼šsyncServerID");
 		}
 		String dataId = new MessageFormat(DATA_ID_SYNCLOG_DBSET).format(new Object[] { syncServerID });
 		return ConfigServerHelper.subscribePersistentData(getCallerClassName(), dataId, listener);
 	}
 
 	/**
-	 * ¶©ÔÄÈÕÖ¾¿âÈ¨ÖØÅäÖÃ
+	 * è®¢é˜…æ—¥å¿—åº“æƒé‡é…ç½®
 	 */
 	public static Object subscribeSyncLogDbWeight(String syncServerID, DataListener listener) {
 		if (syncServerID == null || syncServerID.length() == 0) {
-			throw new IllegalStateException("Ã»ÓĞÖ¸¶¨²¹³¥·şÎñÆ÷ID£ºsyncServerID");
+			throw new IllegalStateException("æ²¡æœ‰æŒ‡å®šè¡¥å¿æœåŠ¡å™¨IDï¼šsyncServerID");
 		}
 		String dataId = new MessageFormat(DATA_ID_SYNCLOG_DBWEIGHT).format(new Object[] { syncServerID });
 		return ConfigServerHelper.subscribePersistentData(getCallerClassName(), dataId, listener);
 	}
 
 	/**
-	 * ¶©ÔÄÆäËûTDDL¿Í»§¶ËÅäÖÃ
+	 * è®¢é˜…å…¶ä»–TDDLå®¢æˆ·ç«¯é…ç½®
 	 */
 	public static Object subscribeTDDLConfig(String appName, DataListener listener) {
 		if (appName == null || appName.length() == 0) {
-			throw new IllegalStateException("Ã»ÓĞÖ¸¶¨Ó¦ÓÃÃû³ÆappName");
+			throw new IllegalStateException("æ²¡æœ‰æŒ‡å®šåº”ç”¨åç§°appName");
 		}
 		String dataId = getTddlConfigDataId(appName);
 		return ConfigServerHelper.subscribePersistentData(appName, getCallerClassName(), dataId, listener);
@@ -174,14 +174,14 @@ public final class ConfigServerHelper {
 	}
 
 	/**
-	 * @return µÚÒ»´Î»ñÈ¡µÄdata£»·µ»ØÊ±onDataReceiveAtRegisterÒÑ¾­µ÷ÓÃ¹ıÒ»´Î
+	 * @return ç¬¬ä¸€æ¬¡è·å–çš„dataï¼›è¿”å›æ—¶onDataReceiveAtRegisterå·²ç»è°ƒç”¨è¿‡ä¸€æ¬¡
 	 */
 	public static Object subscribePersistentData(String dataId, final DataListener listener) {
 		return subscribePersistentData(getCallerClassName(), dataId, listener);
 	}
 
 	public static Object subscribeData(String dataId, final DataListener listener) {
-		//¶©ÔÄ·Ç³Ö¾ÃÊı¾İ£¬ºÍ¶©ÔÄ³Ö¾ÃÊı¾İµÄ½Ó¿ÚÊÇÍêÈ«ÏàÍ¬µÄ
+		//è®¢é˜…éæŒä¹…æ•°æ®ï¼Œå’Œè®¢é˜…æŒä¹…æ•°æ®çš„æ¥å£æ˜¯å®Œå…¨ç›¸åŒçš„
 		return subscribePersistentData(getCallerClassName(), dataId, listener);
 	}
 
@@ -195,16 +195,16 @@ public final class ConfigServerHelper {
 	public static Object subscribePersistentData(String appName, String subscriberName, String dataId, final DataListener listener) {
 		cdhf = ConfigDataHandlerCity.getFactory(appName);
 		ConfigDataHandler matrixHandler = cdhf.getConfigDataHandler(dataId, null);
-		String datas = matrixHandler.getNullableData(DIAMOND_FIRST_DATA_TIMEOUT, ConfigDataHandler.FIRST_SERVER_STRATEGY); //È¡ÅäÖÃĞÅÏ¢µÄÄ¬ÈÏ³¬Ê±Ê±¼äÎª30Ãë
+		String datas = matrixHandler.getNullableData(DIAMOND_FIRST_DATA_TIMEOUT, ConfigDataHandler.FIRST_SERVER_STRATEGY); //å–é…ç½®ä¿¡æ¯çš„é»˜è®¤è¶…æ—¶æ—¶é—´ä¸º30ç§’
 
-		//³¢ÊÔÈ¥ÄÃ×îĞÂµÄ±¾µØÊı¾İ
+		//å°è¯•å»æ‹¿æœ€æ–°çš„æœ¬åœ°æ•°æ®
 		log.warn(dataId + "'s firstData=" + datas);
 		if (datas != null) {
 			try {
 				listener.onDataReceiveAtRegister(datas);
 			} catch (Throwable t) {
-				//±£Ö¤¼´Ê¹Ê×´Î´¦ÀídataId·¢ÉúÒì³££¬listenerÒ²Ò»Ñù»á±»×¢²á£¬ÒµÎñÈÔÈ»ÄÜÊÕµ½ºóĞøÍÆËÍ
-				log.error("onDataReceiveAtRegisterÅ×³öÒì³££¬dataId:" + dataId, t);
+				//ä¿è¯å³ä½¿é¦–æ¬¡å¤„ç†dataIdå‘ç”Ÿå¼‚å¸¸ï¼Œlistenerä¹Ÿä¸€æ ·ä¼šè¢«æ³¨å†Œï¼Œä¸šåŠ¡ä»ç„¶èƒ½æ”¶åˆ°åç»­æ¨é€
+				log.error("onDataReceiveAtRegisteræŠ›å‡ºå¼‚å¸¸ï¼ŒdataId:" + dataId, t);
 			}
 		}
 		matrixHandler.addListener(new ConfigDataListener() {
@@ -219,8 +219,8 @@ public final class ConfigServerHelper {
 	}
 
 	/**
-	 * Ò»¸öUtil·½·¨£¬²»ÏëÔÙ¸ã¸öUtilÀà£¬¹Ê·Åµ½ÕâÀï£º
-	 * ½«Properties¶ÔÏó»òProperties×Ö·û´®½âÎöÎªProperties¶ÔÏó 
+	 * ä¸€ä¸ªUtilæ–¹æ³•ï¼Œä¸æƒ³å†æä¸ªUtilç±»ï¼Œæ•…æ”¾åˆ°è¿™é‡Œï¼š
+	 * å°†Propertieså¯¹è±¡æˆ–Propertieså­—ç¬¦ä¸²è§£æä¸ºPropertieså¯¹è±¡ 
 	 */
 	public static Properties parseProperties(Object data, String msg) {
 		Properties p;
@@ -234,25 +234,25 @@ public final class ConfigServerHelper {
 			try {
 				p.load(new ByteArrayInputStream(((String) data).getBytes()));
 			} catch (IOException e) {
-				log.error(msg + "ÎŞ·¨½âÎöÍÆËÍµÄÅäÖÃ£º" + data, e);
+				log.error(msg + "æ— æ³•è§£ææ¨é€çš„é…ç½®ï¼š" + data, e);
 				return null;
 			}
 		} else {
-			log.warn(msg + "ÀàĞÍÎŞ·¨Ê¶±ğ" + data);
+			log.warn(msg + "ç±»å‹æ— æ³•è¯†åˆ«" + data);
 			return null;
 		}
 		return p;
 	}
 
-	//²âÊÔ¸¨Öú·½·¨£¬·¢²¼Ò»¸ö³Ö¾ÃÊı¾İ
+	//æµ‹è¯•è¾…åŠ©æ–¹æ³•ï¼Œå‘å¸ƒä¸€ä¸ªæŒä¹…æ•°æ®
 	public static void publish(String dataId, Serializable data) {
 		publish(dataId, data, null);
 	}
 
 	public static void publish(String dataId, Serializable data, String group) {
 		return;
-		//DiamondÒªÓÃ¶îÍâµÄsdk·¢²¼Êı¾İ¡£Èç¹û²âÊÔ»¹ÊÇÓÃmock
-		//TODO ¸Ä³Ésdk·½Ê½£¬Ö§³Ö²âÊÔ
+		//Diamondè¦ç”¨é¢å¤–çš„sdkå‘å¸ƒæ•°æ®ã€‚å¦‚æœæµ‹è¯•è¿˜æ˜¯ç”¨mock
+		//TODO æ”¹æˆsdkæ–¹å¼ï¼Œæ”¯æŒæµ‹è¯•
 	}
 
 	/*private static Object fetchConfig(Subscriber subscriber) {
@@ -279,13 +279,13 @@ public final class ConfigServerHelper {
 
 	public static interface DataListener {
 		/**
-		 * ×¢²áÖ®ºó£¬ÉèÖÃDataObserverÖ®Ç°£¬fetchConfig½ÓÊÜµ½ÍÆËÍÊ±£¬µ÷ÓÃ¸Ã·½·¨¡£Ò»°ãÓÃÔÚÒµÎñ³õÊ¼»¯Ê±
+		 * æ³¨å†Œä¹‹åï¼Œè®¾ç½®DataObserverä¹‹å‰ï¼ŒfetchConfigæ¥å—åˆ°æ¨é€æ—¶ï¼Œè°ƒç”¨è¯¥æ–¹æ³•ã€‚ä¸€èˆ¬ç”¨åœ¨ä¸šåŠ¡åˆå§‹åŒ–æ—¶
 		 */
 		void onDataReceiveAtRegister(Object data);
 
 		/**
-		 * ×¢²áÖ®ºó£¬µÚÒ»´Î½ÓÊÕµ½ÍÆËÍµ÷ÓÃonDataReceiveAtRegister´¦ÀíÍê±Ï£¬
-		 * ÉèÖÃDataObserverÖ®ºó£¬ÔÙ½Óµ½¶¯Ì¬ÍÆËÍ£¬µ÷ÓÃ¸Ã·½·¨¡£Ò»°ãÓÃÔÚÒµÎñÔËĞĞÊ±
+		 * æ³¨å†Œä¹‹åï¼Œç¬¬ä¸€æ¬¡æ¥æ”¶åˆ°æ¨é€è°ƒç”¨onDataReceiveAtRegisterå¤„ç†å®Œæ¯•ï¼Œ
+		 * è®¾ç½®DataObserverä¹‹åï¼Œå†æ¥åˆ°åŠ¨æ€æ¨é€ï¼Œè°ƒç”¨è¯¥æ–¹æ³•ã€‚ä¸€èˆ¬ç”¨åœ¨ä¸šåŠ¡è¿è¡Œæ—¶
 		 */
 		void onDataReceive(Object data);
 	}
@@ -298,7 +298,7 @@ public final class ConfigServerHelper {
 
 	public static String getDBGroupsConfig(String appName) {
 		if (appName == null || appName.length() == 0) {
-			throw new IllegalStateException("Ã»ÓĞÖ¸¶¨Ó¦ÓÃÃû³ÆappName");
+			throw new IllegalStateException("æ²¡æœ‰æŒ‡å®šåº”ç”¨åç§°appName");
 		}
 		String dataId = new MessageFormat(DATA_ID_DB_GROUP_KEYS).format(new Object[] { appName });
 		return dataId;
@@ -306,7 +306,7 @@ public final class ConfigServerHelper {
 
 	public static String getShardRuleConfig(String appName) {
 		if (appName == null || appName.length() == 0) {
-			throw new IllegalStateException("Ã»ÓĞÖ¸¶¨Ó¦ÓÃÃû³ÆappName");
+			throw new IllegalStateException("æ²¡æœ‰æŒ‡å®šåº”ç”¨åç§°appName");
 		}
 		String dataId = new MessageFormat(DATA_ID_TDDL_SHARD_RULE).format(new Object[] { appName });
 		return dataId;

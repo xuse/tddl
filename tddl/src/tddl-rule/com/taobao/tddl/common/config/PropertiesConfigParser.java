@@ -25,24 +25,24 @@ public class PropertiesConfigParser<T> implements TddlConfigParser<T> {
 		try {
 			prop.load(new ByteArrayInputStream(txt.getBytes()));
 		} catch (IOException e) {
-			log.error("[parseCongfig]ÎŞ·¨½âÎöÍÆËÍµÄÅäÖÃ£º" + txt, e);
+			log.error("[parseCongfig]æ— æ³•è§£ææ¨é€çš„é…ç½®ï¼š" + txt, e);
 			return null;
 		}
 
 		if (prop.getProperty(PropertyBaseTDDLRoot.TABLE_RULES) != null) {
-			//2.4.4Ö®Ç°µÄ¾É¹æÔòµÄkeyÊÇtable_rules
+			//2.4.4ä¹‹å‰çš„æ—§è§„åˆ™çš„keyæ˜¯table_rules
 			AppRule appRule = new AppRule();
 			PropertyBaseTDDLRoot root = new PropertyBaseTDDLRoot();
 			root.init(prop);
 			appRule.setDefaultTddlRoot(root);
 			return (T) appRule;
 		} else if (prop.getProperty(Prop_Key_244_tableRules) != null) {
-			//2.4.4ĞÂ¹æÔòµÄkeyÊÇtableRules
+			//2.4.4æ–°è§„åˆ™çš„keyæ˜¯tableRules
 			VirtualTableRoot vtr = parseVirtualTableRoot(prop);
 			return (T) vtr;
 		}
 
-		log.error("[parseCongfig]No tableRules in properties£º" + txt);
+		log.error("[parseCongfig]No tableRules in propertiesï¼š" + txt);
 		return null;
 	}
 

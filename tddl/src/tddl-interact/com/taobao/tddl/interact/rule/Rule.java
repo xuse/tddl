@@ -6,13 +6,13 @@ import java.util.Set;
 import com.taobao.tddl.interact.sqljep.Comparative;
 
 /**
- * Èô·Ö¿âÓĞÁ½Ìõ¹æÔò£º
- * ¹æÔòÒ»£ºcolumnA¡¢columnB?£¬ÈôcolumnBÃ»ÓĞ£¬ÔòÈ¡columnBµÄËùÓĞÖµÓò£¨ÓÉÃèµãĞÅÏ¢»ñµÃ£©È«±íÉ¨Ãè
- * ¹æÔò¶ş£ºcolumnA¡¢columnC¡£
- * ÈôsqlÖ»°üº¬columnA£¬Ôò×ß¹æÔòÒ»
- * ÈôsqlÖ»°üº¬columnA¡¢columnC£¬Ôò×ß¹æÔò¶ş
+ * è‹¥åˆ†åº“æœ‰ä¸¤æ¡è§„åˆ™ï¼š
+ * è§„åˆ™ä¸€ï¼šcolumnAã€columnB?ï¼Œè‹¥columnBæ²¡æœ‰ï¼Œåˆ™å–columnBçš„æ‰€æœ‰å€¼åŸŸï¼ˆç”±æç‚¹ä¿¡æ¯è·å¾—ï¼‰å…¨è¡¨æ‰«æ
+ * è§„åˆ™äºŒï¼šcolumnAã€columnCã€‚
+ * è‹¥sqlåªåŒ…å«columnAï¼Œåˆ™èµ°è§„åˆ™ä¸€
+ * è‹¥sqlåªåŒ…å«columnAã€columnCï¼Œåˆ™èµ°è§„åˆ™äºŒ
  * 
- * Ë³Ğò+ÓÅÏÈ×î´óÆ¥Åä£¬ÏÈÆ¥ÅäËùÓĞÁĞ£¬ÕÒ²»µ½ÔÙ°´È¥³ı¿ÉÑ¡ÁĞÖ®ºóÆ¥Åä
+ * é¡ºåº+ä¼˜å…ˆæœ€å¤§åŒ¹é…ï¼Œå…ˆåŒ¹é…æ‰€æœ‰åˆ—ï¼Œæ‰¾ä¸åˆ°å†æŒ‰å»é™¤å¯é€‰åˆ—ä¹‹ååŒ¹é…
  * 
  * @author linxuan
  *
@@ -21,11 +21,11 @@ public interface Rule<T> {
 
 	public class RuleColumn {
 		/**
-		 * Èôoptional==true£¬ÔòÑ¡ÔñruleÊ±£¬sql¿ÉÒÔ²»°üº¬¸ÃÁĞ¡£µ½Ê±¶Ô¸ÃÁĞÖµÓò×ö±éÀú
+		 * è‹¥optional==trueï¼Œåˆ™é€‰æ‹©ruleæ—¶ï¼Œsqlå¯ä»¥ä¸åŒ…å«è¯¥åˆ—ã€‚åˆ°æ—¶å¯¹è¯¥åˆ—å€¼åŸŸåšéå†
 		 */
 		public final boolean optional; //
 		/**
-		 * sqlÖĞµÄÁĞÃû£¬±ØĞëÊÇ´óĞ´£¬ÕâÀïÔÚsetterÏÔÊ¾µÄÉèÖÃ³É´óĞ´ÁË
+		 * sqlä¸­çš„åˆ—åï¼Œå¿…é¡»æ˜¯å¤§å†™ï¼Œè¿™é‡Œåœ¨setteræ˜¾ç¤ºçš„è®¾ç½®æˆå¤§å†™äº†
 		 */
 		public final String key;
 
@@ -36,37 +36,37 @@ public interface Rule<T> {
 	}
 
 	/**
-	 * @return ¹æÔò¼ÆËãĞèÒªµÄÁĞ
+	 * @return è§„åˆ™è®¡ç®—éœ€è¦çš„åˆ—
 	 */
 	Map<String, RuleColumn> getRuleColumns();
 
-	Set<RuleColumn> getRuleColumnSet(); //Í¬ÉÏ
+	Set<RuleColumn> getRuleColumnSet(); //åŒä¸Š
 
 	/**
-	 * ÁĞÖµ¶ÔÇóÖµ
-	 * @param columnValues ÁĞÖµ¶Ô¡£¸öÊıÓëgetRuleColumnsÏàÍ¬¡£
-	 * @param dynamicExtraContext ¶¯Ì¬µÄ¶îÍâ²ÎÊı¡£±ÈÈç´ÓThreadLocalÖĞ´«ÈëµÄ±íÃûÇ°×º
-	 * @return ¸ù¾İÒ»×éÁĞÖµ¶Ô¼ÆËã½á¹û
+	 * åˆ—å€¼å¯¹æ±‚å€¼
+	 * @param columnValues åˆ—å€¼å¯¹ã€‚ä¸ªæ•°ä¸getRuleColumnsç›¸åŒã€‚
+	 * @param dynamicExtraContext åŠ¨æ€çš„é¢å¤–å‚æ•°ã€‚æ¯”å¦‚ä»ThreadLocalä¸­ä¼ å…¥çš„è¡¨åå‰ç¼€
+	 * @return æ ¹æ®ä¸€ç»„åˆ—å€¼å¯¹è®¡ç®—ç»“æœ
 	 */
-	T eval(Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/> columnValues, Object outerContext);
+	T eval(Map<String/*åˆ—å*/, Object/*åˆ—å€¼*/> columnValues, Object outerContext);
 
 	/**
-	 * ±È½ÏÊ÷Æ¥Åä
-	 * @param sqlArgs ´ÓSQLÌáÈ¡³öÀ´µÄ±È½ÏÊ÷ 
-	 * getRuleColumns°üº¬µÄ±ØÑ¡ÁĞ£¨optional=false£©±ØĞëÔÚsqlArgsÀïÃæÓĞ¡£¿ÉÑ¡ÁĞ¿ÉÒÔÃ»ÓĞ
-	 *     key£º  StringÁĞÃû
-	 *     value: sqlÖĞ°´¸ÃÁĞÌáÈ¡³öµÄ±È½ÏÊ÷Comparative£¬ÒÑ¾­°ó¶¨ÁË²ÎÊı
-	 * @param ctx ¹æÔòÖ´ĞĞµÄÉÏÏÂÎÄ¡£ÓÃÓÚ¹ØÁª¹æÔòÖ´ĞĞÊ±£¬¹æÔò¼ä±ØÒªĞÅÏ¢µÄ´«µİ¡£¶ÔÓÚEnumerativeRuleÀ´Ëµ¡£ÔÚ¿â±í¹æÔòÓĞ¹«¹²ÁĞÊ±£¬
-	 *            »áÔÚÃ¿Ò»¸ö¿â¹æÔòµÄÖµÏÂÃæ£¬Ö´ĞĞ±í¹æÔò£»Ö´ĞĞÊ±¿â¹æÔò²úÉú¸ÃÖµµÄÃèµãĞÅÏ¢½«ÒÔ¸Ã²ÎÊı´«Èë¡£
-	 * @param outerCtx ¶¯Ì¬µÄ¶îÍâ²ÎÊı¡£±ÈÈç´ÓThreadLocalÖĞ´«ÈëµÄ±íÃûÇ°×º
-	 * @return ¹æÔò¼ÆËã½á¹û£¬ºÍµÃµ½Õâ¸ö½á¹ûµÄËùÓĞÊı¾İ¡£
+	 * æ¯”è¾ƒæ ‘åŒ¹é…
+	 * @param sqlArgs ä»SQLæå–å‡ºæ¥çš„æ¯”è¾ƒæ ‘ 
+	 * getRuleColumnsåŒ…å«çš„å¿…é€‰åˆ—ï¼ˆoptional=falseï¼‰å¿…é¡»åœ¨sqlArgsé‡Œé¢æœ‰ã€‚å¯é€‰åˆ—å¯ä»¥æ²¡æœ‰
+	 *     keyï¼š  Stringåˆ—å
+	 *     value: sqlä¸­æŒ‰è¯¥åˆ—æå–å‡ºçš„æ¯”è¾ƒæ ‘Comparativeï¼Œå·²ç»ç»‘å®šäº†å‚æ•°
+	 * @param ctx è§„åˆ™æ‰§è¡Œçš„ä¸Šä¸‹æ–‡ã€‚ç”¨äºå…³è”è§„åˆ™æ‰§è¡Œæ—¶ï¼Œè§„åˆ™é—´å¿…è¦ä¿¡æ¯çš„ä¼ é€’ã€‚å¯¹äºEnumerativeRuleæ¥è¯´ã€‚åœ¨åº“è¡¨è§„åˆ™æœ‰å…¬å…±åˆ—æ—¶ï¼Œ
+	 *            ä¼šåœ¨æ¯ä¸€ä¸ªåº“è§„åˆ™çš„å€¼ä¸‹é¢ï¼Œæ‰§è¡Œè¡¨è§„åˆ™ï¼›æ‰§è¡Œæ—¶åº“è§„åˆ™äº§ç”Ÿè¯¥å€¼çš„æç‚¹ä¿¡æ¯å°†ä»¥è¯¥å‚æ•°ä¼ å…¥ã€‚
+	 * @param outerCtx åŠ¨æ€çš„é¢å¤–å‚æ•°ã€‚æ¯”å¦‚ä»ThreadLocalä¸­ä¼ å…¥çš„è¡¨åå‰ç¼€
+	 * @return è§„åˆ™è®¡ç®—ç»“æœï¼Œå’Œå¾—åˆ°è¿™ä¸ªç»“æœçš„æ‰€æœ‰æ•°æ®ã€‚
 	 */
-	Map<T, ? extends Object> calculate(Map<String/*ÁĞÃû*/, Comparative> sqlArgs, Object ctx, Object outerCtx);
+	Map<T, ? extends Object> calculate(Map<String/*åˆ—å*/, Comparative> sqlArgs, Object ctx, Object outerCtx);
 
 	/**
-	 * ²»·´»ØÃ¿¸ö½á¹û¶ÔÓ¦µÄµÃµ½¸Ã½á¹ûµÄÊäÈëÖµ£¨Ãèµã£©¼¯ºÏ
+	 * ä¸åå›æ¯ä¸ªç»“æœå¯¹åº”çš„å¾—åˆ°è¯¥ç»“æœçš„è¾“å…¥å€¼ï¼ˆæç‚¹ï¼‰é›†åˆ
 	 */
-	Set<T> calculateNoTrace(Map<String/*ÁĞÃû*/, Comparative/*±È½ÏÊ÷*/> sqlArgs, Object ctx, Object outerCtx);
+	Set<T> calculateNoTrace(Map<String/*åˆ—å*/, Comparative/*æ¯”è¾ƒæ ‘*/> sqlArgs, Object ctx, Object outerCtx);
 	
     T calculateVnodeNoTrace(String key, Object ctx, Object outerCtx);
 }

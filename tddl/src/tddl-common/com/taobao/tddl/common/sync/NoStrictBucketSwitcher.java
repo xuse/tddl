@@ -7,9 +7,9 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * BucketSwitcherÊµÏÖ
+ * BucketSwitcherå®ç°
  * 
- * ĞÔÄÜÓÅÏÈµÄ·Ç¾«È·ÊµÏÖ
+ * æ€§èƒ½ä¼˜å…ˆçš„éç²¾ç¡®å®ç°
  * 
  * @author guangxia
  *
@@ -81,12 +81,12 @@ public class NoStrictBucketSwitcher<T> implements BucketSwitcher<T> {
 			Bucket<T> local_bucket = bucket;
 			int next = local_bucket.index.getAndIncrement();
 			if(next < local_bucket.array.length) {
-				//ÕâÀïµÄ¼äÏ¶½«µ¼ÖÂ¼ì²éÏß³Ì¶ªÊı¾İºÍporinÏß³ÌÔÚÂúµÄÇé¿öÏÂ×ÔĞı
+				//è¿™é‡Œçš„é—´éš™å°†å¯¼è‡´æ£€æŸ¥çº¿ç¨‹ä¸¢æ•°æ®å’Œporinçº¿ç¨‹åœ¨æ»¡çš„æƒ…å†µä¸‹è‡ªæ—‹
 				local_bucket.array[next] = task;
 				local_bucket.size.incrementAndGet();
 				return;
 			}
-			//´¦ÀíÂúµôµÄÇé¿ö
+			//å¤„ç†æ»¡æ‰çš„æƒ…å†µ
 			Collection<T> fulledBucket = null;
 			this.full.lock();
 			try {
@@ -107,7 +107,7 @@ public class NoStrictBucketSwitcher<T> implements BucketSwitcher<T> {
 	protected Collection<T> takeAway() {
 		Bucket<T> oldBucket = bucket;
 		int size = oldBucket.index.get();
-		//Ê§°ÜµÄÇé¿öÏÂ£¬ÒÀÈ»»áµ¼ÖÂindexInBucket×ÔÔö
+		//å¤±è´¥çš„æƒ…å†µä¸‹ï¼Œä¾ç„¶ä¼šå¯¼è‡´indexInBucketè‡ªå¢
 		if(size > oldBucket.array.length) {
 			size = oldBucket.array.length;
 		}
@@ -124,7 +124,7 @@ public class NoStrictBucketSwitcher<T> implements BucketSwitcher<T> {
 	}
 
 	/**
-	 * Ö§³Ö¶¯Ì¬¼à¿ØºÍµ÷ÕûbucketSize
+	 * æ”¯æŒåŠ¨æ€ç›‘æ§å’Œè°ƒæ•´bucketSize
 	 */
 	public int getBucketSize() {
 		return bucketSize;

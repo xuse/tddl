@@ -4,7 +4,7 @@ import java.text.MessageFormat;
 
 import com.taobao.tddl.interact.rule.bean.DBType;
 
-/**ORACLE连接地址对象，需要设置IP,PORT,DBNAME,CONTYPE后调用renderURL即可生成连接的字符串
+/**ORACLE杩炴帴鍦板潃瀵硅薄锛岄渶瑕佽缃甀P,PORT,DBNAME,CONTYPE鍚庤皟鐢╮enderURL鍗冲彲鐢熸垚杩炴帴鐨勫瓧绗︿覆
  * @author qihao
  *
  */

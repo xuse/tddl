@@ -8,7 +8,7 @@ import com.taobao.tddl.common.monitor.stat.StatLogWriter;
 import com.taobao.tddl.parser.ParserCache;
 
 /**
- * TDDL ÄÚ²¿½¡¿µ×´Ì¬·ÃÎÊ½Ó¿Ú
+ * TDDL å†…éƒ¨å¥åº·çŠ¶æ€è®¿é—®æ¥å£
  * 
  * @author linxuan
  *
@@ -49,15 +49,15 @@ public class TDataSourceState implements SnapshotValuesOutputCallBack {
 
 	@Override
 	public void snapshotValues(StatLogWriter statLog) {
-		// ¸´ÖÆ¶ÓÁĞ³¤¶È: µ±Ç°³¤¶È/×î´ó³¤¶È
+		// å¤åˆ¶é˜Ÿåˆ—é•¿åº¦: å½“å‰é•¿åº¦/æœ€å¤§é•¿åº¦
 		statLog.log(dataSourceName + Key.replicationQueueSize, 
 		        getReplicationCurrentQueueSize(), getReplicationMaxQueueSize());
 
-		// ¸´ÖÆÏß³Ì³Ø´óĞ¡£º µ±Ç°Ïß³ÌÊı/×î´óÏß³ÌÊı
+		// å¤åˆ¶çº¿ç¨‹æ± å¤§å°ï¼š å½“å‰çº¿ç¨‹æ•°/æœ€å¤§çº¿ç¨‹æ•°
 		statLog.log(dataSourceName + Key.replicationPoolSize, 
 		        getReplicationCurrentPoolSize(), getReplicationMaxPoolSize());
 
-		// ½âÎö»º´æ´óĞ¡£ºµ±Ç°´óĞ¡/×î´óÉÏÏŞ
+		// è§£æç¼“å­˜å¤§å°ï¼šå½“å‰å¤§å°/æœ€å¤§ä¸Šé™
 		statLog.log(dataSourceName + Key.parserCacheSize, 
 		        getParserCacheSize(), ParserCache.instance().capacity);
 	}

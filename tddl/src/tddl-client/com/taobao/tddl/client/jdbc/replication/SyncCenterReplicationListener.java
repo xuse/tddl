@@ -30,7 +30,7 @@
 //
 ///**
 // * 
-// * Í¬²½µÄÇëÇóĞĞ¸´ÖÆÖĞĞÄÍê³É¸´ÖÆµÄĞĞ¸´ÖÆ¼àÌıÆ÷
+// * åŒæ­¥çš„è¯·æ±‚è¡Œå¤åˆ¶ä¸­å¿ƒå®Œæˆå¤åˆ¶çš„è¡Œå¤åˆ¶ç›‘å¬å™¨
 // * 
 // * @author linxuan
 // *
@@ -39,14 +39,14 @@
 //	
 //	private static final Log log = LogFactory.getLog(SyncCenterReplicationListener.class);
 //
-//	private static final long timeoutThreshold = 200; //¸´ÖÆ³¬Ê±Í³¼ÆµÄÊ±¼ä·§Öµ
+//	private static final long timeoutThreshold = 200; //å¤åˆ¶è¶…æ—¶ç»Ÿè®¡çš„æ—¶é—´é˜€å€¼
 //	private MessageRecognizer messageRecognizer;
 //	private Map<Integer, MessageParser<?>> messageParsers;
 //
-//	private String syncCenterAddressList; //Èô²»×¢Èë£¬Ôò»áÊ¹ÓÃ¶©ÔÄµÄ
+//	private String syncCenterAddressList; //è‹¥ä¸æ³¨å…¥ï¼Œåˆ™ä¼šä½¿ç”¨è®¢é˜…çš„
 //	private int connectionCount = 1;
-//	private int waitForResponseTimeoutMillisecond = 1000; //Õâ¸öÖµµÄÉèÖÃÒª´óÓÚtimeoutThreshold
-//	private int sleepIntervalOnIdle = 2; //¿ÕÏĞÊ±µÄË¯ÃßÊ±¼ä
+//	private int waitForResponseTimeoutMillisecond = 1000; //è¿™ä¸ªå€¼çš„è®¾ç½®è¦å¤§äºtimeoutThreshold
+//	private int sleepIntervalOnIdle = 2; //ç©ºé—²æ—¶çš„ç¡çœ æ—¶é—´
 //	private boolean waitResponse = true;
 //
 //	protected SyncClient[] syncClients;
@@ -98,18 +98,18 @@
 //		add(key1, key2, Monitor.KEY3_SYNC_VIA_CENTER_NO_RESPONSE, 0, 1);
 //
 //		if(rspMsg == null){
-//			//µÈ´ısynccenter·µ»ØÏìÓ¦³¬Ê±
+//			//ç­‰å¾…synccenterè¿”å›å“åº”è¶…æ—¶
 //			add(key1, key2, Monitor.KEY3_SYNC_VIA_CENTER_NO_RESPONSE, 1, 0);
 //			return;
 //		}
 //		UpdateRsp rsp = rspMsg.getMessageInstance();
 //		if (rsp.getResultCode() == 0) {
-//			//¸´ÖÆ³É¹¦
+//			//å¤åˆ¶æˆåŠŸ
 //			long elapsedTime = System.currentTimeMillis() - context.getAfterMainDBSqlExecuteTime();
 //			long timeConsumingInThreadPool = context.getReplicationStartTime() - context.getAfterMainDBSqlExecuteTime();
 //			successProfile(key1,key2, timeoutThreshold, elapsedTime, timeConsumingInThreadPool);
 //		} else {
-//			//¸´ÖÆÊ§°Ü
+//			//å¤åˆ¶å¤±è´¥
 //			log.warn("Sync via center failed. resultCode:" + rsp.getResultCode() + ",resultMessage:"
 //					+ rsp.getResultMessage());
 //		}
@@ -125,20 +125,20 @@
 //		context.setMasterLogicTableName(r.getMasterLogicTableName());
 //
 //		context.setPrimaryKeyColumn(r.getPrimaryKeyColumn());
-//		context.setPrimaryKeyValue(Long.valueOf(r.getPrimaryKeyValue().toString()));//Èô²»ÊÇLongÖ±½ÓÅ×´í
+//		context.setPrimaryKeyValue(Long.valueOf(r.getPrimaryKeyValue().toString()));//è‹¥ä¸æ˜¯Longç›´æ¥æŠ›é”™
 //
 //		if (r.getMasterDatabaseShardColumn() != null) {
 //			context.setMasterDatabaseShardColumn(r.getMasterDatabaseShardColumn());
 //		}
 //		if (r.getMasterDatabaseShardValue() != null) {
-//			context.setMasterDatabaseShardValue(Long.valueOf(r.getMasterDatabaseShardValue().toString()));//Èô²»ÊÇLongÖ±½ÓÅ×´í
+//			context.setMasterDatabaseShardValue(Long.valueOf(r.getMasterDatabaseShardValue().toString()));//è‹¥ä¸æ˜¯Longç›´æ¥æŠ›é”™
 //		}
 //
 //		if (r.getMasterTableShardColumn() != null) {
 //			context.setMasterTableShardColumn(r.getMasterTableShardColumn());
 //		}
 //		if (r.getMasterTableShardValue() != null) {
-//			context.setMasterTableShardValue(Long.valueOf(r.getMasterTableShardValue().toString()));//Èô²»ÊÇLongÖ±½ÓÅ×´í
+//			context.setMasterTableShardValue(Long.valueOf(r.getMasterTableShardValue().toString()));//è‹¥ä¸æ˜¯Longç›´æ¥æŠ›é”™
 //		}
 //
 //		return new UpdateReqMessage(context.build());
@@ -159,7 +159,7 @@
 //		context.setSyncLogId(event.getSyncLogId());
 //		context.setSyncLogDsKey(event.getSyncLogDsKey()); //for support sync center
 //        
-//		//ÕâÀïÃ»ÓĞreplicationConfig£¬´Ó¶øÒ²Ã»ÓĞBizTDDLContext¼°Ïà¹ØÊôĞÔµÄÉèÖÃ
+//		//è¿™é‡Œæ²¡æœ‰replicationConfigï¼Œä»è€Œä¹Ÿæ²¡æœ‰BizTDDLContextåŠç›¸å…³å±æ€§çš„è®¾ç½®
 //		context.setAfterMainDBSqlExecuteTime(event.getAfterMainDBSqlExecuteTime());
 //		context.setSql(event.getSql());
 //		return context;
@@ -167,14 +167,14 @@
 //
 //	@Override
 //	protected void asyncInsertSyncLog2Db(SqlExecuteEvent event) {
-//		throw new UnsupportedOperationException("asyncInsertSyncLog2Db:Í¬²½Listener²»Ö§³ÖÒì²½²åÈëÈÕÖ¾¿â");
+//		throw new UnsupportedOperationException("asyncInsertSyncLog2Db:åŒæ­¥Listenerä¸æ”¯æŒå¼‚æ­¥æ’å…¥æ—¥å¿—åº“");
 //	}
 //
 //	/**
 //	 * 
 //	 * @param context
 //	 * @param timeoutThreshold
-//	 * @param elapsedTime ´ÓÖ÷¿â¸üĞÂ³É¹¦£¬µ½ÊÕµ½syncCenter¸´ÖÆÍê³ÉÏìÓ¦µÄÊ±¼ä
+//	 * @param elapsedTime ä»ä¸»åº“æ›´æ–°æˆåŠŸï¼Œåˆ°æ”¶åˆ°syncCenterå¤åˆ¶å®Œæˆå“åº”çš„æ—¶é—´
 //	 * @param timeConsumingInThreadPool
 //	 */
 //	private static void successProfile(String key1, String key2, long timeoutThreshold, long elapsedTime,
@@ -190,7 +190,7 @@
 //	}
 //
 //	/**
-//	 * ÎŞÂß¼­µÄgetters/setters
+//	 * æ— é€»è¾‘çš„getters/setters
 //	 */
 //	public void setMessageRecognizer(MessageRecognizer messageRecognizer) {
 //		this.messageRecognizer = messageRecognizer;

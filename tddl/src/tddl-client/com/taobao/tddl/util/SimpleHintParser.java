@@ -28,7 +28,7 @@ import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteConditi
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.SimpleCondition;
 
 /**
- * HintParserµÄĞŞ¸Ä°æ±¾
+ * HintParserçš„ä¿®æ”¹ç‰ˆæœ¬
  * 
  * @author junyu
  * 
@@ -39,7 +39,7 @@ public class SimpleHintParser {
 	public static RouteCondition convertHint2RouteCondition(StartInfo startInfo) {
 		String tddlHint = HintParserHelper.extractHint(startInfo.getSql(),
 				startInfo.getSqlParam());
-		// decode ³ÉRouteCondition
+		// decode æˆRouteCondition
 		if (null != tddlHint && !tddlHint.equals("")) {
 			try {
 				JSONObject jsonObject = JSONObject.fromObject(tddlHint);
@@ -70,14 +70,14 @@ public class SimpleHintParser {
 				"realtabs");
 		if (tableString != null) {
 			JSONArray jsonTables = JSONArray.fromObject(tableString);
-			// ÉèÖÃtableµÄSet<String>
+			// è®¾ç½®tableçš„Set<String>
 			if (jsonTables.size() > 0) {
 				Set<String> tables = new HashSet<String>(jsonTables.size());
 				for (int i = 0; i < jsonTables.size(); i++) {
 					tables.add(jsonTables.getString(i));
 				}
 				rc.setTables(tables);
-				//directÖ»ĞèÒªÔÚÊµ¼Ê±íÓĞµÄÇ°ÌáÏÂ½âÎö¼´¿É¡£
+				//directåªéœ€è¦åœ¨å®é™…è¡¨æœ‰çš„å‰æä¸‹è§£æå³å¯ã€‚
 				decodeVtab(rc, jsonObject);
 			}
 		}

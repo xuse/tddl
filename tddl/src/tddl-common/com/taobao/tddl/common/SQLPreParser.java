@@ -7,9 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Ê¹ÓÃÔ¼Êø
- * 1. ²»¿¼ÂÇsqlÖĞÒıºÅ×Ö·û´®°üº¬¹Ø¼ü×ÖµÄÇé¿ö¡£¼Ù¶¨sqlÖĞÎŞ×Ö´®¡£¶¼ÓÃprepareStatement¼ÓÎÊºÅ·½Ê½
- * 2. ¶ÔÓÚfromºóÓĞÁ½¸ö±íµÄ£¬°üÀ¨À¨ºÅ·½Ê½µÄÁÙÊ±ÊÓÍ¼£¬Î±±íÖ®Àà£¬¶¼ÒÔµÚÒ»¸ö±íÃûÎª×¼
+ * ä½¿ç”¨çº¦æŸ
+ * 1. ä¸è€ƒè™‘sqlä¸­å¼•å·å­—ç¬¦ä¸²åŒ…å«å…³é”®å­—çš„æƒ…å†µã€‚å‡å®šsqlä¸­æ— å­—ä¸²ã€‚éƒ½ç”¨prepareStatementåŠ é—®å·æ–¹å¼
+ * 2. å¯¹äºfromåæœ‰ä¸¤ä¸ªè¡¨çš„ï¼ŒåŒ…æ‹¬æ‹¬å·æ–¹å¼çš„ä¸´æ—¶è§†å›¾ï¼Œä¼ªè¡¨ä¹‹ç±»ï¼Œéƒ½ä»¥ç¬¬ä¸€ä¸ªè¡¨åä¸ºå‡†
  * 3. ic_cache@lnk_icdb0 icuser.tb0
  * 
  * @author linxuan
@@ -22,31 +22,31 @@ public class SQLPreParser {
 	private static Pattern pdelete_from = Pattern.compile("\\s+from\\s+([a-z0-9_@\\.\"$]+)\\s+");
 	private static Pattern pselect_from = Pattern.compile("\\s+from\\s+([a-z0-9_@\\.\"$]+)[\\s)]+");
 	private static Pattern preplace_from = Pattern.compile("\\s+into\\s+([a-z0-9_@\\.\"$]+)[\\s(]+");
-	private static Pattern pfrom_where = Pattern.compile("\\s+from\\s+(.*)\\s+where\\s+"); //.*Ä¬ÈÏ×î´óÆ¥Åä
+	private static Pattern pfrom_where = Pattern.compile("\\s+from\\s+(.*)\\s+where\\s+"); //.*é»˜è®¤æœ€å¤§åŒ¹é…
 	//private static Pattern pfrom = Pattern.compile("\\s+from\\s+");
 	//private static Pattern pwhere = Pattern.compile("\\s+where\\s+");
-	private static String hintregx = "/\\*.*?\\*/"; //hintÕıÔòÊ½£¬ÀÁ¶èÆ¥Åä(×î¶ÌÆ¥Åä)
+	private static String hintregx = "/\\*.*?\\*/"; //hintæ­£åˆ™å¼ï¼Œæ‡’æƒ°åŒ¹é…(æœ€çŸ­åŒ¹é…)
 	//private static Pattern phint = Pattern.compile(hintregx);
 
 	/**
-	 * @return ·µ»ØsqlÖĞµÚÒ»¸ö±íÃ÷µÄĞ¡Ğ´
+	 * @return è¿”å›sqlä¸­ç¬¬ä¸€ä¸ªè¡¨æ˜çš„å°å†™
 	 */
 	public static String findTableName(String sql0) {
 		if (sql0 == null)
 			return null;
-		sql0 = sql0.trim(); //trim¿ÉÒÔÈ¥µô\\s,°üÀ¨»»ĞĞ·û¡¢ÖÆ±í·ûµÈ
+		sql0 = sql0.trim(); //trimå¯ä»¥å»æ‰\\s,åŒ…æ‹¬æ¢è¡Œç¬¦ã€åˆ¶è¡¨ç¬¦ç­‰
 		if (sql0.length() < 7) {
 			return null;
 		}
 
 		if (sql0.indexOf("/*") != -1) {
-			//È¥³ıhint
+			//å»é™¤hint
 			//System.out.println("hint:"+sql0);
-			sql0 = sql0.replaceAll(hintregx, "").trim();  //ÀÁ¶èÆ¥Åä(×î¶ÌÆ¥Åä)
+			sql0 = sql0.replaceAll(hintregx, "").trim();  //æ‡’æƒ°åŒ¹é…(æœ€çŸ­åŒ¹é…)
 			//System.out.println(sql0);
 		}
 		sql0 = sql0.toLowerCase();
-		sql0 = sql0 + " "; //±ãÓÚ´¦Àí
+		sql0 = sql0 + " "; //ä¾¿äºå¤„ç†
 
 		if (sql0.startsWith("update")) {
 			Matcher m = ptable.matcher(sql0);
@@ -62,7 +62,7 @@ public class SQLPreParser {
 				return m.group(1);
 			}
 
-			m = ptable.matcher(sql0); //delete ¿ÉÒÔÃ»ÓĞfrom
+			m = ptable.matcher(sql0); //delete å¯ä»¥æ²¡æœ‰from
 			if (m.find(6)) {
 				return m.group(1);
 			}
@@ -86,7 +86,7 @@ public class SQLPreParser {
 		}
 
 		if (!sql0.startsWith("select")) {
-			return null; //²»ÒÔupdate delete select¿ªÍ·µÄsql
+			return null; //ä¸ä»¥update delete selectå¼€å¤´çš„sql
 		}
 
 		Matcher m = pselect_from.matcher(sql0);
@@ -100,7 +100,7 @@ public class SQLPreParser {
 			//System.out.println(from2where);
 			String[] tables = from2where.split(",");
 			for (int i = 1; i < tables.length; i++) {
-				//ÒòÎªµÚÒ»¸öÏîÒÑ¾­ËÑË÷¹ıÁË£¬ËùÒÔ´ÓµÚ¶şÏî¿ªÊ¼
+				//å› ä¸ºç¬¬ä¸€ä¸ªé¡¹å·²ç»æœç´¢è¿‡äº†ï¼Œæ‰€ä»¥ä»ç¬¬äºŒé¡¹å¼€å§‹
 				if (tables[i].indexOf('(') == -1) {
 					return tables[i].trim().split("\\s")[0];
 				} else {
@@ -112,7 +112,7 @@ public class SQLPreParser {
 			}
 		}
 		
-		//¿¼ÂÇÊÇ·ñÒ»¿ªÊ¼¾Í¶ÔËùÓĞµÄÓÒÀ¨ºÅÇ°ºó¼Ó¿Õ¸ñ
+		//è€ƒè™‘æ˜¯å¦ä¸€å¼€å§‹å°±å¯¹æ‰€æœ‰çš„å³æ‹¬å·å‰ååŠ ç©ºæ ¼
 		if (sql0.indexOf(")from") != -1) {
 			System.out.println(sql0);
 			sql0 = sql0.replaceAll("\\)from", ") from");
@@ -151,7 +151,7 @@ public class SQLPreParser {
 		sqls.add("SELECT * FROM \"ALIMM\".\"ADZONESCORE\"");
 		sqls.add("select nvl(min(ts#), -1) \"sysauxts#\" from sys.ts$ where name = 'sysaux'");
 		sqls.add("/* oracleoem */ select nvl(min(ts#), -1) \"sysauxts#\" from sys.ts$ where name = 'sysaux'");
-		sqls.add("/* oracleoem */ select /* sss */nvl(min(ts#), -1) \"sysauxts#\" from sys.ts$ where name = 'sysaux'");  //¶à¶Îhint
+		sqls.add("/* oracleoem */ select /* sss */nvl(min(ts#), -1) \"sysauxts#\" from sys.ts$ where name = 'sysaux'");  //å¤šæ®µhint
 		sqls.add("failed:select u.id from (table(str2numlist(:1))) n join et_airsupply_users u on n.column_value = u.id"); //join
         sqls.add("replace into t (i,c,d,ui) values (?,?,?,?)");
 		sqls.add(" SELECT /*+ ordered use_nl(acc,rb) */ rb.ID,rb.USER_ID,rb.DATABASE_CODE,EVENT_EXTEND FROM (SELECT /*+index(crb,IDX_RA_SC_BILL_STAT) */ crb.USER_ID, min(crb.id) dt FROM RA_SC_BILL crb  WHERE crb.status = 1 and crb.process_mode = 0 and rownum <= 20000 and DATABASE_CODE in (1, 2, 3) GROUP BY crb.USER_ID) acc, RA_SC_BILL rb WHERE rb.Id = acc.dt  and rownum <= 123  and not exists (select 1 from RA_SC_BILL up where up.status = 2 and up.USER_ID = acc.USER_ID)");

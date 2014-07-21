@@ -9,7 +9,7 @@ public class ComparableElement {
 	public int  operator;
 	public Comparable<?> comp;
 	/**
-	 * Õâ¸ö²ÎÊıÄ¿Ç°Ö»ÓÃÊÇÓÃÀ´±íÊ¾inµÄÊ±ºòÊÇfalse,ÆäËûÊ±ºò¶¼ÊÇtrue.or±í´ïÊ½»áÔÚOr±í´ïÊ½ÄÚ×Ô¼º×ö´¦Àí
+	 * è¿™ä¸ªå‚æ•°ç›®å‰åªç”¨æ˜¯ç”¨æ¥è¡¨ç¤ºinçš„æ—¶å€™æ˜¯false,å…¶ä»–æ—¶å€™éƒ½æ˜¯true.orè¡¨è¾¾å¼ä¼šåœ¨Orè¡¨è¾¾å¼å†…è‡ªå·±åšå¤„ç†
 	 */
 	public boolean isAnd;
 }

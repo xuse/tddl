@@ -3,14 +3,14 @@ package com.taobao.tddl.jdbc.atom;
 import com.taobao.tddl.common.client.util.ThreadLocalMap;
 
 /**
- * Ìá¹©¸øµ¥¶ÀÊ¹ÓÃ  TAtomDataSource µÄÓÃ»§Ö¸¶¨Ó¦ÓÃÁ¬½ÓÏŞÖÆµÄÒµÎñ¼ü  (Key) ÒÔ¼°ÆäËûÖ´ĞĞĞÅÏ¢¡£
+ * æä¾›ç»™å•ç‹¬ä½¿ç”¨  TAtomDataSource çš„ç”¨æˆ·æŒ‡å®šåº”ç”¨è¿æ¥é™åˆ¶çš„ä¸šåŠ¡é”®  (Key) ä»¥åŠå…¶ä»–æ‰§è¡Œä¿¡æ¯ã€‚
  * 
  * @author changyuan.lh
  */
 public class AtomDataSourceHelper {
 
 	/**
-	 * Ö¸¶¨Ó¦ÓÃÁ¬½ÓÏŞÖÆµÄÒµÎñ¼ü (Key)
+	 * æŒ‡å®šåº”ç”¨è¿æ¥é™åˆ¶çš„ä¸šåŠ¡é”® (Key)
 	 */
 	public static final String CONN_RESTRICT_KEY = "CONN_RESTRICT_KEY";
 

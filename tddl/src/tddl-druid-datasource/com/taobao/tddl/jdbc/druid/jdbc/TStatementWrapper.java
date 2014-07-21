@@ -20,7 +20,7 @@ import com.taobao.tddl.common.util.SqlTypeParser;
 
 
 /**
- * Statement °ü×°Àà
+ * Statement åŒ…è£…ç±»
  * @author shenxun
  *
  */
@@ -34,14 +34,14 @@ public class TStatementWrapper implements TStatement {
 	protected Statement targetStatement;
 
 	/**
-	 * ¾­¹ı¼ÆËãºóµÄ½á¹û¼¯£¬ÔÊĞíÊ¹ÓÃ getResultº¯Êıµ÷ÓÃ.
+	 * ç»è¿‡è®¡ç®—åçš„ç»“æœé›†ï¼Œå…è®¸ä½¿ç”¨ getResultå‡½æ•°è°ƒç”¨.
 	 *
-	 * Ò»¸östatementÖ»ÔÊĞíÓĞÒ»¸ö½á¹û¼¯
+	 * ä¸€ä¸ªstatementåªå…è®¸æœ‰ä¸€ä¸ªç»“æœé›†
 	 */
 	protected TResultSetWrapper currentResultSet;
 	
 	/**
-	 * sqlÔªĞÅÏ¢³ÖÓĞ
+	 * sqlå…ƒä¿¡æ¯æŒæœ‰
 	 */
 	protected SqlMetaData sqlMetaData = null;
 
@@ -86,9 +86,9 @@ public class TStatementWrapper implements TStatement {
             if (this.targetStatement != null)
                 this.targetStatement.close();
         } finally {
-            this.targetStatement = null; //¶Ë¿ÚÓëÎïÀístatementµÄÒıÓÃ£¬µ×ÏÂ¿ÉÄÜ»áÓĞps cache£¬µ¼ÖÂ½ÚµãÎŞ·¨±»gc
+            this.targetStatement = null; //ç«¯å£ä¸ç‰©ç†statementçš„å¼•ç”¨ï¼Œåº•ä¸‹å¯èƒ½ä¼šæœ‰ps cacheï¼Œå¯¼è‡´èŠ‚ç‚¹æ— æ³•è¢«gc
             if (removeThis){
-                // ¹Ø±ÕÖ®ºó£¬ÒÆ³ı
+                // å…³é—­ä¹‹åï¼Œç§»é™¤
                 connectionWrapper.removeOpenedStatements(this);
             }
         }
@@ -134,7 +134,7 @@ public class TStatementWrapper implements TStatement {
 		}
 	}
 
-	// Ôö¼Ó²¢·¢¶Á¼ÆÊı²¢ÅĞ¶Ï·§Öµ
+	// å¢åŠ å¹¶å‘è¯»è®¡æ•°å¹¶åˆ¤æ–­é˜€å€¼
 	protected void increaseConcurrentRead() throws SQLException {
 		int maxConcurrentReadRestrict = datasourceWrapper.connectionProperties.maxConcurrentReadRestrict;
 		int concurrentReadCount = datasourceWrapper.concurrentReadCount.incrementAndGet();
@@ -146,7 +146,7 @@ public class TStatementWrapper implements TStatement {
 		}
 	}
 
-	// Ôö¼Ó²¢·¢Ğ´¼ÆÊı²¢ÅĞ¶Ï·§Öµ
+	// å¢åŠ å¹¶å‘å†™è®¡æ•°å¹¶åˆ¤æ–­é˜€å€¼
 	protected void increaseConcurrentWrite() throws SQLException {
 		int maxConcurrentWriteRestrict = datasourceWrapper.connectionProperties.maxConcurrentWriteRestrict;
 		int concurrentWriteCount = datasourceWrapper.concurrentWriteCount.incrementAndGet();
@@ -158,12 +158,12 @@ public class TStatementWrapper implements TStatement {
 		}
 	}
 
-	// ¼õÉÙ²¢·¢¶Á¼ÆÊı
+	// å‡å°‘å¹¶å‘è¯»è®¡æ•°
 	protected void decreaseConcurrentRead() throws SQLException {
 		datasourceWrapper.concurrentReadCount.decrementAndGet();
 	}
 
-	// ¼õÉÙ²¢·¢Ğ´¼ÆÊı
+	// å‡å°‘å¹¶å‘å†™è®¡æ•°
 	protected void decreaseConcurrentWrite() throws SQLException {
 		datasourceWrapper.concurrentWriteCount.decrementAndGet();
 	}
@@ -273,13 +273,13 @@ public class TStatementWrapper implements TStatement {
 	}
 
 	protected void recordSql(String sql, long elapsedTime, Exception e) {
-//		druidÖ»Ê¹ÓÃdruid±¾Éí´øµÄatomÈÕÖ¾
-//		Ö»ÓĞÔÊĞí¼ÇÂ¼atomµÄsqlÒÔ¼°ÔÚ²ÉÑùÆµÂÊÏÂ²ÅÄÜ¼ÇÂ¼
+//		druidåªä½¿ç”¨druidæœ¬èº«å¸¦çš„atomæ—¥å¿—
+//		åªæœ‰å…è®¸è®°å½•atomçš„sqlä»¥åŠåœ¨é‡‡æ ·é¢‘ç‡ä¸‹æ‰èƒ½è®°å½•
 		if (!Monitor.isStatAtomSql||!Monitor.isSamplingRecord()) {
 			return;
 		}
 		if (!Monitor.isInclude(sql)) {
-			return; // ²»ÔÚ°×Ãûµ¥ÖĞ£¬²»Êä³öÈÕÖ¾£¬ÒÔ¼õÉÙÈÕÖ¾Á¿
+			return; // ä¸åœ¨ç™½åå•ä¸­ï¼Œä¸è¾“å‡ºæ—¥å¿—ï¼Œä»¥å‡å°‘æ—¥å¿—é‡
 		}
 		String dbname = datasourceWrapper.connectionProperties.datasourceName;
 		String dbIp=datasourceWrapper.connectionProperties.ip;
@@ -287,13 +287,13 @@ public class TStatementWrapper implements TStatement {
 		String realDbName=datasourceWrapper.connectionProperties.realDbName;
 		
 		if (e != null) {
-			//TODO ÔİÊ±²»Ê¹ÓÃ³Í·£³¬Ê±»úÖÆ
+			//TODO æš‚æ—¶ä¸ä½¿ç”¨æƒ©ç½šè¶…æ—¶æœºåˆ¶
 //			if (elapsedTime > 500) {
-//				this.datasourceWrapper.countTimeOut(); //¼ÇÂ¼³¬Ê±
+//				this.datasourceWrapper.countTimeOut(); //è®°å½•è¶…æ—¶
 //			}
 			Monitor.atomSqlAdd(dbname, Monitor.buildExecuteSqlKey2(sql), Monitor.KEY3_EXECUTE_A_SQL_EXCEPTION,dbIp,dbPort,realDbName,elapsedTime, 1);
 		} else if (elapsedTime > Monitor.sqlTimeout) {
-//			this.datasourceWrapper.countTimeOut(); //¼ÇÂ¼³¬Ê±
+//			this.datasourceWrapper.countTimeOut(); //è®°å½•è¶…æ—¶
 			Monitor.atomSqlAdd(dbname, Monitor.buildExecuteSqlKey2(sql), Monitor.KEY3_EXECUTE_A_SQL_TIMEOUT,dbIp,dbPort,realDbName,elapsedTime, 1);
 		} else {
 			Monitor.atomSqlAdd(dbname, Monitor.buildExecuteSqlKey2(sql), Monitor.KEY3_EXECUTE_A_SQL_SUCCESS,dbIp,dbPort,realDbName,elapsedTime, 1);
@@ -413,7 +413,7 @@ public class TStatementWrapper implements TStatement {
 	}
 
 	/**
-	 * Èç¹ûĞÂ½¨ÁË²éÑ¯£¬ÄÇÃ´ÉÏÒ»´Î²éÑ¯µÄ½á¹û¼¯Ó¦¸Ã±»ÏÔÊ¾µÄ¹Ø±Õµô¡£Õâ²ÅÊÇ·ûºÏjdbc¹æ·¶µÄ
+	 * å¦‚æœæ–°å»ºäº†æŸ¥è¯¢ï¼Œé‚£ä¹ˆä¸Šä¸€æ¬¡æŸ¥è¯¢çš„ç»“æœé›†åº”è¯¥è¢«æ˜¾ç¤ºçš„å…³é—­æ‰ã€‚è¿™æ‰æ˜¯ç¬¦åˆjdbcè§„èŒƒçš„
 	 *
 	 * @throws SQLException
 	 */

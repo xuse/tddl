@@ -9,7 +9,7 @@ import com.taobao.tddl.rule.ruleengine.entities.inputvalue.LogicTabMatrix;
 
 public interface DatabaseRuleProcesser {
 	/**
-	 * ¸ù¾İĞéÄâ±íÃû£¬sqlÖĞ·Ö¿â·Ö±íĞÅÏ¢×Ö¶Î£¬ÒÔ¼°ÅäÖÃÎÄ¼ş£¬»ñÈ¡·Ö¿âµÄÔ´ĞÅÏ¢
+	 * æ ¹æ®è™šæ‹Ÿè¡¨åï¼Œsqlä¸­åˆ†åº“åˆ†è¡¨ä¿¡æ¯å­—æ®µï¼Œä»¥åŠé…ç½®æ–‡ä»¶ï¼Œè·å–åˆ†åº“çš„æºä¿¡æ¯
 	 * @param virtualTabName
 	 * @param colMap
 	 * @param logTabs

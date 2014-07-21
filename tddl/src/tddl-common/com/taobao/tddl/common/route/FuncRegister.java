@@ -150,7 +150,7 @@
 //	    ruleFunTab.put("MonthJanuaryIs1", new MonthJanuaryIs1());
 //	}
 ////	
-////	/* Ä¬ÈÏ1000 */
+////	/* é»˜è®¤1000 */
 ////	private LRUMap map;
 ////	private Lock mapLock = new ReentrantLock(false);
 ////	private int LRUMapSize = 10000;
@@ -181,7 +181,7 @@
 ////	}
 ////	
 ////	/**
-////	 * ´´½¨Ò»¸öĞÂµÄsql parser
+////	 * åˆ›å»ºä¸€ä¸ªæ–°çš„sql parser
 ////	 * @param connection 
 ////	 * @param sql
 ////	 * @return Parser
@@ -219,8 +219,8 @@
 ////	}
 ////	
 ////	/**
-////	 * ·µ»ØQuery ±»routeµ½Ä¿±êµØÖ· ObjectPool¼¯ºÏ
-////	 * Èç¹û·µ»Ønull£¬ÔòÊÇÊôÓÚDatabaseConnection ×ÔÉíÊôĞÔÉèÖÃµÄÇëÇó¡£
+////	 * è¿”å›Query è¢«routeåˆ°ç›®æ ‡åœ°å€ ObjectPoolé›†åˆ
+////	 * å¦‚æœè¿”å›nullï¼Œåˆ™æ˜¯å±äºDatabaseConnection è‡ªèº«å±æ€§è®¾ç½®çš„è¯·æ±‚ã€‚
 ////	 * @param connection
 ////	 * @param sql
 ////	 * @param parameters
@@ -264,7 +264,7 @@
 ////				TableRule tableRule = this.tableRuleMap.get(entry.getKey());
 ////				
 ////				/**
-////				 * Èç¹û´æÔÚtable Rule ÔòĞèÒª¿´ÊÇ·ñÓĞRule
+////				 * å¦‚æœå­˜åœ¨table Rule åˆ™éœ€è¦çœ‹æ˜¯å¦æœ‰Rule
 ////				 */
 ////				if(tableRule != null){
 ////					
@@ -291,14 +291,14 @@
 ////							}
 ////						}
 ////						
-////						//Èç¹û²ÎÊı±È±ØĞëµÄ²ÎÊıĞ¡£¬Ôò¼ÌĞøÏÂÒ»Ìõ¹æÔò
+////						//å¦‚æœå‚æ•°æ¯”å¿…é¡»çš„å‚æ•°å°ï¼Œåˆ™ç»§ç»­ä¸‹ä¸€æ¡è§„åˆ™
 ////						if(columnMap.size()<rule.parameterMap.size()){
 ////							continue;
 ////						}else{
 ////							
 ////							boolean matched = true;
 ////
-////							//Èç¹û²éÑ¯Óï¾äÖĞ°üº¬ÁË¸Ã¹æÔò²»ĞèÒªµÄ²ÎÊı£¬Ôò¸Ã¹æÔò½«±»ºöÂÔ
+////							//å¦‚æœæŸ¥è¯¢è¯­å¥ä¸­åŒ…å«äº†è¯¥è§„åˆ™ä¸éœ€è¦çš„å‚æ•°ï¼Œåˆ™è¯¥è§„åˆ™å°†è¢«å¿½ç•¥
 ////							for(Column exclude : rule.excludes){
 ////								
 ////								Comparable condition = columnMap.get(exclude);
@@ -308,17 +308,17 @@
 ////								}
 ////							}
 ////							
-////							//Èç¹û²»Æ¥Åä½«¼ÌĞøÏÂÒ»Ìõ¹æÔò
+////							//å¦‚æœä¸åŒ¹é…å°†ç»§ç»­ä¸‹ä¸€æ¡è§„åˆ™
 ////							if(!matched) continue;
 ////							
 ////							Comparable[] comparables= new Comparable[rule.parameterMap.size()];
-////							//¹æÔòÖĞµÄ²ÎÊı±ØĞëÔÚdmlstatementÖĞ´æÔÚ£¬·ñÔòÕâ¸ö¹æÔò½«²»Æô×÷ÓÃ
+////							//è§„åˆ™ä¸­çš„å‚æ•°å¿…é¡»åœ¨dmlstatementä¸­å­˜åœ¨ï¼Œå¦åˆ™è¿™ä¸ªè§„åˆ™å°†ä¸å¯ä½œç”¨
 ////							for(Map.Entry<Column,Integer> parameter : rule.cloumnMap.entrySet()){
 ////								
 ////								Comparative condition = columnMap.get(parameter.getKey());
 ////								if(condition != null){
 ////									
-////									//Èç¹û¹æÔòºöÂÔ Êı×éµÄ ²ÎÊı£¬²¢ÇÒ²ÎÊıÓĞarray ²ÎÊı£¬ÔòºöÂÔ¸Ã¹æÔò
+////									//å¦‚æœè§„åˆ™å¿½ç•¥ æ•°ç»„çš„ å‚æ•°ï¼Œå¹¶ä¸”å‚æ•°æœ‰array å‚æ•°ï¼Œåˆ™å¿½ç•¥è¯¥è§„åˆ™
 ////									if(rule.ignoreArray && condition instanceof ComparativeBaseList){
 ////										matched = false;
 ////										break;
@@ -331,7 +331,7 @@
 ////								}
 ////							}
 ////							
-////							//Èç¹û²»Æ¥Åä½«¼ÌĞøÏÂÒ»Ìõ¹æÔò
+////							//å¦‚æœä¸åŒ¹é…å°†ç»§ç»­ä¸‹ä¸€æ¡è§„åˆ™
 ////							if(!matched) continue;
 ////							
 ////							try {
@@ -370,7 +370,7 @@
 ////						}
 ////					}
 ////					
-////					//Èç¹ûËùÓĞ¹æÔò¶¼ÎŞ·¨Æ¥Åä£¬ÔòÄ¬ÈÏ²ÉÓÃTableRuleÖĞµÄpoolÉèÖÃ¡£ 
+////					//å¦‚æœæ‰€æœ‰è§„åˆ™éƒ½æ— æ³•åŒ¹é…ï¼Œåˆ™é»˜è®¤é‡‡ç”¨TableRuleä¸­çš„poolè®¾ç½®ã€‚ 
 ////					if(poolNames.size() == 0){
 ////						if(logger.isDebugEnabled()){
 ////							logger.debug("no rule matched, using table default rules:"+Arrays.toString(tableRule.defaultPools));
@@ -390,7 +390,7 @@
 ////			}
 ////		}else{
 ////			
-////			//Èç¹ûsqlÓï¾äÖĞÃ»ÓĞ°üº¬table£¬Ôò²ÉÓÃTableRuleÖĞÃ»ÓĞnameµÄÅäÖÃ,Ò»°ãÇé¿öÏÂÖ»ÓĞÒ»Ìõ¸Ã¹æÔò£¬¶øÇÒÖ»ÓĞdefaultPoolÆô×÷ÓÃ
+////			//å¦‚æœsqlè¯­å¥ä¸­æ²¡æœ‰åŒ…å«tableï¼Œåˆ™é‡‡ç”¨TableRuleä¸­æ²¡æœ‰nameçš„é…ç½®,ä¸€èˆ¬æƒ…å†µä¸‹åªæœ‰ä¸€æ¡è¯¥è§„åˆ™ï¼Œè€Œä¸”åªæœ‰defaultPoolå¯ä½œç”¨
 ////			TableRule tableRule =  this.tableRuleMap.get(null);
 ////			if(tableRule != null && tableRule.defaultPools != null && tableRule.defaultPools.length >0){
 ////				for(String poolName : tableRule.defaultPools){
@@ -400,7 +400,7 @@
 ////				}
 ////			}
 ////		}
-////		//Æ¥Åä¹æÔò¼¼Êõ¡£
+////		//åŒ¹é…è§„åˆ™æŠ€æœ¯ã€‚
 ////		ObjectPool[] pools = new ObjectPool[poolNames.size()];
 ////		int i=0;
 ////		for(String name :poolNames){
@@ -422,9 +422,9 @@
 ////	}
 ////	
 ////	/**
-////	 * ¸ù¾İ PropertyStatment ÉèÖÃÏà¹ØÁ¬½ÓµÄÊôĞÔ 
-////	 * @param conn µ±Ç°ÇëÇóµÄÁ¬½Ó
-////	 * @param statment µ±Ç°ÇëÇóµÄStatment
+////	 * æ ¹æ® PropertyStatment è®¾ç½®ç›¸å…³è¿æ¥çš„å±æ€§ 
+////	 * @param conn å½“å‰è¯·æ±‚çš„è¿æ¥
+////	 * @param statment å½“å‰è¯·æ±‚çš„Statment
 ////	 * @param parameters 
 ////	 */
 ////	protected abstract void setProperty(DatabaseConnection conn,PropertyStatment statment,Object[] parameters);
@@ -450,7 +450,7 @@
 ////			File ruleFile;
 ////			File funFile;
 ////			File ruleFunctionFile;
-////			//±ä¶¯¼ì²é¡£
+////			//å˜åŠ¨æ£€æŸ¥ã€‚
 ////			private ConfigCheckTread(){
 ////			
 ////				this.setDaemon(true);
@@ -794,7 +794,7 @@
 ////		
 ////		rule.rowJep = new RowJEP(rule.expression);
 ////		try {
-////			//parese the Expression grammer¡£
+////			//parese the Expression grammerã€‚
 ////			rule.rowJep.parseExpression(rule.parameterMap,(Map<String,Variable>)null,this.ruleFunctionMap);
 ////		} catch (com.taobao.tddl.common.sqljep.ParseException e) {
 ////			throw new InitialisationException("parser expression:"+rule.expression+" error",e);

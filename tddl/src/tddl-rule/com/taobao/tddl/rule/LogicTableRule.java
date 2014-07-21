@@ -21,7 +21,7 @@ public interface LogicTableRule {
 //	void setAllowReverseOutput(boolean allowReverseOutput);
 	
 	/**
-	 * 不同的节点领走自己的结果，并根据结果进行1对多映射
+	 * 涓嶅悓鐨勮妭鐐归璧拌嚜宸辩殑缁撴灉锛屽苟鏍规嵁缁撴灉杩涜1瀵瑰鏄犲皠
 	 * @param map
 	 * @return
 	 */

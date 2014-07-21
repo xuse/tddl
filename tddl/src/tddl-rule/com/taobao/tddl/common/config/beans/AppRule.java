@@ -9,11 +9,11 @@ import com.taobao.tddl.rule.bean.TDDLRoot;
 
 
 /**
- * Ò»·İÍêÕûµÄ¶ÁĞ´·ÖÀëºÍ·Ö¿â·Ö±í¹æÔòÅäÖÃ
- * Ò»¸öÒµÎñÒ»·İ
+ * ä¸€ä»½å®Œæ•´çš„è¯»å†™åˆ†ç¦»å’Œåˆ†åº“åˆ†è¡¨è§„åˆ™é…ç½®
+ * ä¸€ä¸ªä¸šåŠ¡ä¸€ä»½
  *  
  * @author linxuan
- * È¥µôÁËmaster slaveµÄÂß¼­£¬²¢×÷¼æÈİĞÔµ÷Õû
+ * å»æ‰äº†master slaveçš„é€»è¾‘ï¼Œå¹¶ä½œå…¼å®¹æ€§è°ƒæ•´
  * @author shenxun 
  */
 public class AppRule{
@@ -29,7 +29,7 @@ public class AppRule{
 	
 	private void setDefaultRoot(TDDLRoot tddlRoot ){
 		if(this.defaultTddlRoot != null && tddlRoot != null){
-			throw new IllegalArgumentException("rw master rule .master ruleÓëslave rule²»¿ÉÍ¬Ê±ÅäÖÃ");
+			throw new IllegalArgumentException("rw master rule .master ruleä¸slave ruleä¸å¯åŒæ—¶é…ç½®");
 		}
 		this.defaultTddlRoot = tddlRoot; 
 	}

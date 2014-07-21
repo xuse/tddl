@@ -23,7 +23,7 @@ public class Str2VarList extends OneArgFunction{
 		if(val instanceof String){
 			argList=((String)val).split(",");
 		}else{
-			throw new IllegalArgumentException("²»Ó¦¸Ã³öÏÖ³ıstringÒÔÍâÆäËûÀàĞÍµÄ²ÎÊı,µ±Ç°²ÎÊıÎª:"+val);
+			throw new IllegalArgumentException("ä¸åº”è¯¥å‡ºç°é™¤stringä»¥å¤–å…¶ä»–ç±»å‹çš„å‚æ•°,å½“å‰å‚æ•°ä¸º:"+val);
 		}
 		return buildOr(argList);
 	}

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import com.taobao.tddl.common.exception.sqlexceptionwrapper.TDDLSQLExceptionWrapper;
 
 /**
- * 插入日志库失败的标志Exception
+ * 鎻掑叆鏃ュ織搴撳け璐ョ殑鏍囧織Exception
  * 
  * @author linxuan
  * 

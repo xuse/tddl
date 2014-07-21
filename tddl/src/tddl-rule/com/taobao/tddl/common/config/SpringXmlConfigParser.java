@@ -12,7 +12,7 @@ public class SpringXmlConfigParser<T> implements TddlConfigParser<T> {
 
 	@SuppressWarnings("unchecked")
 	public T parseCongfig(String txt) {
-		//用String Resource类从txt初始化context
+		//鐢⊿tring Resource绫讳粠txt鍒濆鍖朿ontext
 		StringXmlApplicationContext ctx = new StringXmlApplicationContext(txt);
 		//Type  type = this.getClass().getGenericSuperclass();
 		//System.out.println(type.getClass().getName());
@@ -23,7 +23,7 @@ public class SpringXmlConfigParser<T> implements TddlConfigParser<T> {
 		Temp t = new Temp();
 		t.get*/
 		//ctx.getBeanNamesForType(a.getClass());		
-		//TODO 解决泛型擦除问题，用T的短类名替代"root"
+		//TODO 瑙ｅ喅娉涘瀷鎿﹂櫎闂锛岀敤T鐨勭煭绫诲悕鏇夸唬"root"
 		if (ctx.containsBean("root")) {
 			return (T) ctx.getBean("root");
 		} else if (ctx.containsBean("vtabroot")) {

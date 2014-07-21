@@ -17,7 +17,7 @@ import com.taobao.tddl.common.config.impl.ConfigDataHandlerCity;
 import com.taobao.tddl.jdbc.atom.common.TAtomConstants;
 
 /**
- * 全局和应用的配置管理Diamond实现
+ * 鍏ㄥ眬鍜屽簲鐢ㄧ殑閰嶇疆绠＄悊Diamond瀹炵幇
  * 
  * @author qihao
  * 

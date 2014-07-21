@@ -10,7 +10,7 @@ import com.taobao.tddl.common.channel.SqlMetaData;
 public interface DataBus {
 
 	/**
-	 * Ïò×ÜÏß×¢²áÒ»¸öContext.Ä¬ÈÏÃû×ÖÎªContextµÄÀàÃû£¨»á½øÐÐÖØ¸´¼ì²é£©
+	 * å‘æ€»çº¿æ³¨å†Œä¸€ä¸ªContext.é»˜è®¤åå­—ä¸ºContextçš„ç±»åï¼ˆä¼šè¿›è¡Œé‡å¤æ£€æŸ¥ï¼‰
 	 * 
 	 * @param name
 	 * @param context
@@ -18,14 +18,14 @@ public interface DataBus {
 	public void registerPluginContext(String name, Object context);
 
 	/**
-	 * ´Ó×ÜÏßÖÐÒÆ³ýÖ¸¶¨Ãû×ÖµÄContext
+	 * ä»Žæ€»çº¿ä¸­ç§»é™¤æŒ‡å®šåå­—çš„Context
 	 * 
 	 * @param name
 	 */
 	public void removePluginContext(String name);
 
 	/**
-	 * ´Ó×ÜÏßÖÐµÃµ½Ò»¸öÒÑ×¢²áµÄContext
+	 * ä»Žæ€»çº¿ä¸­å¾—åˆ°ä¸€ä¸ªå·²æ³¨å†Œçš„Context
 	 * 
 	 * @param name
 	 * @return
@@ -33,7 +33,7 @@ public interface DataBus {
 	public Object getPluginContext(String name);
 
 	/**
-	 * ´Ó×ÜÏßÖÐÄÃµ½SqlMetaData
+	 * ä»Žæ€»çº¿ä¸­æ‹¿åˆ°SqlMetaData
 	 * @return
 	 */
 	public SqlMetaData getSqlMetaData();

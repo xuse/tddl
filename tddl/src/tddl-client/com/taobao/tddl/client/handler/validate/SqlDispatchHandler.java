@@ -28,17 +28,17 @@ import com.taobao.tddl.sqlobjecttree.OrderByEle;
 import com.taobao.tddl.sqlobjecttree.SqlParserResult;
 
 /**
- * @description ´ËhandlerÖ÷Òª¹¦ÄÜ¾ÍÊÇÖĞ¼ä½á¹ûµÄĞ£Ñé,°üÀ¨ÏŞÖÆ¶à¿â¶à±íºÍµ¥¿â¶à±íµÄ
- *              GroupBy,Having,ÓĞÌõ¼şDISTINCTÖ§³Ö(ÒòÎªĞÔÄÜºÍÄÚ´æ°²È«Ô­ÒòÖ»ÓĞ
- *              ¹æÔòÅäÖÃcompleteDistinctÊôĞÔ²Å»áÍêÈ«´ò¿ªDistinct¶à±íÖ§³Ö)
+ * @description æ­¤handlerä¸»è¦åŠŸèƒ½å°±æ˜¯ä¸­é—´ç»“æœçš„æ ¡éªŒ,åŒ…æ‹¬é™åˆ¶å¤šåº“å¤šè¡¨å’Œå•åº“å¤šè¡¨çš„
+ *              GroupBy,Having,æœ‰æ¡ä»¶DISTINCTæ”¯æŒ(å› ä¸ºæ€§èƒ½å’Œå†…å­˜å®‰å…¨åŸå› åªæœ‰
+ *              è§„åˆ™é…ç½®completeDistinctå±æ€§æ‰ä¼šå®Œå…¨æ‰“å¼€Distinctå¤šè¡¨æ”¯æŒ)
  * 
- *              Èç¹û¿ÉÒÔ·´ÏòÊä³ö,ÄÇÃ´×ö·´ÏòÊä³ö,°üÀ¨ĞèÒªÊı¾İ¸´ÖÆÊ±¼ÓÈëversion
- *              »òÕß±ä¸üversion, limit m,nÖĞmÓënµÄ±ä»»(¶à¿âÓëµ¥¿âÓĞ±¾ÖÊµÄ²»Í¬), 
- *              ±íÃûÌæ»»µÈĞĞÎª.
+ *              å¦‚æœå¯ä»¥åå‘è¾“å‡º,é‚£ä¹ˆåšåå‘è¾“å‡º,åŒ…æ‹¬éœ€è¦æ•°æ®å¤åˆ¶æ—¶åŠ å…¥version
+ *              æˆ–è€…å˜æ›´version, limit m,nä¸­mä¸nçš„å˜æ¢(å¤šåº“ä¸å•åº“æœ‰æœ¬è´¨çš„ä¸åŒ), 
+ *              è¡¨åæ›¿æ¢ç­‰è¡Œä¸º.
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.4
  * @since 1.6
- * @date 2010-09-05ÏÂÎç01:33:32
+ * @date 2010-09-05ä¸‹åˆ01:33:32
  */
 @SuppressWarnings("unchecked")
 public class SqlDispatchHandler extends AbstractHandler {
@@ -91,7 +91,7 @@ public class SqlDispatchHandler extends AbstractHandler {
 	}
 
 	/**
-	 * ¸ù¾İÆ¥Åä½á¹û£¬½øĞĞ×îÖÕ¸øTStatementµÄ½á¹ûµÄÆ´×°,²»Í¬µÄmatcher¿ÉÒÔ¹²ÓÃ
+	 * æ ¹æ®åŒ¹é…ç»“æœï¼Œè¿›è¡Œæœ€ç»ˆç»™TStatementçš„ç»“æœçš„æ‹¼è£…,ä¸åŒçš„matcherå¯ä»¥å…±ç”¨
 	 * 
 	 * @param matcherResult
 	 * @return
@@ -107,30 +107,30 @@ public class SqlDispatchHandler extends AbstractHandler {
 				databaseExecutionContexts, sqlParserResult, args,
 				isNeedRowCopy, isAllowReverseOutput);
 
-		// ËäÈ»ÅĞ¶ÏsqlÊäÈëÊä³öµÄÂß¼­Ó¦¸Ã·Åµ½¹æÔòÀï£¬µ«ÒòÎª¾õµÃÃ»±ØÒªÔÚ×ßÁË¹æÔòÒÔºó¾Í·ÅÔÚTargetDBListÀïÃæ¶à´«µİÒ»´Î
-		// ÔÚÕâÀï¸ãÒ»´Î¾Í¿ÉÒÔÁË
+		// è™½ç„¶åˆ¤æ–­sqlè¾“å…¥è¾“å‡ºçš„é€»è¾‘åº”è¯¥æ”¾åˆ°è§„åˆ™é‡Œï¼Œä½†å› ä¸ºè§‰å¾—æ²¡å¿…è¦åœ¨èµ°äº†è§„åˆ™ä»¥åå°±æ”¾åœ¨TargetDBListé‡Œé¢å¤šä¼ é€’ä¸€æ¬¡
+		// åœ¨è¿™é‡Œæä¸€æ¬¡å°±å¯ä»¥äº†
 
 		ControllerUtils.buildExecutePlan(dispatcherResult,
 				databaseExecutionContexts);
 
-		// Group,Distinct,Having×ß¶à¿â»òÕß¶à±íÇé¿öÏÂ¶¼²»ÄÜÍ¨¹ı
+		// Group,Distinct,Havingèµ°å¤šåº“æˆ–è€…å¤šè¡¨æƒ…å†µä¸‹éƒ½ä¸èƒ½é€šè¿‡
 		validGroupByFunction(sqlParserResult, dispatcherResult);
 		validHavingByFunction(sqlParserResult, dispatcherResult);
 
-		// ÍêÈ«´ò¿ªdistinctÖ§³ÖµÄ»°¾Í²»×ö¶à¿â¶à±í»òÕßµ¥¿â¶à±íÏŞÖÆ
+		// å®Œå…¨æ‰“å¼€distinctæ”¯æŒçš„è¯å°±ä¸åšå¤šåº“å¤šè¡¨æˆ–è€…å•åº“å¤šè¡¨é™åˆ¶
 		if (!completeDistinct) {
 			validDistinctByFunction(sqlParserResult, dispatcherResult);
 		}
 
 		if (isSqlParser) {
-			// ×ö¹ısql parse²ÅÓĞ¿ÉÄÜ×ö·´ÏòÊä³ö
+			// åšè¿‡sql parseæ‰æœ‰å¯èƒ½åšåå‘è¾“å‡º
 			ControllerUtils.buildReverseOutput(args, sqlParserResult,
 					dispatcherResult, DBType.MYSQL.equals(dbType));
 		}
 
 		if (dispatcherResult.needRowCopy()) {
 
-			// @Important ÕâÀï×¢ÒâÒ»¶¨²»ÄÜµãµ½´ÎĞò£¬·ñÔò»á³öÏÖÊı¾İ¸´ÖÆµÄsqlÖĞÖØ¸´³öÏÖÏàÍ¬½á¹ûµÄÁĞµÄÎÊÌâ
+			// @Important è¿™é‡Œæ³¨æ„ä¸€å®šä¸èƒ½ç‚¹åˆ°æ¬¡åºï¼Œå¦åˆ™ä¼šå‡ºç°æ•°æ®å¤åˆ¶çš„sqlä¸­é‡å¤å‡ºç°ç›¸åŒç»“æœçš„åˆ—çš„é—®é¢˜
 			buildUniqueKeyToBeReturn(sqlParserResult, args, uniqueColumnSet,
 					dispatcherResult);
 
@@ -167,7 +167,7 @@ public class SqlDispatchHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Èç¹ûÓĞgroupbyº¯Êı²¢ÇÒÖ´ĞĞ¼Æ»®Îªµ¥¿âµ¥±í»òµ¥¿âÎŞ±í»òÎŞ¿âÎŞ±í ÔòÔÊĞíÍ¨¹ı
+	 * å¦‚æœæœ‰groupbyå‡½æ•°å¹¶ä¸”æ‰§è¡Œè®¡åˆ’ä¸ºå•åº“å•è¡¨æˆ–å•åº“æ— è¡¨æˆ–æ— åº“æ— è¡¨ åˆ™å…è®¸é€šè¿‡
 	 * 
 	 * @param sqlParserResult
 	 * @param dispatcherResult
@@ -177,16 +177,16 @@ public class SqlDispatchHandler extends AbstractHandler {
 		List<OrderByEle> groupByElement = sqlParserResult.getGroupByEles();
 		if (groupByElement.size() != 0) {
 			if (dispatcherResult.getDatabaseExecutePlan() == EXECUTE_PLAN.MULTIPLE) {
-				throw new IllegalArgumentException("¶à¿âµÄÇé¿öÏÂ£¬²»ÔÊĞíÊ¹ÓÃgroup by º¯Êı");
+				throw new IllegalArgumentException("å¤šåº“çš„æƒ…å†µä¸‹ï¼Œä¸å…è®¸ä½¿ç”¨group by å‡½æ•°");
 			}
 			if (dispatcherResult.getTableExecutePlan() == EXECUTE_PLAN.MULTIPLE) {
-				throw new IllegalArgumentException("¶à±íµÄÇé¿öÏÂ£¬²»ÔÊĞíÊ¹ÓÃgroup byº¯Êı");
+				throw new IllegalArgumentException("å¤šè¡¨çš„æƒ…å†µä¸‹ï¼Œä¸å…è®¸ä½¿ç”¨group byå‡½æ•°");
 			}
 		}
 	}
 
 	/**
-	 * ×ß¶à¿â»òÕß¶à±í²»ÔÊĞíÊ¹ÓÃDistinct
+	 * èµ°å¤šåº“æˆ–è€…å¤šè¡¨ä¸å…è®¸ä½¿ç”¨Distinct
 	 * 
 	 * @param sqlParserResult
 	 * @param dispatcherResult
@@ -196,16 +196,16 @@ public class SqlDispatchHandler extends AbstractHandler {
 		List<String> dc = sqlParserResult.getDistinctColumn();
 		if (dc != null && dc.size() != 0) {
 			if (dispatcherResult.getDatabaseExecutePlan() == EXECUTE_PLAN.MULTIPLE) {
-				throw new IllegalArgumentException("¶à¿âµÄÇé¿öÏÂ£¬²»ÔÊĞíÊ¹ÓÃDistinct¹Ø¼ü×Ö");
+				throw new IllegalArgumentException("å¤šåº“çš„æƒ…å†µä¸‹ï¼Œä¸å…è®¸ä½¿ç”¨Distinctå…³é”®å­—");
 			}
 			if (dispatcherResult.getTableExecutePlan() == EXECUTE_PLAN.MULTIPLE) {
-				throw new IllegalArgumentException("¶à±íµÄÇé¿öÏÂ£¬²»ÔÊĞíÊ¹ÓÃDistinct¹Ø¼ü×Ö");
+				throw new IllegalArgumentException("å¤šè¡¨çš„æƒ…å†µä¸‹ï¼Œä¸å…è®¸ä½¿ç”¨Distinctå…³é”®å­—");
 			}
 		}
 	}
 
 	/**
-	 * ×ß¶à¿â»òÕß¶à±í²»ÔÊĞíÊ¹ÓÃHaving
+	 * èµ°å¤šåº“æˆ–è€…å¤šè¡¨ä¸å…è®¸ä½¿ç”¨Having
 	 * 
 	 * @param sqlParserResult
 	 * @param dispatcherResult
@@ -215,10 +215,10 @@ public class SqlDispatchHandler extends AbstractHandler {
 		boolean having = sqlParserResult.hasHavingCondition();
 		if (having) {
 			if (dispatcherResult.getDatabaseExecutePlan() == EXECUTE_PLAN.MULTIPLE) {
-				throw new IllegalArgumentException("¶à¿âµÄÇé¿öÏÂ£¬²»ÔÊĞíÊ¹ÓÃHaving¹Ø¼ü×Ö");
+				throw new IllegalArgumentException("å¤šåº“çš„æƒ…å†µä¸‹ï¼Œä¸å…è®¸ä½¿ç”¨Havingå…³é”®å­—");
 			}
 			if (dispatcherResult.getTableExecutePlan() == EXECUTE_PLAN.MULTIPLE) {
-				throw new IllegalArgumentException("¶à±íµÄÇé¿öÏÂ£¬²»ÔÊĞíÊ¹ÓÃHaving¹Ø¼ü×Ö");
+				throw new IllegalArgumentException("å¤šè¡¨çš„æƒ…å†µä¸‹ï¼Œä¸å…è®¸ä½¿ç”¨Havingå…³é”®å­—");
 			}
 		}
 	}

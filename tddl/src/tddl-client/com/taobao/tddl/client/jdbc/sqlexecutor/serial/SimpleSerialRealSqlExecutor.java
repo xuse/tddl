@@ -81,7 +81,7 @@ public class SimpleSerialRealSqlExecutor extends SerialRealSqlExecutor {
 					queryReturnQueue.add(qr);
 					return;
 				} catch (SQLException e) {
-					//µÚÒ»Ê±¼ä´òÓ¡Òì³£
+					//ç¬¬ä¸€æ—¶é—´æ‰“å°å¼‚å¸¸
 					logger.error(e);
 					sqlExceptions = ExceptionUtils.appendToExceptionList(sqlExceptions, e);
 					sqlExceptions = tryCloseConnection(sqlExceptions,
@@ -91,7 +91,7 @@ public class SimpleSerialRealSqlExecutor extends SerialRealSqlExecutor {
 				}
 			}
 
-			// Ö´ĞĞµ½ÕâÀï±íÊ¾sizeÒÑ¾­¿ÕÁË£¬Ã»ÓĞºóĞø×ÊÔ´¿ÉÒÔ±»Ê¹ÓÃÁË
+			// æ‰§è¡Œåˆ°è¿™é‡Œè¡¨ç¤ºsizeå·²ç»ç©ºäº†ï¼Œæ²¡æœ‰åç»­èµ„æºå¯ä»¥è¢«ä½¿ç”¨äº†
 			writeLogOrThrowSQLException("TDDL print sqlException while retry :",
 					sqlExceptions);
 		} catch (SQLException e) {
@@ -104,22 +104,22 @@ public class SimpleSerialRealSqlExecutor extends SerialRealSqlExecutor {
 	protected boolean select() throws SQLException {
 		List<SQLException> sqlExceptions = null;
         
-		//ÕâÀï²»ÔÙÇåstatementºÍresultset£¬ÓÉÍâ²¿×Ô¼ºÀ´Î¬»¤¡£
+		//è¿™é‡Œä¸å†æ¸…statementå’Œresultsetï¼Œç”±å¤–éƒ¨è‡ªå·±æ¥ç»´æŠ¤ã€‚
 		if (currentDBIndex == null) {
 			if (tableIndex != 0) {
 				throw new IllegalStateException("tableIndex != 0 should not be here!");
 			}
-			// µÚÒ»´Î½øÀ´£¬ÏÈ³õÊ¼»¯Ò»ÏÂ
+			// ç¬¬ä¸€æ¬¡è¿›æ¥ï¼Œå…ˆåˆå§‹åŒ–ä¸€ä¸‹
 			writeLogOrThrowSQLException(
 					"TDDL print sqlException while close resources:",
 					sqlExceptions);
 			return selectDBGroupByRandom();
 		}
 
-		// Èç¹ûµ±Ç°executePlanµÄ±íµÄ¸öÊıĞ¡ÓÚ±íÃûindex×ÔÔöÖµ¡£±íÊ¾µ±Ç°dsµÄËùÓĞ±íÓÃ¾¡¡£
+		// å¦‚æœå½“å‰executePlançš„è¡¨çš„ä¸ªæ•°å°äºè¡¨åindexè‡ªå¢å€¼ã€‚è¡¨ç¤ºå½“å‰dsçš„æ‰€æœ‰è¡¨ç”¨å°½ã€‚
 		tableIndex++;
 		if (sqlContextToBeExecOnCurrentDB.size() <= tableIndex) {
-			// dbindex Ëæ»ú»»ÏÂÒ»¸ö¡£±íÊ¾µ±Ç°dbIndexËùÖ¸´úµÄÊı¾İÒÑ¾­ÓÃÍê.ÄÇÃ´¹Ø±Õµ±Ç°Á¬½Ó
+			// dbindex éšæœºæ¢ä¸‹ä¸€ä¸ªã€‚è¡¨ç¤ºå½“å‰dbIndexæ‰€æŒ‡ä»£çš„æ•°æ®å·²ç»ç”¨å®Œ.é‚£ä¹ˆå…³é—­å½“å‰è¿æ¥
 			sqlExceptions = tryCloseConnection(sqlExceptions, currentDBIndex);
 			writeLogOrThrowSQLException(
 					"TDDL print sqlException while close resources:",
@@ -133,12 +133,12 @@ public class SimpleSerialRealSqlExecutor extends SerialRealSqlExecutor {
 	}
 	
 	/**
-	 * Ëæ»úÑ¡ÔñÒ»¸öÊı¾İÔ´£¬Èç¹ûÑ¡Ôñ³É¹¦Ôò·µ»Øtrue Ñ¡ÔñÊ§°ÜÔò·µ»Øfalse Ã»ÓĞ¶àÓàµÄ¿É¹©Ñ¡ÔñµÄÊı¾İÔ´ºó£¬»á×Ô¶¯Çå³ıÎ¬³ÖµÄÖ¸Õë¡£
+	 * éšæœºé€‰æ‹©ä¸€ä¸ªæ•°æ®æºï¼Œå¦‚æœé€‰æ‹©æˆåŠŸåˆ™è¿”å›true é€‰æ‹©å¤±è´¥åˆ™è¿”å›false æ²¡æœ‰å¤šä½™çš„å¯ä¾›é€‰æ‹©çš„æ•°æ®æºåï¼Œä¼šè‡ªåŠ¨æ¸…é™¤ç»´æŒçš„æŒ‡é’ˆã€‚
 	 * 
 	 * @return
 	 */
 	private boolean selectDBGroupByRandom() {
-		// tableIndexÖØÖÃ
+		// tableIndexé‡ç½®
 		tableIndex = 0;
 		int size = dbIndexList.size();
 		if (size == 0) {
@@ -153,7 +153,7 @@ public class SimpleSerialRealSqlExecutor extends SerialRealSqlExecutor {
 	}
 	
 	/**
-	 * Çåµô²¢¹Ø±Õµ±Ç°statementµÄ×ÊÔ´
+	 * æ¸…æ‰å¹¶å…³é—­å½“å‰statementçš„èµ„æº
 	 * 
 	 * @param exceptions
 	 * @param closeConnection
@@ -179,13 +179,13 @@ public class SimpleSerialRealSqlExecutor extends SerialRealSqlExecutor {
 				statement = null;
 			}
 		}
-		// ´òÉ¨Õ½³¡µÄÊ±ºò²»Å×³öÒì³££¬Èç¹ûÅ×³öÒì³££¬Ôò¿Ï¶¨×îÉÙ²éÁËÒ»´ÎÁË£¬ËùÒÔ²»»á×ßµ½catch¶ÎÖĞ
+		// æ‰“æ‰«æˆ˜åœºçš„æ—¶å€™ä¸æŠ›å‡ºå¼‚å¸¸ï¼Œå¦‚æœæŠ›å‡ºå¼‚å¸¸ï¼Œåˆ™è‚¯å®šæœ€å°‘æŸ¥äº†ä¸€æ¬¡äº†ï¼Œæ‰€ä»¥ä¸ä¼šèµ°åˆ°catchæ®µä¸­
 		return exceptions;
 	}
 	
 	private void writeLogOrThrowSQLException(String message,
 			List<SQLException> sqlExceptions) throws SQLException {
-		// ÕâÊ±ºòÅ×³öÒì³£,Èç¹ûÓĞÒì³£µÄ»°
+		// è¿™æ—¶å€™æŠ›å‡ºå¼‚å¸¸,å¦‚æœæœ‰å¼‚å¸¸çš„è¯
 		ExceptionUtils.throwSQLException(sqlExceptions, executionPlanIn
 				.getOriginalSql(), executionPlanIn.getOriginalArgs());
 	}

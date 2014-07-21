@@ -23,20 +23,20 @@ import com.taobao.tddl.common.config.impl.ConfigDataHandlerCity;
 import com.taobao.tddl.common.util.NamedThreadFactory;
 
 /**
- *²¢ĞĞÖ´ĞĞ¿ØÖÆÀà£¬Ò»¸ödbIndexÒ»¸öÏß³Ì³Ø£¬ÑÓ³Ù³õÊ¼»¯£¬
- *Ïß³Ì³Ø±¥ºÍ²ßÂÔ²ÉÓÃÖ÷Ïß³ÌÖ´ĞĞ£¨FIXME:´Ó²¢ĞĞ´®ĞĞ¶Ô±È
- *²âÊÔ¿´À´Ã»ÎÊÌâ£¬µ«ÏßÉÏÃ»¾­Ñé£¬ĞèÒªÊÔÑé£©¡£
+ *å¹¶è¡Œæ‰§è¡Œæ§åˆ¶ç±»ï¼Œä¸€ä¸ªdbIndexä¸€ä¸ªçº¿ç¨‹æ± ï¼Œå»¶è¿Ÿåˆå§‹åŒ–ï¼Œ
+ *çº¿ç¨‹æ± é¥±å’Œç­–ç•¥é‡‡ç”¨ä¸»çº¿ç¨‹æ‰§è¡Œï¼ˆFIXME:ä»å¹¶è¡Œä¸²è¡Œå¯¹æ¯”
+ *æµ‹è¯•çœ‹æ¥æ²¡é—®é¢˜ï¼Œä½†çº¿ä¸Šæ²¡ç»éªŒï¼Œéœ€è¦è¯•éªŒï¼‰ã€‚
  *
- *³Ö¾ÃÅäÖÃÖĞĞÄÅäÖÃÁ½¸öÊôĞÔuseparallelexecuteºÍparallelthreadcount
+ *æŒä¹…é…ç½®ä¸­å¿ƒé…ç½®ä¸¤ä¸ªå±æ€§useparallelexecuteå’Œparallelthreadcount
  *<code>
  *   useParallelExecute=true
  *   parallelThreadCount=10
  *</code>
  *
- *dataId¸ñÊ½Îª<code>com.taobao.tddl.jdbc.client.sqlexecutor.{0}</code>
- *Éú³ÉdataId¿ÉÒÔµ÷ÓÃ<code>ParallelDiamondConfigManager.getSqlExecutorKey(appName)</code>   
+ *dataIdæ ¼å¼ä¸º<code>com.taobao.tddl.jdbc.client.sqlexecutor.{0}</code>
+ *ç”ŸæˆdataIdå¯ä»¥è°ƒç”¨<code>ParallelDiamondConfigManager.getSqlExecutorKey(appName)</code>   
  *
- *ÉÏÊöÊôĞÔÒ²¿ÉÒÔÍ¨¹ıtddlÅäÖÃ¹ÜÀí½çÃæÖ±½ÓÅäÖÃ£¬²»±ØÊÖĞ´
+ *ä¸Šè¿°å±æ€§ä¹Ÿå¯ä»¥é€šè¿‡tddlé…ç½®ç®¡ç†ç•Œé¢ç›´æ¥é…ç½®ï¼Œä¸å¿…æ‰‹å†™
  *
  * @author junyu
  * 
@@ -59,7 +59,7 @@ public class ParallelDiamondConfigManager implements ConfigDataListener {
 	private boolean inited = false;
 
 	/**
-	 * ĞèÒªÔÚTDataSourceÊµÀı»¯Ê±Æô¶¯
+	 * éœ€è¦åœ¨TDataSourceå®ä¾‹åŒ–æ—¶å¯åŠ¨
 	 */
 	public ParallelDiamondConfigManager(String appName, String unitName) {
 		init(appName, unitName);
@@ -96,7 +96,7 @@ public class ParallelDiamondConfigManager implements ConfigDataListener {
 	}
 
 	/**
-	 * ¶ÔÊÕµ½µÄÅäÖÃ½øĞĞ½âÎö³õÊ¼»¯
+	 * å¯¹æ”¶åˆ°çš„é…ç½®è¿›è¡Œè§£æåˆå§‹åŒ–
 	 * 
 	 * @param data
 	 * @param isInit
@@ -105,7 +105,7 @@ public class ParallelDiamondConfigManager implements ConfigDataListener {
 		Properties prop = parseConfigStr2Prop(data.toLowerCase());
 
 		/**
-		 * °²È«Æğ¼û£¬Èç¹û¿ªÆô²¢ĞĞÖ´ĞĞ£¬±ØĞëÅäÖÃÃ¿¸ö³Ø´óĞ¡¡£
+		 * å®‰å…¨èµ·è§ï¼Œå¦‚æœå¼€å¯å¹¶è¡Œæ‰§è¡Œï¼Œå¿…é¡»é…ç½®æ¯ä¸ªæ± å¤§å°ã€‚
 		 */
 		if (StringUtil.isBlank((String) prop.get(USE_PARALLEL_EXECUTE))
 				|| StringUtil.isBlank((String) prop.get(PARALLEL_THREAD_COUNT))) {
@@ -125,7 +125,7 @@ public class ParallelDiamondConfigManager implements ConfigDataListener {
 				.get(PARALLEL_THREAD_COUNT));
 
 		/**
-		 * Èç¹ûĞÂµÄ³Ø´óĞ¡ÓëÀÏµÄ³Ø´óĞ¡²»Ò»Ñù, ²¢ÇÒ²»ÊÇ³õÊ¼»¯,ÄÇÃ´¶¯Ì¬ĞŞ¸Ä³Ø´óĞ¡
+		 * å¦‚æœæ–°çš„æ± å¤§å°ä¸è€çš„æ± å¤§å°ä¸ä¸€æ ·, å¹¶ä¸”ä¸æ˜¯åˆå§‹åŒ–,é‚£ä¹ˆåŠ¨æ€ä¿®æ”¹æ± å¤§å°
 		 * 
 		 */
 		if (esThreadCount != threadCount) {
@@ -143,7 +143,7 @@ public class ParallelDiamondConfigManager implements ConfigDataListener {
 	}
 
 	/**
-	 * ¶¯Ì¬ÅäÖÃÍÆËÍ
+	 * åŠ¨æ€é…ç½®æ¨é€
 	 */
 	public void onDataRecieved(String dataId,String data) {
 		if (null == data) {
@@ -164,7 +164,7 @@ public class ParallelDiamondConfigManager implements ConfigDataListener {
 	}
 
 	/**
-	 * ½«property×Ö·û´®×ª»»³ÉProperties
+	 * å°†propertyå­—ç¬¦ä¸²è½¬æ¢æˆProperties
 	 * 
 	 * @param data
 	 * @return
@@ -193,7 +193,7 @@ public class ParallelDiamondConfigManager implements ConfigDataListener {
 	}
 
 	/**
-	 * Ìá½»Ò»¸öÈÎÎñÈÃÏß³Ì³ØÖ´ĞĞ£¬ Ò»°ãÊÇÒ»¸ö¿âÎ¬³ÖÒ»¸öÏß³Ì³Ø£¬ ·ÀÖ¹ÆäËû¿âÊÜµ½¸ÉÈÅ¡£ Èç¹ûÏß³Ì³ØmapÀïÃæ²»´æÔÚÄ¿±ê¿â µÄÏß³Ì³Ø£¬ÄÇÃ´ĞÂ½¨Ò»¸ö¡£
+	 * æäº¤ä¸€ä¸ªä»»åŠ¡è®©çº¿ç¨‹æ± æ‰§è¡Œï¼Œ ä¸€èˆ¬æ˜¯ä¸€ä¸ªåº“ç»´æŒä¸€ä¸ªçº¿ç¨‹æ± ï¼Œ é˜²æ­¢å…¶ä»–åº“å—åˆ°å¹²æ‰°ã€‚ å¦‚æœçº¿ç¨‹æ± mapé‡Œé¢ä¸å­˜åœ¨ç›®æ ‡åº“ çš„çº¿ç¨‹æ± ï¼Œé‚£ä¹ˆæ–°å»ºä¸€ä¸ªã€‚
 	 * 
 	 * 
 	 * @param dbIndex
@@ -204,7 +204,7 @@ public class ParallelDiamondConfigManager implements ConfigDataListener {
 	public static Future submit(String dbIndex, Runnable command) {
 		ThreadPoolExecutor es = null;
 		/**
-		 * ÏÈÊÔ×ÅÄÃÏÂ£¬Èç¹ûÓĞ¾Í²»ĞèÒª½øËø
+		 * å…ˆè¯•ç€æ‹¿ä¸‹ï¼Œå¦‚æœæœ‰å°±ä¸éœ€è¦è¿›é”
 		 */
 		if (null != esMap.get(dbIndex)) {
 			es = esMap.get(dbIndex);
@@ -213,7 +213,7 @@ public class ParallelDiamondConfigManager implements ConfigDataListener {
 
 		synchronized (esMap) {
 			/**
-			 * Õâ¸öÊ±ºòesMapÃ»ÓĞÖ¸¶¨Ïß³Ì³ØµÄ¼¸ÂÊ±È½Ï´ó ËùÒÔÏÈÅĞ¶¨Îªnull
+			 * è¿™ä¸ªæ—¶å€™esMapæ²¡æœ‰æŒ‡å®šçº¿ç¨‹æ± çš„å‡ ç‡æ¯”è¾ƒå¤§ æ‰€ä»¥å…ˆåˆ¤å®šä¸ºnull
 			 */
 			if (null == esMap.get(dbIndex)) {
 				logger.warn("init threadpool for " + dbIndex);
@@ -228,7 +228,7 @@ public class ParallelDiamondConfigManager implements ConfigDataListener {
 				esMap.put(dbIndex, es);
 			} else {
 				/**
-				 * ×îºó×îĞ¡¿ÉÄÜ¾ÍÊÇÔÚµÚÒ»´ÎÅĞ¶¨²»Îªnullºó ²¢·¢µØ¼ÓÈëÁËÒ»¸öÖ¸¶¨keyµÄÏß³Ì³Ø
+				 * æœ€åæœ€å°å¯èƒ½å°±æ˜¯åœ¨ç¬¬ä¸€æ¬¡åˆ¤å®šä¸ä¸ºnullå å¹¶å‘åœ°åŠ å…¥äº†ä¸€ä¸ªæŒ‡å®škeyçš„çº¿ç¨‹æ± 
 				 */
 				es = esMap.get(dbIndex);
 			}

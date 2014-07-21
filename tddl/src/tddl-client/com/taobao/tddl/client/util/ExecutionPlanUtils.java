@@ -7,14 +7,14 @@ import com.taobao.tddl.client.jdbc.RealSqlContext;
 import com.taobao.tddl.client.jdbc.executeplan.ExecutionPlan;
 
 /**
- * 执行计划附加的工具类
+ * 鎵ц璁″垝闄勫姞鐨勫伐鍏风被
  * @author JIECHEN
  *
  */
 public class ExecutionPlanUtils {
 	
 	/**
-	 * 是否在单库单表上执行
+	 * 鏄惁鍦ㄥ崟搴撳崟琛ㄤ笂鎵ц
 	 * @param executionPlan
 	 * @return
 	 */

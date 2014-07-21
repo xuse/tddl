@@ -10,10 +10,10 @@ import javax.sql.DataSource;
 import com.taobao.tddl.client.pipeline.PipelineFactory;
 
 /**
- * ÔÊĞí¶àÁ¬½Ó£¬ÓĞÒ»¸öÁ¬½ÓÎªÖ÷Á¬½Ó£¬ÆäÓàÁ¬½ÓÎª¸¨ÖúÁ¬½Ó Ö÷Á¬½ÓÔÊĞí½øĞĞÊÂÎñ£¬¸¨ÖúÁ¬½ÓÔò²»ÔÊĞí½øĞĞÊÂÎñ´¦Àí£¬µ«ÔÊĞí¶ÁÈ¡ Èç¹ûÖ»ÓĞÖ÷Á¬½Ó£¬ÄÇÃ´±ØĞë¸´ÓÃÖ÷Á¬½Ó
+ * å…è®¸å¤šè¿æ¥ï¼Œæœ‰ä¸€ä¸ªè¿æ¥ä¸ºä¸»è¿æ¥ï¼Œå…¶ä½™è¿æ¥ä¸ºè¾…åŠ©è¿æ¥ ä¸»è¿æ¥å…è®¸è¿›è¡Œäº‹åŠ¡ï¼Œè¾…åŠ©è¿æ¥åˆ™ä¸å…è®¸è¿›è¡Œäº‹åŠ¡å¤„ç†ï¼Œä½†å…è®¸è¯»å– å¦‚æœåªæœ‰ä¸»è¿æ¥ï¼Œé‚£ä¹ˆå¿…é¡»å¤ç”¨ä¸»è¿æ¥
  * 
- * Ö÷Á¬½ÓÒ»µ©½¨Á¢¾Í²»»á¶ªÊ§£¬±ØĞë½«µ±Ç°Á¬½Ó³¹µ×¹Ø±Õ£¬»òÕß½«autoCommit ´Ófalse->true£¬È»ºóµ÷ÓÃtryClose·½·¨¹Ø±ÕÖ÷Á¬½Ó
- * ·ñÔòÖ÷Á¬½Ó²»»áÏûÊ§¡£
+ * ä¸»è¿æ¥ä¸€æ—¦å»ºç«‹å°±ä¸ä¼šä¸¢å¤±ï¼Œå¿…é¡»å°†å½“å‰è¿æ¥å½»åº•å…³é—­ï¼Œæˆ–è€…å°†autoCommit ä»false->trueï¼Œç„¶åè°ƒç”¨tryCloseæ–¹æ³•å…³é—­ä¸»è¿æ¥
+ * å¦åˆ™ä¸»è¿æ¥ä¸ä¼šæ¶ˆå¤±ã€‚
  * 
  * @author shenxun
  * 
@@ -36,23 +36,23 @@ public class AllowReadLevelTConnection extends TConnectionImp {
 			if (datasource == null) {
 				throwMissGroupException(dbIndex);
 			}
-			// µ±Ç°dbIndexÃ»ÓĞ±»ÆäËû¶ÔÏóÊ¹ÓÃ£¬³õÊ¼»¯dsGroupImp,
+			// å½“å‰dbIndexæ²¡æœ‰è¢«å…¶ä»–å¯¹è±¡ä½¿ç”¨ï¼Œåˆå§‹åŒ–dsGroupImp,
 			if (isAutoCommit) {
 				conn = datasource.getConnection();
 				conn.setAutoCommit(isAutoCommit);
 
 				connectionMap.put(dbIndex, conn);
 			} else {
-				// ÊÂÎñ×´Ì¬ÖĞ
+				// äº‹åŠ¡çŠ¶æ€ä¸­
 				boolean needSetAutoCommit = validThrowSQLException(dbIndex,
 						goSlave);
 				conn = datasource.getConnection();
 				if (needSetAutoCommit) {
-					// Èç¹ûĞèÒªĞÂ½¨Á¬½Ó
+					// å¦‚æœéœ€è¦æ–°å»ºè¿æ¥
 					conn.setAutoCommit(isAutoCommit);
 				}
 //				else
-				//ÕâÀï²»ÏÔÊ¾µÄÉèÖÃÎªtrueÁË
+				//è¿™é‡Œä¸æ˜¾ç¤ºçš„è®¾ç½®ä¸ºtrueäº†
 //				{
 //					conn.setAutoCommit(true);
 //				}
@@ -61,13 +61,13 @@ public class AllowReadLevelTConnection extends TConnectionImp {
 			return conn;
 		} else {
 			if (!isAutoCommit) {
-				// ÕâÊÇÓÃÓÚÅĞ¶ÏÕâÖÖÇé¿ö£¬Èç¹ûÁ¬½ÓÓĞ¶à¸ö£¬ÄÇÃ´»ñÈ¡µÄÁ¬½ÓÈç¹û²»ÊÇÊÂÎñÁ¬½Ó
-				// ²¢ÇÒÓÖÒª½øĞĞĞ´Èë»òÕßselect for update²Ù×÷£¬Å×³öÒì³£
+				// è¿™æ˜¯ç”¨äºåˆ¤æ–­è¿™ç§æƒ…å†µï¼Œå¦‚æœè¿æ¥æœ‰å¤šä¸ªï¼Œé‚£ä¹ˆè·å–çš„è¿æ¥å¦‚æœä¸æ˜¯äº‹åŠ¡è¿æ¥
+				// å¹¶ä¸”åˆè¦è¿›è¡Œå†™å…¥æˆ–è€…select for updateæ“ä½œï¼ŒæŠ›å‡ºå¼‚å¸¸
 				validThrowSQLException(dbIndex, goSlave);
 			}
 			// else{
-			// //Èç¹ûÔÚÊÂÎñÖĞ£¬°üº¬ÊÂÎñµÄÁ¬½Ó±»¹Ø±ÕµôÁË¡£ÄÇÃ´¾Í»á×ßµ½Õâ¸öÑ¡Ôñ,Êµ¼Ê³¡¾°ÖĞ
-			// ²»»á³öÏÖ£¬ÒòÎªÖ»ÓĞtryClose·½·¨£¬²»ÔÊĞíÊÂÎñÁ¬½Ó¹Ø±Õ
+			// //å¦‚æœåœ¨äº‹åŠ¡ä¸­ï¼ŒåŒ…å«äº‹åŠ¡çš„è¿æ¥è¢«å…³é—­æ‰äº†ã€‚é‚£ä¹ˆå°±ä¼šèµ°åˆ°è¿™ä¸ªé€‰æ‹©,å®é™…åœºæ™¯ä¸­
+			// ä¸ä¼šå‡ºç°ï¼Œå› ä¸ºåªæœ‰tryCloseæ–¹æ³•ï¼Œä¸å…è®¸äº‹åŠ¡è¿æ¥å…³é—­
 			// }
 			return conn;
 		}
@@ -99,7 +99,7 @@ public class AllowReadLevelTConnection extends TConnectionImp {
 		try {
 			return super.setAutoCommitFalse2True(autoCommit, sqlExceptions);
 		} finally{
-			//ÏÈÇå¿ÕÊÂÎñÁ¬½Ó
+			//å…ˆæ¸…ç©ºäº‹åŠ¡è¿æ¥
 			this.transactionKey = null;
 		}
 	}
@@ -116,35 +116,35 @@ public class AllowReadLevelTConnection extends TConnectionImp {
 	public void tryClose(String dbIndex) throws SQLException {
 		Connection conn = connectionMap.get(dbIndex);
 		if (conn == null) {
-			// Èç¹ûµ±Ç°dsGroupÃ»ÓĞÔÚmapÄÚ£¬ÄÇÃ´¼òµ¥µÄ·µ»Ø
-			// Åöµ½Ò»¸öµäĞÍµÄ³¡¾°ÊÇÔÚsetAutoCommit(false->true)µÄ¹ı³ÌÖĞ£¬Ò²ÒªÏÔÊ¾µÄ¹Ø±Õ
-			// ÔÚÒì³£×´Ì¬ÖĞÒ²Òª¹Ø±Õ£¬ËùÒÔ»¹ÊÇ´òlog¹Ø±Õ°É¡£
+			// å¦‚æœå½“å‰dsGroupæ²¡æœ‰åœ¨mapå†…ï¼Œé‚£ä¹ˆç®€å•çš„è¿”å›
+			// ç¢°åˆ°ä¸€ä¸ªå…¸å‹çš„åœºæ™¯æ˜¯åœ¨setAutoCommit(false->true)çš„è¿‡ç¨‹ä¸­ï¼Œä¹Ÿè¦æ˜¾ç¤ºçš„å…³é—­
+			// åœ¨å¼‚å¸¸çŠ¶æ€ä¸­ä¹Ÿè¦å…³é—­ï¼Œæ‰€ä»¥è¿˜æ˜¯æ‰“logå…³é—­å§ã€‚
 			log.warn("should not be here ");
 			return;
 		}
 		if (isAutoCommit && openedStatements.size() <= 1) {
-			// ·ÇÊÂÎñ×´Ì¬ÖĞ,²¢ÇÒ´ò¿ªµÄstatementÖ»ÓĞÒ»¸ö¡£
+			// éäº‹åŠ¡çŠ¶æ€ä¸­,å¹¶ä¸”æ‰“å¼€çš„statementåªæœ‰ä¸€ä¸ªã€‚
 			try {
-				//Èç¹ûÊÇ·ÇÊÂÎñ×´Ì¬£¬²¢ÇÒtransactionKey²»Îª¿Õ£¬²¢ÇÒtransactionKeyºÍdbIndex keyÏàÍ¬
+				//å¦‚æœæ˜¯éäº‹åŠ¡çŠ¶æ€ï¼Œå¹¶ä¸”transactionKeyä¸ä¸ºç©ºï¼Œå¹¶ä¸”transactionKeyå’ŒdbIndex keyç›¸åŒ
 				if(transactionKey != null&&transactionKey.equals(dbIndex)){
 					log.warn("should not be here! transaction Key is not null !"+transactionKey);
 					transactionKey = null;
 				}
-				// ½öÓĞµ±Ç°ÒıÓÃµÄÇ°ÌáÏÂ£¬±íÊ¾Íâ²¿ÒÑ¾­Ã»ÓĞÔÙ³ÖÓĞµ±Ç°ÒıÓÃÁË¡£¹Ø±ÕÁ¬½Ó¡£
+				// ä»…æœ‰å½“å‰å¼•ç”¨çš„å‰æä¸‹ï¼Œè¡¨ç¤ºå¤–éƒ¨å·²ç»æ²¡æœ‰å†æŒæœ‰å½“å‰å¼•ç”¨äº†ã€‚å…³é—­è¿æ¥ã€‚
 				conn.close();
 			} finally {
-				// ÒÆ³ıµ±Ç°Êı¾İÔ´
+				// ç§»é™¤å½“å‰æ•°æ®æº
 				connectionMap.remove(dbIndex);
 			}
-			// todo:ÕâÀï»¹ÓĞ¸ö¿ÉÒÔÓÅ»¯µÄµØ·½¾ÍÊÇÈç¹ûopenedStatements.size
-			// >1µÄÊ±ºò£¬±éÀúÕû¸östatements£¬Èç¹ûËùÓĞstatement.isResultSetClosed¶¼Îªtrue£¬Ôò¿ÉÒÔ¹Ø±ÕÁ¬½Ó
+			// todo:è¿™é‡Œè¿˜æœ‰ä¸ªå¯ä»¥ä¼˜åŒ–çš„åœ°æ–¹å°±æ˜¯å¦‚æœopenedStatements.size
+			// >1çš„æ—¶å€™ï¼Œéå†æ•´ä¸ªstatementsï¼Œå¦‚æœæ‰€æœ‰statement.isResultSetClosedéƒ½ä¸ºtrueï¼Œåˆ™å¯ä»¥å…³é—­è¿æ¥
 		}
 	}
 
 	protected boolean validThrowSQLException(String dbIndex, boolean isGoSlave)
 			throws SQLException {
 		if (transactionKey == null) {
-			// Èç¹û»¹Ã»ÓĞÖ¸¶¨¹ıtransactionkey,ÄÇÃ´µ±Ç°µÄĞÂÁ¬½Ó¾Í×÷ÎªÄ¬ÈÏµÄtransactionÁ¬½Ó´æÔÚ
+			// å¦‚æœè¿˜æ²¡æœ‰æŒ‡å®šè¿‡transactionkey,é‚£ä¹ˆå½“å‰çš„æ–°è¿æ¥å°±ä½œä¸ºé»˜è®¤çš„transactionè¿æ¥å­˜åœ¨
 			if(!isGoSlave)
 			{
 				transactionKey = dbIndex;
@@ -156,8 +156,8 @@ public class AllowReadLevelTConnection extends TConnectionImp {
 			}
 		} else {
 			if (!transactionKey.equals(dbIndex) && !isGoSlave) {
-				// Èç¹ûµ±Ç°key²»ÊÇÄ¬ÈÏµÄÊÂÎñkey,²¢ÇÒÊÇĞèÒªĞ´Èë»ò×ßÖ÷¿âµÄ£¨Ò²¾ÍµÈÓÚ³ıÁË·ÇÊÂÎñĞÔ¶ÁÒÔÍâÆäËûÊı¾İ¿â·ÃÎÊ²Ù×÷)
-				throw new SQLException("²»ÔÊĞíĞ´Èëµ½¶à¸ö²»Í¬µÄÊı¾İ¿â½ÚµãÖĞ£¡");
+				// å¦‚æœå½“å‰keyä¸æ˜¯é»˜è®¤çš„äº‹åŠ¡key,å¹¶ä¸”æ˜¯éœ€è¦å†™å…¥æˆ–èµ°ä¸»åº“çš„ï¼ˆä¹Ÿå°±ç­‰äºé™¤äº†éäº‹åŠ¡æ€§è¯»ä»¥å¤–å…¶ä»–æ•°æ®åº“è®¿é—®æ“ä½œ)
+				throw new SQLException("ä¸å…è®¸å†™å…¥åˆ°å¤šä¸ªä¸åŒçš„æ•°æ®åº“èŠ‚ç‚¹ä¸­ï¼");
 			}
 			return false;
 		}

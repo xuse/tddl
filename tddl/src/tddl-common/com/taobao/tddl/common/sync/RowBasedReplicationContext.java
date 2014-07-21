@@ -6,8 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.taobao.tddl.interact.rule.bean.SqlType;
 
 /**
- * Ò»¸öÖ÷¿â×é£¬¿ÉÒÔ¶ÔÓ¦¶à¸ö±¸¿â×é
- * Ò»¸öÖ÷¿â×é¶ÔÓ¦Ò»¸ötddl-rule£¬Ã¿¸ö±¸¿â×é¶ÔÓ¦¸÷×ÔµÄtddl-rule
+ * ä¸€ä¸ªä¸»åº“ç»„ï¼Œå¯ä»¥å¯¹åº”å¤šä¸ªå¤‡åº“ç»„
+ * ä¸€ä¸ªä¸»åº“ç»„å¯¹åº”ä¸€ä¸ªtddl-ruleï¼Œæ¯ä¸ªå¤‡åº“ç»„å¯¹åº”å„è‡ªçš„tddl-rule
  * <master name="feed_receive">
  *	<slaves>
  *		<slave name="feed_send" type="oracle">
@@ -19,28 +19,28 @@ import com.taobao.tddl.interact.rule.bean.SqlType;
  * @author nianbing
  */
 public class RowBasedReplicationContext {
-	public RowBasedReplicationContext() {/* ¼ÓÄ¬ÈÏ¹¹Ôìº¯Êı·½±ãËÑË÷ÓĞnewµÄµØ·½ */
+	public RowBasedReplicationContext() {/* åŠ é»˜è®¤æ„é€ å‡½æ•°æ–¹ä¾¿æœç´¢æœ‰newçš„åœ°æ–¹ */
 	}
 
 	private String syncLogDsKey;
-	private JdbcTemplate syncLogJdbcTemplate; //ÈÕÖ¾¿âÔ­Ê¼Êı¾İÔ´
-	private JdbcTemplate masterJdbcTemplate; //Ö÷¿â×éµÄTDataSource¶ÔÓ¦µÄJdbcTemplate
-	private SlaveInfo[] slaveInfos; //±¸¿âĞÅÏ¢
+	private JdbcTemplate syncLogJdbcTemplate; //æ—¥å¿—åº“åŸå§‹æ•°æ®æº
+	private JdbcTemplate masterJdbcTemplate; //ä¸»åº“ç»„çš„TDataSourceå¯¹åº”çš„JdbcTemplate
+	private SlaveInfo[] slaveInfos; //å¤‡åº“ä¿¡æ¯
 	private SqlType sqlType;
-	private String primaryKeyColumn; //Ö÷¼üÁĞÃ÷,Setter·½·¨±£Ö¤ÁËĞ¡Ğ´
-	private Object primaryKeyValue; //Ö÷¼üÖµ
-	private String masterLogicTableName; //Ö÷¿âÂß¼­±íÃû,Setter·½·¨±£Ö¤ÁËĞ¡Ğ´
-	private String masterDatabaseShardColumn; //Ö÷¿â×é·Ö¿âÁĞÃû,Setter·½·¨±£Ö¤ÁËĞ¡Ğ´
-	private Object masterDatabaseShardValue; //Ö÷¿â×é·Ö¿âÁĞÖµ
-	private String masterTableShardColumn; //Ö÷¿â×é·Ö±íÁĞÃû,Setter·½·¨±£Ö¤ÁËĞ¡Ğ´
-	private Object masterTableShardValue; //Ö÷¿â×é·Ö±íÁĞÖµ
+	private String primaryKeyColumn; //ä¸»é”®åˆ—æ˜,Setteræ–¹æ³•ä¿è¯äº†å°å†™
+	private Object primaryKeyValue; //ä¸»é”®å€¼
+	private String masterLogicTableName; //ä¸»åº“é€»è¾‘è¡¨å,Setteræ–¹æ³•ä¿è¯äº†å°å†™
+	private String masterDatabaseShardColumn; //ä¸»åº“ç»„åˆ†åº“åˆ—å,Setteræ–¹æ³•ä¿è¯äº†å°å†™
+	private Object masterDatabaseShardValue; //ä¸»åº“ç»„åˆ†åº“åˆ—å€¼
+	private String masterTableShardColumn; //ä¸»åº“ç»„åˆ†è¡¨åˆ—å,Setteræ–¹æ³•ä¿è¯äº†å°å†™
+	private Object masterTableShardValue; //ä¸»åº“ç»„åˆ†è¡¨åˆ—å€¼
 	private String syncLogId;
-	private Timestamp createTime; //ÈÕÖ¾´´½¨Ê±¼ä
-	private Timestamp nextSyncTime; //ÈÕÖ¾ÏÂ´ÎÍ¬²½Ê±¼ä
+	private Timestamp createTime; //æ—¥å¿—åˆ›å»ºæ—¶é—´
+	private Timestamp nextSyncTime; //æ—¥å¿—ä¸‹æ¬¡åŒæ­¥æ—¶é—´
 
-	private long afterMainDBSqlExecuteTime; //Ö´ĞĞÖ÷¿â²åÈë³É¹¦ºóµÄÊ±¼äµã
-	private String sql; //µ±Ç°µÄÊ±¼äÊı¾İ
-	private long replicationStartTime; //ÕæÕıµÄ¸´ÖÆÈÎÎñ¿ªÊ¼Ö´ĞĞÊ±µÄÊ±¼äµã¡£
+	private long afterMainDBSqlExecuteTime; //æ‰§è¡Œä¸»åº“æ’å…¥æˆåŠŸåçš„æ—¶é—´ç‚¹
+	private String sql; //å½“å‰çš„æ—¶é—´æ•°æ®
+	private long replicationStartTime; //çœŸæ­£çš„å¤åˆ¶ä»»åŠ¡å¼€å§‹æ‰§è¡Œæ—¶çš„æ—¶é—´ç‚¹ã€‚
 
 	private String masterColumns;
 

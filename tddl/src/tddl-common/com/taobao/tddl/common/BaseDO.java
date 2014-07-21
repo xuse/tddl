@@ -10,7 +10,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 /**
- * 基本路由基类
+ * 鍩烘湰璺敱鍩虹被
  * @author xingdian
  * @version $Id: BaseDO.java,v 1.2 2005/06/14 10:20:07 shenyu Exp $
  */

@@ -26,7 +26,7 @@ public class GroovyRuleUtils {
 //		List<Object> fields = samplingField.getEnumFields();
 //		int size = columns.size();
 //		Binding bind = new Binding();
-//		//设置当前的Context
+//		//璁剧疆褰撳墠鐨凜ontext
 //		for(int i = 0;i<size;i++){
 //			bind.setVariable(columns.get(i),fields.get(i));
 //		}
@@ -35,7 +35,7 @@ public class GroovyRuleUtils {
 //			script.setBinding(bind);
 //			ret = script.run();
 //		} catch (Throwable e) {
-//			throw new RuntimeException("执行脚本出错，context:脚本:"+expression+"|参数"+buildArgumentsOutput(bind.getVariables()),e);
+//			throw new RuntimeException("鎵ц鑴氭湰鍑洪敊锛宑ontext:鑴氭湰:"+expression+"|鍙傛暟"+buildArgumentsOutput(bind.getVariables()),e);
 //		}
 //		return ret;
 //	}

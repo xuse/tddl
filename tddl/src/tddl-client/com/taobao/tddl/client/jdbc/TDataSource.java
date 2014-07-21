@@ -25,22 +25,22 @@ public class TDataSource extends TDataSourceConfig implements DataSource, Clonea
 	private static DataSource indexMappingCacheDatasource = null;
 
 	private ReplicationConfig replicationConfig;
-	private String replicationConfigFile; // ĞÂ±¾µØÎÄ¼şÅäÖÃ
+	private String replicationConfigFile; // æ–°æœ¬åœ°æ–‡ä»¶é…ç½®
 	@SuppressWarnings("unchecked")
 	private Map<String, DataSource> replicationTargetDataSources = Collections.EMPTY_MAP;
 	
-	public TDataSourceState state = new TDataSourceState(""); //°²È«ÈßÓà
+	public TDataSourceState state = new TDataSourceState(""); //å®‰å…¨å†—ä½™
 
 	public void init() {
 		state = new TDataSourceState(getAppName());
 		super.init();
 		
-//		//ÊÔµãÈ¥µôĞĞ¸´ÖÆ£¬start by v3.4 20140321
+//		//è¯•ç‚¹å»æ‰è¡Œå¤åˆ¶ï¼Œstart by v3.4 20140321
 //		initReplication();
 	}
 
 	/**
-	 * ³õÊ¼»¯Êı¾İ¸´ÖÆÅäÖÃ
+	 * åˆå§‹åŒ–æ•°æ®å¤åˆ¶é…ç½®
 	 * @author junyu
 	 */
 	@SuppressWarnings("unused")
@@ -50,7 +50,7 @@ public class TDataSource extends TDataSourceConfig implements DataSource, Clonea
 			this.replicationConfig.setAppName(this.getAppName());
 			this.replicationConfig.setUseLocalConfig(this.isUseLocalConfig());
 			this.replicationConfig.setReplicationConfigFile(
-			        doExternalResolve(this.replicationConfigFile)[0]); /* Ê¹ÓÃÍâ²¿  springContext ½âÎöÅäÖÃÎÄ¼şÂ·¾¶ */
+			        doExternalResolve(this.replicationConfigFile)[0]); /* ä½¿ç”¨å¤–éƒ¨  springContext è§£æé…ç½®æ–‡ä»¶è·¯å¾„ */
 			this.replicationConfig.init(this);
 
 			if (this.defaultDispatcher instanceof SpringBasedDispatcherImpl) {
@@ -214,39 +214,39 @@ public class TDataSource extends TDataSourceConfig implements DataSource, Clonea
 
 	public static class TDSProperties {
 		/**
-		 * ³¬Ê±Ê±¼ä
+		 * è¶…æ—¶æ—¶é—´
 		 */
 		public long timeoutThreshold = DEFAULT_TIMEOUT_THRESHOLD;
 		/**
-		 * ÊÇ·ñÔÊĞíreplaceºó×º±íÃûµÄÄ£Ê½
+		 * æ˜¯å¦å…è®¸replaceåç¼€è¡¨åçš„æ¨¡å¼
 		 */
 		public boolean enableReplaceTableSuffixByIdentifier = false;
 		/**
-		 * ÊÇ·ñÊ¹ÓÃ@table@µÄÄ£Ê½À´½øĞĞ±íÃûÖ¸¶¨
+		 * æ˜¯å¦ä½¿ç”¨@table@çš„æ¨¡å¼æ¥è¿›è¡Œè¡¨åæŒ‡å®š
 		 */
 		public boolean usePlaceHolder = false;
 		/**
-		 * ÊÇ·ñÓ¦¸ÃÔÚ¹Ø±ÕÁ¬½ÓµÄÊ±ºòÒÆ³ıThreadLocal
+		 * æ˜¯å¦åº”è¯¥åœ¨å…³é—­è¿æ¥çš„æ—¶å€™ç§»é™¤ThreadLocal
 		 */
 		public boolean removeThreadLocalOnCloseConn = false;
 	}
 
 	/**
-	 * ¶àÁ¬½ÓÊÂÎñ´¦Àí¡£Ä¬ÈÏÎªËùÓĞ¶¼²»ÔÊĞí¶Á
+	 * å¤šè¿æ¥äº‹åŠ¡å¤„ç†ã€‚é»˜è®¤ä¸ºæ‰€æœ‰éƒ½ä¸å…è®¸è¯»
 	 */
 	private TransactionCrossDb restrictionLEVEL = TransactionCrossDb.NOT_ALLOW_READ;
 
 	public enum TransactionCrossDb {
 		/**
-		 * ÔÚÊÂÎñ×´Ì¬ÏÂ£¬ÆäËûÊı¾İ¿âµÄÁ¬½Ó²»ÔÊĞí¶Á
+		 * åœ¨äº‹åŠ¡çŠ¶æ€ä¸‹ï¼Œå…¶ä»–æ•°æ®åº“çš„è¿æ¥ä¸å…è®¸è¯»
 		 */
 		NOT_ALLOW_READ,
 		/**
-		 * ÔÚÊÂÎñ×´Ì¬ÏÂ£¬ÆäËûÊı¾İ¿âµÄÁ¬½ÓÖ»ÔÊĞí¶Á£¬²»ÔÊĞíĞ´Èë£¬Ğ´Èë»áÅ×´íÎó
+		 * åœ¨äº‹åŠ¡çŠ¶æ€ä¸‹ï¼Œå…¶ä»–æ•°æ®åº“çš„è¿æ¥åªå…è®¸è¯»ï¼Œä¸å…è®¸å†™å…¥ï¼Œå†™å…¥ä¼šæŠ›é”™è¯¯
 		 */
 		ALLOW_READ,
 		/**
-		 * ÔÚÊÂÎñ×´Ì¬ÏÂ£¬ÆäËûÊı¾İ¿âÁ¬½ÓÔÊĞíĞ´Ò²ÔÊĞí¶Á¡£
+		 * åœ¨äº‹åŠ¡çŠ¶æ€ä¸‹ï¼Œå…¶ä»–æ•°æ®åº“è¿æ¥å…è®¸å†™ä¹Ÿå…è®¸è¯»ã€‚
 		 */
 		ALLOW_ALL;
 	}

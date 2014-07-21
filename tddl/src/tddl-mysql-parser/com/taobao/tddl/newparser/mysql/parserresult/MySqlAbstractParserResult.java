@@ -85,7 +85,7 @@ public abstract class MySqlAbstractParserResult implements MySqlParserResult {
 		Map<String, Comparative> shardKeyMap = new HashMap<String, Comparative>(
 				partnationSet.size());
 		for (String shardKey : partnationSet) {
-			// ·Ö¿â·Ö±í×Ö¶Î¿ÉÄÜ³öÏÖÔÚ¸÷¸öµØ·½£¬Í¬Ò»¸ö×Ö¶Î±ØĞëÖµÏàÍ¬¡£
+			// åˆ†åº“åˆ†è¡¨å­—æ®µå¯èƒ½å‡ºç°åœ¨å„ä¸ªåœ°æ–¹ï¼ŒåŒä¸€ä¸ªå­—æ®µå¿…é¡»å€¼ç›¸åŒã€‚
 			List<Comparative> coms = columnMap.get(shardKey.toUpperCase());
 			Comparative temp = null;
 			if(coms==null){
@@ -115,7 +115,7 @@ public abstract class MySqlAbstractParserResult implements MySqlParserResult {
 	}
 
 	private void comparativeEqual(Comparative temp, Comparative com) {
-		// Õâ¸öÂß¼­Ö»»áÔÚ·Ö¿â·Ö±í×Ö¶ÎÔÚsqlÖĞ³öÏÖ¶à´Î²Å»á½øÈëµ½ÅĞ¶ÏÖĞ
+		// è¿™ä¸ªé€»è¾‘åªä¼šåœ¨åˆ†åº“åˆ†è¡¨å­—æ®µåœ¨sqlä¸­å‡ºç°å¤šæ¬¡æ‰ä¼šè¿›å…¥åˆ°åˆ¤æ–­ä¸­
 		if (temp != null
 				&& ((com instanceof ComparativeOR || com instanceof ComparativeAND) || (temp instanceof ComparativeOR || temp instanceof ComparativeAND))) {
 			throw new RuntimeException(
@@ -161,7 +161,7 @@ public abstract class MySqlAbstractParserResult implements MySqlParserResult {
 			return null;
 		}
 
-		//¶à´¦³öÏÖ±ØĞëÒ»ÖÂ£¬ËùÒÔÈÎÑ¡Ò»¸ö
+		//å¤šå¤„å‡ºç°å¿…é¡»ä¸€è‡´ï¼Œæ‰€ä»¥ä»»é€‰ä¸€ä¸ª
 		for (Comparative com : coms) {
 			if (com != null) {
 				if (com instanceof ComparativeOR) {

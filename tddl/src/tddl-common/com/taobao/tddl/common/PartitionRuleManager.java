@@ -1,36 +1,36 @@
 package com.taobao.tddl.common;
 
 /**
- * ·Ö¿â¹æÔò¹ÜÀí
+ * åˆ†åº“è§„åˆ™ç®¡ç†
  *
  * @author nianbing
  */
 public interface PartitionRuleManager {
 	/**
-	 * ¸ù¾İÖ÷¿âÊı¾İ¿âÃûºÍ±íÃûµÃµ½Ö÷¼ü
+	 * æ ¹æ®ä¸»åº“æ•°æ®åº“åå’Œè¡¨åå¾—åˆ°ä¸»é”®
 	 *
-	 * @param masterName Ö÷¿âÊı¾İ¿âÃû
-	 * @param tableName ±íÃû
-	 * @return ·µ»ØÖ÷¼ü£¬Èç¹ûÃ»ÓĞÅäÖÃ£¬Ôò·µ»Ønull¡£
+	 * @param masterName ä¸»åº“æ•°æ®åº“å
+	 * @param tableName è¡¨å
+	 * @return è¿”å›ä¸»é”®ï¼Œå¦‚æœæ²¡æœ‰é…ç½®ï¼Œåˆ™è¿”å›nullã€‚
 	 */
 	String getPrimaryKey(String masterName, String tableName);
 
 	/**
-	 * ¸ù¾İÖ÷¿âÊı¾İ¿âÃûºÍ±íÃûµÃµ½·Ö¿â¼ü
+	 * æ ¹æ®ä¸»åº“æ•°æ®åº“åå’Œè¡¨åå¾—åˆ°åˆ†åº“é”®
 	 *
-	 * @param masterName Ö÷¿âÊı¾İ¿âÃû
-	 * @param tableName ±íÃû
-	 * @return ·µ»Ø·Ö¿â¼ü£¬Èç¹ûÃ»ÓĞÅäÖÃ£¬Ôò·µ»Ønull¡£
+	 * @param masterName ä¸»åº“æ•°æ®åº“å
+	 * @param tableName è¡¨å
+	 * @return è¿”å›åˆ†åº“é”®ï¼Œå¦‚æœæ²¡æœ‰é…ç½®ï¼Œåˆ™è¿”å›nullã€‚
 	 */
 	String getPartitionKey(String masterName, String tableName);
 
 	/**
-	 * ¸ù¾İ·Ö¿â¹æÔò·µ»Ø·Ö¿âÁĞ±í
+	 * æ ¹æ®åˆ†åº“è§„åˆ™è¿”å›åˆ†åº“åˆ—è¡¨
 	 *
-	 * @param masterName Ö÷¿âÊı¾İ¿âÃû
-	 * @param tableName ±íÃû
-	 * @param value ·Ö¿â¼üÖµ
-	 * @return ·µ»Ø·Ö¿âÁĞ±í£¬Èç¹û·Ö¿â¼üÖµ²»Æ¥ÅäÈÎºÎ·Ö¿â¹æÔò£¬Ôò·µ»Ønull¡£
+	 * @param masterName ä¸»åº“æ•°æ®åº“å
+	 * @param tableName è¡¨å
+	 * @param value åˆ†åº“é”®å€¼
+	 * @return è¿”å›åˆ†åº“åˆ—è¡¨ï¼Œå¦‚æœåˆ†åº“é”®å€¼ä¸åŒ¹é…ä»»ä½•åˆ†åº“è§„åˆ™ï¼Œåˆ™è¿”å›nullã€‚
 	 */
 	String[] getSlaves(String masterName, String tableName, Object value);
 }

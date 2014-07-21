@@ -6,18 +6,18 @@ import java.util.List;
 import com.taobao.tddl.client.jdbc.SqlExecuteEvent;
 
 /**
- * ¸´ÖÆ¹ı³Ì¸÷¹Ø¼üÊÂ¼şµÄ»Øµ÷´¦ÀíÆ÷
+ * å¤åˆ¶è¿‡ç¨‹å„å…³é”®äº‹ä»¶çš„å›è°ƒå¤„ç†å™¨
  * 
  * @author linxuan
  *
  */
 public interface ReplicationCallbackHandler {
 	/**
-	 * ²åÈëÈÕÖ¾¿âÊ§°ÜÊ±»Øµ÷
+	 * æ’å…¥æ—¥å¿—åº“å¤±è´¥æ—¶å›è°ƒ
 	 * @param event
 	 * @param exceptions
 	 */
 	void insertSyncLogFailed(SqlExecuteEvent event, List<SQLException> exceptions) throws SQLException;
 	
-	//...ÆäËûÊÂ¼ş
+	//...å…¶ä»–äº‹ä»¶
 }

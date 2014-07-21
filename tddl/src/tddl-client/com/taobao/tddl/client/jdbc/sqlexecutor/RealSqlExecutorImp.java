@@ -20,7 +20,7 @@ import com.taobao.tddl.client.jdbc.sqlexecutor.parallel.ParallelRealSqlExecutor;
 import com.taobao.tddl.client.jdbc.sqlexecutor.serial.SerialRealSqlExecutor;
 
 /**
- * ¶ÔÍâµÄSQLÖ´ĞĞÆ÷£¬Ã¿´ÎĞéÄâ²éÑ¯»òÕß¸üĞÂ¶¼»áÊµÀı»¯
+ * å¯¹å¤–çš„SQLæ‰§è¡Œå™¨ï¼Œæ¯æ¬¡è™šæ‹ŸæŸ¥è¯¢æˆ–è€…æ›´æ–°éƒ½ä¼šå®ä¾‹åŒ–
  * 
  * @author junyu
  * 
@@ -131,7 +131,7 @@ public class RealSqlExecutorImp implements RealSqlExecutor {
 	}
 
 	/**
-	 * È·¶¨ÊÇ·ñÊ¹ÓÃ²¢ĞĞ²éÑ¯
+	 * ç¡®å®šæ˜¯å¦ä½¿ç”¨å¹¶è¡ŒæŸ¥è¯¢
 	 * 
 	 * @param executionPlan
 	 * @return
@@ -147,7 +147,7 @@ public class RealSqlExecutorImp implements RealSqlExecutor {
 	}
 
 	/**
-	 * È¡µÃĞèÒªµ½¼¸¸ö¿âÉÏÖ´ĞĞ
+	 * å–å¾—éœ€è¦åˆ°å‡ ä¸ªåº“ä¸Šæ‰§è¡Œ
 	 * 
 	 * @param executionPlan
 	 * @return
@@ -158,21 +158,21 @@ public class RealSqlExecutorImp implements RealSqlExecutor {
 	}
 
 	/**
-	 * Ö÷ÒªÎªÁË·ÀÖ¹²éÑ¯µ½Ò»°ëÖ±½Ó·ÅÆú²éÑ¯
-	 * ÁíÍâ³öÏÖÒì³£Ê±ÎªÁËÈ·±£°²È«£¬Ò²ĞèÒªµ÷ÓÃ
-	 * Õâ¸ö·½·¨¡£´Ó¶øÈ·±£ÕıÈ·µÄ¹Ø±ÕÁË×ÊÔ´
+	 * ä¸»è¦ä¸ºäº†é˜²æ­¢æŸ¥è¯¢åˆ°ä¸€åŠç›´æ¥æ”¾å¼ƒæŸ¥è¯¢
+	 * å¦å¤–å‡ºç°å¼‚å¸¸æ—¶ä¸ºäº†ç¡®ä¿å®‰å…¨ï¼Œä¹Ÿéœ€è¦è°ƒç”¨
+	 * è¿™ä¸ªæ–¹æ³•ã€‚ä»è€Œç¡®ä¿æ­£ç¡®çš„å…³é—­äº†èµ„æº
 	 * 
 	 * @throws SQLException
 	 */
 	public void clearQueryResource(){
 		if (null != this.queryReturnQueue && !this.queryReturnQueue.isEmpty()) {
 			QueryReturn qr = null;
-			//Ã¿¸ötry catch
+			//æ¯ä¸ªtry catch
 			while (null != (qr = queryReturnQueue.poll())) {
 				if (qr.getResultset() != null) {
 					try {
 						qr.getResultset().close();
-//						//²âÊÔÓÃ
+//						//æµ‹è¯•ç”¨
 //						logger.info(Thread.currentThread()+"resultset close success!");
 					} catch (SQLException e) {
 						logger.error("resultset close error!",e);
@@ -182,7 +182,7 @@ public class RealSqlExecutorImp implements RealSqlExecutor {
 				if (qr.getStatement() != null) {
 					try {
 						qr.getStatement().close();
-//						//²âÊÔÓÃ
+//						//æµ‹è¯•ç”¨
 //						logger.info(Thread.currentThread()+"statement close success!");
 					} catch (SQLException e) {
 						logger.error("statement close error!",e);
@@ -190,8 +190,8 @@ public class RealSqlExecutorImp implements RealSqlExecutor {
 				}
 
 				if (qr.getCurrentDBIndex() != null) {
-					// ÕâÀïÎŞÂÛÓÃÄÄ¸ö¶¼ÊÇOKµÄ£¬ÒòÎªÁ½ÕßµÄconnectionManagerÒ»Ñù
-//					//²âÊÔÓÃ
+					// è¿™é‡Œæ— è®ºç”¨å“ªä¸ªéƒ½æ˜¯OKçš„ï¼Œå› ä¸ºä¸¤è€…çš„connectionManagerä¸€æ ·
+//					//æµ‹è¯•ç”¨
 //					logger.info(Thread.currentThread()+"try close connection!");
 					parallelExecutor.tryCloseConnection(qr.getCurrentDBIndex());
 				}
@@ -200,7 +200,7 @@ public class RealSqlExecutorImp implements RealSqlExecutor {
 	}
 
 	/**
-	 * ²¢ĞĞ²éÑ¯»ØÊÕ×ÊÔ´
+	 * å¹¶è¡ŒæŸ¥è¯¢å›æ”¶èµ„æº
 	 * 
 	 * @param futures
 	 * @throws SQLException
@@ -220,7 +220,7 @@ public class RealSqlExecutorImp implements RealSqlExecutor {
 	}
 
 	/**
-	 * ²¢ĞĞ¸üĞÂ»ØÊÕ×ÊÔ´
+	 * å¹¶è¡Œæ›´æ–°å›æ”¶èµ„æº
 	 * 
 	 * @param futures
 	 * @throws SQLException

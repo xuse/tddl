@@ -22,7 +22,7 @@ import com.taobao.tddl.common.jdbc.DataSourceConfig;
 
 
  * @author guangxia
- * @since 1.0, 2009-12-14 ÏÂÎç04:35:24
+ * @since 1.0, 2009-12-14 ä¸‹åˆ04:35:24
  
 public class DataSourceHelper {
 		
@@ -32,14 +32,14 @@ public class DataSourceHelper {
 		if(dataSourceConfigs == null) {
 			return null;
 		}
-		//Èç¹ûÅäÖÃÁËJNDIÕâ·µ»Ø
+		//å¦‚æœé…ç½®äº†JNDIè¿™è¿”å›
 		if("jndi".equalsIgnoreCase(config.getType())) {
 			return null;
 		}
 		for (Entry<String,DataSourceConfig> entry : dataSourceConfigs.entrySet()) {
 			DataSourceConfig dataSourecConfig=entry.getValue();
 			LocalTxDataSourceDO oldConfig = dataSourecConfig.getDsConfig();
-			//ÅĞ¶Ï±ØÒª²ÎÊıÊÇ·ñÏàµ±£¬Èç¹ûÕâĞ©±ØÒªµÄ²ÎÊı¶¼ÏàµÈÔòÈÏÎªÊÇÍ¬Ò»¸öÊı¾İÔ´
+			//åˆ¤æ–­å¿…è¦å‚æ•°æ˜¯å¦ç›¸å½“ï¼Œå¦‚æœè¿™äº›å¿…è¦çš„å‚æ•°éƒ½ç›¸ç­‰åˆ™è®¤ä¸ºæ˜¯åŒä¸€ä¸ªæ•°æ®æº
 			LocalTxDataSourceDO	nowConfigDO=config.getDsConfig();
 			if (StringUtil.equals(oldConfig.getConnectionURL(), nowConfigDO.getConnectionURL())
 					&& StringUtil.equals(oldConfig.getDriverClass(), nowConfigDO.getDriverClass())
@@ -105,7 +105,7 @@ public class DataSourceHelper {
 			}
 		}
 		if (null != oldConfigs) {
-			// ½«oldConfigs×ª»»³ÉList<LocalTxDataSource>
+			// å°†oldConfigsè½¬æ¢æˆList<LocalTxDataSource>
 			List<LocalTxDataSource> oldDataSourceList = new ArrayList<LocalTxDataSource>(
 					oldConfigs.size());
 			for (DataSourceConfig oldDataSourceConfig : oldConfigs.values()) {

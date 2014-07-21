@@ -5,14 +5,14 @@ import java.util.List;
 import com.taobao.tddl.interact.bean.TargetDB;
 
 /**
- * Æ¥ÅäµÄ½á¹û
+ * åŒ¹é…çš„ç»“æœ
  * 
  * @author shenxun
  *
  */
 public interface CalculationResult {
 	/**
-	 * ¸ù¾İµ±Ç°¹æÔò£¬·µ»ØÒ»¸öTargetDBµÄÁĞ±í
+	 * æ ¹æ®å½“å‰è§„åˆ™ï¼Œè¿”å›ä¸€ä¸ªTargetDBçš„åˆ—è¡¨
 	 * @return
 	 */
 	public List<TargetDB> getTargetDBList();

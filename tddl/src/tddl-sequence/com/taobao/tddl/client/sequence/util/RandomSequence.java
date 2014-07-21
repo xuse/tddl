@@ -13,7 +13,7 @@ import com.taobao.tddl.client.sequence.exception.SequenceException;
 
 public class RandomSequence {
 	/**
-	 * ²úÉú°üº¬0~n-1µÄn¸öÊıÖµµÄËæ»úĞòÁĞ
+	 * äº§ç”ŸåŒ…å«0~n-1çš„nä¸ªæ•°å€¼çš„éšæœºåºåˆ—
 	 * 
 	 * @param n
 	 * @return
@@ -21,7 +21,7 @@ public class RandomSequence {
 	 */
 	public static int[] randomIntSequence(int n) throws SequenceException {
 		if (n <= 0) {
-			throw new SequenceException("²úÉúËæ»úĞòÁĞ·¶Î§ÖµĞ¡ÓÚµÈÓÚ0");
+			throw new SequenceException("äº§ç”Ÿéšæœºåºåˆ—èŒƒå›´å€¼å°äºç­‰äº0");
 		}
 		int num[] = new int[n];
 		for (int i = 0; i < n; i++) {
@@ -31,7 +31,7 @@ public class RandomSequence {
 			return num;
 		}
 		Random random = new Random();
-		if (n == 2 && random.nextInt(2) == 1) // 50%µÄ¸ÅÂÊ»»Ò»ÏÂ
+		if (n == 2 && random.nextInt(2) == 1) // 50%çš„æ¦‚ç‡æ¢ä¸€ä¸‹
 		{
 			int temp = num[0];
 			num[0] = num[1];
@@ -39,7 +39,7 @@ public class RandomSequence {
 		}
 
 //		for (int i = 0; i < n + 10; i++) {
-//			int rindex = random.nextInt(n);// ²úÉú0~n-1µÄËæ»úÊı
+//			int rindex = random.nextInt(n);// äº§ç”Ÿ0~n-1çš„éšæœºæ•°
 //			int mindex = random.nextInt(n);
 //			int temp = num[mindex];
 //			num[mindex] = num[rindex];
@@ -53,7 +53,7 @@ public class RandomSequence {
 	}
 
 	/**
-	 * ÂÒĞòÒ»¸öÊı×é
+	 * ä¹±åºä¸€ä¸ªæ•°ç»„
 	 * @param sourceQueue
 	 * @return
 	 * @throws SequenceException

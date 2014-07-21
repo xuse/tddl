@@ -46,7 +46,7 @@ public final class TDDLMBeanServer {
 	// private static MyMBeanServer me = new MyMBeanServer();
 
 	private TDDLMBeanServer() {
-		// ´´½¨MBServer
+		// åˆ›å»ºMBServer
 		String hostName = null;
 		try {
 			InetAddress addr = InetAddress.getLocalHost();
@@ -123,7 +123,7 @@ public final class TDDLMBeanServer {
 	}
 
 	private void registerMBean0(Object o, String name) {
-		// ×¢²áMBean
+		// æ³¨å†ŒMBean
 		if (beanServerExist()) {
 			String beanName = o.getClass().getPackage()
 					.getName()
@@ -136,7 +136,7 @@ public final class TDDLMBeanServer {
 	}
 
 	private void registerMBeanWithId0(Object o, String id) {
-		// ×¢²áMBean
+		// æ³¨å†ŒMBean
 		if (null == id || id.length() == 0) {
 			throw new IllegalArgumentException("must set id");
 		}
@@ -182,7 +182,7 @@ public final class TDDLMBeanServer {
 	}
 
 	private void registerMBeanWithIdPrefix0(Object o, String idPrefix) {
-		// ×¢²áMBean
+		// æ³¨å†ŒMBean
 		if (beanServerExist()) {
 			if (null == idPrefix || idPrefix.length() == 0) {
 				idPrefix = "default";

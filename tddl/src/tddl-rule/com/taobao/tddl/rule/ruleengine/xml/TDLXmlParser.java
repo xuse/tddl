@@ -33,11 +33,11 @@ import com.taobao.tddl.rule.ruleengine.entities.inputvalue.TabRule;
 public class TDLXmlParser {
 	private static final Log log = LogFactory.getLog(TDLXmlParser.class);
 	/**
-	 * ¸ù¾İÊäÈëµÄpathµØÖ·»ñÈ¡º¬ÓĞËùÓĞdbruleºÍtableRuleµÄMap. Ö»ÔÚ³õÊ¼»¯µÄÊ±ºòµ÷ÓÃÒ»´Î.
+	 * æ ¹æ®è¾“å…¥çš„pathåœ°å€è·å–å«æœ‰æ‰€æœ‰dbruleå’ŒtableRuleçš„Map. åªåœ¨åˆå§‹åŒ–çš„æ—¶å€™è°ƒç”¨ä¸€æ¬¡.
 	 * 
 	 * 
 	 * @param path
-	 *            Â·¾¶ÃûÏµÍ³ÄÚ²ÉÓÃ getClass().getResourceAsStream(path);µÄ·½Ê½»ñÈ¡¶ÔÓ¦µÄstream×ÊÔ´
+	 *            è·¯å¾„åç³»ç»Ÿå†…é‡‡ç”¨ getClass().getResourceAsStream(path);çš„æ–¹å¼è·å–å¯¹åº”çš„streamèµ„æº
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -51,16 +51,16 @@ public class TDLXmlParser {
 			while (dbTabItr.hasNext()) {
 				Element aVtab = (Element) dbTabItr.next();
 				LogicTabMatrix aVtabMatrix = new LogicTabMatrix();
-				// globalTableRule,Èç¹ûÓĞÔò´¢´æÆğÀ´
+				// globalTableRule,å¦‚æœæœ‰åˆ™å‚¨å­˜èµ·æ¥
 				Element globeRule = aVtab.element("globalTableRule");
 				if (globeRule != null) {
 					TabRule globTabRule = this.getTabRule(globeRule);
 					aVtabMatrix.setGlobalTableRule(globTabRule);
 				}
 				String logicName = validAndTrim(aVtab
-						.attributeValue("logicName"), "ÎŞ·¨ÕÒµ½µÚ" + i
-						+ "¸öĞéÄâ±íµÄlogicName");
-				//martrixÀïÃæµÄTableNameÊÇ·µ»¹¸øÇ°¶ËÓÃÓÚ±íÃûÌæ»»µÄ£¬Òò´ËÒª±£³ÖÔ­Ñù
+						.attributeValue("logicName"), "æ— æ³•æ‰¾åˆ°ç¬¬" + i
+						+ "ä¸ªè™šæ‹Ÿè¡¨çš„logicName");
+				//martrixé‡Œé¢çš„TableNameæ˜¯è¿”è¿˜ç»™å‰ç«¯ç”¨äºè¡¨åæ›¿æ¢çš„ï¼Œå› æ­¤è¦ä¿æŒåŸæ ·
 				aVtabMatrix.setTableName(logicName);
 				String needRowCopy = trim(aVtab.attributeValue("rowCopy"));
 				if(needRowCopy != null&&!needRowCopy.equals("")){
@@ -76,8 +76,8 @@ public class TDLXmlParser {
 				Element dbRules = (Element) aVtab.element("dbRules");
 				Iterator rulesItr = dbRules.elementIterator("dbRule");
 				Map<String,DBRule> ruleMap = getRuleList(rulesItr,aVtabMatrix);
-				//µ±Ò»¸öRule¶ÔÏóÓĞexpressionµÄÊ±ºò·ÅÔÚdepositedRuleºÍallRule
-				//Èç¹ûÃ»ÓĞexpressionString´®£¬ÔòÖ»·ÅÔÚallRule´ıÑ¡
+				//å½“ä¸€ä¸ªRuleå¯¹è±¡æœ‰expressionçš„æ—¶å€™æ”¾åœ¨depositedRuleå’ŒallRule
+				//å¦‚æœæ²¡æœ‰expressionStringä¸²ï¼Œåˆ™åªæ”¾åœ¨allRuleå¾…é€‰
 				Map<String,DBRule> depositedRules = getDepositedRule(ruleMap);
 				aVtabMatrix.setAllRules(ruleMap);
 				aVtabMatrix.setDepositedRules(depositedRules);
@@ -96,13 +96,13 @@ public class TDLXmlParser {
 		for(Entry<String, DBRule> ent:ruleMap.entrySet()){
 			if(!ent.getValue().getExpression().equals("")){
 				if(ent.getValue().getParameters().equals("")){
-					throw new IllegalArgumentException("ÔÚdepositedRuleÖĞ±ØĞëÊäÈëparameters²ÎÊı¡£");
+					throw new IllegalArgumentException("åœ¨depositedRuleä¸­å¿…é¡»è¾“å…¥parameterså‚æ•°ã€‚");
 				}
 				retMap.put(ent.getKey(), ent.getValue());
 			}
 			if(!ent.getValue().getPrimaryKeyExp().equals("")){
 				if(ent.getValue().getPrimaryKey().equals("")){
-					throw new IllegalArgumentException("ÔÚdepositedRuleÖĞ±ØĞëÊäÈëprimary key²ÎÊı¡£");
+					throw new IllegalArgumentException("åœ¨depositedRuleä¸­å¿…é¡»è¾“å…¥primary keyå‚æ•°ã€‚");
 				}
 				retMap.put(ent.getKey(), ent.getValue());
 			}
@@ -110,7 +110,7 @@ public class TDLXmlParser {
 		return retMap;
 	}
 	/**
-	 * ¸ù¾İDefaultPool×Ö¶Î£¨ÔÊĞíÓÃ¡°,¡±·Ö¸ô)£¬»ñÈ¡DBRuleÖĞº¬ÓĞÖ¸¶¨Ğ´¿âµÄDBRule
+	 * æ ¹æ®DefaultPoolå­—æ®µï¼ˆå…è®¸ç”¨â€œ,â€åˆ†éš”)ï¼Œè·å–DBRuleä¸­å«æœ‰æŒ‡å®šå†™åº“çš„DBRule
 	 * 
 	 * @param aVtab
 	 * @param aVtabMatrix
@@ -129,8 +129,8 @@ public class TDLXmlParser {
 				if(dbrule!=null){
 				defaultList.add(dbrule);
 				}else{
-					throw new IllegalArgumentException("defaultRuleÖĞidÎª:"+str+" µÄ×Ö¶Î²»ÄÜÕÒµ½" +
-							"Ò»¸ö¶ÔÓ¦µÄ¹æÔò£¬ÇëÈ·ÈÏ¸Ãid¶ÔÓ¦Ò»¸ödbRuleµÄid²ÎÊı");
+					throw new IllegalArgumentException("defaultRuleä¸­idä¸º:"+str+" çš„å­—æ®µä¸èƒ½æ‰¾åˆ°" +
+							"ä¸€ä¸ªå¯¹åº”çš„è§„åˆ™ï¼Œè¯·ç¡®è®¤è¯¥idå¯¹åº”ä¸€ä¸ªdbRuleçš„idå‚æ•°");
 				}
 			}
 		}
@@ -138,7 +138,7 @@ public class TDLXmlParser {
 	}
 
 	/**
-	 * ½âÎöÃ¿Ò»¸örule
+	 * è§£ææ¯ä¸€ä¸ªrule
 	 * 
 	 * @param rulesItr
 	 * @return
@@ -151,7 +151,7 @@ public class TDLXmlParser {
 			
 			Element ruleEle = (Element) rulesItr.next();
 			String id=validAndTrim(ruleEle.attributeValue("id"),
-					"±ØĞëÖ¸¶¨RuleµÄid");
+					"å¿…é¡»æŒ‡å®šRuleçš„id");
 			DBRule rule = new DBRule();
 			String exp=trim(ruleEle.elementText("expression"));
 			rule.setExpression(exp);
@@ -166,8 +166,8 @@ public class TDLXmlParser {
 			if (readPoolStr == null || writePoolStr == null
 					|| readPoolStr.trim().equals("")
 					|| writePoolStr.trim().equals("")) {
-				throw new TDLRunTimeException("readPoolºÍwritePool±ØĞëÍ¬Ê±Ö¸Ãû"
-						+ "readPool¿ÉÒÔºÍwritePoolÍ¬Ãû£¬µ«writePool²»ÄÜÎª¶à¸ö£¬Ò²²»ÄÜÎªĞéÄâ³Ø");
+				throw new TDLRunTimeException("readPoolå’ŒwritePoolå¿…é¡»åŒæ—¶æŒ‡å"
+						+ "readPoolå¯ä»¥å’ŒwritePoolåŒåï¼Œä½†writePoolä¸èƒ½ä¸ºå¤šä¸ªï¼Œä¹Ÿä¸èƒ½ä¸ºè™šæ‹Ÿæ± ");
 			}
 			String[] readPools = readPoolStr.trim().split(",");
 			String[] writePools = writePoolStr.trim().split(",");
@@ -180,17 +180,17 @@ public class TDLXmlParser {
 				
 				tabRule.setPrimaryKey(primaryKey);
 				rule.setDBSubTabRule(tabRule);
-				log.debug("id:"+id+"µÄDBRuleÓĞsubTableRule,Òò´ËÊ¹ÓÃsubTableRule");
+				log.debug("id:"+id+"çš„DBRuleæœ‰subTableRule,å› æ­¤ä½¿ç”¨subTableRule");
 			}
-			//add by shenxun ÏÖÔÚµÄÂß¼­ÊÇÖ±½ÓÌæ»»subRuleEle,ÒÔºó²»»áÔÙ
-			//Ê¹ÓÃglobalRuleÕâ¸öÏîÄ¿ÁË£¬ËüÖ»ÔÚÔØÈëµÄÊ±ºòÁÙÊ±Æğ×÷ÓÃ
+			//add by shenxun ç°åœ¨çš„é€»è¾‘æ˜¯ç›´æ¥æ›¿æ¢subRuleEle,ä»¥åä¸ä¼šå†
+			//ä½¿ç”¨globalRuleè¿™ä¸ªé¡¹ç›®äº†ï¼Œå®ƒåªåœ¨è½½å…¥çš„æ—¶å€™ä¸´æ—¶èµ·ä½œç”¨
 			else{
 				TabRule tabRule=aVtabMatrix.getGlobalTableRule();
 				if(tabRule!=null){
 					tabRule.setPrimaryKey(primaryKey);
 				}
 				rule.setDBSubTabRule(tabRule);
-				log.debug("id:"+id+"µÄDBRuleÃ»ÓĞsubTableRule,Òò´ËÊ¹ÓÃglobalTableRule");
+				log.debug("id:"+id+"çš„DBRuleæ²¡æœ‰subTableRule,å› æ­¤ä½¿ç”¨globalTableRule");
 			}
 			rules.put(id,rule);
 		}
@@ -198,7 +198,7 @@ public class TDLXmlParser {
 	}
 
 	/**
-	 * »ñÈ¡±í¹æÔò¡£
+	 * è·å–è¡¨è§„åˆ™ã€‚
 	 * 
 	 * @param ele
 	 * @return
@@ -226,7 +226,7 @@ public class TDLXmlParser {
 	}
 
 	/**
-	 * ¸ù¾İÂ·¾¶»ñÈ¡dom4j
+	 * æ ¹æ®è·¯å¾„è·å–dom4j
 	 * 
 	 * @param path
 	 * @return
@@ -247,9 +247,9 @@ public class TDLXmlParser {
 				try {
 					in=new FileInputStream(new File(path));
 				} catch (FileNotFoundException e) {
-					throw new TDLRunTimeException("Ö¸¶¨µÄmappingÎÄ¼ş²»ÕıÈ·£¬ËùÖ¸¶¨Â·¾¶Îª£º" + path
-							+ "" + "ÈôÊ¹ÓÃ/filename,Ôò»á´ÓpathµÄclass¸ùÄ¿Â¼ÉÏÈ¥ÕÒ×ÊÔ´,Ò»°ãÊ¹ÓÃÕâ¸ö¼´¿É"
-							+ "ÈôÊ¹ÓÃfilename,Ôò»á´ÓÀàµÄÏà¶ÔÄ¿Â¼È¥Ñ°ÕÒ×ÊÔ´,Èç¹û²»ÄÜÕÒµ½£¬Ò²»á³¢ÊÔÊ¹ÓÃFileµÄ·½Ê½À´ÕÒ",e);
+					throw new TDLRunTimeException("æŒ‡å®šçš„mappingæ–‡ä»¶ä¸æ­£ç¡®ï¼Œæ‰€æŒ‡å®šè·¯å¾„ä¸ºï¼š" + path
+							+ "" + "è‹¥ä½¿ç”¨/filename,åˆ™ä¼šä»pathçš„classæ ¹ç›®å½•ä¸Šå»æ‰¾èµ„æº,ä¸€èˆ¬ä½¿ç”¨è¿™ä¸ªå³å¯"
+							+ "è‹¥ä½¿ç”¨filename,åˆ™ä¼šä»ç±»çš„ç›¸å¯¹ç›®å½•å»å¯»æ‰¾èµ„æº,å¦‚æœä¸èƒ½æ‰¾åˆ°ï¼Œä¹Ÿä¼šå°è¯•ä½¿ç”¨Fileçš„æ–¹å¼æ¥æ‰¾",e);
 			
 				}
 			}
@@ -257,7 +257,7 @@ public class TDLXmlParser {
 			SAXReader reader = new SAXReader();
 			doc = reader.read(read);
 		} catch (DocumentException e) {
-			throw new TDLRunTimeException("½âÎöÓ³ÉäÎÄ¼şÊ±·¢Éú´íÎó,Çë¼ì²éÓ³ÉäÎÄ¼ş", e);
+			throw new TDLRunTimeException("è§£ææ˜ å°„æ–‡ä»¶æ—¶å‘ç”Ÿé”™è¯¯,è¯·æ£€æŸ¥æ˜ å°„æ–‡ä»¶", e);
 		}
 		return doc;
 	}

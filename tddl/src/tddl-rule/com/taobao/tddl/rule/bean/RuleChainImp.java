@@ -13,19 +13,19 @@ public class RuleChainImp implements RuleChain{
 
 	public static final int NO_INDEX = -1;
 	/**
-	 * ÅĞ¶Ïµ±Ç°RuleChainÊÇ·ñ³õÊ¼»¯£¬·ÀÖ¹ºóÃæĞ´´úÂëÍü¼Ç¡£
+	 * åˆ¤æ–­å½“å‰RuleChainæ˜¯å¦åˆå§‹åŒ–ï¼Œé˜²æ­¢åé¢å†™ä»£ç å¿˜è®°ã€‚
 	 */
 	private volatile boolean isInited = false;
 	
 	/**
-	 * Ö÷ÒªÓÃÓÚ´«µİ¿â²ÎÊıºÍ±í²ÎÊıÊ±Ê¹ÓÃ¡£
+	 * ä¸»è¦ç”¨äºä¼ é€’åº“å‚æ•°å’Œè¡¨å‚æ•°æ—¶ä½¿ç”¨ã€‚
 	 */
 	private boolean isDatabaseRuleChain = false;
 	
 	private List<Set<String>> requiredArgumentSortByLevel ;
 	
 	/**
-	 * ½á¹ûÎªÒ»¸ölist Êı×éµÄ¼ÆËãÊ½£¬ÓÃÔÚÒ»¶Ô¶àµÄÇé¿öÖĞ
+	 * ç»“æœä¸ºä¸€ä¸ªlist æ•°ç»„çš„è®¡ç®—å¼ï¼Œç”¨åœ¨ä¸€å¯¹å¤šçš„æƒ…å†µä¸­
 	 */
 	protected List<ListAbstractResultRule> listResultRule;
 
@@ -40,10 +40,10 @@ public class RuleChainImp implements RuleChain{
 		ListAbstractResultRule listRule = listResultRule.get(index);
 		return listRule;
 	}
-/*	public Set<String> µÃµ½¸Ã½á¹ûµÄÃèµãÖµÃû  calculateTable(int index, Map<String,Set<Object>> args) {
+/*	public Set<String> å¾—åˆ°è¯¥ç»“æœçš„æç‚¹å€¼å  calculateTable(int index, Map<String,Set<Object>> args) {
 		if(index != NO_INDEX ){
 			if(args == null|| args.isEmpty()){
-				throw new IllegalArgumentException("argsÎª¿Õ");
+				throw new IllegalArgumentException("argsä¸ºç©º");
 			}
 			ListAbstractResultRule listRule = getListRuleByIndexInternal(index);
 			Set<String> result = listRule.evalWithoutSourceTrace(args);
@@ -63,7 +63,7 @@ public class RuleChainImp implements RuleChain{
 	public void init(){
 		if(!isInited){
 			if(listResultRule == null){
-				throw new IllegalArgumentException("Ã»ÓĞÊäÈë¹æÔò");
+				throw new IllegalArgumentException("æ²¡æœ‰è¾“å…¥è§„åˆ™");
 			}
 			requiredArgumentSortByLevel = new ArrayList<Set<String>>(listResultRule.size());
 			for(ListAbstractResultRule listRule:listResultRule){

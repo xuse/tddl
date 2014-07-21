@@ -1,7 +1,7 @@
 package com.taobao.tddl.common;
 
 /**
- * ÅäÖÃ·şÎñÆ÷³£Á¿¶¨Òå
+ * é…ç½®æœåŠ¡å™¨å¸¸é‡å®šä¹‰
  * 
  * @author nianbing
  */

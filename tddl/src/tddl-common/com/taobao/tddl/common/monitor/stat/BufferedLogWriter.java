@@ -12,24 +12,24 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.apache.log4j.Logger;
 
 /**
- * ´øÄÚ´æ»ã×Ü¹¦ÄÜµÄÈÕÖ¾Êä³ö¹¤¾ß¡£½â¾ö¸ß TPS ³¡¾°Í³¼ÆÈÕÖ¾Á¿Ì«´óµÄÎÊÌâ¡£ <br />
+ * å¸¦å†…å­˜æ±‡æ€»åŠŸèƒ½çš„æ—¥å¿—è¾“å‡ºå·¥å…·ã€‚è§£å†³é«˜ TPS åœºæ™¯ç»Ÿè®¡æ—¥å¿—é‡å¤ªå¤§çš„é—®é¢˜ã€‚ <br />
  * 
- * ¹¤¾ßµÄ¹¦ÄÜÊÇÕë¶Ô Key ÏàÍ¬µÄÍ³¼Æ¼ÇÂ¼, »ã×Ü¼ÆËã³ö sum/min/max, ÔÙ¶¨Ê±Ë¢³öµ½ÈÕÖ¾¡£ <br />
+ * å·¥å…·çš„åŠŸèƒ½æ˜¯é’ˆå¯¹ Key ç›¸åŒçš„ç»Ÿè®¡è®°å½•, æ±‡æ€»è®¡ç®—å‡º sum/min/max, å†å®šæ—¶åˆ·å‡ºåˆ°æ—¥å¿—ã€‚ <br />
  * 
- * Ä¿Ç°ÒÅÁôµÄÎÊÌâÊÇ BufferedLogWriter ÔÚ flushAll ¶ªÆú»º´æµÄÈÕÖ¾¶ÔÏó, ÒòÎªÕâĞ©¶ÔÏóÉú´æÆÚ³¤ÒÑ¾­½øÈë Old Gen,
- * ³¤Ê±¼äÔËĞĞ»áÔì³É Old Gen ±¬µô´¥·¢ Full GC. <br />
+ * ç›®å‰é—ç•™çš„é—®é¢˜æ˜¯ BufferedLogWriter åœ¨ flushAll ä¸¢å¼ƒç¼“å­˜çš„æ—¥å¿—å¯¹è±¡, å› ä¸ºè¿™äº›å¯¹è±¡ç”Ÿå­˜æœŸé•¿å·²ç»è¿›å…¥ Old Gen,
+ * é•¿æ—¶é—´è¿è¡Œä¼šé€ æˆ Old Gen çˆ†æ‰è§¦å‘ Full GC. <br />
  * 
- * Ê¹ÓÃ·½·¨ÊÇ£º
+ * ä½¿ç”¨æ–¹æ³•æ˜¯ï¼š
  * 
  * <pre>
  * BufferStatLogWriter.write(
- *     new Object[] { key1, key2, key3, ... },  // Í³¼ÆµÄÄ¿±ê 
- *     count, value);                           // Í³¼ÆÖµ
+ *     new Object[] { key1, key2, key3, ... },  // ç»Ÿè®¡çš„ç›®æ ‡ 
+ *     count, value);                           // ç»Ÿè®¡å€¼
  * 
  * BufferStatLogWriter.write(
- *     new Object[] { key1, key2, key3, ... },  // Í³¼ÆµÄÄ¿±ê 
- *     new Object[] { obj1, obj2, obj3, ... },  // ¸½¼ÓµÄ¶ÔÏó
- *     count, value);                           // Í³¼ÆÖµ
+ *     new Object[] { key1, key2, key3, ... },  // ç»Ÿè®¡çš„ç›®æ ‡ 
+ *     new Object[] { obj1, obj2, obj3, ... },  // é™„åŠ çš„å¯¹è±¡
+ *     count, value);                           // ç»Ÿè®¡å€¼
  * </pre>
  * 
  * @author changyuan.lh
@@ -38,7 +38,7 @@ public class BufferedLogWriter extends AbstractStatLogWriter {
 
 	protected static final Logger logger = Logger.getLogger(BufferedLogWriter.class);
 
-	public volatile int flushInterval = 300; // µ¥Î»Ãë¡£Ä¬ÈÏ 5 ·ÖÖÓÈ«Á¿Ë¢³öÒ»´Î
+	public volatile int flushInterval = 300; // å•ä½ç§’ã€‚é»˜è®¤ 5 åˆ†é’Ÿå…¨é‡åˆ·å‡ºä¸€æ¬¡
 
 	protected volatile int minKeySize = 1024;
 	public volatile int maxKeySize = 65536;
@@ -103,11 +103,11 @@ public class BufferedLogWriter extends AbstractStatLogWriter {
 	}
 
 	/**
-	 * ÔÚÄÚ´æÖĞ»ã×ÜÍ³¼ÆĞÅÏ¢, Èç¹û×ÜÁ¿³¬¹ı maxKeySize ÏŞÖÆ, Òì²½Ö´ĞĞ flushLRU().
+	 * åœ¨å†…å­˜ä¸­æ±‡æ€»ç»Ÿè®¡ä¿¡æ¯, å¦‚æœæ€»é‡è¶…è¿‡ maxKeySize é™åˆ¶, å¼‚æ­¥æ‰§è¡Œ flushLRU().
 	 */
 	public void write(Object[] keys, Object[] fields, long... values) {
 		if (values.length != 2) {
-			// XXX: ÕâÀïÏŞÖÆ BufferedLogWriter Ö»½ÓÊÜ count + value µÄÊäÈë
+			// XXX: è¿™é‡Œé™åˆ¶ BufferedLogWriter åªæ¥å— count + value çš„è¾“å…¥
 			throw new IllegalArgumentException("Only support 2 values!");
 		}
 		ConcurrentHashMap<LogKey, LogCounter> map = this.map;
@@ -167,7 +167,7 @@ public class BufferedLogWriter extends AbstractStatLogWriter {
 		TimerTask cancelTask = this.flushTask;
 		this.flushTask = new TimerTask() {
 			public void run() {
-				// XXX: ¶¨Ê±Æ÷µÄÖ´ĞĞÓ¦µ±ºÄÊ±·Ç³£¶Ì
+				// XXX: å®šæ—¶å™¨çš„æ‰§è¡Œåº”å½“è€—æ—¶éå¸¸çŸ­
 				flush(true);
 			}
 		};
@@ -195,7 +195,7 @@ public class BufferedLogWriter extends AbstractStatLogWriter {
 	}
 
 	/**
-	 * Ë¢³öËùÓĞµÄÈÕÖ¾Í³¼ÆĞÅÏ¢¡£
+	 * åˆ·å‡ºæ‰€æœ‰çš„æ—¥å¿—ç»Ÿè®¡ä¿¡æ¯ã€‚
 	 */
 	protected void flushAll() {
 		final long flushMillis = System.currentTimeMillis();
@@ -204,9 +204,9 @@ public class BufferedLogWriter extends AbstractStatLogWriter {
 		Map<LogKey, LogCounter> map = this.map;
 		this.map = new ConcurrentHashMap<LogKey, LogCounter>( // NL
 				initKeySize, 0.75f, 32);
-		// µÈ´ıÕıÔÚÌí¼Ó¼ÇÂ¼µÄÏß³ÌÖ´ĞĞÍê±Ï
+		// ç­‰å¾…æ­£åœ¨æ·»åŠ è®°å½•çš„çº¿ç¨‹æ‰§è¡Œå®Œæ¯•
 		LockSupport.parkNanos(5000);
-		// XXX: Êä³öµÄÈÕÖ¾°´ Key ½øĞĞÅÅĞò -- ÏÈÈ¡Ïû
+		// XXX: è¾“å‡ºçš„æ—¥å¿—æŒ‰ Key è¿›è¡Œæ’åº -- å…ˆå–æ¶ˆ
 		// map = new TreeMap<LogKey, LogCounter>(map);
 		int count = flushLog(map);
 		if (count > 0 && logger.isDebugEnabled()) {
@@ -217,18 +217,18 @@ public class BufferedLogWriter extends AbstractStatLogWriter {
 	}
 
 	/**
-	 * Ë¢³öÍ³¼Æ´ÎÊı×îÉÙµÄÈÕÖ¾ĞÅÏ¢, Ö»±£Áô maxKeySize ×ÜÁ¿µÄ 2/3.
+	 * åˆ·å‡ºç»Ÿè®¡æ¬¡æ•°æœ€å°‘çš„æ—¥å¿—ä¿¡æ¯, åªä¿ç•™ maxKeySize æ€»é‡çš„ 2/3.
 	 */
 	protected void flushLRU() {
 		final long flushMillis = System.currentTimeMillis();
-		// XXX: Êä³öµÄÈÕÖ¾°´ Key ½øĞĞÅÅĞò -- ÏÈÈ¡Ïû
+		// XXX: è¾“å‡ºçš„æ—¥å¿—æŒ‰ Key è¿›è¡Œæ’åº -- å…ˆå–æ¶ˆ
 		// Map<LogKey, LogCounter> flushLogs = new TreeMap<LogKey,
 		// LogCounter>();
 		Map<LogKey, LogCounter> map = this.map;
-		int keep = maxKeySize * 2 / 3; // ±£Áô 2/3
-		int flush = map.size() - keep; // ÕâÊ± size ¿ÉÄÜÒÑ¾­Ôö³¤
+		int keep = maxKeySize * 2 / 3; // ä¿ç•™ 2/3
+		int flush = map.size() - keep; // è¿™æ—¶ size å¯èƒ½å·²ç»å¢é•¿
 		int count = 0;
-		// changyuan.lh: Ê×ÏÈÇåÀí count = 1 µÄ¼ÇÂ¼, ²»ĞèÒª·ÖÅäÄÚ´æËÙ¶È±È½Ï¿ì
+		// changyuan.lh: é¦–å…ˆæ¸…ç† count = 1 çš„è®°å½•, ä¸éœ€è¦åˆ†é…å†…å­˜é€Ÿåº¦æ¯”è¾ƒå¿«
 		for (Entry<LogKey, LogCounter> entry : map.entrySet()) {
 			if (flush <= 0)
 				break;
@@ -244,8 +244,8 @@ public class BufferedLogWriter extends AbstractStatLogWriter {
 				}
 			}
 		}
-		// changyuan.lh: È»ºó LRU ÇåÀíÈ«²¿µÄ¼ÇÂ¼, ĞèÒª½øĞĞÅÅĞò, ÄÚ´æÕ¼ÓÃ±È½Ï¸ß
-		flush = map.size() - keep; // ÕâÊ± size ¿ÉÄÜÒÑ¾­Ôö³¤
+		// changyuan.lh: ç„¶å LRU æ¸…ç†å…¨éƒ¨çš„è®°å½•, éœ€è¦è¿›è¡Œæ’åº, å†…å­˜å ç”¨æ¯”è¾ƒé«˜
+		flush = map.size() - keep; // è¿™æ—¶ size å¯èƒ½å·²ç»å¢é•¿
 		if (flush > 0) {
 			Object[] counters = map.values().toArray();
 			Arrays.sort(counters);

@@ -68,9 +68,9 @@ public class NestThreadLocalMap{
     }
 	
 	/**
-     * È¡µÃthread context MapµÄÊµÀı¡£
+     * å–å¾—thread context Mapçš„å®ä¾‹ã€‚
      *
-     * @return thread context MapµÄÊµÀı
+     * @return thread context Mapçš„å®ä¾‹
      */
     protected static Map<Object,Object> getContextMap() {
         return (Map<Object,Object>) threadContext.get();
@@ -78,7 +78,7 @@ public class NestThreadLocalMap{
 	
     
     /**
-     * ÇåÀíÏß³ÌËùÓĞ±»hold×¡µÄ¶ÔÏó¡£ÒÔ±ãÖØÓÃ£¡
+     * æ¸…ç†çº¿ç¨‹æ‰€æœ‰è¢«holdä½çš„å¯¹è±¡ã€‚ä»¥ä¾¿é‡ç”¨ï¼
      */
     
     public static void reset(){

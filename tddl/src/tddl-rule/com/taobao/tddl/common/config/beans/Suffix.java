@@ -2,16 +2,16 @@ package com.taobao.tddl.common.config.beans;
 
 
 /**
- * Ò»¸ösuffix 
+ * ä¸€ä¸ªsuffix 
  * @author liang.chenl
  *
  */
 public class Suffix {
 	
 	/**
-	 * ÒÔÏÂÖµ´ÓtbSuffixÍÆËã³öÀ´£¬²»ĞèÒªÏÔÊ½ÅäÖÃ
+	 * ä»¥ä¸‹å€¼ä»tbSuffixæ¨ç®—å‡ºæ¥ï¼Œä¸éœ€è¦æ˜¾å¼é…ç½®
 	 */
-	private int tbNumForEachDb; //´ÓtbsuffixºÍdbIndexes¸öÊıÍÆËã³öÀ´
+	private int tbNumForEachDb; //ä»tbsuffixå’ŒdbIndexesä¸ªæ•°æ¨ç®—å‡ºæ¥
 	private int tbSuffixFrom = 0;
 	private int tbSuffixTo = -1;
 	private int tbSuffixWidth = 4;

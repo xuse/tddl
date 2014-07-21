@@ -63,9 +63,9 @@ public class MySqlStandardParserResult extends MySqlAbstractParserResult {
 	@Override
 	public StringBuilder regTableModifiable(Set<String> logicTableNames,
 			List<Object> list, StringBuilder sb) {
-		// ·ÖÀësqlºÍ²»¿É±ä²¿·Ö£¬±ÈÈçtable,limit m,nÊÇ¿É±ä²¿·Ö£¬Ö÷ÒªÓÃÖØĞÂÆ´³ö
-		// sql²¢¸Ä±äÀïÃæµÄtableºÍlimit m,n
-		// ¡£Õâ¸ö¿ÉÒÔ×öµÃ¸ü¼Ó·á¸»Ğ©,±ÈÈçwhereÌõ¼ş¿É±ä,id in¹é×é¾Í¿ÉÒÔ×öÔÚÕâÀï
+		// åˆ†ç¦»sqlå’Œä¸å¯å˜éƒ¨åˆ†ï¼Œæ¯”å¦‚table,limit m,næ˜¯å¯å˜éƒ¨åˆ†ï¼Œä¸»è¦ç”¨é‡æ–°æ‹¼å‡º
+		// sqlå¹¶æ”¹å˜é‡Œé¢çš„tableå’Œlimit m,n
+		// ã€‚è¿™ä¸ªå¯ä»¥åšå¾—æ›´åŠ ä¸°å¯Œäº›,æ¯”å¦‚whereæ¡ä»¶å¯å˜,id inå½’ç»„å°±å¯ä»¥åšåœ¨è¿™é‡Œ
 		return null;
 	}
 
@@ -122,7 +122,7 @@ public class MySqlStandardParserResult extends MySqlAbstractParserResult {
 			Collection<Map<String, String>> tables, List<Object> args,
 			HandlerContainer handlerContainer) {
 		if (tables == null) {
-			throw new IllegalArgumentException("´ıÌæ»»±íÃûÎª¿Õ");
+			throw new IllegalArgumentException("å¾…æ›¿æ¢è¡¨åä¸ºç©º");
 		}
 
 		List<SqlAndTableAtParser> retSqls = new ArrayList<SqlAndTableAtParser>(

@@ -32,8 +32,8 @@ import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteConditi
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.SimpleCondition;
 
 /**
- * Description: ±¾¹¤¾ßÀàÖ÷ÒªÌá¹©½«TDDLÊ¹ÓÃµÄTHREAD_LOCALµÄ¶ÔÏó±àÂë³ÉString,ºÍ½«±àÂëµÄString×ª»»
- * ³É¶ÔÓ¦µÄTHREAD_LOCALµÄ¶ÔÏó£¬·½±ãDPS¶ÔTHREAD_LOCALµÄÖµ½øĞĞÍøÂç´«µİ¡£
+ * Description: æœ¬å·¥å…·ç±»ä¸»è¦æä¾›å°†TDDLä½¿ç”¨çš„THREAD_LOCALçš„å¯¹è±¡ç¼–ç æˆString,å’Œå°†ç¼–ç çš„Stringè½¬æ¢
+ * æˆå¯¹åº”çš„THREAD_LOCALçš„å¯¹è±¡ï¼Œæ–¹ä¾¿DPSå¯¹THREAD_LOCALçš„å€¼è¿›è¡Œç½‘ç»œä¼ é€’ã€‚
  * 
  * @author: qihao
  * @version: 1.0 Filename: DBProxyThreadLocalHepler.java Create at: Nov 8, 2010
@@ -47,33 +47,33 @@ import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.SimpleCondition;
  */
 public class DBProxyThreadLocalHepler {
 	/**
-	 * THREAD_LOCALµÄkey¶ÔÓ¦µÄÀàĞÍ³£Á¿
+	 * THREAD_LOCALçš„keyå¯¹åº”çš„ç±»å‹å¸¸é‡
 	 */
 	private static final int INTEGER_TYPE = 1;
 	private static final int BOOLEAN_TYPE = 2;
 	private static final int ROUTE_CONDITION_TYPE = 3;
 	/**
-	 * RouteCondition µÄÊµ¼ÊÀàĞÍ³£Á¿
+	 * RouteCondition çš„å®é™…ç±»å‹å¸¸é‡
 	 */
 	private static final int ADVANCED_DIRECTLY_CLASS_TYPE = 1;
 	private static final int DIRECTLY_CLASS_TYPE = 2;
 	private static final int ADVANCE_CONDITION_CLASS_TYPE = 3;
 	private static final int SIMPLE_CONDITION_CLASS_TYPE = 4;
 	/**
-	 * ROUTE_TYPE µÄ³£Á¿(DBProxyµÄhint)
+	 * ROUTE_TYPE çš„å¸¸é‡(DBProxyçš„hint)
 	 */
 	private static final int ROUTE_TYPE_FLUSH_ON_CLOSECONNECTION = 1;
 	private static final int ROUTE_TYPE_FLUSH_ON_EXECUTE = 2;
 
 	/**
-	 * ROUTE_TYPE µÄ³£Á¿(ÓÃ»§µÄSql hint)
+	 * ROUTE_TYPE çš„å¸¸é‡(ç”¨æˆ·çš„Sql hint)
 	 */
 //	private static final String CONNECTION = "connection";
 //	private static final String EXECUTE = "execute";
 
 	/**
-	 * ½«threadLocalÀïµÄËùÓĞÖµdump³ÉMap<String, String>
-	 * ×¢ÒâÈç¹ûÉúÃüÖÜÆÚÊÇFLUSH_ON_EXECUTEµÄ»°£¬±¾´Îdump ºó»áÇå³ıµôthreadLocalÖĞ¶ÔÓ¦µÄÖµ
+	 * å°†threadLocalé‡Œçš„æ‰€æœ‰å€¼dumpæˆMap<String, String>
+	 * æ³¨æ„å¦‚æœç”Ÿå‘½å‘¨æœŸæ˜¯FLUSH_ON_EXECUTEçš„è¯ï¼Œæœ¬æ¬¡dump åä¼šæ¸…é™¤æ‰threadLocalä¸­å¯¹åº”çš„å€¼
 	 * 
 	 * @return
 	 */
@@ -87,8 +87,8 @@ public class DBProxyThreadLocalHepler {
 			if (StringUtil.isNotBlank(strData)) {
 				threadLocals.put(threadLocalKey, strData);
 				Object object = ThreadLocalMap.get(threadLocalKey);
-				// Èç¹ûRouteConditionµÄROUTE_TYPE ÊÇFLUSH_ON_EXECUTE
-				// dumpÍê³Éºó¾ÍÇå³ıthreadLocalÖĞ¶ÔÓ¦µÄkey
+				// å¦‚æœRouteConditionçš„ROUTE_TYPE æ˜¯FLUSH_ON_EXECUTE
+				// dumpå®Œæˆåå°±æ¸…é™¤threadLocalä¸­å¯¹åº”çš„key
 				if (object instanceof RouteCondition) {
 					RouteCondition routeCondition = (RouteCondition) object;
 					if (ROUTE_TYPE.FLUSH_ON_EXECUTE == routeCondition
@@ -102,7 +102,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * ¸Ã·½·¨¹©Á¬½Ó¹Ø±ÕÊ±µ÷ÓÃ£¬Ö÷ÒªÊÇÇå³ıÉúÃüÖÜÊÇFLUSH_ON_CLOSECONNECTION µÄThreadLocal¶ÔÏó¡£
+	 * è¯¥æ–¹æ³•ä¾›è¿æ¥å…³é—­æ—¶è°ƒç”¨ï¼Œä¸»è¦æ˜¯æ¸…é™¤ç”Ÿå‘½å‘¨æ˜¯FLUSH_ON_CLOSECONNECTION çš„ThreadLocalå¯¹è±¡ã€‚
 	 */
 	public static void cleanOnCloseConnectionThreadLocal() {
 		ThreadLocalKey[] keyEnums = ThreadLocalKey.values();
@@ -110,8 +110,8 @@ public class DBProxyThreadLocalHepler {
 			String threadLocalKey = keyEnum.getKey();
 			Object object = ThreadLocalMap.get(threadLocalKey);
 			if (null != object) {
-				// Èç¹ûÊÇRouteConditionÀàĞÍµÄĞèÒªÅĞ¶ÏÏÂROUTE_TYPE
-				// Èç¹ûROUTE_TYPEÊÇFLUSH_ON_CLOSECONNECTION Çå³ıµô
+				// å¦‚æœæ˜¯RouteConditionç±»å‹çš„éœ€è¦åˆ¤æ–­ä¸‹ROUTE_TYPE
+				// å¦‚æœROUTE_TYPEæ˜¯FLUSH_ON_CLOSECONNECTION æ¸…é™¤æ‰
 				if (object instanceof RouteCondition) {
 					RouteCondition routeCondition = (RouteCondition) object;
 					if (ROUTE_TYPE.FLUSH_ON_CLOSECONNECTION == routeCondition
@@ -119,7 +119,7 @@ public class DBProxyThreadLocalHepler {
 						ThreadLocalMap.put(threadLocalKey, null);
 					}
 				} else {
-					// ²»ÊÇRouteConditionÀàĞÍµÄÇå³ıµô
+					// ä¸æ˜¯RouteConditionç±»å‹çš„æ¸…é™¤æ‰
 					ThreadLocalMap.put(threadLocalKey, null);
 				}
 			}
@@ -127,7 +127,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * ÏòThreadLocalÖĞÉèÖÃÖµ£¬Ö÷ÒªÊÇ²»Ïë½«ThreadLocalMap Õâ¸öÀà±©Â©µ½Íâ²¿ÏµÍ³ÖĞÈ¥¡£
+	 * å‘ThreadLocalä¸­è®¾ç½®å€¼ï¼Œä¸»è¦æ˜¯ä¸æƒ³å°†ThreadLocalMap è¿™ä¸ªç±»æš´æ¼åˆ°å¤–éƒ¨ç³»ç»Ÿä¸­å»ã€‚
 	 * 
 	 * @param key
 	 * @param value
@@ -137,20 +137,20 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * ½«Ö¸¶¨µÄThreadLocalµÄkey¶ÔÓ¦µÄ¶ÔÏó£¬±àÂë³É×Ö·û´®
+	 * å°†æŒ‡å®šçš„ThreadLocalçš„keyå¯¹åº”çš„å¯¹è±¡ï¼Œç¼–ç æˆå­—ç¬¦ä¸²
 	 * 
-	 * @param keyThreadLocalµÄkey
+	 * @param keyThreadLocalçš„key
 	 * @return
 	 */
 	public static String encodeThreadLocal(String key) {
 		String strValue = null;
 		ThreadLocalKey enumKey = ThreadLocalKey.getThreadLocalKey(key);
 		Object objValue = ThreadLocalMap.get(key);
-		// Èç¹û»ñÈ¡²»µ½¶ÔÓ¦µÄÃ¶¾Ù¶ÔÏó£¬ËµÃ÷keyÊÇ²»±»Ö§³ÖµÄ£¬»òÕßvalueÊÇnull
+		// å¦‚æœè·å–ä¸åˆ°å¯¹åº”çš„æšä¸¾å¯¹è±¡ï¼Œè¯´æ˜keyæ˜¯ä¸è¢«æ”¯æŒçš„ï¼Œæˆ–è€…valueæ˜¯null
 		if (null == enumKey || null == objValue) {
 			return strValue;
 		}
-		// ¸ù¾İkeyµÄÀàĞÍ¶ÔÓ¦¹ØÏµ£¬½«value×ª»»³ÉString
+		// æ ¹æ®keyçš„ç±»å‹å¯¹åº”å…³ç³»ï¼Œå°†valueè½¬æ¢æˆString
 		switch (enumKey.getType()) {
 		case INTEGER_TYPE:
 			strValue = Integer.toString((Integer) objValue);
@@ -165,22 +165,22 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * ¸ù¾İÖ¸¶¨µÄThreadLocalµÄkey£¬ºÍ±àÂë¹ıµÄ×Ö·û´®½âÂë³É ±àÂëÇ°µÄ¶ÔÏó
+	 * æ ¹æ®æŒ‡å®šçš„ThreadLocalçš„keyï¼Œå’Œç¼–ç è¿‡çš„å­—ç¬¦ä¸²è§£ç æˆ ç¼–ç å‰çš„å¯¹è±¡
 	 * 
 	 * @param key
-	 *            ThreadLocalµÄkey
+	 *            ThreadLocalçš„key
 	 * @param strData
-	 *            ¶ÔÓ¦µÄ¾­¹ı±àÂëµÄ×Ö·û´®Êı¾İ
+	 *            å¯¹åº”çš„ç»è¿‡ç¼–ç çš„å­—ç¬¦ä¸²æ•°æ®
 	 * @return
 	 */
 	public static Object decodeThreadLocal(String key, String strData) {
 		Object object = null;
 		ThreadLocalKey enumKey = ThreadLocalKey.getThreadLocalKey(key);
-		// Èç¹û»ñÈ¡²»µ½¶ÔÓ¦µÄÃ¶¾Ù¶ÔÏó£¬ËµÃ÷keyÊÇ²»±»Ö§³ÖµÄ,»òÕßÊÇ²»ºÏ·¨µÄ×Ö·û´®
+		// å¦‚æœè·å–ä¸åˆ°å¯¹åº”çš„æšä¸¾å¯¹è±¡ï¼Œè¯´æ˜keyæ˜¯ä¸è¢«æ”¯æŒçš„,æˆ–è€…æ˜¯ä¸åˆæ³•çš„å­—ç¬¦ä¸²
 		if (null == enumKey || StringUtil.isBlank(strData)) {
 			return object;
 		}
-		// ¸ù¾İkeyµÄÀàĞÍ¶ÔÓ¦¹ØÏµ£¬½«value×ª»»³ÉString
+		// æ ¹æ®keyçš„ç±»å‹å¯¹åº”å…³ç³»ï¼Œå°†valueè½¬æ¢æˆString
 		switch (enumKey.getType()) {
 		case INTEGER_TYPE:
 			object = Integer.valueOf(strData);
@@ -195,7 +195,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/*
-	 * ½«routeCondition ¶ÔÏó±àÂë³ÉString
+	 * å°†routeCondition å¯¹è±¡ç¼–ç æˆString
 	 * 
 	 * @param routeCondition
 	 * 
@@ -206,7 +206,7 @@ public class DBProxyThreadLocalHepler {
 		JSONObject jsonObject = new JSONObject();
 		try {
 			if (routeCondition instanceof DirectlyRouteCondition) {
-				// ÉèÖÃ¹«¹²²¿·ÖÊôĞÔ
+				// è®¾ç½®å…¬å…±éƒ¨åˆ†å±æ€§
 				DirectlyRouteCondition directlyRouteCondition = (DirectlyRouteCondition) routeCondition;
 				jsonObject.put("dbId", directlyRouteCondition.getDbRuleID());
 				if (ROUTE_TYPE.FLUSH_ON_CLOSECONNECTION.toString().equals(
@@ -219,9 +219,9 @@ public class DBProxyThreadLocalHepler {
 				}
 				jsonObject.put("virtualTableName",
 						directlyRouteCondition.getVirtualTableName());
-				// ÉèÖÃ¸ö±ğÊôĞÔ
+				// è®¾ç½®ä¸ªåˆ«å±æ€§
 				if (routeCondition.getClass() == DirectlyRouteCondition.class) {
-					// ÉèÖÃRouteConditionµÄclassÀàĞÍÎªDirectlyRouteCondition
+					// è®¾ç½®RouteConditionçš„classç±»å‹ä¸ºDirectlyRouteCondition
 					jsonObject.put("classType", DIRECTLY_CLASS_TYPE);
 					Set<String> tableSet = directlyRouteCondition.getTables();
 					if (null != tableSet && !tableSet.isEmpty()) {
@@ -232,7 +232,7 @@ public class DBProxyThreadLocalHepler {
 						jsonObject.put("tables", jsonTables);
 					}
 				} else if (routeCondition.getClass() == AdvancedDirectlyRouteCondition.class) {
-					// ÉèÖÃRouteConditionµÄclassÀàĞÍÎªAdvancedDirectlyRouteCondition
+					// è®¾ç½®RouteConditionçš„classç±»å‹ä¸ºAdvancedDirectlyRouteCondition
 					jsonObject.put("classType", ADVANCED_DIRECTLY_CLASS_TYPE);
 					AdvancedDirectlyRouteCondition advancedDirectlyRouteCondition = (AdvancedDirectlyRouteCondition) routeCondition;
 					Map<String, List<Map<String, String>>> shardTableMap = advancedDirectlyRouteCondition
@@ -250,7 +250,7 @@ public class DBProxyThreadLocalHepler {
 				}
 				strCondition = jsonObject.toString();
 			} else if (routeCondition instanceof SimpleCondition) {
-				// ´¦Àí¹«¹²²¿·ÖÊôĞÔ
+				// å¤„ç†å…¬å…±éƒ¨åˆ†å±æ€§
 				SimpleCondition simpleCondition = (SimpleCondition) routeCondition;
 				if (ROUTE_TYPE.FLUSH_ON_CLOSECONNECTION.toString().equals(
 						simpleCondition.getRouteType().toString())) {
@@ -262,7 +262,7 @@ public class DBProxyThreadLocalHepler {
 				}
 				jsonObject.put("virtualTableName",
 						simpleCondition.getVirtualTableName());
-				// ´¦Àíparameters
+				// å¤„ç†parameters
 				Map<String, Comparative> parameters = simpleCondition
 						.getParameters();
 				if (null != parameters && !parameters.isEmpty()) {
@@ -271,7 +271,7 @@ public class DBProxyThreadLocalHepler {
 							.entrySet()) {
 						String paramKey = entry.getKey();
 						Comparative praramValue = entry.getValue();
-						// Èç¹û²ÎÊıºÏ·¨£¬¶ÔComparative½øĞĞ±àÂë³ÉString
+						// å¦‚æœå‚æ•°åˆæ³•ï¼Œå¯¹Comparativeè¿›è¡Œç¼–ç æˆString
 						if (StringUtil.isNotBlank(paramKey)
 								&& null != praramValue) {
 							String encdeComparativeStr = encodeComparative(praramValue);
@@ -283,7 +283,7 @@ public class DBProxyThreadLocalHepler {
 					}
 					jsonObject.put("parameters", jsonParameters);
 				}
-				// ÉèÖÃclassType
+				// è®¾ç½®classType
 				if (routeCondition.getClass() == SimpleCondition.class) {
 					jsonObject.put("classType", SIMPLE_CONDITION_CLASS_TYPE);
 				} else if (routeCondition.getClass() == AdvanceCondition.class) {
@@ -306,12 +306,12 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/*
-	 * ½«comparative×ª»»±àÂë³É×Ö·û´®£¬ÎŞÂÛÊÇµ¥Ò»¹ØÏµÔËËã£¬ »¹ÊÇ¶à¹ØÏµÔËËã
-	 * [²Ù×÷·û(and/or)]~¹ØÏµÔËËã·û±àºÅ1;ÖµÀàĞÍ1:Öµ1,¹ØÏµÔËËã·û±àºÅ2;ÖµÀàĞÍ2:Öµ2........¹ØÏµÔËËã·û±àºÅn;ÖµÀàĞÍn:Öµn
+	 * å°†comparativeè½¬æ¢ç¼–ç æˆå­—ç¬¦ä¸²ï¼Œæ— è®ºæ˜¯å•ä¸€å…³ç³»è¿ç®—ï¼Œ è¿˜æ˜¯å¤šå…³ç³»è¿ç®—
+	 * [æ“ä½œç¬¦(and/or)]~å…³ç³»è¿ç®—ç¬¦ç¼–å·1;å€¼ç±»å‹1:å€¼1,å…³ç³»è¿ç®—ç¬¦ç¼–å·2;å€¼ç±»å‹2:å€¼2........å…³ç³»è¿ç®—ç¬¦ç¼–å·n;å€¼ç±»å‹n:å€¼n
 	 * 
-	 * ×¢Òâ£º1.¶à¹ØÏµÔËËã Ö»Ö§³ÖÒ»²ã£¬²»Ö§³ÖÇ¶Ì×£¬¼´¹ØÏµÔËËãÖµÀï²»Ö§³ÖÔÙ´Î´æÔÚ¶à¹ØÏµµÄcomparative
-	 * ÀıÈç£ºa>(b<c)ÕâÑùÊÇ²»Ö§³ÖµÄ£¬Ö»Ö§³Öa>b and <c and <......ÕâÑùµÄ¸ñÊ½
-	 * 2.¹ØÏµÔËËã·ûµÄÖµÄ¿Ç°Ö»Ö§³ÖInteger,Long,String,DateÀàĞÍ and~1;i:5,2;l:4
+	 * æ³¨æ„ï¼š1.å¤šå…³ç³»è¿ç®— åªæ”¯æŒä¸€å±‚ï¼Œä¸æ”¯æŒåµŒå¥—ï¼Œå³å…³ç³»è¿ç®—å€¼é‡Œä¸æ”¯æŒå†æ¬¡å­˜åœ¨å¤šå…³ç³»çš„comparative
+	 * ä¾‹å¦‚ï¼ša>(b<c)è¿™æ ·æ˜¯ä¸æ”¯æŒçš„ï¼Œåªæ”¯æŒa>b and <c and <......è¿™æ ·çš„æ ¼å¼
+	 * 2.å…³ç³»è¿ç®—ç¬¦çš„å€¼ç›®å‰åªæ”¯æŒInteger,Long,String,Dateç±»å‹ and~1;i:5,2;l:4
 	 * 
 	 * @param comparative
 	 * 
@@ -320,7 +320,7 @@ public class DBProxyThreadLocalHepler {
 	private static String encodeComparative(Comparative comparative) {
 		StringBuilder sb = new StringBuilder();
 		if (comparative instanceof ComparativeBaseList) {
-			// ¿ÉÄÜÊÇComparativeOR»òÕßcomparativeAND
+			// å¯èƒ½æ˜¯ComparativeORæˆ–è€…comparativeAND
 			ComparativeBaseList comparativeBaseList = (ComparativeBaseList) comparative;
 			List<Comparative> comparativeList = comparativeBaseList.getList();
 			if (null != comparativeList && !comparativeList.isEmpty()) {
@@ -333,7 +333,7 @@ public class DBProxyThreadLocalHepler {
 							"encodeComparative not support ComparativeBaseList!");
 				}
 				for (Comparative comp : comparativeList) {
-					// ÕâÀïÈç¹ûÊÇµÚ¶ş²ã»¹ÊÇComparativeBaseListÀàĞÍµÄÖ±½ÓÅ×³öÒì³£²»Ö§³Ö
+					// è¿™é‡Œå¦‚æœæ˜¯ç¬¬äºŒå±‚è¿˜æ˜¯ComparativeBaseListç±»å‹çš„ç›´æ¥æŠ›å‡ºå¼‚å¸¸ä¸æ”¯æŒ
 					if (comp instanceof ComparativeBaseList) {
 						throw new RuntimeException(
 								"encodeComparative not support second ComparativeBaseList!");
@@ -343,7 +343,7 @@ public class DBProxyThreadLocalHepler {
 						sb.append(strValue).append(",");
 					}
 				}
-				// Èç¹ûÊÇ¶à¸öcomparative£¬È¥µô×îºó¶àÓàµÄ,ºÅ
+				// å¦‚æœæ˜¯å¤šä¸ªcomparativeï¼Œå»æ‰æœ€åå¤šä½™çš„,å·
 				String strData = sb.toString();
 				if (StringUtil.isNotBlank(strData)
 						&& strData.lastIndexOf(",") != -1) {
@@ -360,9 +360,9 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/*
-	 * ½«µ¥Ò»¹ØÏµÔËËãµÄComparative ±àÂë³É×Ö·û´® ¸ñÊ½£º¹ØÏµÔËËã·û±àºÅ;ÖµÀàĞÍ:Öµ ÀıÈç >=1 ÊÇ2;i:4
+	 * å°†å•ä¸€å…³ç³»è¿ç®—çš„Comparative ç¼–ç æˆå­—ç¬¦ä¸² æ ¼å¼ï¼šå…³ç³»è¿ç®—ç¬¦ç¼–å·;å€¼ç±»å‹:å€¼ ä¾‹å¦‚ >=1 æ˜¯2;i:4
 	 * 
-	 * @param comp Comparative¶ÔÏó
+	 * @param comp Comparativeå¯¹è±¡
 	 * 
 	 * @return
 	 */
@@ -392,7 +392,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/*
-	 * ½«±àÂë³É×Ö·û´®µÄRouteCondition ½âÂë»¹Ô­³ÉRouteCondition¶ÔÏó
+	 * å°†ç¼–ç æˆå­—ç¬¦ä¸²çš„RouteCondition è§£ç è¿˜åŸæˆRouteConditionå¯¹è±¡
 	 * 
 	 * @param strData
 	 * 
@@ -403,7 +403,7 @@ public class DBProxyThreadLocalHepler {
 		try {
 			JSONObject jsonObject = JSONObject.fromObject(strData);
 			int classType = jsonObject.getInt("classType");
-			// ËµÃ÷ÊÇAdvancedDirectlyRouteCondition »òÕßDirectlyRouteCondition
+			// è¯´æ˜æ˜¯AdvancedDirectlyRouteCondition æˆ–è€…DirectlyRouteCondition
 			if (classType == DIRECTLY_CLASS_TYPE
 					|| classType == ADVANCED_DIRECTLY_CLASS_TYPE) {
 				routeCondition = decodeNoComparativeRouteCondition(jsonObject);
@@ -418,7 +418,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/*
-	 * ½«json×Ö·û´®½âÂë³É´øComparativeµÄRouteCondition
+	 * å°†jsonå­—ç¬¦ä¸²è§£ç æˆå¸¦Comparativeçš„RouteCondition
 	 * 
 	 * @param jsonObject
 	 * 
@@ -447,7 +447,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * ¸øÓÃ»§hint½âÎöÊ¹ÓÃµÄComparativeRouteCondition½âÂë
+	 * ç»™ç”¨æˆ·hintè§£æä½¿ç”¨çš„ComparativeRouteConditionè§£ç 
 	 * 
 	 * @param jsonObject
 	 * @return
@@ -480,7 +480,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * ĞèÒªÔÚÆäËû½âÎö¿ªÊ¼Ö®Ç°Ê¹ÓÃ£¬·ñÔòÓĞ¿ÉÄÜÖĞÍ¾¸Ä±äÀàĞÍ µ¼ÖÂÊôĞÔ¶ªÊ§
+	 * éœ€è¦åœ¨å…¶ä»–è§£æå¼€å§‹ä¹‹å‰ä½¿ç”¨ï¼Œå¦åˆ™æœ‰å¯èƒ½ä¸­é€”æ”¹å˜ç±»å‹ å¯¼è‡´å±æ€§ä¸¢å¤±
 	 * 
 	 * @param condition
 	 * @param jsonObject
@@ -490,7 +490,7 @@ public class DBProxyThreadLocalHepler {
 	private static void decodeParameter(SimpleCondition condition,
 			JSONObject jsonObject) throws JSONException {
 		if (jsonContainsKey(jsonObject, "parameters")) {
-			// ´¦Àí ComparativeMap
+			// å¤„ç† ComparativeMap
 			JSONObject jsonParameters = jsonObject.getJSONObject("parameters");
 			if (null != jsonParameters && jsonParameters.size() != 0) {
 				Iterator<String> keys = jsonParameters.keys();
@@ -500,7 +500,7 @@ public class DBProxyThreadLocalHepler {
 					if (StringUtil.isNotBlank(value)) {
 						// and~1;i:5,2;l:4
 						if (StringUtil.contains(value, "~")) {
-							// ËµÃ÷ÊÇComparativeBaseList
+							// è¯´æ˜æ˜¯ComparativeBaseList
 							String compStr = StringUtil.substringAfter(value,
 									"~");
 							String opStr = StringUtil.substringBefore(value,
@@ -529,7 +529,7 @@ public class DBProxyThreadLocalHepler {
 								condition.put(key, comparativeBaseList);
 							}
 						} else {
-							// ËµÃ÷Ö»ÊÇComparative
+							// è¯´æ˜åªæ˜¯Comparative
 							Comparative comparative = decodeComparative(value);
 							if (null != comparative) {
 								condition.put(key, comparative);
@@ -542,7 +542,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * ĞèÒªÔÚÆäËû½âÎö¿ªÊ¼Ö®Ç°Ê¹ÓÃ£¬·ñÔòÓĞ¿ÉÄÜÖĞÍ¾¸Ä±äÀàĞÍ µ¼ÖÂÊôĞÔ¶ªÊ§
+	 * éœ€è¦åœ¨å…¶ä»–è§£æå¼€å§‹ä¹‹å‰ä½¿ç”¨ï¼Œå¦åˆ™æœ‰å¯èƒ½ä¸­é€”æ”¹å˜ç±»å‹ å¯¼è‡´å±æ€§ä¸¢å¤±
 	 * 
 	 * @param condition
 	 * @param jsonObject
@@ -550,7 +550,7 @@ public class DBProxyThreadLocalHepler {
 	 */
 	public static void decodeParameterForOuter(SimpleCondition condition,
 			JSONObject jsonObject) throws JSONException {
-		// modified by jiechen.qzm È·±£Ò»¶¨ÓĞparametersÕâ¸ö²ÎÊı
+		// modified by jiechen.qzm ç¡®ä¿ä¸€å®šæœ‰parametersè¿™ä¸ªå‚æ•°
 		String parametersString = jsonContainsKeyAndValueNotBlank(jsonObject,
 				"parameters");
 		if (parametersString == null) {
@@ -558,7 +558,7 @@ public class DBProxyThreadLocalHepler {
 					"hint contains no property 'parameters'.");
 		}
 
-		// ´¦Àí ComparativeMap
+		// å¤„ç† ComparativeMap
 		JSONArray jsonParameters = JSONArray.fromObject(parametersString);
 		if (jsonParameters.size() != 0) {
 			for (int i = 0; i < jsonParameters.size(); i++) {
@@ -600,7 +600,7 @@ public class DBProxyThreadLocalHepler {
 						}
 						condition.put(key, comparativeBaseList);
 					} else {
-						// ËµÃ÷Ö»ÊÇComparative
+						// è¯´æ˜åªæ˜¯Comparative
 						String key = getComparativeKey(value);
 						Comparative comparative = decodeComparativeForOuter(value);
 						if (null != comparative) {
@@ -632,7 +632,7 @@ public class DBProxyThreadLocalHepler {
 	// }
 
 	/*
-	 * ½«¸ñÊ½£º¹ØÏµÔËËã·û±àºÅ;ÖµÀàĞÍ:Öµ ÀıÈç >=1 ÊÇ2;i:4 µÄ×Ö·û´®½âÂë³ÉComparative¶ÔÏó
+	 * å°†æ ¼å¼ï¼šå…³ç³»è¿ç®—ç¬¦ç¼–å·;å€¼ç±»å‹:å€¼ ä¾‹å¦‚ >=1 æ˜¯2;i:4 çš„å­—ç¬¦ä¸²è§£ç æˆComparativeå¯¹è±¡
 	 * 
 	 * @param compValue
 	 * 
@@ -689,7 +689,7 @@ public class DBProxyThreadLocalHepler {
 				comparative = new Comparative(value,
 						Long.valueOf(valueAndType[0]));
 			} else if ("s".equals(valueAndType[1].trim())) {
-				//È¥³ıÇ°ºóµ¥ÒıºÅ
+				//å»é™¤å‰åå•å¼•å·
 				String v=valueAndType[0].substring(1,valueAndType[0].length()-1);
 				comparative = new Comparative(value, v);
 			} else if ("d".equals(valueAndType[1].trim())) {
@@ -738,8 +738,8 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/*
-	 * ½«Ã»Comparative¶ÔÏóµÄRouteCondition±àÂë³ÉString×Ö·û´®µÄÊı¾İ½âÂë »¹Ô­³ÉRouteCondition¶ÔÏó
-	 * modified by junyu ³é³öÂß¼­¸´ÓÃ
+	 * å°†æ²¡Comparativeå¯¹è±¡çš„RouteConditionç¼–ç æˆStringå­—ç¬¦ä¸²çš„æ•°æ®è§£ç  è¿˜åŸæˆRouteConditionå¯¹è±¡
+	 * modified by junyu æŠ½å‡ºé€»è¾‘å¤ç”¨
 	 * 
 	 * @param jsonObject
 	 * 
@@ -751,26 +751,26 @@ public class DBProxyThreadLocalHepler {
 			JSONObject jsonObject) throws JSONException {
 		RouteCondition routeCondition;
 		/*
-		 * ÏÈ¶¨ÒåÒ»¸öDirectlyRouteCondition Ö÷ÒªÓÃÓÚÉèÖÃ
-		 * AdvancedDirectlyRouteConditionºÍDirectlyRouteCondition µÄ¹«¹²ÊôĞÔ
+		 * å…ˆå®šä¹‰ä¸€ä¸ªDirectlyRouteCondition ä¸»è¦ç”¨äºè®¾ç½®
+		 * AdvancedDirectlyRouteConditionå’ŒDirectlyRouteCondition çš„å…¬å…±å±æ€§
 		 */
 		DirectlyRouteCondition directlyRouteCondition = null;
 		int classType = jsonObject.getInt("classType");
 		if (DIRECTLY_CLASS_TYPE == classType) {
-			// ÉèÖÃDirectlyRouteCondition ¶ÀÁ¢µÄÊôĞÔ
+			// è®¾ç½®DirectlyRouteCondition ç‹¬ç«‹çš„å±æ€§
 			directlyRouteCondition = new DirectlyRouteCondition();
 			if (jsonContainsKey(jsonObject, "tables")) {
 				directlyRouteCondition = generateDirectlyRouteCondition(jsonObject);
 			}
 		} else if (ADVANCED_DIRECTLY_CLASS_TYPE == classType) {
-			// ÉèÖÃAdvancedDirectlyRouteCondition ¶ÀÁ¢µÄÊôĞÔ
+			// è®¾ç½®AdvancedDirectlyRouteCondition ç‹¬ç«‹çš„å±æ€§
 			AdvancedDirectlyRouteCondition advancedDirectlyRouteCondition = new AdvancedDirectlyRouteCondition();
-			// ´¦ÀíAdvancedDirectlyRouteConditionµÄ Map<String, List<Map<String,
-			// String>>> tableMapÊôĞÔ
+			// å¤„ç†AdvancedDirectlyRouteConditionçš„ Map<String, List<Map<String,
+			// String>>> tableMapå±æ€§
 			if (jsonContainsKey(jsonObject, "shardTableMap")) {
 				advancedDirectlyRouteCondition = generateAdvancedDirectlyRouteCondition(jsonObject);
 			}
-			// ÕâÑù×öÖ÷Òª±£Ö¤directlyRouteConditionÕâ¸öÊµÀıÒ»¶¨²»Îªnull;
+			// è¿™æ ·åšä¸»è¦ä¿è¯directlyRouteConditionè¿™ä¸ªå®ä¾‹ä¸€å®šä¸ä¸ºnull;
 			directlyRouteCondition = advancedDirectlyRouteCondition;
 		} else {
 			throw new RuntimeException(
@@ -786,7 +786,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * ÓÃ»§Ê¹ÓÃµÄhint½âÎö modified by jiechen.qzm ÀàĞÍÑÏ¸ñÆ¥Åä
+	 * ç”¨æˆ·ä½¿ç”¨çš„hintè§£æ modified by jiechen.qzm ç±»å‹ä¸¥æ ¼åŒ¹é…
 	 * 
 	 * @param jsonObject
 	 * @return
@@ -800,20 +800,20 @@ public class DBProxyThreadLocalHepler {
 			directlyRouteCondition = new DirectlyRouteCondition();
 			decodeDbId(directlyRouteCondition, jsonObject);
 		} else if (type.equals(RouteMethod.executeByDBAndTab)) {
-			// ÉèÖÃDirectlyRouteCondition ¶ÀÁ¢µÄÊôĞÔ
+			// è®¾ç½®DirectlyRouteCondition ç‹¬ç«‹çš„å±æ€§
 			directlyRouteCondition = generateDirectlyRouteCondition(jsonObject);
 			decodeDbId(directlyRouteCondition, jsonObject);
 			decodeVirtualTableName(directlyRouteCondition, jsonObject);
 		} else if (type.equals(RouteMethod.executeByDBAndMutiReplace)) {
-			// ´¦ÀíAdvancedDirectlyRouteConditionµÄ Map<String, List<Map<String,
-			// String>>> tableMapÊôĞÔ
+			// å¤„ç†AdvancedDirectlyRouteConditionçš„ Map<String, List<Map<String,
+			// String>>> tableMapå±æ€§
 			directlyRouteCondition = generateAdvancedDirectlyRouteCondition(jsonObject);
 		}
 		return directlyRouteCondition;
 	}
 
 	/**
-	 * Éú³ÉDirectlyRouteCondition
+	 * ç”ŸæˆDirectlyRouteCondition
 	 * 
 	 * @param jsonObject
 	 * @return
@@ -824,7 +824,7 @@ public class DBProxyThreadLocalHepler {
 			JSONObject jsonObject) throws JSONException {
 		DirectlyRouteCondition directlyRouteCondition = new DirectlyRouteCondition();
 
-		// modified by jiechen.qzm È·±£Ò»¶¨ÓĞtablesÕâ¸ö²ÎÊı
+		// modified by jiechen.qzm ç¡®ä¿ä¸€å®šæœ‰tablesè¿™ä¸ªå‚æ•°
 		String tableString = jsonContainsKeyAndValueNotBlank(jsonObject,
 				"tables");
 		if (tableString == null) {
@@ -832,7 +832,7 @@ public class DBProxyThreadLocalHepler {
 		}
 
 		JSONArray jsonTables = JSONArray.fromObject(tableString);
-		// ÉèÖÃtableµÄSet<String>
+		// è®¾ç½®tableçš„Set<String>
 		if (jsonTables.size() > 0) {
 			Set<String> tables = new HashSet<String>(jsonTables.size());
 			for (int i = 0; i < jsonTables.size(); i++) {
@@ -844,7 +844,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * Éú³ÉAdvancedDirectlyRouteCondition
+	 * ç”ŸæˆAdvancedDirectlyRouteCondition
 	 * 
 	 * @param jsonObject
 	 * @return
@@ -853,7 +853,7 @@ public class DBProxyThreadLocalHepler {
 	@SuppressWarnings("unchecked")
 	private static AdvancedDirectlyRouteCondition generateAdvancedDirectlyRouteCondition(
 			JSONObject jsonObject) throws JSONException {
-		// modified by jiechen.qzm È·±£Ò»¶¨ÓĞshardTableMapÕâ¸ö²ÎÊı
+		// modified by jiechen.qzm ç¡®ä¿ä¸€å®šæœ‰shardTableMapè¿™ä¸ªå‚æ•°
 		String tableMapString = jsonContainsKeyAndValueNotBlank(jsonObject,
 				"shardTableMap");
 		if (tableMapString == null) {
@@ -900,7 +900,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * DbId½âÂë
+	 * DbIdè§£ç 
 	 * 
 	 * @param condition
 	 * @param jsonObject
@@ -916,7 +916,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * virtualTable½âÂë
+	 * virtualTableè§£ç 
 	 * 
 	 * @param condition
 	 * @param jsonObject
@@ -935,7 +935,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * DBPROXYÊ¹ÓÃµÄsql hint½âÂë
+	 * DBPROXYä½¿ç”¨çš„sql hintè§£ç 
 	 * 
 	 * @param condition
 	 * @param jsonObject
@@ -954,7 +954,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * jsonÖĞ°üº¬Ä³¸öÊôĞÔ£¬²¢ÇÒÖµ²»Îª¿Õ£¬·µ»Ø¸ÃÖµ£¬·ñÔò·µ»Ønull
+	 * jsonä¸­åŒ…å«æŸä¸ªå±æ€§ï¼Œå¹¶ä¸”å€¼ä¸ä¸ºç©ºï¼Œè¿”å›è¯¥å€¼ï¼Œå¦åˆ™è¿”å›null
 	 * 
 	 * @param jsonObject
 	 * @param key
@@ -974,7 +974,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/*
-	 * ÅĞ¶ÏJSONÊÇ·ñ´æÔÚÖ¸¶¨key
+	 * åˆ¤æ–­JSONæ˜¯å¦å­˜åœ¨æŒ‡å®škey
 	 * 
 	 * @param jsonObject
 	 * 
@@ -997,7 +997,7 @@ public class DBProxyThreadLocalHepler {
 	}
 
 	/**
-	 * THREAD_LOACLµÄKEY µÄÃ¶¾Ù¶ÔÏó£¬ÃèÊöÁËTHREAD_LOCALÖĞKEYÓëVALUEµÄ ÀàĞÍ¶ÔÓ¦ Description:
+	 * THREAD_LOACLçš„KEY çš„æšä¸¾å¯¹è±¡ï¼Œæè¿°äº†THREAD_LOCALä¸­KEYä¸VALUEçš„ ç±»å‹å¯¹åº” Description:
 	 * 
 	 * @author: qihao
 	 * @version: 1.0 Filename: DBProxyThreadLocalHepler.java Create at: Nov 8,

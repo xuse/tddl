@@ -9,7 +9,7 @@ import com.taobao.tddl.rule.bean.LogicTable;
 import com.taobao.tddl.rule.bean.TDDLRoot;
 
 /**
- * Ò»·İÍêÕûµÄ·Ö¿â·Ö±í¹æÔòÅäÖÃ£¬Ò»Ì×¿âÒ»·İ
+ * ä¸€ä»½å®Œæ•´çš„åˆ†åº“åˆ†è¡¨è§„åˆ™é…ç½®ï¼Œä¸€å¥—åº“ä¸€ä»½
  *  
  * @author linxuan
  */
@@ -18,7 +18,7 @@ public class ShardRule extends TDDLRoot implements Cloneable {
 	public static final String DBINDEX_SUFFIX_WRITE = "_w";
 	
 	/**
-	 * springµÄbug£ºµ±getter·µ»ØÖµºÍsetter²ÎÊıÀàĞÍ²»Í¬Ê±»á±¨´í
+	 * springçš„bugï¼šå½“getterè¿”å›å€¼å’Œsetterå‚æ•°ç±»å‹ä¸åŒæ—¶ä¼šæŠ¥é”™
 	 */
 	public DBType getDbType() {
 		return dbType;

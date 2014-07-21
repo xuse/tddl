@@ -1,9 +1,9 @@
 package com.taobao.tddl.common.config.beans;
 
 /**
- * Ò»¸öÊı¾İÔ´ÅäÖÃµÄ³éÏó
+ * ä¸€ä¸ªæ•°æ®æºé…ç½®çš„æŠ½è±¡
  * 
- * ÓÅÏÈ¼¶£º 1. beanId 2. jndiName 3. jdbcUrl£¬userName£¬passWord
+ * ä¼˜å…ˆçº§ï¼š 1. beanId 2. jndiName 3. jdbcUrlï¼ŒuserNameï¼ŒpassWord
  * 
  * @author linxuan
  */

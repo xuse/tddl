@@ -18,7 +18,7 @@
 //	public List<String> eval(
 //			Map<String, Comparative> sharedValueElementMap) {
 //		
-//		//设置当前的Context
+//		//璁剧疆褰撳墠鐨凜ontext
 //		for(Entry<String, Comparative> sharedValueElement:sharedValueElementMap.entrySet()){
 //			bind.setVariable(sharedValueElement.getKey(), sharedValueElement.getValue());
 //		}

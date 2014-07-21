@@ -89,14 +89,14 @@ public class DatePartDiscontinousRangeEnumerator extends
 		Calendar cal = getCalendar((Date) from);
 		int rangeSet = cumulativeTimes;
 		if(atomIncrValue instanceof Integer){
-			//¼æÈİÀÏÊµÏÖ£¬¶ÔÓ¦#gmt,1,7#ÕâÖÖ
+			//å…¼å®¹è€å®ç°ï¼Œå¯¹åº”#gmt,1,7#è¿™ç§
 			cal.add(Calendar.DATE, rangeSet*(Integer)atomIncrValue);
 		}else if(atomIncrValue instanceof DateEnumerationParameter){
-			//¶ÔÓ¦#gmt,1_month,12ÕâÑùµÄÇé¿ö
+			//å¯¹åº”#gmt,1_month,12è¿™æ ·çš„æƒ…å†µ
 			DateEnumerationParameter dep = (DateEnumerationParameter)atomIncrValue;
 			cal.add(dep.calendarFieldType, rangeSet*dep.atomicIncreatementNumber);
 		}else if(atomIncrValue== null){
-			//¼æÈİÀÏÊµÏÖ£¬¶ÔÓ¦Ã»ÓĞ#gmt#.ÕâÖÖÆÕÍ¨µÄÇé¿ö£¬
+			//å…¼å®¹è€å®ç°ï¼Œå¯¹åº”æ²¡æœ‰#gmt#.è¿™ç§æ™®é€šçš„æƒ…å†µï¼Œ
 			cal.add(Calendar.DATE, rangeSet);
 		}else{
 			throwNotSupportIllegalArgumentException(atomIncrValue);
@@ -108,7 +108,7 @@ public class DatePartDiscontinousRangeEnumerator extends
 		return false;
 	}
 	private void throwNotSupportIllegalArgumentException(Object arg){
-		throw new IllegalArgumentException("²»ÄÜÊ¶±ğµÄÀàĞÍ:"+arg+" .type is"+ arg.getClass());
+		throw new IllegalArgumentException("ä¸èƒ½è¯†åˆ«çš„ç±»å‹:"+arg+" .type is"+ arg.getClass());
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class DatePartDiscontinousRangeEnumerator extends
 		}
 		Set<Object> returnSet =new HashSet<Object>(cumulativeTimes);
 		DateEnumerationParameter dateEnumerationParameter = getDateEnumerationParameter(atomicIncreationValue);
-		//°Ñ> < Ìæ»»Îª>= <=
+		//æŠŠ> < æ›¿æ¢ä¸º>= <=
 		begin = changeGreater2GreaterOrEq(begin);
 		begin = changeLess2LessOrEq(begin);
 		
@@ -128,9 +128,9 @@ public class DatePartDiscontinousRangeEnumerator extends
 		int comparasion = begin.getComparison();
 
 		if (comparasion == Comparative.GreaterThanOrEqual) {
-			//Ìí¼Óµ±Ç°Ê±¼ä£¬ÒòÎªµ±Ç°Ê±¼äÄÚÒÑ¾­ÊÇ´óÓÚµÈÓÚÁË¡£
+			//æ·»åŠ å½“å‰æ—¶é—´ï¼Œå› ä¸ºå½“å‰æ—¶é—´å†…å·²ç»æ˜¯å¤§äºç­‰äºäº†ã€‚
 				returnSet.add(cal.getTime());
-			//¼õÉÙÒ»´Îµü´ú£¬ÒòÎªÒÑ¾­¼ÓÁËµ±Ç°Ê±¼ä
+			//å‡å°‘ä¸€æ¬¡è¿­ä»£ï¼Œå› ä¸ºå·²ç»åŠ äº†å½“å‰æ—¶é—´
 			for (int i = 0; i < cumulativeTimes-1; i++) {
 				cal.add(dateEnumerationParameter.calendarFieldType,dateEnumerationParameter.atomicIncreatementNumber);
 				

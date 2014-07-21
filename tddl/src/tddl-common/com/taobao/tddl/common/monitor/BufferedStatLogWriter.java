@@ -20,30 +20,30 @@
 //import com.taobao.tddl.common.LoggerInit;
 //
 ///**
-// * ´ø»º´æµÄĞ´ÈÕÖ¾¹¤¾ß¡£½â¾ö¸ßtpsÏî£¬Í³¼ÆÈÕÖ¾Á¿Ì«´óµÄÎÊÌâ
-// * ¶ÔÍ³¼ÆÈÕÖ¾ÔÚÄÚ´æÖĞ×÷»º³åºÏ²¢£¬¶¨Ê±Ë¢³ö¡£
-// * add(key1(Í³¼ÆÄ¿±ê),key2(group),key3(flag),timeuse)
+// * å¸¦ç¼“å­˜çš„å†™æ—¥å¿—å·¥å…·ã€‚è§£å†³é«˜tpsé¡¹ï¼Œç»Ÿè®¡æ—¥å¿—é‡å¤ªå¤§çš„é—®é¢˜
+// * å¯¹ç»Ÿè®¡æ—¥å¿—åœ¨å†…å­˜ä¸­ä½œç¼“å†²åˆå¹¶ï¼Œå®šæ—¶åˆ·å‡ºã€‚
+// * add(key1(ç»Ÿè®¡ç›®æ ‡),key2(group),key3(flag),timeuse)
 // * 
-// * ÄÚ´æÖĞ¼°Ë¢³öºóµÄ½á¹¹Îª£º
+// * å†…å­˜ä¸­åŠåˆ·å‡ºåçš„ç»“æ„ä¸ºï¼š
 // * sql(md5) dbname/app   flag     count(sum) time(sum)    min         max         
-// * sql      logicDbName  Ö´ĞĞ³É¹¦  Ö´ĞĞ´ÎÊı   ÏìÓ¦Ê±¼ä   ×îĞ¡ÏìÓ¦Ê±¼ä ×î´óÏìÓ¦Ê±¼ä
-// * sql      realDbName1  Ö´ĞĞ³É¹¦  Ö´ĞĞ´ÎÊı   ÏìÓ¦Ê±¼ä   ×îĞ¡ÏìÓ¦Ê±¼ä ×î´óÏìÓ¦Ê±¼ä
-// * sql      realDbName2  Ö´ĞĞ³É¹¦  Ö´ĞĞ´ÎÊı   ÏìÓ¦Ê±¼ä   ×îĞ¡ÏìÓ¦Ê±¼ä ×î´óÏìÓ¦Ê±¼ä
-// * sql      realDbName2  Ö´ĞĞÊ§°Ü  Ö´ĞĞ´ÎÊı   ÏìÓ¦Ê±¼ä   ×îĞ¡ÏìÓ¦Ê±¼ä ×î´óÏìÓ¦Ê±¼ä
-// * sql      realDbName2  Ö´ĞĞ³¬Ê±  Ö´ĞĞ´ÎÊı   ÏìÓ¦Ê±¼ä   ×îĞ¡ÏìÓ¦Ê±¼ä ×î´óÏìÓ¦Ê±¼ä
-// * sql      null         ½âÎö³É¹¦  Ö´ĞĞ´ÎÊı   ÏìÓ¦Ê±¼ä   ×îĞ¡ÏìÓ¦Ê±¼ä ×î´óÏìÓ¦Ê±¼ä
-// * sql      null         ½âÎöÊ§°Ü  Ö´ĞĞ´ÎÊı   ÏìÓ¦Ê±¼ä   ×îĞ¡ÏìÓ¦Ê±¼ä ×î´óÏìÓ¦Ê±¼ä
-// * sql      null         ½âÎöÃüÖĞ  Ö´ĞĞ´ÎÊı   ÃüÖĞ´ÎÊı     NA          NA
+// * sql      logicDbName  æ‰§è¡ŒæˆåŠŸ  æ‰§è¡Œæ¬¡æ•°   å“åº”æ—¶é—´   æœ€å°å“åº”æ—¶é—´ æœ€å¤§å“åº”æ—¶é—´
+// * sql      realDbName1  æ‰§è¡ŒæˆåŠŸ  æ‰§è¡Œæ¬¡æ•°   å“åº”æ—¶é—´   æœ€å°å“åº”æ—¶é—´ æœ€å¤§å“åº”æ—¶é—´
+// * sql      realDbName2  æ‰§è¡ŒæˆåŠŸ  æ‰§è¡Œæ¬¡æ•°   å“åº”æ—¶é—´   æœ€å°å“åº”æ—¶é—´ æœ€å¤§å“åº”æ—¶é—´
+// * sql      realDbName2  æ‰§è¡Œå¤±è´¥  æ‰§è¡Œæ¬¡æ•°   å“åº”æ—¶é—´   æœ€å°å“åº”æ—¶é—´ æœ€å¤§å“åº”æ—¶é—´
+// * sql      realDbName2  æ‰§è¡Œè¶…æ—¶  æ‰§è¡Œæ¬¡æ•°   å“åº”æ—¶é—´   æœ€å°å“åº”æ—¶é—´ æœ€å¤§å“åº”æ—¶é—´
+// * sql      null         è§£ææˆåŠŸ  æ‰§è¡Œæ¬¡æ•°   å“åº”æ—¶é—´   æœ€å°å“åº”æ—¶é—´ æœ€å¤§å“åº”æ—¶é—´
+// * sql      null         è§£æå¤±è´¥  æ‰§è¡Œæ¬¡æ•°   å“åº”æ—¶é—´   æœ€å°å“åº”æ—¶é—´ æœ€å¤§å“åº”æ—¶é—´
+// * sql      null         è§£æå‘½ä¸­  æ‰§è¡Œæ¬¡æ•°   å‘½ä¸­æ¬¡æ•°     NA          NA
 // * 
-// * ×îºóÓÉÈÕÖ¾½âÎö¹¤¾ßÉú³ÉµÄ±¨±í¿ÉÄÜÊÇ£º
-// * sql dbname/app ³É¹¦´ÎÊı  ³É¹¦Æ½¾ùÏìÓ¦Ê±¼ä ³É¹¦×îĞ¡ÏìÓ¦Ê±¼ä ³É¹¦×î´óÏìÓ¦Ê±¼ä  Ê§°Ü´ÎÊı  Ê§°ÜÆ½¾ùÏìÓ¦Ê±¼ä Ê§°Ü×îĞ¡ÏìÓ¦Ê±¼ä Ê§°Ü×î´óÏìÓ¦Ê±¼ä
+// * æœ€åç”±æ—¥å¿—è§£æå·¥å…·ç”Ÿæˆçš„æŠ¥è¡¨å¯èƒ½æ˜¯ï¼š
+// * sql dbname/app æˆåŠŸæ¬¡æ•°  æˆåŠŸå¹³å‡å“åº”æ—¶é—´ æˆåŠŸæœ€å°å“åº”æ—¶é—´ æˆåŠŸæœ€å¤§å“åº”æ—¶é—´  å¤±è´¥æ¬¡æ•°  å¤±è´¥å¹³å‡å“åº”æ—¶é—´ å¤±è´¥æœ€å°å“åº”æ—¶é—´ å¤±è´¥æœ€å¤§å“åº”æ—¶é—´
 // * 
-// * keyÌ«¶àµÄÎÊÌâ£º
-// * ÓÃ¶¨³¤map£¬µ±mapÂúÊ±£¬Ë¢³öÖ´ĞĞ´ÎÊı×îĞ¡µÄ1/3Êı¾İ¡£ÕâÑùµÄºÃ´¦ÊÇ²»ÓÃÃ¿´Îget/put¶¼ÅÅĞò¡£²»»áÆµ·±Ë¢³ö¡£
-// * ¼ÈÄÜÀ¹½Ø¾ø´ó²¿·ÖÈÈµãkeyµÄÁ÷Á¿£¬ÓÖÏàµ±ÓÚ¶Ô·ÇÈÈµãµÄkey×öÁËÅúÁ¿Ğ´Èë¡£
+// * keyå¤ªå¤šçš„é—®é¢˜ï¼š
+// * ç”¨å®šé•¿mapï¼Œå½“mapæ»¡æ—¶ï¼Œåˆ·å‡ºæ‰§è¡Œæ¬¡æ•°æœ€å°çš„1/3æ•°æ®ã€‚è¿™æ ·çš„å¥½å¤„æ˜¯ä¸ç”¨æ¯æ¬¡get/putéƒ½æ’åºã€‚ä¸ä¼šé¢‘ç¹åˆ·å‡ºã€‚
+// * æ—¢èƒ½æ‹¦æˆªç»å¤§éƒ¨åˆ†çƒ­ç‚¹keyçš„æµé‡ï¼Œåˆç›¸å½“äºå¯¹éçƒ­ç‚¹çš„keyåšäº†æ‰¹é‡å†™å…¥ã€‚
 // * 
-// * ¸±×÷ÓÃ£º
-// * ÒòÎªÀÛ¼ÓÁËÒ»¶ÎÊ±¼äÄÚµÄÖ´ĞĞ´ÎÊıºÍÏìÓ¦Ê±¼ä£¬¿ÉÒÔÍ¬Ê±×÷ÎªÊ±¼äÆ¬·½Ê½µÄÊµÊ±¼à¿Ø±¨¾¯¡£µ«ÊÇ±¨¾¯µÄ¼ä¸ôÊ±¼ä¿ÉÄÜÒªÇó¸üĞ¡
+// * å‰¯ä½œç”¨ï¼š
+// * å› ä¸ºç´¯åŠ äº†ä¸€æ®µæ—¶é—´å†…çš„æ‰§è¡Œæ¬¡æ•°å’Œå“åº”æ—¶é—´ï¼Œå¯ä»¥åŒæ—¶ä½œä¸ºæ—¶é—´ç‰‡æ–¹å¼çš„å®æ—¶ç›‘æ§æŠ¥è­¦ã€‚ä½†æ˜¯æŠ¥è­¦çš„é—´éš”æ—¶é—´å¯èƒ½è¦æ±‚æ›´å°
 // * 
 // * @author linxuan
 // *
@@ -54,10 +54,10 @@
 //	// LogFactory.getLog(BufferedStatLogWriter.class);
 //	// private static final Logger logger = LoggerInit.TDDL_LOG;
 //	public static final Logger statlog = LoggerInit.TDDL_Statistic_LOG;
-//	public static final String logFieldSep = "#@#"; // sqlÖĞ³öÏÖ¸ÅÂÊĞ¡£¬ºÍÕıÔòÊ½²»³åÍ»
+//	public static final String logFieldSep = "#@#"; // sqlä¸­å‡ºç°æ¦‚ç‡å°ï¼Œå’Œæ­£åˆ™å¼ä¸å†²çª
 //	public static final String linesep = System.getProperty("line.separator");
 //	public static volatile int maxkeysize = 1024;
-//	public static volatile int dumpInterval = 300; // µ¥Î»Ãë¡£Ä¬ÈÏ5·ÖÖÓÈ«Á¿Ë¢³öÒ»´Î
+//	public static volatile int dumpInterval = 300; // å•ä½ç§’ã€‚é»˜è®¤5åˆ†é’Ÿå…¨é‡åˆ·å‡ºä¸€æ¬¡
 //	public static final SimpleDateFormat df = new SimpleDateFormat("yyy-MM-dd HH:mm:ss:SSS");
 //
 //	private static LogWriter logWriter = new LogWriter() {
@@ -98,8 +98,8 @@
 //	static class StatCounter {
 //		private final AtomicLong count = new AtomicLong(0L);
 //		private final AtomicLong value = new AtomicLong(0L);
-//		private final AtomicLong min = new AtomicLong(Long.MAX_VALUE); // value×îĞ¡Öµ
-//		private final AtomicLong max = new AtomicLong(Long.MIN_VALUE); // value×î´óÖµ
+//		private final AtomicLong min = new AtomicLong(Long.MAX_VALUE); // valueæœ€å°å€¼
+//		private final AtomicLong max = new AtomicLong(Long.MIN_VALUE); // valueæœ€å¤§å€¼
 //
 //		public void add(long c, long v) {
 //			// this.count.incrementAndGet();
@@ -111,7 +111,7 @@
 //					if (min.compareAndSet(vmin, v)) {
 //						break;
 //					}
-//					continue; // ÓĞ¿ÉÄÜÒÑ¾­±»ÆäËûÏß³ÌÉèÖÃÁËÒ»¸ö´ÎĞ¡µÄ£¬ËùÒÔ¼ÌĞøÅĞ¶Ï
+//					continue; // æœ‰å¯èƒ½å·²ç»è¢«å…¶ä»–çº¿ç¨‹è®¾ç½®äº†ä¸€ä¸ªæ¬¡å°çš„ï¼Œæ‰€ä»¥ç»§ç»­åˆ¤æ–­
 //				}
 //				break;
 //			}
@@ -121,7 +121,7 @@
 //					if (max.compareAndSet(vmax, v)) {
 //						break;
 //					}
-//					continue; // ÓĞ¿ÉÄÜÒÑ¾­±»ÆäËûÏß³ÌÉèÖÃÁËÒ»¸ö´Î´óµÄ£¬ËùÒÔ¼ÌĞøÅĞ¶Ï
+//					continue; // æœ‰å¯èƒ½å·²ç»è¢«å…¶ä»–çº¿ç¨‹è®¾ç½®äº†ä¸€ä¸ªæ¬¡å¤§çš„ï¼Œæ‰€ä»¥ç»§ç»­åˆ¤æ–­
 //				}
 //				break;
 //			}
@@ -256,14 +256,14 @@
 //	}
 //
 //	/**
-//	 * Ö»ÓĞÒ»¸öÏß³Ì»áÖ´ĞĞflushAll»òflushLRU·½·¨
+//	 * åªæœ‰ä¸€ä¸ªçº¿ç¨‹ä¼šæ‰§è¡ŒflushAllæˆ–flushLRUæ–¹æ³•
 //	 */
 //	private static void flushAll() {
 //		Map<Object, ConcurrentHashMap<Object, ConcurrentHashMap<Object, StatCounter>>> res = keys;
 //		keys = new ConcurrentHashMap<Object, ConcurrentHashMap<Object, ConcurrentHashMap<Object, StatCounter>>>(
 //				maxkeysize);
 //		try {
-//			Thread.sleep(5); // µÈ´ıÒÑ¾­½øÈëkeys×ÓÏîµÄÏß³Ì¼ÆËãÍê
+//			Thread.sleep(5); // ç­‰å¾…å·²ç»è¿›å…¥keyså­é¡¹çš„çº¿ç¨‹è®¡ç®—å®Œ
 //		} catch (InterruptedException e) {
 //		}
 //		statlog.info("[flushAll]size=" + res.size() + linesep);
@@ -280,7 +280,7 @@
 //	};
 //
 //	/**
-//	 * Ë¢³öÖ´ĞĞ´ÎÊı×îÉÙµÄkey£¬Ö»±£ÁôkeysizeµÄ2/3
+//	 * åˆ·å‡ºæ‰§è¡Œæ¬¡æ•°æœ€å°‘çš„keyï¼Œåªä¿ç•™keysizeçš„2/3
 //	 */
 //	private static void flushLRU() {
 //		List<Object[]> counts = new ArrayList<Object[]>();
@@ -296,8 +296,8 @@
 //		statlog.debug("sortedSize=" + counts.size() + ",keys.size=" + keys.size() + linesep);// sortedSize=1135,keys.size=1169
 //		Collections.sort(counts, countsComparator);
 //		int i = 0;
-//		int remain = maxkeysize * 2 / 3; // ±£Áô2/3
-//		int flush = keys.size() - remain; // ÕâÊ±size¿ÉÄÜÒÑ¾­Ôö³¤
+//		int remain = maxkeysize * 2 / 3; // ä¿ç•™2/3
+//		int flush = keys.size() - remain; // è¿™æ—¶sizeå¯èƒ½å·²ç»å¢é•¿
 //		Map<Object, ConcurrentHashMap<Object, ConcurrentHashMap<Object, StatCounter>>> flushed = new HashMap<Object, ConcurrentHashMap<Object, ConcurrentHashMap<Object, StatCounter>>>();
 //		for (Object[] keycount : counts) {
 //			Object key = keycount[0];

@@ -45,23 +45,23 @@ public class DispatchAnalyzer {
 	}
 //	private void analyze(TargetDBMeta li) {
 //		for (TargetDB d : li.getTarget()) {
-//			System.out.println("¸Ãsql·ÖÎöÈçÏÂ£º");
-//			System.out.print("ĞéÄâ±íÃû£º" + li.getVirtualTableName());
-//			System.out.println("¶Á¿â±êÊ¶£º");
+//			System.out.println("è¯¥sqlåˆ†æå¦‚ä¸‹ï¼š");
+//			System.out.print("è™šæ‹Ÿè¡¨åï¼š" + li.getVirtualTableName());
+//			System.out.println("è¯»åº“æ ‡è¯†ï¼š");
 //			System.out.print("      ");
 //			for (String id : d.getReadPool()) {
 //				System.out.print(id);
 //				System.out.print("||");
 //			}
 //			System.out.println("");
-//			System.out.println("Ğ´¿â±êÊ¶£º");
+//			System.out.println("å†™åº“æ ‡è¯†ï¼š");
 //			System.out.print("      ");
 //			for (String id : d.getWritePool()) {
 //				System.out.print(id);
 //				System.out.print("||");
 //			}
 //			System.out.println("");
-//			System.out.println("Ä¿±ê±íÃû£º");
+//			System.out.println("ç›®æ ‡è¡¨åï¼š");
 //
 //			System.out.print("      ");
 //			Iterator<String> itr = d.getTableNames().iterator();

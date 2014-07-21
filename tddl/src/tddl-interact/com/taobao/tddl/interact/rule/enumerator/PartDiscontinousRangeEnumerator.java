@@ -10,26 +10,26 @@ public abstract class PartDiscontinousRangeEnumerator implements CloseIntervalFi
 	protected abstract Comparable getOneStep(Comparable source,Comparable atomIncVal);
 	
 	/**
-	 * ¸ù¾İ²»Í¬Êı¾İµÄ×îĞ¡µ¥Î»½«>±äÎª>=
+	 * æ ¹æ®ä¸åŒæ•°æ®çš„æœ€å°å•ä½å°†>å˜ä¸º>=
 	 * 
 	 * @param to
 	 * @return
 	 */
 	protected abstract Comparative changeGreater2GreaterOrEq(Comparative from);
 	/**
-	 * ¸ù¾İ²»Í¬Êı¾İµÄ×îĞ¡µ¥Î»½«<±äÎª<=
+	 * æ ¹æ®ä¸åŒæ•°æ®çš„æœ€å°å•ä½å°†<å˜ä¸º<=
 	 * 
 	 * @param to
 	 * @return
 	 */
 	protected abstract Comparative changeLess2LessOrEq(Comparative to);
 	/**
-	 * Èç¹ûÊäÈëµÄ·¶Î§´óÓÚrange.size() * atomIncrementvalueµÄÖµ£¬ÄÇÃ´¾Í¿ÉÒÔ×ö¶ÌÂ·ÓÅ»¯
+	 * å¦‚æœè¾“å…¥çš„èŒƒå›´å¤§äºrange.size() * atomIncrementvalueçš„å€¼ï¼Œé‚£ä¹ˆå°±å¯ä»¥åšçŸ­è·¯ä¼˜åŒ–
 	 * 
 	 * @param from
-	 *            Ö»ÓĞ<=Çé¿öÏÂµÄformÖµ
+	 *            åªæœ‰<=æƒ…å†µä¸‹çš„formå€¼
 	 * @param to
-	 *            Ö»ÓĞ>=Çé¿öÏÂµÄto Öµ
+	 *            åªæœ‰>=æƒ…å†µä¸‹çš„to å€¼
 	 * @param range
 	 * @param atomIncrementValue
 	 * @return
@@ -39,7 +39,7 @@ public abstract class PartDiscontinousRangeEnumerator implements CloseIntervalFi
 			Comparable from, Comparable to,Integer cumulativeTimes,Comparable<?> atomIncrValue);
 	
 	/**
-	 *  ´ÓÆğÊ¼Öµ¿ªÊ¼,½«×ÔÔöÖµ*ÀÛ¼Ó´ÎÊı+ÆğÊ¼Öµ£¬Ëã³öÈÃÖµÓò±ä¶¯Ò»¸öÖÜÆÚµÄËùÓĞ¶¨ÒåÓòÖµµÄÃ¶¾Ùµã¡£
+	 *  ä»èµ·å§‹å€¼å¼€å§‹,å°†è‡ªå¢å€¼*ç´¯åŠ æ¬¡æ•°+èµ·å§‹å€¼ï¼Œç®—å‡ºè®©å€¼åŸŸå˜åŠ¨ä¸€ä¸ªå‘¨æœŸçš„æ‰€æœ‰å®šä¹‰åŸŸå€¼çš„æšä¸¾ç‚¹ã€‚
 	 * @param begin
 	 * @param cumulativeTimes
 	 * @param atomicIncreationValue
@@ -50,7 +50,7 @@ public abstract class PartDiscontinousRangeEnumerator implements CloseIntervalFi
 	public void mergeFeildOfDefinitionInCloseInterval(Comparative from,
 			Comparative to, Set<Object> retValue,Integer cumulativeTimes,Comparable<?> atomIncrValue) {
 		if(cumulativeTimes == null||atomIncrValue == null){
-			throw new IllegalArgumentException("µ±Ô­×ÓÔö²ÎÊı»òµş¼Ó²ÎÊıÎª¿ÕÊ±£¬²»Ö§³ÖÔÚsqlÖĞÊ¹ÓÃ·¶Î§Ñ¡Ôñ£¬Èçid>? and id<?");
+			throw new IllegalArgumentException("å½“åŸå­å¢å‚æ•°æˆ–å åŠ å‚æ•°ä¸ºç©ºæ—¶ï¼Œä¸æ”¯æŒåœ¨sqlä¸­ä½¿ç”¨èŒƒå›´é€‰æ‹©ï¼Œå¦‚id>? and id<?");
 		}
 		from = changeGreater2GreaterOrEq(from);
 		
@@ -60,18 +60,18 @@ public abstract class PartDiscontinousRangeEnumerator implements CloseIntervalFi
 		Comparable toComparable = to.getValue();
 		
 		if (inputCloseRangeGreaterThanMaxFieldOfDifination(fromComparable, toComparable,cumulativeTimes,atomIncrValue)) {
-			//Èç¹ûËùÈ¡µÃ·¶Î§´óÓÚ·ÇÁ¬Ğøº¯ÊıµÄÒ»¸ö±ä¶¯ÖÜÆÚ¡£Ö±½Ó¶ÏÂ·µô,²¢ÇÒÈ«È¡
+			//å¦‚æœæ‰€å–å¾—èŒƒå›´å¤§äºéè¿ç»­å‡½æ•°çš„ä¸€ä¸ªå˜åŠ¨å‘¨æœŸã€‚ç›´æ¥æ–­è·¯æ‰,å¹¶ä¸”å…¨å–
 			if(retValue != null){
 				retValue.addAll(getAllPassableFields(from, cumulativeTimes,atomIncrValue));
 				return ;
 			}else{
-				throw new IllegalArgumentException("´ıĞ´ÈëµÄ²ÎÊısetÎªnull");
+				throw new IllegalArgumentException("å¾…å†™å…¥çš„å‚æ•°setä¸ºnull");
 			}
 		}
 	
 		
 		if(fromComparable.compareTo(toComparable)==0){
-			//Èç¹û×ª±äÎª>=ºÍ<=µÃÇé¿öÏÂ£¬Á©ÖµÏàµÈÁË£¬ÄÇÃ´Ö±½Ó·µ»Ø¡£
+			//å¦‚æœè½¬å˜ä¸º>=å’Œ<=å¾—æƒ…å†µä¸‹ï¼Œä¿©å€¼ç›¸ç­‰äº†ï¼Œé‚£ä¹ˆç›´æ¥è¿”å›ã€‚
 			retValue.add(fromComparable);
 			return;
 		}
@@ -84,17 +84,17 @@ public abstract class PartDiscontinousRangeEnumerator implements CloseIntervalFi
 			enumedFoD = getOneStep(enumedFoD, atomIncrValue);
 			int compareResult = enumedFoD.compareTo(toComparable);
 			if(compareResult == 0){
-				//Ã¶¾ÙÖµµÈÓÚtoµÄÖµ£¬¼òµ¥µÄ°ÑtoµÄÖµ·Åµ½Ã¶¾ÙÊıÁĞÀï¡£·µ»Ø
+				//æšä¸¾å€¼ç­‰äºtoçš„å€¼ï¼Œç®€å•çš„æŠŠtoçš„å€¼æ”¾åˆ°æšä¸¾æ•°åˆ—é‡Œã€‚è¿”å›
 				retValue.add(toComparable);
 				return;
 			}else if(compareResult >0){
-				//Ã¶¾ÙÖµ´óÓÚtoµÃÖµ,°´ÔÂ·Ö¿âµÄÇé¿öÏÂÒ²ĞèÒª°Ñ×îºóÒ»¸öÔÂ¼ÓÉÏ£¬ÆäËûÇé¿ö»á¶àËãÒ»¸ö¿â
-				//ÕâÑù×ö£¬ÔÚ×îºóÒ»ÌìµÄÊ±ºò»áÓĞ¿ÉÄÜ³öÏÖÁ½¸öÖµ£¬µÚÒ»¸öÖµÊÇÓÉfrom×ÔÔö³öÏÖµÄÖµ£¬µÚ¶ş¸öÊÇÓÉto²úÉúµÄÖµ¡£¹æÔòÒıÇæ¶àËãÒ»´Î£¬µ«ÎªÁË±£Ö¤ÕıÈ·ÔİÊ±ÏÈÕâÑùĞ´
+				//æšä¸¾å€¼å¤§äºtoå¾—å€¼,æŒ‰æœˆåˆ†åº“çš„æƒ…å†µä¸‹ä¹Ÿéœ€è¦æŠŠæœ€åä¸€ä¸ªæœˆåŠ ä¸Šï¼Œå…¶ä»–æƒ…å†µä¼šå¤šç®—ä¸€ä¸ªåº“
+				//è¿™æ ·åšï¼Œåœ¨æœ€åä¸€å¤©çš„æ—¶å€™ä¼šæœ‰å¯èƒ½å‡ºç°ä¸¤ä¸ªå€¼ï¼Œç¬¬ä¸€ä¸ªå€¼æ˜¯ç”±fromè‡ªå¢å‡ºç°çš„å€¼ï¼Œç¬¬äºŒä¸ªæ˜¯ç”±toäº§ç”Ÿçš„å€¼ã€‚è§„åˆ™å¼•æ“å¤šç®—ä¸€æ¬¡ï¼Œä½†ä¸ºäº†ä¿è¯æ­£ç¡®æš‚æ—¶å…ˆè¿™æ ·å†™
 				//trace: http://jira.taobao.ali.com/browse/TDDL-38
 				retValue.add(toComparable);
 				return;
 			}else{
-				//Ã¶¾ÙĞ¡ÓÚtoµÄÖµ,Ìí¼ÓÃ¶¾Ùµ½¶¨ÒåÓò
+				//æšä¸¾å°äºtoçš„å€¼,æ·»åŠ æšä¸¾åˆ°å®šä¹‰åŸŸ
 				retValue.add(enumedFoD);
 				
 			}

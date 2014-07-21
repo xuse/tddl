@@ -5,14 +5,14 @@ import java.util.Arrays;
 import com.alibaba.common.lang.StringUtil;
 
 /**
- * Ó¦ÓÃÁ¬½ÓÊıÏŞÖÆ¹¦ÄÜÖĞµÄÁ¬½ÓÊıÅäÖÃ¡£
+ * åº”ç”¨è¿æ¥æ•°é™åˆ¶åŠŸèƒ½ä¸­çš„è¿æ¥æ•°é…ç½®ã€‚
  * 
  * @author changyuan.lh
  */
 public final class ConnRestrictEntry {
 
 	/**
-	 * HASH ²ßÂÔµÄ×î´ó²ÛÊıÁ¿ÏŞÖÆ¡£
+	 * HASH ç­–ç•¥çš„æœ€å¤§æ§½æ•°é‡é™åˆ¶ã€‚
 	 */
 	public static final int MAX_HASH_RESTRICT_SLOT = 32;
 
@@ -79,11 +79,11 @@ public final class ConnRestrictEntry {
 				+ ", " + limits;
 	}
 
-	protected static final String KEY_DEFAULT = "~"; // Æ¥Åä null Key
+	protected static final String KEY_DEFAULT = "~"; // åŒ¹é… null Key
 
-	protected static final String KEY_WILDCARD = "*"; // Æ¥ÅäËùÓĞ Key
+	protected static final String KEY_WILDCARD = "*"; // åŒ¹é…æ‰€æœ‰ Key
 
-	protected static final String PERCENT = "%"; // °Ù·Ö±È
+	protected static final String PERCENT = "%"; // ç™¾åˆ†æ¯”
 
 	public static boolean isNullKey(String key) {
 		return KEY_DEFAULT.equals(key);

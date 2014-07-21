@@ -45,7 +45,7 @@ public class Insert extends DMLCommon{
 		List<Column> cols=columns.getColumnsList();
 		Comparable<?> temp=null;
 		if(valueObj.size()!=cols.size()){
-			throw new IllegalArgumentException("列名个数与insert参数不符");
+			throw new IllegalArgumentException("鍒楀悕涓暟涓巌nsert鍙傛暟涓嶇");
 		}
 		for(int i=0;i<valueObj.size();i++){
 			Column col=cols.get(i);

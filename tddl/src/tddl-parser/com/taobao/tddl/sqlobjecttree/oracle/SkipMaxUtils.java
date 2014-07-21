@@ -20,7 +20,7 @@ import com.taobao.tddl.sqlobjecttree.common.expression.ExpressionGroup;
 import com.taobao.tddl.sqlobjecttree.common.expression.OrExpressionGroup;
 
 /**
- * ½âÎöoracle skip ºÍmaxÖµµÄ¹¤¾ßÀà
+ * è§£æoracle skip å’Œmaxå€¼çš„å·¥å…·ç±»
  * @author shenxun
  *
  */
@@ -28,8 +28,8 @@ public class SkipMaxUtils {
 	
     /**
      * mysql: limit 0,20
-     * Êµ¼ÊÊı¾İÔÚÊı¾İ¿âÖĞµÄÈ¡·¨: x>0 and x<=20
-     * ¶ÔÓ¦javaµÄlimitTo limitFrom:lTo=1-1 lFrom=21-1(ÒòÎªmysqlµÚÒ»ÌõÊı¾İ¶ÔÓ¦javaÊı×éµÄ0)
+     * å®é™…æ•°æ®åœ¨æ•°æ®åº“ä¸­çš„å–æ³•: x>0 and x<=20
+     * å¯¹åº”javaçš„limitTo limitFrom:lTo=1-1 lFrom=21-1(å› ä¸ºmysqlç¬¬ä¸€æ¡æ•°æ®å¯¹åº”javaæ•°ç»„çš„0)
      * @param co
      * @return
      */
@@ -50,19 +50,19 @@ public class SkipMaxUtils {
             }
             return snapSkip;
         } else if (co instanceof ComparativeOR) {
-            throw new IllegalArgumentException("²»Ö§³ÖÒ»ÌõsqlÖĞrownum³öÏÖorµÄÇé¿ö");
+            throw new IllegalArgumentException("ä¸æ”¯æŒä¸€æ¡sqlä¸­rownumå‡ºç°orçš„æƒ…å†µ");
         } else if (co.getComparison() == Comparative.Equivalent || co.getComparison() == 0) {
-            throw new IllegalArgumentException("rownumÄ¿Ç°²»Ö§³Ö=¹ØÏµ");
+            throw new IllegalArgumentException("rownumç›®å‰ä¸æ”¯æŒ=å…³ç³»");
         } else if (co.getComparison() == Comparative.GreaterThan) {
-            //> µÄÇé¿ö
+            //> çš„æƒ…å†µ
             return getComparativeToInt(co);
         } else if (co.getComparison() == Comparative.GreaterThanOrEqual) {
-            //>=µÄÇé¿ö
+            //>=çš„æƒ…å†µ
             return getComparativeToInt(co) - 1;
         }
         return DMLCommon.DEFAULT_SKIP_MAX;
 //        else {
-//          //ÆäËû±êÇ©µÄÇé¿ö
+//          //å…¶ä»–æ ‡ç­¾çš„æƒ…å†µ
 //        }
     }
    public static int getRowNumMaxToInt(Comparative co) {
@@ -82,20 +82,20 @@ public class SkipMaxUtils {
             }
             return snapSkip;
         } else if (co instanceof ComparativeOR) {
-            throw new IllegalArgumentException("²»Ö§³ÖÒ»ÌõsqlÖĞrownum³öÏÖorµÄÇé¿ö");
+            throw new IllegalArgumentException("ä¸æ”¯æŒä¸€æ¡sqlä¸­rownumå‡ºç°orçš„æƒ…å†µ");
         } else if (co.getComparison() == Comparative.Equivalent || co.getComparison() == 0) {
-            throw new IllegalArgumentException("rownumÄ¿Ç°²»Ö§³Ö=¹ØÏµ");
+            throw new IllegalArgumentException("rownumç›®å‰ä¸æ”¯æŒ=å…³ç³»");
         } else if (co.getComparison() == Comparative.LessThan) {
-            //< µÄÇé¿ö
+            //< çš„æƒ…å†µ
             return getComparativeToInt(co)-1;
         } else if (co.getComparison() == Comparative.LessThanOrEqual) {
-            //<=µÄÇé¿ö
+            //<=çš„æƒ…å†µ
             return getComparativeToInt(co);
         } 
         return DMLCommon.DEFAULT_SKIP_MAX;
 //        else {
-//		  ÆäËûµÄ±È½ÏÇé¿ö
-//            throw new IllegalStateException("²»Ó¦µ½´ï´Ë´¦");
+//		  å…¶ä»–çš„æ¯”è¾ƒæƒ…å†µ
+//            throw new IllegalStateException("ä¸åº”åˆ°è¾¾æ­¤å¤„");
 //        }
     }
     private static int getComparativeToInt(Comparative co) {
@@ -106,12 +106,12 @@ public class SkipMaxUtils {
         if (ctemp instanceof BigDecimal) {
             return ((BigDecimal) ctemp).intValueExact();
         } else {
-            throw new IllegalArgumentException("Ä¿Ç°Ö»Ö§³ÖbigDecimalºÍintegerÀàĞÍµÄrownum²ÎÊı,µ±Ç°²ÎÊıÎª:"+ctemp.getClass()+"|"+ctemp);
+            throw new IllegalArgumentException("ç›®å‰åªæ”¯æŒbigDecimalå’Œintegerç±»å‹çš„rownumå‚æ•°,å½“å‰å‚æ•°ä¸º:"+ctemp.getClass()+"|"+ctemp);
         }
     }
 
 	/**
-	 * ÕÒµ½ËùÓĞµÄ°üº¬rownum»òÆä±ğÃûµÄ¹ØÏµÊı×é£¬·Åµ½Ò»¸öExpressionGroupÖĞ
+	 * æ‰¾åˆ°æ‰€æœ‰çš„åŒ…å«rownumæˆ–å…¶åˆ«åçš„å…³ç³»æ•°ç»„ï¼Œæ”¾åˆ°ä¸€ä¸ªExpressionGroupä¸­
 	 */
 	protected  static ComparativeAND buildRownumGroup(OrExpressionGroup orExpressionGroup,
 			List<TableName> tbNames,Map<String, SQLFragment>  aliasToSQLFragementMap){
@@ -129,7 +129,7 @@ public class SkipMaxUtils {
 		ComparativeAND and=new ComparativeAND();
 		
 		for(Comparative com:map.values()){
-			//ÒòÎªÓĞ±ğÃûÖ¸Ïòrownum£¬ËùÒÔ²»ÄÜ¼òµ¥µÄÊ¹ÓÃmap.get("rownum")À´»ñÈ¡Ä¿±êComparative
+			//å› ä¸ºæœ‰åˆ«åæŒ‡å‘rownumï¼Œæ‰€ä»¥ä¸èƒ½ç®€å•çš„ä½¿ç”¨map.get("rownum")æ¥è·å–ç›®æ ‡Comparative
 			and.addComparative(com);
 		}
 		
@@ -138,8 +138,8 @@ public class SkipMaxUtils {
 	
     
     /**
-     * Õâ¸ö·½·¨»áÑ­»·±éÀúÕû¸ö¶ÔÏóÊ÷£¬´ÓÀïÃæ»ñÈ¡rownumµÄ±í´ïÊ½
-     * °üÀ¨rownumµÄ±ğÃû×éÖ¯±í´ïÊ½£¬Èçrownum rn,È»ºóÔÚÆäËûµØ·½rn <=10ÕâÑù¡£Ò²»áÕÒ³öÀ´
+     * è¿™ä¸ªæ–¹æ³•ä¼šå¾ªç¯éå†æ•´ä¸ªå¯¹è±¡æ ‘ï¼Œä»é‡Œé¢è·å–rownumçš„è¡¨è¾¾å¼
+     * åŒ…æ‹¬rownumçš„åˆ«åç»„ç»‡è¡¨è¾¾å¼ï¼Œå¦‚rownum rn,ç„¶ååœ¨å…¶ä»–åœ°æ–¹rn <=10è¿™æ ·ã€‚ä¹Ÿä¼šæ‰¾å‡ºæ¥
      * @param source
      * @param tabNames
      * @param targetRownumGroup
@@ -149,7 +149,7 @@ public class SkipMaxUtils {
 			List<TableName> tabNames, ExpressionGroup targetRownumGroup,Map<String,SQLFragment> aliasMap) {
 		if (targetRownumGroup != null) {
 			for (TableName tname : tabNames) {
-				//ÏÈÕÒ±íÃûÊÇ¸öselectµÄ¡£
+				//å…ˆæ‰¾è¡¨åæ˜¯ä¸ªselectçš„ã€‚
 				if (tname instanceof TableNameSubQueryImp) {
 					Select select = ((TableNameSubQueryImp) tname)
 							.getSubSelect();
@@ -157,7 +157,7 @@ public class SkipMaxUtils {
 							.getTbNames(), targetRownumGroup,aliasMap);
 				}
 				// else{
-				// //¼òµ¥±íÃû»òº¯Êı±íÃû
+				// //ç®€å•è¡¨åæˆ–å‡½æ•°è¡¨å
 				// }
 			}
 			putRowNumIntoRownumExpGroup(source, targetRownumGroup,aliasMap);
@@ -165,55 +165,55 @@ public class SkipMaxUtils {
 	}
 
 	/**
-	 * ×¨ÃÅ´¦ÀíÒ»¸öselect¼¶±ğÖĞµÄwhereÌõ¼ş
-	 * Æ´×°Ìõ¼şÖĞÖ»²ÉÓÃÁËand¹ØÏµ£¬ÒòÎªrownumÊÇÎ±ÁĞ£¬Ïë²»³öÓĞÊ²Ã´Çé¿ö»áÈÃrownumÕâ¸öselectÁĞÓĞrownum >2 or rownum<2ÕâÑùµÄÌõ¼ş
+	 * ä¸“é—¨å¤„ç†ä¸€ä¸ªselectçº§åˆ«ä¸­çš„whereæ¡ä»¶
+	 * æ‹¼è£…æ¡ä»¶ä¸­åªé‡‡ç”¨äº†andå…³ç³»ï¼Œå› ä¸ºrownumæ˜¯ä¼ªåˆ—ï¼Œæƒ³ä¸å‡ºæœ‰ä»€ä¹ˆæƒ…å†µä¼šè®©rownumè¿™ä¸ªselectåˆ—æœ‰rownum >2 or rownum<2è¿™æ ·çš„æ¡ä»¶
 	 * @param source
 	 * @param targetRowNumGroup
-	 * @param aliasMap ±ğÃûMap,´æ·Å±ğÃû->sqlÔªËØµÄÓ³Éä¡£
+	 * @param aliasMap åˆ«åMap,å­˜æ”¾åˆ«å->sqlå…ƒç´ çš„æ˜ å°„ã€‚
 	 */
 	protected static void putRowNumIntoRownumExpGroup(ExpressionGroup source,
 			ExpressionGroup targetRowNumGroup,Map<String,SQLFragment> aliasMap) {
 		List<Expression> exps = source.getExpressions();
 		for (Expression exp : exps) {
 			if (exp instanceof ExpressionGroup) {
-				// ±í´ïÊ½×éÇ¶Ì×¡£Ñ­»·½øÈëÄÚ²¿´¦Àí
+				// è¡¨è¾¾å¼ç»„åµŒå¥—ã€‚å¾ªç¯è¿›å…¥å†…éƒ¨å¤„ç†
 				putRowNumIntoRownumExpGroup(((ExpressionGroup) exp),
 						targetRowNumGroup,aliasMap);
 			} else if (exp instanceof ComparableExpression) {
 				Object left = ((ComparableExpression) exp).getLeft();
 				if (left instanceof Column) {
-					//×ó±ßÒ»°ãÀ´Ëµ¶¼ÊÇÁĞÃû£¬Õû¸ö½âÎöÊ÷Ä¬ÈÏ×ñÊØµÄ¹æÔò
-					//TODO:¶Ô×óÓÒµßµ¹µÄÒªÏë¸ö°ì·¨ÔÚ²»Ó°Ïìµ±Ç°¹¦ÄÜµÄÇé¿öÏÂÅ×³öÒì³££¬Å×µÃÊ±ºòÒªĞ¡ĞÄcol=col+1ÕâÖÖÇé¿ö¡£
+					//å·¦è¾¹ä¸€èˆ¬æ¥è¯´éƒ½æ˜¯åˆ—åï¼Œæ•´ä¸ªè§£ææ ‘é»˜è®¤éµå®ˆçš„è§„åˆ™
+					//TODO:å¯¹å·¦å³é¢ å€’çš„è¦æƒ³ä¸ªåŠæ³•åœ¨ä¸å½±å“å½“å‰åŠŸèƒ½çš„æƒ…å†µä¸‹æŠ›å‡ºå¼‚å¸¸ï¼ŒæŠ›å¾—æ—¶å€™è¦å°å¿ƒcol=col+1è¿™ç§æƒ…å†µã€‚
 					String colName = ((Column) left).getColumn();
 					if (colName != null) {
 						putRownumColumnToRownumExpression(targetRowNumGroup,
 								exp, colName);
-						//´¦Àírownum±ğÃûµÄÇé¿ö
+						//å¤„ç†rownumåˆ«åçš„æƒ…å†µ
 						SQLFragment fragement = aliasMap.get(colName
 								.toUpperCase());
 						if (fragement instanceof Column) {
 							String tempCol = ((Column) fragement).getColumn();
-							//¿´Ò»ÏÂ±ğÃûËù¶ÔÓ¦µÄÕæÕıÁĞÃûÊÇ·ñÊÇÒ»¸örownumÁĞ¡£Èç¹ûÊÇ¾ÍÌí¼Óµ½rownumÊı×éÖĞ
+							//çœ‹ä¸€ä¸‹åˆ«åæ‰€å¯¹åº”çš„çœŸæ­£åˆ—åæ˜¯å¦æ˜¯ä¸€ä¸ªrownumåˆ—ã€‚å¦‚æœæ˜¯å°±æ·»åŠ åˆ°rownumæ•°ç»„ä¸­
 							if (tempCol != null) {
 								putRownumColumnToRownumExpression(
 										targetRowNumGroup, exp, tempCol);
 							}
 						}
 						// else{
-						// //ÆäËü×ó±ß²¿·Ö·ÇcolumnµÄÇé¿ö¡£ºöÂÔ£¬Ö÷ÒªÓĞÁ½ÖÖ¿ÉÄÜ£¬µÚÒ»ÖÖÊÇ×óÓÒµßµ¹£¬µÚ¶şÖÖÊÇ·Çrownum¡£¶¼ºöÂÔ
+						// //å…¶å®ƒå·¦è¾¹éƒ¨åˆ†écolumnçš„æƒ…å†µã€‚å¿½ç•¥ï¼Œä¸»è¦æœ‰ä¸¤ç§å¯èƒ½ï¼Œç¬¬ä¸€ç§æ˜¯å·¦å³é¢ å€’ï¼Œç¬¬äºŒç§æ˜¯érownumã€‚éƒ½å¿½ç•¥
 						// }
 					}
 				}
 				Object right = ((ComparableExpression) exp).getRight();
 				if (right instanceof Select) {
-					// Èç¹ûÓÒ±ßÊÇÒ»¸öSelect
-					// µİ¹éµÄ´ÓselectÖĞ³éÈ¡ExpGroup
+					// å¦‚æœå³è¾¹æ˜¯ä¸€ä¸ªSelect
+					// é€’å½’çš„ä»selectä¸­æŠ½å–ExpGroup
 					Select select = ((Select) right);
 					nestedBuildRownumGroup(select.getWhere().getExpGroup(), select
 							.getTbNames(), targetRowNumGroup,aliasMap);
 				}
 				// else{
-				// //ÆäËûµÄÕı³£°ó¶¨±äÁ¿»òÁĞÃûÇé¿ö£¬ºöÂÔ¡£
+				// //å…¶ä»–çš„æ­£å¸¸ç»‘å®šå˜é‡æˆ–åˆ—åæƒ…å†µï¼Œå¿½ç•¥ã€‚
 				// }
 			}
 		}
@@ -222,8 +222,8 @@ public class SkipMaxUtils {
 	private static void putRownumColumnToRownumExpression(
 			ExpressionGroup targetRowNumGroup, Expression exp, String colName) {
 		if (colName.equalsIgnoreCase("rownum")) {
-			// Èç¹ûÊÇrownum,·ÅÈëRowNum×¨ÓÃExpGroupÖĞ.
-			// ÒòÎªrownumÊÇÎ±ÁĞ£¬²»»á³öÏÖÕë¶ÔËûµÄ´¦Àíº¯Êı¡£
+			// å¦‚æœæ˜¯rownum,æ”¾å…¥RowNumä¸“ç”¨ExpGroupä¸­.
+			// å› ä¸ºrownumæ˜¯ä¼ªåˆ—ï¼Œä¸ä¼šå‡ºç°é’ˆå¯¹ä»–çš„å¤„ç†å‡½æ•°ã€‚
 			targetRowNumGroup.addExpression(exp);
 			((ComparableExpression)exp).setRownum(true);
 		}

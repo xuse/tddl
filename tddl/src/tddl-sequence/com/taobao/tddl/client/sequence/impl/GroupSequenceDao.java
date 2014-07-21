@@ -54,105 +54,105 @@ public class GroupSequenceDao implements SequenceDao {
 	private static final String DEFAULT_VALUE_COLUMN_NAME = "value";
 	private static final String DEFAULT_GMT_MODIFIED_COLUMN_NAME = "gmt_modified";
 
-	private static final int DEFAULT_DSCOUNT = 2;// Ä¬ÈÏ
+	private static final int DEFAULT_DSCOUNT = 2;// é»˜è®¤
 	private static final Boolean DEFAULT_ADJUST = false;
 
 	protected static final long DELTA = 100000000L;
 	// /**
-	// * Êı¾İÔ´ÕóÁĞ
+	// * æ•°æ®æºé˜µåˆ—
 	// */
 	// private DataSourceMatrixCreator dataSourceMatrixCreator;
 
 	/**
-	 * Ó¦ÓÃÃû
+	 * åº”ç”¨å
 	 */
 	protected String appName;
 
 	/**
-	 * groupÕóÁĞ
+	 * groupé˜µåˆ—
 	 */
 	protected List<String> dbGroupKeys;
 
 	protected List<String> oriDbGroupKeys;
 
 	/**
-	 * groupDsÊ¹ÓÃµÄÊı¾İÔ´ÀàĞÍ
+	 * groupDsä½¿ç”¨çš„æ•°æ®æºç±»å‹
 	 */
 //	protected DataSourceType dataSourceType = DataSourceType.TbDataSource;
 
 	/**
-	 * Êı¾İÔ´
+	 * æ•°æ®æº
 	 */
 	protected Map<String, DataSource> dataSourceMap;
 
 	/**
-	 * ×ÔÊÊÓ¦¿ª¹Ø
+	 * è‡ªé€‚åº”å¼€å…³
 	 */
 	protected boolean adjust = DEFAULT_ADJUST;
 	/**
-	 * ÖØÊÔ´ÎÊı
+	 * é‡è¯•æ¬¡æ•°
 	 */
 	protected int retryTimes = DEFAULT_RETRY_TIMES;
 
 	/**
-	 * Êı¾İÔ´¸öÊı
+	 * æ•°æ®æºä¸ªæ•°
 	 */
 	protected int dscount = DEFAULT_DSCOUNT;
 
 	/**
-	 * ÄÚ²½³¤
+	 * å†…æ­¥é•¿
 	 */
 	protected int innerStep = DEFAULT_INNER_STEP;
 
 	/**
-	 * Íâ²½³¤
+	 * å¤–æ­¥é•¿
 	 */
 	protected int outStep = DEFAULT_INNER_STEP;
 
 	/**
-	 * ĞòÁĞËùÔÚµÄ±íÃû
+	 * åºåˆ—æ‰€åœ¨çš„è¡¨å
 	 */
 	protected String tableName = DEFAULT_TABLE_NAME;
 
 	protected String switchTempTable = DEFAULT_TEMP_TABLE_NAME;
 	
 	private String TEST_TABLE_PREFIX="__test_";
-	// È«Á´Â·Ñ¹²â¶ÔÓ¦sequence±íµÄÓ°×Ó±í
+	// å…¨é“¾è·¯å‹æµ‹å¯¹åº”sequenceè¡¨çš„å½±å­è¡¨
 	protected String testTableName = TEST_TABLE_PREFIX + tableName;
-	// È«Á´Â·Ñ¹²â¶ÔÓ¦sequence_temp±íµÄÓ°×Ó±í
+	// å…¨é“¾è·¯å‹æµ‹å¯¹åº”sequence_tempè¡¨çš„å½±å­è¡¨
 	protected String testSwitchTempTable = TEST_TABLE_PREFIX + switchTempTable;
 
 	/**
-	 * ´æ´¢ĞòÁĞÃû³ÆµÄÁĞÃû
+	 * å­˜å‚¨åºåˆ—åç§°çš„åˆ—å
 	 */
 	protected String nameColumnName = DEFAULT_NAME_COLUMN_NAME;
 
 	/**
-	 * ´æ´¢ĞòÁĞÖµµÄÁĞÃû
+	 * å­˜å‚¨åºåˆ—å€¼çš„åˆ—å
 	 */
 	protected String valueColumnName = DEFAULT_VALUE_COLUMN_NAME;
 
 	/**
-	 * ´æ´¢ĞòÁĞ×îºó¸üĞÂÊ±¼äµÄÁĞÃû
+	 * å­˜å‚¨åºåˆ—æœ€åæ›´æ–°æ—¶é—´çš„åˆ—å
 	 */
 	protected String gmtModifiedColumnName = DEFAULT_GMT_MODIFIED_COLUMN_NAME;
 
 	/**
-	 * ³õÊÔ»¯
+	 * åˆè¯•åŒ–
 	 * 
 	 * @throws SequenceException
 	 */
 	public void init() throws SequenceException {
-		// Èç¹ûÓ¦ÓÃÃûÎª¿Õ£¬Ö±½ÓÅ×³ö
+		// å¦‚æœåº”ç”¨åä¸ºç©ºï¼Œç›´æ¥æŠ›å‡º
 		if (StringUtils.isEmpty(appName)) {
 			SequenceException sequenceException = new SequenceException(
 					"appName is Null ");
-			log.error("Ã»ÓĞÅäÖÃappName", sequenceException);
+			log.error("æ²¡æœ‰é…ç½®appName", sequenceException);
 			throw sequenceException;
 		}
 		if (dbGroupKeys == null || dbGroupKeys.size() == 0) {
-			log.error("Ã»ÓĞÅäÖÃdbgroupKeys");
-			throw new SequenceException("dbgroupKeysÎª¿Õ£¡");
+			log.error("æ²¡æœ‰é…ç½®dbgroupKeys");
+			throw new SequenceException("dbgroupKeysä¸ºç©ºï¼");
 		}
 
 		dataSourceMap = new HashMap<String, DataSource>();
@@ -174,18 +174,18 @@ public class GroupSequenceDao implements SequenceDao {
 				dbGroupKeys.add(dscount + "-OFF");
 			}
 		}
-		outStep = innerStep * dscount;// ¼ÆËãÍâ²½³¤
+		outStep = innerStep * dscount;// è®¡ç®—å¤–æ­¥é•¿
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("GroupSequenceDao³õÊ¼»¯Íê³É£º\r\n ");
+		sb.append("GroupSequenceDaoåˆå§‹åŒ–å®Œæˆï¼š\r\n ");
 		sb.append("appName:").append(appName).append("\r\n");
 		sb.append("innerStep:").append(this.innerStep).append("\r\n");
-		sb.append("dataSource:").append(dscount).append("¸ö:");
+		sb.append("dataSource:").append(dscount).append("ä¸ª:");
 		for (String str : dbGroupKeys) {
-			sb.append("[").append(str).append("]¡¢");
+			sb.append("[").append(str).append("]ã€");
 		}
 		sb.append("\r\n");
-		sb.append("adjust£º").append(adjust).append("\r\n");
+		sb.append("adjustï¼š").append(adjust).append("\r\n");
 		sb.append("retryTimes:").append(retryTimes).append("\r\n");
 		sb.append("tableName:").append(tableName).append("\r\n");
 		sb.append("nameColumnName:").append(nameColumnName).append("\r\n");
@@ -198,9 +198,9 @@ public class GroupSequenceDao implements SequenceDao {
 	/**
 	 * 
 	 * @param index
-	 *            gourpÄÚµÄĞòºÅ£¬´Ó0¿ªÊ¼
+	 *            gourpå†…çš„åºå·ï¼Œä»0å¼€å§‹
 	 * @param value
-	 *            µ±Ç°È¡µÄÖµ
+	 *            å½“å‰å–çš„å€¼
 	 * @return
 	 */
 	private boolean check(int index, long value) {
@@ -208,8 +208,8 @@ public class GroupSequenceDao implements SequenceDao {
 	}
 
 	/**
-	 * ¼ì²é²¢³õÊÔÄ³¸ösequence 1¡¢Èç¹ûsequece²»´¦ÔÚ£¬²åÈëÖµ£¬²¢³õÊ¼»¯Öµ 2¡¢Èç¹ûÒÑ¾­´æÔÚ£¬µ«ÓĞÖØµş£¬ÖØĞÂÉú³É
-	 * 3¡¢Èç¹ûÒÑ¾­´æÔÚ£¬ÇÒÎŞÖØµş¡£
+	 * æ£€æŸ¥å¹¶åˆè¯•æŸä¸ªsequence 1ã€å¦‚æœsequeceä¸å¤„åœ¨ï¼Œæ’å…¥å€¼ï¼Œå¹¶åˆå§‹åŒ–å€¼ 2ã€å¦‚æœå·²ç»å­˜åœ¨ï¼Œä½†æœ‰é‡å ï¼Œé‡æ–°ç”Ÿæˆ
+	 * 3ã€å¦‚æœå·²ç»å­˜åœ¨ï¼Œä¸”æ— é‡å ã€‚
 	 * 
 	 * @throws SequenceException
 	 */
@@ -219,7 +219,7 @@ public class GroupSequenceDao implements SequenceDao {
 		ResultSet rs = null;
 
 		for (int i = 0; i < dbGroupKeys.size(); i++) {
-			if (dbGroupKeys.get(i).toUpperCase().endsWith("-OFF"))// ÒÑ¾­¹Øµô£¬²»´¦Àí
+			if (dbGroupKeys.get(i).toUpperCase().endsWith("-OFF"))// å·²ç»å…³æ‰ï¼Œä¸å¤„ç†
 			{
 				continue;
 			}
@@ -235,29 +235,29 @@ public class GroupSequenceDao implements SequenceDao {
 				while (rs.next()) {
 					item++;
 					long val = rs.getLong(this.getValueColumnName());
-					if (!check(i, val)) // ¼ìÑé³õÖµ
+					if (!check(i, val)) // æ£€éªŒåˆå€¼
 					{
 						if (this.isAdjust()) {
 							this.adjustUpdate(i, val, name);
 						} else {
-							log.error("Êı¾İ¿âÖĞÅäÖÃµÄ³õÖµ³ö´í£¡Çëµ÷ÕûÄãµÄÊı¾İ¿â£¬»òÕßÆô¶¯adjust¿ª¹Ø");
+							log.error("æ•°æ®åº“ä¸­é…ç½®çš„åˆå€¼å‡ºé”™ï¼è¯·è°ƒæ•´ä½ çš„æ•°æ®åº“ï¼Œæˆ–è€…å¯åŠ¨adjustå¼€å…³");
 							throw new SequenceException(
-									"Êı¾İ¿âÖĞÅäÖÃµÄ³õÖµ³ö´í£¡Çëµ÷ÕûÄãµÄÊı¾İ¿â£¬»òÕßÆô¶¯adjust¿ª¹Ø");
+									"æ•°æ®åº“ä¸­é…ç½®çš„åˆå€¼å‡ºé”™ï¼è¯·è°ƒæ•´ä½ çš„æ•°æ®åº“ï¼Œæˆ–è€…å¯åŠ¨adjustå¼€å…³");
 						}
 					}
 				}
-				if (item == 0)// ²»´æÔÚ,²åÈëÕâÌõ¼ÇÂ¼
+				if (item == 0)// ä¸å­˜åœ¨,æ’å…¥è¿™æ¡è®°å½•
 				{
 					if (this.isAdjust()) {
 						this.adjustInsert(i, name);
 					} else {
-						log.error("Êı¾İ¿âÖĞÎ´ÅäÖÃ¸Ãsequence£¡ÇëÍùÊı¾İ¿âÖĞ²åÈësequence¼ÇÂ¼£¬»òÕßÆô¶¯adjust¿ª¹Ø");
+						log.error("æ•°æ®åº“ä¸­æœªé…ç½®è¯¥sequenceï¼è¯·å¾€æ•°æ®åº“ä¸­æ’å…¥sequenceè®°å½•ï¼Œæˆ–è€…å¯åŠ¨adjustå¼€å…³");
 						throw new SequenceException(
-								"Êı¾İ¿âÖĞÎ´ÅäÖÃ¸Ãsequence£¡ÇëÍùÊı¾İ¿âÖĞ²åÈësequence¼ÇÂ¼£¬»òÕßÆô¶¯adjust¿ª¹Ø");
+								"æ•°æ®åº“ä¸­æœªé…ç½®è¯¥sequenceï¼è¯·å¾€æ•°æ®åº“ä¸­æ’å…¥sequenceè®°å½•ï¼Œæˆ–è€…å¯åŠ¨adjustå¼€å…³");
 					}
 				}
-			} catch (SQLException e) {// ÍÌµôSQLÒì³££¬ÎÒÃÇÔÊĞí²»¿ÉÓÃµÄ¿â´æÔÚ
-				log.error("³õÖµĞ£ÑéºÍ×ÔÊÊÓ¦¹ı³ÌÖĞ³ö´í.", e);
+			} catch (SQLException e) {// åæ‰SQLå¼‚å¸¸ï¼Œæˆ‘ä»¬å…è®¸ä¸å¯ç”¨çš„åº“å­˜åœ¨
+				log.error("åˆå€¼æ ¡éªŒå’Œè‡ªé€‚åº”è¿‡ç¨‹ä¸­å‡ºé”™.", e);
 				throw e;
 			} finally {
 				closeResultSet(rs);
@@ -273,7 +273,7 @@ public class GroupSequenceDao implements SequenceDao {
 	}
 
 	/**
-	 * ¸üĞÂ
+	 * æ›´æ–°
 	 * 
 	 * @param index
 	 * @param value
@@ -283,7 +283,7 @@ public class GroupSequenceDao implements SequenceDao {
 	 */
 	private void adjustUpdate(int index, long value, String name)
 			throws SequenceException, SQLException {
-		long newValue = (value - value % outStep) + outStep + index * innerStep;// ÉèÖÃ³ÉĞÂµÄµ÷ÕûÖµ
+		long newValue = (value - value % outStep) + outStep + index * innerStep;// è®¾ç½®æˆæ–°çš„è°ƒæ•´å€¼
 		TGroupDataSource tGroupDataSource = (TGroupDataSource) dataSourceMap
 				.get(dbGroupKeys.get(index));
 		Connection conn = null;
@@ -303,17 +303,17 @@ public class GroupSequenceDao implements SequenceDao {
 						"faild to auto adjust init value at  " + name
 								+ " update affectedRow =0");
 			}
-			log.info(dbGroupKeys.get(index) + "¸üĞÂ³õÖµ³É¹¦!" + "sequence Name£º"
-					+ name + "¸üĞÂ¹ı³Ì£º" + value + "-->" + newValue);
-		} catch (SQLException e) { // ³ÔµôSQLÒì³££¬Å×SequenceÒì³£
+			log.info(dbGroupKeys.get(index) + "æ›´æ–°åˆå€¼æˆåŠŸ!" + "sequence Nameï¼š"
+					+ name + "æ›´æ–°è¿‡ç¨‹ï¼š" + value + "-->" + newValue);
+		} catch (SQLException e) { // åƒæ‰SQLå¼‚å¸¸ï¼ŒæŠ›Sequenceå¼‚å¸¸
 			log.error(
-					"ÓÉÓÚSQLException,¸üĞÂ³õÖµ×ÔÊÊÓ¦Ê§°Ü£¡dbGroupIndex:"
-							+ dbGroupKeys.get(index) + "£¬sequence Name£º" + name
-							+ "¸üĞÂ¹ı³Ì£º" + value + "-->" + newValue, e);
+					"ç”±äºSQLException,æ›´æ–°åˆå€¼è‡ªé€‚åº”å¤±è´¥ï¼dbGroupIndex:"
+							+ dbGroupKeys.get(index) + "ï¼Œsequence Nameï¼š" + name
+							+ "æ›´æ–°è¿‡ç¨‹ï¼š" + value + "-->" + newValue, e);
 			throw new SequenceException(
-					"ÓÉÓÚSQLException,¸üĞÂ³õÖµ×ÔÊÊÓ¦Ê§°Ü£¡dbGroupIndex:"
-							+ dbGroupKeys.get(index) + "£¬sequence Name£º" + name
-							+ "¸üĞÂ¹ı³Ì£º" + value + "-->" + newValue, e);
+					"ç”±äºSQLException,æ›´æ–°åˆå€¼è‡ªé€‚åº”å¤±è´¥ï¼dbGroupIndex:"
+							+ dbGroupKeys.get(index) + "ï¼Œsequence Nameï¼š" + name
+							+ "æ›´æ–°è¿‡ç¨‹ï¼š" + value + "-->" + newValue, e);
 		} finally {
 			closeStatement(stmt);
 			stmt = null;
@@ -323,7 +323,7 @@ public class GroupSequenceDao implements SequenceDao {
 	}
 
 	/**
-	 * ²åÈëĞÂÖµ
+	 * æ’å…¥æ–°å€¼
 	 * 
 	 * @param index
 	 * @param name
@@ -352,17 +352,17 @@ public class GroupSequenceDao implements SequenceDao {
 						"faild to auto adjust init value at  " + name
 								+ " update affectedRow =0");
 			}
-			log.info(dbGroupKeys.get(index) + "   name:" + name + "²åÈë³õÖµ:"
+			log.info(dbGroupKeys.get(index) + "   name:" + name + "æ’å…¥åˆå€¼:"
 					+ name + "value:" + newValue);
 
-		} catch (SQLException e) { // ³ÔµôSQLÒì³££¬Å×sequenceÒì³£
+		} catch (SQLException e) { // åƒæ‰SQLå¼‚å¸¸ï¼ŒæŠ›sequenceå¼‚å¸¸
 			log.error(
-					"ÓÉÓÚSQLException,²åÈë³õÖµ×ÔÊÊÓ¦Ê§°Ü£¡dbGroupIndex:"
-							+ dbGroupKeys.get(index) + "£¬sequence Name£º" + name
+					"ç”±äºSQLException,æ’å…¥åˆå€¼è‡ªé€‚åº”å¤±è´¥ï¼dbGroupIndex:"
+							+ dbGroupKeys.get(index) + "ï¼Œsequence Nameï¼š" + name
 							+ "   value:" + newValue, e);
 			throw new SequenceException(
-					"ÓÉÓÚSQLException,²åÈë³õÖµ×ÔÊÊÓ¦Ê§°Ü£¡dbGroupIndex:"
-							+ dbGroupKeys.get(index) + "£¬sequence Name£º" + name
+					"ç”±äºSQLException,æ’å…¥åˆå€¼è‡ªé€‚åº”å¤±è´¥ï¼dbGroupIndex:"
+							+ dbGroupKeys.get(index) + "ï¼Œsequence Nameï¼š" + name
 							+ "   value:" + newValue, e);
 		} finally {
 			closeResultSet(rs);
@@ -374,13 +374,13 @@ public class GroupSequenceDao implements SequenceDao {
 		}
 	}
 
-	private ConcurrentHashMap<Integer/* ds index */, AtomicInteger/* ÂÓ¹ı´ÎÊı */> excludedKeyCount = new ConcurrentHashMap<Integer, AtomicInteger>(
+	private ConcurrentHashMap<Integer/* ds index */, AtomicInteger/* æ è¿‡æ¬¡æ•° */> excludedKeyCount = new ConcurrentHashMap<Integer, AtomicInteger>(
 			dscount);
-	// ×î´óÂÔ¹ı´ÎÊıºó»Ö¸´
+	// æœ€å¤§ç•¥è¿‡æ¬¡æ•°åæ¢å¤
 	private int maxSkipCount = 10;
-	// Ê¹ÓÃÂıËÙÊı¾İ¿â±£»¤
+	// ä½¿ç”¨æ…¢é€Ÿæ•°æ®åº“ä¿æŠ¤
 	private boolean useSlowProtect = false;
-	// ±£»¤µÄÊ±¼ä
+	// ä¿æŠ¤çš„æ—¶é—´
 	private int protectMilliseconds = 50;
 
 	private ExecutorService exec = Executors.newFixedThreadPool(1);
@@ -388,7 +388,7 @@ public class GroupSequenceDao implements SequenceDao {
 	protected Lock configLock = new ReentrantLock();
 	
 	/**
-	 * ¼ì²égroupKey¶ÔÏóÊÇ·ñÒÑ¾­¹Ø±Õ
+	 * æ£€æŸ¥groupKeyå¯¹è±¡æ˜¯å¦å·²ç»å…³é—­
 	 * @param groupKey
 	 * @return
 	 */
@@ -397,7 +397,7 @@ public class GroupSequenceDao implements SequenceDao {
 	}
 	
 	/**
-	 * ¼ì²éÊÇ·ñ±»exclude,Èç¹ûÓĞ³¢ÊÔ»Ö¸´
+	 * æ£€æŸ¥æ˜¯å¦è¢«exclude,å¦‚æœæœ‰å°è¯•æ¢å¤
 	 * @param index
 	 * @return
 	 */
@@ -406,8 +406,8 @@ public class GroupSequenceDao implements SequenceDao {
 		if (excludedKeyCount.get(index) != null) {
 			if (excludedKeyCount.get(index).incrementAndGet() > maxSkipCount) {
 				excludedKeyCount.remove(index);
-				log.error(maxSkipCount + "´ÎÊıÒÑ¹ı£¬indexÎª" + index
-						+ "µÄÊı¾İÔ´ºóĞøÖØĞÂ³¢ÊÔÈ¡ĞòÁĞ");
+				log.error(maxSkipCount + "æ¬¡æ•°å·²è¿‡ï¼Œindexä¸º" + index
+						+ "çš„æ•°æ®æºåç»­é‡æ–°å°è¯•å–åºåˆ—");
 			} else {
 				result = false;
 			}
@@ -429,13 +429,13 @@ public class GroupSequenceDao implements SequenceDao {
 			rs.next();
 			return rs.getLong(1);
 		} finally {
-			// Ö±½ÓÅ×³öÒì³£ÍâÃæ½Ó£¬µ«ÊÇÕâÀïĞèÒªÖ±½Ó¹Ø±ÕÁ´½Ó
+			// ç›´æ¥æŠ›å‡ºå¼‚å¸¸å¤–é¢æ¥ï¼Œä½†æ˜¯è¿™é‡Œéœ€è¦ç›´æ¥å…³é—­é“¾æ¥
 			closeDbResource(rs, stmt, conn);
 		}
 	}
 	
 	/**
-	 * CAS¸üĞÂsequenceÖµ
+	 * CASæ›´æ–°sequenceå€¼
 	 * @param dataSource
 	 * @param keyName
 	 * @param oldValue
@@ -459,13 +459,13 @@ public class GroupSequenceDao implements SequenceDao {
 					.executeByGroupDataSourceIndex(0);
 			return stmt.executeUpdate();
 		} finally {
-			// Ö±½ÓÅ×³öÒì³£ÍâÃæ½Ó£¬µ«ÊÇÕâÀïĞèÒªÖ±½Ó¹Ø±ÕÁ´½Ó
+			// ç›´æ¥æŠ›å‡ºå¼‚å¸¸å¤–é¢æ¥ï¼Œä½†æ˜¯è¿™é‡Œéœ€è¦ç›´æ¥å…³é—­é“¾æ¥
 			closeDbResource(rs, stmt, conn);
 		}
 	}
 	
 	/**
-	 * ´ÓÖ¸¶¨µÄÊı¾İ¿âÖĞ»ñÈ¡sequenceÖµ
+	 * ä»æŒ‡å®šçš„æ•°æ®åº“ä¸­è·å–sequenceå€¼
 	 * @param dataSource
 	 * @param keyName
 	 * @return
@@ -474,7 +474,7 @@ public class GroupSequenceDao implements SequenceDao {
 	protected long getOldValue(final DataSource dataSource, final String keyName)  throws SQLException{
 		long result = 0;
 		
-		// Èç¹ûÎ´Ê¹ÓÃ³¬Ê±±£»¤»òÕßÒÑ¾­Ö»Ê£ÏÂÁË1¸öÊı¾İÔ´£¬ÎŞÂÛÔõÃ´ÑùÈ¥ÄÃ
+		// å¦‚æœæœªä½¿ç”¨è¶…æ—¶ä¿æŠ¤æˆ–è€…å·²ç»åªå‰©ä¸‹äº†1ä¸ªæ•°æ®æºï¼Œæ— è®ºæ€ä¹ˆæ ·å»æ‹¿
 		if (!useSlowProtect
 				|| excludedKeyCount.size() >= (dscount - 1)) {
 			result = queryOldValue(dataSource, keyName);
@@ -500,7 +500,7 @@ public class GroupSequenceDao implements SequenceDao {
 						e);
 			} catch (TimeoutException e) {
 				throw new SQLException(
-						"[SEQUENCE SLOW-PROTECTED MODE]:TimeoutException,µ±Ç°ÉèÖÃ³¬Ê±Ê±¼äÎª"
+						"[SEQUENCE SLOW-PROTECTED MODE]:TimeoutException,å½“å‰è®¾ç½®è¶…æ—¶æ—¶é—´ä¸º"
 								+ protectMilliseconds, e);
 			}
 		}
@@ -508,7 +508,7 @@ public class GroupSequenceDao implements SequenceDao {
 	}
 	
 	/**
-	 * Éú³ÉoldValueÉú³ÉnewValue
+	 * ç”ŸæˆoldValueç”ŸæˆnewValue
 	 * @param index
 	 * @param oldValue
 	 * @param keyName
@@ -517,7 +517,7 @@ public class GroupSequenceDao implements SequenceDao {
 	 */
 	protected long generateNewValue(int index, long oldValue, String keyName) throws SequenceException {
 		long newValue = oldValue + outStep;
-		if (!check(index, newValue)) // ĞÂËã³öÀ´µÄÖµÓĞÎÊÌâ
+		if (!check(index, newValue)) // æ–°ç®—å‡ºæ¥çš„å€¼æœ‰é—®é¢˜
 		{
 			if (this.isAdjust()) {
 				newValue = adjustNewValue(index, newValue);
@@ -530,13 +530,13 @@ public class GroupSequenceDao implements SequenceDao {
 	
 	protected long adjustNewValue(int index, long newValue){
 		return (newValue - newValue % outStep)
-				+ outStep + index * innerStep;// ÉèÖÃ³ÉĞÂµÄµ÷ÕûÖµ
+				+ outStep + index * innerStep;// è®¾ç½®æˆæ–°çš„è°ƒæ•´å€¼
 	}
 	
 	protected void throwErrorRangeException(int index, String keyName)
 			throws SequenceException {
 		String errorMsg = dbGroupKeys.get(index) + ":" + keyName
-				+ "µÄÖµµÃ´íÎó£¬¸²¸Çµ½ÆäËû·¶Î§¶ÎÁË£¡ÇëĞŞ¸ÄÊı¾İ¿â£¬»òÕß¿ªÆôadjust¿ª¹Ø£¡";
+				+ "çš„å€¼å¾—é”™è¯¯ï¼Œè¦†ç›–åˆ°å…¶ä»–èŒƒå›´æ®µäº†ï¼è¯·ä¿®æ”¹æ•°æ®åº“ï¼Œæˆ–è€…å¼€å¯adjustå¼€å…³ï¼";
 		throw new SequenceException(errorMsg);
 	}
 	
@@ -546,7 +546,7 @@ public class GroupSequenceDao implements SequenceDao {
 	}
 	
 	/**
-	 * ¼ì²é¸ÃsequenceÖµÊÇ·ñÔÚÕı³£·¶Î§ÄÚ
+	 * æ£€æŸ¥è¯¥sequenceå€¼æ˜¯å¦åœ¨æ­£å¸¸èŒƒå›´å†…
 	 * @return
 	 */
 	protected boolean isOldValueFixed(long oldValue){
@@ -570,21 +570,21 @@ public class GroupSequenceDao implements SequenceDao {
 	}
 	
 	/**
-	 * ½«¸ÃÊı¾İÔ´ÅÅ³ıµ½sequence¿ÉÑ¡Êı¾İÔ´ÒÔÍâ
+	 * å°†è¯¥æ•°æ®æºæ’é™¤åˆ°sequenceå¯é€‰æ•°æ®æºä»¥å¤–
 	 * @param index
 	 */
 	protected void excludeDataSource(int index) {
-		// Èç¹ûÊı¾İÔ´Ö»Ê£ÏÂÁË×îºóÒ»¸ö£¬¾Í²»ÒªÅÅ³ıÁË
+		// å¦‚æœæ•°æ®æºåªå‰©ä¸‹äº†æœ€åä¸€ä¸ªï¼Œå°±ä¸è¦æ’é™¤äº†
 		if (excludedKeyCount.size() < (dscount - 1)) {
 			excludedKeyCount.put(index, new AtomicInteger(0));
-			log.error("ÔİÊ±Ìß³ıindexÎª" + index + "µÄÊı¾İÔ´£¬" + maxSkipCount + "´ÎºóÖØĞÂ³¢ÊÔ");
+			log.error("æš‚æ—¶è¸¢é™¤indexä¸º" + index + "çš„æ•°æ®æºï¼Œ" + maxSkipCount + "æ¬¡åé‡æ–°å°è¯•");
 		}
 	}
 
 	public SequenceRange nextRange(final String name) throws SequenceException {
 		if (name == null) {
-			log.error("ĞòÁĞÃûÎª¿Õ£¡");
-			throw new IllegalArgumentException("ĞòÁĞÃû³Æ²»ÄÜÎª¿Õ");
+			log.error("åºåˆ—åä¸ºç©ºï¼");
+			throw new IllegalArgumentException("åºåˆ—åç§°ä¸èƒ½ä¸ºç©º");
 		}
 
 		configLock.lock();
@@ -599,14 +599,14 @@ public class GroupSequenceDao implements SequenceDao {
 
 					final TGroupDataSource tGroupDataSource = getGroupDsByIndex(index);
 					long oldValue;
-					// ²éÑ¯£¬Ö»ÔÚÕâÀï×öÊı¾İ¿â¹Òµô±£»¤ºÍÂıËÙÊı¾İ¿â±£»¤
+					// æŸ¥è¯¢ï¼Œåªåœ¨è¿™é‡Œåšæ•°æ®åº“æŒ‚æ‰ä¿æŠ¤å’Œæ…¢é€Ÿæ•°æ®åº“ä¿æŠ¤
 					try {
 						oldValue = getOldValue(tGroupDataSource, name);
 						if (!isOldValueFixed(oldValue)) {
 							continue;
 						}
 					} catch (SQLException e) {
-						log.error("È¡·¶Î§¹ı³ÌÖĞ--²éÑ¯³ö´í£¡" + dbGroupKeys.get(index)
+						log.error("å–èŒƒå›´è¿‡ç¨‹ä¸­--æŸ¥è¯¢å‡ºé”™ï¼" + dbGroupKeys.get(index)
 								+ ":" + name, e);
 						excludeDataSource(index);
 						continue;
@@ -618,7 +618,7 @@ public class GroupSequenceDao implements SequenceDao {
 							continue;
 						}
 					} catch (SQLException e) {
-						log.error("È¡·¶Î§¹ı³ÌÖĞ--¸üĞÂ³ö´í£¡" + dbGroupKeys.get(index)
+						log.error("å–èŒƒå›´è¿‡ç¨‹ä¸­--æ›´æ–°å‡ºé”™ï¼" + dbGroupKeys.get(index)
 								+ ":" + name, e);
 						continue;
 					}
@@ -627,12 +627,12 @@ public class GroupSequenceDao implements SequenceDao {
 							+ innerStep);
 						
 				}
-				// µ±»¹ÓĞ×îºóÒ»´ÎÖØÊÔ»ú»áÊ±,Çå¿ÕexcludedMap,ÈÃÆäÓĞ×îºóÒ»´Î»ú»á
+				// å½“è¿˜æœ‰æœ€åä¸€æ¬¡é‡è¯•æœºä¼šæ—¶,æ¸…ç©ºexcludedMap,è®©å…¶æœ‰æœ€åä¸€æ¬¡æœºä¼š
 				if (i == (retryTimes - 2)) {
 					excludedKeyCount.clear();
 				}
 			}
-			log.error("ËùÓĞÊı¾İÔ´¶¼²»¿ÉÓÃ£¡ÇÒÖØÊÔ" + this.retryTimes + "´Îºó£¬ÈÔÈ»Ê§°Ü!");
+			log.error("æ‰€æœ‰æ•°æ®æºéƒ½ä¸å¯ç”¨ï¼ä¸”é‡è¯•" + this.retryTimes + "æ¬¡åï¼Œä»ç„¶å¤±è´¥!");
 			throw new SequenceException("All dataSource faild to get value!");
 		} finally {
 			configLock.unlock();
@@ -729,7 +729,7 @@ public class GroupSequenceDao implements SequenceDao {
 	}
 
 	public String getTableName() {
-		// È«Á´Â·Ñ¹²âĞèÇó
+		// å…¨é“¾è·¯å‹æµ‹éœ€æ±‚
 		String t = EagleEye.getUserData("t");
 		if (!StringUtils.isBlank(t) && t.equals("1")) {
 			return testTableName;
@@ -772,7 +772,7 @@ public class GroupSequenceDao implements SequenceDao {
 	}
 
 	public void setDbGroupKeys(List<String> dbGroupKeys) {
-		//ÕâÀïugly,Èç¹û¶¯Ì¬±ä¸üÒ²µ÷ÓÃÕâ¸ö·½·¨µÄ»°£¬ÄÇ¾Í¼û¹íÁË
+		//è¿™é‡Œugly,å¦‚æœåŠ¨æ€å˜æ›´ä¹Ÿè°ƒç”¨è¿™ä¸ªæ–¹æ³•çš„è¯ï¼Œé‚£å°±è§é¬¼äº†
 		this.oriDbGroupKeys = dbGroupKeys;
 		this.dbGroupKeys = dbGroupKeys;
 	}

@@ -48,7 +48,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 	private String[] columnNames;
 
 	/**
-	 * ¼ì²âµ±Ç°Ïß³ÌÊÇ²»ÊÇInterrupted
+	 * æ£€æµ‹å½“å‰çº¿ç¨‹æ˜¯ä¸æ˜¯Interrupted
 	 * 
 	 * @throws SQLException
 	 */
@@ -59,7 +59,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 	}
 
 	/**
-	 * ÅĞ¶¨µ±Ç°µÄStatementÊÇ·ñÊÇPrepareStatement
+	 * åˆ¤å®šå½“å‰çš„Statementæ˜¯å¦æ˜¯PrepareStatement
 	 * 
 	 * @param tStatement
 	 * @return
@@ -73,7 +73,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 	}
 
 	/**
-	 * Ö´ĞĞ»ùÓÚStatementµÄ²éÑ¯
+	 * æ‰§è¡ŒåŸºäºStatementçš„æŸ¥è¯¢
 	 * 
 	 * @param connection
 	 * @param sql
@@ -94,7 +94,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 	}
 
 	/**
-	 * Ö´ĞĞ»ùÓÚPreparedStatementµÄ²éÑ¯
+	 * æ‰§è¡ŒåŸºäºPreparedStatementçš„æŸ¥è¯¢
 	 * 
 	 * @param connection
 	 * @param sql
@@ -117,7 +117,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 	}
 
 	/**
-	 * Ö´ĞĞ»ùÓÚStatementµÄÊı¾İ¸üĞÂ
+	 * æ‰§è¡ŒåŸºäºStatementçš„æ•°æ®æ›´æ–°
 	 * 
 	 * @param executionPlan
 	 * @param dbEntry
@@ -134,7 +134,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 		List<SQLException> exceptions = new LinkedList<SQLException>();
 		try {
 			/**
-			 * µÚÒ»´Î²éÑ¯Ö®Ç°£¬¼ì²éÏÂµ±Ç°Ïß³ÌÓĞÃ»ÓĞ±»ÖÃÎª interrupted()
+			 * ç¬¬ä¸€æ¬¡æŸ¥è¯¢ä¹‹å‰ï¼Œæ£€æŸ¥ä¸‹å½“å‰çº¿ç¨‹æœ‰æ²¡æœ‰è¢«ç½®ä¸º interrupted()
 			 */
 			checkThreadState();
 
@@ -147,10 +147,10 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 				stmt.setFetchSize(fetchSize);
 				stmt.setMaxRows(maxRows);
 				
-				// Ö´ĞĞsql
+				// æ‰§è¡Œsql
 				for (RealSqlContext targetSql : dbEntry.getValue()) {
 					/**
-					 * µÚÒ»´Î²éÑ¯Ö®Ç°£¬¼ì²éÏÂµ±Ç°Ïß³ÌÓĞÃ»ÓĞ±»ÖÃÎª interrupted()
+					 * ç¬¬ä¸€æ¬¡æŸ¥è¯¢ä¹‹å‰ï¼Œæ£€æŸ¥ä¸‹å½“å‰çº¿ç¨‹æœ‰æ²¡æœ‰è¢«ç½®ä¸º interrupted()
 					 */
 					checkThreadState();
 
@@ -173,7 +173,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 		} catch (SQLException e) {
 			exceptions = appendToExceptionList(exceptions, e);
 		} finally {
-			// ³¢ÊÔ¹Ø±ÕÒÑ¾­Ê¹ÓÃºóµÄÁ¬½Ó
+			// å°è¯•å…³é—­å·²ç»ä½¿ç”¨åçš„è¿æ¥
 			exceptions = tryCloseConnection(exceptions, dbSelectorId);
 		}
 
@@ -185,7 +185,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 	}
 
 	/**
-	 * Ö´ĞĞPreparedStatementµÄ¸üĞÂ
+	 * æ‰§è¡ŒPreparedStatementçš„æ›´æ–°
 	 * 
 	 * @param executionPlan
 	 * @param dbEntry
@@ -200,7 +200,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 		
 		try {
 			/**
-			 * µÚÒ»´Î²éÑ¯Ö®Ç°£¬¼ì²éÏÂµ±Ç°Ïß³ÌÓĞÃ»ÓĞ±»ÖÃÎª interrupted()
+			 * ç¬¬ä¸€æ¬¡æŸ¥è¯¢ä¹‹å‰ï¼Œæ£€æŸ¥ä¸‹å½“å‰çº¿ç¨‹æœ‰æ²¡æœ‰è¢«ç½®ä¸º interrupted()
 			 */
 			checkThreadState();
 
@@ -210,7 +210,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 			List<RealSqlContext> realSqlContexts = dbEntry.getValue();
 			for (RealSqlContext sqlContext : realSqlContexts) {
 				/**
-				 * µÚÒ»´Î²éÑ¯Ö®Ç°£¬¼ì²éÏÂµ±Ç°Ïß³ÌÓĞÃ»ÓĞ±»ÖÃÎª interrupted()
+				 * ç¬¬ä¸€æ¬¡æŸ¥è¯¢ä¹‹å‰ï¼Œæ£€æŸ¥ä¸‹å½“å‰çº¿ç¨‹æœ‰æ²¡æœ‰è¢«ç½®ä¸º interrupted()
 				 */
 				checkThreadState();
 
@@ -219,7 +219,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 			        logger.debug("sql args:"+sqlContext.getArgument());
 				}
 				
-				// Õë¶ÔÃ¿Ò»¸ö±í
+				// é’ˆå¯¹æ¯ä¸€ä¸ªè¡¨
 				long oneTableStart = System.currentTimeMillis();
 				PreparedStatement ps = prepareStatementInternal(conn,
 						sqlContext.getSql(), executionPlan.getSqlMetaData());
@@ -228,7 +228,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 					ps.setFetchSize(fetchSize);
 					ps.setMaxRows(maxRows);
 					
-					// ÕâÀï×öÁËÂÔÎ¢µÄĞŞ¸Ä£¬½«²ÎÊıÓÉºó¶Ë´«Èë£¬±£Ö¤²ÎÊıÊÇÄÜ¹»±»ĞŞ¸ÄµÄ
+					// è¿™é‡Œåšäº†ç•¥å¾®çš„ä¿®æ”¹ï¼Œå°†å‚æ•°ç”±åç«¯ä¼ å…¥ï¼Œä¿è¯å‚æ•°æ˜¯èƒ½å¤Ÿè¢«ä¿®æ”¹çš„
 					setParameters(ps, sqlContext.getArgument());
 					affectedRows += ps.executeUpdate();
 					long during = System.currentTimeMillis() - oneTableStart;
@@ -244,11 +244,11 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 				}
 			}
 		} catch (SQLException e) {
-//			SQLÒì³££¬ÕâÀï²»´òÈÕÖ¾£¬Ê¹ÓÃÓÚÔÊĞí´óÁ¿²åÈëÊ§°ÜµÄÓ¦ÓÃ£¬ÀàËÆÖ÷¼ü³åÍ»£¬¼õÉÙÈÕÖ¾´òÓ¡Á¿	jiechen.qzm 
+//			SQLå¼‚å¸¸ï¼Œè¿™é‡Œä¸æ‰“æ—¥å¿—ï¼Œä½¿ç”¨äºå…è®¸å¤§é‡æ’å…¥å¤±è´¥çš„åº”ç”¨ï¼Œç±»ä¼¼ä¸»é”®å†²çªï¼Œå‡å°‘æ—¥å¿—æ‰“å°é‡	jiechen.qzm 
 //			logger.error("Update Error!", e);
 			exceptions = appendToExceptionList(exceptions, e);
 		} finally {
-			// fixed by jiechen.qzm µ¥¿âµ¥±íµÄÖ´ĞĞ¼Æ»®£¬Á¬½ÓÔÚconnectin.close()·½·¨ÕæÕı¹Ø±Õ
+			// fixed by jiechen.qzm å•åº“å•è¡¨çš„æ‰§è¡Œè®¡åˆ’ï¼Œè¿æ¥åœ¨connectin.close()æ–¹æ³•çœŸæ­£å…³é—­
 			if(!ExecutionPlanUtils.isOneSqlPlan(executionPlan)){
 				exceptions = tryCloseConnection(exceptions, dbSelectorId);
 			}
@@ -262,7 +262,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 	}
 
 	/**
-	 * È¡µÃÕæÕıµÄStatement
+	 * å–å¾—çœŸæ­£çš„Statement
 	 * 
 	 * @param connection
 	 * @return
@@ -281,13 +281,13 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 		} else {
 			stmt = connection.createStatement();
 		}
-		//´«µİsqlMetaData²ÎÊı
+		//ä¼ é€’sqlMetaDataå‚æ•°
 		SqlMetaDataUtil.fillStatement(stmt, sqlMetaData);
 		return stmt;
 	}
 
 	/**
-	 * È¡µÃÕæÕıµÄPrepareStatement
+	 * å–å¾—çœŸæ­£çš„PrepareStatement
 	 * 
 	 * @param connection
 	 * @param targetSql
@@ -313,13 +313,13 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 		} else {
 			ps = connection.prepareStatement(targetSql);
 		}
-		//´«µİsqlMetaData²ÎÊı
+		//ä¼ é€’sqlMetaDataå‚æ•°
 		SqlMetaDataUtil.fillStatement(ps, sqlMetaData);
 		return ps;
 	}
 
 	/**
-	 * Ö´ĞĞÕæÕıµÄ¸üĞÂ
+	 * æ‰§è¡ŒçœŸæ­£çš„æ›´æ–°
 	 * 
 	 * @param affectedRows
 	 * @param targetSql
@@ -347,7 +347,7 @@ public class RealSqlExecutorCommon extends PreparedStatementExecutorCommon {
 	}
 
 	/**
-	 * ÉèÖÃ¼¸¸ö²éÑ¯ºÍ¸üĞÂĞèÒªµÄ²ÎÊı
+	 * è®¾ç½®å‡ ä¸ªæŸ¥è¯¢å’Œæ›´æ–°éœ€è¦çš„å‚æ•°
 	 * 
 	 * @param tStatementImp
 	 * @param executionPlan

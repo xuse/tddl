@@ -5,12 +5,12 @@ package com.taobao.tddl.interact.rule.virtualnode;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-8-20ÉÏÎç02:58:34
+ * @date 2011-8-20ä¸Šåˆ02:58:34
  */
 public class WrappedLogic {
-	protected String valuePrefix; //ÎŞgetter/setter
-	protected String valueSuffix; //ÎŞgetter/setter
-	protected int valueAlignLen = 0; //ÎŞgetter/setter
+	protected String valuePrefix; //æ— getter/setter
+	protected String valueSuffix; //æ— getter/setter
+	protected int valueAlignLen = 0; //æ— getter/setter
 	protected String tableSlotKeyFormat=null;
     
 	public void setTableSlotKeyFormat(String tableSlotKeyFormat) {
@@ -32,7 +32,7 @@ public class WrappedLogic {
 		}
 		this.valuePrefix = tableSlotKeyFormat.substring(0, index0);
 		this.valueSuffix = tableSlotKeyFormat.substring(index1 + 1);
-		this.valueAlignLen = index1 - index0 - 1; //{0000}ÖĞ0µÄ¸öÊı
+		this.valueAlignLen = index1 - index0 - 1; //{0000}ä¸­0çš„ä¸ªæ•°
 	}
 	
 	protected String wrapValue(String value) {

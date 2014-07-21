@@ -11,10 +11,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Ò»¶Ô¶à½Úµã³éÏó¡£
+ * ä¸€å¯¹å¤šèŠ‚ç‚¹æŠ½è±¡ã€‚
  * 
- * ³ÖÓĞÒ»¸öÒ»¶Ô¶àµÄÓ³Éämap,»á¸ù¾İÊäÈëµÄ±¾½ÚµãËù³ÖÓĞµÄ¹æÔòÁ´£¬
- * ÒÔ¼°ÔËËã½á¹û£¬¾ö¶¨ÄÄĞ©½ÚµãÊÇ·ûºÏÒªÇó£¬È»ºó¼ÆËã²¢·µ»Ø
+ * æŒæœ‰ä¸€ä¸ªä¸€å¯¹å¤šçš„æ˜ å°„map,ä¼šæ ¹æ®è¾“å…¥çš„æœ¬èŠ‚ç‚¹æ‰€æŒæœ‰çš„è§„åˆ™é“¾ï¼Œ
+ * ä»¥åŠè¿ç®—ç»“æœï¼Œå†³å®šå“ªäº›èŠ‚ç‚¹æ˜¯ç¬¦åˆè¦æ±‚ï¼Œç„¶åè®¡ç®—å¹¶è¿”å›
  * 
  * @author shenxun
  *
@@ -25,50 +25,50 @@ public abstract class ListSharedElement extends SharedElement {
 	
 	public enum DEFAULT_LIST_RESULT_STRAGETY {
 		/**
-		 * Ä¬ÈÏÈ«×Ó¼¯²éÑ¯
+		 * é»˜è®¤å…¨å­é›†æŸ¥è¯¢
 		 */
 		FULL_TABLE_SCAN,
 
 		/**
-		 * Ä¬ÈÏÒ»¸ö¶¼²»Ñ¡Ôñ
+		 * é»˜è®¤ä¸€ä¸ªéƒ½ä¸é€‰æ‹©
 		 */
 		NONE
 	}
 
 	/**
-	 * Ä¬ÈÏ×Ó½ÚµãµÄÑ¡Ôñ·½Ê½¡£È«±í
+	 * é»˜è®¤å­èŠ‚ç‚¹çš„é€‰æ‹©æ–¹å¼ã€‚å…¨è¡¨
 	 */
 	public DEFAULT_LIST_RESULT_STRAGETY defaultListResultStragety;
 
 	/**
-	 * Èç¹ûÃ»ÓĞÕÒµ½Ö¸¶¨µÄListResultµÄÊ±ºò£¬Ó¦¸ÃÓ¦¸Ã·µ»ØµÄ½ÚµãµÄĞÅÏ¢
+	 * å¦‚æœæ²¡æœ‰æ‰¾åˆ°æŒ‡å®šçš„ListResultçš„æ—¶å€™ï¼Œåº”è¯¥åº”è¯¥è¿”å›çš„èŠ‚ç‚¹çš„ä¿¡æ¯
 	 */
 	protected List<String> defaultListResult;
 
 	/**
-	 * ½á¹ûÎªÒ»¸ölist Êı×éµÄ¼ÆËãÊ½£¬ÊÇÒ»¸ö¹æÔòÁ´£¬×ÔµÍµ½¸ß£¬¹æÔòÓÅÏÈ¼¶ÒÀ´Î½µµÍ
+	 * ç»“æœä¸ºä¸€ä¸ªlist æ•°ç»„çš„è®¡ç®—å¼ï¼Œæ˜¯ä¸€ä¸ªè§„åˆ™é“¾ï¼Œè‡ªä½åˆ°é«˜ï¼Œè§„åˆ™ä¼˜å…ˆçº§ä¾æ¬¡é™ä½
 	 */
-	//TODO:¸ÄÃû¶ù
+	//TODO:æ”¹åå„¿
 	protected RuleChain listResultRule;
 
 	/**
-	 * ×Ó½ÚµãMap
-	 * 		Èç¹ûÖ±½ÓÒÔmapĞÎÊ½Ö¸¶¨Ôòkey»áÔÚinit·½·¨ÖĞ±»ÉèÖÃµ½×Ó½Úµã×÷Îª×Ó½ÚµãµÄid
+	 * å­èŠ‚ç‚¹Map
+	 * 		å¦‚æœç›´æ¥ä»¥mapå½¢å¼æŒ‡å®šåˆ™keyä¼šåœ¨initæ–¹æ³•ä¸­è¢«è®¾ç½®åˆ°å­èŠ‚ç‚¹ä½œä¸ºå­èŠ‚ç‚¹çš„id
 	 * 
-	 * 		Èç¹ûÒÔlistĞÎÊ½Ö¸¶¨£¬ÔòÏÂ±ê»á³ÉÎªÕâ¸ömapµÄkey,²¢ÔÚinit·½·¨ÖĞ±»ÉèÖÃµ½×Ó½Úµã×÷Îªid.
+	 * 		å¦‚æœä»¥listå½¢å¼æŒ‡å®šï¼Œåˆ™ä¸‹æ ‡ä¼šæˆä¸ºè¿™ä¸ªmapçš„key,å¹¶åœ¨initæ–¹æ³•ä¸­è¢«è®¾ç½®åˆ°å­èŠ‚ç‚¹ä½œä¸ºid.
 	 */
 	protected Map<String, ? extends SharedElement> subSharedElement = Collections.emptyMap();
 	
 
 
 	/**
-	 * ÏñLogicMap×¢²á×Ô¼ºµÄº¯Êı¡£
+	 * åƒLogicMapæ³¨å†Œè‡ªå·±çš„å‡½æ•°ã€‚
 	 * 
-	 * À­Æ½¿â±í¹æÔòÁ´£¬·ÅÔÚLogicTableÀïÃæ,ÕâÑùÔÚmatcherÖĞ¾Í¿ÉÒÔÖªµÀËùÓĞ¹æÔòËùĞèÒªµÄ²ÎÊıÊÇ·ñ¶¼¾ß±¸ÁË¡£
+	 * æ‹‰å¹³åº“è¡¨è§„åˆ™é“¾ï¼Œæ”¾åœ¨LogicTableé‡Œé¢,è¿™æ ·åœ¨matcherä¸­å°±å¯ä»¥çŸ¥é“æ‰€æœ‰è§„åˆ™æ‰€éœ€è¦çš„å‚æ•°æ˜¯å¦éƒ½å…·å¤‡äº†ã€‚
 	 * 
-	 * ËùÎ½matcher¾ÍÊÇ¸ù¾İ¹æÔòÁ´ÀïµÄ¹æÔòËùĞèÒªµÄ²ÎÊı£¬È¥sqlÖĞÕÒÑ°ÓëËùÒªÇó²ÎÊıÏàÆ¥ÅäµÄÁĞÃû+²ÎÊı¡£
+	 * æ‰€è°“matcherå°±æ˜¯æ ¹æ®è§„åˆ™é“¾é‡Œçš„è§„åˆ™æ‰€éœ€è¦çš„å‚æ•°ï¼Œå»sqlä¸­æ‰¾å¯»ä¸æ‰€è¦æ±‚å‚æ•°ç›¸åŒ¹é…çš„åˆ—å+å‚æ•°ã€‚
 	 *
-	 * ·ÅÔÚÒ»¸öcontextÖĞÔÚ¼ÆËãÊ±»áÓÃµ½
+	 * æ”¾åœ¨ä¸€ä¸ªcontextä¸­åœ¨è®¡ç®—æ—¶ä¼šç”¨åˆ°
 	 * 
 	 * @param ruleSet
 	 */
@@ -80,7 +80,7 @@ public abstract class ListSharedElement extends SharedElement {
 	}
 
 
-	/** ×¢²áµ±Ç°½Úµã
+	/** æ³¨å†Œå½“å‰èŠ‚ç‚¹
 	 * @param ruleSet
 	 */
 	private void registeCurrentSharedElement(Set<RuleChain> ruleSet) {
@@ -91,7 +91,7 @@ public abstract class ListSharedElement extends SharedElement {
 
 
 	/**
-	 * Èç¹ûÓĞ×Ó½ÚµãÔò×¢²á×Ó½Úµã
+	 * å¦‚æœæœ‰å­èŠ‚ç‚¹åˆ™æ³¨å†Œå­èŠ‚ç‚¹
 	 * 
 	 * @param ruleSet
 	 */
@@ -113,14 +113,14 @@ public abstract class ListSharedElement extends SharedElement {
 
 	/* (non-Javadoc)
 	 * @see com.taobao.tddl.rule.ruleengine.entities.abstractentities.SharedElement#init()
-	 * Èç¹ûÓĞdatabaseMapProvider =>³õÊ¼»¯databaseMap
+	 * å¦‚æœæœ‰databaseMapProvider =>åˆå§‹åŒ–databaseMap
 	 * 
 	 */
 	public void init() {
 		init(true);
 	}
 	/**
-	 * ¼æÈİĞÔ·½·¨£¬ÒòÎªÒÔÇ°TableRule±©Â¶ÁËinit·½·¨¸øÍâ²¿Ê¹ÓÃ¡£
+	 * å…¼å®¹æ€§æ–¹æ³•ï¼Œå› ä¸ºä»¥å‰TableRuleæš´éœ²äº†initæ–¹æ³•ç»™å¤–éƒ¨ä½¿ç”¨ã€‚
 	 * @param invokeBySpring
 	 */
 	public void init(boolean invokeBySpring){
@@ -138,7 +138,7 @@ public abstract class ListSharedElement extends SharedElement {
 	private void setChildIdByUsingMapKey(
 			Map<String, ? extends SharedElement> subSharedElements,boolean invokeBySpring) {
 		for(Entry<String, ? extends SharedElement> sharedElement:subSharedElements.entrySet()){
-			//½«mapÖĞµÄkey×÷ÎªidÉèÖÃ¸ø×Ó½Úµã
+			//å°†mapä¸­çš„keyä½œä¸ºidè®¾ç½®ç»™å­èŠ‚ç‚¹
 			sharedElement.getValue().setId(sharedElement.getKey());
 			 initOneSubSharedElement(sharedElement.getValue(),invokeBySpring);
 		}
@@ -156,11 +156,11 @@ public abstract class ListSharedElement extends SharedElement {
 	}
 
 	/**
-	 * ³õÊ¼»¯Ä¬ÈÏ¹æÔòkeyµÄÁĞ±í¡£
+	 * åˆå§‹åŒ–é»˜è®¤è§„åˆ™keyçš„åˆ—è¡¨ã€‚
 	 * 
-	 * »á°´ÕÕ¼È¶¨²ßÂÔ³õÊ¼»¯£¬ÕâÑùÈç¹û¹æÔòÔËËãÖĞ²»ÄÜ»ñµÃtarget ×Ó¹æÔòµÄ»°
+	 * ä¼šæŒ‰ç…§æ—¢å®šç­–ç•¥åˆå§‹åŒ–ï¼Œè¿™æ ·å¦‚æœè§„åˆ™è¿ç®—ä¸­ä¸èƒ½è·å¾—target å­è§„åˆ™çš„è¯
 	 * 
-	 * ¾Í»áÊ¹ÓÃÄ¬ÈÏ¹æÔò¡£
+	 * å°±ä¼šä½¿ç”¨é»˜è®¤è§„åˆ™ã€‚
 	 * 
 	 */
 	protected void initDefaultSubSharedElementsListRule() {
@@ -174,7 +174,7 @@ public abstract class ListSharedElement extends SharedElement {
 			buildFullTableKeysList();
 			break;
 		case NONE:
-			//fix by shen: ĞèÒª×¢ÒâµÄÊÇ¿Õ±í¹æÔòºÍµÄÊ±ºò£¬Ó¦¸Ã·µ»ØÎ¨Ò»µÄ½Úµã¶ø²»ÊÇ¿Õ½Úµã¡£
+			//fix by shen: éœ€è¦æ³¨æ„çš„æ˜¯ç©ºè¡¨è§„åˆ™å’Œçš„æ—¶å€™ï¼Œåº”è¯¥è¿”å›å”¯ä¸€çš„èŠ‚ç‚¹è€Œä¸æ˜¯ç©ºèŠ‚ç‚¹ã€‚
 			if(listResultRule == null||listResultRule.getListResultRule() == null||
 					listResultRule.getListResultRule().isEmpty()){
 				if(subSharedElement.size() == 1){
@@ -192,7 +192,7 @@ public abstract class ListSharedElement extends SharedElement {
 			}
 			break;
 		default:
-			throw new IllegalArgumentException("²»ÄÜ´¦ÀíµÄÀàĞÍ");
+			throw new IllegalArgumentException("ä¸èƒ½å¤„ç†çš„ç±»å‹");
 		}
 	}
 

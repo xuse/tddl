@@ -17,16 +17,16 @@ import com.taobao.tddl.interact.sqljep.ComparativeOR;
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-4-27ÉÏÎç11:23:20
+ * @date 2011-4-27ä¸Šåˆ11:23:20
  */
 public class ComparativeStringAnalyser {
 	public static Map<String, Comparative> decodeComparativeString2Map(
 			String conditionStr) {
 		Map<String, Comparative> comparativeMap = new HashMap<String, Comparative>();
-		// ´¦Àí ComparativeMap
+		// å¤„ç† ComparativeMap
 		String[] comStrs = conditionStr.split(";");
 		for (int i = 0; i < comStrs.length; i++) {
-			//FIXME ½«Êı¾İ×ª³ÉĞ¡Ğ´µÄÂß¼­È¥µô
+			//FIXME å°†æ•°æ®è½¬æˆå°å†™çš„é€»è¾‘å»æ‰
 			//String value = comStrs[i].toLowerCase();
 			String value = comStrs[i];
 			if (StringUtil.isNotBlank(value)) {
@@ -64,7 +64,7 @@ public class ComparativeStringAnalyser {
 					}
 					comparativeMap.put(key.toUpperCase(), comparativeBaseList);
 				} else {
-					// ËµÃ÷Ö»ÊÇComparative
+					// è¯´æ˜åªæ˜¯Comparative
 					String key = getComparativeKey(value);
 					Comparative comparative = decodeComparativeForOuter(value);
 					if (null != comparative) {
@@ -220,7 +220,7 @@ public class ComparativeStringAnalyser {
 	}
 
 	/**
-	 * Ö»×öÒ»´ÎÇĞ·Ö
+	 * åªåšä¸€æ¬¡åˆ‡åˆ†
 	 * 
 	 * @param str
 	 * @param splitor
@@ -251,7 +251,7 @@ public class ComparativeStringAnalyser {
 	}
 
 	/**
-	 * »ñµÃµÚÒ»¸östart£¬endÖ®¼äµÄ×Ö´®£¬ ²»°üÀ¨start£¬end±¾Éí¡£·µ»ØÖµÒÑ×öÁËtrim
+	 * è·å¾—ç¬¬ä¸€ä¸ªstartï¼Œendä¹‹é—´çš„å­—ä¸²ï¼Œ ä¸åŒ…æ‹¬startï¼Œendæœ¬èº«ã€‚è¿”å›å€¼å·²åšäº†trim
 	 */
 	private static String getBetween(String sql, String start, String end) {
 		int index0 = sql.indexOf(start);

@@ -18,11 +18,11 @@ import com.taobao.tddl.common.monitor.stat.StatLogWriter;
 import com.taobao.tddl.common.util.NagiosUtils;
 
 /**
- * StatMonitor ¸ÄÎªÔÚ¹«¹²µÄ BufferedLogWriter »ù´¡ÉÏÊµÏÖ¡£ <br/>
+ * StatMonitor æ”¹ä¸ºåœ¨å…¬å…±çš„ BufferedLogWriter åŸºç¡€ä¸Šå®ç°ã€‚ <br/>
  * 
  * @author changyuan.lh
  * @author guangxia
- * @since 1.0, 2010-2-8 ÏÂÎç04:18:39
+ * @since 1.0, 2010-2-8 ä¸‹åˆ04:18:39
  */
 public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 	private static final Log logger = LogFactory.getLog(StatMonitor.class);
@@ -30,7 +30,7 @@ public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 	private static final StatMonitor instance = new StatMonitor();
 
 	private StatMonitor() {
-		// XXX: ÈÕÖ¾ÄÚÈİÊÇĞĞ¸´ÖÆºÍ SQL ½âÎö, Key Á¿Óë SQL ÏàÍ¬ÊıÁ¿¼¶
+		// XXX: æ—¥å¿—å†…å®¹æ˜¯è¡Œå¤åˆ¶å’Œ SQL è§£æ, Key é‡ä¸ SQL ç›¸åŒæ•°é‡çº§
 		super(5 * 60, 1000, 4000, new NagiosLogWriter());
 		lastStatMap = map;
 	}
@@ -45,7 +45,7 @@ public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 	private volatile long duration = 0;
 
 	public void resetStat() {
-		// XXX: Èç¹ûÕıÔÚË¢³ö, Ôò²»ÖØÖÃ
+		// XXX: å¦‚æœæ­£åœ¨åˆ·å‡º, åˆ™ä¸é‡ç½®
 		if (!flushing && flushLock.tryLock()) {
 			try {
 				lastStatMap = map;
@@ -60,7 +60,7 @@ public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 	}
 
 	protected void insureMaxSize() {
-		// XXX: StatMonitor ²»»áË¢³ö LRU ÈÕÖ¾
+		// XXX: StatMonitor ä¸ä¼šåˆ·å‡º LRU æ—¥å¿—
 		// super.insureMaxSize();
 	}
 
@@ -69,9 +69,9 @@ public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 			lastStatMap = map;
 			duration = System.currentTimeMillis() - lastResetTime;
 			lastResetTime = System.currentTimeMillis();
-			// Ë¢³öËùÓĞÍ³¼ÆÈÕÖ¾
+			// åˆ·å‡ºæ‰€æœ‰ç»Ÿè®¡æ—¥å¿—
 			super.flushAll();
-			// À­È¡×Ô¶¨ÒåÈÕÖ¾ÄÚÈİ²¢´òÓ¡
+			// æ‹‰å–è‡ªå®šä¹‰æ—¥å¿—å†…å®¹å¹¶æ‰“å°
 			writeCallBackLog();
 		} catch (Throwable e) {
 			logger.warn("flushAll", e);
@@ -79,7 +79,7 @@ public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 	}
 
 	protected void flushLRU() {
-		// XXX: StatMonitor ²»»áË¢³ö LRU ÈÕÖ¾
+		// XXX: StatMonitor ä¸ä¼šåˆ·å‡º LRU æ—¥å¿—
 		// super.flushLRU();
 	}
 
@@ -111,7 +111,7 @@ public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 				+ averageCountStr;
 	}
 
-	/* XXX: ÕâĞ©´úÂëÃ»ÓĞÈËÓÃµ½, ÏÈ×¢µô
+	/* XXX: è¿™äº›ä»£ç æ²¡æœ‰äººç”¨åˆ°, å…ˆæ³¨æ‰
 	static class Item {
 		final String key1;
 		final String key2;
@@ -240,11 +240,11 @@ public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 		LogKey logKey = new LogKey(new Object[] { key1, key2, key3 });
 		if (!map.containsKey(logKey)) {
 			if (map.size() >= maxKeySize) {
-				return false; // XXX: µ½ÈİÁ¿ÉÏÏŞºó·ÅÆú
+				return false; // XXX: åˆ°å®¹é‡ä¸Šé™åæ”¾å¼ƒ
 			}
 		}
 		long[] values = new long[] { 1L, value };
-		// XXX: Ä¿Ç°²»½øĞĞ key1/key2 µÄºÏ²¢Í³¼Æ, Ã»ÓĞÕâ¸öĞèÇó
+		// XXX: ç›®å‰ä¸è¿›è¡Œ key1/key2 çš„åˆå¹¶ç»Ÿè®¡, æ²¡æœ‰è¿™ä¸ªéœ€æ±‚
 		// write(new Object[] { key1 }, values);
 		// write(new Object[] { key1, key2 }, values);
 		write(logKey.getKeys(), values);
@@ -266,12 +266,12 @@ public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 	}
 
 	/**
-	 * À­È¡×Ô¶¨ÒåÈÕÖ¾ÄÚÈİ²¢´òÓ¡(µ¥Ïß³Ì£¬ÎŞĞèËø)
+	 * æ‹‰å–è‡ªå®šä¹‰æ—¥å¿—å†…å®¹å¹¶æ‰“å°(å•çº¿ç¨‹ï¼Œæ— éœ€é”)
 	 */
 	private final void writeCallBackLog() {
 		for (SnapshotValuesOutputCallBack callBack : snapshotValueCallBack) {
 			try {
-				// XXX: Ô­À´ÕâÀï»áºÏ²¢Í¬ÀàÏî, Ä¿Ç°¿´À´ÎŞ±ØÒª
+				// XXX: åŸæ¥è¿™é‡Œä¼šåˆå¹¶åŒç±»é¡¹, ç›®å‰çœ‹æ¥æ— å¿…è¦
 				callBack.snapshotValues(TDDL_Log_Writer);
 			} catch (Throwable e) {
 				logger.warn("callBack", e);
@@ -280,7 +280,7 @@ public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 	}
 
 	/**
-	 * ½«ÄÚ´æÊı¾İÊä³öµ½ÈÕÖ¾ÖĞ
+	 * å°†å†…å­˜æ•°æ®è¾“å‡ºåˆ°æ—¥å¿—ä¸­
 	 */
 	@SuppressWarnings("unused")
 	private final StatLogWriter Nagios_Log_Writer = new StatLogWriter() {
@@ -306,14 +306,14 @@ public class StatMonitor extends BufferedLogWriter implements StatMonitorMBean {
 	};
 
 	/**
-	 * ½«ÄÚ´æÊı¾İÊä³öµ½ÈÕÖ¾ÖĞ
+	 * å°†å†…å­˜æ•°æ®è¾“å‡ºåˆ°æ—¥å¿—ä¸­
 	 * SELECT xxx #@#my065037_cm4_feel_25#@#EXECUTE_A_SQL_SUCCESS#@#1#@#1#@#1#@#1#@#10-12-27 13:58:35:224
 	 * SELECT sss #@#my065026_cm4_feel_03#@#EXECUTE_A_SQL_SUCCESS#@#1#@#1#@#1#@#1#@#10-12-27 13:58:35:224
 	 */
 	private final StatLogWriter TDDL_Log_Writer = new Log4jLogWriter(
 			LoggerInit.TDDL_Snapshot_LOG) {
 
-		// XXX: Êä³öÖĞÊ×ÏÈĞ´Êı¾İ, È»ºóĞ´ĞÅÏ¢, ×îºóĞ´Ê±¼ä
+		// XXX: è¾“å‡ºä¸­é¦–å…ˆå†™æ•°æ®, ç„¶åå†™ä¿¡æ¯, æœ€åå†™æ—¶é—´
 		protected StringBuffer format(StringBuffer buf, Object[] fields,
 				Date time, long... values) {
 			// LoggerInit.TDDL_Snapshot_LOG.warn(new StringBuilder().append(values.value1).append(

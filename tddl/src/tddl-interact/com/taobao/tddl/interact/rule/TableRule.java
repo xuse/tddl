@@ -20,7 +20,7 @@ import com.taobao.tddl.interact.rule.virtualnode.DBTableMap;
 import com.taobao.tddl.interact.rule.virtualnode.TableSlotMap;
 
 /**
- * Ò»¸öÂß¼­±íÔõÑù·Ö¿â·Ö±í
+ * ä¸€ä¸ªé€»è¾‘è¡¨æ€æ ·åˆ†åº“åˆ†è¡¨
  *
  * @author linxuan
  *
@@ -28,7 +28,7 @@ import com.taobao.tddl.interact.rule.virtualnode.TableSlotMap;
 public class TableRule extends VirtualTable {
 	Log logger = LogFactory.getLog(TableRule.class);
 	public void init() {
-		//²»ÒªËæÒâµ÷¶¯Î»ÖÃ
+		//ä¸è¦éšæ„è°ƒåŠ¨ä½ç½®
 		super.setExtraPackagesStr(extraPackages);
 		initDbIndexes();
 		initVnodeMap();
@@ -59,7 +59,7 @@ public class TableRule extends VirtualTable {
 			return template;
 		}
 		if (params.length != 0 && params[0].indexOf(":") != -1) {
-			// Ö»ÒªparamsµÄµÚÒ»¸ö²ÎÊıÖĞº¬ÓĞÃ°ºÅ£¬¾ÍÈÏÎªÊÇNamedParam
+			// åªè¦paramsçš„ç¬¬ä¸€ä¸ªå‚æ•°ä¸­å«æœ‰å†’å·ï¼Œå°±è®¤ä¸ºæ˜¯NamedParam
 			return replaceWithNamedParam(template, params);
 		}
 		return new MessageFormat(template).format(params);
@@ -70,7 +70,7 @@ public class TableRule extends VirtualTable {
 		for (String param : params) {
 			int index = param.indexOf(":");
 			if (index == -1) {
-				throw new IllegalArgumentException("Ê¹ÓÃÃû×Ö»¯µÄÕ¼Î»·ûÌæ»»Ê§°Ü£¡Çë¼ì²éÅäÖÃ¡£ params:" + Arrays.asList(params));
+				throw new IllegalArgumentException("ä½¿ç”¨åå­—åŒ–çš„å ä½ç¬¦æ›¿æ¢å¤±è´¥ï¼è¯·æ£€æŸ¥é…ç½®ã€‚ params:" + Arrays.asList(params));
 			}
 			args.put(param.substring(0, index).trim(), param.substring(index + 1).trim());
 		}
@@ -80,7 +80,7 @@ public class TableRule extends VirtualTable {
 	protected static List<Rule<String>> convertToRuleArray(Object[] rules,String keyPattern,TableSlotMap tableSlotMap,DBTableMap dbTableMap,boolean isTableRule) {
 		List<Rule<String>> ruleList = new ArrayList<Rule<String>>(1);
 		if (null == rules) {
-			//°´ÕÕÏÖÔÚĞèÇó²»¿ÉÄÜÎªtableRule
+			//æŒ‰ç…§ç°åœ¨éœ€æ±‚ä¸å¯èƒ½ä¸ºtableRule
 			if(tableSlotMap!=null&&dbTableMap!=null&&!isTableRule){
 			    ruleList.add(new DbVirtualNodeRule(String.valueOf(""), dbTableMap,extraPackagesStr));
 			    return ruleList;
@@ -105,36 +105,36 @@ public class TableRule extends VirtualTable {
 	}
 
 	public void setDbRuleArray(List<String> dbRules) {
-		//ÈôÀàĞÍ¸ÄÎªString[],spring»á×Ô¶¯ÒÔ¶ººÅ·Ö¸ô£¬±äÌ¬£¡
+		//è‹¥ç±»å‹æ”¹ä¸ºString[],springä¼šè‡ªåŠ¨ä»¥é€—å·åˆ†éš”ï¼Œå˜æ€ï¼
 		dbRules = trimRuleString(dbRules);
 		this.dbRules = dbRules.toArray(new String[dbRules.size()]);
 	}
 
 	public void setTbRuleArray(List<String> tbRules) {
-		//ÈôÀàĞÍ¸ÄÎªString[],spring»á×Ô¶¯ÒÔ¶ººÅ·Ö¸ô£¬±äÌ¬£¡
+		//è‹¥ç±»å‹æ”¹ä¸ºString[],springä¼šè‡ªåŠ¨ä»¥é€—å·åˆ†éš”ï¼Œå˜æ€ï¼
 		tbRules = trimRuleString(tbRules);
 		this.tbRules = tbRules.toArray(new String[tbRules.size()]);
 	}
 
 	public void setDbRules(String dbRules) {
 		if (this.dbRules == null) {
-			// ÓÅÏÈ¼¶±ÈdbRuleArrayµÍ
+			// ä¼˜å…ˆçº§æ¯”dbRuleArrayä½
 			//this.dbRules = dbRules.split("\\|");
-			this.dbRules = new String[] { dbRules.trim() }; //·Ïµô|·Ö¸ô·û£¬Ã»ÈËÓÃÇÒÈİÒ×Ôì³É»ìÂÒ
+			this.dbRules = new String[] { dbRules.trim() }; //åºŸæ‰|åˆ†éš”ç¬¦ï¼Œæ²¡äººç”¨ä¸”å®¹æ˜“é€ æˆæ··ä¹±
 		}
 	}
 
 	public void setTbRules(String tbRules) {
 		if (this.tbRules == null) {
-			// ÓÅÏÈ¼¶±ÈtbRuleArrayµÍ
+			// ä¼˜å…ˆçº§æ¯”tbRuleArrayä½
 			//this.tbRules = tbRules.split("\\|");
-			this.tbRules = new String[] { tbRules.trim() }; //·Ïµô|·Ö¸ô·û£¬Ã»ÈËÓÃÇÒÈİÒ×Ôì³É»ìÂÒ
+			this.tbRules = new String[] { tbRules.trim() }; //åºŸæ‰|åˆ†éš”ç¬¦ï¼Œæ²¡äººç”¨ä¸”å®¹æ˜“é€ æˆæ··ä¹±
 		}
 	}
 
 	public void setRuleParames(String ruleParames) {
 		if (ruleParames.indexOf('|') != -1) {
-			// ÓÅÏÈÓÃ|Ïß·Ö¸ô,ÒòÎªÓĞĞ©¹æÔò±í´ïÊ½ÖĞ»áÓĞ¶ººÅ
+			// ä¼˜å…ˆç”¨|çº¿åˆ†éš”,å› ä¸ºæœ‰äº›è§„åˆ™è¡¨è¾¾å¼ä¸­ä¼šæœ‰é€—å·
 			this.ruleParames = ruleParames.split("\\|");
 		} else {
 			this.ruleParames = ruleParames.split(",");

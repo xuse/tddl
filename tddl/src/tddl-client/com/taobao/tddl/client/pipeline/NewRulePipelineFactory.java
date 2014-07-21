@@ -20,14 +20,14 @@ import com.taobao.tddl.interact.rule.bean.DBType;
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteCondition;
 
 /**
- * @description 244ĞÂ¹æÔòÖ§³Ö,Ôö¼ÓNewRuleRouteMatchHandler,¹¤³§ÖØĞÂ
- *              ÊµÏÖÒ»¸ö,ÊµÀı»¯ĞÂµÄ¹ÜÏß,Í¬Ê±ÖØĞ´AbstractPipelineFactoryµÄ
- *              sqlÔ¤½âÎöºÍ±í¼¶±ğdbType¶¨Òå(¹æÔò½á¹¹±ä»¯ËùÒÔĞèÒªÖØĞ´).
+ * @description 244æ–°è§„åˆ™æ”¯æŒ,å¢åŠ NewRuleRouteMatchHandler,å·¥å‚é‡æ–°
+ *              å®ç°ä¸€ä¸ª,å®ä¾‹åŒ–æ–°çš„ç®¡çº¿,åŒæ—¶é‡å†™AbstractPipelineFactoryçš„
+ *              sqlé¢„è§£æå’Œè¡¨çº§åˆ«dbTypeå®šä¹‰(è§„åˆ™ç»“æ„å˜åŒ–æ‰€ä»¥éœ€è¦é‡å†™).
  *
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-12-01ÏÂÎç03:35:43
+ * @date 2010-12-01ä¸‹åˆ03:35:43
  */
 public class NewRulePipelineFactory extends AbstractPipelineFactory {
 
@@ -35,11 +35,11 @@ public class NewRulePipelineFactory extends AbstractPipelineFactory {
 
 	{
 		/**
-		 * ³õÊ¼»¯¸÷¸ö¹ÜÏß£¬¹ÜÏß¶¼Îªµ¥Àı
-		 * Ã¿´Î²éÑ¯ºÍÊı¾İ¸üĞÂ¶¼»á·µ»ØÍ¬Ò»¸ö¹ÜÏßÊµÀı¡£
-		 * Î¨Ò»ÓëÒ»¸ö²Ù×÷¶ÔÓ¦µÄÊÇ×ÜÏßÊı¾İ£¬²¢ÇÒÒÔ
-		 * ·½·¨µÄ¾Ö²¿±äÁ¿ÔÚ¹ÜÏßÖĞµÄ²»Í¬´¦ÀíÆ÷Ö®¼ä´«µİ¡£
-		 * ´Ó¶ø´ÓÊı¾İÉÏ±ÜÃâ¶àÏß³ÌÎÊÌâ¡£
+		 * åˆå§‹åŒ–å„ä¸ªç®¡çº¿ï¼Œç®¡çº¿éƒ½ä¸ºå•ä¾‹
+		 * æ¯æ¬¡æŸ¥è¯¢å’Œæ•°æ®æ›´æ–°éƒ½ä¼šè¿”å›åŒä¸€ä¸ªç®¡çº¿å®ä¾‹ã€‚
+		 * å”¯ä¸€ä¸ä¸€ä¸ªæ“ä½œå¯¹åº”çš„æ˜¯æ€»çº¿æ•°æ®ï¼Œå¹¶ä¸”ä»¥
+		 * æ–¹æ³•çš„å±€éƒ¨å˜é‡åœ¨ç®¡çº¿ä¸­çš„ä¸åŒå¤„ç†å™¨ä¹‹é—´ä¼ é€’ã€‚
+		 * ä»è€Œä»æ•°æ®ä¸Šé¿å…å¤šçº¿ç¨‹é—®é¢˜ã€‚
 		 */
 		defaultPipeline.addLast(RouteConditionHandler.HANDLER_NAME,new RouteConditionHandler());
 		defaultPipeline.addLast(SqlParseHandler.HANDLER_NAME,new SqlParseHandler());
@@ -66,7 +66,7 @@ public class NewRulePipelineFactory extends AbstractPipelineFactory {
 
 	@Override
 	public DirectlyRouteCondition sqlPreParse(String sql) throws SQLException {
-		//Èç¹ûÓÃ»§Ö¸¶¨ÁËROUTE_CONDITION»òÕßDB_SELECTOR£¬ÄÇÃ´Ìø¹ıÔ¤½âÎö£¬·ÀÖ¹¸ÉÈÅ
+		//å¦‚æœç”¨æˆ·æŒ‡å®šäº†ROUTE_CONDITIONæˆ–è€…DB_SELECTORï¼Œé‚£ä¹ˆè·³è¿‡é¢„è§£æï¼Œé˜²æ­¢å¹²æ‰°
 		if (null != ThreadLocalMap.get(ThreadLocalString.ROUTE_CONDITION)
 				|| null != ThreadLocalMap.get(ThreadLocalString.DB_SELECTOR)
 				|| null != ThreadLocalMap.get(ThreadLocalString.RULE_SELECTOR)) {
@@ -86,7 +86,7 @@ public class NewRulePipelineFactory extends AbstractPipelineFactory {
 		logger.debug("no logic table in defaultDispather's logicTableMap,try to produce DirectlyRouteCondition");
 
 		DirectlyRouteCondition condition = new DirectlyRouteCondition();
-		//¼ì²é±íÃûÊÇ·ñÔÚdbIndexMapÖĞ add by jiechen.qzm
+		//æ£€æŸ¥è¡¨åæ˜¯å¦åœ¨dbIndexMapä¸­ add by jiechen.qzm
 		Map<String, String> dbIndexMap = this.defaultDispatcher.getVtabroot().getDbIndexMap();
 		if(dbIndexMap != null && dbIndexMap.get(firstTable) != null){
 			condition.setDBId(dbIndexMap.get(firstTable));
@@ -97,7 +97,7 @@ public class NewRulePipelineFactory extends AbstractPipelineFactory {
 		if(defaultDbIndex == null){
 		    throw new SQLException("the defaultDispatcher have no dbIndexMap and defaultDbIndex");
 		}
-		//±íÃû²»´æÔÚlogicTable map ºÍ dbIndexMapÖĞ£¬Ö¸¶¨Ö´ĞĞdbIndex·µ»Ø
+		//è¡¨åä¸å­˜åœ¨logicTable map å’Œ dbIndexMapä¸­ï¼ŒæŒ‡å®šæ‰§è¡ŒdbIndexè¿”å›
 		condition.setDBId(defaultDbIndex);
 		return condition;
 	}

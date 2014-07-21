@@ -13,13 +13,13 @@ import com.taobao.tddl.client.databus.DataBus;
 import com.taobao.tddl.client.handler.Handler;
 
 /**
- * @description Ä¬ÈÏ¹ÜÏßÊµÏÖÀà,ÊµÏÖÒ»¸öË«ÏòÁ´±í,Á´±í´æÓĞĞòµÄhandlers,ÒÀ´ÎÖ´ĞĞhandler,
- *              ÏÖÔÚÖ»µ¥Ïòµ÷ÓÃhandlerµÄhandleDown(DataBus dataBus)·½·¨½øĞĞÈÎÎñÁ÷×ª
+ * @description é»˜è®¤ç®¡çº¿å®ç°ç±»,å®ç°ä¸€ä¸ªåŒå‘é“¾è¡¨,é“¾è¡¨å­˜æœ‰åºçš„handlers,ä¾æ¬¡æ‰§è¡Œhandler,
+ *              ç°åœ¨åªå•å‘è°ƒç”¨handlerçš„handleDown(DataBus dataBus)æ–¹æ³•è¿›è¡Œä»»åŠ¡æµè½¬
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-08-15ÏÂÎç03:24:42
+ * @date 2010-08-15ä¸‹åˆ03:24:42
  */
 public class DefaultPipeline implements Pipeline {
 	private Log logger = LogFactory.getLog(DefaultPipeline.class);
@@ -247,7 +247,7 @@ public class DefaultPipeline implements Pipeline {
 	}
 	
 	/**
-	 * ³õÊ¼»¯¹ÜÏß£¬ÉèÖÃÍ·½áµã¡£
+	 * åˆå§‹åŒ–ç®¡çº¿ï¼Œè®¾ç½®å¤´ç»“ç‚¹ã€‚
 	 * 
 	 * @param name
 	 * @param handler
@@ -260,7 +260,7 @@ public class DefaultPipeline implements Pipeline {
 	}
 	
 	/**
-	 * ¼ì²éÖ¸¶¨Ãû×ÖµÄÉÏÏÂÎÄ½ÚµãÊÇ·ñÎª¿Õ¡£
+	 * æ£€æŸ¥æŒ‡å®šåå­—çš„ä¸Šä¸‹æ–‡èŠ‚ç‚¹æ˜¯å¦ä¸ºç©ºã€‚
 	 * 
 	 * @param name
 	 * @return
@@ -268,26 +268,26 @@ public class DefaultPipeline implements Pipeline {
 	private DefaultHandlerContext getContextOrDie(String name){
 		DefaultHandlerContext ctx=(DefaultHandlerContext)getContext(name);
 		if(ctx==null){
-			throw new NoSuchElementException("²»´æÔÚÈçÏÂÉÏÏÂÎÄ½Úµã£º"+name);
+			throw new NoSuchElementException("ä¸å­˜åœ¨å¦‚ä¸‹ä¸Šä¸‹æ–‡èŠ‚ç‚¹ï¼š"+name);
 		}else{
 			return ctx;
 		}
 	}
 	
 	/**
-	 * ¼ì²éHandlerContextÊÇ·ñÓĞÖØÃû¡£
-	 * Èç¹ûÖØÃû£¬³õÊ¼»¯Ê§°Ü£¬Ö±½ÓÅ×Òì³£ÖÕÖ¹³ÌĞò
+	 * æ£€æŸ¥HandlerContextæ˜¯å¦æœ‰é‡åã€‚
+	 * å¦‚æœé‡åï¼Œåˆå§‹åŒ–å¤±è´¥ï¼Œç›´æ¥æŠ›å¼‚å¸¸ç»ˆæ­¢ç¨‹åº
 	 * 
 	 * @param name
 	 */
 	private void checkDuplicateName(String name){
 		if(name2ctx.containsKey(name)){
-			throw new IllegalArgumentException("´¦ÀíÆ÷ÉÏÏÂÎÄÖØÃû£¬ÖØÃûµÄÊÇ£º"+name);
+			throw new IllegalArgumentException("å¤„ç†å™¨ä¸Šä¸‹æ–‡é‡åï¼Œé‡åçš„æ˜¯ï¼š"+name);
 		}
 	}
 	
 	/**
-	 * ¼ì²éÖ¸¶¨´¦ÀíÆ÷µÄÉÏÏÂÎÄ½ÚµãÊÇ·ñÎª¿Õ
+	 * æ£€æŸ¥æŒ‡å®šå¤„ç†å™¨çš„ä¸Šä¸‹æ–‡èŠ‚ç‚¹æ˜¯å¦ä¸ºç©º
 	 * 
 	 * @param handler
 	 * @return
@@ -295,14 +295,14 @@ public class DefaultPipeline implements Pipeline {
 	private DefaultHandlerContext getContextOrDie(Handler handler){
 		DefaultHandlerContext ctx=(DefaultHandlerContext)getContext(handler);
 		if(ctx==null){
-			throw new NoSuchElementException("²»´æÔÚÈçÏÂÉÏÏÂÎÄ½Úµã£º"+handler.getClass().getName());
+			throw new NoSuchElementException("ä¸å­˜åœ¨å¦‚ä¸‹ä¸Šä¸‹æ–‡èŠ‚ç‚¹ï¼š"+handler.getClass().getName());
 		}else{
 			return ctx;
 		}
 	}
 	
 	/**
-	 * ¼ì²éÖ¸¶¨´¦ÀíÆ÷ÀàĞÍµÄÉÏÏÂÎÄ½ÚµãÊÇ·ñÎª¿Õ
+	 * æ£€æŸ¥æŒ‡å®šå¤„ç†å™¨ç±»å‹çš„ä¸Šä¸‹æ–‡èŠ‚ç‚¹æ˜¯å¦ä¸ºç©º
 	 * 
 	 * @param handlerType
 	 * @return
@@ -310,15 +310,15 @@ public class DefaultPipeline implements Pipeline {
 	private DefaultHandlerContext getContextOrDie(Class<? extends Handler> handlerType){
 		DefaultHandlerContext ctx=(DefaultHandlerContext)getContext(handlerType);
 		if(ctx==null){
-			throw new NoSuchElementException("²»´æÔÚÈçÏÂÉÏÏÂÎÄ½Úµã£º"+handlerType.getName());
+			throw new NoSuchElementException("ä¸å­˜åœ¨å¦‚ä¸‹ä¸Šä¸‹æ–‡èŠ‚ç‚¹ï¼š"+handlerType.getName());
 		}else{
 			return ctx;
 		}
 	}
 	
 	/**
-	 * µÃµ½ÏÂÒ»¸ö½Úµã¡£
-	 * TODO£º¸ÄÔì£¬Ó¦¸Ã²»ĞèÒªÕâÃ´Âé·³¡£
+	 * å¾—åˆ°ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ã€‚
+	 * TODOï¼šæ”¹é€ ï¼Œåº”è¯¥ä¸éœ€è¦è¿™ä¹ˆéº»çƒ¦ã€‚
 	 * 
 	 * @param ctx
 	 * @return
@@ -338,7 +338,7 @@ public class DefaultPipeline implements Pipeline {
 	}
 	
 	/**
-	 * ´Ó´¦ÀíÆ÷Á´±íÖĞÒÆ³ıÖ¸¶¨´¦ÀíÆ÷ÉÏÏÂÎÄ½Úµã
+	 * ä»å¤„ç†å™¨é“¾è¡¨ä¸­ç§»é™¤æŒ‡å®šå¤„ç†å™¨ä¸Šä¸‹æ–‡èŠ‚ç‚¹
 	 * 
 	 * @param ctx
 	 * @return
@@ -362,13 +362,13 @@ public class DefaultPipeline implements Pipeline {
 	}
 	
 	/**
-	 * Ìæ»»ÒÑ´æÔÚµÄ´¦ÀíÆ÷ÉÏÏÂÎÄ
+	 * æ›¿æ¢å·²å­˜åœ¨çš„å¤„ç†å™¨ä¸Šä¸‹æ–‡
 	 * 
 	 * @param ctx
 	 * @param newName
 	 * @param newHandler
 	 * @return
-	 *        ·µ»Ø¾ÉµÄ´¦ÀíÆ÷
+	 *        è¿”å›æ—§çš„å¤„ç†å™¨
 	 */
 	private Handler replace(DefaultHandlerContext ctx,String newName,Handler newHandler){
 		if(ctx==head){
@@ -399,7 +399,7 @@ public class DefaultPipeline implements Pipeline {
 	}
 
     /**
-     * Ä¬ÈÏµÄ´¦ÀíÆ÷ÉÏÏÂÎÄ£¬Ö÷ÒªµÄÖ´ĞĞ¶¯×÷ÔÚ´Ë´¦Á÷×ª¡£
+     * é»˜è®¤çš„å¤„ç†å™¨ä¸Šä¸‹æ–‡ï¼Œä¸»è¦çš„æ‰§è¡ŒåŠ¨ä½œåœ¨æ­¤å¤„æµè½¬ã€‚
      * 
      * @author junyu
      *

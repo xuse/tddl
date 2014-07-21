@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * PreparedStatementÉèÖÃ²ÎÊıµÄ´¦Àí
+ * PreparedStatementè®¾ç½®å‚æ•°çš„å¤„ç†
  * 
  * @author linxuan
  *
@@ -30,9 +30,9 @@ public enum ParameterMethod {
 	setTime1, setTime2, setTimestamp1, setTimestamp2, setURL, setUnicodeStream; //
 
 	/**
-	 * @param methodAndArgsListµÄÃ¿Ò»¸öÔªËØ(eachElementInList)ÊÇÒ»¸öObjectÊı×é¡£Ã¿¸öÊı×é°üº¬Á½¸öÔªËØ£º
+	 * @param methodAndArgsListçš„æ¯ä¸€ä¸ªå…ƒç´ (eachElementInList)æ˜¯ä¸€ä¸ªObjectæ•°ç»„ã€‚æ¯ä¸ªæ•°ç»„åŒ…å«ä¸¤ä¸ªå…ƒç´ ï¼š
 	 * eachElementInList[0]:ParameterMethod
-	 * eachElementInList[1]:ps.setXXX()µÄ²ÎÊıÁĞ±í£¬×é³É¼ûsetParameter
+	 * eachElementInList[1]:ps.setXXX()çš„å‚æ•°åˆ—è¡¨ï¼Œç»„æˆè§setParameter
 	 */
 	public static void setParameters(PreparedStatement stmt, List<Object[]> methodAndArgsList) throws SQLException {
 		for (Object[] methodAndArgs : methodAndArgsList) {
@@ -52,7 +52,7 @@ public enum ParameterMethod {
 
 	/**
 	 * args[0]: index
-	 * args[1..n] ²ÎÊı
+	 * args[1..n] å‚æ•°
 	 * @throws SQLException 
 	 */
 	@SuppressWarnings("deprecation")

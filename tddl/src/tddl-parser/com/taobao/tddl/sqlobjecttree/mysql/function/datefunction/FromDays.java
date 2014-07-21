@@ -17,7 +17,7 @@ public class FromDays extends OneArgFunction{
 		if(days instanceof Integer){
 			return MySQLFunctionUtils.fromDays((Integer)days);
 		}else{
-			throw new IllegalArgumentException("from days 只支持int型的参数");
+			throw new IllegalArgumentException("from days 鍙敮鎸乮nt鍨嬬殑鍙傛暟");
 		}
 	}
 }

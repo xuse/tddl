@@ -3,11 +3,11 @@ package com.taobao.tddl.common.config.beans;
 public class MappingRuleBean {
 	//	private String originalColumn;
 	//	private String targetRule;
-	//	private String dbIndex; //Ä¬ÈÏÓÃ±¾TDatasource
-	//	private String routeTable; //Â·ÓÉ±í£¨Ó³Éä±í£©key-value±í
-	//	private String routeColumn;//Â·ÓÉ±í×÷ÎªkeyµÄÁĞÃû
-	//	private String routeTargetColumn; //Â·ÓÉ±í×÷ÎªvalueµÄÁĞÃû
-	//	private String routeReturnType; //#·µ»ØÀàĞÍ(int,long,String)
+	//	private String dbIndex; //é»˜è®¤ç”¨æœ¬TDatasource
+	//	private String routeTable; //è·¯ç”±è¡¨ï¼ˆæ˜ å°„è¡¨ï¼‰key-valueè¡¨
+	//	private String routeColumn;//è·¯ç”±è¡¨ä½œä¸ºkeyçš„åˆ—å
+	//	private String routeTargetColumn; //è·¯ç”±è¡¨ä½œä¸ºvalueçš„åˆ—å
+	//	private String routeReturnType; //#è¿”å›ç±»å‹(int,long,String)
 
 	private String parameter;
 	private String expression;

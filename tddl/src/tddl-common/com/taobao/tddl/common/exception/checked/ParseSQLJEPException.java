@@ -7,7 +7,7 @@ public class ParseSQLJEPException extends TDLCheckedExcption{
 	 */
 	private static final long serialVersionUID = 7724677712426352259L;
 	public ParseSQLJEPException(Throwable th){
-		super("µ÷ÓÃsqlJepµÄparseExpressionµÄÊ±ºò·¢Éú´íÎó"+th.getMessage());
+		super("è°ƒç”¨sqlJepçš„parseExpressionçš„æ—¶å€™å‘ç”Ÿé”™è¯¯"+th.getMessage());
 	}
 
 }

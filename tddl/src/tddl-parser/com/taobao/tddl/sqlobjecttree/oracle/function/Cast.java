@@ -9,7 +9,7 @@ import com.taobao.tddl.sqlobjecttree.Utils;
 
 
 /**
- * Õâ¸öº¯Êı±È½ÏÌØÊâ£¬ÒòÎªº¯Êı±¾ÉíÊä³ö±È½ÏÌØÊâ£¬ÊÇĞ´ËÀÔÚÅäÖÃÎÄ¼şÀïÃæµÄ¡£
+ * è¿™ä¸ªå‡½æ•°æ¯”è¾ƒç‰¹æ®Šï¼Œå› ä¸ºå‡½æ•°æœ¬èº«è¾“å‡ºæ¯”è¾ƒç‰¹æ®Šï¼Œæ˜¯å†™æ­»åœ¨é…ç½®æ–‡ä»¶é‡Œé¢çš„ã€‚
  * @author shenxun
  *
  */
@@ -19,7 +19,7 @@ public  class Cast implements Function{
 	protected Object arg1;
 	public void setValue(List<Object> values) {
 		if(values.size()!=1){
-			throw new IllegalArgumentException("²ÎÊı²»ÎªÒ»¸ö");
+			throw new IllegalArgumentException("å‚æ•°ä¸ä¸ºä¸€ä¸ª");
 		}
 		arg1=values.get(0);
 	}

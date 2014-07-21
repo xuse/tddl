@@ -10,12 +10,12 @@ import java.util.Date;
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2012-3-10ÏÂÎç01:23:38
+ * @date 2012-3-10ä¸‹åˆ01:23:38
  */
 public class TddlUserMethod {
 	
 	/**
-	 * ×Ö·û´®µ½dateÀàĞÍ×ª»»
+	 * å­—ç¬¦ä¸²åˆ°dateç±»å‹è½¬æ¢
 	 * @param dateString
 	 * @param dateFormat
 	 * @return

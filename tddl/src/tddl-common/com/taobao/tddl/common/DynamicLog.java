@@ -16,7 +16,7 @@ import com.taobao.tddl.common.ConfigServerHelper.DataListener;
 import com.taobao.tddl.common.util.StringXmlApplicationContext;
 
 /**
- * ¶¯Ì¬Âñµã/LogÀ©Õ¹µã
+ * åŠ¨æ€åŸ‹ç‚¹/Logæ‰©å±•ç‚¹
  * 
  * @author linxuan
  *
@@ -30,7 +30,7 @@ public class DynamicLog {
 	private static final Map<String, DynamicLog> multiInstance = new HashMap<String, DynamicLog>();
 
 	/**
-	 * ¶àÀıÄ£Ê½
+	 * å¤šä¾‹æ¨¡å¼
 	 */
 	public static DynamicLog getInstance(String appName) {
 		DynamicLog instance = multiInstance.get(appName);
@@ -46,7 +46,7 @@ public class DynamicLog {
 		return instance;
 	}
 
-	private String appName; //²»Í¬µÄappName¶©ÔÄ²»Í¬µÄÂñµã½Å±¾
+	private String appName; //ä¸åŒçš„appNameè®¢é˜…ä¸åŒçš„åŸ‹ç‚¹è„šæœ¬
 	private final Map<String, LogBuilder> buryPoints = new HashMap<String, LogBuilder>(0);
 
 	public DynamicLog(String appName) {
@@ -73,7 +73,7 @@ public class DynamicLog {
 	}
 
 	/* ========================================================================
-	 * ¶¯Ì¬¶©ÔÄ
+	 * åŠ¨æ€è®¢é˜…
 	 * ======================================================================*/
 	private static final String buryPointsDataId = ConfigServerHelper.DATA_ID_PREFIX + "{0}_buryPoints";
 	private DataListener listener = new AbstractDataListener() {
@@ -86,7 +86,7 @@ public class DynamicLog {
 
 	private void init() {
 		if (appName == null || "".equals(appName)) {
-			log.warn("²»Ö¸¶¨appNameÔò²»¶©ÔÄ");
+			log.warn("ä¸æŒ‡å®šappNameåˆ™ä¸è®¢é˜…");
 			return;
 		}
 		String dataId = new MessageFormat(buryPointsDataId).format(new Object[] { appName });
@@ -131,10 +131,10 @@ public class DynamicLog {
 		}
 
 		try {
-			// ĞÂ½¨ÀàÊµÀı
+			// æ–°å»ºç±»å®ä¾‹
 			return (LogBuilder) c_groovy.newInstance();
 		} catch (Throwable t) {
-			throw new IllegalArgumentException("ÊµÀı»¯¹æÔò¶ÔÏóÊ§°Ü", t);
+			throw new IllegalArgumentException("å®ä¾‹åŒ–è§„åˆ™å¯¹è±¡å¤±è´¥", t);
 		}
 	}
 
@@ -148,7 +148,7 @@ public class DynamicLog {
 	}
 
 	/* ========================================================================
-	 * log·½·¨
+	 * logæ–¹æ³•
 	 * ======================================================================*/
 	public void info(String key, Object[] args, String defaultLog, Log log) {
 		String content = build(key, args, defaultLog);

@@ -33,7 +33,7 @@ import com.taobao.tddl.rule.ruleengine.impl.type.TableNameTypeHandler;
 import com.taobao.tddl.rule.ruleengine.impl.type.TypeRegister;
 
 /**
- * ³éÏó¹«¹²»ùÀà£¬Ö÷ÒªÓÃÓÚ´¦ÀídateÀàĞÍµÄ¶ÔÏó
+ * æŠ½è±¡å…¬å…±åŸºç±»ï¼Œä¸»è¦ç”¨äºå¤„ç†dateç±»å‹çš„å¯¹è±¡
  * @author shenxun
  *
  */
@@ -43,7 +43,7 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 	protected final static  int LESS_GREAT=1;
 	protected final static  int LESS_OR_EQUAL_GREAT_OR_EQUAL=0;
 	/**
-	 * ¸´Ğ´´Ë·½·¨µÄ×ÓÀà¿ÉÖ±½Óµ÷ÓÃ¶ÔÓ¦calendarÀïÃæµÄ³£Á¿£»
+	 * å¤å†™æ­¤æ–¹æ³•çš„å­ç±»å¯ç›´æ¥è°ƒç”¨å¯¹åº”calendaré‡Œé¢çš„å¸¸é‡ï¼›
 	 * 
 	 * @return
 	 */
@@ -59,7 +59,7 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 	 * (java.lang.Comparable, java.util.Map,
 	 * com.taobao.tdl.client.ruleEngine.entities.inputValue.TabRule,
 	 * java.lang.String)
-	 * ¾É·½·¨£¬Ö»ÓÃÓÚ²âÊÔÁË¡£
+	 * æ—§æ–¹æ³•ï¼Œåªç”¨äºæµ‹è¯•äº†ã€‚
 	 */
 	public Set<String> getTables(Comparable<?>[] row,
 			Map<String, Integer> position, TabRule tab, String vTabName)
@@ -96,7 +96,7 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 			Set<String> temp = getDefaultTabSet(tab);
 			return temp;
 		} else {
-			throw new NotSupportException("²»Ö§³Ö³ıÁËComparativeÀàĞÍºÍÆä×ÓÀàĞÍµÄÆäËûÇé¿ö");
+			throw new NotSupportException("ä¸æ”¯æŒé™¤äº†Comparativeç±»å‹å’Œå…¶å­ç±»å‹çš„å…¶ä»–æƒ…å†µ");
 		}
 	}
 
@@ -124,7 +124,7 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 		comparative = (Comparative) comparable;
 		if (comparative instanceof ComparativeAND) {
 			log.debug("comparative is a instance of and ");
-			// andÖĞ×î¼òµ¥µÄµ¥¶ÀÇø¼äÄÚ£¬ÄÜÖ±½Ó¸ã¶¨
+			// andä¸­æœ€ç®€å•çš„å•ç‹¬åŒºé—´å†…ï¼Œèƒ½ç›´æ¥æå®š
 			ComparativeAND and = (ComparativeAND) comparative;
 			List<Comparative> list = and.getList();
 			Set<String> temp = new HashSet<String>();
@@ -143,9 +143,9 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 			for(Comparative comp:list){
 				temp.addAll(analyzeComparative(tab, vTabName, comp,config));
 			}
-			log.info("ComparativeOrµÄÇé¿ö");
+			log.info("ComparativeOrçš„æƒ…å†µ");
 			return temp;
-			//bigFix by shenxun 5 25 :²âÊÔÖĞ·¢ÏÖ»¹ÓĞ¿ÉÄÜÒ»¸öcomparative.getvalue()»ñÈ¡µÄÈÔÈ»ÊÇcomparativeµÄÕâÀàÇé¿ö£¬Òò´Ë×öÁËbugfix
+			//bigFix by shenxun 5 25 :æµ‹è¯•ä¸­å‘ç°è¿˜æœ‰å¯èƒ½ä¸€ä¸ªcomparative.getvalue()è·å–çš„ä»ç„¶æ˜¯comparativeçš„è¿™ç±»æƒ…å†µï¼Œå› æ­¤åšäº†bugfix
 		}else if(comparative.getValue() instanceof Comparative){
 			return parseTableNameObj(tab, vTabName,comparative.getValue(), config);
 		}else {
@@ -155,7 +155,7 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 	}
 
 	/**
-	 * ÖØĞ´´Ë·½·¨Ê±Òª×¢ÒâoffsetµÄ´¦Àí
+	 * é‡å†™æ­¤æ–¹æ³•æ—¶è¦æ³¨æ„offsetçš„å¤„ç†
 	 * @param tab
 	 * @param vTabName
 	 * @param comparative
@@ -165,14 +165,14 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 	 */
 	protected Set<String> addAEqComparabToXXXFix(TabRule tab,
 			String vTabName, Comparative comparative,int offset, Config config) {
-		// =µÄÇé¿öÒ²ÄÜ¸ã¶¨
+		// =çš„æƒ…å†µä¹Ÿèƒ½æå®š
 		Date date = getDateFromComparative(comparative);
 		Integer calType = getCalendarType();
 		if (calType == null) {
 			throw new CantFindTargetTabRuleTypeException(tab
 					.getExpFunction());
 		}
-//		//ÎªÁËÌá¸ßĞÔÄÜ£¬×öÁËÒ»¸ömap»º´æCalendar
+//		//ä¸ºäº†æé«˜æ€§èƒ½ï¼Œåšäº†ä¸€ä¸ªmapç¼“å­˜Calendar
 //		Calendar cal=(Calendar)NestThreadLocalMap.get("CTRP_Calendar");
 //		if(cal==null){
 //			cal = Calendar.getInstance();
@@ -193,7 +193,7 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 	protected Date getDateFromComparative(Comparative comparative) {
 		Date date = null;
 		Comparable<?> comp = comparative.getValue();
-		// FIXME:ÒÀÈ»Ğ´ËÀµÄÁË£¬ÕâÀïĞèÒªÎªÁËÂú×ã¸ü¶àµÄÌõ¼ş½øĞĞÖØ¹¹
+		// FIXME:ä¾ç„¶å†™æ­»çš„äº†ï¼Œè¿™é‡Œéœ€è¦ä¸ºäº†æ»¡è¶³æ›´å¤šçš„æ¡ä»¶è¿›è¡Œé‡æ„
 //		if (comp instanceof CompableBindValue) {
 //			CompableBindValue var = (CompableBindValue) comp;
 //			date = (Date) var.getBindVal();
@@ -206,7 +206,7 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 	protected void validTabRule(TabRule tab) {
 		if (tab.getTableType() == null) {
 			throw new IllegalArgumentException(
-					"²»ÄÜÕÒµ½tableRuleµÄtableTypeÊôĞÔ£¬Õâ¸öÊôĞÔÊÇ±ØÌîµÄ");
+					"ä¸èƒ½æ‰¾åˆ°tableRuleçš„tableTypeå±æ€§ï¼Œè¿™ä¸ªå±æ€§æ˜¯å¿…å¡«çš„");
 		}
 	}
 
@@ -234,7 +234,7 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 	}
 
 	/**
-	 * Ö»Ö§³ÖÓĞÒ»¸ö´óÓÚ»ò´óÓÚµÈÓÚ£¬ÓĞÒ»¸öĞ¡ÓÚ»òĞ¡ÓÚµÈÓÚµÄÕâÖÖÇé¿ö¡£ xxxfix=suffix or prefix.
+	 * åªæ”¯æŒæœ‰ä¸€ä¸ªå¤§äºæˆ–å¤§äºç­‰äºï¼Œæœ‰ä¸€ä¸ªå°äºæˆ–å°äºç­‰äºçš„è¿™ç§æƒ…å†µã€‚ xxxfix=suffix or prefix.
 	 * 
 	 * @param comps
 	 * @return
@@ -248,12 +248,12 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 		if (log.isDebugEnabled()) {
 			time = System.currentTimeMillis();
 		}
-		// ·ÖÎöstartºÍend
+		// åˆ†æstartå’Œend
 		if (comps.size() == 2) {
 			
 			for (Comparative c : comps) {
 				if(c instanceof ComparativeBaseList){
-					throw new IllegalArgumentException("²»ÔÊĞíÁ¬Ğøand³¬¹ı3¸ö£¬»òÕßand ( or )ÕâÑùµÄÌõ¼ş×÷Îª·Ö±íÌõ¼ş");
+					throw new IllegalArgumentException("ä¸å…è®¸è¿ç»­andè¶…è¿‡3ä¸ªï¼Œæˆ–è€…and ( or )è¿™æ ·çš„æ¡ä»¶ä½œä¸ºåˆ†è¡¨æ¡ä»¶");
 				}
 				if (c.getComparison() == Comparative.GreaterThan
 						|| c.getComparison() == Comparative.GreaterThanOrEqual) {
@@ -262,8 +262,8 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 						start = c;
 					} else {
 						temp.addAll(getDefaultTabCollection(tab));
-						// Èç¹û¶¼ÊÇ´óÓÚ»ò´óÓÚµÈÓÚÔòDefault
-						log.info("¶¼´óÓÚ»ò´óÓÚµÈÓÚÕâÖÖ¿ªÇø¼äÇé¿ö");
+						// å¦‚æœéƒ½æ˜¯å¤§äºæˆ–å¤§äºç­‰äºåˆ™Default
+						log.info("éƒ½å¤§äºæˆ–å¤§äºç­‰äºè¿™ç§å¼€åŒºé—´æƒ…å†µ");
 						return ;
 					}
 				} else if (c.getComparison() == Comparative.LessThan
@@ -273,16 +273,16 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 						end = c;
 					} else {
 						temp.addAll(getDefaultTabCollection(tab));
-						//Èç¹ûÊÇĞ¡ÓÚ»òĞ¡ÓÚµÈÓÚµÄÇé›r£¬„tdefault
-						log.info("¶¼Ğ¡ÓÚ»òĞ¡ÓÚµÈÓÚÕâÖÖ¿ªÇø¼äµÄÇé¿ö");
+						//å¦‚æœæ˜¯å°äºæˆ–å°äºç­‰äºçš„æƒ…æ³ï¼Œå‰‡default
+						log.info("éƒ½å°äºæˆ–å°äºç­‰äºè¿™ç§å¼€åŒºé—´çš„æƒ…å†µ");
 						return ;
 					}
 				} else {
-					throw new NotSupportException("and Ìõ¼şÊÇÁ½¸ö£¬µ«ÖÁÉÙÓĞÒ»¸öÌõ¼şÎªµÈÓÚ¡£");
+					throw new NotSupportException("and æ¡ä»¶æ˜¯ä¸¤ä¸ªï¼Œä½†è‡³å°‘æœ‰ä¸€ä¸ªæ¡ä»¶ä¸ºç­‰äºã€‚");
 				}
 			}
 		} else {
-			throw new NotSupportException("andÌõ¼ş¶àÓÚÁ½¸ö");
+			throw new NotSupportException("andæ¡ä»¶å¤šäºä¸¤ä¸ª");
 		}
 		Comparable st = start.getValue();
 
@@ -311,13 +311,13 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 	@SuppressWarnings("unchecked")
 	protected void openRangeCheck(TabRule tabRule,Comparable st, Comparable ed) {
 		if (st.compareTo(ed) > 0) {
-			log.info("´óÓÚ×î´óÖµ£¬Ğ¡ÓÚ×îĞ¡ÖµµÄ¿ªÇø¼äµÄÇé¿ö");
+			log.info("å¤§äºæœ€å¤§å€¼ï¼Œå°äºæœ€å°å€¼çš„å¼€åŒºé—´çš„æƒ…å†µ");
 			return ;
 		}
 	}
 
 	/**
-	 * ¿ÉÍ¨¹ıÖØĞ´´Ë·½·¨Ö§³Ö¸ü¶àµÄ»ùÓÚstartÒ»¸öÖµ£¬endÒ»¸öÖµµÄÎ²×ºÌí¼ÓÂß¼­£¬ÖØĞ´´Ë·½·¨ĞèÒª×¢Òâ¶ÔoffsetµÄ´¦Àí
+	 * å¯é€šè¿‡é‡å†™æ­¤æ–¹æ³•æ”¯æŒæ›´å¤šçš„åŸºäºstartä¸€ä¸ªå€¼ï¼Œendä¸€ä¸ªå€¼çš„å°¾ç¼€æ·»åŠ é€»è¾‘ï¼Œé‡å†™æ­¤æ–¹æ³•éœ€è¦æ³¨æ„å¯¹offsetçš„å¤„ç†
 	 * @param start
 	 * @param end
 	 * @param tab TODO
@@ -329,20 +329,20 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 		Calendar cal = getCalendarInThreadLocalMap();
 		int startType = getType(start);
 		int endType = getType(end);
-		// ÕâÀïÒ²×öÁËĞŞ¸´¡£²»ÊÇºÜºÃ¿´
+		// è¿™é‡Œä¹Ÿåšäº†ä¿®å¤ã€‚ä¸æ˜¯å¾ˆå¥½çœ‹
 		Date endDate = getDateFromComparative(end);
 		int calType = getCalendarType();
 		Date st = getDateFromComparative(start);
 		int compRes=st.compareTo(endDate);
 		if(compRes==0){
 			if(startType==LESS_OR_EQUAL_GREAT_OR_EQUAL&&endType==LESS_OR_EQUAL_GREAT_OR_EQUAL){
-				//±ÕÇø¼äµÄÇé¿öÏÂ£¬ÓĞ½»¼¯
+				//é—­åŒºé—´çš„æƒ…å†µä¸‹ï¼Œæœ‰äº¤é›†
 				List<Object> li=new ArrayList<Object>(1);
 				cal.setTime(st);
 				li.add(getReturnInt(cal, calType)+offset);
 				return li;
 			}else{
-				//¿ª±Õ£¬¿ª¿ª£¬ÎŞ½»¼¯
+				//å¼€é—­ï¼Œå¼€å¼€ï¼Œæ— äº¤é›†
 				return Collections.emptyList();
 			}
 		}else if(compRes>0){
@@ -350,39 +350,39 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 		}
 		cal.setTime(st);
 	
-		//Ìí¼ÓstDate
+		//æ·»åŠ stDate
 		ret.add(getReturnInt(cal, calType)+offset);
-		//¼ÆËãÌí¼ÓºóµÄÊ±¼ä
+		//è®¡ç®—æ·»åŠ åçš„æ—¶é—´
 		Calendar anotherCal=(Calendar)cal.clone();
-		//»ñÈ¡µ±Ç°Ê±¼äÈÕÆÚµÄÕûÌìÊı.»ù×¼Ìì
+		//è·å–å½“å‰æ—¶é—´æ—¥æœŸçš„æ•´å¤©æ•°.åŸºå‡†å¤©
 		anotherCal.clear();
 		anotherCal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
 		
 		int max = cal.getMaximum(calType)+1;
-		// ÓÃcalendar»ñÈ¡Ê±¼ä±í
+		// ç”¨calendarè·å–æ—¶é—´è¡¨
 		for (int i = 0; i < max; i++) {
 			anotherCal.add(calType, 1);
-			//Èç¹û×ÔÔö1ÌìµÄÊ±¼ä>µ±Ç°Ê±¼ä
+			//å¦‚æœè‡ªå¢1å¤©çš„æ—¶é—´>å½“å‰æ—¶é—´
 			int compResult=anotherCal.getTime().compareTo(endDate);
 			if (compResult>0) {
-					//ÉèÖÃendÖµ
+					//è®¾ç½®endå€¼
 					cal.setTime(endDate);
-					//ÀûÓÃTreeSet±£Ö¤ÊıÖµµÄÎ¨Ò»ĞÔ¡£
+					//åˆ©ç”¨TreeSetä¿è¯æ•°å€¼çš„å”¯ä¸€æ€§ã€‚
 					ret.add(getReturnInt(cal, calType)+offset);
 					break;
 			}else if(compResult == 0 ){
 				if(endType == LESS_OR_EQUAL_GREAT_OR_EQUAL){
-					//»ù×¼ÖµµÈÓÚendÖµ,Ìí¼ÓendÖµ½øÈ¥
+					//åŸºå‡†å€¼ç­‰äºendå€¼,æ·»åŠ endå€¼è¿›å»
 					cal.setTime(endDate);
 					ret.add(getReturnInt(cal, calType)+offset);
 				}
 //				else{
-//					endDateĞ¡ÓÚ»ù×¼Ê±¼ä£¬Í¬Ê±»ù×¼Ê±¼äÊÇÒ»ÌìµÄĞÂ¿ªÊ¼¡£ËùÒÔ²»Ìí¼ÓÕâ¸öĞÂµÄÒ»Ìì¡£	
+//					endDateå°äºåŸºå‡†æ—¶é—´ï¼ŒåŒæ—¶åŸºå‡†æ—¶é—´æ˜¯ä¸€å¤©çš„æ–°å¼€å§‹ã€‚æ‰€ä»¥ä¸æ·»åŠ è¿™ä¸ªæ–°çš„ä¸€å¤©ã€‚	
 //				}
 				
 				break;
 			}else{
-				//×ÔÔöÌìĞ¡ÓÚµ±Ç°Ê±¼ä
+				//è‡ªå¢å¤©å°äºå½“å‰æ—¶é—´
 				ret.add(getReturnInt(anotherCal, calType)+offset);
 			}
 		}
@@ -407,7 +407,7 @@ public abstract class CommonTableRuleProvider implements TableRuleProvider {
 	}
 
 	/**
-	 * 1Îª>»ò< 0Îª>=»ò<=
+	 * 1ä¸º>æˆ–< 0ä¸º>=æˆ–<=
 	 * 
 	 * @param compDate
 	 * @return

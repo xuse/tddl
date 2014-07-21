@@ -7,10 +7,10 @@ import com.taobao.tddl.sqlobjecttree.common.value.BindVar;
 
 public abstract class PageWrapperCommon implements PageWrapper
 {
-	// ¿ÉÒÔ±»Ìæ»»µÄÖµ
+	// å¯ä»¥è¢«æ›¿æ¢çš„å€¼
 	protected boolean canBeChanged;
 	protected Integer index;
-	// µ±Ç°±£´æÔÚListÖĞµÄÖµ
+	// å½“å‰ä¿å­˜åœ¨Listä¸­çš„å€¼
 	protected Number value;
 
 	public PageWrapperCommon(Object obj)
@@ -23,7 +23,7 @@ public abstract class PageWrapperCommon implements PageWrapper
 			this.value = (Number) obj;
 		} else
 		{
-			throw new IllegalStateException("²»ÄÜÍ¨¹ı°ó¶¨±äÁ¿»òsql»ñÈ¡limit²ÎÊı");
+			throw new IllegalStateException("ä¸èƒ½é€šè¿‡ç»‘å®šå˜é‡æˆ–sqlè·å–limitå‚æ•°");
 		}
 	}
 
@@ -37,7 +37,7 @@ public abstract class PageWrapperCommon implements PageWrapper
 			return value.toString();
 		} else
 		{
-			throw new IllegalStateException("²»Ó¦¸Ã³öÏÖÃ»ÓĞÖµÖ±½ÓĞ´ÔÚsql,µ«Ò²Ã»ÓĞindexµÄÇé¿ö");
+			throw new IllegalStateException("ä¸åº”è¯¥å‡ºç°æ²¡æœ‰å€¼ç›´æ¥å†™åœ¨sql,ä½†ä¹Ÿæ²¡æœ‰indexçš„æƒ…å†µ");
 		}
 	}
 
@@ -46,7 +46,7 @@ public abstract class PageWrapperCommon implements PageWrapper
 		Number temp = null;
 		if (argument == null)
 		{
-			throw new IllegalArgumentException("²ÎÊıÎª¿Õ");
+			throw new IllegalArgumentException("å‚æ•°ä¸ºç©º");
 		}
 		if (index != null)
 		{
@@ -56,8 +56,8 @@ public abstract class PageWrapperCommon implements PageWrapper
 				temp = (Number) obj;
 			} else
 			{
-				throw new IllegalArgumentException("index ÖµÎª" + index
-						+ "µÄ²ÎÊı²»ÎªnumberÀàĞÍ");
+				throw new IllegalArgumentException("index å€¼ä¸º" + index
+						+ "çš„å‚æ•°ä¸ä¸ºnumberç±»å‹");
 			}
 		} else if (value != null)
 		{
@@ -66,11 +66,11 @@ public abstract class PageWrapperCommon implements PageWrapper
 				temp = value;
 			} else
 			{
-				throw new IllegalStateException("²»Ó¦¸Ã³öÏÖÃ»ÓĞÖµÖ±½ÓĞ´ÔÚsql,µ«Ò²Ã»ÓĞindexµÄÇé¿ö");
+				throw new IllegalStateException("ä¸åº”è¯¥å‡ºç°æ²¡æœ‰å€¼ç›´æ¥å†™åœ¨sql,ä½†ä¹Ÿæ²¡æœ‰indexçš„æƒ…å†µ");
 			}
 		} else
 		{
-			throw new IllegalStateException("·ÖÒ³º¯ÊıÎŞÖµ");
+			throw new IllegalStateException("åˆ†é¡µå‡½æ•°æ— å€¼");
 		}
 		if (temp instanceof Long || temp instanceof Integer)
 		{
@@ -80,7 +80,7 @@ public abstract class PageWrapperCommon implements PageWrapper
 			return ((BigDecimal) temp).longValueExact();
 		} else
 		{
-			throw new IllegalArgumentException("·ÖÒ³²ÎÊıÖ»Ö§³Öint long");
+			throw new IllegalArgumentException("åˆ†é¡µå‚æ•°åªæ”¯æŒint long");
 		}
 	}
 

@@ -2,7 +2,7 @@ package com.taobao.tddl.newparser.mysql.parserresult;
 
 public class Column {
 	/**
-	 * 可能是alias，也可能是table
+	 * 鍙兘鏄痑lias锛屼篃鍙兘鏄痶able
 	 */
 	public final String owner;
     public final String nameUpperCase;

@@ -3,7 +3,7 @@
 //import com.taobao.tddl.common.sqljep.function.Comparative;
 //
 ///**
-// * °üº¬ÁËÒ»¸öparameterËùÓ¦ÓµÓĞµÄÒ»ÇĞ¿ÉÒÔ±»¹æÔòÓÃµ½µÄ²ÎÊı¶ÔÏó
+// * åŒ…å«äº†ä¸€ä¸ªparameteræ‰€åº”æ‹¥æœ‰çš„ä¸€åˆ‡å¯ä»¥è¢«è§„åˆ™ç”¨åˆ°çš„å‚æ•°å¯¹è±¡
 // * 
 // * @author shenxun
 // *
@@ -11,12 +11,12 @@
 //public class Argument {
 //	
 //	/**
-//	 * ¶ÔÓ¦sql¸ÃÁĞ·ÖÎöºóµÄ¶ÔÏó
+//	 * å¯¹åº”sqlè¯¥åˆ—åˆ†æåçš„å¯¹è±¡
 //	 */
 //	private Comparative comp;
 //	
 //	/**
-//	 * ¶ÔÓ¦Ã¶¾ÙÆ÷ÖĞµÄµş¼Ó·¶Î§¡£
+//	 * å¯¹åº”æšä¸¾å™¨ä¸­çš„å åŠ èŒƒå›´ã€‚
 //	 */
 //	private Integer cumulativeTimes;
 //	

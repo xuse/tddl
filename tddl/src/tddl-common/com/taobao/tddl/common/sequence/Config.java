@@ -18,7 +18,7 @@ import com.taobao.tddl.common.sequence.Config.Route.ExpressionFactory;
 
 /*
  * @author guangxia
- * @since 1.0, 2009-4-27 ÏÂÎç02:03:07
+ * @since 1.0, 2009-4-27 ä¸‹åˆ02:03:07
  */
 public class Config {
 	public static final int DEFAULT = 1;
@@ -60,7 +60,7 @@ public class Config {
 		
 		public Factory(String path) throws DocumentException, ConfigException {
 			configs = new TreeMap<String, Config>();
-			//ÆôÓÃdtdÑéÖ¤
+			//å¯ç”¨dtdéªŒè¯
 			SAXReader reader = new SAXReader(true);
 			reader.setEntityResolver(new LocalEntityResolver());
 			Document root = reader.read(getClass().getResource(path));
@@ -143,7 +143,7 @@ public class Config {
 			}
 			
 			if (config.isOverFlowCheck() && routeSize > 8) {
-				throw new Config.ConfigException("É¢¿âÉ¢±íĞÅÏ¢ËùÕ¼ÓÃµÄidÎ»Êı(Ê®½øÖÆ)²»ÄÜ³¬¹ı8");
+				throw new Config.ConfigException("æ•£åº“æ•£è¡¨ä¿¡æ¯æ‰€å ç”¨çš„idä½æ•°(åè¿›åˆ¶)ä¸èƒ½è¶…è¿‡8");
 			}
 			if(config.getTotalSize() != 0 && routeSize != 0 && config.getTotalSize() != routeSize) {
 				throw new Config.ConfigException();
@@ -199,8 +199,8 @@ public class Config {
 
 		public static interface Expression<ArgType> {
 			/*
-			 * @param arg Õâ¸ö²ÎÊıÊÇÔËĞĞÊ±´«¹ıÀ´µÄÉ¢¿âÉ¢±í×Ö¶Î
-			 * @return ÔËËãºóµÄÉ¢¿âÉ¢±íĞÅÏ¢
+			 * @param arg è¿™ä¸ªå‚æ•°æ˜¯è¿è¡Œæ—¶ä¼ è¿‡æ¥çš„æ•£åº“æ•£è¡¨å­—æ®µ
+			 * @return è¿ç®—åçš„æ•£åº“æ•£è¡¨ä¿¡æ¯
 			 */
 			int execute(ArgType arg);
 		}
@@ -210,7 +210,7 @@ public class Config {
 		}
 		
 		/*
-		 * ÕâÊÇ×îÔ­Ê¼µÄ²»½øĞĞÈÎºÎ¼ÆËãÖ±½Ó×÷Îª·Ö¿â·Ö±íĞÅÏ¢
+		 * è¿™æ˜¯æœ€åŸå§‹çš„ä¸è¿›è¡Œä»»ä½•è®¡ç®—ç›´æ¥ä½œä¸ºåˆ†åº“åˆ†è¡¨ä¿¡æ¯
 		 */
 		public static class SimpleExp extends Route.AbstractExpression<Integer> {
 			public int execute(Integer arg) {
@@ -219,7 +219,7 @@ public class Config {
 		}
 
 		/*
-		 * È¡Ä£ÔËËã
+		 * å–æ¨¡è¿ç®—
 		 */
 		public static class ModExp extends Route.AbstractExpression<Integer> {
 
@@ -256,14 +256,14 @@ public class Config {
 			}
 			
 			/*
-			 * Õâ¸öºÍCalendarµÄdayofyearÊÇ²»Í¬µÄ
+			 * è¿™ä¸ªå’ŒCalendarçš„dayofyearæ˜¯ä¸åŒçš„
 			 * @see com.taobao.tddl.common.utils.sequenceGenerator.routed.Config.Route.Expression#execute(java.lang.Object)
 			 */
 			public int execute(Date arg) {
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(arg);
 				int dayofyear = cal.get(Calendar.DAY_OF_YEAR);
-				//ÎªÁËÊ¹µÃÈòÄêºÍ·ÇÈòÄêµÄdayofyearÏàÍ¬
+				//ä¸ºäº†ä½¿å¾—é—°å¹´å’Œéé—°å¹´çš„dayofyearç›¸åŒ
 				/*
 				if(isLeapYear(cal.get(Calendar.YEAR)) == false) {
 					if(dayofyear > 59) {

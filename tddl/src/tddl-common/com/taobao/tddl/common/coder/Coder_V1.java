@@ -8,8 +8,8 @@
 ///**
 // * @author huali
 // * 
-// *         ���ݿ�ָ����������V1�汾��ʵ�� ����汾��һ���򵥵�ʵ��
-// *         ���������˳��ת�����һ�������ڵ�Ԫ���ù�ͬ�ķָ����ֿ�������֮��������һ���ָ��� ����ĸ�ʽ�� I|U tableName
+// *         数据库指令编解码器的V1版本的实现 这个版本是一个简单的实现
+// *         按照命令的顺序，转换命令，一条命令内的元素用共同的分隔符分开，命令之间用另外一个分隔符 命令的格式是 I|U tableName
 // *         columnName S|L value
 // */
 //public class Coder_V1 implements Coder {

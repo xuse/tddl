@@ -6,7 +6,7 @@ import java.util.Map;
 import com.alibaba.common.lang.StringUtil;
 
 /**
- * Êı¾İ¿âÁ¬½ÓURLÉú³É¹¤¾ßÀà
+ * æ•°æ®åº“è¿æ¥URLç”Ÿæˆå·¥å…·ç±»
  * 
  * @author qihao
  *

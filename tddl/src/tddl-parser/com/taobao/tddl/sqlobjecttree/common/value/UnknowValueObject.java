@@ -15,7 +15,7 @@ public class UnknowValueObject implements  Comparable<Object> {
 		return valObj;
 	}
     public int compareTo(Object arg0) {
-        throw new UnsupportedOperationException("还不支持使用这个函数作为分库条件字段");
+        throw new UnsupportedOperationException("杩樹笉鏀寔浣跨敤杩欎釜鍑芥暟浣滀负鍒嗗簱鏉′欢瀛楁");
     }
 
 }

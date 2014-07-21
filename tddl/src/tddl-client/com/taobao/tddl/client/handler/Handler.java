@@ -6,19 +6,19 @@ import java.sql.SQLException;
 import com.taobao.tddl.client.databus.DataBus;
 
 /**
- * @description HandlerÌåÏµµÄ¶¥¼¶½Ó¿Ú
+ * @description Handlerä½“ç³»çš„é¡¶çº§æ¥å£
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-08-15ÏÂÎç03:23:40
+ * @date 2010-08-15ä¸‹åˆ03:23:40
  */
 public interface Handler {
 	/**
-	 * ´ÓctxÈ¡µÃËùĞèÊı¾İ½øĞĞ´¦Àí£¬½«´¦Àí½á¹û·Å»Øctx, ²¢Á÷ÏòÏÂÒ»¸ö´¦ÀíÆ÷
+	 * ä»ctxå–å¾—æ‰€éœ€æ•°æ®è¿›è¡Œå¤„ç†ï¼Œå°†å¤„ç†ç»“æœæ”¾å›ctx, å¹¶æµå‘ä¸‹ä¸€ä¸ªå¤„ç†å™¨
 	 * 
 	 * @param ctx
-	 *            ×ÜÏßÊı¾İ½á¹¹
+	 *            æ€»çº¿æ•°æ®ç»“æ„
 	 * @throws SQLException
 	 */
 	public void handleDown(DataBus dataBus) throws SQLException;

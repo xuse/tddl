@@ -13,7 +13,7 @@
 //		}else if(skip instanceof Integer){
 //			obj=(Integer)skip;
 //		}else{
-//			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+//			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 //		}
 //		modifiedMap.put(index, obj);
 //	}
@@ -25,7 +25,7 @@
 //		}else if(skip instanceof Integer){
 //			return String.valueOf(((Integer)skip).intValue());
 //		}else{
-//			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+//			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 //		}
 //	}
 //

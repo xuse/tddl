@@ -11,12 +11,12 @@ import com.taobao.tddl.common.sequence.Config.Route;
 import com.taobao.tddl.common.sequence.Config.Route.Expression;
 
 /**
- * ´øÂ·ÓÉĞÅÏ¢ĞòÁĞÄ¬ÈÏÊµÏÖ
+ * å¸¦è·¯ç”±ä¿¡æ¯åºåˆ—é»˜è®¤å®ç°
  *
  * @author guangxia
  *
- * @param <DatabaseRouteType> Êı¾İ¿âÂ·ÓÉĞÅÏ¢ÀàĞÍ
- * @param <TableRouteType> ±íÂ·ÓÉĞÅÏ¢ÀàĞÍ
+ * @param <DatabaseRouteType> æ•°æ®åº“è·¯ç”±ä¿¡æ¯ç±»å‹
+ * @param <TableRouteType> è¡¨è·¯ç”±ä¿¡æ¯ç±»å‹
  */
 public class DefaultRoutedSequence<DatabaseRouteType, TableRouteType> implements RoutedSequence<DatabaseRouteType, TableRouteType> {
 	private final static long[] pow10 = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000,

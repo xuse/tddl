@@ -13,7 +13,7 @@ import com.taobao.diamond.client.impl.DiamondClientFactory;
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-1-17œ¬ŒÁ07:21:41
+ * @date 2011-1-17‰∏ãÂçà07:21:41
  */
 public class DiamondConfig {
 	private volatile static DiamondConfigure configure = DiamondClientFactory

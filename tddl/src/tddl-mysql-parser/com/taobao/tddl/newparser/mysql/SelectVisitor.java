@@ -93,7 +93,7 @@ public class SelectVisitor extends EmptySQLASTVisitor {
 	}
 
 	private void handleHavingCondition(Expression havingExpr){
-		//having ²»ĞèÒª´¦Àí,ÉèÖÃÏÂ±ê¼Ç¾Íok
+		//having ä¸éœ€è¦å¤„ç†,è®¾ç½®ä¸‹æ ‡è®°å°±ok
 //		MySqlExprVisitor mev = new MySqlExprVisitor(this.result);
 //		havingExpr.accept(mev);
 		this.result.setHasHaving(true);

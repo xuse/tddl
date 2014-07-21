@@ -10,7 +10,7 @@ import com.taobao.tddl.jdbc.group.DataSourceWrapper;
 import com.taobao.tddl.jdbc.group.TGroupDataSource;
 
 /**
- * 获取一下DbType
+ * 鑾峰彇涓�涓婦bType
  * 
  * @author jianghang 2014-6-26
  * @since 3.3.2.2
@@ -48,14 +48,14 @@ public class DBTypeHelper {
             } else if (dbTypeEnum.getClass()
                 .getName()
                 .equals("com.taobao.tddl.jdbc.druid.config.object.DruidDbTypeEnum")) {
-                // tddl 3.1版本 返回的是这个类型
+                // tddl 3.1鐗堟湰 杩斿洖鐨勬槸杩欎釜绫诲瀷
                 if ("ORACLE".equals(dbTypeEnum.toString())) {
                     return "oracle";
                 } else if ("MYSQL".equals(dbTypeEnum.toString())) {
                     return "mysql";
                 }
             } else if (dbTypeEnum.getClass().getName().equals("com.taobao.tddl.common.standard.atom.AtomDbTypeEnum")) {
-                // tddl 3.1版本 返回的是这个类型
+                // tddl 3.1鐗堟湰 杩斿洖鐨勬槸杩欎釜绫诲瀷
                 if ("ORACLE".equals(dbTypeEnum.toString())) {
                     return "oracle";
                 } else if ("MYSQL".equals(dbTypeEnum.toString())) {

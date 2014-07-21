@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 /**
- * ¶ÔÓ¦xmlÀïÃæµÄDBRule
+ * å¯¹åº”xmlé‡Œé¢çš„DBRule
  * 
  * @author shenxun
  * 
@@ -13,37 +13,37 @@ import java.util.Map;
 public class DBRule {
 
 	private Map<String, Integer> posiMap = new HashMap<String, Integer>();
-	// ÒòÎª¿ÉÒÔ½âÎösqlÁË£¬ËùÒÔÌí¼ÓÁË Õâ¸öº¯ÊıÀ´±êÖ¾·Ö¿âµÄ¹Ø¼ü×Ö¶ÎÊÇÊ²Ã´¡£
+	// å› ä¸ºå¯ä»¥è§£æsqläº†ï¼Œæ‰€ä»¥æ·»åŠ äº† è¿™ä¸ªå‡½æ•°æ¥æ ‡å¿—åˆ†åº“çš„å…³é”®å­—æ®µæ˜¯ä»€ä¹ˆã€‚
 
 	/**
-	 * ·Ö¿â²ÎÊı
+	 * åˆ†åº“å‚æ•°
 	 */
 	private String parameters="";
 	/**
-	 * ¶ÔÓ¦±í´ïÊ½
+	 * å¯¹åº”è¡¨è¾¾å¼
 	 */
 	private String expression="";
 
 	/**
-	 * Ö÷¼üidÎªºÎ
+	 * ä¸»é”®idä¸ºä½•
 	 */
 	private Map<String, Integer> primaryPosiMap = new HashMap<String, Integer>();
 	private String primaryKey="";
 	/**
-	 * Ö÷¼üµÄ±í´ïÊ½
+	 * ä¸»é”®çš„è¡¨è¾¾å¼
 	 */
 	private String primaryKeyExp="";
 
 	/**
-	 * Ğ´³Ø
+	 * å†™æ± 
 	 */
 	private String[] writePool;
 	/**
-	 * ¶Á³Ø
+	 * è¯»æ± 
 	 */
 	private String[] readPool;
 	/**
-	 * ×Ó±íÃû¹æÔò£¬Èç¹ûÓĞ×Ó±íÃû¹æÔò£¬ÄÇÃ´»á´úÌæglobe±íÃû¹æÔò×÷ÓÃÓÚÕâ¸öDBRuleÉÏ
+	 * å­è¡¨åè§„åˆ™ï¼Œå¦‚æœæœ‰å­è¡¨åè§„åˆ™ï¼Œé‚£ä¹ˆä¼šä»£æ›¿globeè¡¨åè§„åˆ™ä½œç”¨äºè¿™ä¸ªDBRuleä¸Š
 	 */
 
 	private TabRule DBSubTabRule;
@@ -127,7 +127,7 @@ public class DBRule {
 	public void setPrimaryKey(String primaryKey) {
 		if (primaryKey != null) {
 			if (primaryKey.contains(",")) {
-				throw new IllegalArgumentException("²»ÄÜÓĞÁ½¸ö»ò¶à¸öÖ÷¼ü");
+				throw new IllegalArgumentException("ä¸èƒ½æœ‰ä¸¤ä¸ªæˆ–å¤šä¸ªä¸»é”®");
 			}
 			this.primaryKey = primaryKey.toLowerCase();
 			if (this.primaryKey != null) {

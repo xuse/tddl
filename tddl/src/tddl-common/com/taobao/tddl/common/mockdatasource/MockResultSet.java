@@ -32,7 +32,7 @@ import com.taobao.tddl.common.mockdatasource.MockDataSource.QueryResult;
 public class MockResultSet implements ResultSet{
 	private final MockDataSource mds; 
 	private ResultSetMetaData resultSetMetaData;
-	public final Map<String/*ÁÐÃû*/,Integer/*ÁÐÐòºÅ*/> columns; 
+	public final Map<String/*åˆ—å*/,Integer/*åˆ—åºå·*/> columns; 
 	public final List<Object[]> rows;
 	private int cursor = -1;
 	public MockResultSet(MockDataSource mockDataSource, Map<String,Integer> columns, List<Object[]> values){
@@ -352,7 +352,7 @@ public class MockResultSet implements ResultSet{
 	}
 
 	/**
-	 * iBatis»áÓÃµ½Õâ¸ö·½·¨
+	 * iBatisä¼šç”¨åˆ°è¿™ä¸ªæ–¹æ³•
 	 */
 	public int getType() throws SQLException {
 		return ResultSet.TYPE_FORWARD_ONLY;

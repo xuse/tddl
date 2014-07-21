@@ -3,39 +3,39 @@ package com.taobao.tddl.jdbc.atom.config;
 import com.taobao.tddl.common.config.ConfigDataListener;
 
 /**
- * TAtom数据源全局和应用的配置管理接口定义
+ * TAtom鏁版嵁婧愬叏灞�鍜屽簲鐢ㄧ殑閰嶇疆绠＄悊鎺ュ彛瀹氫箟
  * 
  * @author qihao
  *
  */
 public interface DbConfManager {
-	/**获取全局配置
+	/**鑾峰彇鍏ㄥ眬閰嶇疆
 	 * 
 	 * @return
 	 */
 	public String getGlobalDbConf();
 
-	/**获取应用配置
+	/**鑾峰彇搴旂敤閰嶇疆
 	 * 
 	 * @return
 	 */
 	public String getAppDbDbConf();
 
 	/**
-	 * 注册全局配置监听
+	 * 娉ㄥ唽鍏ㄥ眬閰嶇疆鐩戝惉
 	 * 
 	 * @param Listener
 	 */
 	public void registerGlobaDbConfListener(ConfigDataListener Listener);
 
-	/**注册应用配置监听
+	/**娉ㄥ唽搴旂敤閰嶇疆鐩戝惉
 	 * 
 	 * @param Listener
 	 */
 	public void registerAppDbConfListener(ConfigDataListener Listener);
 
 	/**
-	 * 停止DbConfManager
+	 * 鍋滄DbConfManager
 	 */
 	public void stopDbConfManager();
 }

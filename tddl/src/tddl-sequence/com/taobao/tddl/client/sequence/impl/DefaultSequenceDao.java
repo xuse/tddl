@@ -17,7 +17,7 @@ import com.taobao.tddl.client.sequence.SequenceRange;
 import com.taobao.tddl.client.sequence.exception.SequenceException;
 
 /**
- * ĞòÁĞDAOÄ¬ÈÏÊµÏÖ£¬JDBC·½Ê½
+ * åºåˆ—DAOé»˜è®¤å®ç°ï¼ŒJDBCæ–¹å¼
  *
  * @author nianbing
  */
@@ -39,32 +39,32 @@ public class DefaultSequenceDao implements SequenceDao {
 	private DataSource dataSource;
 
 	/**
-	 * ÖØÊÔ´ÎÊı
+	 * é‡è¯•æ¬¡æ•°
 	 */
 	private int retryTimes = DEFAULT_RETRY_TIMES;
 
 	/**
-	 * ²½³¤
+	 * æ­¥é•¿
 	 */
 	private int step = DEFAULT_STEP;
 
 	/**
-	 * ĞòÁĞËùÔÚµÄ±íÃû
+	 * åºåˆ—æ‰€åœ¨çš„è¡¨å
 	 */
 	private String tableName = DEFAULT_TABLE_NAME;
 
 	/**
-	 * ´æ´¢ĞòÁĞÃû³ÆµÄÁĞÃû
+	 * å­˜å‚¨åºåˆ—åç§°çš„åˆ—å
 	 */
 	private String nameColumnName = DEFAULT_NAME_COLUMN_NAME;
 
 	/**
-	 * ´æ´¢ĞòÁĞÖµµÄÁĞÃû
+	 * å­˜å‚¨åºåˆ—å€¼çš„åˆ—å
 	 */
 	private String valueColumnName = DEFAULT_VALUE_COLUMN_NAME;
 
 	/**
-	 * ´æ´¢ĞòÁĞ×îºó¸üĞÂÊ±¼äµÄÁĞÃû
+	 * å­˜å‚¨åºåˆ—æœ€åæ›´æ–°æ—¶é—´çš„åˆ—å
 	 */
 	private String gmtModifiedColumnName = DEFAULT_GMT_MODIFIED_COLUMN_NAME;
 
@@ -73,7 +73,7 @@ public class DefaultSequenceDao implements SequenceDao {
 
 	public SequenceRange nextRange(String name) throws SequenceException {
 		if (name == null) {
-			throw new IllegalArgumentException("ĞòÁĞÃû³Æ²»ÄÜÎª¿Õ");
+			throw new IllegalArgumentException("åºåˆ—åç§°ä¸èƒ½ä¸ºç©º");
 		}
 
 		long oldValue;

@@ -7,12 +7,12 @@ import com.taobao.tddl.common.LoggerInit;
 public class NagiosUtils {
 	private static final Logger nagiosLog = LoggerInit.TDDL_Nagios_LOG;
 
-	public static final String KEY_DB_NOT_AVAILABLE = "DB_NOT_AVAILABLE"; //Êı¾İ¿â²»¿ÉÓÃ,KEYÇ°×º+dbindex
-	public static final String KEY_SQL_PARSE_FAIL = "SQL_PARSE_FAIL"; //ÒµÎñÖ´ĞĞÁËÌØÊâµÄSQLÔì³É½âÎöÊ§°Ü
-	public static final String KEY_REPLICATION_FAIL_RATE = "REPLICATION_FAIL_RATE"; //ĞĞ¸´ÖÆÊ§°ÜÂÊ
-	public static final String KEY_REPLICATION_TIME_AVG = "REPLICATION_TIME_AVG"; //Ò»¶ÎÊ±¼äÄÚµÄĞĞ¸´ÖÆÆ½¾ùÏìÓ¦Ê±¼ä
-	public static final String KEY_INSERT_LOGDB_FAIL_RATE = "INSERT_LOGDB_FAIL_RATE"; //²åÈÕÖ¾¿âÊ§°ÜÂÊ
-	public static final String KEY_INSERT_LOGDB_TIME_AVG = "INSERT_LOGDB_TIME_AVG"; //Ò»¶ÎÊ±¼äÄÚµÄ²åÈÕÖ¾¿âÆ½¾ùÏìÓ¦Ê±¼ä
+	public static final String KEY_DB_NOT_AVAILABLE = "DB_NOT_AVAILABLE"; //æ•°æ®åº“ä¸å¯ç”¨,KEYå‰ç¼€+dbindex
+	public static final String KEY_SQL_PARSE_FAIL = "SQL_PARSE_FAIL"; //ä¸šåŠ¡æ‰§è¡Œäº†ç‰¹æ®Šçš„SQLé€ æˆè§£æå¤±è´¥
+	public static final String KEY_REPLICATION_FAIL_RATE = "REPLICATION_FAIL_RATE"; //è¡Œå¤åˆ¶å¤±è´¥ç‡
+	public static final String KEY_REPLICATION_TIME_AVG = "REPLICATION_TIME_AVG"; //ä¸€æ®µæ—¶é—´å†…çš„è¡Œå¤åˆ¶å¹³å‡å“åº”æ—¶é—´
+	public static final String KEY_INSERT_LOGDB_FAIL_RATE = "INSERT_LOGDB_FAIL_RATE"; //æ’æ—¥å¿—åº“å¤±è´¥ç‡
+	public static final String KEY_INSERT_LOGDB_TIME_AVG = "INSERT_LOGDB_TIME_AVG"; //ä¸€æ®µæ—¶é—´å†…çš„æ’æ—¥å¿—åº“å¹³å‡å“åº”æ—¶é—´
 	
 
 	public static void addNagiosLog(String key, String value) {

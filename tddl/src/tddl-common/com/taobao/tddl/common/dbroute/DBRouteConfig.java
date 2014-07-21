@@ -11,7 +11,7 @@
 //import com.taobao.tddl.common.exception.DBRouterException;
 //
 ///**
-// * Êı¾İ¿â·Ö¿âµÄ²éÕÒËÑÑ°²ßÂÔÅäÖÃÎÄ¼ş¹ÜÀíÆ÷
+// * æ•°æ®åº“åˆ†åº“çš„æŸ¥æ‰¾æœå¯»ç­–ç•¥é…ç½®æ–‡ä»¶ç®¡ç†å™¨
 // * 
 // */
 //public class DBRouteConfig {
@@ -23,7 +23,7 @@
 //	private Map<String, Properties> dbRuleMap = new HashMap<String, Properties>();
 //
 //	/**
-//	 * ¸ù¾İÂ·ÓÉ²ßÂÔ·µ»Ø¸ÃÂ·ÓÉÖ¸¶¨µÄÊı¾İ¿â Ö±½Ó¸ù¾İ¿Í»§¶ËÖ¸¶¨µÄDBRoute¾ö¶¨Ó¦¸Ã±»²éÑ¯µÄÊı¾İ¿â
+//	 * æ ¹æ®è·¯ç”±ç­–ç•¥è¿”å›è¯¥è·¯ç”±æŒ‡å®šçš„æ•°æ®åº“ ç›´æ¥æ ¹æ®å®¢æˆ·ç«¯æŒ‡å®šçš„DBRouteå†³å®šåº”è¯¥è¢«æŸ¥è¯¢çš„æ•°æ®åº“
 //	 * 
 //	 * @param DBRoute
 //	 * 
@@ -60,7 +60,7 @@
 //				}
 //			}
 //		}
-//		//¾¡Á¿²»Ê¹ÓÃ×Ö´®id
+//		//å°½é‡ä¸ä½¿ç”¨å­—ä¸²id
 //		if (dbRoute.getRoutingStrategy() == DBRoute.BY_USER) {
 //			String userId = dbRoute.getUserId();
 //
@@ -97,7 +97,7 @@
 //	}
 //
 //	/**
-//	 * ¸ù¾İ²éÑ¯µÄSQLMAPING ID ²éÕÒÊôÓÚÄÄ¸öÊı¾İ¿â
+//	 * æ ¹æ®æŸ¥è¯¢çš„SQLMAPING ID æŸ¥æ‰¾å±äºå“ªä¸ªæ•°æ®åº“
 //	 * 
 //	 * @param statement
 //	 * 
@@ -137,7 +137,7 @@
 //	}
 //
 //	/**
-//	 * ¾ö¶¨Êı¾İ¿âÂ·ÓÉµÄÖ÷Èë¿Ú£¬Ò»°ã¿Í»§¶Ë¾ùµ÷ÓÃ´Ë·½·¨·µ»ØÓ¦¸Ã²éÑ¯µÄÊı¾İ¿â¡£
+//	 * å†³å®šæ•°æ®åº“è·¯ç”±çš„ä¸»å…¥å£ï¼Œä¸€èˆ¬å®¢æˆ·ç«¯å‡è°ƒç”¨æ­¤æ–¹æ³•è¿”å›åº”è¯¥æŸ¥è¯¢çš„æ•°æ®åº“ã€‚
 //	 * 
 //	 * @param dbRoute
 //	 * @param statement
@@ -165,12 +165,12 @@
 //	}
 //
 //	/**
-//	 * ³õÊ¼»¯·½·¨£¬´Ë´¦½«¹æÔò½øĞĞ³õÊ¼»¯
+//	 * åˆå§‹åŒ–æ–¹æ³•ï¼Œæ­¤å¤„å°†è§„åˆ™è¿›è¡Œåˆå§‹åŒ–
 //	 * 
 //	 * @throws DBRouterException
 //	 */
 //	public void init() throws DBRouterException {
-//		// ³õÊ¼»¯ÅäÖÃÎÄ¼şÖĞÖ¸¶¨µÄ¹æÔò¼¯ºÏ
+//		// åˆå§‹åŒ–é…ç½®æ–‡ä»¶ä¸­æŒ‡å®šçš„è§„åˆ™é›†åˆ
 //		if (dbRuleMap.size() == 0) {
 //			return;
 //		}
@@ -192,15 +192,15 @@
 //			}
 //		}
 //		if (configLocation == null) {
-//			throw new DBRouterException("Î´Ö¸¶¨statement--Â·ÓÉÆ÷Ó³ÉäxmlÎÄ¼ş");
+//			throw new DBRouterException("æœªæŒ‡å®šstatement--è·¯ç”±å™¨æ˜ å°„xmlæ–‡ä»¶");
 //		}
 //		configLocation=configLocation.trim();
 //		if(configLocation.equals("")){
-//			throw new DBRouterException("Î´Ö¸¶¨statement--Â·ÓÉÆ÷Ó³ÉäxmlÎÄ¼ş");
+//			throw new DBRouterException("æœªæŒ‡å®šstatement--è·¯ç”±å™¨æ˜ å°„xmlæ–‡ä»¶");
 //		}
 //		InputStream in=null;
 //			in =getClass().getResourceAsStream(configLocation);
-//			// ³õÊ¼»¯SQLÓï¾äÓ³Éä¼¯ºÏ
+//			// åˆå§‹åŒ–SQLè¯­å¥æ˜ å°„é›†åˆ
 //			statementRuleMap = DBRouteConfigBuilder
 //					.buildRouteMap(in);
 //	}

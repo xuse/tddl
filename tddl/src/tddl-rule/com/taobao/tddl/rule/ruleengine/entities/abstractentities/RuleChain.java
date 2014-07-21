@@ -7,13 +7,13 @@ import com.taobao.tddl.rule.ruleengine.rule.ListAbstractResultRule;
 
 /**
  * 
- * ¹æÔòÁ´³éÏó¡£
+ * è§„åˆ™é“¾æŠ½è±¡ã€‚
  * 
- * ĞèÒª×¢ÒâµÄÊÇÈç¹û¹æÔòÁ´ÖĞµÄÁ½¸öÊôĞÔÍêÈ«ÏàÍ¬:--->ËûËù³ÖÓĞµÄ¹æÔòÁĞ±íÒÔ¼°ÊÇ·ñÊÇÊı¾İ¿â¹æÔò¡£
- * ÄÇÃ´ÎÒÃÇ¾ÍÈÏÎª¹æÔòÁ´ÍêÈ«ÏàÍ¬£¬ÒòÎª
+ * éœ€è¦æ³¨æ„çš„æ˜¯å¦‚æœè§„åˆ™é“¾ä¸­çš„ä¸¤ä¸ªå±æ€§å®Œå…¨ç›¸åŒ:--->ä»–æ‰€æŒæœ‰çš„è§„åˆ™åˆ—è¡¨ä»¥åŠæ˜¯å¦æ˜¯æ•°æ®åº“è§„åˆ™ã€‚
+ * é‚£ä¹ˆæˆ‘ä»¬å°±è®¤ä¸ºè§„åˆ™é“¾å®Œå…¨ç›¸åŒï¼Œå› ä¸º
  * 
- * 1.ÊäÈë²ÎÊıÏàÍ¬£¬sqlÊÇÒ»ÑùµÄ£¬Òò´ËÄÜ¹»Ìá¹©¸ø¹æÔò½øĞĞÔËËãµÄ²ÎÊıÊÇÒ»ÖÂµÄ¡£
- * 2.¹æÔòÒ»ÖÂ ¼ÆËã½á¹ûÒ²Ò»ÖÂ£¬Òò´Ë²»ĞèÒª½øĞĞ¶à´Î¼ÆËã¡£
+ * 1.è¾“å…¥å‚æ•°ç›¸åŒï¼Œsqlæ˜¯ä¸€æ ·çš„ï¼Œå› æ­¤èƒ½å¤Ÿæä¾›ç»™è§„åˆ™è¿›è¡Œè¿ç®—çš„å‚æ•°æ˜¯ä¸€è‡´çš„ã€‚
+ * 2.è§„åˆ™ä¸€è‡´ è®¡ç®—ç»“æœä¹Ÿä¸€è‡´ï¼Œå› æ­¤ä¸éœ€è¦è¿›è¡Œå¤šæ¬¡è®¡ç®—ã€‚
  * 
  * @author shenxun
  *
@@ -21,30 +21,30 @@ import com.taobao.tddl.rule.ruleengine.rule.ListAbstractResultRule;
 public interface RuleChain {
 	boolean isDatabaseRuleChain();
 //	/**
-//	 * ¸ù¾İindexºÍ²ÎÊı½øĞĞ¼ÆËã
+//	 * æ ¹æ®indexå’Œå‚æ•°è¿›è¡Œè®¡ç®—
 //	 * 
 //	 * @param index
 //	 * @param args
-//	 * @return ·ÇnullµÄList
+//	 * @return énullçš„List
 //	 */
-//	Map<String/*column*/,Map<String/*½á¹ûµÄÖµ*/,Set<Object>/*µÃµ½¸Ã½á¹ûµÄÃèµãÖµÃû*/>> calculate(int index,Map<String, Comparative> args);
+//	Map<String/*column*/,Map<String/*ç»“æœçš„å€¼*/,Set<Object>/*å¾—åˆ°è¯¥ç»“æœçš„æç‚¹å€¼å*/>> calculate(int index,Map<String, Comparative> args);
 //	
 	/**
-	 * ¸ù¾İindex»ñÈ¡¶ÔÓ¦¹æÔò
+	 * æ ¹æ®indexè·å–å¯¹åº”è§„åˆ™
 	 * 
-	 * @param index Èç¹ûindexÎª-1Ôò·µ»Ønull
+	 * @param index å¦‚æœindexä¸º-1åˆ™è¿”å›null
 	 * @return
 	 */
 	ListAbstractResultRule getRuleByIndex(int index);
 
 	/**
-	 * »ñÈ¡°´ÕÕ¼¶±ğÅÅĞòµÄ²ÎÊıÁĞ±í
+	 * è·å–æŒ‰ç…§çº§åˆ«æ’åºçš„å‚æ•°åˆ—è¡¨
 	 * @return
 	 */
 	List<Set<String>> getRequiredArgumentSortByLevel();
 	
 	/**
-	 * »ñÈ¡¹æÔòÁ´ÖĞµÄ¹æÔòÁĞ±í
+	 * è·å–è§„åˆ™é“¾ä¸­çš„è§„åˆ™åˆ—è¡¨
 	 * @return
 	 */
 	List<ListAbstractResultRule> getListResultRule();

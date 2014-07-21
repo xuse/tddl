@@ -15,7 +15,7 @@ import com.taobao.tddl.rule.le.inter.TddlRuleInter;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-11-15ÏÂÎç02:50:19
+ * @date 2011-11-15ä¸‹åˆ02:50:19
  */
 public interface TddlRuleExtend extends TddlRuleInter {
 	/**

@@ -10,9 +10,9 @@ import com.taobao.tddl.sqlobjecttree.common.value.BindVar;
 
 /*
  * @author guangxia
- * @since 1.0, 2009-9-2 ÏÂÎç11:28:14
+ * @since 1.0, 2009-9-2 ä¸‹åˆ11:28:14
  * @author shenxun
- * ÒÔÇ°Ğ´µÄÀÃ£¬ÖØ¹¹Ò»ÏÂ
+ * ä»¥å‰å†™çš„çƒ‚ï¼Œé‡æ„ä¸€ä¸‹
  */
 public abstract class OraclePageWrapper implements PageWrapper{
 	

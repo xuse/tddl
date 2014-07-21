@@ -64,7 +64,7 @@ import com.taobao.tddl.rule.le.bean.RuleChangeListener;
 import com.taobao.tddl.rule.le.topology.AppTopology;
 
 /**
- * TDataSourceµÄÅäÖÃÀà£¬×¨ÃÅ·ÅÖÃTDataSourceµÄÅäÖÃ´¦Àí´úÂë£¬Îª¼ò»¯ÅäÖÃ·şÎñ
+ * TDataSourceçš„é…ç½®ç±»ï¼Œä¸“é—¨æ”¾ç½®TDataSourceçš„é…ç½®å¤„ç†ä»£ç ï¼Œä¸ºç®€åŒ–é…ç½®æœåŠ¡
  */
 public class TDataSourceConfig implements ApplicationContextAware,
 		DataSourceChangeListener, RuleChangeListener {
@@ -81,18 +81,18 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	protected SqlDispatcher defaultDispatcher;
 	protected HookPoints hookPoints = HookPoints.DEFAULT;
 	/**
-	 * Ö¸¶¨¸ÃTDSÊÇ·ñĞèÒª´¦ÀíĞĞ¸´ÖÆ£¨³õÊ¼»¯»ò¶©ÔÄĞĞ¸´ÖÆÅäÖÃ£©
+	 * æŒ‡å®šè¯¥TDSæ˜¯å¦éœ€è¦å¤„ç†è¡Œå¤åˆ¶ï¼ˆåˆå§‹åŒ–æˆ–è®¢é˜…è¡Œå¤åˆ¶é…ç½®ï¼‰
 	 */
 	protected boolean isHandleReplication;
 	protected final RuntimeConfigHolder<TddlRuntime> runtimeConfigHolder = new RuntimeConfigHolder<TddlRuntime>();
 	/**
-	 * ÊÇ·ñÔÚstatlogÉÏ´òÓ¡ÕæÕıµÄdbºÍtablesÖ´ĞĞĞÅÏ¢¡£Ä¬ÈÏ¹Ø±Õ
+	 * æ˜¯å¦åœ¨statlogä¸Šæ‰“å°çœŸæ­£çš„dbå’Œtablesæ‰§è¡Œä¿¡æ¯ã€‚é»˜è®¤å…³é—­
 	 */
 	protected boolean enableProfileRealDBAndTables;
 
-	protected boolean isReadOnly = false; // ÊÇ·ñÖ»¶Á
-	protected boolean isMasterOnly = false; // ÊÇ·ñÖ»Ê¹ÓÃmasterÖ÷¿â
-	protected boolean isSlaveOnly = false; // ÊÇ·ñÖ»Ê¹ÓÃslave¶Á¿â
+	protected boolean isReadOnly = false; // æ˜¯å¦åªè¯»
+	protected boolean isMasterOnly = false; // æ˜¯å¦åªä½¿ç”¨masterä¸»åº“
+	protected boolean isSlaveOnly = false; // æ˜¯å¦åªä½¿ç”¨slaveè¯»åº“
 
 	protected PipelineFactory pipelineFactory = null;
 
@@ -101,7 +101,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	protected DataSourceMatrixCreatorImp dataSourceMatrixCreator;
 	private Map<String, ? extends Object> rwDataSourcePoolConfig;
 
-	private ApplicationContext springContext; // ÄÃµ½ÉÏÏÂÎÄ
+	private ApplicationContext springContext; // æ‹¿åˆ°ä¸Šä¸‹æ–‡
 
 	private String appName;
 	private boolean isUseLocalConfig = false;
@@ -111,7 +111,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	private String unitName;
 	
 	/**
-	 * Ê¹ÓÃtbdatasource»¹ÊÇdruid
+	 * ä½¿ç”¨tbdatasourceè¿˜æ˜¯druid
 	 */
 
 	private DataSourceType dataSourceType = DataSourceType.DruidDataSource;
@@ -121,14 +121,14 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	private ClassLoader specifyClassLoader = null;
 
 	/**
-	 * add by junyu ,Èç¹ûÎªtrue,ÄÇÃ´²ÉÓÃ244ĞÂµÄ°æ±¾¹æÔò£¬ 2.3.x¿ªÊ¼µÄ¹æÔòÎªÄ¬ÈÏ¹æÔò£¬´ıĞÂµÄ¹æÔò³ÉÊìºóÔÙĞŞ¸Ä
+	 * add by junyu ,å¦‚æœä¸ºtrue,é‚£ä¹ˆé‡‡ç”¨244æ–°çš„ç‰ˆæœ¬è§„åˆ™ï¼Œ 2.3.xå¼€å§‹çš„è§„åˆ™ä¸ºé»˜è®¤è§„åˆ™ï¼Œå¾…æ–°çš„è§„åˆ™æˆç†Ÿåå†ä¿®æ”¹
 	 */
 	private boolean useNewRule = false;
 
 	private boolean needDbTabStat = false;
 
 	private boolean dynamicRule = false;
-	// ÔÊĞíÍâ²¿×¢Èë
+	// å…è®¸å¤–éƒ¨æ³¨å…¥
 	private TddlRuleInner tddlRule = null;
 	/**
 	 * let user response the rule change if necessary
@@ -143,7 +143,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 			.getInstance();
 	private final TddlConfigParser<AppRule> shardRuleParser = new DefaultTddlConfigParser<AppRule>();
 	
-	// ´¦Àí¹æÔò¶©ÔÄµÄ¼àÌıÆ÷
+	// å¤„ç†è§„åˆ™è®¢é˜…çš„ç›‘å¬å™¨
 	private DataListener shardRuleListener = new DataListener() {
 		public void onDataReceiveAtRegister(Object data) {
 			Object tddlConfig = shardRuleParser.parseCongfig((String) data);
@@ -157,18 +157,18 @@ public class TDataSourceConfig implements ApplicationContextAware,
 		}
 
 		public void onDataReceive(Object data) {
-			logger.warn("Ôİ²»Ö§³Ö¶¯Ì¬ĞŞ¸Ä·Ö¿â·Ö±í¹æÔò£¬ÊÕµ½ÍÆËÍ£º" + data);
+			logger.warn("æš‚ä¸æ”¯æŒåŠ¨æ€ä¿®æ”¹åˆ†åº“åˆ†è¡¨è§„åˆ™ï¼Œæ”¶åˆ°æ¨é€ï¼š" + data);
 		}
 	};
 
 	/**
-	 * ¿ÉÒÔ¹©SpringÊ¹ÓÃ¡£Èç¹ûÒµÎñÈÆ¿ªspringÖ±½ÓÊ¹ÓÃ£¬±ØĞèÏÈsetËùÓĞĞè×¢ÈëÊôĞÔ£¬ÔÙµ÷ÓÃinit
-	 * Èç¹ûÊ¹ÓÃProperties·½Ê½³õÊ¼»¯£¬Ä¬ÈÏÖ»Ö§³Ö1·İÅäÖÃÎÄ¼ş£¬¼´appRuleFiles[0]
+	 * å¯ä»¥ä¾›Springä½¿ç”¨ã€‚å¦‚æœä¸šåŠ¡ç»•å¼€springç›´æ¥ä½¿ç”¨ï¼Œå¿…éœ€å…ˆsetæ‰€æœ‰éœ€æ³¨å…¥å±æ€§ï¼Œå†è°ƒç”¨init
+	 * å¦‚æœä½¿ç”¨Propertiesæ–¹å¼åˆå§‹åŒ–ï¼Œé»˜è®¤åªæ”¯æŒ1ä»½é…ç½®æ–‡ä»¶ï¼Œå³appRuleFiles[0]
 	 */
 	public void init() {
 		if (appRuleFiles != null) {
 			this.isUseLocalConfig = true;
-			// Ê¹ÓÃÍâ²¿ springContext ½âÎöÅäÖÃÎÄ¼şÂ·¾¶
+			// ä½¿ç”¨å¤–éƒ¨ springContext è§£æé…ç½®æ–‡ä»¶è·¯å¾„
 			appRuleFiles = doExternalResolve(appRuleFiles);
 			if (appRuleFiles[0] != null
 					&& appRuleFiles[0].indexOf(".xml") != -1) {
@@ -178,23 +178,23 @@ public class TDataSourceConfig implements ApplicationContextAware,
 				initByPropertyBaseAppRuleFile(appRuleFiles[0]);
 			} else {
 				throw new IllegalArgumentException(
-						"appRuleFileÊôĞÔÎª¿Õ»òÕß²»Ö§³ÖµÄ¹æÔòÎÄ¼şÀàĞÍ");
+						"appRuleFileå±æ€§ä¸ºç©ºæˆ–è€…ä¸æ”¯æŒçš„è§„åˆ™æ–‡ä»¶ç±»å‹");
 			}
 		} else if (appRuleString != null) {
 			this.isUseLocalConfig = true;
 			initByXmlBaseAppRuleString(appRuleString);
 		} else if (appRulePropertiesString != null) {
 			this.isUseLocalConfig = true;
-			// ×Ö·û´®ĞÎÊ½ÏÖÔÚÖ»Ö§³ÖpropertiesÅäÖÃÎÄ¼ş
+			// å­—ç¬¦ä¸²å½¢å¼ç°åœ¨åªæ”¯æŒpropertiesé…ç½®æ–‡ä»¶
 			initByPropertyBaseAppRuleString(appRulePropertiesString);
 		} else if (!isUseLocalConfig) {
-			// ¶©ÔÄ·Ö¿â·Ö±í¹æÔò
+			// è®¢é˜…åˆ†åº“åˆ†è¡¨è§„åˆ™
 			if (!dynamicRule) {
-				// ¶©ÔÄ·Ö¿â·Ö±í¹æÔò
+				// è®¢é˜…åˆ†åº“åˆ†è¡¨è§„åˆ™
 				Object firstFetchedShardRule = ConfigServerHelper
 						.subscribeShardRuleConfig(appName, shardRuleListener);
 				if (firstFetchedShardRule == null) {
-					throw new IllegalStateException("Ã»ÓĞ½ÓÊÕµ½·Ö¿â·Ö±í¹æÔòÅäÖÃ");
+					throw new IllegalStateException("æ²¡æœ‰æ¥æ”¶åˆ°åˆ†åº“åˆ†è¡¨è§„åˆ™é…ç½®");
 				}
 			} else {
 				if (tddlRule == null) {
@@ -216,13 +216,13 @@ public class TDataSourceConfig implements ApplicationContextAware,
 		}
 		
 
-		//³õÊ¼»¯ÅäÖÃ¹¤³Ì£¬ÅúÁ¿»ñÈ¡ÅäÖÃ¡£
+		//åˆå§‹åŒ–é…ç½®å·¥ç¨‹ï¼Œæ‰¹é‡è·å–é…ç½®ã€‚
 		initConfigHoderFactory();
 		
 		initDSMap();
 		initPipeline();
 		
-		//ÒÑ¾­Ê¹ÓÃ¹ıµÄÅäÖÃÒÆ³ı
+		//å·²ç»ä½¿ç”¨è¿‡çš„é…ç½®ç§»é™¤
 		destoryConfigHoderFactory();
 
 		statMonitor.setAppName(appName);
@@ -231,7 +231,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	}
 
 	/**
-	 * Ê¹ÓÃÍâ²¿ springContext ½âÎöÅäÖÃÎÄ¼şÂ·¾¶¡£
+	 * ä½¿ç”¨å¤–éƒ¨ springContext è§£æé…ç½®æ–‡ä»¶è·¯å¾„ã€‚
 	 * 
 	 * @param locations
 	 */
@@ -257,7 +257,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	}
 
 	/**
-	 * ÓÃÓÚ²âÊÔ,²»ĞèÒªÉèÖÃÈÎºÎÊôĞÔ£¬newÖ®ºóÖ±½Óµ÷ÓÃ¸Ã·½·¨Íê³É³õÊ¼»¯
+	 * ç”¨äºæµ‹è¯•,ä¸éœ€è¦è®¾ç½®ä»»ä½•å±æ€§ï¼Œnewä¹‹åç›´æ¥è°ƒç”¨è¯¥æ–¹æ³•å®Œæˆåˆå§‹åŒ–
 	 */
 	public void init(Map<String, DataSource> dataSourcePool,
 			VirtualTableRoot vtr) {
@@ -280,20 +280,20 @@ public class TDataSourceConfig implements ApplicationContextAware,
 		pipelineFactory.setDefaultDispatcher(defaultDispatcher);
 		pipelineFactory.setDispatcherMap(dispatcherMap);
 
-		// ³õÊ¼»¯SQL²¢ĞĞÖ´ĞĞ¿ØÖÆÆ÷
+		// åˆå§‹åŒ–SQLå¹¶è¡Œæ‰§è¡Œæ§åˆ¶å™¨
 
 		parallelManager = new ParallelDiamondConfigManager(appName, unitName);
 
-		// Ìá¹©¸øgetDBAndTables()Ê¹ÓÃ,²»Ó°ÏìÕı³£Ê¹ÓÃ
+		// æä¾›ç»™getDBAndTables()ä½¿ç”¨,ä¸å½±å“æ­£å¸¸ä½¿ç”¨
 		if (null != defaultDispatcher) {
 			this.defaultDispatcher.setPipelineFactory(pipelineFactory);
 		}
-		// modified by shen.Ìí¼ÓÒ»¸öappNameµÄ×¢²á¡£ÕâÑùÔÚstatlogÖĞ¾Í¿ÉÒÔÖ±½ÓÊ¹ÓÃadd·½·¨¡£²»ÓÃ´ó¸Ä´úÂë
+		// modified by shen.æ·»åŠ ä¸€ä¸ªappNameçš„æ³¨å†Œã€‚è¿™æ ·åœ¨statlogä¸­å°±å¯ä»¥ç›´æ¥ä½¿ç”¨addæ–¹æ³•ã€‚ä¸ç”¨å¤§æ”¹ä»£ç 
 		Monitor.setAppName(appName);
 	}
 
 	/**
-	 * ³õÊ¼»¯SpringÅäÖÃÎÄ¼ş
+	 * åˆå§‹åŒ–Springé…ç½®æ–‡ä»¶
 	 * 
 	 * @param appRuleFiles
 	 */
@@ -313,7 +313,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	}
 
 	/**
-	 * ³õÊ¼»¯PropertiesÅäÖÃÎÄ¼ş
+	 * åˆå§‹åŒ–Propertiesé…ç½®æ–‡ä»¶
 	 * 
 	 * @param propertyBaseRuleFile
 	 */
@@ -330,11 +330,11 @@ public class TDataSourceConfig implements ApplicationContextAware,
 			}
 			prop.load(is);
 		} catch (Exception e) {
-			throw new IllegalStateException("¶ÁÈ¡propertyÅäÖÃÎÄ¼ş´íÎó", e);
+			throw new IllegalStateException("è¯»å–propertyé…ç½®æ–‡ä»¶é”™è¯¯", e);
 		}
 		if (prop.get(PropertyBaseTDDLRoot.TABLE_RULES) != null) {
 			// TODO
-			// ÏÂÃæÕâĞ©Âß¼­ÏñĞÂ¹æÔòÒ»Ñù·Åµ½PropertiesConfigParserÖĞ£¬PropertyBaseTDDLRootÕâ¸öÀà¸Éµô¡£
+			// ä¸‹é¢è¿™äº›é€»è¾‘åƒæ–°è§„åˆ™ä¸€æ ·æ”¾åˆ°PropertiesConfigParserä¸­ï¼ŒPropertyBaseTDDLRootè¿™ä¸ªç±»å¹²æ‰ã€‚
 			AppRule appRule = new AppRule();
 			PropertyBaseTDDLRoot root = new PropertyBaseTDDLRoot();
 			root.init(prop);
@@ -342,7 +342,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 			this.init(appRule);
 		} else if (prop
 				.getProperty(PropertiesConfigParser.Prop_Key_244_tableRules) != null) {
-			// ĞÂ¹æÔò
+			// æ–°è§„åˆ™
 			VirtualTableRoot vtr = PropertiesConfigParser
 					.parseVirtualTableRoot(prop);
 			this.init(vtr);
@@ -353,7 +353,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	}
 
 	/**
-	 * ³õÊ¼»¯propertiesÅäÖÃ×Ö·û´®
+	 * åˆå§‹åŒ–propertiesé…ç½®å­—ç¬¦ä¸²
 	 * 
 	 * @param propertyBaseRuleFile
 	 */
@@ -366,7 +366,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 		try {
 			prop.load(byteArrayInputStream);
 		} catch (IOException e) {
-			throw new IllegalStateException("¶ÁÈ¡propertyÅäÖÃÎÄ¼ş´íÎó");
+			throw new IllegalStateException("è¯»å–propertyé…ç½®æ–‡ä»¶é”™è¯¯");
 		}
 		root.init(prop);
 		appRule.setDefaultTddlRoot(root);
@@ -374,7 +374,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	}
 
 	/**
-	 * ³õÊ¼»¯XmlÅäÖÃ×Ö·û´®
+	 * åˆå§‹åŒ–Xmlé…ç½®å­—ç¬¦ä¸²
 	 * 
 	 * @param propertyBaseRuleFile
 	 */
@@ -385,7 +385,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	}
 
 	/**
-	 * ³õÊ¼»¯ApplicationContextµÄAppRule
+	 * åˆå§‹åŒ–ApplicationContextçš„AppRule
 	 * 
 	 * @param ctx
 	 */
@@ -394,7 +394,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 			AppRule appRule = (AppRule) ctx.getBean("root");
 			this.init(appRule);
 		} else if (ctx.containsBean("vtabroot")) {
-			// 244ĞÂ¹æÔò
+			// 244æ–°è§„åˆ™
 			VirtualTableRoot vtr = (VirtualTableRoot) ctx.getBean("vtabroot");
 			TDDLMBean mbean = new TDDLMBean("TDDL 2.4.4 Rule Info");
 			mbean.setAttribute("dbType", vtr.getDbType().toString());
@@ -426,8 +426,8 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	}
 
 	/**
-	 * ¸ù¾İShardRule³õÊ¼»¯Dispatcher: ½«master·Ö¿â¹æÔò£¬³õÊ¼»¯ÎªwriteDispatcher;
-	 * ½«slave·Ö¿â¹æÔò£¬³õÊ¼»¯ÎªreadDispatcher;
+	 * æ ¹æ®ShardRuleåˆå§‹åŒ–Dispatcher: å°†masteråˆ†åº“è§„åˆ™ï¼Œåˆå§‹åŒ–ä¸ºwriteDispatcher;
+	 * å°†slaveåˆ†åº“è§„åˆ™ï¼Œåˆå§‹åŒ–ä¸ºreadDispatcher;
 	 */
 	private void init(AppRule appRule) {
 		TDataSourceConfigHolder.setApplicationContext(this.springContext);
@@ -474,7 +474,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 
 		defaultDispatcher = buildSqlDispatcher(parser, vtr);
 		dispatcherMap = new HashMap<String, SqlDispatcher>(1);
-		// ¼æÈİ¸ù¾İselectKeyÈ¡dispatcher
+		// å…¼å®¹æ ¹æ®selectKeyå–dispatcher
 		dispatcherMap.put("master", defaultDispatcher);
 		this.useNewRule = true;
 	}
@@ -534,7 +534,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 			}
 			if (appName == null || "".equals(appName)) {
 				throw new IllegalArgumentException(
-						"Èç¹ûÃ»ÓĞÖ¸¶¨rwDatasource,ÄÇÃ´»á´ÓÅäÖÃÖĞĞÄÈ¥È¡£¬Òò´Ë±ØĞëÖ¸¶¨appName.");
+						"å¦‚æœæ²¡æœ‰æŒ‡å®šrwDatasource,é‚£ä¹ˆä¼šä»é…ç½®ä¸­å¿ƒå»å–ï¼Œå› æ­¤å¿…é¡»æŒ‡å®šappName.");
 			}
 			dataSourceMatrixCreator.setNewDSMatrixKey(appName);
 			dsMap = dataSourceMatrixCreator.getDataSourceMap();
@@ -546,7 +546,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 			for (String key : dispatcherMap.keySet()) {
 				if (dsMap.containsKey(key)) {
 					throw new IllegalArgumentException(
-							"Êı¾İÔ´ÖĞµÄkey²»ÄÜÓë¹æÔòÖÆ¶¨µÄkeyÏàÍ¬£¬ÏàÍ¬µÄkeyÊÇ£º" + key);
+							"æ•°æ®æºä¸­çš„keyä¸èƒ½ä¸è§„åˆ™åˆ¶å®šçš„keyç›¸åŒï¼Œç›¸åŒçš„keyæ˜¯ï¼š" + key);
 				}
 			}
 		} else {
@@ -622,7 +622,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 
 	public void setRuleUrl(String ruleUrl) {
 		throw new IllegalArgumentException(
-				"ĞÂÊµÏÖÖĞ½«²»ÔÙÖ§³Ö¾ÉÓĞ¹æÔò£¬Èç¹ûÏ£ÍûÊ¹ÓÃ¾ÉÓĞ¹æÔòÇëÑ¡ÓÃ2.1.9²úÆ·¡£");
+				"æ–°å®ç°ä¸­å°†ä¸å†æ”¯æŒæ—§æœ‰è§„åˆ™ï¼Œå¦‚æœå¸Œæœ›ä½¿ç”¨æ—§æœ‰è§„åˆ™è¯·é€‰ç”¨2.1.9äº§å“ã€‚");
 	}
 
 	public void setDefaultDbType(String defaultDbType) {
@@ -667,7 +667,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	}
 
 	/**
-	 * ¼æÈİĞÔsetter
+	 * å…¼å®¹æ€§setter
 	 * 
 	 * @param appName
 	 */
@@ -676,7 +676,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	}
 
 	/**
-	 * ¼æÈİĞÔsetter
+	 * å…¼å®¹æ€§setter
 	 * 
 	 * @param appName
 	 */
@@ -685,7 +685,7 @@ public class TDataSourceConfig implements ApplicationContextAware,
 	}
 
 	/**
-	 * ¼æÈİĞÔsetter
+	 * å…¼å®¹æ€§setter
 	 * 
 	 * @param masterSlaveDispatcherRuleUrl
 	 */

@@ -19,7 +19,7 @@ import com.taobao.tddl.interact.sqljep.Comparative;
 import com.taobao.tddl.rule.ruleengine.entities.inputvalue.TabRule;
 
 /**
- * ÓÃÓÚ´¦Àípk×Ö¶Î·Ö¿â¡£Ö»ÓÃÓÚpk×Ö¶ÎÖĞ´øÓĞ·Ö¿â·Ö±íĞÅÏ¢µÄÊ±ºò
+ * ç”¨äºå¤„ç†pkå­—æ®µåˆ†åº“ã€‚åªç”¨äºpkå­—æ®µä¸­å¸¦æœ‰åˆ†åº“åˆ†è¡¨ä¿¡æ¯çš„æ—¶å€™
  * @author shenxun
  *
  */
@@ -37,7 +37,7 @@ public class PrimaryKeyRuleProvider extends CommonTableRuleProvider {
 	}
 
 	protected Collection<String> getDefaultTabCollection(TabRule tab) {
-		throw new NotSupportException("Ê¹ÓÃÖ÷¼üidµÄ²éÑ¯·½Ê½²»Ö§³Ö³ıinÒÔÍâµÄ·¶Î§²éÑ¯,»òÕßÃ»ÕÒµ½Ö÷¼ü");
+		throw new NotSupportException("ä½¿ç”¨ä¸»é”®idçš„æŸ¥è¯¢æ–¹å¼ä¸æ”¯æŒé™¤inä»¥å¤–çš„èŒƒå›´æŸ¥è¯¢,æˆ–è€…æ²¡æ‰¾åˆ°ä¸»é”®");
 	}
 	@SuppressWarnings("unchecked")
 	protected Set<String> addAEqComparabToXXXFix(TabRule tab,
@@ -53,7 +53,7 @@ public class PrimaryKeyRuleProvider extends CommonTableRuleProvider {
 		} else if(comparable instanceof BigInteger) {
 			bigInteger = (BigInteger)comparable;
 		}else{
-			throw new IllegalStateException("Ö»Ö§³Öint long");
+			throw new IllegalStateException("åªæ”¯æŒint long");
 		}
 		Integer tableArg = null;
 		Object detachIDObj;
@@ -85,7 +85,7 @@ public class PrimaryKeyRuleProvider extends CommonTableRuleProvider {
 		return temp;
 	}
 	protected List<Object> getXxxfixlist(Comparative start, Comparative end,int offset, TabRule tab) {
-		throw new NotSupportException("Ê¹ÓÃÖ÷¼üidµÄ²éÑ¯·½Ê½²»Ö§³Ö³ıinÒÔÍâµÄ·¶Î§²éÑ¯");
+		throw new NotSupportException("ä½¿ç”¨ä¸»é”®idçš„æŸ¥è¯¢æ–¹å¼ä¸æ”¯æŒé™¤inä»¥å¤–çš„èŒƒå›´æŸ¥è¯¢");
 	}
 
 }

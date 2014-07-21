@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.concurrent.ExecutorService;
 
 /**
- * ������������ģʽ֮��עˮ��ˮģʽ�������ȡģʽ����������ģʽ
- * ˮ���ﲻ����ˮ������������ʱ��ʱ����
- * ��ˮ�ߵ�һͰˮ���˺󣬲�ȡ��ʹ��
+ * 生产者消费者模式之：注水接水模式，零存整取模式，积累批量模式
+ * 水管里不断有水流出，连续或时断时续。
+ * 接水者等一桶水满了后，才取走使用
  * 
  * @author linxuan
  *
@@ -14,16 +14,16 @@ import java.util.concurrent.ExecutorService;
  */
 public interface BucketSwitcher<T> {
 	/**
-	 * עˮ��ע��ˮ��
-	 * ͨ���÷������ϵؼ������񡢶��󡣡���
-	 * ����ˮ���ﲻ����ˮ����ˮͰ�
-	 * ˮͰ���ˣ��Զ��л���עˮ��(�û���һ�������߳�)���ع���ˮ�����������Ǹ�Ͱ
+	 * 注水者注入水。
+	 * 通过该方法不断地加入任务、对象。。。
+	 * 就像水管里不断有水流到水桶里。
+	 * 水桶满了，自动切换。注水者(用户的一个或多个线程)不必关心水管流到的是那个桶
 	 */
 	void pourin(T task);
 
 	/**
-	 * ���ý�ˮ�ߡ�
-	 * ��������˽�ˮ�ߣ�һͨˮ������Զ����ߣ����ø���ˮ�ߡ�
+	 * 设置接水者。
+	 * 如果设置了接水者，一通水满后会自动移走，并拿给接水者。
 	 */
 	abstract class BucketTaker<T> {
 		private final ExecutorService executor;

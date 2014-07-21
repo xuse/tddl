@@ -14,14 +14,14 @@ import com.taobao.tddl.interact.bean.TargetDB;
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-4-22ÏÂÎç12:49:53
+ * @date 2011-4-22ä¸‹åˆ12:49:53
  */
 public class MatchResultCompare {
 	/**
-	 * ĞÂ¾ÉmatcherResult¶Ô±È
+	 * æ–°æ—§matcherResultå¯¹æ¯”
 	 * @param resultNew
 	 * @param resultOld
-	 * @return Èç¹û¿â±íÍêÈ«ÏàÍ¬·µ»Øtrue,·ñÔò·µ»Øfalse
+	 * @return å¦‚æœåº“è¡¨å®Œå…¨ç›¸åŒè¿”å›true,å¦åˆ™è¿”å›false
 	 */
 	public static boolean matchResultCompare(MatcherResult resultNew,
 			MatcherResult resultOld) {
@@ -29,7 +29,7 @@ public class MatchResultCompare {
 	}
 
 	/**
-	 * ĞÂ¾ÉMatchResult¶Ô±È,Èç¹û²»Í¬,¶Ô±Èµ±Ç°¿â±íÊÇ·ñºÍĞÂ¹æÔò¼ÆËã½á¹ûÒ»ÖÂ
+	 * æ–°æ—§MatchResultå¯¹æ¯”,å¦‚æœä¸åŒ,å¯¹æ¯”å½“å‰åº“è¡¨æ˜¯å¦å’Œæ–°è§„åˆ™è®¡ç®—ç»“æœä¸€è‡´
 	 * @param resultNew
 	 * @param resultOld
 	 * @param oriDb
@@ -44,11 +44,11 @@ public class MatchResultCompare {
 	}
 
 	/**
-	 * È·¶¨È¡Êı¾İµÄ¿â±íÊÇ·ñÔÚ¹æÔò¼ÆËãµÄ½á¹ûÖ®ÄÚ.
+	 * ç¡®å®šå–æ•°æ®çš„åº“è¡¨æ˜¯å¦åœ¨è§„åˆ™è®¡ç®—çš„ç»“æœä¹‹å†….
 	 * @param resultNew
 	 * @param oriDb
 	 * @param oriTable
-	 * @return false ²»´æÔÚ, true ±íÊ¾¹æÔò¼ÆËã½á¹ûÍêÈ«°üº¬È¡Êı¾İµÄ¿â±í
+	 * @return false ä¸å­˜åœ¨, true è¡¨ç¤ºè§„åˆ™è®¡ç®—ç»“æœå®Œå…¨åŒ…å«å–æ•°æ®çš„åº“è¡¨
 	 */
 	public static boolean oriDbTabCompareWithMatchResult(MatcherResult resultNew,String oriDb,String oriTable){
 		List<TargetDB> targetNew = resultNew.getCalculationResult();
@@ -64,10 +64,10 @@ public class MatchResultCompare {
 	}
 
 	/**
-	 * ĞÂ¾ÉTargetDB¶Ô±È
+	 * æ–°æ—§TargetDBå¯¹æ¯”
 	 * @param targetNew
 	 * @param targetOld
-	 * @return Èç¹û¿â±íÍêÈ«ÏàÍ¬·µ»Øtrue,·ñÔò·µ»Øfalse
+	 * @return å¦‚æœåº“è¡¨å®Œå…¨ç›¸åŒè¿”å›true,å¦åˆ™è¿”å›false
 	 */
 	public static boolean targetDbCompare(List<TargetDB> targetNew,
 			List<TargetDB> targetOld) {
@@ -75,7 +75,7 @@ public class MatchResultCompare {
 	}
 
 	/**
-	 * ĞÂ¾ÉTargetDB¶Ô±È,Èç¹û²»Í¬,¶Ô±Èµ±Ç°¿â±íÊÇ·ñºÍĞÂ¹æÔò¼ÆËã½á¹ûÒ»ÖÂ
+	 * æ–°æ—§TargetDBå¯¹æ¯”,å¦‚æœä¸åŒ,å¯¹æ¯”å½“å‰åº“è¡¨æ˜¯å¦å’Œæ–°è§„åˆ™è®¡ç®—ç»“æœä¸€è‡´
 	 * @param targetNew
 	 * @param targetOld
 	 * @param oriDb
@@ -88,11 +88,11 @@ public class MatchResultCompare {
 	}
 
 	/**
-	 * È·¶¨È¡Êı¾İµÄ¿â±íÊÇ·ñÔÚ¹æÔò¼ÆËãµÄ½á¹ûÖ®ÄÚ.
+	 * ç¡®å®šå–æ•°æ®çš„åº“è¡¨æ˜¯å¦åœ¨è§„åˆ™è®¡ç®—çš„ç»“æœä¹‹å†….
 	 * @param resultNew
 	 * @param oriDb
 	 * @param oriTable
-	 * @return false ²»´æÔÚ, true ±íÊ¾¹æÔò¼ÆËã½á¹ûÍêÈ«°üº¬È¡Êı¾İµÄ¿â±í
+	 * @return false ä¸å­˜åœ¨, true è¡¨ç¤ºè§„åˆ™è®¡ç®—ç»“æœå®Œå…¨åŒ…å«å–æ•°æ®çš„åº“è¡¨
 	 */
 	public static boolean oriDbTabCompareWithTargetDb(List<TargetDB> targetNew,String oriDb,String oriTable){
 		Map<String, Map<String, String>> dbTabMap = getTargetMap(targetNew);
@@ -111,18 +111,18 @@ public class MatchResultCompare {
 		Map<String, Map<String, String>> oldOne = getTargetMap(targetOld);
 		boolean dbDiff=false;
 		boolean tbDiff=false;
-		//ÕıÏò±È½Ï
+		//æ­£å‘æ¯”è¾ƒ
 		for(Map.Entry<String,Map<String,String>> entry:newOne.entrySet()){
 			Map<String,String> oldTables=oldOne.get(entry.getKey());
 			if(oldTables!=null){
-				//ÕıÏò±È½Ï±í
+				//æ­£å‘æ¯”è¾ƒè¡¨
 				for(Map.Entry<String, String> newTbEntry:entry.getValue().entrySet()){
 					String tb=oldTables.get(newTbEntry.getKey());
 					if(tb==null){
 						tbDiff=true;
 					}
 				}
-				//·´Ïò±È½Ï±í
+				//åå‘æ¯”è¾ƒè¡¨
 				for(Map.Entry<String, String> oldTbEntry:oldTables.entrySet()){
 					String tb=entry.getValue().get(oldTbEntry.getKey());
 					if(tb==null){
@@ -134,7 +134,7 @@ public class MatchResultCompare {
 			}
 		}
 
-		//·´ÏòÖ»¼ì²â¿â¼ÆËã½á¹ûÊÇ·ñÏàÍ¬,ÒòÎª±í¼ÆËã½á¹û±È½ÏÕıÏò¾Í¿ÉÒÔµÃµ½
+		//åå‘åªæ£€æµ‹åº“è®¡ç®—ç»“æœæ˜¯å¦ç›¸åŒ,å› ä¸ºè¡¨è®¡ç®—ç»“æœæ¯”è¾ƒæ­£å‘å°±å¯ä»¥å¾—åˆ°
 		for(Map.Entry<String,Map<String,String>> entry:oldOne.entrySet()){
 			Map<String,String> newTables=newOne.get(entry.getKey());
 			if(newTables==null){
@@ -146,20 +146,20 @@ public class MatchResultCompare {
 	}
 
 	private static boolean compareResultAnalyse(Map<String, Map<String, String>> newResult,String oriDb,String oriTable,boolean dbDiff,boolean tbDiff){
-		//Èç¹û±í¼ÆËã½á¹ûÏàÍ¬,¿â¼ÆËã½á¹û²»Í¬
+		//å¦‚æœè¡¨è®¡ç®—ç»“æœç›¸åŒ,åº“è®¡ç®—ç»“æœä¸åŒ
 		if(dbDiff&&oriDb!=null){
 			Map<String,String> tables=newResult.get(oriDb);
 			if(tables!=null){
-				//Èç¹û±¾¿â¾ÍÊÇÄ¿±ê¿â
+				//å¦‚æœæœ¬åº“å°±æ˜¯ç›®æ ‡åº“
 			    return compareResutlAnalyseTable(tables,oriTable,tbDiff);
 			}else{
-				//Èç¹û±¾¿â²»ÊÇÄ¿±ê¿â,ÄÇÃ´ËµÃ÷ĞèÒªÇ¨ÒÆ.
+				//å¦‚æœæœ¬åº“ä¸æ˜¯ç›®æ ‡åº“,é‚£ä¹ˆè¯´æ˜éœ€è¦è¿ç§».
 				return false;
 			}
 		}else if(dbDiff&&oriDb==null){
 			return false;
 		}else{
-			//Èç¹û¿â½á¹û¼ÆËãÒ²ÏàÍ¬,¿´±í¼ÆËã½á¹û
+			//å¦‚æœåº“ç»“æœè®¡ç®—ä¹Ÿç›¸åŒ,çœ‹è¡¨è®¡ç®—ç»“æœ
 			return compareResutlAnalyseTable(newResult.get(oriDb),oriTable,tbDiff);
 		}
 	}

@@ -6,8 +6,8 @@ import java.util.Map;
 import com.taobao.tddl.common.channel.SqlMetaData;
 
 /**
- * �������ߣ���Ե�����ѯ�������ݸ��£����Ա���û�ж��߳�����
- * �����ҪӦ�ö��̳߳�������Ҫ�޸ĳɼ����Ĵ�ȡ��
+ * 数据总线，针对单个查询或者数据更新，所以本身没有多线程问题
+ * 如果需要应用多线程场景，需要修改成加锁的存取。
  * 
  * @author junyu
  * @param <T>

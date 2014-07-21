@@ -3,7 +3,7 @@ package com.taobao.tddl.sqlobjecttree.mysql.function.stringfunction;
 import com.taobao.tddl.sqlobjecttree.common.value.OperationBeforTwoArgsFunction;
 
 public class Concat extends OperationBeforTwoArgsFunction {
-	//ºó¼ÓµÄ£¬ÒòÎªÓĞ¸ö°æ±¾V810Ã»ÓĞºÏ²¢µ½Ö÷¸É
+	//ååŠ çš„ï¼Œå› ä¸ºæœ‰ä¸ªç‰ˆæœ¬V810æ²¡æœ‰åˆå¹¶åˆ°ä¸»å¹²
 	@Override
 	public String getFuncName() {
 		return "CONCAT";

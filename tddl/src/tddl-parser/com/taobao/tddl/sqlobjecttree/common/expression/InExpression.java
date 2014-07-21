@@ -17,9 +17,9 @@ import com.taobao.tddl.sqlobjecttree.common.value.UnknowValueObject;
 
 
 /**
- * ±íÊ¾inµÄ¹ØÏµ
+ * è¡¨ç¤ºinçš„å…³ç³»
  * 
- * col in (£¿£¬£¿£¬£¿£©¡£¡£¡£
+ * col in (ï¼Ÿï¼Œï¼Ÿï¼Œï¼Ÿï¼‰ã€‚ã€‚ã€‚
  * 
  * @author shenxun
  *
@@ -48,7 +48,7 @@ public  class InExpression implements Expression{
 			//ifnull(col,0); nvl(col,0)
 			colName = ((Function)left).getNestedColName();
 		}else{
-			throw new IllegalArgumentException("²»ÄÜÕÒµ½ÁĞÃû£¬ÇëÈ·±£ÁĞÃûÔÚµÈÊ½×óÃæ");
+			throw new IllegalArgumentException("ä¸èƒ½æ‰¾åˆ°åˆ—åï¼Œè¯·ç¡®ä¿åˆ—ååœ¨ç­‰å¼å·¦é¢");
 		}
 		
 		int operator=getComparativeOperation();
@@ -67,7 +67,7 @@ public  class InExpression implements Expression{
 			this.buildOneEqComparative(or, right, colName, inAnd, operator);
 		} else {
 			throw new IllegalStateException(
-					"²»Ö§³Ö·Çlist»òselectµÄÇé¿ö£¬Õâ¿ÉÄÜÊÇÓÉÓÚ²»ÊÇinº¯ÊıÒıÆğµÄ");
+					"ä¸æ”¯æŒélistæˆ–selectçš„æƒ…å†µï¼Œè¿™å¯èƒ½æ˜¯ç”±äºä¸æ˜¯inå‡½æ•°å¼•èµ·çš„");
 		}
 		
 		visitor.put(colName.toUpperCase(), new ComparableElement(or,inAnd,operator));
@@ -79,9 +79,9 @@ public  class InExpression implements Expression{
 			Comparable<?> temp =val.eval();
 			comparativeOR.addComparative(new Comparative(operator,temp));
 		}  else {
-			//Èç¹û²»ÊÇValue¶ÔÏó
+			//å¦‚æœä¸æ˜¯Valueå¯¹è±¡
 			if(colName==null){
-				throw new IllegalArgumentException("sqlÔªËØ£º"+left+"|"+getRelationString()+"|"+right+"ÖĞÕÒµ½Ö¸¶¨µÄÁĞÃû");
+				throw new IllegalArgumentException("sqlå…ƒç´ ï¼š"+left+"|"+getRelationString()+"|"+right+"ä¸­æ‰¾åˆ°æŒ‡å®šçš„åˆ—å");
 			}
 			if(right instanceof Comparable){
 				comparativeOR.addComparative(new Comparative(operator,(Comparable<?>) right));

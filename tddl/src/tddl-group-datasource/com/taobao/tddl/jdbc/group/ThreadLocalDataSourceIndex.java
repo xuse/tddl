@@ -32,13 +32,13 @@ public class ThreadLocalDataSourceIndex {
 		try {
 			indexObject = (Integer) ThreadLocalMap
 					.get(ThreadLocalString.DATASOURCE_INDEX);
-			// ²»´æÔÚË÷ÒıÊ±·µ»Ø-1£¬ÕâÑùµ÷ÓÃÕßÖ»ÒªÖªµÀ·µ»ØÖµÊÇ-1¾Í»áÈÏÎªÒµÎñ²ãÃ»ÓĞÉèÖÃ¹ıË÷Òı
+			// ä¸å­˜åœ¨ç´¢å¼•æ—¶è¿”å›-1ï¼Œè¿™æ ·è°ƒç”¨è€…åªè¦çŸ¥é“è¿”å›å€¼æ˜¯-1å°±ä¼šè®¤ä¸ºä¸šåŠ¡å±‚æ²¡æœ‰è®¾ç½®è¿‡ç´¢å¼•
 			if (indexObject == null)
 				return new GroupIndex(
 						DBSelector.NOT_EXIST_USER_SPECIFIED_INDEX, false);
 
 			int index = indexObject.intValue();
-			// Èç¹ûÒµÎñ²ãÒÑÉèÖÃÁËË÷Òı£¬´ËÊ±Ë÷Òı²»ÄÜÎª¸ºÖµ
+			// å¦‚æœä¸šåŠ¡å±‚å·²è®¾ç½®äº†ç´¢å¼•ï¼Œæ­¤æ—¶ç´¢å¼•ä¸èƒ½ä¸ºè´Ÿå€¼
 			if (index < 0)
 				throw new IllegalArgumentException(msg(indexObject));
 
@@ -66,6 +66,6 @@ public class ThreadLocalDataSourceIndex {
 	}
 
 	private static String msg(Integer indexObject) {
-		return indexObject + " ²»ÊÇÒ»¸öÓĞĞ§µÄÊı¾İÔ´Ë÷Òı£¬Ë÷ÒıÖ»ÄÜÊÇ´óÓÚ0µÄÊı×Ö";
+		return indexObject + " ä¸æ˜¯ä¸€ä¸ªæœ‰æ•ˆçš„æ•°æ®æºç´¢å¼•ï¼Œç´¢å¼•åªèƒ½æ˜¯å¤§äº0çš„æ•°å­—";
 	}
 }

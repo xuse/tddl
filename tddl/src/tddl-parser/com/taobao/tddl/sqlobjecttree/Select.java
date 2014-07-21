@@ -46,7 +46,7 @@ public class Select extends DMLCommon implements SubQueryValue {
 		where.setHolder(holder);
 
 		having = getHavingCondition();
-		// FIXME:²»ÔõÃ´Àí½â£¬µ«ÊÇ¸´ÓÃwalker£¬ĞèÒªÉèÖÃ
+		// FIXME:ä¸æ€ä¹ˆç†è§£ï¼Œä½†æ˜¯å¤ç”¨walkerï¼Œéœ€è¦è®¾ç½®
 		having.setHolder(holder);
 	}
 
@@ -95,7 +95,7 @@ public class Select extends DMLCommon implements SubQueryValue {
 			if (name instanceof TableNameFunctionImp) {
 				TableNameFunctionImp tbNameFunction = (TableNameFunctionImp) name;
 				if (snap != null) {
-					throw new IllegalStateException("²»ÔÊĞíÒ»¸ösqlĞĞÖĞ³öÏÖ¶à¸öº¯Êı±íÃû");
+					throw new IllegalStateException("ä¸å…è®¸ä¸€ä¸ªsqlè¡Œä¸­å‡ºç°å¤šä¸ªå‡½æ•°è¡¨å");
 				} else {
 					snap = tbNameFunction;
 				}
@@ -141,7 +141,7 @@ public class Select extends DMLCommon implements SubQueryValue {
 	}
 
 	/**
-	 * FIXME:ÕâÀïhavingÔİÊ±²»×öeval()
+	 * FIXME:è¿™é‡Œhavingæš‚æ—¶ä¸åševal()
 	 */
 	@Override
 	public Map<String, Comparative> getSubColumnsMap() {
@@ -189,7 +189,7 @@ public class Select extends DMLCommon implements SubQueryValue {
 	}
 
 	public List<Comparable<?>> getNesteSelectTable(List<Object> arguments) {
-		throw new IllegalArgumentException("²»Ö§³ÖÓÃÕâÖÖÄÚÇ¶selectÕÒµ½ĞéÄâ±í²ÎÊı´®");
+		throw new IllegalArgumentException("ä¸æ”¯æŒç”¨è¿™ç§å†…åµŒselectæ‰¾åˆ°è™šæ‹Ÿè¡¨å‚æ•°ä¸²");
 	}
 
 	public Comparable<?> eval() {
@@ -203,8 +203,8 @@ public class Select extends DMLCommon implements SubQueryValue {
 			func = tabFunc.getFunction();
 		}
 		if (func == null) {
-			throw new IllegalArgumentException("²»ÄÜ´Ó×Óselect:" + this
-					+ "ÖĞÕÒµ½¿ÉÖ±½Ó»ñµÃµÄ¸³Öµ·½·¨");
+			throw new IllegalArgumentException("ä¸èƒ½ä»å­select:" + this
+					+ "ä¸­æ‰¾åˆ°å¯ç›´æ¥è·å¾—çš„èµ‹å€¼æ–¹æ³•");
 		}
 
 		return func.getVal(args);
@@ -218,7 +218,7 @@ public class Select extends DMLCommon implements SubQueryValue {
 	}
 
 	/**
-	 * ²é¿´sqltypeÊÇÊ²Ã´£¬count,min,max,avgµÈ£¬Èç¹û¶¼²»ÊÇÔòÄ¬ÈÏÎªnormal
+	 * æŸ¥çœ‹sqltypeæ˜¯ä»€ä¹ˆï¼Œcount,min,max,avgç­‰ï¼Œå¦‚æœéƒ½ä¸æ˜¯åˆ™é»˜è®¤ä¸ºnormal
 	 */
 	protected void getSelectSqlType() {
 		type = columns.getSelectType();

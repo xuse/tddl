@@ -16,7 +16,7 @@
 package com.alibaba.cobar.parser.util;
 
 /**
- * @author xianmao.hexm 2011-5-9 ÏÂÎç02:40:29
+ * @author xianmao.hexm 2011-5-9 ä¸‹åˆ02:40:29
  */
 public final class ParseUtil {
 
@@ -223,24 +223,24 @@ public final class ParseUtil {
 	}
 
 	/*****
-	 * ¼ì²éÏÂÒ»¸ö×Ö·ûÊÇ·ñÎª·Ö¸ô·û£¬²¢°ÑÆ«ÒÆÁ¿¼Ó1
+	 * æ£€æŸ¥ä¸‹ä¸€ä¸ªå­—ç¬¦æ˜¯å¦ä¸ºåˆ†éš”ç¬¦ï¼Œå¹¶æŠŠåç§»é‡åŠ 1
 	 * */
 	public static boolean nextCharIsSep(String stmt, int offset) {
 		return currentCharIsSep(stmt, ++offset);
 	}
 
 	/*****
-	 * ¼ì²éÏÂÒ»¸ö×Ö·û´®ÊÇ·ñÎªÆÚÍûµÄ×Ö·û´®£¬²¢°ÑÆ«ÒÆÁ¿ÒÆµ½´Óoffset¿ªÊ¼¼ÆËã£¬expectValueÖ®ºóµÄÎ»ÖÃ
+	 * æ£€æŸ¥ä¸‹ä¸€ä¸ªå­—ç¬¦ä¸²æ˜¯å¦ä¸ºæœŸæœ›çš„å­—ç¬¦ä¸²ï¼Œå¹¶æŠŠåç§»é‡ç§»åˆ°ä»offsetå¼€å§‹è®¡ç®—ï¼ŒexpectValueä¹‹åçš„ä½ç½®
 	 * 
 	 * @param stmt
-	 *            ±»½âÎöµÄsql
+	 *            è¢«è§£æçš„sql
 	 * @param offset
-	 *            ±»½âÎöµÄsqlµÄµ±Ç°Î»ÖÃ
+	 *            è¢«è§£æçš„sqlçš„å½“å‰ä½ç½®
 	 * @param nextExpectedString
-	 *            ÔÚstmtÖĞ×¼±¸²éÕÒµÄ×Ö·û´®
+	 *            åœ¨stmtä¸­å‡†å¤‡æŸ¥æ‰¾çš„å­—ç¬¦ä¸²
 	 * @param checkSepChar
-	 *            µ±ÕÒµ½expectValueÖµÊ±£¬ÊÇ·ñ¼ì²éÆäºóÃæ×Ö·ûÎª·Ö¸ô·ûºÅ
-	 * @return Èç¹û°üº¬Ö¸¶¨µÄ×Ö·û´®£¬ÔòÒÆ¶¯ÏàÓ¦µÄÆ«ÒÆÁ¿£¬·ñÔò·µ»ØÖµ=offset
+	 *            å½“æ‰¾åˆ°expectValueå€¼æ—¶ï¼Œæ˜¯å¦æ£€æŸ¥å…¶åé¢å­—ç¬¦ä¸ºåˆ†éš”ç¬¦å·
+	 * @return å¦‚æœåŒ…å«æŒ‡å®šçš„å­—ç¬¦ä¸²ï¼Œåˆ™ç§»åŠ¨ç›¸åº”çš„åç§»é‡ï¼Œå¦åˆ™è¿”å›å€¼=offset
 	 * */
     public static int nextStringIsExpectedWithIgnoreSepChar(String stmt,
 			int offset, String nextExpectedString, boolean checkSepChar) {
@@ -281,23 +281,23 @@ public final class ParseUtil {
 	//private static final String SET = "set";
 
 	/**********
-	 * ¼ì²éÏÂÒ»¸ö×Ö·û´®ÊÇ·ñjson= *
+	 * æ£€æŸ¥ä¸‹ä¸€ä¸ªå­—ç¬¦ä¸²æ˜¯å¦json= *
 	 * 
 	 * @param stmt
-	 *            ±»½âÎöµÄsql
+	 *            è¢«è§£æçš„sql
 	 * @param offset
-	 *            ±»½âÎöµÄsqlµÄµ±Ç°Î»ÖÃ
-	 * @return Èç¹û°üº¬Ö¸¶¨µÄ×Ö·û´®£¬ÔòÒÆ¶¯ÏàÓ¦µÄÆ«ÒÆÁ¿£¬·ñÔò·µ»ØÖµ=offset
+	 *            è¢«è§£æçš„sqlçš„å½“å‰ä½ç½®
+	 * @return å¦‚æœåŒ…å«æŒ‡å®šçš„å­—ç¬¦ä¸²ï¼Œåˆ™ç§»åŠ¨ç›¸åº”çš„åç§»é‡ï¼Œå¦åˆ™è¿”å›å€¼=offset
 	 * */
 	public static int nextStringIsJsonEq(String stmt, int offset) {
 		int i = offset;
 
-		// / drds Ö®ºóµÄ·ûºÅ
+		// / drds ä¹‹åçš„ç¬¦å·
 		if (!currentCharIsSep(stmt, ++i)) {
 			return offset;
 		}
 
-		// json ´®
+		// json ä¸²
 		int k = nextStringIsExpectedWithIgnoreSepChar(stmt, i, JSON,
 				false);
 		if (k <= i) {
@@ -305,7 +305,7 @@ public final class ParseUtil {
 		}
 		i = k;
 
-		// µÈÓÚ·ûºÅ
+		// ç­‰äºç¬¦å·
 		k = nextStringIsExpectedWithIgnoreSepChar(stmt, i, EQ, false);
 		if (k <= i) {
 			return offset;

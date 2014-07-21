@@ -1,7 +1,7 @@
 package com.taobao.tddl.common.config;
 
 /**
- * Ä¬ÈÏ½âÎöÎÄ±¾¿ØÖÆÆ÷
+ * é»˜è®¤è§£ææ–‡æœ¬æ§åˆ¶å™¨
  * 
  * @author linxuan
  *
@@ -15,12 +15,12 @@ public class DefaultTddlConfigParser<T> implements TddlConfigParser<T> {
 	public T parseCongfig(String txt) {
 		if (txt.startsWith(prefix_spring)){
 			//return springParser.parseCongfig(txt.substring(prefix_spring.length()));
-			return springParser.parseCongfig(txt); //²»ĞèÒªÈ¥³ıÍ·ÁË
+			return springParser.parseCongfig(txt); //ä¸éœ€è¦å»é™¤å¤´äº†
 		}else if(txt.startsWith(prefix_properties)){
 			//return propertiesParser.parseCongfig(txt.substring(prefix_properties.length()));
-			return propertiesParser.parseCongfig(txt); //²»ĞèÒªÈ¥³ıÍ·ÁË
+			return propertiesParser.parseCongfig(txt); //ä¸éœ€è¦å»é™¤å¤´äº†
 		}else{
-			//²»¼ÓÇ°×ºÄ¬ÈÏÎªspring xml¸ñÊ½£¬±ãÓÚÖ±½Ó½«ÍÆËÍÎÄ±¾¿½±´µ½ÎÄ¼şÖĞ£¬ÓÃspring IDE¼ì²é
+			//ä¸åŠ å‰ç¼€é»˜è®¤ä¸ºspring xmlæ ¼å¼ï¼Œä¾¿äºç›´æ¥å°†æ¨é€æ–‡æœ¬æ‹·è´åˆ°æ–‡ä»¶ä¸­ï¼Œç”¨spring IDEæ£€æŸ¥
 			return springParser.parseCongfig(txt);
 		}
 	}

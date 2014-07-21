@@ -4,19 +4,19 @@ import com.taobao.tddl.common.config.ConfigDataListener;
 
 public interface DbPasswdManager {
 	
-	/**»ñÈ¡Êı¾İ¿âÃÜÂë
+	/**è·å–æ•°æ®åº“å¯†ç 
 	 * @return
 	 */
 	public String getPasswd();
 	
-	/**×¢²áÓ¦ÓÃÅäÖÃ¼àÌı
+	/**æ³¨å†Œåº”ç”¨é…ç½®ç›‘å¬
 	 * 
 	 * @param Listener
 	 */
 	public void registerPasswdConfListener(ConfigDataListener Listener);
 	
 	/**
-	 * Í£Ö¹DbPasswdManager
+	 * åœæ­¢DbPasswdManager
 	 */
 	public void stopDbPasswdManager();
 }

@@ -41,7 +41,7 @@ public class MySQLDateStringWrapperFunction implements Function{
 				d = df.parse(date);
 			}
 		} catch (ParseException e) {
-			throw new IllegalArgumentException("tddl不能正确的识别mysql日期,当前系统记录的日期是"+date);
+			throw new IllegalArgumentException("tddl涓嶈兘姝ｇ‘鐨勮瘑鍒玬ysql鏃ユ湡,褰撳墠绯荤粺璁板綍鐨勬棩鏈熸槸"+date);
 		}
 		return d;
 	}

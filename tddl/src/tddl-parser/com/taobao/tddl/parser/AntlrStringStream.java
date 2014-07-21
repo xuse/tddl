@@ -4,7 +4,7 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
 
 /**
- * ÓÃÓÚ½«Ğ¡Ğ´µÄsql×ª»»Îª´óĞ´
+ * ç”¨äºå°†å°å†™çš„sqlè½¬æ¢ä¸ºå¤§å†™
  * @author shenxun
  *
  */
@@ -19,7 +19,7 @@ public class AntlrStringStream extends ANTLRStringStream{
 			return 0; // undefined 
 			} 
 			if ( i<0 ) { 
-			i++; // e.g.£¬ translate LA(-1) to use offset 0 
+			i++; // e.g.ï¼Œ translate LA(-1) to use offset 0 
 			} 
 			if ( (p+i-1) >= n ) { 
 			return CharStream.EOF; 

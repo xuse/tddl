@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
- * 正数的原子递增器，主要用于实现轮询
+ * 姝ｆ暟鐨勫師瀛愰�掑鍣紝涓昏鐢ㄤ簬瀹炵幇杞
  * 
  * @author apple
  * 

@@ -27,7 +27,7 @@ public class OracleHintRegister {
 		HintSetter cls=null;
 		try {
 			if(key==null||key.trim().equals("")){
-				throw new IllegalArgumentException("group function≤ªƒ‹Œ™ø’");
+				throw new IllegalArgumentException("group function‰∏çËÉΩ‰∏∫Á©∫");
 			}
 			cls=funcReg.get(key.toUpperCase()).newInstance();
 		} catch (InstantiationException e) {

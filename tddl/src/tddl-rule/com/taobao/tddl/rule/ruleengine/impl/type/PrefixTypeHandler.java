@@ -22,7 +22,7 @@ public class PrefixTypeHandler implements TableNameTypeHandler{
 			}
 		}
 		if(physicsTab.size()==0){
-			log.warn(vTab+"没有一个符合要求的实际表，请检查tableRule是否填写正确，尤其是allowTable中是否填写了指定的表");
+			log.warn(vTab+"娌℃湁涓�涓鍚堣姹傜殑瀹為檯琛紝璇锋鏌ableRule鏄惁濉啓姝ｇ‘锛屽挨鍏舵槸allowTable涓槸鍚﹀～鍐欎簡鎸囧畾鐨勮〃");
 		}
 		return physicsTab;
 	}

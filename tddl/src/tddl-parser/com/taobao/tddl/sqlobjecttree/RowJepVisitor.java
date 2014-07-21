@@ -10,9 +10,9 @@ import com.taobao.tddl.interact.sqljep.ComparativeOR;
 import com.taobao.tddl.sqlobjecttree.common.ComparableElement;
 
 /**
- * Visitor£¬Ö÷Òª±£´æÁËÒ»¸öComparativeMap.
+ * Visitorï¼Œä¸»è¦ä¿å­˜äº†ä¸€ä¸ªComparativeMap.
  * 
- * ½âÊÍ¼û{@link Expression}µÄeval·½·¨
+ * è§£é‡Šè§{@link Expression}çš„evalæ–¹æ³•
  * 
  * @author shenxun
  *
@@ -22,13 +22,13 @@ public class RowJepVisitor{
 
 //	private List<Object> args=Collections.emptyList();
 	/**
-	 * ½«expression µÄ keyºÍ¶ÔÓ¦µÄvalue·Åµ½ComparativeÖĞ¡£
-	 * Òª½â¾öµÄÒ»¸öÎÊÌâÊÇ£¬ÒòÎªÔÚ±éÀúExpressionµÄ¹ı³ÌÖĞ£¬±éÀúµÄ¹ı³ÌÊÇExpressionÊ÷µÄºóĞò±éÀú£¬ËùÒÔ±éÀúÊÇ´Ó×Ó½ÚµãÏò
-	 * ¸¸½ÚµãÒ»²ãÒ»²ãµÄ½øĞĞ·ÖÎöµÄ£¬ÕâÑù¾Í»á³öÏÖÒ»¸öÎÊÌâ£¬±ØĞëÔÚÒ»¸öµØ·½±£´æËùÓĞµÄand½ÚµãºÍor½ÚµãĞÅÏ¢£¬½«ÆäÈ«²¿
-	 * Æ´Èëµ½·ÃÎÊÊ÷ÖĞ²Å²»»áÒıÆğ´íÎó¡£
+	 * å°†expression çš„ keyå’Œå¯¹åº”çš„valueæ”¾åˆ°Comparativeä¸­ã€‚
+	 * è¦è§£å†³çš„ä¸€ä¸ªé—®é¢˜æ˜¯ï¼Œå› ä¸ºåœ¨éå†Expressionçš„è¿‡ç¨‹ä¸­ï¼Œéå†çš„è¿‡ç¨‹æ˜¯Expressionæ ‘çš„ååºéå†ï¼Œæ‰€ä»¥éå†æ˜¯ä»å­èŠ‚ç‚¹å‘
+	 * çˆ¶èŠ‚ç‚¹ä¸€å±‚ä¸€å±‚çš„è¿›è¡Œåˆ†æçš„ï¼Œè¿™æ ·å°±ä¼šå‡ºç°ä¸€ä¸ªé—®é¢˜ï¼Œå¿…é¡»åœ¨ä¸€ä¸ªåœ°æ–¹ä¿å­˜æ‰€æœ‰çš„andèŠ‚ç‚¹å’ŒorèŠ‚ç‚¹ä¿¡æ¯ï¼Œå°†å…¶å…¨éƒ¨
+	 * æ‹¼å…¥åˆ°è®¿é—®æ ‘ä¸­æ‰ä¸ä¼šå¼•èµ·é”™è¯¯ã€‚
 	 *
-	 * Òò´ËÔÚexpressionµÄeval·½·¨Àï´øÓĞÁËÒ»¸öbooleanÖµÀ´±êÊ¶ÕıÔÚ±»´¦ÀíµÄÄ³¸ö×Ó½ÚµãµÄ¸¸½Úµãµ½µ×ÊÇÒ»¸öand½Úµã»¹ÊÇÒ»¸öor
-	 * µÄ½Úµã£¬ÔÚRowJepVisitorÖĞÔò¸ù¾İand½ÚµãºÍor½ÚµãµÄ²»Í¬£¬¹¹ÔìÁË²»Í¬µÄComparativeAnd»òcomparativeOrÀ´ÓëÖ®¶ÔÓ¦¡£
+	 * å› æ­¤åœ¨expressionçš„evalæ–¹æ³•é‡Œå¸¦æœ‰äº†ä¸€ä¸ªbooleanå€¼æ¥æ ‡è¯†æ­£åœ¨è¢«å¤„ç†çš„æŸä¸ªå­èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹åˆ°åº•æ˜¯ä¸€ä¸ªandèŠ‚ç‚¹è¿˜æ˜¯ä¸€ä¸ªor
+	 * çš„èŠ‚ç‚¹ï¼Œåœ¨RowJepVisitorä¸­åˆ™æ ¹æ®andèŠ‚ç‚¹å’ŒorèŠ‚ç‚¹çš„ä¸åŒï¼Œæ„é€ äº†ä¸åŒçš„ComparativeAndæˆ–comparativeOræ¥ä¸ä¹‹å¯¹åº”ã€‚
 	 *
 	 * 
 	 * @param key
@@ -53,8 +53,8 @@ public class RowJepVisitor{
 				}
 				comparable.put(key, and);
 			}else{
-				//Êµ¼ÊµÄOR½Úµã²¢Î´Ê¹ÓÃÕâ¸öÑ¡ÔñÖ§
-				//±¾Ñ¡ÔñÖ§Ö»ÓÃÓÚinµÈÕâÀàÒª×öORÓïÒå×ªÒëµÄExpressionÊ¹ÓÃ
+				//å®é™…çš„ORèŠ‚ç‚¹å¹¶æœªä½¿ç”¨è¿™ä¸ªé€‰æ‹©æ”¯
+				//æœ¬é€‰æ‹©æ”¯åªç”¨äºinç­‰è¿™ç±»è¦åšORè¯­ä¹‰è½¬è¯‘çš„Expressionä½¿ç”¨
 				ComparativeOR or=new ComparativeOR();
 
 				or.addComparative(val);

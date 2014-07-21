@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Ó¦ÓÃ¼¶±ğµÄÍØÆË½á¹¹ÃèÊö¡£
+ * åº”ç”¨çº§åˆ«çš„æ‹“æ‰‘ç»“æ„æè¿°ã€‚
  * 
  * <pre>
  *   AppTopology = TableTopology *( "," TableTopology )

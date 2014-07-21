@@ -58,7 +58,7 @@ public class MockDataSource implements DataSource, Cloneable {
 		}
 
 		/**
-		 * Ö»Ö§³Ö·ÅÒ»ĞĞÊı¾İ£¬Êı¾İÀàĞÍÖ»Ö§³ÖÊıÖµlongºÍString,ÀıÈç£º
+		 * åªæ”¯æŒæ”¾ä¸€è¡Œæ•°æ®ï¼Œæ•°æ®ç±»å‹åªæ”¯æŒæ•°å€¼longå’ŒString,ä¾‹å¦‚ï¼š
 		 * sku_id:0,item_id:65,seller_id:63
 		 * sku_id:0,item_id:65,name:'aaa'
 		 */
@@ -71,11 +71,11 @@ public class MockDataSource implements DataSource, Cloneable {
 				String[] nv = col.split("\\:");
 				this.columns.put(nv[0], i);
 				if (nv[1].startsWith("'") && nv[1].endsWith("'")) {
-					colvalues.add(nv[1].substring(1, nv[1].length() - 1));//×Ö·û´®
+					colvalues.add(nv[1].substring(1, nv[1].length() - 1));//å­—ç¬¦ä¸²
 				} else if (nv[1].endsWith("NULL")) {
 					colvalues.add(null);
 				} else {
-					colvalues.add(Long.parseLong(nv[1]));//Êı×Ö
+					colvalues.add(Long.parseLong(nv[1]));//æ•°å­—
 				}
 			}
 			this.rows = new ArrayList<Object[]>(1);
@@ -94,23 +94,23 @@ public class MockDataSource implements DataSource, Cloneable {
 
 	public SQLException genFatalSQLException() throws SQLException {
 		if (DBType.MYSQL.equals(dbType)) {
-			return new SQLException("dsClosed", "08001");//À´×ÔMySQLExceptionSorter
+			return new SQLException("dsClosed", "08001");//æ¥è‡ªMySQLExceptionSorter
 		} else if (DBType.ORACLE.equals(dbType)) {
-			return new SQLException("dsClosed", "28");//À´×ÔOracleExceptionSorter //28 session has been killed
+			return new SQLException("dsClosed", "28");//æ¥è‡ªOracleExceptionSorter //28 session has been killed
 		} else {
-			throw new RuntimeException("ÓĞÁËĞÂµÄdbType¶øÕâÀïÃ»ÓĞ¸üĞÂ");
+			throw new RuntimeException("æœ‰äº†æ–°çš„dbTypeè€Œè¿™é‡Œæ²¡æœ‰æ›´æ–°");
 		}
 	}
 
 	/**
-	 * ´æ·ÅÃ¿´ÎÖ´ĞĞµÄ½á¹ûĞÅÏ¢£ºÊµ¼ÊµÄsql£¬²ÎÊı£¬Êı¾İÔ´Ãû³Æ
+	 * å­˜æ”¾æ¯æ¬¡æ‰§è¡Œçš„ç»“æœä¿¡æ¯ï¼šå®é™…çš„sqlï¼Œå‚æ•°ï¼Œæ•°æ®æºåç§°
 	 */
-	private static ThreadLocal<ExecuteInfo> RESULT = new ThreadLocal<ExecuteInfo>(); //TODO ÓĞÁËTRACE²»ĞèÒªÕâ¸öÁË 
+	private static ThreadLocal<ExecuteInfo> RESULT = new ThreadLocal<ExecuteInfo>(); //TODO æœ‰äº†TRACEä¸éœ€è¦è¿™ä¸ªäº† 
 	private static ThreadLocal<List<ExecuteInfo>> TRACE = new ThreadLocal<List<ExecuteInfo>>();
 	private static ThreadLocal<List<QueryResult>> PREDATA = new ThreadLocal<List<QueryResult>>();
 	private static ThreadLocal<List<Integer>> PREAffectedRow = new ThreadLocal<List<Integer>>();
 	/**
-	 * mapÖĞkeyµÄÈ¡Öµ"getConnection"¡¢"prepareStatement"¡¢"executeQuery"¡¢"executeUpdate"¡¢"" ... 
+	 * mapä¸­keyçš„å–å€¼"getConnection"ã€"prepareStatement"ã€"executeQuery"ã€"executeUpdate"ã€"" ... 
 	 */
 	private static ThreadLocal<Map<String, List<SQLException>>> PREException = new ThreadLocal<Map<String, List<SQLException>>>(){
 		@Override
@@ -125,7 +125,7 @@ public class MockDataSource implements DataSource, Cloneable {
 	    }
 	};
 
-	//TODO ÏÂÃæÕâĞ©±äÁ¿¸Ä³ÉÒ»¸öenumÀà
+	//TODO ä¸‹é¢è¿™äº›å˜é‡æ”¹æˆä¸€ä¸ªenumç±»
 	public static final String m_getConnection = "getConnection";
 	public static final String m_prepareStatement = "prepareStatement";
 	public static final String m_createStatement = "createStatement";
@@ -133,7 +133,7 @@ public class MockDataSource implements DataSource, Cloneable {
 	public static final String m_executeUpdate = "executeUpdate";
 
 	/**
-	 * ĞèÒªÔÚÃ¿¸ötestcaseµÄafterclassÖĞµ÷ÓÃÕâ¸ö·½·¨
+	 * éœ€è¦åœ¨æ¯ä¸ªtestcaseçš„afterclassä¸­è°ƒç”¨è¿™ä¸ªæ–¹æ³•
 	 */
 	public static void reset() {
 		RESULT.set(null);
@@ -175,7 +175,7 @@ public class MockDataSource implements DataSource, Cloneable {
 		return TRACE.get();
 	}
 
-	//ÊÇ·ñÔÚÖ¸¶¨µÄdbIndexÉÏÖ´ĞĞ¹ısqlHead¿ªÍ·µÄsql
+	//æ˜¯å¦åœ¨æŒ‡å®šçš„dbIndexä¸Šæ‰§è¡Œè¿‡sqlHeadå¼€å¤´çš„sql
 	public static boolean hasTrace(String dbIndex, String sqlHead) {
 		List<ExecuteInfo> trace = TRACE.get();
 		if (trace != null) {
@@ -189,7 +189,7 @@ public class MockDataSource implements DataSource, Cloneable {
 		return false;
 	}
 
-	//ÊÇ·ñÔÚÖ¸¶¨µÄdbIndexºÍdsNameÉÏÖ´ĞĞ¹ısqlHead¿ªÍ·µÄsql
+	//æ˜¯å¦åœ¨æŒ‡å®šçš„dbIndexå’ŒdsNameä¸Šæ‰§è¡Œè¿‡sqlHeadå¼€å¤´çš„sql
 	public static boolean hasTrace(String dbIndex, String dsName, String sqlHead) {
 		List<ExecuteInfo> trace = TRACE.get();
 		if (trace != null) {
@@ -232,7 +232,7 @@ public class MockDataSource implements DataSource, Cloneable {
 		return PREDATA.get();
 	}*/
 	/**
-	 * ¼ÇÂ¼Ò»¸öDatasource¡¢Connection¡¢StatementÉÏµÄÖ´ĞĞ¶¯×÷
+	 * è®°å½•ä¸€ä¸ªDatasourceã€Connectionã€Statementä¸Šçš„æ‰§è¡ŒåŠ¨ä½œ
 	 */
 	public static void record(ExecuteInfo info) {
 		RESULT.set(info);
@@ -243,8 +243,8 @@ public class MockDataSource implements DataSource, Cloneable {
 	}
 
 	/**
-	 * ¼ÓÈëÒ»¸öÔ¤ÖÃµÄ²éÑ¯½á¹û¡£·µ»ØResultSetÊ±£¬»á°´Ë³ĞòÌáÈ¡Ô¤ÖÃµÄÊı¾İ¹¹ÔìResultSet
-	 * @param arow ¸ñÊ½£ºsku_id:0,item_id:65,seller_id:63,name:'³ßÂë'
+	 * åŠ å…¥ä¸€ä¸ªé¢„ç½®çš„æŸ¥è¯¢ç»“æœã€‚è¿”å›ResultSetæ—¶ï¼Œä¼šæŒ‰é¡ºåºæå–é¢„ç½®çš„æ•°æ®æ„é€ ResultSet
+	 * @param arow æ ¼å¼ï¼šsku_id:0,item_id:65,seller_id:63,name:'å°ºç '
 	 */
 	public static void addPreData(String arow) {
 		addPreData(new QueryResult(arow));
@@ -265,23 +265,23 @@ public class MockDataSource implements DataSource, Cloneable {
 	}
 
 	/**
-	 * °üÈ¨ÏŞ£¬¹¹ÔìResultSetÊ±£¬ÓÃÕâ¸ö·½·¨ÌáÈ¡Ô¤ÉèÊı¾İ
+	 * åŒ…æƒé™ï¼Œæ„é€ ResultSetæ—¶ï¼Œç”¨è¿™ä¸ªæ–¹æ³•æå–é¢„è®¾æ•°æ®
 	 */
 	static QueryResult popPreData() {
 		List<QueryResult> preData = PREDATA.get();
 		if (preData == null || preData.isEmpty()) {
-			return null; //Ã»ÓĞÔ¤ÉèÊı¾İÒ²ÊÇ¿ÉÒÔµÄ,·½±ãÓĞĞ©Test²»care·µ»ØÊı¾İ
+			return null; //æ²¡æœ‰é¢„è®¾æ•°æ®ä¹Ÿæ˜¯å¯ä»¥çš„,æ–¹ä¾¿æœ‰äº›Testä¸careè¿”å›æ•°æ®
 		}
 		return PREDATA.get().remove(0);
 	}
 
 	/**
-	 * °üÈ¨ÏŞ£¬¹¹ÔìResultSetÊ±£¬ÓÃÕâ¸ö·½·¨ÌáÈ¡Ô¤ÉèÊı¾İ
+	 * åŒ…æƒé™ï¼Œæ„é€ ResultSetæ—¶ï¼Œç”¨è¿™ä¸ªæ–¹æ³•æå–é¢„è®¾æ•°æ®
 	 */
 	static int popPreAffectedRow() {
 		List<Integer> preAffectedRow = PREAffectedRow.get();
 		if (preAffectedRow == null || preAffectedRow.isEmpty()) {
-			return 1; //Ã»ÓĞÔ¤ÉèAffectedRowÄ¬ÈÏ·µ»Ø1
+			return 1; //æ²¡æœ‰é¢„è®¾AffectedRowé»˜è®¤è¿”å›1
 		}
 		return PREAffectedRow.get().remove(0);
 	}
@@ -296,7 +296,7 @@ public class MockDataSource implements DataSource, Cloneable {
 	}
 
 	/**==============================================================
-	 * ÒÔÏÂÎªjdbc½Ó¿ÚÊµÏÖ
+	 * ä»¥ä¸‹ä¸ºjdbcæ¥å£å®ç°
 	 * ==============================================================*/
 
 	public Connection getConnection() throws SQLException {

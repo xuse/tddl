@@ -1,7 +1,7 @@
 package com.taobao.tddl.rule.ruleengine.rule;
 
 /**
- * 因为计算以后会拿到结果，对于映射规则则可以多拿到一个mappingKey
+ * 鍥犱负璁＄畻浠ュ悗浼氭嬁鍒扮粨鏋滐紝瀵逛簬鏄犲皠瑙勫垯鍒欏彲浠ュ鎷垮埌涓�涓猰appingKey
  * 
  * @author shenxun
  *

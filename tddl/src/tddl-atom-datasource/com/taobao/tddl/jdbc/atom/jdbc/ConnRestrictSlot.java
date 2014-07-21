@@ -8,7 +8,7 @@ import com.taobao.tddl.common.Monitor;
 import com.taobao.tddl.common.monitor.stat.AbstractStatLogWriter.LogCounter;
 
 /**
- * ÊµÏÖÓ¦ÓÃÁ¬½ÓÊıÏŞÖÆ¹¦ÄÜÖĞ, ¾ßÌåÄ³Ò»¸ö²Û (Slot) µÄÁ¬½ÓÊıÏŞÖÆ¡£
+ * å®ç°åº”ç”¨è¿æ¥æ•°é™åˆ¶åŠŸèƒ½ä¸­, å…·ä½“æŸä¸€ä¸ªæ§½ (Slot) çš„è¿æ¥æ•°é™åˆ¶ã€‚
  * 
  * @author changyuan.lh
  */
@@ -17,26 +17,26 @@ public final class ConnRestrictSlot {
 	private final ConnRestrictEntry entry;
 
 	/**
-	 * Ö±½ÓÓÃ ĞÅºÅÁ¿, ¸úËøÒ»Ñù¶¼ÊÇ»ùÓÚ AbstractQueuedSynchronizer, ĞÔÄÜÓ¦¸Ã
-	 * Ã»ÓĞÎÊÌâ, ¾ÍÊÇ²»ÄÜ¶¯Ì¬¸Ä permits¡£µ«ÊÇÏÖÔÚµÄÍÆËÍ»úÖÆÊÇÖ±½Ó¶ªµô¾ÉµÄ 
-	 * TDataSourceWrapper »»¸öĞÂµÄ: ¾ÉµÄÁ¬½Ó»¹µ½¾ÉµÄ Slot, ĞÂµÄÉêÇë×ßĞÂ
-	 * ½¨µÄ Slot, ËùÒÔ¿´À´Ã»ÓĞ¶¯Ì¬µÄ±ØÒª¡£
+	 * ç›´æ¥ç”¨ ä¿¡å·é‡, è·Ÿé”ä¸€æ ·éƒ½æ˜¯åŸºäº AbstractQueuedSynchronizer, æ€§èƒ½åº”è¯¥
+	 * æ²¡æœ‰é—®é¢˜, å°±æ˜¯ä¸èƒ½åŠ¨æ€æ”¹ permitsã€‚ä½†æ˜¯ç°åœ¨çš„æ¨é€æœºåˆ¶æ˜¯ç›´æ¥ä¸¢æ‰æ—§çš„ 
+	 * TDataSourceWrapper æ¢ä¸ªæ–°çš„: æ—§çš„è¿æ¥è¿˜åˆ°æ—§çš„ Slot, æ–°çš„ç”³è¯·èµ°æ–°
+	 * å»ºçš„ Slot, æ‰€ä»¥çœ‹æ¥æ²¡æœ‰åŠ¨æ€çš„å¿…è¦ã€‚
 	 */
 	private final Semaphore semaphore;
 
-	// changyuan.lh: ²¢·¢Á¬½ÓÊıºÍ×èÈûµÈ´ıµÄÍ³¼Æ¶ÔÏó
+	// changyuan.lh: å¹¶å‘è¿æ¥æ•°å’Œé˜»å¡ç­‰å¾…çš„ç»Ÿè®¡å¯¹è±¡
 	private final LogCounter statConnNumber;
 	private final LogCounter statConnBlocking;
 
 	public ConnRestrictSlot(String datasourceKey, String slotKey, ConnRestrictEntry entry) {
 		this.statConnNumber = Monitor.connStat(datasourceKey, slotKey, Monitor.KEY3_CONN_NUMBER);
 		this.statConnBlocking = Monitor.connStat(datasourceKey, slotKey, Monitor.KEY3_CONN_BLOCKING);
-		this.semaphore = new Semaphore(entry.limits); // Nofair, ´ø Spin ĞÔÄÜºÃÒ»Ğ©
+		this.semaphore = new Semaphore(entry.limits); // Nofair, å¸¦ Spin æ€§èƒ½å¥½ä¸€äº›
 		this.entry = entry;
 	}
 
 	/**
-	 * changyuan.lh: ¼ÇÂ¼Í³¼ÆĞÅÏ¢
+	 * changyuan.lh: è®°å½•ç»Ÿè®¡ä¿¡æ¯
 	 */
 	public void statConnection(final long connMillis) {
 		statConnNumber.stat(1, semaphore.availablePermits());

@@ -10,21 +10,21 @@ import com.taobao.tddl.interact.rule.bean.DBType;
 import com.taobao.tddl.jdbc.group.config.Weight;
 
 /**
- * Ò»¸öÏß³Ì°²È«µÄDataSource°ü×°Àà
+ * ä¸€ä¸ªçº¿ç¨‹å®‰å…¨çš„DataSourceåŒ…è£…ç±»
  * 
- * DataSource°ü×°Àà£¬ÒòÎªÒ»¸öGroupDataSourceÓÉ¶à¸öAtomDataSource×é³É£¬ÇÒÃ¿¸öAtomDataSource¶¼ÓĞ¶ÔÓ¦µÄ¶ÁĞ´È¨ÖØµÈĞÅÏ¢£¬ËùÒÔ½«Ã¿Ò»¸öAtomDataSource·â×°ÆğÀ´¡£---add by mazhidan.pt
+ * DataSourceåŒ…è£…ç±»ï¼Œå› ä¸ºä¸€ä¸ªGroupDataSourceç”±å¤šä¸ªAtomDataSourceç»„æˆï¼Œä¸”æ¯ä¸ªAtomDataSourceéƒ½æœ‰å¯¹åº”çš„è¯»å†™æƒé‡ç­‰ä¿¡æ¯ï¼Œæ‰€ä»¥å°†æ¯ä¸€ä¸ªAtomDataSourceå°è£…èµ·æ¥ã€‚---add by mazhidan.pt
  * 
  * @author yangzhu
  * @author linxuan refactor as immutable class; dataSourceIndex extends
  *
  */
 public class DataSourceWrapper implements DataSource {
-	private final String dataSourceKey;  //Õâ¸öDataSource¶ÔÓ¦µÄdbKey
-	private final String weightStr;//È¨ÖØĞÅÏ¢×Ö·û´®
-	private final Weight weight;  //È¨ÖØĞÅÏ¢
-	private final DataSource wrappedDataSource; //±»·â×°µÄÄ¿±êDataSource
-	private final DBType dbType;//Êı¾İ¿âÀàĞÍ
-	private final int dataSourceIndex;//DataSourceIndexÊÇÖ¸Õâ¸öDataSourceÔÚGroupÖĞµÄÎ»ÖÃ
+	private final String dataSourceKey;  //è¿™ä¸ªDataSourceå¯¹åº”çš„dbKey
+	private final String weightStr;//æƒé‡ä¿¡æ¯å­—ç¬¦ä¸²
+	private final Weight weight;  //æƒé‡ä¿¡æ¯
+	private final DataSource wrappedDataSource; //è¢«å°è£…çš„ç›®æ ‡DataSource
+	private final DBType dbType;//æ•°æ®åº“ç±»å‹
+	private final int dataSourceIndex;//DataSourceIndexæ˜¯æŒ‡è¿™ä¸ªDataSourceåœ¨Groupä¸­çš„ä½ç½®
 
 	public DataSourceWrapper(String dataSourceKey, String weightStr, DataSource wrappedDataSource, DBType dbType,
 			int dataSourceIndex) {
@@ -42,7 +42,7 @@ public class DataSourceWrapper implements DataSource {
 	}
 
 	/**
-	 * ÑéÖ¤´ËDataSourceµÄÂ·ÓÉindexĞÅÏ¢ÖĞ£¬ÊÇ·ñ°üº¬Ö¸¶¨µÄindex--add by mazhidan.pt
+	 * éªŒè¯æ­¤DataSourceçš„è·¯ç”±indexä¿¡æ¯ä¸­ï¼Œæ˜¯å¦åŒ…å«æŒ‡å®šçš„index--add by mazhidan.pt
 	 */
 	public boolean isMatchDataSourceIndex(int specifiedIndex) {
 		if (weight.indexes != null && !weight.indexes.isEmpty()) {
@@ -53,14 +53,14 @@ public class DataSourceWrapper implements DataSource {
 	}
 
 	/**
-	 * ÊÇ·ñÓĞ¶ÁÈ¨ÖØ¡£r0Ôò·Å»Øfalse
+	 * æ˜¯å¦æœ‰è¯»æƒé‡ã€‚r0åˆ™æ”¾å›false
 	 */
 	public boolean hasReadWeight() {
 		return weight.r != 0;
 	}
 
 	/**
-	 * ÊÇ·ñÓĞĞ´È¨ÖØ¡£w0Ôò·Å»Øfalse
+	 * æ˜¯å¦æœ‰å†™æƒé‡ã€‚w0åˆ™æ”¾å›false
 	 */
 	public boolean hasWriteWeight() {
 		return weight.w != 0;
@@ -106,7 +106,7 @@ public class DataSourceWrapper implements DataSource {
 		return wrappedDataSource;
 	}
 
-	//ÒÔÏÂÊÇjavax.sql.DataSourceµÄAPIÊµÏÖ
+	//ä»¥ä¸‹æ˜¯javax.sql.DataSourceçš„APIå®ç°
 	////////////////////////////////////////////////////////////////////////////
 	public Connection getConnection() throws SQLException {
 		return wrappedDataSource.getConnection();

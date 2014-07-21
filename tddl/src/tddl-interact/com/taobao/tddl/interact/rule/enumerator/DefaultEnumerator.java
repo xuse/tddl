@@ -4,8 +4,8 @@ import java.util.Set;
 
 import com.taobao.tddl.interact.sqljep.Comparative;
 /**
- * Èç¹û²»ÄÜ½øĞĞÃ¶¾Ù£¬ÄÇÃ´¾ÍÊÇÓÃÄ¬ÈÏµÄÃ¶¾ÙÆ÷
- * Ä¬ÈÏÃ¶¾ÙÆ÷Ö»Ö§³ÖcomparativeOrÌõ¼ş£¬ÒÔ¼°µÈÓÚµÄ¹ØÏµ¡£²»Ö§³Ö´óÓÚĞ¡ÓÚµÈÒ»ÏµÁĞ¹ØÏµ¡£
+ * å¦‚æœä¸èƒ½è¿›è¡Œæšä¸¾ï¼Œé‚£ä¹ˆå°±æ˜¯ç”¨é»˜è®¤çš„æšä¸¾å™¨
+ * é»˜è®¤æšä¸¾å™¨åªæ”¯æŒcomparativeOræ¡ä»¶ï¼Œä»¥åŠç­‰äºçš„å…³ç³»ã€‚ä¸æ”¯æŒå¤§äºå°äºç­‰ä¸€ç³»åˆ—å…³ç³»ã€‚
  * 
  * @author shenxun
  *
@@ -15,12 +15,12 @@ public class DefaultEnumerator implements CloseIntervalFieldsEnumeratorHandler{
 	public void mergeFeildOfDefinitionInCloseInterval(Comparative from,
 			Comparative to, Set<Object> retValue, Integer cumulativeTimes,
 			Comparable<?> atomIncrValue) {
-		throw new IllegalArgumentException("Ä¬ÈÏÃ¶¾ÙÆ÷²»Ö§³ÖÇî¾Ù");
+		throw new IllegalArgumentException("é»˜è®¤æšä¸¾å™¨ä¸æ”¯æŒç©·ä¸¾");
 		
 	}
 	public void processAllPassableFields(Comparative source,Set<Object> retValue,
 			Integer cumulativeTimes, Comparable<?> atomIncrValue) {
-		throw new IllegalStateException("ÔÚÃ»ÓĞÌá¹©²½³¤ºÍµş¼Ó´ÎÊıµÄÇ°ÌáÏÂ£¬²»ÄÜ¹»¸ù¾İµ±Ç°·¶Î§Ìõ¼şÑ¡³ö" +
-				"¶ÔÓ¦µÄ¶¨ÒåÓòµÄÃ¶¾ÙÖµ£¬sqlÖĞ²»Òª³öÏÖ> < >= <=");
+		throw new IllegalStateException("åœ¨æ²¡æœ‰æä¾›æ­¥é•¿å’Œå åŠ æ¬¡æ•°çš„å‰æä¸‹ï¼Œä¸èƒ½å¤Ÿæ ¹æ®å½“å‰èŒƒå›´æ¡ä»¶é€‰å‡º" +
+				"å¯¹åº”çš„å®šä¹‰åŸŸçš„æšä¸¾å€¼ï¼Œsqlä¸­ä¸è¦å‡ºç°> < >= <=");
 	}
 }

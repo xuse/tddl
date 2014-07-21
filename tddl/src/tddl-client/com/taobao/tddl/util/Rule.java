@@ -6,7 +6,7 @@
 package com.taobao.tddl.util;
 
 /**
- *  ¹æÔò³éÏó
+ *  è§„åˆ™æŠ½è±¡
  * 
  * @author shenxun
  */

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * ÃèÊöÒ»×éºó×º·¶Î§¡£
+ * æè¿°ä¸€ç»„åç¼€èŒƒå›´ã€‚
  * 
  * <pre>
  *   NamePattern = Name | ( Prefix SuffixExpr )
@@ -47,7 +47,7 @@ public final class NameRange extends NameSuffix {
 	if (number < pow) {
 	    return String.valueOf(pow + number).substring(1);
 	}
-	// ÊıÖµ³¬³ö²¹ 0 ³¤¶È, Êä³öÔ­Ê¼Öµ
+	// æ•°å€¼è¶…å‡ºè¡¥ 0 é•¿åº¦, è¾“å‡ºåŸå§‹å€¼
 	return String.valueOf(number);
     }
 
@@ -81,26 +81,26 @@ public final class NameRange extends NameSuffix {
 
     private boolean merge(long min, long max, int zeroPadding) {
 	if ((max < this.min - 1) || (min > this.max + 1)) {
-	    // ÊıÖµ²»ÔÚ·¶Î§ÄÚ
+	    // æ•°å€¼ä¸åœ¨èŒƒå›´å†…
 	    return false;
 	}
 	if (zeroPadding > 0) {
 	    if (this.zeroPadding == 0) {
 		if (Long.toString(this.min).length() != zeroPadding
 			|| Long.toString(this.max).length() != zeroPadding) {
-		    // ÊıÖµ³¤¶È²»ÏàÍ¬
+		    // æ•°å€¼é•¿åº¦ä¸ç›¸åŒ
 		    return false;
 		}
 		this.zeroPadding = zeroPadding;
 	    } else if (this.zeroPadding != zeroPadding) {
-		// ²¹ 0 ³¤¶È²»ÏàÍ¬
+		// è¡¥ 0 é•¿åº¦ä¸ç›¸åŒ
 		return false;
 	    }
 	} else if (zeroPadding == 0) {
 	    if (this.zeroPadding != 0) {
 		if (Long.toString(min).length() != this.zeroPadding
 			|| Long.toString(max).length() != this.zeroPadding) {
-		    // ÊıÖµ³¤¶È²»ÏàÍ¬
+		    // æ•°å€¼é•¿åº¦ä¸ç›¸åŒ
 		    return false;
 		}
 	    }
@@ -122,11 +122,11 @@ public final class NameRange extends NameSuffix {
 
     public boolean contains(String name) {
 	if (!numericCheck(name)) {
-	    // ÄÚÈİ²»ÊÇÊıÖµ
+	    // å†…å®¹ä¸æ˜¯æ•°å€¼
 	    return false;
 	}
 	if (zeroPadding != 0 && name.length() != zeroPadding) {
-	    // ÊıÖµ²»ÊÇ¹Ì¶¨³¤¶È
+	    // æ•°å€¼ä¸æ˜¯å›ºå®šé•¿åº¦
 	    return false;
 	}
 	final long number = Long.parseLong(name);
@@ -161,16 +161,16 @@ public final class NameRange extends NameSuffix {
 		final int zeroPadding = (input.charAt(0) == '0') ? len : 0;
 		return new NameRange(min, min, zeroPadding);
 	    }
-	    // Range ²»ÊÇÊıÖµ, ½âÎöÊ§°Ü
+	    // Range ä¸æ˜¯æ•°å€¼, è§£æå¤±è´¥
 	    throw new IllegalArgumentException("Range not number: " + input);
 	} else if (minusIndex < 1 || minusIndex + 1 >= len) {
-	    // Range Ç°ºóÄÚÈİ²»È«, ½âÎöÊ§°Ü
+	    // Range å‰åå†…å®¹ä¸å…¨, è§£æå¤±è´¥
 	    throw new IllegalArgumentException("Range not complete: " + input);
 	}
 	String min = input.substring(0, minusIndex);
 	String max = input.substring(minusIndex + 1);
 	if (!numericCheck(min) || !numericCheck(max)) {
-	    // min, max ÆäÖĞÒ»¸ö²»ÊÇÊıÖµ, ½âÎöÊ§°Ü
+	    // min, max å…¶ä¸­ä¸€ä¸ªä¸æ˜¯æ•°å€¼, è§£æå¤±è´¥
 	    throw new IllegalArgumentException( // NL
 		    "Range min/max not number: " + input);
 	}
@@ -180,7 +180,7 @@ public final class NameRange extends NameSuffix {
 			Long.parseLong(max), min.length());
 	    }
 	}
-	// Range Ç°ºó³¤¶È²»ÏàµÈ, ²»ĞèÒª²¹ 0
+	// Range å‰åé•¿åº¦ä¸ç›¸ç­‰, ä¸éœ€è¦è¡¥ 0
 	return new NameRange(Long.parseLong(min), Long.parseLong(max), 0);
     }
 

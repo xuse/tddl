@@ -15,12 +15,12 @@ import com.taobao.tddl.common.ConfigServerHelper.AbstractDataListener;
 import com.taobao.tddl.common.ConfigServerHelper.DataListener;
 
 /**
- * »ùÓÚconfigServerµÄReplicationSwitcherÊµÏÖ
+ * åŸºäºconfigServerçš„ReplicationSwitcherå®ç°
  * 
  * dataId: com.taobao.tddl.ConfigServerReplicationSwitcher.configProperties
- * group:ÓÉÒµÎñÍ¨¹ıÊôĞÔconfigServiceGroupÉèÖÃ
+ * group:ç”±ä¸šåŠ¡é€šè¿‡å±æ€§configServiceGroupè®¾ç½®
  * 
- * ÍÆËÍÀ´µÄÊı¾İ£¬ÊÇÒ»¸öProperties¶ÔÏó¡£ÆäÖĞµÄÊôĞÔ°üÀ¨£º
+ * æ¨é€æ¥çš„æ•°æ®ï¼Œæ˜¯ä¸€ä¸ªPropertieså¯¹è±¡ã€‚å…¶ä¸­çš„å±æ€§åŒ…æ‹¬ï¼š
  * stopAllReplication=false
  * 
  * @author linxuan
@@ -42,17 +42,17 @@ public class ConfigServerReplicationSwitcher implements ReplicationSwitcher {
 	}
 
 	/**
-	 * Ê¹ÓÃ·½×îºÃ±£Ö¤µ¥Àı
+	 * ä½¿ç”¨æ–¹æœ€å¥½ä¿è¯å•ä¾‹
 	 */
 	public void init() {
-		//¶©ÔÄĞĞ¸´ÖÆ¿ª¹ØÅäÖÃ
+		//è®¢é˜…è¡Œå¤åˆ¶å¼€å…³é…ç½®
 		Object firstFetchedConfigs = ConfigServerHelper.subscribeReplicationSwitch(this.appName,
 				replicationSwitchListener);
 		if (firstFetchedConfigs == null) {
 			if (level == null) {
-				throw new IllegalArgumentException("¼È²»ÄÜ´Óconfig server»ñµÃĞĞ¸´ÖÆ¿ª¹ØÅäÖÃ£¬Ò²Ã»ÓĞÄ¬ÈÏÅäÖÃ!");
+				throw new IllegalArgumentException("æ—¢ä¸èƒ½ä»config serverè·å¾—è¡Œå¤åˆ¶å¼€å…³é…ç½®ï¼Œä¹Ÿæ²¡æœ‰é»˜è®¤é…ç½®!");
 			} else {
-				logger.warn("Ê¹ÓÃ±¾µØlevelÅäÖÃ£º" + this.level);
+				logger.warn("ä½¿ç”¨æœ¬åœ°levelé…ç½®ï¼š" + this.level);
 			}
 		}
 	}
@@ -70,7 +70,7 @@ public class ConfigServerReplicationSwitcher implements ReplicationSwitcher {
 
 
 	/**
-	 * @param properties ÑùÀıÈçÏÂ£º
+	 * @param properties æ ·ä¾‹å¦‚ä¸‹ï¼š
 	 * stopAllReplication=false
 	 */
 	private void parsePropertiesConfig(Properties properties) {
@@ -142,8 +142,8 @@ public class ConfigServerReplicationSwitcher implements ReplicationSwitcher {
 				}
 				break;
 			default:
-				throw new IllegalStateException("PropKey Ôö¼ÓÁËÑ¡ÏîÈ´Ã»ÓĞÔÚÕâÀï¸üĞÂ");
-				//...ÆäËûÊôĞÔÕâÀïÀ©Õ¹
+				throw new IllegalStateException("PropKey å¢åŠ äº†é€‰é¡¹å´æ²¡æœ‰åœ¨è¿™é‡Œæ›´æ–°");
+				//...å…¶ä»–å±æ€§è¿™é‡Œæ‰©å±•
 			}
 		}
 	}
@@ -157,7 +157,7 @@ public class ConfigServerReplicationSwitcher implements ReplicationSwitcher {
 	}
 
 	/**
-	 * ÎŞÂß¼­getter/setter
+	 * æ— é€»è¾‘getter/setter
 	 */
 	public void setAppName(String appName) {
 		this.appName = appName;
@@ -173,7 +173,7 @@ public class ConfigServerReplicationSwitcher implements ReplicationSwitcher {
 		try {
 			p.load(new ByteArrayInputStream(str.getBytes()));
 		} catch (IOException e) {
-			logger.error("ÎŞ·¨½âÎöÍÆËÍµÄÅäÖÃ£º" + str, e);
+			logger.error("æ— æ³•è§£ææ¨é€çš„é…ç½®ï¼š" + str, e);
 			return;
 		}
 		System.out.println(p.get("level"));

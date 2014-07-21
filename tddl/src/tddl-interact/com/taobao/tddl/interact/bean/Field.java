@@ -6,21 +6,21 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * �������->sourceKey��ӳ�䡣
+ * 存放列名->sourceKey的映射。
  * 
- * ������һ��Set���������ⳡ�������㡣
+ * 多添加一个Set。用于特殊场景的运算。
  * 
- * ���set����Ҫ���þ��Ǵ��sourceKey��ͬʱ��Ҳ���ӳ���Ľ��������������mapping rule�в�tair�Ժ�����ģ�Ϊ�˼���һ�β�
+ * 这个set的主要作用就是存放sourceKey的同时，也存放映射后的结果。这个结果是在mapping rule中查tair以后产生的，为了减少一次查
  * 
- * tair�Ĺ��̣����Ҫ��¼�²�tair�Ժ��ֵ������Щ�����Ұ��ս�����з��ࡣ
+ * tair的过程，因此要记录下查tair以后的值都是哪些，并且按照结果进行分类。
  * 
- * ��Ϊӳ�����ֻ��������Ψһ�����������в������㡣
+ * 因为映射规则只允许列名唯一，不允许多列参与运算。
  * 
- * ���������ҽ���һ��������¡�set�е�targetValueӦ�þ���sourceKeyͨ��tairӳ���Ժ�Ľ����
+ * 在列名有且仅有一个的情况下。set中的targetValue应该就是sourceKey通过tair映射以后的结果。
  * 
- * �����������,mappingKeysӦ����ԶΪ�ա�
+ * 在其他情况下,mappingKeys应该永远为空。
  * 
- * ����д�������ǲ���Ⱦ����sourceKeys�������߼��Ķ�
+ * 这样写的作用是不污染现有sourceKeys。减少逻辑改动
  * 
  * @author shenxun
  * 
@@ -32,23 +32,23 @@ public class Field
 		sourceKeys = new HashMap<String, Set<Object>>(capacity);
 	}
 
-	public Map<String/* ���� */, Set<Object>/* �õ��ý�������ֵ�� */> sourceKeys;
+	public Map<String/* 列名 */, Set<Object>/* 得到该结果的描点值名 */> sourceKeys;
 
 	public static final Field EMPTY_FIELD = new Field(0);
 
 	/**
-	 * ����ӳ������д��ӳ��������ֵ����Щֵ��Ӧ������ͬ����������ӦmappingTargetColumn
+	 * 用于映射规则中存放映射后的所有值，这些值都应该有相同的列名，对应mappingTargetColumn
 	 */
 	public Set<Object> mappingKeys;
 	 /**
-	 * ��Ӧ����mappingKeys��targetColumn
+	 * 对应上述mappingKeys的targetColumn
 	 */
 	public String mappingTargetColumn;
 	
 	
 	public boolean equals(Object obj, Map<String, String> alias)
 	{
-		//���ڱȽ�����field�Ƿ���ȡ�field��������У���ô�����ڵ�ÿһ��ֵ��Ӧ�����ҵ���Ӧ��ֵ������ȡ�
+		//用于比较两个field是否相等。field包含多个列，那么多列内的每一个值都应该能找到对应的值才算相等。
 		if (!(obj instanceof Field))
 		{
 			return false;

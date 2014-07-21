@@ -6,8 +6,8 @@ package com.taobao.tddl.rule.groovy;
 import java.util.Map;
 
 /**
- * groovy ╧ФтРиообнд,©иртж╖Ёжвт╤╗рЕвж╤н
- * ╬ълЕ╣двж╤н©иртсис╕сц╣дspringв╒хК
+ * groovy Х╖└Е┬≥Д╦┼Д╦▀Ф√┤,Е▐╞Д╩╔Ф■╞Ф▄│Х┤╙Е╝ Д╧┴Е╜≈Ф╝╣
+ * Е┘╥Д╫⌠Г └Е╜≈Ф╝╣Е▐╞Д╩╔Г■╠Е╨■Г■╗Г └springФЁ╗Е┘╔
  * 
  * @author liang.chenl
  *

@@ -2,7 +2,7 @@ package com.taobao.tddl.common.standard.atom;
 
 
 /**
- * Êı¾İ¿âÀàĞÍÃ¶¾ÙÀàĞÍ
+ * æ•°æ®åº“ç±»å‹æšä¸¾ç±»å‹
  * 
  * @author qihao
  *

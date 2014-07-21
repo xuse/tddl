@@ -19,11 +19,11 @@ public class HandlerContainer {
 		placeHolderHandlerMap = (Map<String, PlaceHolderReplaceHandler>)DEFAULT_PLACE_HOLDER_MAP.clone();
 	}
 	/**
-	 * 用于一些直接修改sql的替换，比如index 表名，version
+	 * 鐢ㄤ簬涓�浜涚洿鎺ヤ慨鏀箂ql鐨勬浛鎹紝姣斿index 琛ㄥ悕锛寁ersion
 	 */
 	static final HashMap<String, PlaceHolderReplaceHandler> DEFAULT_PLACE_HOLDER_MAP = new HashMap<String, PlaceHolderReplaceHandler>(4);
 	/**
-	 * 用于对oracle和mysql的range 数字进行替换
+	 * 鐢ㄤ簬瀵筼racle鍜宮ysql鐨剅ange 鏁板瓧杩涜鏇挎崲
 	 */
 	public static RangePlaceHandler DEFAULT_RANGE_HANDLER = new NormalRangePlaceHandler();
 	

@@ -5,7 +5,7 @@ import java.util.Map;
 import com.taobao.tddl.sqlobjecttree.ReplacableWrapper;
 
 /**
- * 用于处理一些需要直接替换sql中文字的东西
+ * 鐢ㄤ簬澶勭悊涓�浜涢渶瑕佺洿鎺ユ浛鎹ql涓枃瀛楃殑涓滆タ
  * 
  * @author shenxun
  *

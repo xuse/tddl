@@ -18,7 +18,7 @@ import com.taobao.tddl.jdbc.druid.exception.DruidAlreadyInitException;
 import com.taobao.tddl.jdbc.druid.listener.DruidDbStatusListener;
 
 /**
- * ¶¯Ì¬Êı¾İÔ´£¬Ö§³ÖÊı¾İÔ´²ÎÊı¶¯Ì¬ĞŞ¸Ä
+ * åŠ¨æ€æ•°æ®æºï¼Œæ”¯æŒæ•°æ®æºå‚æ•°åŠ¨æ€ä¿®æ”¹
  * 
  * @author qihao
  * 
@@ -45,7 +45,7 @@ public class TDruidDataSource extends AbstractTDruidDataSource {
 		synchronized (cacheConfHandleMap) {
 			DruidDsConfHandle cacheConfHandle = cacheConfHandleMap.get(dbName);
 			if (null == cacheConfHandle) {
-				//³õÊ¼»¯configµÄ¹ÜÀíÆ÷
+				//åˆå§‹åŒ–configçš„ç®¡ç†å™¨
 				this.dsConfHandle.init();
 				cacheConfHandleMap.put(dbName, dsConfHandle);
 				logger.info("create new TAtomDsConfHandle dbName : " + dbName);
@@ -57,7 +57,7 @@ public class TDruidDataSource extends AbstractTDruidDataSource {
 	}
 
 	/**
-	 * Çå³ıµôËùÓĞÊı¾İÔ´
+	 * æ¸…é™¤æ‰æ‰€æœ‰æ•°æ®æº
 	 */
 	public static void cleanAllDataSource() {
 		synchronized (cacheConfHandleMap) {
@@ -74,13 +74,13 @@ public class TDruidDataSource extends AbstractTDruidDataSource {
 	}
 
 	/**
-	 * Ë¢ĞÂÊı¾İÔ´
+	 * åˆ·æ–°æ•°æ®æº
 	 */
 	public void flushDataSource() {
 		this.dsConfHandle.flushDataSource();
 	}
 
-	/**Ïú»ÙÊı¾İÔ´£¬É÷ÓÃ
+	/**é”€æ¯æ•°æ®æºï¼Œæ…ç”¨
 	 * @throws Exception 
 	 */
 	public void destroyDataSource() throws Exception {
@@ -127,7 +127,7 @@ public class TDruidDataSource extends AbstractTDruidDataSource {
 		this.dsConfHandle.setSingleInGroup(isSingleInGroup);
 	}
 
-	/**=======ÒÔÏÂÊÇÉèÖÃ±¾µØÓÅÏÈµÄÅäÖÃÊôĞÔ£¬Èç¹ûÉèÖÃÁË»áºöÂÔÍÆËÍµÄÅäÖÃ¶øÊ¹ÓÃ±¾µØµÄÅäÖÃ=======*/
+	/**=======ä»¥ä¸‹æ˜¯è®¾ç½®æœ¬åœ°ä¼˜å…ˆçš„é…ç½®å±æ€§ï¼Œå¦‚æœè®¾ç½®äº†ä¼šå¿½ç•¥æ¨é€çš„é…ç½®è€Œä½¿ç”¨æœ¬åœ°çš„é…ç½®=======*/
 	public void setPasswd(String passwd) throws DruidAlreadyInitException {
 		this.dsConfHandle.setLocalPasswd(passwd);
 	}

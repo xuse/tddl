@@ -17,7 +17,7 @@ public class DatasourceIntrospector {
 		try {
 			this.targetDataSource = (TDataSource) targetDataSource;
 		} catch (ClassCastException e) {
-			throw new IllegalArgumentException("ÄÚÊ¡Æ÷ÒªÇó±ØĞëÊ¹ÓÃTDataSource²Å¿ÉÒÔÊ¹ÓÃ",e);
+			throw new IllegalArgumentException("å†…çœå™¨è¦æ±‚å¿…é¡»ä½¿ç”¨TDataSourceæ‰å¯ä»¥ä½¿ç”¨",e);
 		}
 	}
 	public DatabaseChoicer getDatabaseChoicer(boolean isWrite) {

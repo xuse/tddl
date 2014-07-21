@@ -17,8 +17,8 @@ public class OrderByTraversalAction implements TraversalSQLAction {
 			}
 		} else {
 			if (temp != null&&!temp.isEmpty()){
-				//Èç¹ûlist²»Îªnull,²¢ÇÒÊÇ·Ç¿Õ£¬Ôò±íÊ¾¼¯ºÏÄÚÓĞÊı¾İ
-				throw new IllegalArgumentException("²»ÔÊĞíÔÚÇ¶Ì×sqlÖĞ³öÏÖ¶à¸öorder byÌõ¼ş");
+				//å¦‚æœlistä¸ä¸ºnull,å¹¶ä¸”æ˜¯éç©ºï¼Œåˆ™è¡¨ç¤ºé›†åˆå†…æœ‰æ•°æ®
+				throw new IllegalArgumentException("ä¸å…è®¸åœ¨åµŒå¥—sqlä¸­å‡ºç°å¤šä¸ªorder byæ¡ä»¶");
 			}
 		}
 	}

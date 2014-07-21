@@ -42,11 +42,11 @@ public class MappingRule extends AbstractMappingRule {
 //	 * @see com.taobao.tddl.rule.ruleengine.rule.AbstractMappingRule#get(java.lang.String, java.lang.String, java.lang.Object)
 //	 */
 //	protected Object get(String targetKey, String sourceKey, Object sourceValue) {
-//		/*modified by shenxun:ÕâÀïÒÔÇ°ÊÇÒÀÍĞÓÚmappingRuleÀïÃæµÄkeyµÄ£¬µ«ÏÖÔÚÒòÎªmappingRuleºÍ
-//		 * DatabaseBasedMappingRule·Ö¿ªÁË£¬Òò´Ë»á³öÏÖMappingRuleÓëTairBasedMappingRUleÊıÁ¿²»Í¬µÄÎÊÌâ¡£
-//		 * ÕâÑù³öÏÖÒ»¸öÎÊÌâ¾ÍÊÇÊı¾İ¿âÖĞµÄÁĞÃûºÍÒµÎñÔÚ²»Í¬±íÄÚÊäÈëµÄÁĞÃûÊÇ²»Í¬µÄ´ÓsqlÀïÑ¡³öÀ´µÄÒ»ÁĞÊı¾İ£¬ĞèÒªÓ³Éäµ½Ó³Éä±íÄÚµÄÁíÍâÒ»Ì×Êı¾İÖĞÈ¥¡£
-//		 * Èçauction_num_id ÔÚauction_auctions ,image ,spu ÖĞÓĞÈıÖÖ²»Í¬µÄÁĞÃû¡£
-//		 * µ«¶ÔÓ¦µ½Êı¾İ¿âµÄÁĞÃûÈ´ÊÇÎ¨Ò»µÄ¡£Òò´ËĞèÒªÓĞÒ»²ãÓ³Éä¶ø²»ÄÜÖ±½ÓÊ¹ÓÃparameterÀï´øÓĞµÄÁĞÃû¡£
+//		/*modified by shenxun:è¿™é‡Œä»¥å‰æ˜¯ä¾æ‰˜äºmappingRuleé‡Œé¢çš„keyçš„ï¼Œä½†ç°åœ¨å› ä¸ºmappingRuleå’Œ
+//		 * DatabaseBasedMappingRuleåˆ†å¼€äº†ï¼Œå› æ­¤ä¼šå‡ºç°MappingRuleä¸TairBasedMappingRUleæ•°é‡ä¸åŒçš„é—®é¢˜ã€‚
+//		 * è¿™æ ·å‡ºç°ä¸€ä¸ªé—®é¢˜å°±æ˜¯æ•°æ®åº“ä¸­çš„åˆ—åå’Œä¸šåŠ¡åœ¨ä¸åŒè¡¨å†…è¾“å…¥çš„åˆ—åæ˜¯ä¸åŒçš„ä»sqlé‡Œé€‰å‡ºæ¥çš„ä¸€åˆ—æ•°æ®ï¼Œéœ€è¦æ˜ å°„åˆ°æ˜ å°„è¡¨å†…çš„å¦å¤–ä¸€å¥—æ•°æ®ä¸­å»ã€‚
+//		 * å¦‚auction_num_id åœ¨auction_auctions ,image ,spu ä¸­æœ‰ä¸‰ç§ä¸åŒçš„åˆ—åã€‚
+//		 * ä½†å¯¹åº”åˆ°æ•°æ®åº“çš„åˆ—åå´æ˜¯å”¯ä¸€çš„ã€‚å› æ­¤éœ€è¦æœ‰ä¸€å±‚æ˜ å°„è€Œä¸èƒ½ç›´æ¥ä½¿ç”¨parameteré‡Œå¸¦æœ‰çš„åˆ—åã€‚
 //		 * 
 //		 */
 //		return mappingHandler.get(targetKey, sourceValue);

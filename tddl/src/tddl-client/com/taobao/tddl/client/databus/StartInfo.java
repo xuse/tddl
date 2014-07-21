@@ -13,70 +13,70 @@ import com.taobao.tddl.interact.rule.bean.SqlType;
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteCondition;
 
 /**
- * ´æ·ÅÒ»´Î²éÑ¯»òÕßÒ»´ÎÊı¾İ¸üĞÂ¿ªÊ¼Ê±Íâ²¿´«ÈëµÄÊı¾İ
+ * å­˜æ”¾ä¸€æ¬¡æŸ¥è¯¢æˆ–è€…ä¸€æ¬¡æ•°æ®æ›´æ–°å¼€å§‹æ—¶å¤–éƒ¨ä¼ å…¥çš„æ•°æ®
  * 
  * @author junyu
  * 
  */
 public class StartInfo {
 	/**
-	 * Ô­Ê¼sql
+	 * åŸå§‹sql
 	 */
 	private String sql;
 
 	/**
-	 * ²ÎÊı±í
+	 * å‚æ•°è¡¨
 	 */
 	private Map<Integer, ParameterContext> sqlParam;
 
 	/**
-	 * sqlÀàĞÍ
+	 * sqlç±»å‹
 	 */
 	private SqlType sqlType;
 
 	/**
-	 * ×Ô¶¯Ìá½»
+	 * è‡ªåŠ¨æäº¤
 	 */
 	private boolean autoCommit;
 	
 	/**
-	 * Êı¾İ¿âÀàĞÍ
+	 * æ•°æ®åº“ç±»å‹
 	 */
 	private DBType dbType;
 
 	/**
-	 * ÊÇ·ñÊÇÓĞ²ÎÊıµÄÅúÁ¿Ö´ĞĞ
+	 * æ˜¯å¦æ˜¯æœ‰å‚æ•°çš„æ‰¹é‡æ‰§è¡Œ
 	 */
 	private boolean isParameterBatch = false;
 
 	/**
-	 * Ä¿±êsqlºÍ²ÎÊı£¬ÆäÖĞkeyÎªÔ­Ê¼sql,valueÖĞµÄkeyÊÇÄ¿±êsql,ListÎª²ÎÊıÁĞ±í
-	 * batchÊ¹ÓÃ
+	 * ç›®æ ‡sqlå’Œå‚æ•°ï¼Œå…¶ä¸­keyä¸ºåŸå§‹sql,valueä¸­çš„keyæ˜¯ç›®æ ‡sql,Listä¸ºå‚æ•°åˆ—è¡¨
+	 * batchä½¿ç”¨
 	 */
 	private Map<String, Map<String, List<List<ParameterContext>>>> targetSqls;
 
 	/**
-	 * ²»´ø²ÎÊıµÄsqlÁĞ±í£¬batchÊ¹ÓÃ
+	 * ä¸å¸¦å‚æ•°çš„sqlåˆ—è¡¨ï¼Œbatchä½¿ç”¨
 	 */
 	private Map<String, List<String>> targetSqlsNoParameter;
 
 	/**
-	 * sql²ÎÊı
+	 * sqlå‚æ•°
 	 */
 	private List<Object> sqlArgs;
 	
 	/**
-	 * ÌØÊâÌõ¼ş
+	 * ç‰¹æ®Šæ¡ä»¶
 	 */
 	private RouteCondition rc ;
 	
 	/**
-	 * Ö±½ÓÖ¸¶¨Rule»òÕßÖ¸¶¨Êı¾İÔ´ÈÆ¿ªsql½âÎöºÍÂ·ÓÉ¼ÆËã
+	 * ç›´æ¥æŒ‡å®šRuleæˆ–è€…æŒ‡å®šæ•°æ®æºç»•å¼€sqlè§£æå’Œè·¯ç”±è®¡ç®—
 	 */
 	private DirectlyRouteCondition directlyRouteCondition;
 
 	/**
-	 * ½«²ÎÊıÍ¨¹ıListµÄĞÎÊ½½»¸øÒµÎñ
+	 * å°†å‚æ•°é€šè¿‡Listçš„å½¢å¼äº¤ç»™ä¸šåŠ¡
 	 * 
 	 * @return
 	 */
@@ -94,7 +94,7 @@ public class StartInfo {
 			}
 			return parameters;
 		} else if (sqlArgs != null) {
-			return sqlArgs; // getDBAndTables²âÊÔ»áÓÃµ½
+			return sqlArgs; // getDBAndTablesæµ‹è¯•ä¼šç”¨åˆ°
 		} else {
 			return Collections.emptyList();
 		}

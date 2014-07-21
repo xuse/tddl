@@ -10,7 +10,7 @@
 //import com.taobao.tddl.sqlobjecttree.outputhandlerimpl.Oracle_ChangeTable_Version;
 //
 //public class OutputHandlerConsist {
-//	//TODO:使用builder模式重构此处逻辑
+//	//TODO:浣跨敤builder妯″紡閲嶆瀯姝ゅ閫昏緫
 //	public final static OutputHandler NORMAL = new Normal();
 //
 //	public final static OutputHandler CHANGE_TABLE_AND_PAGENUMBER = new ChangeTableAndPageNumber();

@@ -19,7 +19,7 @@ import com.taobao.tddl.common.util.TDDLMBeanServer;
 import com.taobao.tddl.interact.rule.bean.SqlType;
 
 /**
- * TODO É¾³ıÈÕÖ¾Ê±£¬°´ÈÕÖ¾¿â¡¢ÈÕÖ¾±íÁ½¼¶·Ö×é£¬Ã¿¿âÃ¿±íÒ»¸öBucketSwitcherÖ´ĞĞ¡£
+ * TODO åˆ é™¤æ—¥å¿—æ—¶ï¼ŒæŒ‰æ—¥å¿—åº“ã€æ—¥å¿—è¡¨ä¸¤çº§åˆ†ç»„ï¼Œæ¯åº“æ¯è¡¨ä¸€ä¸ªBucketSwitcheræ‰§è¡Œã€‚
  * 
  * @author linxuan
  *
@@ -32,20 +32,20 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 	public static final int DEFAULT_BATCH_UPDATE_SIZE = 512;
 
 	/**
-	 * ÒâÒå²Î¼ÓSyncServerµÄÏàÍ¬×Ö¶Î
+	 * æ„ä¹‰å‚åŠ SyncServerçš„ç›¸åŒå­—æ®µ
 	 */
 	//private long temporaryExtraPlusTime;
 	/**
-	 * ÊÇ·ñ»Ö¸´next_sync_time, µ±temporaryExtraPlusTimeÉèÖÃ½ÏĞ¡£¬ÔÚÏÂ´Î´¦Àí¿É½ÓÊÜµÄ·¶Î§ÄÚÊ±£¬
-	 * ¿ÉÒÔÉèÎªÕâ¸öÊôĞÔÎªfalse£¬ÒÔ½ÚÊ¡¸üĞÂÈÕÖ¾µÄ³É±¾
+	 * æ˜¯å¦æ¢å¤next_sync_time, å½“temporaryExtraPlusTimeè®¾ç½®è¾ƒå°ï¼Œåœ¨ä¸‹æ¬¡å¤„ç†å¯æ¥å—çš„èŒƒå›´å†…æ—¶ï¼Œ
+	 * å¯ä»¥è®¾ä¸ºè¿™ä¸ªå±æ€§ä¸ºfalseï¼Œä»¥èŠ‚çœæ›´æ–°æ—¥å¿—çš„æˆæœ¬
 	 */
 	//private boolean isRevertNextSyncTime = false;
 	private int threadPoolSize = DEFAULT_THREAD_POOL_SIZE;
 	private int workQueueSize = DEFAULT_WORK_QUEUE_SIZE;
 
-	private ThreadPoolExecutor replicationExecutor; //Êı¾İ¸´ÖÆÏß³Ì³Ø
-	protected ThreadPoolExecutor deleteSyncLogExecutor; //É¾³ıÈÕÖ¾Ïß³Ì³Ø
-	protected ThreadPoolExecutor updateSyncLogExecutor; //¸üĞÂÈÕÖ¾Ïß³Ì³Ø
+	private ThreadPoolExecutor replicationExecutor; //æ•°æ®å¤åˆ¶çº¿ç¨‹æ± 
+	protected ThreadPoolExecutor deleteSyncLogExecutor; //åˆ é™¤æ—¥å¿—çº¿ç¨‹æ± 
+	protected ThreadPoolExecutor updateSyncLogExecutor; //æ›´æ–°æ—¥å¿—çº¿ç¨‹æ± 
 	private NoStrictBucketSwitcher<RowBasedReplicationContext> deleteBucketSwitcher;
 	private NoStrictBucketSwitcher<RowBasedReplicationContext> updateBucketSwitcher;
 
@@ -55,13 +55,13 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 
 	public void init() {
 		/**
-		 * ¸´ÖÆÏß³Ì³Ø£ºCallerRunsPolicy: ¶ÓÁĞÂúÔòexecute×èÈû
+		 * å¤åˆ¶çº¿ç¨‹æ± ï¼šCallerRunsPolicy: é˜Ÿåˆ—æ»¡åˆ™executeé˜»å¡
 		 */
 		replicationExecutor = new ThreadPoolExecutor(threadPoolSize, threadPoolSize, 0L, TimeUnit.MILLISECONDS,
 				new ArrayBlockingQueue<Runnable>(workQueueSize), new ThreadPoolExecutor.CallerRunsPolicy());
 
 		/**
-		 * É¾³ıºÍ¸üĞÂÏß³Ì³Ø£º¼ÓÁËLogµÄDiscardPolicy
+		 * åˆ é™¤å’Œæ›´æ–°çº¿ç¨‹æ± ï¼šåŠ äº†Logçš„DiscardPolicy
 		 */
 		deleteSyncLogExecutor = new ThreadPoolExecutor(1, 2, 0L, TimeUnit.MILLISECONDS,
 				new ArrayBlockingQueue<Runnable>(10), new RejectedExecutionHandler() {
@@ -77,7 +77,7 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 				});
 
 		/**
-		 * É¾³ıºÍ¸üĞÂÈÕÖ¾µÄ»ıÀÛÅúÁ¿²Ù×÷Ë®Í°ÇĞ»»Æ÷
+		 * åˆ é™¤å’Œæ›´æ–°æ—¥å¿—çš„ç§¯ç´¯æ‰¹é‡æ“ä½œæ°´æ¡¶åˆ‡æ¢å™¨
 		 */
 		final BucketTaker<RowBasedReplicationContext> deleteBucketTaker = new BucketTaker<RowBasedReplicationContext>(deleteSyncLogExecutor) {
 			@Override
@@ -99,7 +99,7 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 		updateBucketSwitcher = new NoStrictBucketSwitcher<RowBasedReplicationContext>(updateBucketTaker,
 				DEFAULT_BATCH_UPDATE_SIZE);
 
-		TDDLMBeanServer.registerMBean(this, "Replicater"); //×¢²áJMX
+		TDDLMBeanServer.registerMBean(this, "Replicater"); //æ³¨å†ŒJMX
 	}
 
 	public static class DeleteSyncLogTask implements Runnable {
@@ -111,7 +111,7 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 
 		public void run() {
 			/**
-			 * ÕæÕıµ÷ÓÃÉ¾³ıÈÕÖ¾Âß¼­µÄµØ·½
+			 * çœŸæ­£è°ƒç”¨åˆ é™¤æ—¥å¿—é€»è¾‘çš„åœ°æ–¹
 			 */
 			RowBasedReplicationExecutor.batchDeleteSyncLog(contexts);
 		}
@@ -126,8 +126,8 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 
 		public void run() {
 			/**
-			 * ÕæÕıµ÷ÓÃ¸üĞÂÈÕÖ¾Âß¼­µÄµØ·½
-			 * ´¦ÀíÍê³Éºó£¬ÈôÃ»ÓĞ³É¹¦£¬ÔòÅúÁ¿¸üĞÂnext_sync_time
+			 * çœŸæ­£è°ƒç”¨æ›´æ–°æ—¥å¿—é€»è¾‘çš„åœ°æ–¹
+			 * å¤„ç†å®Œæˆåï¼Œè‹¥æ²¡æœ‰æˆåŠŸï¼Œåˆ™æ‰¹é‡æ›´æ–°next_sync_time
 			 */
 			//RowBasedReplicationExecutor.batchUpdateSyncLog(contexts, -temporaryExtraPlusTime);
 			RowBasedReplicationExecutor.batchUpdateSyncLog(contexts, 0);
@@ -145,7 +145,7 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 
 		public void run() {
 			/**
-			 * ÕæÕıµ÷ÓÃÉ¾³ıÈÕÖ¾Âß¼­µÄµØ·½
+			 * çœŸæ­£è°ƒç”¨åˆ é™¤æ—¥å¿—é€»è¾‘çš„åœ°æ–¹
 			 */
 			RowBasedReplicationExecutor.inDeleteSyncLog(contexts, onceSize);
 		}
@@ -162,8 +162,8 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 
 		public void run() {
 			/**
-			 * ÕæÕıµ÷ÓÃ¸üĞÂÈÕÖ¾Âß¼­µÄµØ·½
-			 * ´¦ÀíÍê³Éºó£¬ÈôÃ»ÓĞ³É¹¦£¬ÔòÅúÁ¿¸üĞÂnext_sync_time
+			 * çœŸæ­£è°ƒç”¨æ›´æ–°æ—¥å¿—é€»è¾‘çš„åœ°æ–¹
+			 * å¤„ç†å®Œæˆåï¼Œè‹¥æ²¡æœ‰æˆåŠŸï¼Œåˆ™æ‰¹é‡æ›´æ–°next_sync_time
 			 */
 			//RowBasedReplicationExecutor.batchUpdateSyncLog(contexts, -temporaryExtraPlusTime);
 			RowBasedReplicationExecutor.inUpdateSyncLog(contexts, 0, onceSize);
@@ -172,8 +172,8 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 
 
 	/**
-	 * ·ÅÈëÏß³Ì³ØÖ´ĞĞ¡£Ïß³Ì³ØÂúÔòµ±Ç°Ïß³ÌÖ´ĞĞ(ThreadPoolExecutor.CallerRunsPolicy)
-	 * ´«Èë±¾¶ÔÏó×÷ÎªÃ¿¸öÈÎÎñ´¦ÀíÍê³ÉµÄReplicationTaskListener
+	 * æ”¾å…¥çº¿ç¨‹æ± æ‰§è¡Œã€‚çº¿ç¨‹æ± æ»¡åˆ™å½“å‰çº¿ç¨‹æ‰§è¡Œ(ThreadPoolExecutor.CallerRunsPolicy)
+	 * ä¼ å…¥æœ¬å¯¹è±¡ä½œä¸ºæ¯ä¸ªä»»åŠ¡å¤„ç†å®Œæˆçš„ReplicationTaskListener
 	 * @see onTaskCompleted
 	 */
 	/*public void replicate(RowBasedReplicationContext context) {
@@ -181,9 +181,9 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 	}*/
 
 	/**
-	 * ²»Å×³öÈÎºÎÒì³£
-	 * ·ÅÈëÏß³Ì³ØÖ´ĞĞ¡£Ïß³Ì³ØÂúÔòµ±Ç°Ïß³ÌÖ´ĞĞ(ThreadPoolExecutor.CallerRunsPolicy)
-	 * ´«Èë±¾¶ÔÏó×÷ÎªÃ¿¸öÈÎÎñ´¦ÀíÍê³ÉµÄReplicationTaskListener
+	 * ä¸æŠ›å‡ºä»»ä½•å¼‚å¸¸
+	 * æ”¾å…¥çº¿ç¨‹æ± æ‰§è¡Œã€‚çº¿ç¨‹æ± æ»¡åˆ™å½“å‰çº¿ç¨‹æ‰§è¡Œ(ThreadPoolExecutor.CallerRunsPolicy)
+	 * ä¼ å…¥æœ¬å¯¹è±¡ä½œä¸ºæ¯ä¸ªä»»åŠ¡å¤„ç†å®Œæˆçš„ReplicationTaskListener
 	 * @see onTaskCompleted
 	 */
 	public void replicate(Collection<RowBasedReplicationContext> contexts) {
@@ -203,19 +203,19 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 	}
 
 	/**
-	 * ÈÕÖ¾ºÏ²¢²ßÂÔ£º¶ÔÓÚÖØ¸´µÄÈÕÖ¾£¬Ö»±£ÁôÒ»ÌõÈ¥×ö²¹³¥£¬ÆäÓàµÄÖ±½ÓÉ¾µô
-	 * 1. Ö»¶ÔupdateÈÕÖ¾×öºÏ²¢
-	 * 2. Ö÷¿âÂß¼­±íºÍÖ÷¼üÁĞÃû£¬Ö÷¼üÁĞÖµÏàÍ¬µÄ¸üĞÂÈÕÖ¾£¬ÊÓÎª¶ÔÍ¬Ò»ÌõÊı¾İ²Ù×÷µÄÈÕÖ¾
-	 * 3. ÒÔgmt_create×î´óµÄÈÕÖ¾Îª×¼£¬ÆäËûÈÕÖ¾¶ªÆú£¨²»×ö²Ù×÷£¬Ö±½Óµ±×ö³É¹¦£©¡£
-	 * 4. failedTargets£ºÒòÎªºÏ²¢²ßÂÔÊÇ¶àÌõÖĞÑ¡Ò»Ìõ£¬ºöÂÔÆäËûÌõ¡£ËùÒÔÊ§°ÜÁĞ±íÖ»¹Ø×¢µ¥Ìõ¼´¿É
-	 *    ÈÕÖ¾ºÏ²¢µÄ´¦ÀíºÍÊ§°ÜÁĞ±íµÄ´¦ÀíÍêÈ«¶ÀÁ¢£¬²»ÏàñîºÏ¡£
+	 * æ—¥å¿—åˆå¹¶ç­–ç•¥ï¼šå¯¹äºé‡å¤çš„æ—¥å¿—ï¼Œåªä¿ç•™ä¸€æ¡å»åšè¡¥å¿ï¼Œå…¶ä½™çš„ç›´æ¥åˆ æ‰
+	 * 1. åªå¯¹updateæ—¥å¿—åšåˆå¹¶
+	 * 2. ä¸»åº“é€»è¾‘è¡¨å’Œä¸»é”®åˆ—åï¼Œä¸»é”®åˆ—å€¼ç›¸åŒçš„æ›´æ–°æ—¥å¿—ï¼Œè§†ä¸ºå¯¹åŒä¸€æ¡æ•°æ®æ“ä½œçš„æ—¥å¿—
+	 * 3. ä»¥gmt_createæœ€å¤§çš„æ—¥å¿—ä¸ºå‡†ï¼Œå…¶ä»–æ—¥å¿—ä¸¢å¼ƒï¼ˆä¸åšæ“ä½œï¼Œç›´æ¥å½“åšæˆåŠŸï¼‰ã€‚
+	 * 4. failedTargetsï¼šå› ä¸ºåˆå¹¶ç­–ç•¥æ˜¯å¤šæ¡ä¸­é€‰ä¸€æ¡ï¼Œå¿½ç•¥å…¶ä»–æ¡ã€‚æ‰€ä»¥å¤±è´¥åˆ—è¡¨åªå…³æ³¨å•æ¡å³å¯
+	 *    æ—¥å¿—åˆå¹¶çš„å¤„ç†å’Œå¤±è´¥åˆ—è¡¨çš„å¤„ç†å®Œå…¨ç‹¬ç«‹ï¼Œä¸ç›¸è€¦åˆã€‚
 	 */
 	private Collection<RowBasedReplicationContext> mergeAndReduce(Collection<RowBasedReplicationContext> contexts) {
 		Map<String, RowBasedReplicationContext> sortMap = new HashMap<String, RowBasedReplicationContext>(contexts.size());
 		List<RowBasedReplicationContext> noMergeList = new ArrayList<RowBasedReplicationContext>(contexts.size());
 		for (RowBasedReplicationContext context : contexts) {
 			if (SqlType.INSERT.equals(context.getSqlType())) {
-				noMergeList.add(context); //¶Ôinsert²»×öºÏ²¢
+				noMergeList.add(context); //å¯¹insertä¸åšåˆå¹¶
 			} else {
 				String key = new StringBuilder(context.getMasterLogicTableName()).append("#").append(
 						context.getPrimaryKeyValue()).append("#").append(context.getPrimaryKeyColumn()).toString();
@@ -223,9 +223,9 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 				if (last == null) {
 					sortMap.put(key, context);
 				} else if (context.getCreateTime().equals(last.getCreateTime())) {
-					noMergeList.add(context); //´´½¨Ê±¼äÏàÍ¬£¬²»×öºÏ²¢¡£·ÀÖ¹Á½¸ösyncServer»¥ÏàÉ¾³ı¶Ô·½µÄ¼ÇÂ¼
+					noMergeList.add(context); //åˆ›å»ºæ—¶é—´ç›¸åŒï¼Œä¸åšåˆå¹¶ã€‚é˜²æ­¢ä¸¤ä¸ªsyncServeräº’ç›¸åˆ é™¤å¯¹æ–¹çš„è®°å½•
 				} else if (context.getCreateTime().after(last.getCreateTime())) {
-					sortMap.put(key, context); //±£Áô×îĞÂµÄ
+					sortMap.put(key, context); //ä¿ç•™æœ€æ–°çš„
 				} else {
 					logger.warn(new StringBuilder("Dropping a log:id=").append(context.getSyncLogId()).append(
 							",LogicTableName=").append(context.getMasterLogicTableName()).append(",").append(
@@ -240,17 +240,17 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 
 	public void onTaskCompleted(RowBasedReplicationContext context, boolean success) {
 		if (success) {
-			//Èç¹û¸´ÖÆ³É¹¦£¬·ÅÈëdeleteBucketSwitcherµÈ´ıÅúÁ¿É¾³ı
+			//å¦‚æœå¤åˆ¶æˆåŠŸï¼Œæ”¾å…¥deleteBucketSwitcherç­‰å¾…æ‰¹é‡åˆ é™¤
 			this.deleteBucketSwitcher.pourin(context);
 		} else {
-			//Èç¹û¸´ÖÆ²»³É¹¦£¬·ÅÈëupdateBucketSwitcherµÈ´ıÅúÁ¿¸üĞÂnext_sync_time
+			//å¦‚æœå¤åˆ¶ä¸æˆåŠŸï¼Œæ”¾å…¥updateBucketSwitcherç­‰å¾…æ‰¹é‡æ›´æ–°next_sync_time
 			this.updateBucketSwitcher.pourin(context);
 		}
 	}
 
 	public void destroy() {
 		/**
-		 * ¾İËµÄ³¸öÒµÎñÔÚJBossÏÂ»áºÜ¹îÒìµÄÒ»Æô¶¯¾ÍÏÈºóµ÷ÓÃstartºÍdestroy
+		 * æ®è¯´æŸä¸ªä¸šåŠ¡åœ¨JBossä¸‹ä¼šå¾ˆè¯¡å¼‚çš„ä¸€å¯åŠ¨å°±å…ˆåè°ƒç”¨startå’Œdestroy
 		 */
 		/*if (replicationExecutor != null) {
 			replicationExecutor.shutdown();
@@ -264,9 +264,9 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 
 	/**
 	 * JMX Exporting
-	 * executorService.getTaskCount(); //ÒÑÍê³ÉÊı+ÕıÔÚÖ´ĞĞÊı+µÈ´ıÖ´ĞĞÊı
-	 * executorService.getCompletedTaskCount(); //ÒÑÍê³ÉÊı
-	 * executorService.getQueue().size(); //µÈ´ıÖ´ĞĞÊı
+	 * executorService.getTaskCount(); //å·²å®Œæˆæ•°+æ­£åœ¨æ‰§è¡Œæ•°+ç­‰å¾…æ‰§è¡Œæ•°
+	 * executorService.getCompletedTaskCount(); //å·²å®Œæˆæ•°
+	 * executorService.getQueue().size(); //ç­‰å¾…æ‰§è¡Œæ•°
 	 */
 	public int getReplicationQueueSize() {
 		return replicationExecutor.getQueue().size();
@@ -309,7 +309,7 @@ public class RowBasedReplicater implements ReplicationTaskListener, RowBasedRepl
 	}
 
 	/**
-	 * ÎŞÂß¼­µÄgetter/setter
+	 * æ— é€»è¾‘çš„getter/setter
 	 */
 	public void setThreadPoolSize(int threadPoolSize) {
 		this.threadPoolSize = threadPoolSize;

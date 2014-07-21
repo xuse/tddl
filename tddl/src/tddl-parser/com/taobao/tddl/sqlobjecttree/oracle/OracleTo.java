@@ -8,7 +8,7 @@ import com.taobao.tddl.sqlobjecttree.common.value.BindVar;
 
 /*
  * @author guangxia
- * @since 1.0, 2009-9-3 ÉÏÎç10:52:43
+ * @since 1.0, 2009-9-3 ä¸Šåˆ10:52:43
  */
 public class OracleTo extends OraclePageWrapper {
 	
@@ -28,7 +28,7 @@ public class OracleTo extends OraclePageWrapper {
 		}else if(max instanceof Integer){
 			return ((Integer)((Integer)max + add)).toString();
 		}else{
-			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 		}
 	}
 
@@ -40,7 +40,7 @@ public class OracleTo extends OraclePageWrapper {
 		}else if(max instanceof Integer){
 			obj=(Integer)max + add;
 		}else{
-			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 		}
 		modifiedMap.put(((BindVar)comparableExpression.getRight()).getIndex(), obj);
 	}

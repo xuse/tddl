@@ -11,11 +11,11 @@ import com.taobao.tddl.interact.rule.VirtualTableRoot;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-8-17ÏÂÎç05:04:06
+ * @date 2011-8-17ä¸‹åˆ05:04:06
  */
 public interface TddlRuleMetaData {
 	/**
-	 * µÃµ½Ä³¸ö°æ±¾¹æÔòµÄÄ³¸öÂß¼­±íµÄÍØÆË½á¹¹
+	 * å¾—åˆ°æŸä¸ªç‰ˆæœ¬è§„åˆ™çš„æŸä¸ªé€»è¾‘è¡¨çš„æ‹“æ‰‘ç»“æ„
 	 * 
 	 * @param vtab
 	 * @param version
@@ -24,7 +24,7 @@ public interface TddlRuleMetaData {
 	public Map<String,Set<String>> getTopologyByVersion(String vtab,String version);
 	
 	/**
-	 * µÃµ½µ±Ç°ËùÓĞ°æ±¾¹æÔò
+	 * å¾—åˆ°å½“å‰æ‰€æœ‰ç‰ˆæœ¬è§„åˆ™
 	 * @return
 	 */
 	public Map<String/*version*/,VirtualTableRoot> getAllVersionedRule();

@@ -7,7 +7,7 @@ import java.util.Map;
 import com.taobao.tddl.common.util.StringUtils;
 
 /**
- * TAtomÊı¾İÔ´µÄ³£Á¿ÉèÖÃÀà
+ * TAtomæ•°æ®æºçš„å¸¸é‡è®¾ç½®ç±»
  *
  * @author qihao
  *
@@ -66,13 +66,13 @@ public class DruidConstants {
 	public final static String DEFAULT_DRUID_MYSQL_VALIDATION_QUERY = "select 'x'";
 
 	/**
-	 * È«¾ÖÅäÖÃdataIdÄ£°å
+	 * å…¨å±€é…ç½®dataIdæ¨¡æ¿
 	 */
 	private static MessageFormat GLOBAL_FORMAT = new MessageFormat(
 			"com.taobao.tddl.atom.global.{0}");
 
 	/**
-	 * Ó¦ÓÃÅäÖÃdataIdÄ£°å
+	 * åº”ç”¨é…ç½®dataIdæ¨¡æ¿
 	 */
 	private static MessageFormat APP_FORMAT = new MessageFormat(
 			"com.taobao.tddl.atom.app.{0}.{1}");
@@ -81,7 +81,7 @@ public class DruidConstants {
 			"com.taobao.tddl.atom.passwd.{0}.{1}.{2}");
 
 	/**
-	 * dbNameÄ£°å
+	 * dbNameæ¨¡æ¿
 	 */
 	private static final MessageFormat DB_NAME_FORMAT = new MessageFormat(
 			"atom.dbkey.{0}^{1}^{2}");
@@ -89,10 +89,10 @@ public class DruidConstants {
 	private static final String NULL_UNIT_NAME = "DEFAULT_UNIT";
 
 	/**
-	 * ¸ù¾İdbKey»ñÈ¡È«¾ÖÅäÖÃdataId
+	 * æ ¹æ®dbKeyè·å–å…¨å±€é…ç½®dataId
 	 *
 	 * @param dbKey
-	 *            Êı¾İ¿âÃûKEY
+	 *            æ•°æ®åº“åKEY
 	 * @return
 	 */
 	public static String getGlobalDataId(String dbKey) {
@@ -100,7 +100,7 @@ public class DruidConstants {
 	}
 
 	/**
-	 * ¸ù¾İÓ¦ÓÃÃûºÍdbKey»ñÈ¡Ö¸¶¨µÄÓ¦ÓÃÅäÖÃdataId
+	 * æ ¹æ®åº”ç”¨åå’ŒdbKeyè·å–æŒ‡å®šçš„åº”ç”¨é…ç½®dataId
 	 *
 	 * @param appName
 	 * @param dbKey
@@ -111,7 +111,7 @@ public class DruidConstants {
 	}
 
 	/**
-	 * ¸ù¾İdbKeyºÍuserName»ñµÃ¶ÔÓ¦µÄpasswdµÄdataId
+	 * æ ¹æ®dbKeyå’ŒuserNameè·å¾—å¯¹åº”çš„passwdçš„dataId
 	 *
 	 * @param dbKey
 	 * @param userName

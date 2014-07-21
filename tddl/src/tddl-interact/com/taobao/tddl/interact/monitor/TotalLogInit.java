@@ -14,7 +14,7 @@ import org.apache.log4j.PatternLayout;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-8-25下午02:48:05
+ * @date 2011-8-25涓嬪崍02:48:05
  */
 public class TotalLogInit {
 	public static final Logger DB_TAB_LOG = Logger.getLogger("DB_TAB_LOG");
@@ -47,7 +47,7 @@ public class TotalLogInit {
 		appender.setEncoding("GBK");
 		appender.setLayout(new PatternLayout(pattern));
 		appender.setFile(new File(getLogPath(), fileName).getAbsolutePath());
-		appender.activateOptions();// 很重要，否则原有日志内容会被清空
+		appender.activateOptions();// 寰堥噸瑕侊紝鍚﹀垯鍘熸湁鏃ュ織鍐呭浼氳娓呯┖
 		return appender;
 	}
 	

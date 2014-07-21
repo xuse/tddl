@@ -34,28 +34,28 @@ import com.taobao.tddl.jdbc.group.util.ExceptionUtils;
 import com.taobao.tddl.jdbc.group.util.GroupHintParser;
 
 /**
- *Ïà¹ØµÄJDBC¹æ·¶£º
+ *ç›¸å…³çš„JDBCè§„èŒƒï¼š
  * 
- * 1. Connection¹Ø±Õ£¬ÔÚÆäÉÏ´ò¿ªµÄstatement×Ô¶¯¹Ø±Õ¡£Õâ¾ÍÒªÇóConnection³ÖÓĞÆäÉÏ´ò¿ªµÄËùÓĞstatementµÄÒıÓÃ
+ * 1. Connectionå…³é—­ï¼Œåœ¨å…¶ä¸Šæ‰“å¼€çš„statementè‡ªåŠ¨å…³é—­ã€‚è¿™å°±è¦æ±‚ConnectionæŒæœ‰å…¶ä¸Šæ‰“å¼€çš„æ‰€æœ‰statementçš„å¼•ç”¨
  * 2. 
  * 
- *ÖØÊÔµÄ³¡¾°1£ºÔÚµÚÒ»¸östatementÉÏÖ´ĞĞ²éÑ¯£¬Â·ÓÉµ½db1³É¹¦¡£ÔÙ´´½¨Ò»¸östatement²éÑ¯ÔÚdb1ÉÏÊ§°Ü£º
+ *é‡è¯•çš„åœºæ™¯1ï¼šåœ¨ç¬¬ä¸€ä¸ªstatementä¸Šæ‰§è¡ŒæŸ¥è¯¢ï¼Œè·¯ç”±åˆ°db1æˆåŠŸã€‚å†åˆ›å»ºä¸€ä¸ªstatementæŸ¥è¯¢åœ¨db1ä¸Šå¤±è´¥ï¼š
  * stmt1 = TGroupConnection.createStatement
  * rs1 = stmt1.executeQuery --create connection on db1 and execute success
  * stmt2 = conn..createStatement
  * rs2 = stmt2..executeQuery --db1 failed then...
- * ÕâÊ±Èç¹ûÖØÊÔµ½db2¿â£¬db1µÄconnectionÒª²»Òª¹Ø£¿
- * a£ºÈç¹û¹Ø£¬ÆäÉÏµÄÊµ¼ÊstmtºÍrs¾Í¶¼»á¹Øµô¡£ÕâÑùdb2³É¹¦ºó
- *    ÓÃ»§»á¿´²»µ½exception£¬¶ÔÓÃ»§À´Ëµ£¬stms1ºÍrs1¶¼ÊÇÕı³£µÄ¡£µ«Êµ¼ÊÉÏÒÑ¾­ÊÇ»µµôµÄÁË¡£
- * b: Èç¹û²»¹Ø£¬Ò²¾ÍÊÇTGroupConnection³ÖÓĞ¶à¸öbaseConnection£¬¡£¡£¡£
+ * è¿™æ—¶å¦‚æœé‡è¯•åˆ°db2åº“ï¼Œdb1çš„connectionè¦ä¸è¦å…³ï¼Ÿ
+ * aï¼šå¦‚æœå…³ï¼Œå…¶ä¸Šçš„å®é™…stmtå’Œrså°±éƒ½ä¼šå…³æ‰ã€‚è¿™æ ·db2æˆåŠŸå
+ *    ç”¨æˆ·ä¼šçœ‹ä¸åˆ°exceptionï¼Œå¯¹ç”¨æˆ·æ¥è¯´ï¼Œstms1å’Œrs1éƒ½æ˜¯æ­£å¸¸çš„ã€‚ä½†å®é™…ä¸Šå·²ç»æ˜¯åæ‰çš„äº†ã€‚
+ * b: å¦‚æœä¸å…³ï¼Œä¹Ÿå°±æ˜¯TGroupConnectionæŒæœ‰å¤šä¸ªbaseConnectionï¼Œã€‚ã€‚ã€‚
  * 
- * ÓÉÒÔÉÏ³¡¾°µÄ¿¼ÂÇ£¬ÌáÁ¶³öÒ»¸öÔ­Ôò£º
+ * ç”±ä»¥ä¸Šåœºæ™¯çš„è€ƒè™‘ï¼Œæç‚¼å‡ºä¸€ä¸ªåŸåˆ™ï¼š
  * 
- *ÖØÊÔµÄÔ­Ôò£º
- * Ò»¸öTGroupConnectionÖĞ£¬Ö»ÔÚµÚÒ»´ÎÓëÕæÕıÓëÊı¾İ¿â½»»¥Ê±£¬Ò²¾ÍÊÇ²»µÃ²»·µ»Ødb½á¹û¸øÓÃ»§Ê±£¬²ÅÔÚDBGroupÉÏ½øĞĞÖØÊÔ¡£
- * Ò»µ©ÔÚÄ³¸ö¿âÉÏÖØÊÔ³É¹¦£¬ºóĞøÔÚÕâ¸öTGroupConnectionÉÏÖ´ĞĞµÄËùÓĞ²Ù×÷£¬¶¼Ö»µ½Õâ¸ö¿âÉÏ£¬²»ÔÙÖØÊÔ£¬³ö´íÖ±½ÓÅ×³öÒì³£¡£
- * µÚÒ»´Î½¨Á¢ÕæÕıÁ¬½ÓµÄÖØÊÔ¹ı³ÌÖĞ£¬baseConnectionÓĞ¿ÉÄÜ»á·¢Éú±ä»¯±»Ìæ»»¡£Ò»µ©ÖØÊÔ³É¹¦£¬baseConnectionÔò±£³Ö²»ÔÙ¸Ä±ä¡£
- * ÕâÑù¿ÉÒÔ¼ò»¯ºÜ¶àÊÂÇé£¬µ«Í¬Ê±²»»á¶Ô¹¦ÄÜÔì³É±¾ÖÊÓ°Ïì¡£Í¬Ê±±ÜÃâÁË¶Ô×´Ì¬´¦Àí²»µ±£¬¿ÉÄÜ»á¸øÓÃ»§Ôì³ÉµÄ¹îÒìÏÖÏó¡£
+ *é‡è¯•çš„åŸåˆ™ï¼š
+ * ä¸€ä¸ªTGroupConnectionä¸­ï¼Œåªåœ¨ç¬¬ä¸€æ¬¡ä¸çœŸæ­£ä¸æ•°æ®åº“äº¤äº’æ—¶ï¼Œä¹Ÿå°±æ˜¯ä¸å¾—ä¸è¿”å›dbç»“æœç»™ç”¨æˆ·æ—¶ï¼Œæ‰åœ¨DBGroupä¸Šè¿›è¡Œé‡è¯•ã€‚
+ * ä¸€æ—¦åœ¨æŸä¸ªåº“ä¸Šé‡è¯•æˆåŠŸï¼Œåç»­åœ¨è¿™ä¸ªTGroupConnectionä¸Šæ‰§è¡Œçš„æ‰€æœ‰æ“ä½œï¼Œéƒ½åªåˆ°è¿™ä¸ªåº“ä¸Šï¼Œä¸å†é‡è¯•ï¼Œå‡ºé”™ç›´æ¥æŠ›å‡ºå¼‚å¸¸ã€‚
+ * ç¬¬ä¸€æ¬¡å»ºç«‹çœŸæ­£è¿æ¥çš„é‡è¯•è¿‡ç¨‹ä¸­ï¼ŒbaseConnectionæœ‰å¯èƒ½ä¼šå‘ç”Ÿå˜åŒ–è¢«æ›¿æ¢ã€‚ä¸€æ—¦é‡è¯•æˆåŠŸï¼ŒbaseConnectionåˆ™ä¿æŒä¸å†æ”¹å˜ã€‚
+ * è¿™æ ·å¯ä»¥ç®€åŒ–å¾ˆå¤šäº‹æƒ…ï¼Œä½†åŒæ—¶ä¸ä¼šå¯¹åŠŸèƒ½é€ æˆæœ¬è´¨å½±å“ã€‚åŒæ—¶é¿å…äº†å¯¹çŠ¶æ€å¤„ç†ä¸å½“ï¼Œå¯èƒ½ä¼šç»™ç”¨æˆ·é€ æˆçš„è¯¡å¼‚ç°è±¡ã€‚
  * 
  * @author linxuan
  * @author yangzhu
@@ -66,8 +66,8 @@ public class TGroupConnection implements Connection {
 
 	private TGroupDataSource tGroupDataSource;
 
-	// ËäÈ»DataSource.getConnection(String username, String password)²»³£ÓÃ£¬
-	// µ«ÎªÁË¾¡Á¿×ñÑ­jdbc¹æ·¶£¬»¹ÊÇ±£ÁôºÃ¡£
+	// è™½ç„¶DataSource.getConnection(String username, String password)ä¸å¸¸ç”¨ï¼Œ
+	// ä½†ä¸ºäº†å°½é‡éµå¾ªjdbcè§„èŒƒï¼Œè¿˜æ˜¯ä¿ç•™å¥½ã€‚
 	private String username;
 	private String password;
 
@@ -82,14 +82,14 @@ public class TGroupConnection implements Connection {
 	}
 
 	/* ========================================================================
-	 * ÏÂ²ãconnectionµÄ³ÖÓĞ£¬getter/setter°üÈ¨ÏŞ
+	 * ä¸‹å±‚connectionçš„æŒæœ‰ï¼Œgetter/setteråŒ…æƒé™
 	 * ======================================================================*/
 	private Connection rBaseConnection;
 	private Connection wBaseConnection;
-	//private String rBaseDsKey; // rBaseConnection¶ÔÓ¦µÄÊı¾İÔ´key
-	//private String wBaseDsKey; // wBaseConnection¶ÔÓ¦µÄÊı¾İÔ´key
-	//private int rBaseDataSourceIndex = -2; // rBaseConnection¶ÔÓ¦µÄÊı¾İÔ´Index
-	//private int wBaseDataSourceIndex = -2; // wBaseConnection¶ÔÓ¦µÄÊı¾İÔ´Index
+	//private String rBaseDsKey; // rBaseConnectionå¯¹åº”çš„æ•°æ®æºkey
+	//private String wBaseDsKey; // wBaseConnectionå¯¹åº”çš„æ•°æ®æºkey
+	//private int rBaseDataSourceIndex = -2; // rBaseConnectionå¯¹åº”çš„æ•°æ®æºIndex
+	//private int wBaseDataSourceIndex = -2; // wBaseConnectionå¯¹åº”çš„æ•°æ®æºIndex
 	private DataSourceWrapper rBaseDsWrapper;
 	private DataSourceWrapper wBaseDsWrapper;
 
@@ -97,7 +97,7 @@ public class TGroupConnection implements Connection {
 	Connection getBaseConnection(String sql,boolean isRead) throws SQLException {
 		GroupIndex dataSourceIndex=DEFAULT_GROUPINDEX;
 		if(sql==null){
-			//Èç¹ûµ±Ç°µÄÊı¾İÔ´Ë÷ÒıÓëÉÏÒ»´ÎµÄÊı¾İÔ´Ë÷Òı²»Ò»Ñù£¬ËµÃ÷ÉÏÒ»´Î»º´æµÄConnectionÒÑ¾­ÎŞÓÃÁË£¬ĞèÒª¹Ø±ÕºóÖØ½¨¡£
+			//å¦‚æœå½“å‰çš„æ•°æ®æºç´¢å¼•ä¸ä¸Šä¸€æ¬¡çš„æ•°æ®æºç´¢å¼•ä¸ä¸€æ ·ï¼Œè¯´æ˜ä¸Šä¸€æ¬¡ç¼“å­˜çš„Connectionå·²ç»æ— ç”¨äº†ï¼Œéœ€è¦å…³é—­åé‡å»ºã€‚
 		    dataSourceIndex = ThreadLocalDataSourceIndex.getIndex();
 		}else{
 			dataSourceIndex=GroupHintParser.convertHint2Index(sql);
@@ -110,7 +110,7 @@ public class TGroupConnection implements Connection {
 			if (log.isDebugEnabled()) {
 				log.debug("dataSourceIndex=" + dataSourceIndex);
 			}
-			//ÔÚÊÂÎñ×´Ì¬ÏÂ£¬ÉèÖÃ²»Í¬µÄÊı¾İÔ´Ë÷Òı»áµ¼ÖÂÒì³£¡£
+			//åœ¨äº‹åŠ¡çŠ¶æ€ä¸‹ï¼Œè®¾ç½®ä¸åŒçš„æ•°æ®æºç´¢å¼•ä¼šå¯¼è‡´å¼‚å¸¸ã€‚
 			if (!isAutoCommit)
 			{
 			    if (wBaseDsWrapper != null && !wBaseDsWrapper.isMatchDataSourceIndex(dataSourceIndex.index))
@@ -125,20 +125,20 @@ public class TGroupConnection implements Connection {
 			}
 		}
 
-        //ÎªÁË±£Ö¤ÊÂÎñÕıÈ·¹Ø±Õ£¬ÔÚÊÂÎñ×´Ì¬ÏÂÖ»»áÈ¡»ØĞ´Á¬½Ó
+        //ä¸ºäº†ä¿è¯äº‹åŠ¡æ­£ç¡®å…³é—­ï¼Œåœ¨äº‹åŠ¡çŠ¶æ€ä¸‹åªä¼šå–å›å†™è¿æ¥
 		if (isRead && isAutoCommit) {
-			//Ö»ÒªÓĞĞ´Á¬½Ó£¬²¢ÇÒ¶ÔÓ¦µÄ¿â¿É¶Á£¬Ôò¸´ÓÃ¡£·ñÔò·µ»Ø¶ÁÁ¬½Ó
+			//åªè¦æœ‰å†™è¿æ¥ï¼Œå¹¶ä¸”å¯¹åº”çš„åº“å¯è¯»ï¼Œåˆ™å¤ç”¨ã€‚å¦åˆ™è¿”å›è¯»è¿æ¥
 			return wBaseConnection != null && wBaseDsWrapper.hasReadWeight() ? wBaseConnection : rBaseConnection;
-			//ÏÈĞ´ºó¶Á£¬ÖØÓÃĞ´Á¬½Ó¶Áºó£¬rBaseConnectionÈÔÈ»ÊÇnull
+			//å…ˆå†™åè¯»ï¼Œé‡ç”¨å†™è¿æ¥è¯»åï¼ŒrBaseConnectionä»ç„¶æ˜¯null
 		} else {
 			if (wBaseConnection != null){
 				this.tGroupDataSource.setWriteTarget(wBaseDsWrapper);
 				return wBaseConnection;
 			}
 			else if (rBaseConnection != null && rBaseDsWrapper.hasWriteWeight()) {
-				//ÔÚĞ´Á¬½ÓnullµÄÇé¿öÏÂ£¬Èç¹û¶ÁÁ¬½ÓÒÑ¾­½¨Á¢£¬ÇÒ¶ÔÓ¦µÄ¿â¿ÉĞ´£¬Ôò¸´ÓÃ
-				wBaseConnection = rBaseConnection; //wBaseConnection¸³Öµ£¬ÒÔÈ·±£ÊÂÎñÄÜ¹»ÕıÈ·Ìá½»»Ø¹ö
-				//ÔÚĞ´Á¬½ÓÉÏÉèÖÃÊÂÎñ
+				//åœ¨å†™è¿æ¥nullçš„æƒ…å†µä¸‹ï¼Œå¦‚æœè¯»è¿æ¥å·²ç»å»ºç«‹ï¼Œä¸”å¯¹åº”çš„åº“å¯å†™ï¼Œåˆ™å¤ç”¨
+				wBaseConnection = rBaseConnection; //wBaseConnectionèµ‹å€¼ï¼Œä»¥ç¡®ä¿äº‹åŠ¡èƒ½å¤Ÿæ­£ç¡®æäº¤å›æ»š
+				//åœ¨å†™è¿æ¥ä¸Šè®¾ç½®äº‹åŠ¡
 				if (wBaseConnection.getAutoCommit() != isAutoCommit)
 				    wBaseConnection.setAutoCommit(isAutoCommit);
 				//wBaseDsKey = rBaseDsKey;
@@ -152,23 +152,23 @@ public class TGroupConnection implements Connection {
 	}
 
 	/**
-	 * ´ÓÊµ¼ÊµÄDataSource»ñµÃÒ»¸öÏÂ²ã£¨ÓĞ¿ÉÄÜ²»ÊÇÕæÊµµÄ£©Connection
-	 * °üÈ¨ÏŞ£º´Ë·½·¨Ö»ÔÚTGroupStatement¡¢TGroupPreparedStatementÖĞÊ¹ÓÃ
+	 * ä»å®é™…çš„DataSourceè·å¾—ä¸€ä¸ªä¸‹å±‚ï¼ˆæœ‰å¯èƒ½ä¸æ˜¯çœŸå®çš„ï¼‰Connection
+	 * åŒ…æƒé™ï¼šæ­¤æ–¹æ³•åªåœ¨TGroupStatementã€TGroupPreparedStatementä¸­ä½¿ç”¨
 	 */
 	Connection createNewConnection(DataSourceWrapper dsw, boolean isRead) throws SQLException {
-		//Õâ¸ö·½·¨Ö»·¢ÉúÔÚµÚÒ»´Î½¨Á¢¶Á/Ğ´Á¬½ÓµÄÊ±ºò£¬ÒÔºó¶¼ÊÇ¸´ÓÃÁË
+		//è¿™ä¸ªæ–¹æ³•åªå‘ç”Ÿåœ¨ç¬¬ä¸€æ¬¡å»ºç«‹è¯»/å†™è¿æ¥çš„æ—¶å€™ï¼Œä»¥åéƒ½æ˜¯å¤ç”¨äº†
 		Connection conn;
 		if (username != null)
 			conn = dsw.getConnection(username, password);
 		else
 			conn = dsw.getConnection();
 
-		//ÎªÁË±£Ö¤ÊÂÎñÕıÈ·¹Ø±Õ£¬ÔÚÊÂÎñ×´Ì¬ÏÂÖ»ÉèÖÃĞ´Á¬½Ó
+		//ä¸ºäº†ä¿è¯äº‹åŠ¡æ­£ç¡®å…³é—­ï¼Œåœ¨äº‹åŠ¡çŠ¶æ€ä¸‹åªè®¾ç½®å†™è¿æ¥
 		setBaseConnection(conn, dsw, isRead && isAutoCommit);
 
-		//Ö»ÔÚĞ´Á¬½ÓÉÏµ÷ÓÃ  setAutoCommit, Óë  TGroupConnection#setAutoCommit µÄ´úÂë±£³ÖÒ»ÖÂ
+		//åªåœ¨å†™è¿æ¥ä¸Šè°ƒç”¨  setAutoCommit, ä¸  TGroupConnection#setAutoCommit çš„ä»£ç ä¿æŒä¸€è‡´
 		if (!isRead || !isAutoCommit)
-		        conn.setAutoCommit(isAutoCommit); //ĞÂ½¨Á¬½ÓµÄAutoCommitÒªÓëµ±Ç°isAutoCommitµÄ×´Ì¬Í¬²½
+		        conn.setAutoCommit(isAutoCommit); //æ–°å»ºè¿æ¥çš„AutoCommitè¦ä¸å½“å‰isAutoCommitçš„çŠ¶æ€åŒæ­¥
 
 		return conn;
 	}
@@ -198,10 +198,10 @@ public class TGroupConnection implements Connection {
 	}
 
 	private void closeReadConnection() {
-		//r|wBaseConnection¿ÉÄÜÖ¸ÏòÍ¬Ò»¸ö¶ÔÏó£¬Èç¹ûÁíÒ»¸öÒıÓÃÔÚÓÃ£¬¾Í²»È¥¹Ø±Õ
+		//r|wBaseConnectionå¯èƒ½æŒ‡å‘åŒä¸€ä¸ªå¯¹è±¡ï¼Œå¦‚æœå¦ä¸€ä¸ªå¼•ç”¨åœ¨ç”¨ï¼Œå°±ä¸å»å…³é—­
 		if (rBaseConnection != null && rBaseConnection != wBaseConnection) {
 			try {
-				rBaseConnection.close(); // ¾ÉµÄbaseConnectionÒª¹Ø±Õ
+				rBaseConnection.close(); // æ—§çš„baseConnectionè¦å…³é—­
 			} catch (SQLException e) {
 				log.error("close rBaseConnection failed.", e);
 			}
@@ -211,10 +211,10 @@ public class TGroupConnection implements Connection {
 	}
 
 	private void closeWriteConnection() {
-		//r|wBaseConnection¿ÉÄÜÖ¸ÏòÍ¬Ò»¸ö¶ÔÏó£¬Èç¹ûÁíÒ»¸öÒıÓÃÔÚÓÃ£¬¾Í²»È¥¹Ø±Õ
+		//r|wBaseConnectionå¯èƒ½æŒ‡å‘åŒä¸€ä¸ªå¯¹è±¡ï¼Œå¦‚æœå¦ä¸€ä¸ªå¼•ç”¨åœ¨ç”¨ï¼Œå°±ä¸å»å…³é—­
 		if (wBaseConnection != null && rBaseConnection != wBaseConnection) {
 			try {
-				wBaseConnection.close(); // ¾ÉµÄbaseConnectionÒª¹Ø±Õ
+				wBaseConnection.close(); // æ—§çš„baseConnectionè¦å…³é—­
 			} catch (SQLException e) {
 				log.error("close wBaseConnection failed.", e);
 			}
@@ -227,12 +227,12 @@ public class TGroupConnection implements Connection {
 
 	void removeOpenedStatements(Statement statement) {
 		if (!openedStatements.remove(statement)) {
-			log.warn("current statmenet £º" + statement + " doesn't exist!");
+			log.warn("current statmenet ï¼š" + statement + " doesn't exist!");
 		}
 	}
 
 	/* ========================================================================
-	 * ¹Ø±ÕÂß¼­
+	 * å…³é—­é€»è¾‘
 	 * ======================================================================*/
 	private boolean closed;
 
@@ -255,7 +255,7 @@ public class TGroupConnection implements Connection {
 
 		List<SQLException> exceptions = new LinkedList<SQLException>();
 		try {
-			// ¹Ø±Õstatement
+			// å…³é—­statement
 			for (TGroupStatement stmt : openedStatements) {
 				try {
 					stmt.close(false);
@@ -280,7 +280,7 @@ public class TGroupConnection implements Connection {
 			}
 		} finally {
 			openedStatements.clear();
-			// openedStatements = null; //Âß¼­ÍêÕûĞÔ
+			// openedStatements = null; //é€»è¾‘å®Œæ•´æ€§
 			rBaseConnection = null;
 			wBaseConnection = null;
 
@@ -291,7 +291,7 @@ public class TGroupConnection implements Connection {
 	}
 
 	/* ========================================================================
-	 * ´´½¨StatementÂß¼­
+	 * åˆ›å»ºStatementé€»è¾‘
 	 * ======================================================================*/
 	public TGroupStatement createStatement() throws SQLException {
 		checkClosed();
@@ -315,7 +315,7 @@ public class TGroupConnection implements Connection {
 	}
 
 	/* ========================================================================
-	 * ´´½¨PreparedStatementÂß¼­
+	 * åˆ›å»ºPreparedStatementé€»è¾‘
 	 * ======================================================================*/
 	public TGroupPreparedStatement prepareStatement(String sql) throws SQLException {
 		checkClosed();
@@ -358,7 +358,7 @@ public class TGroupConnection implements Connection {
 	}
 
 	/* ========================================================================
-	 * ´´½¨CallableStatementÂß¼­¡£´æ´¢¹ı³ÌCallableStatementÖ§³Ö
+	 * åˆ›å»ºCallableStatementé€»è¾‘ã€‚å­˜å‚¨è¿‡ç¨‹CallableStatementæ”¯æŒ
 	 * ======================================================================*/
 	private DataSourceTryer<CallableStatement> getCallableStatementTryer = new AbstractDataSourceTryer<CallableStatement>() {
 		public CallableStatement tryOnDataSource(DataSourceWrapper dsw, Object... args) throws SQLException {
@@ -387,12 +387,12 @@ public class TGroupConnection implements Connection {
 		checkClosed();
 		CallableStatement target;
 
-		Connection conn = this.getBaseConnection(sql,false); //´æ´¢¹ı³ÌÄ¬ÈÏ×ßĞ´¿â
+		Connection conn = this.getBaseConnection(sql,false); //å­˜å‚¨è¿‡ç¨‹é»˜è®¤èµ°å†™åº“
 		if (conn != null) {
 			sql=GroupHintParser.removeTddlGroupHint(sql);
 			target = getCallableStatement(conn, sql, resultSetType, resultSetConcurrency, resultSetHoldability);
 		} else {
-			// hintÓÅÏÈ
+			// hintä¼˜å…ˆ
 			GroupIndex dataSourceIndex = GroupHintParser
 						.convertHint2Index(sql);
 			sql=GroupHintParser.removeTddlGroupHint(sql);
@@ -425,18 +425,18 @@ public class TGroupConnection implements Connection {
 	}
 
 	/* ========================================================================
-	 * JDBCÊÂÎñÏà¹ØµÄautoCommitÉèÖÃ¡¢commit/rollback¡¢TransactionIsolationµÈ
+	 * JDBCäº‹åŠ¡ç›¸å…³çš„autoCommitè®¾ç½®ã€commit/rollbackã€TransactionIsolationç­‰
 	 * ======================================================================*/
-	private boolean isAutoCommit = true; // jdbc¹æ·¶£¬ĞÂÁ¬½ÓÎªtrue
+	private boolean isAutoCommit = true; // jdbcè§„èŒƒï¼Œæ–°è¿æ¥ä¸ºtrue
 
 	public void setAutoCommit(boolean autoCommit0) throws SQLException {
 		checkClosed();
 		if (this.isAutoCommit == autoCommit0) {
-			// ÏÈÅÅ³ıÁ½ÖÖ×î³£¼ûµÄ×´Ì¬,true==true ºÍfalse == false: Ê²Ã´Ò²²»×ö
+			// å…ˆæ’é™¤ä¸¤ç§æœ€å¸¸è§çš„çŠ¶æ€,true==true å’Œfalse == false: ä»€ä¹ˆä¹Ÿä¸åš
 			return;
 		}
 		this.isAutoCommit = autoCommit0;
-		/*/////////////////////////////////////Ö»¶ÁÇé¿öºöÂÔÊÂÎñ
+		/*/////////////////////////////////////åªè¯»æƒ…å†µå¿½ç•¥äº‹åŠ¡
 		if (this.rBaseConnection != null) {
 			this.rBaseConnection.setAutoCommit(autoCommit0);
 		}
@@ -457,7 +457,7 @@ public class TGroupConnection implements Connection {
 			return;
 		}
 
-		/*/////////////////////////////////////Ö»¶ÁÇé¿öºöÂÔÊÂÎñ
+		/*/////////////////////////////////////åªè¯»æƒ…å†µå¿½ç•¥äº‹åŠ¡
 		if (rBaseConnection != null) {
 			try {
 				rBaseConnection.commit();
@@ -483,7 +483,7 @@ public class TGroupConnection implements Connection {
 			return;
 		}
 
-		/*/////////////////////////////////////Ö»¶ÁÇé¿öºöÂÔÊÂÎñ
+		/*/////////////////////////////////////åªè¯»æƒ…å†µå¿½ç•¥äº‹åŠ¡
 		if (rBaseConnection != null) {
 			try {
 				rBaseConnection.rollback();
@@ -504,7 +504,7 @@ public class TGroupConnection implements Connection {
 		}
 	}
 
-	// TODO: ÒÔºóÈÃÕâ¸öÖµÕæÕıµÄÆğ×÷ÓÃ
+	// TODO: ä»¥åè®©è¿™ä¸ªå€¼çœŸæ­£çš„èµ·ä½œç”¨
 	private int transactionIsolation = -1;
 
 	public int getTransactionIsolation() throws SQLException {
@@ -518,7 +518,7 @@ public class TGroupConnection implements Connection {
 	}
 
 	/* ========================================================================
-	 * SQLWarning ºÍ DatabaseMetaData
+	 * SQLWarning å’Œ DatabaseMetaData
 	 * ======================================================================*/
 	public SQLWarning getWarnings() throws SQLException {
 		checkClosed();
@@ -549,7 +549,7 @@ public class TGroupConnection implements Connection {
 	}
 
 	/* ========================================================================
-	 * ºóÃæÊÇÎ´ÊµÏÖµÄ·½·¨
+	 * åé¢æ˜¯æœªå®ç°çš„æ–¹æ³•
 	 * ======================================================================*/
 	public void rollback(Savepoint savepoint) throws SQLException {
 		throw new UnsupportedOperationException("rollback");
@@ -581,11 +581,11 @@ public class TGroupConnection implements Connection {
 
 	public void setHoldability(int holdability) throws SQLException {
 		/*
-		 * Èç¹ûÄã¿´µ½ÕâÀï£¬ÄÇÃ´¹§Ï²£¬¹ş¹ş mysqlÄ¬ÈÏÔÚ5.xµÄjdbc driverÀïÃæÒ²Ã»ÓĞÊµÏÖholdability ¡£
-		 * ËùÒÔÄ¬ÈÏ¶¼ÊÇ.CLOSE_CURSORS_AT_COMMIT ÎªÁË¼ò»¯Æğ¼û£¬ÎÒÃÇÒ²¾ÍÖ»ÊµÏÖcloseÕâÖÖ
+		 * å¦‚æœä½ çœ‹åˆ°è¿™é‡Œï¼Œé‚£ä¹ˆæ­å–œï¼Œå“ˆå“ˆ mysqlé»˜è®¤åœ¨5.xçš„jdbc driveré‡Œé¢ä¹Ÿæ²¡æœ‰å®ç°holdability ã€‚
+		 * æ‰€ä»¥é»˜è®¤éƒ½æ˜¯.CLOSE_CURSORS_AT_COMMIT ä¸ºäº†ç®€åŒ–èµ·è§ï¼Œæˆ‘ä»¬ä¹Ÿå°±åªå®ç°closeè¿™ç§
 		 */
 
-		// mysql 5.xµÄjdbc driverÖ»Ö§³ÖResultSet.HOLD_CURSORS_OVER_COMMIT
+		// mysql 5.xçš„jdbc driveråªæ”¯æŒResultSet.HOLD_CURSORS_OVER_COMMIT
 		throw new UnsupportedOperationException("setHoldability");
 	}
 
@@ -602,7 +602,7 @@ public class TGroupConnection implements Connection {
 	}
 
 	/**
-	 * ±£³Ö¿É¶Á¿ÉĞ´
+	 * ä¿æŒå¯è¯»å¯å†™
 	 * @author junyu
 	 */
 	public boolean isReadOnly() throws SQLException {
@@ -610,7 +610,7 @@ public class TGroupConnection implements Connection {
 	}
 
 	/**
-	 * ²»×öÈÎºÎÊÂÇé
+	 * ä¸åšä»»ä½•äº‹æƒ…
 	 * @author junyu
 	 */
 	public void setReadOnly(boolean readOnly) throws SQLException {

@@ -12,8 +12,8 @@ public class OracleForUpdate implements SelectUpdate{
 	int waitTime=DEFAULT_WAITTIME;
 	
 	/**
-	 * 0的时候约定为no wait
-	 * 为其他值的时候为wait time;
+	 * 0鐨勬椂鍊欑害瀹氫负no wait
+	 * 涓哄叾浠栧�肩殑鏃跺�欎负wait time;
 	 * @param waitTime
 	 */
 	public void setWait(int waitTime){

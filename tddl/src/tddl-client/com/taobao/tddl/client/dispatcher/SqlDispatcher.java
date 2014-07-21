@@ -10,26 +10,26 @@ import com.taobao.tddl.parser.SQLParser;
 import com.taobao.tddl.rule.bean.TDDLRoot;
 
 /**
- * ´ÓTStatementµÄ½Ç¶È¿´£¬Ö»Ğè´«ÈësqlºÍÆä²ÎÊı£¬¾Í¿ÉÒÔµÃµ½ÒÔÏÂĞÅÏ¢£º
- *    1. Õâ¸ösqlĞèÒªÔÚÄÄĞ©¿â±íÉÏÖ´ĞĞ
- *    2. ÕâĞ©sql°üº¬ÄÄĞ©ÌØÊâµÄº¯Êı£¬ĞèÒªTStatement×öÌØ±ğµÄ´¦Àí¡£°üÀ¨
+ * ä»TStatementçš„è§’åº¦çœ‹ï¼Œåªéœ€ä¼ å…¥sqlå’Œå…¶å‚æ•°ï¼Œå°±å¯ä»¥å¾—åˆ°ä»¥ä¸‹ä¿¡æ¯ï¼š
+ *    1. è¿™ä¸ªsqléœ€è¦åœ¨å“ªäº›åº“è¡¨ä¸Šæ‰§è¡Œ
+ *    2. è¿™äº›sqlåŒ…å«å“ªäº›ç‰¹æ®Šçš„å‡½æ•°ï¼Œéœ€è¦TStatementåšç‰¹åˆ«çš„å¤„ç†ã€‚åŒ…æ‹¬
  *       a)
  *       b)
- * Òò´ËÓĞÁËÕâ¸ö½Ó¿Ú
+ * å› æ­¤æœ‰äº†è¿™ä¸ªæ¥å£
  * 
- * ÒªÍê³ÉÕâ¸ö½Ó¿ÚÒªÇóµÄÊÂÇé»ù±¾ÉÏĞèÒªÈçÏÂ²½Öè£º
- *    1. ½âÎösqlµÃµ½sql±¾ÉíµÄ½á¹¹»¯ĞÅÏ¢
- *    2. ´Ó½âÎö½á¹ûµÃµ½Âß¼­±íÃû, ´Ó¶øµÃµ½¶ÔÓ¦µÄÒ»Ì×¹æÔò
- *    3. ´Ó¹æÔòµÃµ½·Ö¿â·Ö±í×Ö¶ÎĞÅÏ¢£¬´Ó½âÎö½á¹ûµÃµ½ÕâĞ©×Ö¶ÎÔÚsqlÖĞµÄÌõ¼ş
- *    4. ¸ù¾İ·Ö¿â·Ö±í×Ö¶ÎÔÚsqlÖĞµÄÌõ¼ş£¨=»ò·¶Î§£©£¬ºÍ¹æÔò×öÆ¥Åä
+ * è¦å®Œæˆè¿™ä¸ªæ¥å£è¦æ±‚çš„äº‹æƒ…åŸºæœ¬ä¸Šéœ€è¦å¦‚ä¸‹æ­¥éª¤ï¼š
+ *    1. è§£æsqlå¾—åˆ°sqlæœ¬èº«çš„ç»“æ„åŒ–ä¿¡æ¯
+ *    2. ä»è§£æç»“æœå¾—åˆ°é€»è¾‘è¡¨å, ä»è€Œå¾—åˆ°å¯¹åº”çš„ä¸€å¥—è§„åˆ™
+ *    3. ä»è§„åˆ™å¾—åˆ°åˆ†åº“åˆ†è¡¨å­—æ®µä¿¡æ¯ï¼Œä»è§£æç»“æœå¾—åˆ°è¿™äº›å­—æ®µåœ¨sqlä¸­çš„æ¡ä»¶
+ *    4. æ ¹æ®åˆ†åº“åˆ†è¡¨å­—æ®µåœ¨sqlä¸­çš„æ¡ä»¶ï¼ˆ=æˆ–èŒƒå›´ï¼‰ï¼Œå’Œè§„åˆ™åšåŒ¹é…
  * 
- * ËùÒÔÒª½øÒ»²½ÓĞÒÔÏÂ¼¸¸ö½Ó¿Ú: ½âÎö¡¢¹æÔò¡¢Æ¥Åä
+ * æ‰€ä»¥è¦è¿›ä¸€æ­¥æœ‰ä»¥ä¸‹å‡ ä¸ªæ¥å£: è§£æã€è§„åˆ™ã€åŒ¹é…
  *  
  * @author linxuan
  */
 public interface SqlDispatcher extends DatabaseChoicer {
 	/**
-	 * »ñÈ¡µ±Ç°Êı¾İ¿âºÍ±í¡£
+	 * è·å–å½“å‰æ•°æ®åº“å’Œè¡¨ã€‚
 	 * @param sql
 	 * @param args
 	 * @return
@@ -38,14 +38,14 @@ public interface SqlDispatcher extends DatabaseChoicer {
 	DispatcherResult getDBAndTables(String sql, List<Object> args);
 
 	/**
-	 * ²»½âÎöSQL£¬ÓÉThreadLocal´«ÈëµÄÖ¸¶¨¶ÔÏó£¨RouteCondition£©£¬¾ö¶¨¿â±íÄ¿µÄµØµÄ½Ó¿Ú
+	 * ä¸è§£æSQLï¼Œç”±ThreadLocalä¼ å…¥çš„æŒ‡å®šå¯¹è±¡ï¼ˆRouteConditionï¼‰ï¼Œå†³å®šåº“è¡¨ç›®çš„åœ°çš„æ¥å£
 	 * @param rc
 	 * @return
 	 */
 	DispatcherResult getDBAndTables(RouteCondition rc);
 	
 	/**
-	 * È¡µÃÄ¬ÈÏµÄTDDLRoot
+	 * å–å¾—é»˜è®¤çš„TDDLRoot
 	 * 
 	 * add by junyu
 	 * 
@@ -54,13 +54,13 @@ public interface SqlDispatcher extends DatabaseChoicer {
     public TDDLRoot getRoot();
     
     /**
-     * È¡µÃVirtualTableRoot
+     * å–å¾—VirtualTableRoot
      * @return
      */
     public VirtualTableRoot getVtabroot();
     
     /**
-     * È¡µÃSqlParser
+     * å–å¾—SqlParser
      * 
      * add by junyu
      * @return
@@ -68,7 +68,7 @@ public interface SqlDispatcher extends DatabaseChoicer {
 	public SQLParser getParser();
 	
 	/**
-	 * ×¢ÈëpipelineFactory,¹©²âÊÔÊ¹ÓÃ
+	 * æ³¨å…¥pipelineFactory,ä¾›æµ‹è¯•ä½¿ç”¨
 	 * 
 	 * add by junyu
 	 */

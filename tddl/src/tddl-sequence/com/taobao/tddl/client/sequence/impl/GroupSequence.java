@@ -18,11 +18,11 @@ public class GroupSequence implements Sequence {
 
 	private String name;
 	private volatile SequenceRange currentRange;
-	//È«Á´Â·Ñ¹²âĞèÇó
+	//å…¨é“¾è·¯å‹æµ‹éœ€æ±‚
 	private volatile SequenceRange testCurrentRange;
 
 	/**
-	 * ³õÊ¼»¯Ò»ÏÂ£¬Èç¹ûname²»´æÔÚ£¬Ôò¸øÆä³õÊ¼Öµ
+	 * åˆå§‹åŒ–ä¸€ä¸‹ï¼Œå¦‚æœnameä¸å­˜åœ¨ï¼Œåˆ™ç»™å…¶åˆå§‹å€¼
 	 * 
 	 * @throws SequenceException
 	 * @throws SQLException 
@@ -32,7 +32,7 @@ public class GroupSequence implements Sequence {
 			throw new SequenceException("please use  GroupSequenceDao!");
 		}
 		GroupSequenceDao groupSequenceDao=(GroupSequenceDao)sequenceDao;
-		synchronized(this)  //ÎªÁË±£Ö¤°²È«£¬
+		synchronized(this)  //ä¸ºäº†ä¿è¯å®‰å…¨ï¼Œ
 		{
 			groupSequenceDao.adjust(name);
 		}

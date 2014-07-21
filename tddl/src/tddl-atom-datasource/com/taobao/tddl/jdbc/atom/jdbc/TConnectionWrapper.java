@@ -55,7 +55,7 @@ public class TConnectionWrapper implements Connection {
 			}
 			if (connRestrictSlot != null) {
 				connRestrictSlot.freeConnection();
-				connRestrictSlot = null; // ∑¿÷π÷ÿ∏¥πÿ±’
+				connRestrictSlot = null; // Èò≤Ê≠¢ÈáçÂ§çÂÖ≥Èó≠
 			}
 			dataSourceWrapper.threadCount.decrementAndGet();
 			AtomDataSourceHelper.removeConnRestrictKey();
@@ -72,7 +72,7 @@ public class TConnectionWrapper implements Connection {
 	
 	void removeOpenedStatements(Statement statement) {
         if (!statements.remove(statement)) {
-            log.warn("current statmenet £∫" + statement + " doesn't exist!");
+            log.warn("current statmenet Ôºö" + statement + " doesn't exist!");
         }
     }
 

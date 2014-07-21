@@ -8,6 +8,6 @@ public class CantFindTargetTabRuleTypeHandlerException extends TDLRunTimeExcepti
 	private static final long serialVersionUID = -4073830327289870566L;
 
 	public CantFindTargetTabRuleTypeHandlerException(String msg) {
-		super("无法找到"+msg+"对应的处理器");
+		super("鏃犳硶鎵惧埌"+msg+"瀵瑰簲鐨勫鐞嗗櫒");
 	}
 }

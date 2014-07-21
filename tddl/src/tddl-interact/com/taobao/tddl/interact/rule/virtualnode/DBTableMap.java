@@ -12,7 +12,7 @@ import com.taobao.tddl.interact.rule.util.VirturalNodeUtil;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-6-2ÏÂÎç03:12:39
+ * @date 2011-6-2ä¸‹åˆ03:12:39
  */
 public class DBTableMap extends WrappedLogic implements VirtualNodeMap{
     private ConcurrentHashMap<String/*1,2,3... math like integer,long*/,String/*group_0*/> dbContext=new ConcurrentHashMap<String,String>();

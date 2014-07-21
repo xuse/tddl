@@ -4,7 +4,7 @@ package com.taobao.tddl.sqlobjecttree;
 public  class BindIndexHolder {
 	private int selfAdd = 0;
 	/**
-	 * ·µ»Øµ±Ç°Öµ£¬²¢×ÔÔöwhereÄÚµÄ¼ÆÊı£¬ÓÃÓÚÌí¼Ó°ó¶¨±äÁ¿Ê±µÄ±êÊ¶
+	 * è¿”å›å½“å‰å€¼ï¼Œå¹¶è‡ªå¢whereå†…çš„è®¡æ•°ï¼Œç”¨äºæ·»åŠ ç»‘å®šå˜é‡æ—¶çš„æ ‡è¯†
 	 * 
 	 * @return
 	 */

@@ -14,7 +14,7 @@ public class TypeRegister {
 	}
 	public static TableNameTypeHandler getTableNameHandler(TableRuleType tablrRunleType){
 		if(tablrRunleType==null){
-			throw new IllegalArgumentException("Î´ÊäÈëTableRuleType");
+			throw new IllegalArgumentException("æœªè¾“å…¥TableRuleType");
 		}
 		TableNameTypeHandler tHandler=handler.get(tablrRunleType);
 		if(tHandler==null){

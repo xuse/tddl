@@ -10,7 +10,7 @@ import com.taobao.tddl.common.util.TStringUtil;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-5-9œ¬ŒÁ03:08:34
+ * @date 2011-5-9‰∏ãÂçà03:08:34
  */
 public class RuleLeBeanConvert {
 	public static String convertLeAndOriRuleStr2InteractRule(String ruleStr){

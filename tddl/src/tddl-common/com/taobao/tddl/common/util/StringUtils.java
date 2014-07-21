@@ -10,10 +10,10 @@ public class StringUtils {
 	public static final String NL=System.getProperty("line.separator");
 	
 	/**
-	 * ÑéÖ¤ÊäÈëµÄ²ÎÊıÊÇ·ñ·Ç¿Õ·Ç""£¬Èç¹ûÎª¿ÕÔòÅ×³öInputStringIsNotValidÒì³££¬Òì³£ÖĞÊ¹ÓÃerrMsg×÷Îª²ÎÊı¡£
-	 * Èç¹û·Ç¿ÕÔò¶ÔÆä½øĞĞtrim
-	 * @param str Ä¿±ê×Ö¶Î
-	 * @param errMsg Îª¿ÕÊ±µÄÌáÊ¾ĞÅÏ¢
+	 * éªŒè¯è¾“å…¥çš„å‚æ•°æ˜¯å¦éç©ºé""ï¼Œå¦‚æœä¸ºç©ºåˆ™æŠ›å‡ºInputStringIsNotValidå¼‚å¸¸ï¼Œå¼‚å¸¸ä¸­ä½¿ç”¨errMsgä½œä¸ºå‚æ•°ã€‚
+	 * å¦‚æœéç©ºåˆ™å¯¹å…¶è¿›è¡Œtrim
+	 * @param str ç›®æ ‡å­—æ®µ
+	 * @param errMsg ä¸ºç©ºæ—¶çš„æç¤ºä¿¡æ¯
 	 * @return
 	 */
 	public static String validAndTrim(String str,String errMsg){
@@ -24,9 +24,9 @@ public class StringUtils {
 		return ret;
 	}
 	/**
-	 * ¶Ô×Ö¶Î½øĞĞtrimÈç¹û×Ö¶ÎÔ­À´¾ÍÎªnullÔòÈÔÈ»·µ»Ønull
-	 * @param str Ä¿±ê×Ö¶Î
-	 * @return Îª¿ÕÊ±µÄÌáÊ¾ĞÅÏ¢
+	 * å¯¹å­—æ®µè¿›è¡Œtrimå¦‚æœå­—æ®µåŸæ¥å°±ä¸ºnullåˆ™ä»ç„¶è¿”å›null
+	 * @param str ç›®æ ‡å­—æ®µ
+	 * @return ä¸ºç©ºæ—¶çš„æç¤ºä¿¡æ¯
 	 */
 	public static String trim(String str){
 		if(str!=null){
@@ -231,7 +231,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÊÇ·ñÒÔsuffix´®½áÎ²£¬ºöÂÔ´óĞ¡Ğ´
+	 * æ˜¯å¦ä»¥suffixä¸²ç»“å°¾ï¼Œå¿½ç•¥å¤§å°å†™
 	 *
 	 * @param s
 	 * @param suffix
@@ -242,19 +242,19 @@ public class StringUtils {
 	}
 
 	/**
-	 * ºöÂÔ´óĞ¡Ğ´Ìæ»»×Ö·û´®
+	 * å¿½ç•¥å¤§å°å†™æ›¿æ¢å­—ç¬¦ä¸²
 	 *
-	 * @param s Ô­Ê¼×Ö·û´®
-	 * @param oldPattern ÒªÌæ»»µÄ×Ö·û´®µÄÕıÔò±í´ïÊ½
-	 * @param newPattern ĞÂ×Ö·û´®
-	 * @return ·µ»ØÌæ»»ºóµÄ×Ö·û´®
+	 * @param s åŸå§‹å­—ç¬¦ä¸²
+	 * @param oldPattern è¦æ›¿æ¢çš„å­—ç¬¦ä¸²çš„æ­£åˆ™è¡¨è¾¾å¼
+	 * @param newPattern æ–°å­—ç¬¦ä¸²
+	 * @return è¿”å›æ›¿æ¢åçš„å­—ç¬¦ä¸²
 	 */
 	public static String replaceIgnoreCase(String s, String oldPattern, String newPattern) {
 		return Pattern.compile(oldPattern, Pattern.CASE_INSENSITIVE).matcher(s).replaceAll(newPattern);
 	}
 	
 	/**
-	 * ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎª¿Õ
+	 * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºç©º
 	 * @param string
 	 * @return
 	 */

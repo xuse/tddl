@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import com.taobao.tddl.jdbc.group.DataSourceWrapper;
 
 /**
- * 只有一个数据源的DBSelector
+ * 鍙湁涓�涓暟鎹簮鐨凞BSelector
  * 
  * @author linxuan
  * @author yangzhu

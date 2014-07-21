@@ -30,13 +30,13 @@ public class Index implements HintSetter {
 
 	public StringBuilder regTableModifiable(Set<String> oraTabName,
 			List<Object> list, StringBuilder sb) {
-		//ÕâÀïÊµÏÖ±È½Ï¹îÒì£¬ÒòÎªregTableModifiableÕâ¸ö·½·¨Éæ¼°ÁËÌ«¶àÀàĞèÒª±ä¶¯
-		//ÎªÁËÕâÒ»¸öindex±ä¶¯È¥ĞŞ¸ÄÕû¸ö¼Ü¹¹µÃ²»³¥Ê§¡£ËùÒÔÔİÊ±²ÉÓÃÒ»ÖÖÁÙÊ±µÄ·½Ê½À´´¦ÀíÕâ¸öÎÊÌâ
-		//Ö±½ÓÔÚChangeMethodCommonÖĞÌí¼ÓÁËĞèÒªÌæ»»µÄindex·½·¨¡£
+		//è¿™é‡Œå®ç°æ¯”è¾ƒè¯¡å¼‚ï¼Œå› ä¸ºregTableModifiableè¿™ä¸ªæ–¹æ³•æ¶‰åŠäº†å¤ªå¤šç±»éœ€è¦å˜åŠ¨
+		//ä¸ºäº†è¿™ä¸€ä¸ªindexå˜åŠ¨å»ä¿®æ”¹æ•´ä¸ªæ¶æ„å¾—ä¸å¿å¤±ã€‚æ‰€ä»¥æš‚æ—¶é‡‡ç”¨ä¸€ç§ä¸´æ—¶çš„æ–¹å¼æ¥å¤„ç†è¿™ä¸ªé—®é¢˜
+		//ç›´æ¥åœ¨ChangeMethodCommonä¸­æ·»åŠ äº†éœ€è¦æ›¿æ¢çš„indexæ–¹æ³•ã€‚
 		sb.append("INDEX").append("(");
 //		boolean firstElement=true;
 		if(args.size()!=2){
-			throw new IllegalArgumentException("index hintÔİÊ±Ö»Ö§³ÖÁ½¸ö²ÎÊı");
+			throw new IllegalArgumentException("index hintæš‚æ—¶åªæ”¯æŒä¸¤ä¸ªå‚æ•°");
 		}
 
 		if(oraTabName.contains(StringUtil.trim(args.get(0)))){
@@ -49,7 +49,7 @@ public class Index implements HintSetter {
 			sb.append(args.get(0));
 		}
 		sb.append(",");
-		//µÚ¶ş¸ö²ÎÊıÔÚ²ÎÊıÄÚ¿ÉÄÜ»á´øÓĞĞèÒªÌæ»»µÄ±íÃû£¬²¢ÇÒ²»ÄÜÍêÈ«Æ¥Åä,ËùÒÔÒª×ö±éÀúÆ¥Åä
+		//ç¬¬äºŒä¸ªå‚æ•°åœ¨å‚æ•°å†…å¯èƒ½ä¼šå¸¦æœ‰éœ€è¦æ›¿æ¢çš„è¡¨åï¼Œå¹¶ä¸”ä¸èƒ½å®Œå…¨åŒ¹é…,æ‰€ä»¥è¦åšéå†åŒ¹é…
 		String dbIndex = args.get(1);
 		int position = 0;
 		for(String oraTable: oraTabName){
@@ -60,7 +60,7 @@ public class Index implements HintSetter {
 					sb.append(StringUtil.substring(dbIndex, 0,lastIndex));
 					position += lastIndex; 
 				}
-				//±íÊ¾matchÁË,²¢ÇÒposition¾ÍµÈÓÚlastIndexµÄÎ»ÖÃ
+				//è¡¨ç¤ºmatchäº†,å¹¶ä¸”positionå°±ç­‰äºlastIndexçš„ä½ç½®
 				//position += dbIndex.length();
 				position += oraTable.length();
 				

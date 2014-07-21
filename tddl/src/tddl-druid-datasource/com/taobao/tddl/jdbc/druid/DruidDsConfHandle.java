@@ -33,7 +33,7 @@ import com.taobao.tddl.jdbc.druid.jdbc.TDataSourceWrapper;
 import com.taobao.tddl.jdbc.druid.listener.DruidDbStatusListener;
 
 /**
- * Êı¾İ¿â¶¯Ì¬ÇĞ»»µÄHandleÀà£¬ËùÓĞÊı¾İ¿âµÄ¶¯Ì¬ÇĞ»» ¶¼ÊÇÓÉÕâ¸öÀàÍê³É
+ * æ•°æ®åº“åŠ¨æ€åˆ‡æ¢çš„Handleç±»ï¼Œæ‰€æœ‰æ•°æ®åº“çš„åŠ¨æ€åˆ‡æ¢ éƒ½æ˜¯ç”±è¿™ä¸ªç±»å®Œæˆ
  * 
  * @author qihao
  * 
@@ -48,42 +48,42 @@ class DruidDsConfHandle {
 	private String unitName;
 
 	/**
-	 * ÔËĞĞÊ±ÅäÖÃ
+	 * è¿è¡Œæ—¶é…ç½®
 	 */
 	private volatile DruidDsConfDO runTimeConf = new DruidDsConfDO();
 
 	/**
-	 * ±¾µØÅäÖÃ£¬ÓÅÏÈÓÚÍÆËÍµÄ¶¯Ì¬ÅäÖÃ
+	 * æœ¬åœ°é…ç½®ï¼Œä¼˜å…ˆäºæ¨é€çš„åŠ¨æ€é…ç½®
 	 */
 	private DruidDsConfDO localConf = new DruidDsConfDO();
 
 	/**
-	 * È«¾ÖÅäÖÃ£¬Ó¦ÓÃÅäÖÃ¶©ÔÄ¹ÜÀí
+	 * å…¨å±€é…ç½®ï¼Œåº”ç”¨é…ç½®è®¢é˜…ç®¡ç†
 	 */
 	private DbConfManager dbConfManager;
 
 	/**
-	 * ÃÜÂëÅäÖÃ¶©ÔÄ¹ÜÀí
+	 * å¯†ç é…ç½®è®¢é˜…ç®¡ç†
 	 */
 	private DbPasswdManager dbPasswdManager;
 
 	/**
-	 * druidÊı¾İÔ´Í¨¹ıinit³õÊ¼»¯
+	 * druidæ•°æ®æºé€šè¿‡initåˆå§‹åŒ–
 	 */
 	private volatile DruidDataSource druidDataSource;
 
 	/**
-	 * Êı¾İ¿â×´Ì¬¸Ä±ä»Øµ÷
+	 * æ•°æ®åº“çŠ¶æ€æ”¹å˜å›è°ƒ
 	 */
 	private volatile List<DruidDbStatusListener> dbStatusListeners;
 
 	/**
-	 * ³õÊ¼»¯±ê¼ÇÎªÒ»µ«³õÊ¼»¯¹ı£¬ËùÓĞ±¾µØµÄÅäÖÃ½ûÖ¹¸Ä¶¯
+	 * åˆå§‹åŒ–æ ‡è®°ä¸ºä¸€ä½†åˆå§‹åŒ–è¿‡ï¼Œæ‰€æœ‰æœ¬åœ°çš„é…ç½®ç¦æ­¢æ”¹åŠ¨
 	 */
 	private volatile boolean initFalg;
 
 	/**
-	 * Êı¾İÔ´²Ù×÷Ëø£¬µ±ĞèÒª¶ÔÊı¾İÔ´½øĞĞÖØ½¨»òÕßË¢ĞÂÊ±ĞèÒªÏÈ»ñµÃ¸ÃËø
+	 * æ•°æ®æºæ“ä½œé”ï¼Œå½“éœ€è¦å¯¹æ•°æ®æºè¿›è¡Œé‡å»ºæˆ–è€…åˆ·æ–°æ—¶éœ€è¦å…ˆè·å¾—è¯¥é”
 	 */
 	private final ReentrantLock lock = new ReentrantLock();
 
@@ -91,7 +91,7 @@ class DruidDsConfHandle {
 //	public static final int druidFlushIntervalMill = 300*1000;
 	
 	/**
-	 * ³õÊ¼»¯·½·¨£¬´´½¨¶ÔÓ¦µÄÊı¾İÔ´£¬Ö»ÄÜ±»µ÷ÓÃÒ»´Î
+	 * åˆå§‹åŒ–æ–¹æ³•ï¼Œåˆ›å»ºå¯¹åº”çš„æ•°æ®æºï¼Œåªèƒ½è¢«è°ƒç”¨ä¸€æ¬¡
 	 * 
 	 * @throws Exception
 	 */
@@ -100,34 +100,34 @@ class DruidDsConfHandle {
 			throw new DruidAlreadyInitException(
 					"[AlreadyInit] double call Init !");
 		}
-		// 1.³õÊ¼»¯²ÎÊı¼ì²é
+		// 1.åˆå§‹åŒ–å‚æ•°æ£€æŸ¥
 		if (StringUtil.isBlank(this.appName) || StringUtil.isBlank(this.dbKey)) {
 			String errorMsg = "[attributeError] TAtomDatasource of appName Or dbKey is Empty !";
 			logger.error(errorMsg);
 			throw new DruidIllegalException(errorMsg);
 		}
-		// 2.ÅäÖÃdbConfManager
+		// 2.é…ç½®dbConfManager
 		DiamondDbConfManager defaultDbConfManager = new DiamondDbConfManager();
 		defaultDbConfManager.setGlobalConfigDataId(DruidConstants
 				.getGlobalDataId(this.dbKey));
 		defaultDbConfManager.setAppConfigDataId(DruidConstants.getAppDataId(
 				this.appName, this.dbKey));
 		defaultDbConfManager.setUnitName(unitName);
-		// ³õÊ¼»¯dbConfManager
+		// åˆå§‹åŒ–dbConfManager
 		defaultDbConfManager.init(appName);
 		dbConfManager = defaultDbConfManager;
-		// 3.»ñÈ¡È«¾ÖÅäÖÃ
+		// 3.è·å–å…¨å±€é…ç½®
 		String globaConfStr = dbConfManager.getGlobalDbConf();
-		// ×¢²áÈ«¾ÖÅäÖÃ¼àÌı
+		// æ³¨å†Œå…¨å±€é…ç½®ç›‘å¬
 		registerGlobaDbConfListener(defaultDbConfManager);
 		if (StringUtil.isBlank(globaConfStr)) {
 			String errorMsg = "[ConfError] read globalConfig is Empty !";
 			logger.error(errorMsg);
 			throw new DruidInitialException(errorMsg);
 		}
-		// 4.»ñÈ¡Ó¦ÓÃÅäÖÃ
+		// 4.è·å–åº”ç”¨é…ç½®
 		String appConfStr = dbConfManager.getAppDbDbConf();
-		// ×¢²áÓ¦ÓÃÅäÖÃ¼àÌı
+		// æ³¨å†Œåº”ç”¨é…ç½®ç›‘å¬
 		registerAppDbConfListener(defaultDbConfManager);
 		if (StringUtil.isBlank(appConfStr)) {
 			String errorMsg = "[ConfError] read appConfig is Empty !";
@@ -136,14 +136,14 @@ class DruidDsConfHandle {
 		}
 		lock.lock();
 		try {
-			// 5.½âÎöÅäÖÃstring³ÉTAtomDsConfDO
+			// 5.è§£æé…ç½®stringæˆTAtomDsConfDO
 			runTimeConf = DruidConfParser.parserTAtomDsConfDO(globaConfStr,
 					appConfStr);
-			// 6.´¦Àí±¾µØÓÅÏÈÅäÖÃ
+			// 6.å¤„ç†æœ¬åœ°ä¼˜å…ˆé…ç½®
 			overConfByLocal(localConf, runTimeConf);
-			// 7.Èç¹ûÃ»ÓĞÉèÖÃ±¾µØÃÜÂë£¬ÔòÓÃ¶©µÄÃÜÂë£¬³õÊ¼»¯passwdManager
+			// 7.å¦‚æœæ²¡æœ‰è®¾ç½®æœ¬åœ°å¯†ç ï¼Œåˆ™ç”¨è®¢çš„å¯†ç ï¼Œåˆå§‹åŒ–passwdManager
 			if (StringUtil.isBlank(this.runTimeConf.getPasswd())) {
-				// ¼ì²édbKeyºÍ¶ÔÓ¦µÄuserNameÊÇ·ñÎª¿Õ
+				// æ£€æŸ¥dbKeyå’Œå¯¹åº”çš„userNameæ˜¯å¦ä¸ºç©º
 				if (StringUtil.isBlank(runTimeConf.getUserName())) {
 					String errorMsg = "[attributeError] TAtomDatasource of UserName is Empty !";
 					logger.error(errorMsg);
@@ -157,7 +157,7 @@ class DruidDsConfHandle {
 				diamondDbPasswdManager.setUnitName(unitName);
 				diamondDbPasswdManager.init(appName);
 				dbPasswdManager = diamondDbPasswdManager;
-				// »ñÈ¡ÃÜÂë
+				// è·å–å¯†ç 
 				String passwd = dbPasswdManager.getPasswd();
 				registerPasswdConfListener(diamondDbPasswdManager);
 				if (StringUtil.isBlank(passwd)) {
@@ -167,22 +167,22 @@ class DruidDsConfHandle {
 				}
 				runTimeConf.setPasswd(passwd);
 			}
-			// 8.×ª»»tAtomDsConfDO
+			// 8.è½¬æ¢tAtomDsConfDO
 			DruidDataSource druidDataSource = convertTAtomDsConf2DruidConf(DruidDsConfHandle.this.dbKey,
 					this.runTimeConf,
 					DruidConstants.getDbNameStr(this.unitName, this.appName, this.dbKey));
-			// 9.²ÎÊı¼ì²éÈç¹û²ÎÊı²»ÕıÈ·Ö±½ÓÅ×³öÒì³£
+			// 9.å‚æ•°æ£€æŸ¥å¦‚æœå‚æ•°ä¸æ­£ç¡®ç›´æ¥æŠ›å‡ºå¼‚å¸¸
 			if (!checkLocalTxDataSourceDO(druidDataSource)) {
 				String errorMsg = "[ConfigError]init dataSource Prams Error! config is : "
 						+ druidDataSource.toString();
 				logger.error(errorMsg);
 				throw new DruidInitialException(errorMsg);
 			}
-//			 10.´´½¨Êı¾İÔ´
+//			 10.åˆ›å»ºæ•°æ®æº
 //			druidDataSource.setUseJmx(false);
 //			LocalTxDataSource localTxDataSource = TaobaoDataSourceFactory
 //					.createLocalTxDataSource(localTxDataSourceDO);
-			//11.½«´´½¨ºÃµÄÊı¾İÔ´ÊÇÖ¸µ½TAtomDatasourceÖĞ
+			//11.å°†åˆ›å»ºå¥½çš„æ•°æ®æºæ˜¯æŒ‡åˆ°TAtomDatasourceä¸­
 			druidDataSource.init();
 			
 //			druidDataSource.getDataSourceStat().setMaxSqlSize(DruidDsConfHandle.druidStatMaxKeySize);
@@ -200,7 +200,7 @@ class DruidDsConfHandle {
 	}
 
 	/**
-	 * ×¢²áÃÜÂë±ä»¯¼àÌıÆ÷
+	 * æ³¨å†Œå¯†ç å˜åŒ–ç›‘å¬å™¨
 	 * 
 	 * @param dbPasswdManager
 	 */
@@ -217,7 +217,7 @@ class DruidDsConfHandle {
 					String localPasswd = DruidDsConfHandle.this.localConf
 							.getPasswd();
 					if (StringUtil.isNotBlank(localPasswd)) {
-						// Èç¹û±¾µØÅäÖÃÁËpasswdÖ±½Ó·µ»Ø²»Ö§³Ö¶¯Ì¬ĞŞ¸Ä
+						// å¦‚æœæœ¬åœ°é…ç½®äº†passwdç›´æ¥è¿”å›ä¸æ”¯æŒåŠ¨æ€ä¿®æ”¹
 						return;
 					}
 					String newPasswd = DruidConfParser.parserPasswd(data);
@@ -233,7 +233,7 @@ class DruidDsConfHandle {
 //							DruidDsConfHandle.this.druidDataSource = newDruidDataSource;
 //							tempDataSource.close();
 //							logger.warn("[DRUID CHANGE PASSWORD] ReCreate DataSource !");
-							// ÊÇÓÃĞÂµÄÅäÖÃ¸²¸ÇÔËĞĞÊ±µÄÅäÖÃ
+							// æ˜¯ç”¨æ–°çš„é…ç½®è¦†ç›–è¿è¡Œæ—¶çš„é…ç½®
 //							clearDataSourceWrapper();
 							DruidDsConfHandle.this.druidDataSource.setPassword(newPasswd);
 							logger.warn("[DRUID CHANGE PASSWORD] already reset the new passwd!");
@@ -253,7 +253,7 @@ class DruidDsConfHandle {
 	}
 
 	/**
-	 * È«¾ÖÅäÖÃ¼àÌı,È«¾ÖÅäÖÃ·¢Éú±ä»¯£¬ ĞèÒªÖØĞÂFLUSHÊı¾İÔ´
+	 * å…¨å±€é…ç½®ç›‘å¬,å…¨å±€é…ç½®å‘ç”Ÿå˜åŒ–ï¼Œ éœ€è¦é‡æ–°FLUSHæ•°æ®æº
 	 * 
 	 * @param defaultDbConfManager
 	 */
@@ -268,20 +268,20 @@ class DruidDsConfHandle {
 				lock.lock();
 				try {
 					String globaConfStr = data;
-					// Èç¹ûÊÇÈ«¾ÖÅäÖÃ·¢Éú±ä»¯£¬¿ÉÄÜÊÇIP,PORT,DBNAME,DBTYPE,STATUS
+					// å¦‚æœæ˜¯å…¨å±€é…ç½®å‘ç”Ÿå˜åŒ–ï¼Œå¯èƒ½æ˜¯IP,PORT,DBNAME,DBTYPE,STATUS
 					DruidDsConfDO tmpConf = DruidConfParser
 							.parserTAtomDsConfDO(globaConfStr, null);
 					DruidDsConfDO newConf = DruidDsConfHandle.this.runTimeConf
 							.clone();
-					// ÊÇÓÃÍÆËÍµÄÅäÖÃ£¬¸²¸Çµ±Ç°µÄÅäÖÃ
+					// æ˜¯ç”¨æ¨é€çš„é…ç½®ï¼Œè¦†ç›–å½“å‰çš„é…ç½®
 					newConf.setIp(tmpConf.getIp());
 					newConf.setPort(tmpConf.getPort());
 					newConf.setDbName(tmpConf.getDbName());
 					newConf.setDbType(tmpConf.getDbType());
 					newConf.setDbStatus(tmpConf.getDbStatus());
-					// ´¦Àí±¾µØÓÅÏÈÅäÖÃ
+					// å¤„ç†æœ¬åœ°ä¼˜å…ˆé…ç½®
 					overConfByLocal(DruidDsConfHandle.this.localConf, newConf);
-					// Èç¹ûÍÆËÍ¹ıÀ´µÄÊı¾İ¿â×´Ì¬ÊÇ RW/R->NA,Ö±½ÓÏú»ÙµôÊı¾İÔ´£¬ÒÔÏÂÒµÎñÂß¼­²»×ö´¦Àí
+					// å¦‚æœæ¨é€è¿‡æ¥çš„æ•°æ®åº“çŠ¶æ€æ˜¯ RW/R->NA,ç›´æ¥é”€æ¯æ‰æ•°æ®æºï¼Œä»¥ä¸‹ä¸šåŠ¡é€»è¾‘ä¸åšå¤„ç†
 					if (AtomDbStatusEnum.NA_STATUS != DruidDsConfHandle.this.runTimeConf
 							.getDbStautsEnum()
 							&& AtomDbStatusEnum.NA_STATUS == tmpConf
@@ -295,7 +295,7 @@ class DruidDsConfHandle {
 									e);
 						}
 					} else {
-						// ×ª»»tAtomDsConfDO
+						// è½¬æ¢tAtomDsConfDO
 						DruidDataSource druidDataSource;
 						try {
 							druidDataSource = convertTAtomDsConf2DruidConf(DruidDsConfHandle.this.dbKey,
@@ -308,21 +308,21 @@ class DruidDsConfHandle {
 									+ dataId + " config : " + data);
 							return;
 						}
-						// ¼ì²é×ª»»ºó½á¹ûÊÇ·ñÕıÈ·
+						// æ£€æŸ¥è½¬æ¢åç»“æœæ˜¯å¦æ­£ç¡®
 						if (!checkLocalTxDataSourceDO(druidDataSource)) {
 							logger.error("[DRUID GlobaConfError] dataSource Prams Error! dataId : "
 									+ dataId + " config : " + data);
 							return;
 						}
-						// Èç¹ûÍÆËÍµÄ×´Ì¬Ê± NA->RW/R Ê±ĞèÒªÖØĞÂ´´½¨Êı¾İÔ´£¬ÎŞĞèÔÙË¢ĞÂ
+						// å¦‚æœæ¨é€çš„çŠ¶æ€æ—¶ NA->RW/R æ—¶éœ€è¦é‡æ–°åˆ›å»ºæ•°æ®æºï¼Œæ— éœ€å†åˆ·æ–°
 						if (DruidDsConfHandle.this.runTimeConf
 								.getDbStautsEnum() == AtomDbStatusEnum.NA_STATUS
 								&& (newConf.getDbStautsEnum() == AtomDbStatusEnum.RW_STATUS
 										|| newConf.getDbStautsEnum() == AtomDbStatusEnum.R_STATUS || newConf
 										.getDbStautsEnum() == AtomDbStatusEnum.W_STATUS)) {
-							// ´´½¨Êı¾İÔ´
+							// åˆ›å»ºæ•°æ®æº
 							try {
-								// ¹Ø±ÕTB-DATASOURCEµÄJMX×¢²á
+								// å…³é—­TB-DATASOURCEçš„JMXæ³¨å†Œ
 								// localTxDataSourceDO.setUseJmx(false);
 								// LocalTxDataSource localTxDataSource =
 								// TaobaoDataSourceFactory
@@ -341,11 +341,11 @@ class DruidDsConfHandle {
 						} else {
 							boolean needCreate = isGlobalChangeNeedReCreate(
 									DruidDsConfHandle.this.runTimeConf, newConf);
-							// Èç¹û·¢ÉúµÄÅäÖÃ±ä»¯ÊÇ·ñĞèÒªÖØ½¨Êı¾İÔ´
-							// druid Ã»ÓĞflush·½·¨£¬Ö»ÄÜÖØ½¨Êı¾İÔ´ jiechen.qzm
+							// å¦‚æœå‘ç”Ÿçš„é…ç½®å˜åŒ–æ˜¯å¦éœ€è¦é‡å»ºæ•°æ®æº
+							// druid æ²¡æœ‰flushæ–¹æ³•ï¼Œåªèƒ½é‡å»ºæ•°æ®æº jiechen.qzm
 							if (needCreate) {
 								try {
-									// ¸üĞÂÊı¾İÔ´
+									// æ›´æ–°æ•°æ®æº
 									druidDataSource.init();
 //									druidDataSource.getDataSourceStat().setMaxSqlSize(druidStatMaxKeySize);
 									DruidDataSource tempDataSource = DruidDsConfHandle.this.druidDataSource;
@@ -363,10 +363,10 @@ class DruidDsConfHandle {
 							}
 						}
 					}
-					//´¦ÀíÊı¾İ¿â×´Ì¬¼àÌıÆ÷
+					//å¤„ç†æ•°æ®åº“çŠ¶æ€ç›‘å¬å™¨
 					processDbStatusListener(DruidDsConfHandle.this.runTimeConf.getDbStautsEnum(),
 							newConf.getDbStautsEnum());
-					//ÊÇÓÃĞÂµÄÅäÖÃ¸²¸ÇÔËĞĞÊ±µÄÅäÖÃ
+					//æ˜¯ç”¨æ–°çš„é…ç½®è¦†ç›–è¿è¡Œæ—¶çš„é…ç½®
 					DruidDsConfHandle.this.runTimeConf = newConf;
 					clearDataSourceWrapper();
 				} finally {
@@ -400,7 +400,7 @@ class DruidDsConfHandle {
 	}
 
 	/**
-	 * Ó¦ÓÃÅäÖÃ¼àÌı£¬µ±Ó¦ÓÃÅäÖÃ·¢Éú±ä»¯Ê±£¬Çø·Ö·¢Éú ±ä»¯µÄÅäÖÃ£¬À´¾ö¶¨¾ßÌåÊÇflush»¹ÊÇreCreate
+	 * åº”ç”¨é…ç½®ç›‘å¬ï¼Œå½“åº”ç”¨é…ç½®å‘ç”Ÿå˜åŒ–æ—¶ï¼ŒåŒºåˆ†å‘ç”Ÿ å˜åŒ–çš„é…ç½®ï¼Œæ¥å†³å®šå…·ä½“æ˜¯flushè¿˜æ˜¯reCreate
 	 * 
 	 * @param defaultDbConfManager
 	 */
@@ -419,7 +419,7 @@ class DruidDsConfHandle {
 							.parserTAtomDsConfDO(null, appConfStr);
 					DruidDsConfDO newConf = DruidDsConfHandle.this.runTimeConf
 							.clone();
-					// ÓĞĞ©¼ÈÓĞÅäÖÃ²»ÄÜ±ä¸ü£¬ËùÒÔ¿ËÂ¡ÀÏµÄÅäÖÃ£¬È»ºó½«ĞÂµÄset½øÈ¥
+					// æœ‰äº›æ—¢æœ‰é…ç½®ä¸èƒ½å˜æ›´ï¼Œæ‰€ä»¥å…‹éš†è€çš„é…ç½®ï¼Œç„¶åå°†æ–°çš„setè¿›å»
 					newConf.setUserName(tmpConf.getUserName());
 					newConf.setMinPoolSize(tmpConf.getMinPoolSize());
 					newConf.setMaxPoolSize(tmpConf.getMaxPoolSize());
@@ -431,7 +431,7 @@ class DruidDsConfHandle {
 					newConf.setConnectionProperties(tmpConf
 							.getConnectionProperties());
 					newConf.setOracleConType(tmpConf.getOracleConType());
-					// Ôö¼Ó3¸ö¾ßÌåµÄÊµÏÖ
+					// å¢åŠ 3ä¸ªå…·ä½“çš„å®ç°
 					newConf.setWriteRestrictTimes(tmpConf
 							.getWriteRestrictTimes());
 					newConf.setReadRestrictTimes(tmpConf.getReadRestrictTimes());
@@ -439,13 +439,13 @@ class DruidDsConfHandle {
 							.getThreadCountRestrict());
 					newConf.setTimeSliceInMillis(tmpConf.getTimeSliceInMillis());
 					newConf.setDriverClass(tmpConf.getDriverClass());
-					// ´¦Àí±¾µØÓÅÏÈÅäÖÃ
+					// å¤„ç†æœ¬åœ°ä¼˜å…ˆé…ç½®
 					overConfByLocal(DruidDsConfHandle.this.localConf, newConf);
 					
 					boolean isNeedReCreate = isAppChangeNeedReCreate(
 							DruidDsConfHandle.this.runTimeConf, newConf);
 					if (isNeedReCreate) {
-						// ×ª»»tAtomDsConfDO
+						// è½¬æ¢tAtomDsConfDO
 						DruidDataSource druidDataSource;
 						try {
 							druidDataSource = convertTAtomDsConf2DruidConf(DruidDsConfHandle.this.dbKey,
@@ -458,7 +458,7 @@ class DruidDsConfHandle {
 									+ dataId + " config : " + data);
 							return;
 						}
-						// ¼ì²é×ª»»ºó½á¹ûÊÇ·ñÕıÈ·
+						// æ£€æŸ¥è½¬æ¢åç»“æœæ˜¯å¦æ­£ç¡®
 						if (!checkLocalTxDataSourceDO(druidDataSource)) {
 							logger.error("[DRUID GlobaConfError] dataSource Prams Error! dataId : "
 									+ dataId + " config : " + data);
@@ -466,7 +466,7 @@ class DruidDsConfHandle {
 						}
 						
 						try {
-							//Õâ¸ö±ØĞëÔÚ×îÇ°Ãæ£¬·ñÔòÏÂ´ÎÍÆËÍ¿ÉÄÜÎŞ·¨±È½Ï³ö²»Í¬¶ø²»´´½¨ĞÂÊı¾İ
+							//è¿™ä¸ªå¿…é¡»åœ¨æœ€å‰é¢ï¼Œå¦åˆ™ä¸‹æ¬¡æ¨é€å¯èƒ½æ— æ³•æ¯”è¾ƒå‡ºä¸åŒè€Œä¸åˆ›å»ºæ–°æ•°æ®
 							DruidDsConfHandle.this.runTimeConf = newConf;
 							DruidDsConfHandle.this.druidDataSource.close();
 							logger.warn("[DRUID destroy OldDataSource] dataId : "
@@ -535,7 +535,7 @@ class DruidDsConfHandle {
 							.getConnectionProperties();
 					Map<String, String> runProp = runConf
 							.getConnectionProperties();
-					//oracleµÄÁ¬½Ó²ÎÊı±ä»¯»áµ¼ÖÂ
+					//oracleçš„è¿æ¥å‚æ•°å˜åŒ–ä¼šå¯¼è‡´
 					if (!runProp.equals(newProp)) {
 						return true;
 					}
@@ -598,7 +598,7 @@ class DruidDsConfHandle {
 	}
 	
 	/**
-	 * druidÌØÊâ¿ª¹Ø£¬Õë¶ÔÌØÊâ±àÂë×ª»»£¬Ä¿Ç°ÊÇB2BÖĞÎÄÕ¾×¨ÓÃ
+	 * druidç‰¹æ®Šå¼€å…³ï¼Œé’ˆå¯¹ç‰¹æ®Šç¼–ç è½¬æ¢ï¼Œç›®å‰æ˜¯B2Bä¸­æ–‡ç«™ä¸“ç”¨
 	 * @param connectionProperties
 	 * @param druidDataSource
 	 * @throws SQLException
@@ -614,7 +614,7 @@ class DruidDsConfHandle {
 //	private static final String DEFAULT_TDDL_DRUID_FILTERS="mergeStat";
 	
 	/**
-	 * ½«TAtomDsConfDO×ª»»³ÉLocalTxDataSourceDO
+	 * å°†TAtomDsConfDOè½¬æ¢æˆLocalTxDataSourceDO
 	 * 
 	 * @param tAtomDsConfDO
 	 * @return
@@ -622,7 +622,7 @@ class DruidDsConfHandle {
 	@SuppressWarnings("rawtypes")
 	protected static DruidDataSource convertTAtomDsConf2DruidConf(String dbKey, DruidDsConfDO tAtomDsConfDO, String dbName) throws Exception{
 		DruidDataSource localDruidDataSource = new DruidDataSource();
-		//Ò»ÏÂÈı¸öÊÇdruid¼à¿ØĞèÒªµÄÌØÊâÅäÖÃ
+		//ä¸€ä¸‹ä¸‰ä¸ªæ˜¯druidç›‘æ§éœ€è¦çš„ç‰¹æ®Šé…ç½®
 		localDruidDataSource.setName(dbKey);
 		localDruidDataSource.setTestOnBorrow(false);
 		localDruidDataSource.setTestWhileIdle(true);
@@ -632,12 +632,12 @@ class DruidDsConfHandle {
 		localDruidDataSource.setPassword(tAtomDsConfDO.getPasswd());
 		localDruidDataSource.setDriverClassName(tAtomDsConfDO.getDriverClass());
 		localDruidDataSource.setExceptionSorterClassName(tAtomDsConfDO.getSorterClass());
-		//¸ù¾İÊı¾İ¿âÀàĞÍÉèÖÃconURLºÍsetConnectionProperties
+		//æ ¹æ®æ•°æ®åº“ç±»å‹è®¾ç½®conURLå’ŒsetConnectionProperties
 		if (AtomDbTypeEnum.ORACLE == tAtomDsConfDO.getDbTypeEnum()) {
 			String conUlr = DruidConURLTools.getOracleConURL(tAtomDsConfDO.getIp(), tAtomDsConfDO.getPort(),
 					tAtomDsConfDO.getDbName(), tAtomDsConfDO.getOracleConType());
 			localDruidDataSource.setUrl(conUlr);
-			//Èç¹ûÊÇoracleÃ»ÓĞÉèÖÃConnectionPropertiesÔò¸øÒÔ¸öÄ¬ÈÏµÄ
+			//å¦‚æœæ˜¯oracleæ²¡æœ‰è®¾ç½®ConnectionPropertiesåˆ™ç»™ä»¥ä¸ªé»˜è®¤çš„
 			Properties connectionProperties = new Properties();
 			if (!tAtomDsConfDO.getConnectionProperties().isEmpty()) {
 				connectionProperties.putAll(tAtomDsConfDO.getConnectionProperties());
@@ -651,7 +651,7 @@ class DruidDsConfHandle {
 			String conUlr = DruidConURLTools.getMySqlConURL(tAtomDsConfDO.getIp(), tAtomDsConfDO.getPort(),
 					tAtomDsConfDO.getDbName(), tAtomDsConfDO.getConnectionProperties());
 			localDruidDataSource.setUrl(conUlr);
-			//Èç¹û¿ÉÒÔÕÒµ½mysqlDriverÖĞµÄValid¾ÍÊ¹ÓÃ£¬·ñÔò²»ÉèÖÃvalid
+			//å¦‚æœå¯ä»¥æ‰¾åˆ°mysqlDriverä¸­çš„Validå°±ä½¿ç”¨ï¼Œå¦åˆ™ä¸è®¾ç½®valid
 			try {
 				Class validClass = Class.forName(DruidConstants.DEFAULT_DRUID_MYSQL_VALID_CONNECTION_CHECKERCLASS);
 				if (null != validClass) {
@@ -667,7 +667,7 @@ class DruidDsConfHandle {
 				logger.warn("MYSQL Driver is Not Suport " + DruidConstants.DEFAULT_DRUID_MYSQL_VALID_CONNECTION_CHECKERCLASS);
 			}
 			
-			//Èç¹û¿ÉÒÔÕÒµ½mysqlDriverÖĞµÄintegrationSorter¾ÍÊ¹ÓÃ·ñÔòÊ¹ÓÃÄ¬ÈÏµÄ
+			//å¦‚æœå¯ä»¥æ‰¾åˆ°mysqlDriverä¸­çš„integrationSorterå°±ä½¿ç”¨å¦åˆ™ä½¿ç”¨é»˜è®¤çš„
 			try {
 				Class integrationSorterCalss = Class.forName(DruidConstants.DRUID_MYSQL_INTEGRATION_SORTER_CLASS);
 				if (null != integrationSorterCalss) {
@@ -686,7 +686,7 @@ class DruidDsConfHandle {
 			}
 			localDruidDataSource.setValidationQuery(DruidConstants.DEFAULT_DRUID_MYSQL_VALIDATION_QUERY);
 		}
-		// lazy init ÏÈÉèÖÃÎª0 ºóĞøÕæÕıÖ´ĞĞÊ±²Å´´½¨Á¬½Ó
+		// lazy init å…ˆè®¾ç½®ä¸º0 åç»­çœŸæ­£æ‰§è¡Œæ—¶æ‰åˆ›å»ºè¿æ¥
 		localDruidDataSource.setInitialSize(tAtomDsConfDO.getInitPoolSize());
 		localDruidDataSource.setMinIdle(tAtomDsConfDO.getMinPoolSize());
 		localDruidDataSource.setMaxActive(tAtomDsConfDO.getMaxPoolSize());
@@ -705,7 +705,7 @@ class DruidDsConfHandle {
 		if(tAtomDsConfDO.getConnectionInitSql() != null) {
 		    localDruidDataSource.setConnectionInitSqls(Arrays.asList(tAtomDsConfDO.getConnectionInitSql()));
 		}
-		//Ìí¼ÓdruidÈÕÖ¾Êä³ö
+		//æ·»åŠ druidæ—¥å¿—è¾“å‡º
 //		DruidDataSourceStatLogger logger=localDruidDataSource.getStatLogger();
 //		logger.setLogger(new Log4jImpl(LoggerInit.TDDL_Atom_Statistic_LOG));
 //		localDruidDataSource.setTimeBetweenLogStatsMillis(DruidDsConfHandle.druidFlushIntervalMill);
@@ -762,16 +762,16 @@ class DruidDsConfHandle {
 	}
 
 	/**
-	 * ÊÇÓÃ±¾µØÅäÖÃ¸²¸Ç´«ÈëµÄTAtomDsConfDOµÄÊôĞÔ
+	 * æ˜¯ç”¨æœ¬åœ°é…ç½®è¦†ç›–ä¼ å…¥çš„TAtomDsConfDOçš„å±æ€§
 	 * 
-	 * @param tAtomDsConfDO
+	 * @param localDsConfDO
 	 */
 	private void overConfByLocal(DruidDsConfDO localDsConfDO,
 			DruidDsConfDO newDsConfDO) {
 		if (null == newDsConfDO || null == localDsConfDO) {
 			return;
 		}
-		//ÔÊĞíÉèÖÃdriverClass
+		//å…è®¸è®¾ç½®driverClass
 //		if (StringUtil.isNotBlank(localDsConfDO.getDriverClass())) {
 //			newDsConfDO.setDriverClass(localDsConfDO.getDriverClass());
 //		}
@@ -789,7 +789,7 @@ class DruidDsConfHandle {
 	}
 
 	/**
-	 * Datasource µÄ°ü×°Àà
+	 * Datasource çš„åŒ…è£…ç±»
 	 */
 	private volatile TDataSourceWrapper wrapDataSource = null;
 
@@ -798,7 +798,7 @@ class DruidDsConfHandle {
 			lock.lock();
 			try {
 				if (wrapDataSource != null) {
-					// Ë«¼ì²éËø
+					// åŒæ£€æŸ¥é”
 					return wrapDataSource;
 				}
 				String errorMsg = "";
@@ -813,7 +813,7 @@ class DruidDsConfHandle {
 					logger.error(errorMsg);
 					throw new SQLException(errorMsg);
 				}
-				// Èç¹ûÊı¾İ¿â×´Ì¬²»¿ÉÓÃÖ±½ÓÅ×³öÒì³£
+				// å¦‚æœæ•°æ®åº“çŠ¶æ€ä¸å¯ç”¨ç›´æ¥æŠ›å‡ºå¼‚å¸¸
 				if (null == this.getStatus()) {
 					errorMsg = "[DB Stats Error] DbStatus is Null: "
 							+ this.getDbKey();
@@ -841,7 +841,7 @@ class DruidDsConfHandle {
 	}
 
 	public void flushDataSource() {
-		//ÔİÊ±²»Ö§³Öflush Å×´í
+		//æš‚æ—¶ä¸æ”¯æŒflush æŠ›é”™
 		logger.error("DRUID DATASOURCE DO NOT SUPPORT FLUSH.");
 		throw new RuntimeException("DRUID DATASOURCE DO NOT SUPPORT FLUSH.");
 	}

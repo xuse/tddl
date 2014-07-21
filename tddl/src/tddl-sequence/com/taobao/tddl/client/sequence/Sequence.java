@@ -3,15 +3,15 @@ package com.taobao.tddl.client.sequence;
 import com.taobao.tddl.client.sequence.exception.SequenceException;
 
 /**
- * ĞòÁĞ½Ó¿Ú
+ * åºåˆ—æ¥å£
  *
  * @author nianbing
  */
 public interface Sequence {
 	/**
-	 * È¡µÃĞòÁĞÏÂÒ»¸öÖµ
+	 * å–å¾—åºåˆ—ä¸‹ä¸€ä¸ªå€¼
 	 *
-	 * @return ·µ»ØĞòÁĞÏÂÒ»¸öÖµ
+	 * @return è¿”å›åºåˆ—ä¸‹ä¸€ä¸ªå€¼
 	 * @throws SequenceException
 	 */
 	long nextValue() throws SequenceException;

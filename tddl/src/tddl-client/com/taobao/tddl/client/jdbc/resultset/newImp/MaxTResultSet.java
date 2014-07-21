@@ -10,7 +10,7 @@ import com.taobao.tddl.client.jdbc.sqlexecutor.RealSqlExecutor;
 
 /*
  * @author guangxia
- * @since 1.0, 2009-9-18 œ¬ŒÁ05:37:57
+ * @since 1.0, 2009-9-18 ‰∏ãÂçà05:37:57
  */
 public class MaxTResultSet extends MaxMinTResultSet {
 

@@ -39,9 +39,9 @@ import com.taobao.tddl.interact.rule.bean.SqlType;
 import com.taobao.tddl.jdbc.group.DataSourceWrapper;
 import com.taobao.tddl.jdbc.group.TGroupDataSource;
 
-/*TODO:ListenerÓ¦¸ÃĞèÒªÄÜ¹»¾ö¶¨ºóĞø²Ù×÷µÄÒ»Ğ©Ñ¡Ïî£¬°üÀ¨ÊÇ·ñ·´ÏòÊä³öupdate sql ²¢´øÉÏversion×Ö¶Î¡£
- * ÒÔ¼°ÊÇ·ñĞèÒªÎªrowbasedListenerÌá¹©ĞĞ¸´ÖÆËùĞèµÄÒ»Ğ©ÊôĞÔµÈĞÅÏ¢¡£
- * Í¬Ê±Ó¦¸Ã×¢Òâ¼æÈİĞÔÎÊÌâ¡£
+/*TODO:Listeneråº”è¯¥éœ€è¦èƒ½å¤Ÿå†³å®šåç»­æ“ä½œçš„ä¸€äº›é€‰é¡¹ï¼ŒåŒ…æ‹¬æ˜¯å¦åå‘è¾“å‡ºupdate sql å¹¶å¸¦ä¸Šversionå­—æ®µã€‚
+ * ä»¥åŠæ˜¯å¦éœ€è¦ä¸ºrowbasedListeneræä¾›è¡Œå¤åˆ¶æ‰€éœ€çš„ä¸€äº›å±æ€§ç­‰ä¿¡æ¯ã€‚
+ * åŒæ—¶åº”è¯¥æ³¨æ„å…¼å®¹æ€§é—®é¢˜ã€‚
  */
 public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 	private static final Log log = LogFactory.getLog(RowBasedReplicationListener.class);
@@ -49,9 +49,9 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 	private static final String syncLogSep = "\t";
 
 	/*
-	 * modified by huali£¬´Ó10ÃëĞŞ¸ÄÎª5·ÖÖÓ£¬Õâ¸öÖµÈç¹ûÌ«Ğ¡ÁË£¬ÄÇÃ´¿ÉÄÜÔÚÊÂÎñ»¹Ã»ÓĞ½áÊøµÄÊ±ºò£¬¸´ÖÆÈÎÎñ¾Í±»syncserver´¦ÀíÁË
-	 * ÄÇÃ´Õâ¸öÊ±ºòËù×÷µÄĞŞ¸Ä»¹Ã»ÓĞÌá½»£¬»á³öÏÖ¸´ÖÆµÄÎÊÌâ£¬È»ºóÕâ¸öÖµÉèÖÃ±È½Ï´óµÄÒ»¸öÓ°ÏìÊÇ£¬Èç¹ûÓ¦ÓÃ»úÆ÷µÄ¸´ÖÆÈÎÎñÃ»ÓĞÍê³É£¬
-	 * ÄÇÃ´Í¨¹ısync-serverÈ¥»Ö¸´µÄÊ±ºò£¬»áÒªµÈÏà¶Ô³¤µÄÊ±¼ä¡£
+	 * modified by hualiï¼Œä»10ç§’ä¿®æ”¹ä¸º5åˆ†é’Ÿï¼Œè¿™ä¸ªå€¼å¦‚æœå¤ªå°äº†ï¼Œé‚£ä¹ˆå¯èƒ½åœ¨äº‹åŠ¡è¿˜æ²¡æœ‰ç»“æŸçš„æ—¶å€™ï¼Œå¤åˆ¶ä»»åŠ¡å°±è¢«syncserverå¤„ç†äº†
+	 * é‚£ä¹ˆè¿™ä¸ªæ—¶å€™æ‰€ä½œçš„ä¿®æ”¹è¿˜æ²¡æœ‰æäº¤ï¼Œä¼šå‡ºç°å¤åˆ¶çš„é—®é¢˜ï¼Œç„¶åè¿™ä¸ªå€¼è®¾ç½®æ¯”è¾ƒå¤§çš„ä¸€ä¸ªå½±å“æ˜¯ï¼Œå¦‚æœåº”ç”¨æœºå™¨çš„å¤åˆ¶ä»»åŠ¡æ²¡æœ‰å®Œæˆï¼Œ
+	 * é‚£ä¹ˆé€šè¿‡sync-serverå»æ¢å¤çš„æ—¶å€™ï¼Œä¼šè¦ç­‰ç›¸å¯¹é•¿çš„æ—¶é—´ã€‚
 	 */
 	private static final long DEFAULT_MAX_TX_TIME = 1000 * 60 * 5;
 
@@ -60,7 +60,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 	protected ReplicationSwitcher replicationSwitcher;
 	private ReplicationCallbackHandler replicationCallbackHandler = new SpecialExceptionPolicy();
 	private ReplicationConfig replicationConfig;
-	private DataSource syncLogDataSource; //ÓÃTGroupDataSourceÌæ´úÔ­ÏÈµÄ¶¯Ì¬ºÍÖØÊÔ¹¦ÄÜ
+	private DataSource syncLogDataSource; //ç”¨TGroupDataSourceæ›¿ä»£åŸå…ˆçš„åŠ¨æ€å’Œé‡è¯•åŠŸèƒ½
 	private boolean syncLogIsGroupDataSource = true;
 	public void setSyncLogDataSource(DataSource syncLogDataSource) {
 		this.syncLogDataSource = syncLogDataSource;
@@ -80,12 +80,12 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 		syncLogDb = new EquityDbManager(synclogDatabaseId);
 		if (isUseLocalConfig) {
 			if (syncLogDataSourceConfigFile == null) {
-				throw new IllegalArgumentException("Ã»ÓĞÅäÖÃsyncLogDataSourceConfigFile");
+				throw new IllegalArgumentException("æ²¡æœ‰é…ç½®syncLogDataSourceConfigFile");
 			}
 			syncLogDb.setDataSourceConfigFile(syncLogDataSourceConfigFile);
 		} else {
 			if (synclogDatabaseId == null) {
-				throw new IllegalArgumentException("Ã»ÓĞÅäÖÃsyncLogDataSourceConfigDataId");
+				throw new IllegalArgumentException("æ²¡æœ‰é…ç½®syncLogDataSourceConfigDataId");
 			}
 			String dbConfigDataId = new MessageFormat(ConfigServerHelper.DATA_ID_SYNCLOG_DBSET).format(new Object[]{synclogDatabaseId});
 			String dbWeightDataId = new MessageFormat(ConfigServerHelper.DATA_ID_SYNCLOG_DBWEIGHT).format(new Object[]{synclogDatabaseId});
@@ -102,7 +102,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 
 	public void init(TDataSource tds) {
 		if (tds.getReplicationConfig() == null) {
-			throw new IllegalArgumentException("ÓÃĞÂµÄ" + getClass().getName() + ",TDataSource±ØĞëÅäÖÃreplicationConfig");
+			throw new IllegalArgumentException("ç”¨æ–°çš„" + getClass().getName() + ",TDataSourceå¿…é¡»é…ç½®replicationConfig");
 		}
 		this.appName = tds.getAppName();
 		this.replicationConfig = tds.getReplicationConfig();
@@ -110,7 +110,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 		//initSyncLogDb(tds.isUseLocalConfig());
 		
 		if (replicationSwitcher == null) {
-			//Èç¹ûÃ»ÓĞÏÔÊ½Ö¸¶¨replicationSwitcher£¬Ôò´´½¨Ä¬ÈÏµÄ
+			//å¦‚æœæ²¡æœ‰æ˜¾å¼æŒ‡å®šreplicationSwitcherï¼Œåˆ™åˆ›å»ºé»˜è®¤çš„
 			ConfigServerReplicationSwitcher csrs = new ConfigServerReplicationSwitcher();
 			csrs.setAppName(this.appName);
 			csrs.init();
@@ -118,7 +118,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 		} else if (replicationSwitcher instanceof ConfigServerReplicationSwitcher) {
 			ConfigServerReplicationSwitcher csrs = (ConfigServerReplicationSwitcher) replicationSwitcher;
 			if (csrs.getAppName() == null) {
-				//Èç¹ûÃ»ÓĞÏÔÊ½Ö¸¶¨appName£¬ÔòÉèÖÃÎªTdsµÄappName
+				//å¦‚æœæ²¡æœ‰æ˜¾å¼æŒ‡å®šappNameï¼Œåˆ™è®¾ç½®ä¸ºTdsçš„appName
 				csrs.setAppName(this.appName);
 			}
 			csrs.init();
@@ -145,7 +145,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 			return;
 		}
 		if (event.getSqlType() == SqlType.DELETE) {
-			throw new IllegalArgumentException("ÔÚĞĞ¸´ÖÆÄ£Ê½ÖĞ²»Ö§³ÖÊ¹ÓÃdelete:" + event.getSql());
+			throw new IllegalArgumentException("åœ¨è¡Œå¤åˆ¶æ¨¡å¼ä¸­ä¸æ”¯æŒä½¿ç”¨delete:" + event.getSql());
 		}
 		if (event.getSqlType() == SqlType.INSERT || event.getSqlType() == SqlType.UPDATE) {
 			doBeforeSqlExecute(event);
@@ -222,13 +222,13 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 		case logfileonly:
 			insertSyncLog2LocalFile(event);
 			break;
-		case streaking: //Ê²Ã´¶¼²»×ö			
+		case streaking: //ä»€ä¹ˆéƒ½ä¸åš			
 			break;
 		case asynchronous:
 			asyncInsertSyncLog2Db(event);
 			break;
 		default:
-			throw new IllegalStateException("InsertSyncLogModeÓĞĞÂÔöÑ¡Ïî");
+			throw new IllegalStateException("InsertSyncLogModeæœ‰æ–°å¢é€‰é¡¹");
 		}
 	}
 	
@@ -239,7 +239,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 		try {
 			this.syncLogDb.tryExecute(insertSyncLogTryer, 3, event);
 		} catch (SQLException e) {
-			//¼ÇÂ¼logÒì³£µÄÊ±ºòÒ²Ó¦¸ÃÓĞ¸öÍ³¼Æ
+			//è®°å½•logå¼‚å¸¸çš„æ—¶å€™ä¹Ÿåº”è¯¥æœ‰ä¸ªç»Ÿè®¡
 			add(buildTableKey1(event.getLogicTableName()), buildReplicationSqlKey2(event.getSql()),
 					KEY3_WRITE_LOG_EXCEPTION, System.currentTimeMillis() - time, 1);
 			throw e;
@@ -253,7 +253,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 		//insertSyncLog(event, new ArrayList<SQLException>(syncLogDataSources.size()));
 		try {
 			//this.syncLogDb.tryExecute(insertSyncLogTryer, 3, event);
-			event.setSyncLogJdbcTemplate(new JdbcTemplate(syncLogDataSource)); //Ëæ»úÖØÊÔ²åÈë
+			event.setSyncLogJdbcTemplate(new JdbcTemplate(syncLogDataSource)); //éšæœºé‡è¯•æ’å…¥
 			
 			insertSyncLog(event);
 			
@@ -263,7 +263,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 				event.setSyncLogJdbcTemplate(new JdbcTemplate(dsw.getWrappedDataSource()));
 			}
 		} catch (SQLException e) {
-			//¼ÇÂ¼logÒì³£µÄÊ±ºòÒ²Ó¦¸ÃÓĞ¸öÍ³¼Æ
+			//è®°å½•logå¼‚å¸¸çš„æ—¶å€™ä¹Ÿåº”è¯¥æœ‰ä¸ªç»Ÿè®¡
 			add(buildTableKey1(event.getLogicTableName()), buildReplicationSqlKey2(event.getSql()),
 					KEY3_WRITE_LOG_EXCEPTION, System.currentTimeMillis() - time, 1);
 			
@@ -293,7 +293,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 	*/
 	
 	/**
-	 * ²åÈëÈÕÖ¾Ê§°Ü£¬Å×³öÌØÊâµÄÒì³£
+	 * æ’å…¥æ—¥å¿—å¤±è´¥ï¼ŒæŠ›å‡ºç‰¹æ®Šçš„å¼‚å¸¸
 	 */
 	public static class SpecialExceptionPolicy implements ReplicationCallbackHandler {
 		public void insertSyncLogFailed(SqlExecuteEvent event, List<SQLException> exceptions) throws SQLException {
@@ -302,11 +302,11 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 				exceptions = new  LinkedList<SQLException>();
 			}
 			exceptions.add(0, new SaveSyncLogFailedException("insert log exception,first exception is ",exceptions.size() >0?exceptions.get(0):null));
-			ExceptionUtils.throwSQLException(exceptions, "insert sync_log sql", Collections.emptyList()); //TODO nullÌîÈëeventÖĞĞÅÏ¢
+			ExceptionUtils.throwSQLException(exceptions, "insert sync_log sql", Collections.emptyList()); //TODO nullå¡«å…¥eventä¸­ä¿¡æ¯
 		}
 	}
 	/**
-	 * Ö±½ÓÍ¨¹ılog4jĞ´±¾µØlogÎÄ¼ş£¬Ó¦ÓÃĞèÒªÆÀ¹ÀĞÔÄÜºóÉ÷ÓÃ 
+	 * ç›´æ¥é€šè¿‡log4jå†™æœ¬åœ°logæ–‡ä»¶ï¼Œåº”ç”¨éœ€è¦è¯„ä¼°æ€§èƒ½åæ…ç”¨ 
 	 */
 	public static class LocalLogPolicy implements ReplicationCallbackHandler {
 		public void insertSyncLogFailed(SqlExecuteEvent event, List<SQLException> exceptions) throws SQLException {
@@ -315,7 +315,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 		}
 	}
 	
-	//Ğ´±¾µØLogÎÄ¼ş
+	//å†™æœ¬åœ°Logæ–‡ä»¶
 	protected static void insertSyncLog2LocalFile(SqlExecuteEvent event){
 		insertSyncLog2LocalFile(localSyncLog, event);
 	}
@@ -366,7 +366,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 	}
 
 	/**
-	 * @return toStringÒÔÏµÍ³Ä¬ÈÏ±àÂëÈ¡MD5É¢ÁĞµÄÇ°Á½¸ö×Ö½Ú£¬ÆÚÍû¾ùÔÈ·Ö²¼ÔÚ[0-65535]·¶Î§ÄÚ
+	 * @return toStringä»¥ç³»ç»Ÿé»˜è®¤ç¼–ç å–MD5æ•£åˆ—çš„å‰ä¸¤ä¸ªå­—èŠ‚ï¼ŒæœŸæœ›å‡åŒ€åˆ†å¸ƒåœ¨[0-65535]èŒƒå›´å†…
 	 */
 	private static int getHashcode(Object pkValue) {
 		if (pkValue == null) {
@@ -392,7 +392,7 @@ public abstract class RowBasedReplicationListener implements SqlExecuteListener{
 	}
 
 	/**
-	 * ÎŞÂß¼­µÄgetter/setter
+	 * æ— é€»è¾‘çš„getter/setter
 	 */
 
 	public void setMaxTxTime(long maxTxTime) {

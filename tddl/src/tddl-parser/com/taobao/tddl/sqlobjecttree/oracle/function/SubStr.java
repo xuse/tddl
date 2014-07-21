@@ -9,7 +9,7 @@ import com.taobao.tddl.sqlobjecttree.Utils;
 import com.taobao.tddl.sqlobjecttree.common.value.ThreeArgsFunction;
 
 /**
- * 支持oracle的substr函数
+ * 鏀寔oracle鐨剆ubstr鍑芥暟
  * @author liang.chenl
  *
  */
@@ -29,7 +29,7 @@ public class SubStr extends ThreeArgsFunction{
 			String temp=(String)obj;
 			returnStr = temp.substring(Integer.valueOf(arg2.toString()) , Integer.valueOf(arg3.toString()));
 		} catch (ClassCastException e) {
-			throw new IllegalArgumentException("错误的转换函数，"+obj+"该参数必须为String");
+			throw new IllegalArgumentException("閿欒鐨勮浆鎹㈠嚱鏁帮紝"+obj+"璇ュ弬鏁板繀椤讳负String");
 		}
 		return returnStr;
 	}

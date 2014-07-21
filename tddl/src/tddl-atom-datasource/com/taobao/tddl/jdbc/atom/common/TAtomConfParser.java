@@ -16,7 +16,7 @@ import com.taobao.tddl.jdbc.atom.config.object.TAtomDsConfDO;
 import com.taobao.tddl.jdbc.atom.jdbc.ConnRestrictEntry;
 
 /**
- * TAtomÊı¾İÔ´µÄÍÆËÍÅäÖÃ½âÎöÀà
+ * TAtomæ•°æ®æºçš„æ¨é€é…ç½®è§£æç±»
  * 
  * @author qihao
  *
@@ -114,7 +114,7 @@ public class TAtomConfParser extends TAtomConfHelper{
 						pasObj.setDriverClass(driverClass);
 					}
 					
-					// add by agapple, ¼òµ¥´¦ÀíÖ§³ÖÏÂ³õÊ¼»¯Á´½Ó
+					// add by agapple, ç®€å•å¤„ç†æ”¯æŒä¸‹åˆå§‹åŒ–é“¾æ¥
                     if(connectionProperties.containsKey(APP_PREFILL)){
                         String prefill = connectionProperties.remove(APP_PREFILL);
                         pasObj.setPrefill(BooleanUtils.toBoolean(prefill));
@@ -127,7 +127,7 @@ public class TAtomConfParser extends TAtomConfHelper{
                     }
 				}
 				
-				// ½âÎöÓ¦ÓÃÁ¬½ÓÏŞÖÆ, ²Î¿´ÏÂÃæµÄÎÄµµ
+				// è§£æåº”ç”¨è¿æ¥é™åˆ¶, å‚çœ‹ä¸‹é¢çš„æ–‡æ¡£
 				String connRestrictStr = StringUtil.trim(appProp.getProperty(TAtomConfParser.APP_CONN_RESTRICT));
 				List<ConnRestrictEntry> connRestrictEntries = parseConnRestrictEntries(connRestrictStr, 
 						pasObj.getMaxPoolSize());
@@ -140,14 +140,14 @@ public class TAtomConfParser extends TAtomConfHelper{
 	}
 
 	/**
-	 * HASH ²ßÂÔµÄ×î´ó²ÛÊıÁ¿ÏŞÖÆ¡£
+	 * HASH ç­–ç•¥çš„æœ€å¤§æ§½æ•°é‡é™åˆ¶ã€‚
 	 */
 	public static final int MAX_HASH_RESTRICT_SLOT = 32;
 
 	/**
-	 * ½âÎöÓ¦ÓÃÁ¬½ÓÏŞÖÆ, ÍêÕû¸ñÊ½ÊÇ: "K1,K2,K3,K4:80%; K5,K6,K7,K8:80%; K9,K10,K11,K12:80%; *:16,80%; ~:80%;"
-	 * ÕâÑù¿ÉÒÔ¼æÈİ  HASH: "*:16,80%", Ò²¿ÉÒÔ¼æÈİ  LIST: "K1:80%; K2:80%; K3:80%; K4:80%; ~:80%;"
-	 * ÅäÖÃ¿ÉÒÔÊÇÁ¬½ÓÊı, Ò²¿ÉÒÔÊÇ°Ù·Ö±È¡£
+	 * è§£æåº”ç”¨è¿æ¥é™åˆ¶, å®Œæ•´æ ¼å¼æ˜¯: "K1,K2,K3,K4:80%; K5,K6,K7,K8:80%; K9,K10,K11,K12:80%; *:16,80%; ~:80%;"
+	 * è¿™æ ·å¯ä»¥å…¼å®¹  HASH: "*:16,80%", ä¹Ÿå¯ä»¥å…¼å®¹  LIST: "K1:80%; K2:80%; K3:80%; K4:80%; ~:80%;"
+	 * é…ç½®å¯ä»¥æ˜¯è¿æ¥æ•°, ä¹Ÿå¯ä»¥æ˜¯ç™¾åˆ†æ¯”ã€‚
 	 */
 	public static List<ConnRestrictEntry> parseConnRestrictEntries(String connRestrictStr, int maxPoolSize) {
 		List<ConnRestrictEntry> connRestrictEntries = null;
@@ -172,7 +172,7 @@ public class TAtomConfParser extends TAtomConfHelper{
 							// Remark entry config problem
 							if (0 >= connRestrictEntry.getLimits()) {
 								logger.error("[connRestrict Error] connection limit is 0: " + entry);
-								connRestrictEntry.setLimits(/* ÖÁÉÙÔÊĞíÒ»¸öÁ¬½Ó */ 1);
+								connRestrictEntry.setLimits(/* è‡³å°‘å…è®¸ä¸€ä¸ªè¿æ¥ */ 1);
 							}
 							if (ConnRestrictEntry.MAX_HASH_RESTRICT_SLOT < connRestrictEntry.getHashSize()) {
 								logger.error("[connRestrict Error] hash size exceed maximum: " + entry);

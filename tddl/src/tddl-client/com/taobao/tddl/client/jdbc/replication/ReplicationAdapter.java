@@ -12,7 +12,7 @@ import com.taobao.tddl.client.jdbc.listener.Adapter;
 
 /*
  * @author guangxia
- * @since 1.0, 2010-4-13 ÏÂÎç05:25:54
+ * @since 1.0, 2010-4-13 ä¸‹åˆ05:25:54
  */
 public class ReplicationAdapter implements Adapter {
 	

@@ -12,16 +12,16 @@ import com.taobao.tddl.common.sync.SlaveInfo;
 import com.taobao.tddl.common.sync.SlaveReplicater;
 
 /**
- * ĞĞ¸´ÖÆ¸¨ÖúÀà 
+ * è¡Œå¤åˆ¶è¾…åŠ©ç±» 
  * @author linxuan
  */
 public class ReplicationHelper {
 	
 	/**
-	 * ÓÃTDataSourceÖĞµÄmaster4replication/slave4replication
-	 * ³õÊ¼»¯¸´ÖÆÅäÖÃ½á¹¹BizTDDLContextÖĞµÄÖ÷¿â¶Á¿âÊı¾İÔ´
-	 * @param tds Ó¦ÓÃµÄTDataSourceÊı¾İÔ´
-	 * @param logicTableName2TDDLContext: key£ºÂß¼­±íÃû£»value£º¸´ÖÆÅäÖÃ
+	 * ç”¨TDataSourceä¸­çš„master4replication/slave4replication
+	 * åˆå§‹åŒ–å¤åˆ¶é…ç½®ç»“æ„BizTDDLContextä¸­çš„ä¸»åº“è¯»åº“æ•°æ®æº
+	 * @param tds åº”ç”¨çš„TDataSourceæ•°æ®æº
+	 * @param logicTableName2TDDLContext: keyï¼šé€»è¾‘è¡¨åï¼›valueï¼šå¤åˆ¶é…ç½®
 	 */
 	public static void initReplicationContextByTDataSource(TDataSource tds,
 			Map<String, BizTDDLContext> logicTableName2TDDLContext) {
@@ -46,11 +46,11 @@ public class ReplicationHelper {
 				}
 				
 				if (slaveInfo.getDataSourceName() == null) {
-					throw new IllegalStateException("2.4.1Ö®ºóSlaveInfoµÄ DataSourceNameÊôĞÔ±ØĞëÉèÖÃ");
+					throw new IllegalStateException("2.4.1ä¹‹åSlaveInfoçš„ DataSourceNameå±æ€§å¿…é¡»è®¾ç½®");
 				} else {
 					DataSource targetDS = tds.getReplicationTargetDataSources().get(slaveInfo.getDataSourceName());
 					if (targetDS == null) {
-						// ¼æÈİ¾ÉÊµÏÖ£ºÒªÒÔdataSourceNameÎªkey½«¸´ÖÆµÄÄ¿±ê¿âÅäÖÃµ½Ö÷TDataSourceÖĞµÄdataSourcePoolÖĞ
+						// å…¼å®¹æ—§å®ç°ï¼šè¦ä»¥dataSourceNameä¸ºkeyå°†å¤åˆ¶çš„ç›®æ ‡åº“é…ç½®åˆ°ä¸»TDataSourceä¸­çš„dataSourcePoolä¸­
 						targetDS = tds.getDataSource(slaveInfo.getDataSourceName());
 					}
 					if (targetDS == null) {

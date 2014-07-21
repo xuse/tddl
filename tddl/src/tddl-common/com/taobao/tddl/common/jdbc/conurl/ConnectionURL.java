@@ -3,7 +3,7 @@ package com.taobao.tddl.common.jdbc.conurl;
 import com.alibaba.common.lang.StringUtil;
 import com.taobao.tddl.interact.rule.bean.DBType;
 
-/**连接地址抽象类需要通过ConnectionURLParser 解析后获得具体的对象
+/**杩炴帴鍦板潃鎶借薄绫婚渶瑕侀�氳繃ConnectionURLParser 瑙ｆ瀽鍚庤幏寰楀叿浣撶殑瀵硅薄
  * @author qihao
  *
  */

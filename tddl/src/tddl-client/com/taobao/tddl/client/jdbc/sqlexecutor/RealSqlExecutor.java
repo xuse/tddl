@@ -8,7 +8,7 @@ import java.sql.SQLException;
  */
 public interface RealSqlExecutor {
 	/**
-	 * Ö´ĞĞ²éÑ¯£¬ĞèÒªÖ´ĞĞ¼Æ»®ÊµÀı
+	 * æ‰§è¡ŒæŸ¥è¯¢ï¼Œéœ€è¦æ‰§è¡Œè®¡åˆ’å®ä¾‹
 	 * 
 	 * @param executionPlan
 	 * @return
@@ -17,7 +17,7 @@ public interface RealSqlExecutor {
 	public QueryReturn query() throws SQLException;
 
 	/**
-	 * Ö´ĞĞ¸üĞÂ£¬ĞèÒªÖ´ĞĞ¼Æ»®
+	 * æ‰§è¡Œæ›´æ–°ï¼Œéœ€è¦æ‰§è¡Œè®¡åˆ’
 	 * 
 	 * @param executionPlan
 	 * @return
@@ -25,7 +25,7 @@ public interface RealSqlExecutor {
 	public UpdateReturn update()throws SQLException;
 	
 	/**
-	 * Ö÷ÒªÊÇ»ØÊÕqueryQueueµÄRsºÍStatement
+	 * ä¸»è¦æ˜¯å›æ”¶queryQueueçš„Rså’ŒStatement
 	 * 
 	 * @throws SQLException
 	 */

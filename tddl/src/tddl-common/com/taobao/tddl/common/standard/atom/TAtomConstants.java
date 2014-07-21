@@ -6,7 +6,7 @@ import java.util.Map;
 import com.taobao.tddl.common.config.atom.TAtomConfConstants;
 
 /**
- * TAtomÊı¾İÔ´µÄ³£Á¿ÉèÖÃÀà
+ * TAtomæ•°æ®æºçš„å¸¸é‡è®¾ç½®ç±»
  *
  * @author qihao
  *

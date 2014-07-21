@@ -12,7 +12,7 @@ import com.taobao.tddl.sqlobjecttree.Utils;
 
 
 /**
- * 也就是一个出现在table栏位的子查询
+ * 涔熷氨鏄竴涓嚭鐜板湪table鏍忎綅鐨勫瓙鏌ヨ
  * @author shenxun
  *
  */

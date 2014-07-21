@@ -1,32 +1,32 @@
 package com.taobao.tddl.sqlobjecttree;
 public enum JOIN_TYPE{
 		/**
-		*ÄÚÁ¬½Ó
+		*å†…è¿žæŽ¥
 		*/
 		INNER
 		,/**
-		* ×óÍâÁ¬½Ó
+		* å·¦å¤–è¿žæŽ¥
 		*/
 		LEFT,
 		LEFT_OUTER,
 		/**
-		 * ÓÒÍâÁ¬½Ó
+		 * å³å¤–è¿žæŽ¥
 		 */
 		RIGHT,
 		RIGHT_OUTER,
 		
 		/**
-		 * È«Á¬½Ó
+		 * å…¨è¿žæŽ¥
 		 */
 		
 		FULL,
 		FULL_OUTER,
 		/**
-		 * Õâ¸öÔÝÊ±Ã»ÓÃ¹ý
+		 * è¿™ä¸ªæš‚æ—¶æ²¡ç”¨è¿‡
 		 */
 		UNION,
 		/**
-		 * ½»²æÁ¬½Ó
+		 * äº¤å‰è¿žæŽ¥
 		 */
 		CROSS;
 	}

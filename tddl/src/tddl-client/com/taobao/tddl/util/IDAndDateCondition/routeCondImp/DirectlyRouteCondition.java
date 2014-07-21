@@ -18,7 +18,7 @@ import com.taobao.tddl.sqlobjecttree.GroupFunctionType;
 
 public class DirectlyRouteCondition implements RouteCondition{
 	/**
-	 * Ä¬ÕJÊÇmysql
+	 * é»˜èªæ˜¯mysql
 	 */
 	protected DBType dbType = DBType.MYSQL;
 	protected int skip = DMLCommon.DEFAULT_SKIP_MAX;
@@ -27,22 +27,22 @@ public class DirectlyRouteCondition implements RouteCondition{
 
 	protected int max = DMLCommon.DEFAULT_SKIP_MAX;
 	/**
-	 * Ä¬ÈÏÎª¿Õ
+	 * é»˜è®¤ä¸ºç©º
 	 */
 	@SuppressWarnings("unchecked")
 	protected OrderByMessages orderByMessages = new OrderByMessagesImp(Collections.EMPTY_LIST);
 	/**
-	 * Ä¬ÈÏÎª¿Õ
+	 * é»˜è®¤ä¸ºç©º
 	 */
 	protected GroupFunctionType groupFunctionType = GroupFunctionType.NORMAL;
 	protected ROUTE_TYPE routeType = ROUTE_TYPE.FLUSH_ON_EXECUTE;
 	/**
-	 * Ä¿±ê±íµÄid
+	 * ç›®æ ‡è¡¨çš„id
 	 */
 	protected Set<String> tables = new HashSet<String>(2);
 	protected String virtualTableName;
 	/**
-	 * Ä¿±ê¿âµÄid
+	 * ç›®æ ‡åº“çš„id
 	 */
 	protected String dbRuleID;
 	public Set<String> getTables() {
@@ -68,7 +68,7 @@ public class DirectlyRouteCondition implements RouteCondition{
 		return virtualTableName;
 	}
 	/**
-	 * ĞéÄâ±íÃû
+	 * è™šæ‹Ÿè¡¨å
 	 * @param virtualTableName
 	 */
 	public void setVirtualTableName(String virtualTableName){
@@ -78,11 +78,11 @@ public class DirectlyRouteCondition implements RouteCondition{
 		return dbRuleID;
 	}
 //	/**
-//	 * ¹æÔòµÄid£¬ºÍdb idÍ¬¼¶¡£
+//	 * è§„åˆ™çš„idï¼Œå’Œdb idåŒçº§ã€‚
 //	 * 
-//	 * ÔÚ½øĞĞÅĞ¶ÏµÄÊ±ºò£¬»áÏÈ²é¿´¹æÔòÎÄ¼şÄÚÊÇ·ñÓĞ¶ÔÓ¦µÄ¹æÔò¡£
+//	 * åœ¨è¿›è¡Œåˆ¤æ–­çš„æ—¶å€™ï¼Œä¼šå…ˆæŸ¥çœ‹è§„åˆ™æ–‡ä»¶å†…æ˜¯å¦æœ‰å¯¹åº”çš„è§„åˆ™ã€‚
 //	 * 
-//	 * Èç¹ûÃ»ÓĞ£¬Ôò»áËÑË÷Êı¾İ¿âmapÄÚÊÇ·ñÓĞ¶ÔÓ¦µÄ£¬ÔÙÃ»ÓĞÔò±¨´í¡£
+//	 * å¦‚æœæ²¡æœ‰ï¼Œåˆ™ä¼šæœç´¢æ•°æ®åº“mapå†…æ˜¯å¦æœ‰å¯¹åº”çš„ï¼Œå†æ²¡æœ‰åˆ™æŠ¥é”™ã€‚
 //	 * 
 //	 * @param dbRuleID
 //	 */
@@ -91,11 +91,11 @@ public class DirectlyRouteCondition implements RouteCondition{
 //	}
 
 	/**
-	 * ¹æÔòµÄid£¬ºÍdb idÍ¬¼¶¡£
+	 * è§„åˆ™çš„idï¼Œå’Œdb idåŒçº§ã€‚
 	 * 
-	 * ÔÚ½øĞĞÅĞ¶ÏµÄÊ±ºò£¬»áÏÈ²é¿´¹æÔòÎÄ¼şÄÚÊÇ·ñÓĞ¶ÔÓ¦µÄ¹æÔò¡£
+	 * åœ¨è¿›è¡Œåˆ¤æ–­çš„æ—¶å€™ï¼Œä¼šå…ˆæŸ¥çœ‹è§„åˆ™æ–‡ä»¶å†…æ˜¯å¦æœ‰å¯¹åº”çš„è§„åˆ™ã€‚
 	 * 
-	 * Èç¹ûÃ»ÓĞ£¬Ôò»áËÑË÷Êı¾İ¿âmapÄÚÊÇ·ñÓĞ¶ÔÓ¦µÄ£¬ÔÙÃ»ÓĞÔò±¨´í¡£
+	 * å¦‚æœæ²¡æœ‰ï¼Œåˆ™ä¼šæœç´¢æ•°æ®åº“mapå†…æ˜¯å¦æœ‰å¯¹åº”çš„ï¼Œå†æ²¡æœ‰åˆ™æŠ¥é”™ã€‚
 	 * 
 	 * @param dbId
 	 */
@@ -108,11 +108,11 @@ public class DirectlyRouteCondition implements RouteCondition{
 	}
 	
 	/**
-	 * »ñÈ¡skipÖµ
-	 * ÒòÎªTDDL²»ÊÇÊı¾İ¿â£¬ËùÒÔÕâÀï×öÁËÒ»¸ö¼Ù¶¨£º
-	 * ÔÚËùÓĞº¬ÒåÎªskipµÄÊı¾İÖĞ£¬×î´óµÄÄÇ¸öÓÀÔ¶ÊÇÓĞÒâÒåµÄ¡£
+	 * è·å–skipå€¼
+	 * å› ä¸ºTDDLä¸æ˜¯æ•°æ®åº“ï¼Œæ‰€ä»¥è¿™é‡Œåšäº†ä¸€ä¸ªå‡å®šï¼š
+	 * åœ¨æ‰€æœ‰å«ä¹‰ä¸ºskipçš„æ•°æ®ä¸­ï¼Œæœ€å¤§çš„é‚£ä¸ªæ°¸è¿œæ˜¯æœ‰æ„ä¹‰çš„ã€‚
 	 * 
-	 * ¶à²ãÇ¶Ì×ÖĞÒ²ÊÇÈç´Ë¡£
+	 * å¤šå±‚åµŒå¥—ä¸­ä¹Ÿæ˜¯å¦‚æ­¤ã€‚
 	 * @return
 	 */
 	public int getSkip(){
@@ -120,11 +120,11 @@ public class DirectlyRouteCondition implements RouteCondition{
 	}
 
 	/**
-	 * »ñÈ¡maxÖµ¡£
-	 * ÒòÎªTDDL²»ÊÇÊı¾İ¿â£¬ËùÒÔÕâÀï×öÁËÒ»¸ö¼Ù¶¨£º
-	 * ÔÚËùÓĞº¬ÒåÎªmaxµÄÊı¾İÖĞ£¬×î´óµÄÄÇ¸öÓÀÔ¶ÊÇÓĞÒâÒåµÄ¡£
+	 * è·å–maxå€¼ã€‚
+	 * å› ä¸ºTDDLä¸æ˜¯æ•°æ®åº“ï¼Œæ‰€ä»¥è¿™é‡Œåšäº†ä¸€ä¸ªå‡å®šï¼š
+	 * åœ¨æ‰€æœ‰å«ä¹‰ä¸ºmaxçš„æ•°æ®ä¸­ï¼Œæœ€å¤§çš„é‚£ä¸ªæ°¸è¿œæ˜¯æœ‰æ„ä¹‰çš„ã€‚
 	 * 
-	 * ¶à²ãÇ¶Ì×ÖĞÒ²ÊÇÈç´Ë¡£
+	 * å¤šå±‚åµŒå¥—ä¸­ä¹Ÿæ˜¯å¦‚æ­¤ã€‚
 	 * @return
 	 */
 	public int getMax(){
@@ -132,7 +132,7 @@ public class DirectlyRouteCondition implements RouteCondition{
 	}
 
 	/**
-	 * »ñÈ¡order by ĞÅÏ¢
+	 * è·å–order by ä¿¡æ¯
 	 * @return
 	 */
 	public OrderByMessages getOrderByMessages(){
@@ -140,10 +140,10 @@ public class DirectlyRouteCondition implements RouteCondition{
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°sqlµÄselect | columns | from
-	 * ÖĞcolumnsµÄÀàĞÍ
-	 * Èç¹ûÎªmax min countµÈ£¬ÄÇÃ´ÀàĞÍ»áÓĞÏàÓ¦±ä»¯
-	 * Í¬Ê±Èç¹ûgroup functionºÍÆäËûÁĞÃû×Ö¶Î»ìÓÃ£¬ÔòÕâÀï»á·µ»ØNORMAL
+	 * è·å–å½“å‰sqlçš„select | columns | from
+	 * ä¸­columnsçš„ç±»å‹
+	 * å¦‚æœä¸ºmax min countç­‰ï¼Œé‚£ä¹ˆç±»å‹ä¼šæœ‰ç›¸åº”å˜åŒ–
+	 * åŒæ—¶å¦‚æœgroup functionå’Œå…¶ä»–åˆ—åå­—æ®µæ··ç”¨ï¼Œåˆ™è¿™é‡Œä¼šè¿”å›NORMAL
 	 * @return
 	 */
 	public GroupFunctionType getGroupFunctionType(){

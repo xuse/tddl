@@ -74,7 +74,7 @@ public class DataType implements ASTNode {
     //            | REAL[(length,decimals)] [UNSIGNED] [ZEROFILL]
     //            | FLOAT[(length,decimals)] [UNSIGNED] [ZEROFILL]
     //            | DECIMAL[(length[,decimals])] [UNSIGNED] [ZEROFILL]
-    //            | NUMERIC[(length[,decimals])] [UNSIGNED] [ZEROFILL] Õ¨…œ
+    //            | NUMERIC[(length[,decimals])] [UNSIGNED] [ZEROFILL] Âêå‰∏ä
     //            | DATE
     //            | TIME
     //            | TIMESTAMP
@@ -94,7 +94,7 @@ public class DataType implements ASTNode {
     //            | LONGTEXT [BINARY][CHARACTER SET charset_name] [COLLATE collation_name]
     //            | ENUM(value1,value2,value3,...)[CHARACTER SET charset_name] [COLLATE collation_name]
     //            | SET(value1,value2,value3,...)[CHARACTER SET charset_name] [COLLATE collation_name]
-    //            | spatial_type ≤ª÷ß≥÷
+    //            | spatial_type ‰∏çÊîØÊåÅ
 
     private final DataTypeName typeName;
     private final boolean unsigned;

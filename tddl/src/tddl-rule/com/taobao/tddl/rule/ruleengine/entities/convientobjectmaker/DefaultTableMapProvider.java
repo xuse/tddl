@@ -11,7 +11,7 @@ public class DefaultTableMapProvider implements TableMapProvider{
 	public Map<String, SharedElement> getTablesMap() {
 		Table table = new Table();
 		if(logicTable == null){
-			throw new IllegalArgumentException("没有表名生成因子");
+			throw new IllegalArgumentException("娌℃湁琛ㄥ悕鐢熸垚鍥犲瓙");
 		}
 		table.setTableName(logicTable);
 		Map<String, SharedElement> returnMap = new HashMap<String, SharedElement>();

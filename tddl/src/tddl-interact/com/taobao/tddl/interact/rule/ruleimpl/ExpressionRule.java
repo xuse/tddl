@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 import com.taobao.tddl.interact.rule.Rule;
 
 /**
- * Í¨¹ı±í´ïÊ½À´±í´ï¹æÔòµÄ»ùÀà
+ * é€šè¿‡è¡¨è¾¾å¼æ¥è¡¨è¾¾è§„åˆ™çš„åŸºç±»
  * 
  * @author linxuan
  *
@@ -21,22 +21,22 @@ public abstract class ExpressionRule<T> implements Rule<T> {
 
 	private static final Pattern DOLLER_PATTERN;
 	static {
-		//Ìá¹©Ò»¸ö¿ÉÅäÖÃµÄ»ú»á£¬µ«ÊÇÔÚ¾ø´ó¶àÊıÄ¬ÈÏµÄÇé¿öÏÂ£¬²»ÏëÓ°Ïì½Ó¿Ú²ã´ÎºÍ´úÂë½á¹¹
+		//æä¾›ä¸€ä¸ªå¯é…ç½®çš„æœºä¼šï¼Œä½†æ˜¯åœ¨ç»å¤§å¤šæ•°é»˜è®¤çš„æƒ…å†µä¸‹ï¼Œä¸æƒ³å½±å“æ¥å£å±‚æ¬¡å’Œä»£ç ç»“æ„
 		String regex = System.getProperty("com.taobao.tddl.rule.columnParamRegex", "#.*?#");
 		DOLLER_PATTERN = Pattern.compile(regex);
 	}
 
 	/**
-	 * µ±Ç°¹æÔòĞèÒªÓÃµ½µÄ²ÎÊı
+	 * å½“å‰è§„åˆ™éœ€è¦ç”¨åˆ°çš„å‚æ•°
 	 */
-	protected final Map<String/*Ğ¡Ğ´ÁĞÃû*/, RuleColumn> parameters;
+	protected final Map<String/*å°å†™åˆ—å*/, RuleColumn> parameters;
 	protected final Set<RuleColumn> parameterSet;
 
 	/**
-	 * µ±Ç°¹æÔòĞèÒªÓÃµ½µÄ±í´ïÊ½
+	 * å½“å‰è§„åˆ™éœ€è¦ç”¨åˆ°çš„è¡¨è¾¾å¼
 	 */
 	protected String expression;
-	protected final String originExpression; //Ô­Ê¼µÄ±í´ïÊ½
+	protected final String originExpression; //åŸå§‹çš„è¡¨è¾¾å¼
 
 	//private boolean useThreadLocalContext;
 	//protected ThreadLocal<Map<Object, Object>> context;
@@ -67,10 +67,10 @@ public abstract class ExpressionRule<T> implements Rule<T> {
 	}
 
 	/**
-	 * ×ÓÀà½«paramInDoller½âÎöÎªRuleColumn£¬¼ÓÈëµ½parametersÖĞ£¬²¢·µ»ØÌæ»»ºóµÄ×Ö´®
+	 * å­ç±»å°†paramInDollerè§£æä¸ºRuleColumnï¼ŒåŠ å…¥åˆ°parametersä¸­ï¼Œå¹¶è¿”å›æ›¿æ¢åçš„å­—ä¸²
 	 * @param paramInDoller
 	 * @param parameters
-	 * @return Ìæ»»ºóµÄ×Ö´®
+	 * @return æ›¿æ¢åçš„å­—ä¸²
 	 */
 	abstract protected String parseParam(String paramInDoller, Map<String, RuleColumn> parameters);
 
@@ -83,7 +83,7 @@ public abstract class ExpressionRule<T> implements Rule<T> {
 	}
 
 	/**
-	 * originExpressionÏàÍ¬ÔòÏàÍ¬£¬eclipseÉú³É
+	 * originExpressionç›¸åŒåˆ™ç›¸åŒï¼Œeclipseç”Ÿæˆ
 	 */
 	@SuppressWarnings("rawtypes")
 	@Override
@@ -104,7 +104,7 @@ public abstract class ExpressionRule<T> implements Rule<T> {
 	}
 
 	/**
-	 * eclipseÉú³É
+	 * eclipseç”Ÿæˆ
 	 */
 	@Override
 	public int hashCode() {

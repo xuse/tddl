@@ -28,7 +28,7 @@ import com.taobao.tddl.common.util.SqlTypeParser;
 
 
 /**
- * preparedStatement °ü×°Àà
+ * preparedStatement åŒ…è£…ç±»
  *
  * @author shenxun
  *
@@ -104,12 +104,12 @@ public class TPreparedStatementWrapper extends TStatementWrapper implements TPre
 	}
 
 	public ResultSetMetaData getMetaData() throws SQLException {
-		//ÕâÀïÖ±½Ó·µ»ØÔªÊı¾İ
+		//è¿™é‡Œç›´æ¥è¿”å›å…ƒæ•°æ®
 		return ((PreparedStatement) targetStatement).getMetaData();
 	}
 
 	public ParameterMetaData getParameterMetaData() throws SQLException {
-		//ÕâÀïÖ±½Ó·µ»ØÔ­Êı¾İ
+		//è¿™é‡Œç›´æ¥è¿”å›åŸæ•°æ®
 		return ((PreparedStatement) targetStatement).getParameterMetaData();
 	}
 

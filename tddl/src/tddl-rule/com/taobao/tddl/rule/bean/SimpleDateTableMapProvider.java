@@ -20,16 +20,16 @@ import com.taobao.tddl.rule.ruleengine.entities.convientobjectmaker.TableMapProv
 import com.taobao.tddl.rule.ruleengine.util.RuleUtils;
 
 /**
- * Ìá¹©Í¨¹ıÆ´×°µÄ·½Ê½À´Éú³ÉSimpleTableMapµÄ·½Ê½
+ * æä¾›é€šè¿‡æ‹¼è£…çš„æ–¹å¼æ¥ç”ŸæˆSimpleTableMapçš„æ–¹å¼
  * 
- * Ê¹ÓÃ·½·¨:ÔÚ¸¸ÀàËùÓĞ·½·¨µÄ»ù´¡ÉÏ£¬»¹ĞèÒªÖ¸¶¨fromDateString ,toDateString, calendarType Èı¸öÊôĞÔ£¬
+ * ä½¿ç”¨æ–¹æ³•:åœ¨çˆ¶ç±»æ‰€æœ‰æ–¹æ³•çš„åŸºç¡€ä¸Šï¼Œè¿˜éœ€è¦æŒ‡å®šfromDateString ,toDateString, calendarType ä¸‰ä¸ªå±æ€§ï¼Œ
  * 
- * Èç¹ûĞèÒª±ä¸üÈÕÆÚº¯Êı£¬»¹ĞèÒª½«ÈÕÆÚº¯ÊıÒ²Ò»²¢´øÈë£¬Ò²¾ÍÊÇtimeStyle.
+ * å¦‚æœéœ€è¦å˜æ›´æ—¥æœŸå‡½æ•°ï¼Œè¿˜éœ€è¦å°†æ—¥æœŸå‡½æ•°ä¹Ÿä¸€å¹¶å¸¦å…¥ï¼Œä¹Ÿå°±æ˜¯timeStyle.
  * 
- * ¾ÍÄÜ¹»ÔÚÔ­À´µÄ»ù´¡ÉÏÌí¼ÓÒ»¸öĞÂµÄdate×Ö¶ÎÔÚÉÏÃæ¡£
+ * å°±èƒ½å¤Ÿåœ¨åŸæ¥çš„åŸºç¡€ä¸Šæ·»åŠ ä¸€ä¸ªæ–°çš„dateå­—æ®µåœ¨ä¸Šé¢ã€‚
  * 
  * 
- * TODO: ÖØ¹¹Õâ²¿·Ö´úÂë£¬SimpleTableMapProviderºÍ´Ë´úÂëÓĞ½»¼¯£¬Ê¹ÓÃ´Ë´úÂëÌæ»»
+ * TODO: é‡æ„è¿™éƒ¨åˆ†ä»£ç ï¼ŒSimpleTableMapProviderå’Œæ­¤ä»£ç æœ‰äº¤é›†ï¼Œä½¿ç”¨æ­¤ä»£ç æ›¿æ¢
  * 
  * @author shenxun
  * 
@@ -49,28 +49,28 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 
 	private String type = NORMAL_TAOBAO_TYPE;
 	/**
-	 * table[padding]suffix Ä¬ÈÏµÄpaddingÊÇ_
+	 * table[padding]suffix é»˜è®¤çš„paddingæ˜¯_
 	 */
 	private String padding;
 	/**
-	 * width ¿í¶È
+	 * width å®½åº¦
 	 */
 	private int width = DEFAULT_INT;
 	/**
-	 * ·Ö±í±êÊ¶Òò×Ó¡£¾ÍÊÇËµ×î¿ªÊ¼´òÍ·µÄÊÇÊ²Ã´±í£¬Èç¹û²»Ö¸¶¨ÔòÄ¬ÈÏÊÇÂß¼­±íÃû
+	 * åˆ†è¡¨æ ‡è¯†å› å­ã€‚å°±æ˜¯è¯´æœ€å¼€å§‹æ‰“å¤´çš„æ˜¯ä»€ä¹ˆè¡¨ï¼Œå¦‚æœä¸æŒ‡å®šåˆ™é»˜è®¤æ˜¯é€»è¾‘è¡¨å
 	 */
 	private String tableFactor;
 	/**
-	 * Âß¼­±íÃû
+	 * é€»è¾‘è¡¨å
 	 */
 	private String logicTable;
 	/**
-	 * Ã¿´Î×ÔÔöÊı
+	 * æ¯æ¬¡è‡ªå¢æ•°
 	 */
 	private int step = 1;
 
 	/**
-	 * Ã¿¸öÊı¾İ¿âµÄ±íµÄ¸öÊı£¬Èç¹ûÖ¸¶¨ÁËÕâÏîÔòÃ¿¸ö±íÄÚµÄ¸öÊı¾ÍÎªÖ¸¶¨¶à¸ö
+	 * æ¯ä¸ªæ•°æ®åº“çš„è¡¨çš„ä¸ªæ•°ï¼Œå¦‚æœæŒ‡å®šäº†è¿™é¡¹åˆ™æ¯ä¸ªè¡¨å†…çš„ä¸ªæ•°å°±ä¸ºæŒ‡å®šå¤šä¸ª
 	 */
 	private int tablesNumberForEachDatabases = DEFAULT_TABLES_NUM_FOR_EACH_DB;
 	/**
@@ -78,7 +78,7 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 	 */
 	private String parentID;
 	/**
-	 * Ã¿¸öÊı¾İ¿âµÄ±íµÄ¸öÊıÓĞ¶àÉÙ¸ö >= ?
+	 * æ¯ä¸ªæ•°æ®åº“çš„è¡¨çš„ä¸ªæ•°æœ‰å¤šå°‘ä¸ª >= ?
 	 */
 	private int from = DEFAULT_INT;
 	/**
@@ -109,26 +109,26 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 	private static final Log logger = LogFactory
 			.getLog(SimpleDateTableMapProvider.class);
 	/**
-	 * simple date format ¸ñÊ½
+	 * simple date format æ ¼å¼
 	 */
 	private String timeStyle = "yyMM";
 	/**
-	 * Éè¶¨ÊäÈë²ÎÊıµÄÊäÈë¸ñÊ½
+	 * è®¾å®šè¾“å…¥å‚æ•°çš„è¾“å…¥æ ¼å¼
 	 */
 	private final static String inputTimeStyle = "yyyyMM";
 
 	/**
-	 * ´ÓÄÄ¿ªÊ¼
+	 * ä»å“ªå¼€å§‹
 	 */
 	private String fromDateString;
 
 	/**
-	 * µ½ÄÄ½áÊø
+	 * åˆ°å“ªç»“æŸ
 	 */
 	private String toDateString;
 
 	/**
-	 * ×ÔÔö¼ÆËãÈÕÆÚÓÃµÄcalendar¸ñÊ½
+	 * è‡ªå¢è®¡ç®—æ—¥æœŸç”¨çš„calendaræ ¼å¼
 	 */
 	private CALENDAR_TYPE calendarType = CALENDAR_TYPE.MONTH;
 
@@ -173,7 +173,7 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 			tableFactor = logicTable;
 		}
 		if (tableFactor == null) {
-			throw new IllegalArgumentException("Ã»ÓĞ±íÃûÉú³ÉÒò×Ó");
+			throw new IllegalArgumentException("æ²¡æœ‰è¡¨åç”Ÿæˆå› å­");
 		}
 
 		List<String> dateArgsList = getDateStringList();
@@ -183,24 +183,24 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 
 		makeRealTableNameTaobaoLike(typeEnum);
 
-		// Èç¹ûÃ»ÓĞÉèÖÃÃ¿¸öÊı¾İ¿â±íµÄ¸öÊı£¬ÄÇÃ´±íÊ¾ËùÓĞ±í¶¼ÓÃÍ³Ò»µÄ±íÃû£¬ÀàËÆ(tab_0~tab_3)*16¸öÊı¾İ¿â=64ÕÅ±í
+		// å¦‚æœæ²¡æœ‰è®¾ç½®æ¯ä¸ªæ•°æ®åº“è¡¨çš„ä¸ªæ•°ï¼Œé‚£ä¹ˆè¡¨ç¤ºæ‰€æœ‰è¡¨éƒ½ç”¨ç»Ÿä¸€çš„è¡¨åï¼Œç±»ä¼¼(tab_0~tab_3)*16ä¸ªæ•°æ®åº“=64å¼ è¡¨
 		if (doesNotSetTablesNumberForEachDatabases()) {
 			return getSuffixList(from, to, width, step, tableFactor, padding,
 					dateArgsList);
 		} else {
-			// Èç¹ûÉèÖÃÁËÃ¿¸öÊı¾İ¿â±íµÄ¸öÊı£¬ÄÇÃ´±íÊ¾ËùÓĞ±íÓÃ²»Í¬µÄ±íÃû£¬ÀàËÆ(tab_0~tab63),·Ö²¼ÔÚ16¸öÊı¾İ¿âÉÏ
+			// å¦‚æœè®¾ç½®äº†æ¯ä¸ªæ•°æ®åº“è¡¨çš„ä¸ªæ•°ï¼Œé‚£ä¹ˆè¡¨ç¤ºæ‰€æœ‰è¡¨ç”¨ä¸åŒçš„è¡¨åï¼Œç±»ä¼¼(tab_0~tab63),åˆ†å¸ƒåœ¨16ä¸ªæ•°æ®åº“ä¸Š
 			int multiple = 0;
 			try {
 				multiple = Integer.valueOf(parentID);
 			} catch (NumberFormatException e) {
 				throw new IllegalArgumentException(
-						"Ê¹ÓÃsimpleTableMapProvider²¢ÇÒÖ¸¶¨ÁËtablesNumberForEachDatabase²ÎÊı£¬databaseµÄindexÖµ±ØĞëÊÇ¸öintegerÊı×Ö"
-								+ "µ±Ç°databaseµÄindexÊÇ:" + parentID);
+						"ä½¿ç”¨simpleTableMapProviderå¹¶ä¸”æŒ‡å®šäº†tablesNumberForEachDatabaseå‚æ•°ï¼Œdatabaseçš„indexå€¼å¿…é¡»æ˜¯ä¸ªintegeræ•°å­—"
+								+ "å½“å‰databaseçš„indexæ˜¯:" + parentID);
 			}
 			int start = tablesNumberForEachDatabases * multiple;
-			// ÒòÎªÎ²×ºµÄ·¶Î§ÊÇµ½<=µÄÊı×Ö£¬ËùÒÔÒª-1.
+			// å› ä¸ºå°¾ç¼€çš„èŒƒå›´æ˜¯åˆ°<=çš„æ•°å­—ï¼Œæ‰€ä»¥è¦-1.
 			int end = start + tablesNumberForEachDatabases - 1;
-			// ÉèÖÃµ±Ç°databaseÀïÃæµÄ±íÃû
+			// è®¾ç½®å½“å‰databaseé‡Œé¢çš„è¡¨å
 			return getSuffixList(start, end, width, step, tableFactor, padding,
 					dateArgsList);
 		}
@@ -208,7 +208,7 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 	}
 
 	/**
-	 * ÓÃÓÚ´¦ÀíÊ±¼ä×Ö´®µÄÆ´½ÓÎÊÌâ
+	 * ç”¨äºå¤„ç†æ—¶é—´å­—ä¸²çš„æ‹¼æ¥é—®é¢˜
 	 * 
 	 * @author shenxun
 	 * 
@@ -223,22 +223,22 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 	
 	public static abstract class CustomStringListHandlerCommon implements
 			DateStringListHandler {
-		// ¼ÓÈëÁË¼¾¶ÈÒÔºó Ò»°ãÀ´ËµÓĞÁ½ÖÖÓÃ·¨£¬Ò»ÖÖÊÇ¼ÓÄê·İ£¬4Î» 2Î»£¬Ò»ÖÖÊÇ²»¼ÓÄê·İ¡£
+		// åŠ å…¥äº†å­£åº¦ä»¥å ä¸€èˆ¬æ¥è¯´æœ‰ä¸¤ç§ç”¨æ³•ï¼Œä¸€ç§æ˜¯åŠ å¹´ä»½ï¼Œ4ä½ 2ä½ï¼Œä¸€ç§æ˜¯ä¸åŠ å¹´ä»½ã€‚
 		public List<String> getDateStringList(String tableFactor,
 				String logicTable, String timeStyle,
 				String fromDateString, String toDateString,
 				CALENDAR_TYPE calendarType, String groovyScript) {
 			List<String> dateArgsList = null;
 			logger.warn("init data table map");
-			// ÔÚ³õÊ¼»¯µÄÊ±ºòÉú³ÉTableMap ;
+			// åœ¨åˆå§‹åŒ–çš„æ—¶å€™ç”ŸæˆTableMap ;
 			if (tableFactor == null && logicTable != null) {
 				tableFactor = logicTable;
 			}
 			if (tableFactor == null) {
-				throw new IllegalArgumentException("Ã»ÓĞ±íÃûÉú³ÉÒò×Ó");
+				throw new IllegalArgumentException("æ²¡æœ‰è¡¨åç”Ÿæˆå› å­");
 			}
 			if (timeStyle == null) {
-				throw new IllegalArgumentException("Ê±¼ä´íÎó");
+				throw new IllegalArgumentException("æ—¶é—´é”™è¯¯");
 			}
 			dateArgsList = new ArrayList<String>();
 			SimpleDateFormat inputDateFormat = new SimpleDateFormat(inputTimeStyle);
@@ -266,7 +266,7 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 						+ inputDateFormat);
 			}
 
-			// »ñÈ¡Äê·İ´ÓÄÄ¿ªÊ¼£¬µ½ÄÄ½áÊø
+			// è·å–å¹´ä»½ä»å“ªå¼€å§‹ï¼Œåˆ°å“ªç»“æŸ
 			
 			int start = timeStyle.indexOf("y");
 			start = (start == -1)?0:start;
@@ -323,7 +323,7 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 	}
 
 	/**
-	 * ÄÜÏëµ½µÄÓĞÈıÀà yyyyQ yyQ Q QÊÇquarterµÄÊı×Ö±íÊ¾£¬´Ó1¿ªÊ¼µ½4
+	 * èƒ½æƒ³åˆ°çš„æœ‰ä¸‰ç±» yyyyQ yyQ Q Qæ˜¯quarterçš„æ•°å­—è¡¨ç¤ºï¼Œä»1å¼€å§‹åˆ°4
 	 * 
 	 * @param simpleDateFormat
 	 * @param calendarType
@@ -337,7 +337,7 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 			CALENDAR_TYPE calendarType, Calendar cal, int start, int end,
 			Date date, int duration) {
 		String dateStr = simpleDateFormat.format(date);
-		// ½«year½ØÈ¡³öÀ´·Åµ½ĞÂbuilderÀï
+		// å°†yearæˆªå–å‡ºæ¥æ”¾åˆ°æ–°builderé‡Œ
 		StringBuilder dateStringBuilder = new StringBuilder();
 		dateStringBuilder.append(dateStr.subSequence(start, end));
 		int dateField = cal.get(calendarType.value());
@@ -349,7 +349,7 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 	}
 
 	/**
-	 * Ä¬ÈÏµÄ´¦ÀíÆ÷
+	 * é»˜è®¤çš„å¤„ç†å™¨
 	 * 
 	 * @author shenxun
 	 * 
@@ -362,15 +362,15 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 				String fromDateString, String toDateString,
 				CALENDAR_TYPE calendarType, String groovyScript) {
 			
-			// ÔÚ³õÊ¼»¯µÄÊ±ºòÉú³ÉTableMap ;
+			// åœ¨åˆå§‹åŒ–çš„æ—¶å€™ç”ŸæˆTableMap ;
 			if (tableFactor == null && logicTable != null) {
 				tableFactor = logicTable;
 			}
 			if (tableFactor == null) {
-				throw new IllegalArgumentException("Ã»ÓĞ±íÃûÉú³ÉÒò×Ó");
+				throw new IllegalArgumentException("æ²¡æœ‰è¡¨åç”Ÿæˆå› å­");
 			}
 			if (timeStyle == null) {
-				throw new IllegalArgumentException("Ê±¼ä´íÎó");
+				throw new IllegalArgumentException("æ—¶é—´é”™è¯¯");
 			}
 			SimpleDateFormat inputDateFormat = new SimpleDateFormat(inputTimeStyle);
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(timeStyle);
@@ -421,12 +421,12 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 	}
 
 	/**
-	 * »ñÈ¡dateStringList
+	 * è·å–dateStringList
 	 * 
-	 * Ä¬ÈÏµÄ¸ñÊ½ÊÇyyyyMMdd È«²¿ÊÇÊı×Ö¡£»áÓÃÓÚ±íÃûÆ´×°£¬Í¬Ê±Ò²»á±»ÓÃÓÚÌí¼Óµ½·Ö±íµÄkeyÖĞÈ¥¡£
+	 * é»˜è®¤çš„æ ¼å¼æ˜¯yyyyMMdd å…¨éƒ¨æ˜¯æ•°å­—ã€‚ä¼šç”¨äºè¡¨åæ‹¼è£…ï¼ŒåŒæ—¶ä¹Ÿä¼šè¢«ç”¨äºæ·»åŠ åˆ°åˆ†è¡¨çš„keyä¸­å»ã€‚
 	 * 
-	 * ÆÚÍûµÄÓÃ·¨ÓĞÁ½ÖÖ¡£ 1. Ä¬ÈÏÅäÖÃÇé¿öÏÂ£¬Õâ¸öyyyyMMdd¿ÉÒÔÖ±½Ó×ª»»ÎªÊı×Ö 2.
-	 * Èç¹ûÒµÎñÖ¸¶¨ÁË×Ô¼ºµÄ¸ñÊ½£¬ÄÇÃ´ĞèÒªÔÚÒµÎñµÄkeyÖĞÒ²Æ´³ö¶ÔÓ¦µÄÄ£Ê½¼´¿É¡£
+	 * æœŸæœ›çš„ç”¨æ³•æœ‰ä¸¤ç§ã€‚ 1. é»˜è®¤é…ç½®æƒ…å†µä¸‹ï¼Œè¿™ä¸ªyyyyMMddå¯ä»¥ç›´æ¥è½¬æ¢ä¸ºæ•°å­— 2.
+	 * å¦‚æœä¸šåŠ¡æŒ‡å®šäº†è‡ªå·±çš„æ ¼å¼ï¼Œé‚£ä¹ˆéœ€è¦åœ¨ä¸šåŠ¡çš„keyä¸­ä¹Ÿæ‹¼å‡ºå¯¹åº”çš„æ¨¡å¼å³å¯ã€‚
 	 * 
 	 * @return
 	 */
@@ -450,7 +450,7 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 						+groovyScript,e);
 			}
 		} else {
-			// ÆäËûµÄ·Ç¼¾¶È»ò°ëÄêµÄÇé›r
+			// å…¶ä»–çš„éå­£åº¦æˆ–åŠå¹´çš„æƒ…æ³
 			handler = new DefaultStringListHandler();
 		}
 		List<String> dateArgsList = handler.getDateStringList(tableFactor,
@@ -460,7 +460,7 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 	}
 
 	/**
-	 * Èç¹ûÊÇÕı³£µÄÇé¿öÏÂ£¬ÄÇÃ´Ó¦¸ÃÊÇ±íÃûÒò×Ó+"_"+×î³¤Êı×ÖÎ»ÊıÄÇÑù³¤µÄÎ²×º£¬ÀàËÆ tab_001~tab_100
+	 * å¦‚æœæ˜¯æ­£å¸¸çš„æƒ…å†µä¸‹ï¼Œé‚£ä¹ˆåº”è¯¥æ˜¯è¡¨åå› å­+"_"+æœ€é•¿æ•°å­—ä½æ•°é‚£æ ·é•¿çš„å°¾ç¼€ï¼Œç±»ä¼¼ tab_001~tab_100
 	 */
 	protected void makeRealTableNameTaobaoLike(TYPE typeEnum) {
 		if (typeEnum == TYPE.CUSTOM) {
@@ -526,17 +526,17 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 		String tableProfix = sb.toString();
 		int tableForEachDB = to - from + 1 ;
 		for (int i = from; i <= to; i = i + step) {
-			//key ÔÚ¶à¸ödatabasesÖĞ±ØĞëÊÇÒ»ÖÂµÄ¡£
+			//key åœ¨å¤šä¸ªdatabasesä¸­å¿…é¡»æ˜¯ä¸€è‡´çš„ã€‚
 			int index = i % tableForEachDB;
-			//ÓÃÓÚÌí¼ÓÔÚÔÂ·İºó³ÉÎª±íÎ²×º
+			//ç”¨äºæ·»åŠ åœ¨æœˆä»½åæˆä¸ºè¡¨å°¾ç¼€
 			String keySuffix = null;
-			//ÓÃÓÚÌí¼ÓÔÚ±íºóµÄ±íÎ²×º£¬tableSuffixµÄintÖµ mod µ±Ç°¿âµÄ±íµÄ¸öÊı£¬¾ÍµÈÓÚkeySuffixµÄÖµ¡£
+			//ç”¨äºæ·»åŠ åœ¨è¡¨åçš„è¡¨å°¾ç¼€ï¼ŒtableSuffixçš„intå€¼ mod å½“å‰åº“çš„è¡¨çš„ä¸ªæ•°ï¼Œå°±ç­‰äºkeySuffixçš„å€¼ã€‚
 			String tableSuffix = null;
 			if (width != DEFAULT_INT) {
 				tableSuffix = RuleUtils.placeHolder(width, i);
 				keySuffix = RuleUtils.placeHolder(width, index);
 			} else {
-				// Èç¹û²»ÏÔÊ½Ö¸¶¨width£¬»òÖ¸¶¨Îª-1£¬Ôò²»²¹Áã£¬Ö±½ÓÒÔÊıÖµÎªºó×º
+				// å¦‚æœä¸æ˜¾å¼æŒ‡å®šwidthï¼Œæˆ–æŒ‡å®šä¸º-1ï¼Œåˆ™ä¸è¡¥é›¶ï¼Œç›´æ¥ä»¥æ•°å€¼ä¸ºåç¼€
 				tableSuffix = String.valueOf(i);
 				keySuffix = String.valueOf(index);
 			}
@@ -646,11 +646,11 @@ public class SimpleDateTableMapProvider implements TableMapProvider {
 
 	public void setWidth(int width) {
 		if (width > 8) {
-			throw new IllegalArgumentException("Õ¼Î»·û²»ÄÜ³¬¹ı8Î»");
+			throw new IllegalArgumentException("å ä½ç¬¦ä¸èƒ½è¶…è¿‡8ä½");
 		}
-		// ±íºó×ºÕ¼Î»·û¿ÉÒÔÎª0, ´ËÊ±²»²¹Áã
+		// è¡¨åç¼€å ä½ç¬¦å¯ä»¥ä¸º0, æ­¤æ—¶ä¸è¡¥é›¶
 		if (width < 0) {
-			throw new IllegalArgumentException("Õ¼Î»·û²»ÄÜÎª¸ºÖµ");
+			throw new IllegalArgumentException("å ä½ç¬¦ä¸èƒ½ä¸ºè´Ÿå€¼");
 		}
 		this.width = width;
 	}

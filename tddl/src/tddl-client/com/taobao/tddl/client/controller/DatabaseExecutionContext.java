@@ -9,35 +9,35 @@ import com.taobao.tddl.interact.bean.TargetDB;
 
 public interface DatabaseExecutionContext
 {
-	/** ·µ»ØtargetDB 
+	/** è¿”å›targetDB 
 	 * 
-	 * @deprecated ¼æÈİĞÔ·½·¨£¬ÒÔºóÖğ½¥ÌÔÌ­µô
+	 * @deprecated å…¼å®¹æ€§æ–¹æ³•ï¼Œä»¥åé€æ¸æ·˜æ±°æ‰
 	 * @return
 	 */
 	TargetDB getTargetDB();
 	
 	/**
-	 * »ñÈ¡±íÃûºÍ¿âÃûpairµÄlist
+	 * è·å–è¡¨åå’Œåº“åpairçš„list
 	 * 
-	 * List{¶ÔÓ¦Ò»¸ösqlÁĞ±í}<Map<String{¶ÔÓ¦Âß¼­±í}, String{¶ÔÓ¦ÕæÊµ±í}>>
+	 * List{å¯¹åº”ä¸€ä¸ªsqlåˆ—è¡¨}<Map<String{å¯¹åº”é€»è¾‘è¡¨}, String{å¯¹åº”çœŸå®è¡¨}>>
 	 * @return
 	 */
 	List<Map<String/*logicTable*/, String/*targetTable*/>> getTableNames();
 	
 	/**
-	 * »ñÈ¡µ±Ç°¿âµÄindex
+	 * è·å–å½“å‰åº“çš„index
 	 * @return
 	 */
 	String getDbIndex();
 	
 	/**
-	 * Éè¶¨·´ÏòÊä³ösql
+	 * è®¾å®šåå‘è¾“å‡ºsql
 	 * @param outputSQL
 	 */
 	void setOutputSQL(List<ReverseOutput> outputSQL);
 	
 	/**
-	 * »ñÈ¡·´ÏòÊä³ösql
+	 * è·å–åå‘è¾“å‡ºsql
 	 * @return
 	 */
 	public List<ReverseOutput> getOutputSQL();

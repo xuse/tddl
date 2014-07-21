@@ -58,7 +58,7 @@ public class MatrixConfigHolder extends AbstractConfigHolder {
 	}
 	
 	/**
-	 * groupsÇÐ·Ö
+	 * groupsåˆ‡åˆ†
 	 * @param target
 	 * @return
 	 */

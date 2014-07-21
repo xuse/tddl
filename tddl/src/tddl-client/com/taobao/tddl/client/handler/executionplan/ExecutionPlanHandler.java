@@ -37,19 +37,19 @@ import com.taobao.tddl.sqlobjecttree.InExpressionObject;
 import com.taobao.tddl.sqlobjecttree.SqlParserResult;
 
 /**
- * @description Éú³É×îÖÕµÄÖ´ĞĞ¼Æ»®,Ö÷Òª×öµÄ¹¤×÷ÊÇÉú³ÉRealSqlContext Map(¼´ÄÇĞ©¿âÖ´ĞĞÄÄĞ©sql),
- *              ÉèÖÃisGoSlave(¶à¿âÊÂÎñÅĞ¶¨±ê×¼Ö®Ò»),Limit M,NÊôĞÔ(skip,max),¾ÛºÏº¯ÊıÊµÀı, order
- *              byÊµÀı,Êı¾İ¸´ÖÆÉÏÏÂÎÄ(setEvent())µÈÊôĞÔ.
+ * @description ç”Ÿæˆæœ€ç»ˆçš„æ‰§è¡Œè®¡åˆ’,ä¸»è¦åšçš„å·¥ä½œæ˜¯ç”ŸæˆRealSqlContext Map(å³é‚£äº›åº“æ‰§è¡Œå“ªäº›sql),
+ *              è®¾ç½®isGoSlave(å¤šåº“äº‹åŠ¡åˆ¤å®šæ ‡å‡†ä¹‹ä¸€),Limit M,Nå±æ€§(skip,max),èšåˆå‡½æ•°å®ä¾‹, order
+ *              byå®ä¾‹,æ•°æ®å¤åˆ¶ä¸Šä¸‹æ–‡(setEvent())ç­‰å±æ€§.
  * 
- *              tips: 1.Éú³ÉRealSqlContext°üÀ¨´ø²ÎºÍ²»´ø²Î2ÖÖĞÎÊ½,
- *              2.¸ù¾İÊÇ·ñ·´ÏòÊä³öÊôĞÔ¾ö¶¨ÊÇ·ñÊ¹ÓÃsql½âÎöµÄ·´ÏòÊä³ö, Èç¹û²»·´ÏòÊä³ö,ÄÇÃ´½øĞĞ±íÃûÌæ»»
- *              3.¸ù¾İneedIdInGroupÅäÖÃ¾ö¶¨ÊÇ·ñ¶Ôid inĞÎÊ½µÄsql½øĞĞ ¹é×éÓÅ»¯,Õâ¶Ôid
- *              in°üº¬½Ï¶à·ÖÉ¢idµÄsqlÓĞ½ÏºÃµÄĞÔÄÜ ÌáÉı.
+ *              tips: 1.ç”ŸæˆRealSqlContextåŒ…æ‹¬å¸¦å‚å’Œä¸å¸¦å‚2ç§å½¢å¼,
+ *              2.æ ¹æ®æ˜¯å¦åå‘è¾“å‡ºå±æ€§å†³å®šæ˜¯å¦ä½¿ç”¨sqlè§£æçš„åå‘è¾“å‡º, å¦‚æœä¸åå‘è¾“å‡º,é‚£ä¹ˆè¿›è¡Œè¡¨åæ›¿æ¢
+ *              3.æ ¹æ®needIdInGroupé…ç½®å†³å®šæ˜¯å¦å¯¹id inå½¢å¼çš„sqlè¿›è¡Œ å½’ç»„ä¼˜åŒ–,è¿™å¯¹id
+ *              inåŒ…å«è¾ƒå¤šåˆ†æ•£idçš„sqlæœ‰è¾ƒå¥½çš„æ€§èƒ½ æå‡.
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-12-6ÏÂÎç03:40:50
+ * @date 2010-12-6ä¸‹åˆ03:40:50
  */
 public class ExecutionPlanHandler extends AbstractHandler {
 	public static final String HANDLER_NAME = "ExecutionPlanHandler";
@@ -65,7 +65,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Éú³ÉExecutionPlan¶ÔÏó.
+	 * ç”ŸæˆExecutionPlanå¯¹è±¡.
 	 * 
 	 * @param dataBus
 	 * @throws SQLException
@@ -85,19 +85,19 @@ public class ExecutionPlanHandler extends AbstractHandler {
 		boolean needIdInGroup = runtime.isNeedIdInGroup();
 
 		/**
-		 * Èç¹ûÔÚSqlParserHandlerÖĞ›]ÓĞÔOÖÃvirtualJoinTableNames ÄÇÃ´Õâ¸öÉèÖÃÊÇÃ»ÓÃµÄ¡£
+		 * å¦‚æœåœ¨SqlParserHandlerä¸­æ²’æœ‰è¨­ç½®virtualJoinTableNames é‚£ä¹ˆè¿™ä¸ªè®¾ç½®æ˜¯æ²¡ç”¨çš„ã€‚
 		 */
 		metaData.setVirtualJoinTableNames(virtualJoinTableNames);
 
-		// Ä¿±ê¿âºÍ±íbean
+		// ç›®æ ‡åº“å’Œè¡¨bean
 		List<DatabaseExecutionContext> targets = metaData
 				.getDataBaseExecutionContexts();
 
 		ExecutionPlanImp executionPlan = new ExecutionPlanImp();
 
-		// FIXME:ÏÈ²»Ö§³Ömapping rule
+		// FIXME:å…ˆä¸æ”¯æŒmapping rule
 		if (targets == null || targets.isEmpty()) {
-			throw new SQLException("ÕÒ²»µ½Ä¿±ê¿â£¬Çë¼ì²éÅäÖÃ");
+			throw new SQLException("æ‰¾ä¸åˆ°ç›®æ ‡åº“ï¼Œè¯·æ£€æŸ¥é…ç½®");
 		} else {
 			buildExecutionContext(originalSql, executionPlan, sqlType,
 					metaData, targets, sqlDispatcher, parameterSettings,
@@ -112,7 +112,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 	}
 
 	/**
-	 * ¹¹½¨×îÖÕµÄÖ´ĞĞ¼Æ»®
+	 * æ„å»ºæœ€ç»ˆçš„æ‰§è¡Œè®¡åˆ’
 	 * 
 	 * @param originalSql
 	 * @param executionPlanImp
@@ -137,9 +137,9 @@ public class ExecutionPlanHandler extends AbstractHandler {
 		Map<String/* dbIndex */, List<RealSqlContext>> sqlMap = new HashMap<String, List<RealSqlContext>>(
 				size);
 
-		// Æ´×°·µ»ØµÄ½á¹û
+		// æ‹¼è£…è¿”å›çš„ç»“æœ
 		for (DatabaseExecutionContext target : targets) {
-			// Êı¾İ¿âdbSelectorId
+			// æ•°æ®åº“dbSelectorId
 			String dbSelectorId = target.getDbIndex();
 			List<Map<String, String>> actualTables = target.getTableNames();
 
@@ -151,14 +151,14 @@ public class ExecutionPlanHandler extends AbstractHandler {
 			}
 
 			if (actualTables == null || actualTables.isEmpty()) {
-				throw new SQLException("ÕÒ²»µ½Ä¿±ê±í");
+				throw new SQLException("æ‰¾ä¸åˆ°ç›®æ ‡è¡¨");
 			}
 
 			List<RealSqlContext> sqlContext = null;
 
-			// Õâ¸öList±£Ö¤²»Îªnull,¶à¸öinµÄÇé¿öÏÂ°´Ô­Ê¼µÄ·½Ê½×ß(Ò»°ã²»»á³öÏÖ),
-			// ÁíÍâid in¹é×éÓÅ»¯Ä¬ÈÏ²»Ê¹ÓÃ,ĞèÒªÊ¹ÓÃ¿ÉÒÔÔÚShardRule beanÖĞÅäÖÃ
-			// needIdInGroupÊôĞÔ
+			// è¿™ä¸ªListä¿è¯ä¸ä¸ºnull,å¤šä¸ªinçš„æƒ…å†µä¸‹æŒ‰åŸå§‹çš„æ–¹å¼èµ°(ä¸€èˆ¬ä¸ä¼šå‡ºç°),
+			// å¦å¤–id inå½’ç»„ä¼˜åŒ–é»˜è®¤ä¸ä½¿ç”¨,éœ€è¦ä½¿ç”¨å¯ä»¥åœ¨ShardRule beanä¸­é…ç½®
+			// needIdInGroupå±æ€§
 			if (needIdInGroup && spr.getInExpressionObjectList().size() == 1) {
 				debugLog(log, new Object[] { "use id in group!columnName:",
 						spr.getInExpressionObjectList().get(0).columnName });
@@ -186,9 +186,9 @@ public class ExecutionPlanHandler extends AbstractHandler {
 		executionPlanImp.setVirtualTableName(metaData.getVirtualTableName());
 		executionPlanImp.setEvents(createEvent(metaData, sqlType, originalSql,
 				needRowCopy));
-		// ÕâÀïĞèÒª×¢ÒâµÄ
+		// è¿™é‡Œéœ€è¦æ³¨æ„çš„
 		// boolean needRetry = (sqlDispatcher == writeDispatcher?false:true);
-		// modified by shenxun£ºÈ¥µôÁËÊÂÎñÅĞ¶Ï£¬isAutoCommit²»ĞèÒª½øĞĞÅĞ¶Ï£¬ºóÃæ»áÕë¶Ô²»Í¬µÄsql½øĞĞÊÊµ±ÅĞ¶Ï
+		// modified by shenxunï¼šå»æ‰äº†äº‹åŠ¡åˆ¤æ–­ï¼ŒisAutoCommitä¸éœ€è¦è¿›è¡Œåˆ¤æ–­ï¼Œåé¢ä¼šé’ˆå¯¹ä¸åŒçš„sqlè¿›è¡Œé€‚å½“åˆ¤æ–­
 		boolean goSlave = SqlType.SELECT.equals(sqlType);
 		executionPlanImp.setGoSlave(goSlave);
 		executionPlanImp.setOriginalSql(originalSql);
@@ -196,7 +196,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 	}
 
 	/**
-	 * ÌîÈëÊı¾İ
+	 * å¡«å…¥æ•°æ®
 	 * 
 	 * @param originalSql
 	 * @param metaData
@@ -216,10 +216,10 @@ public class ExecutionPlanHandler extends AbstractHandler {
 				.getTableNames();
 
 		if (actualTables == null || actualTables.isEmpty()) {
-			throw new SQLException("ÕÒ²»µ½Ä¿±ê±í");
+			throw new SQLException("æ‰¾ä¸åˆ°ç›®æ ‡è¡¨");
 		}
 
-		// Ñ­»·ÌîÈëÊı¾İ
+		// å¾ªç¯å¡«å…¥æ•°æ®
 		if (!metaData.allowReverseOutput()) {
 			for (Map<String, String> tab : actualTables) {
 				RealSqlContextImp realSqlContext = new RealSqlContextImp();
@@ -227,14 +227,14 @@ public class ExecutionPlanHandler extends AbstractHandler {
 				String sql = replaceMultiTableName(originalSql, tab);
 
 				// realSqlContext.setSql();
-				// Èç¹ûmetaData(Ò²¾ÍÊÇDispatcherResult)ÀïÃæÓĞjoin±íÃû£¬ÄÇÃ´¾ÍÌæ»»µô;
+				// å¦‚æœmetaData(ä¹Ÿå°±æ˜¯DispatcherResult)é‡Œé¢æœ‰joinè¡¨åï¼Œé‚£ä¹ˆå°±æ›¿æ¢æ‰;
 				// sql = replaceJoinTableName(metaData.getVirtualTableName()
 				// .toString(), metaData.getVirtualJoinTableNames(), tab,
 				// sql,log);
 				realSqlContext.setRealTable(tab.values().toString());
 				realSqlContext.setSql(sql);
 				realSqlContext.setArgument(parameterSettings);
-				// ´òÓ¡ÏÂ×îÖÕ»áÖ´ĞĞµÄsqlºÍ²ÎÊı,·½±ã²éÕÒÎÊÌâ
+				// æ‰“å°ä¸‹æœ€ç»ˆä¼šæ‰§è¡Œçš„sqlå’Œå‚æ•°,æ–¹ä¾¿æŸ¥æ‰¾é—®é¢˜
 				debugLog(
 						log,
 						new Object[] {
@@ -244,11 +244,11 @@ public class ExecutionPlanHandler extends AbstractHandler {
 		} else {
 			List<ReverseOutput> sqlInfos = target.getOutputSQL();
 			if (sqlInfos == null || sqlInfos.isEmpty()) {
-				throw new SQLException("ÕÒ²»µ½Ä¿±ê±í");
+				throw new SQLException("æ‰¾ä¸åˆ°ç›®æ ‡è¡¨");
 			}
 
-			// Ìæ»»
-			// TODO: ÕâÀïĞèÒªÖØ¹¹£¬½«Õû¸öÌæ»»±íÃûµÄ¹ı³ÌË³Á÷¹ıÀ´£¬Ä¿Ç°Ã»¾«Á¦
+			// æ›¿æ¢
+			// TODO: è¿™é‡Œéœ€è¦é‡æ„ï¼Œå°†æ•´ä¸ªæ›¿æ¢è¡¨åçš„è¿‡ç¨‹é¡ºæµè¿‡æ¥ï¼Œç›®å‰æ²¡ç²¾åŠ›
 			Map<Integer, Object> changedParameters = sqlInfos.get(0)
 					.getParams();
 			changeParameters(changedParameters, parameterSettings);
@@ -269,13 +269,13 @@ public class ExecutionPlanHandler extends AbstractHandler {
 								parameterSettings });
 			}
 
-			// ÒòÎªËùÓĞSQL°ó¶¨²ÎÊı¶¼Ò»Ñù£¬ËùÒÔÖ»ÒªÈ¡µÚÒ»¸ö¡£
+			// å› ä¸ºæ‰€æœ‰SQLç»‘å®šå‚æ•°éƒ½ä¸€æ ·ï¼Œæ‰€ä»¥åªè¦å–ç¬¬ä¸€ä¸ªã€‚
 		}
 		return sqlContext;
 	}
 
 	/**
-	 * ¾ßÓĞid in¹é×é¹¦ÄÜµÄRealSqlContext¹¹½¨·½·¨
+	 * å…·æœ‰id inå½’ç»„åŠŸèƒ½çš„RealSqlContextæ„å»ºæ–¹æ³•
 	 * 
 	 * @param originalSql
 	 * @param metaData
@@ -296,17 +296,17 @@ public class ExecutionPlanHandler extends AbstractHandler {
 				.getTableNames();
 
 		if (actualTables == null || actualTables.isEmpty()) {
-			throw new SQLException("ÕÒ²»µ½Ä¿±ê±í");
+			throw new SQLException("æ‰¾ä¸åˆ°ç›®æ ‡è¡¨");
 		}
 
-		// Ñ­»·ÌîÈëÊı¾İ
+		// å¾ªç¯å¡«å…¥æ•°æ®
 		if (!metaData.allowReverseOutput()) {
 			for (Map<String, String> tab : actualTables) {
 				RealSqlContextImp realSqlContext = new RealSqlContextImp();
 				sqlContext.add(realSqlContext);
 				String sql = replaceMultiTableName(originalSql, tab);
 				Map<Integer, ParameterContext> replacedParameterSettings = parameterSettings;
-				// Ö»¶Ôprepared statementĞÎÊ½½øĞĞ´¦Àí
+				// åªå¯¹prepared statementå½¢å¼è¿›è¡Œå¤„ç†
 				if (in.bindVarIndexs != null && in.bindVarIndexs.size() > 0) {
 					if (in.bindVarValues != null && in.bindVarValues.size() > 0) {
 						throw new SQLException(
@@ -322,12 +322,12 @@ public class ExecutionPlanHandler extends AbstractHandler {
 									.values().toString(), "[", "]"),
 							target.getRealTableFieldMap(), in);
 				}
-				// statementĞÎÊ½²»×ö´¦Àí
+				// statementå½¢å¼ä¸åšå¤„ç†
 				realSqlContext.setRealTable(tab.values().toString());
 				
 				realSqlContext.setSql(sql);
 				realSqlContext.setArgument(replacedParameterSettings);
-				// ´òÓ¡ÏÂ×îÖÕ»áÖ´ĞĞµÄsqlºÍ²ÎÊı,·½±ã²éÕÒÎÊÌâ
+				// æ‰“å°ä¸‹æœ€ç»ˆä¼šæ‰§è¡Œçš„sqlå’Œå‚æ•°,æ–¹ä¾¿æŸ¥æ‰¾é—®é¢˜
 				debugLog(
 						log,
 						new Object[] {
@@ -338,11 +338,11 @@ public class ExecutionPlanHandler extends AbstractHandler {
 		} else {
 			List<ReverseOutput> sqlInfos = target.getOutputSQL();
 			if (sqlInfos == null || sqlInfos.isEmpty()) {
-				throw new SQLException("ÕÒ²»µ½Ä¿±ê±í");
+				throw new SQLException("æ‰¾ä¸åˆ°ç›®æ ‡è¡¨");
 			}
 
-			// Ìæ»»
-			// TODO: ÕâÀïĞèÒªÖØ¹¹£¬½«Õû¸öÌæ»»±íÃûµÄ¹ı³ÌË³Á÷¹ıÀ´£¬Ä¿Ç°Ã»¾«Á¦
+			// æ›¿æ¢
+			// TODO: è¿™é‡Œéœ€è¦é‡æ„ï¼Œå°†æ•´ä¸ªæ›¿æ¢è¡¨åçš„è¿‡ç¨‹é¡ºæµè¿‡æ¥ï¼Œç›®å‰æ²¡ç²¾åŠ›
 			Map<Integer, Object> changedParameters = sqlInfos.get(0)
 					.getParams();
 			changeParameters(changedParameters, parameterSettings);
@@ -350,7 +350,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 			for (ReverseOutput sqlInfo : sqlInfos) {
 				Map<Integer, ParameterContext> replacedParameterSettings = parameterSettings;
 				String sql = sqlInfo.getSql();
-				// Ö»¶Ôprepared statementĞÎÊ½½øĞĞ´¦Àí
+				// åªå¯¹prepared statementå½¢å¼è¿›è¡Œå¤„ç†
 				if (in.bindVarIndexs != null) {
 					sql = changePrepareStatementSql(sqlInfo.getSql(),
 							getReverseOutPutRealTable(sqlInfo.getTable()),
@@ -361,7 +361,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 							getReverseOutPutRealTable(sqlInfo.getTable()),
 							target.getRealTableFieldMap(), in);
 				}
-				// statementĞÎÊ½²»×ö´¦Àí
+				// statementå½¢å¼ä¸åšå¤„ç†
 				RealSqlContextImp realSqlContext = new RealSqlContextImp();
 				sqlContext.add(realSqlContext);
 //				realSqlContext.setSql(sql);
@@ -369,7 +369,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 				realSqlContext.setSql(newSql);
 				realSqlContext.setRealTable(sqlInfo.getTable());
 				realSqlContext.setArgument(replacedParameterSettings);
-				// ´òÓ¡ÏÂ×îÖÕ»áÖ´ĞĞµÄsqlºÍ²ÎÊı,·½±ã²éÕÒÎÊÌâ
+				// æ‰“å°ä¸‹æœ€ç»ˆä¼šæ‰§è¡Œçš„sqlå’Œå‚æ•°,æ–¹ä¾¿æŸ¥æ‰¾é—®é¢˜
 				debugLog(
 						log,
 						new Object[] {
@@ -387,14 +387,14 @@ public class ExecutionPlanHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Ö»¶ÔprepareStatementĞÎÊ½µÄsqlÇĞ·ÖÓÃÕâÖÖ·½Ê½. ÕâÀï¿ÉÄÜ»áÓĞĞÔÄÜÎÊÌâ.
+	 * åªå¯¹prepareStatementå½¢å¼çš„sqlåˆ‡åˆ†ç”¨è¿™ç§æ–¹å¼. è¿™é‡Œå¯èƒ½ä¼šæœ‰æ€§èƒ½é—®é¢˜.
 	 */
 //	private static String patternStr = "in\\s*\\((\\s*\\?\\s*)?(,\\s*\\?\\s*)*\\)\\s*";
 	private static String patternStr="in\\s*\\(.*?\\)\\s*";
 	private static Pattern inpattern = Pattern.compile(patternStr);
 
 	/**
-	 * id in ÏÂsql±ä¸ü,¸ù¾İ²ÎÊı¸öÊı
+	 * id in ä¸‹sqlå˜æ›´,æ ¹æ®å‚æ•°ä¸ªæ•°
 	 * 
 	 * @param sql
 	 * @param realTable
@@ -426,7 +426,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 					sourceValues.size());
 			replacedSql.append(sqlPieces[1]);
 		} else {
-			// ¿ÉÄÜÌæ»»³ö´í,ÄÇÖ»ÄÜ·µ»ØÔ­Ê¼sqlÁË.
+			// å¯èƒ½æ›¿æ¢å‡ºé”™,é‚£åªèƒ½è¿”å›åŸå§‹sqläº†.
 			return sql;
 		}
 
@@ -434,7 +434,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Æ´½ÓpreparestatementĞÎÊ½µÄsql
+	 * æ‹¼æ¥preparestatementå½¢å¼çš„sql
 	 * 
 	 * @param sb
 	 * @param sqlPieces
@@ -456,7 +456,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 	}
 
 	/**
-	 * id inÇé¿öÏÂ,È¥³ıÔ­À´²»ĞèÒªµÄparameter,²¢ÇÒ±ä¸üĞòºÅ
+	 * id inæƒ…å†µä¸‹,å»é™¤åŸæ¥ä¸éœ€è¦çš„parameter,å¹¶ä¸”å˜æ›´åºå·
 	 * 
 	 * @param parameterSettings
 	 * @param realTable
@@ -483,11 +483,11 @@ public class ExecutionPlanHandler extends AbstractHandler {
 		SortedMap<Integer, ParameterContext> tempMap = new TreeMap<Integer, ParameterContext>();
 
 		/*
-		 * ´ÓparameterSettingsÕÒ³ösourceValuesÏà¹ØµÄ²ÎÊı±ÈÈç select * from tab where
-		 * gmt_create < ? and used_times=? and pk in (?,?,?,?) and name=?;²ÎÊıÎª
-		 * "2010-10-10",100,1,2,3,4,"junyu",Ëã³ö±¾ÕÅ±íµÄpkÖµÎª
-		 * 2,4,bindVarIndexsÎª:2,3,4,5
-		 * ÄÇÃ´ÕâÒ»²½ÎÒÃÇ´ÓparameterSettingsÖĞÕÒ³ö2,4Á½¸ö²ÎÊıÕâÒ»²½Ö®ºó,tempMapÖĞÓĞ<4,pc(2)><6,pc(4)>
+		 * ä»parameterSettingsæ‰¾å‡ºsourceValuesç›¸å…³çš„å‚æ•°æ¯”å¦‚ select * from tab where
+		 * gmt_create < ? and used_times=? and pk in (?,?,?,?) and name=?;å‚æ•°ä¸º
+		 * "2010-10-10",100,1,2,3,4,"junyu",ç®—å‡ºæœ¬å¼ è¡¨çš„pkå€¼ä¸º
+		 * 2,4,bindVarIndexsä¸º:2,3,4,5
+		 * é‚£ä¹ˆè¿™ä¸€æ­¥æˆ‘ä»¬ä»parameterSettingsä¸­æ‰¾å‡º2,4ä¸¤ä¸ªå‚æ•°è¿™ä¸€æ­¥ä¹‹å,tempMapä¸­æœ‰<4,pc(2)><6,pc(4)>
 		 */
 		int count = 0;
 		for (Integer var : bindVarIndexs) {
@@ -503,9 +503,9 @@ public class ExecutionPlanHandler extends AbstractHandler {
 		}
 
 		/*
-		 * ÕâÒ»²½ÎÒÃÇ½«parameterSettingsÖĞ²»ÊôÓÚ id inµÄ²ÎÊı·Åµ½ tempMapÖĞ
-		 * ÒòÎªtempMapÊÇ°´keyÅÅĞòµÄsortedMap,
-		 * ËùÒÔÕâÒ»²½Ö®ºó,tempMapÖĞÓĞ<1,pc("2010-10-10")><2,pc(
+		 * è¿™ä¸€æ­¥æˆ‘ä»¬å°†parameterSettingsä¸­ä¸å±äº id inçš„å‚æ•°æ”¾åˆ° tempMapä¸­
+		 * å› ä¸ºtempMapæ˜¯æŒ‰keyæ’åºçš„sortedMap,
+		 * æ‰€ä»¥è¿™ä¸€æ­¥ä¹‹å,tempMapä¸­æœ‰<1,pc("2010-10-10")><2,pc(
 		 * 100)><4,pc(2)><6,pc(4)><7,pc("junyu")>
 		 */
 		for (Map.Entry<Integer, ParameterContext> pc : parameterSettings
@@ -516,11 +516,11 @@ public class ExecutionPlanHandler extends AbstractHandler {
 		}
 
 		/*
-		 * ÒòÎªÎÒÃÇ²»ÄÜ¶¯Ô­Ê¼µÄ parameterSettingsÀïÃæµÄ²ÎÊı(ºóĞø»¹ĞèÒªÊ¹ÓÃ),ËùÒÔÎÒÃÇ½«ĞèÒªµÄ²ÎÊı¶ÔÏó½øĞĞÉî¶È¸´ÖÆ,²¢ÇÒmap
-		 * keyĞòÁĞ±ä³É¼ä¸ôÎª1µÄ,
-		 * ×îÖÕÉú³É<1,pc("2010-10-10")><2,pc(100)><3,pc(2)><4,pc(4)><5,pc("junyu")>
-		 * ´ËÊ±Ç°ÃæÒÑ¾­±ä»»Íê±ÏµÄsqlÎª select * from tab where gmt_create < ? and
-		 * used_times=? and pk in (?,?) and name=?; ´Ó¶øÍê³Éid in¹é×é
+		 * å› ä¸ºæˆ‘ä»¬ä¸èƒ½åŠ¨åŸå§‹çš„ parameterSettingsé‡Œé¢çš„å‚æ•°(åç»­è¿˜éœ€è¦ä½¿ç”¨),æ‰€ä»¥æˆ‘ä»¬å°†éœ€è¦çš„å‚æ•°å¯¹è±¡è¿›è¡Œæ·±åº¦å¤åˆ¶,å¹¶ä¸”map
+		 * keyåºåˆ—å˜æˆé—´éš”ä¸º1çš„,
+		 * æœ€ç»ˆç”Ÿæˆ<1,pc("2010-10-10")><2,pc(100)><3,pc(2)><4,pc(4)><5,pc("junyu")>
+		 * æ­¤æ—¶å‰é¢å·²ç»å˜æ¢å®Œæ¯•çš„sqlä¸º select * from tab where gmt_create < ? and
+		 * used_times=? and pk in (?,?) and name=?; ä»è€Œå®Œæˆid inå½’ç»„
 		 */
 		int tempMapSize = tempMap.size();
 		for (int i = 0; i < tempMapSize; i++) {
@@ -541,7 +541,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 	private void changeParameters(Map<Integer, Object> changedParameters,
 			Map<Integer, ParameterContext> parameterSettings) {
 		for (Map.Entry<Integer, Object> entry : changedParameters.entrySet()) {
-			// ×¢Òâ£ºSQL½âÎöÄÇ±ß°ó¶¨²ÎÊı´Ó0¿ªÊ¼¼ÆÊı£¬Òò´ËĞèÒª¼Ó1¡£
+			// æ³¨æ„ï¼šSQLè§£æé‚£è¾¹ç»‘å®šå‚æ•°ä»0å¼€å§‹è®¡æ•°ï¼Œå› æ­¤éœ€è¦åŠ 1ã€‚
 			ParameterContext context = parameterSettings
 					.get(entry.getKey() + 1);
 			if (context.getParameterMethod() != ParameterMethod.setNull1
@@ -552,7 +552,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 	}
 
 	/**
-	 * update inµÄÎÊÌâ£º
+	 * update inçš„é—®é¢˜ï¼š
 	 */
 	protected final List<SqlExecuteEvent> createEvent(
 			DispatcherResult metaData, SqlType sqlType, String originalSql,
@@ -567,7 +567,7 @@ public class ExecutionPlanHandler extends AbstractHandler {
 	}
 
 	/**
-	 * ´òÓ¡log
+	 * æ‰“å°log
 	 * 
 	 * @param dbIndex
 	 * @param actualTables

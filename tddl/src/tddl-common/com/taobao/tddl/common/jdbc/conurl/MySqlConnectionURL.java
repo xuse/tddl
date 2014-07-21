@@ -5,7 +5,7 @@ import java.text.MessageFormat;
 import com.alibaba.common.lang.StringUtil;
 import com.taobao.tddl.interact.rule.bean.DBType;
 
-/**MYSQL数据源连接地址类，只要设置要IP,PORT,DBNAME后调用renderURL即可生成连接的字符串
+/**MYSQL鏁版嵁婧愯繛鎺ュ湴鍧�绫伙紝鍙璁剧疆瑕両P,PORT,DBNAME鍚庤皟鐢╮enderURL鍗冲彲鐢熸垚杩炴帴鐨勫瓧绗︿覆
  * @author qihao
  *
  */

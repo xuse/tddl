@@ -2,7 +2,7 @@ package com.taobao.tddl.common.jdbc.conurl;
 
 import com.alibaba.common.lang.StringUtil;
 
-/**Êı¾İÔ´Á¬½ÓµØÖ·½âÎöÀà
+/**æ•°æ®æºè¿æ¥åœ°å€è§£æç±»
  * @author qihao
  *
  */
@@ -43,7 +43,7 @@ public abstract class ConnectionURLParser {
 						oracleConUrl.setDbName(StringUtil.substringBefore(StringUtil.substringAfter(url, "SERVICE_NAME="), ")"));
 					}
 				}else{
-					//jdbc:oracle:oci:@SID£¬ÕâÖÖ·½Ê½ÎŞ·¨»ñµÃIPºÍ¶Ë¿Ú
+					//jdbc:oracle:oci:@SIDï¼Œè¿™ç§æ–¹å¼æ— æ³•è·å¾—IPå’Œç«¯å£
 					oracleConUrl.setDbName(StringUtil.substringAfterLast(url, "@"));
 					oracleConUrl.setConType(OracleConnectionURL.OCI_SID_TYPE);
 				}
@@ -53,11 +53,11 @@ public abstract class ConnectionURLParser {
 			//jdbc:mysql://hostname:port/dbname?param1=value1&m2=value2
 			MySqlConnectionURL mySqlConURL=new MySqlConnectionURL();
 			mySqlConURL.setPramStr(StringUtil.substringAfter(url, "?"));
-			//½ØÈ¡DBName
+			//æˆªå–DBName
 			String dbInfoString=StringUtil.substringBefore(url, "?");
 			String dbName=StringUtil.substringAfterLast(dbInfoString, "/");
 			mySqlConURL.setDbName(dbName);
-			//½ØÈ¡IPºÍPORT
+			//æˆªå–IPå’ŒPORT
 			String hostString=StringUtil.substringBeforeLast(dbInfoString, "/");
 			hostString=StringUtil.substringAfterLast(hostString, MYSQL_FIX);
 			String[] ipAndPort=StringUtil.split(hostString,":");

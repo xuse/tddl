@@ -57,10 +57,10 @@ public final class PairUtil {
 
     /**
      * <pre>
-     * ½«Ãû×ÖºÍË÷ÒıÓÃ½øĞĞ·Ö¸î µ±src = "offer_group[4]", l='[', r=']'Ê±£¬
-     * ·µ»ØµÄPiar<String,Integer>("offer", 4);
-     * µ±src = "offer_group", l='[', r=']'Ê±£¬ 
-     * ·µ»ØPair<String, Integer>("offer",-1);
+     * å°†åå­—å’Œç´¢å¼•ç”¨è¿›è¡Œåˆ†å‰² å½“src = "offer_group[4]", l='[', r=']'æ—¶ï¼Œ
+     * è¿”å›çš„Piar<String,Integer>("offer", 4);
+     * å½“src = "offer_group", l='[', r=']'æ—¶ï¼Œ 
+     * è¿”å›Pair<String, Integer>("offer",-1);
      * </pre>
      */
     public static Pair<String, Integer> splitIndex(String src, char l, char r) {

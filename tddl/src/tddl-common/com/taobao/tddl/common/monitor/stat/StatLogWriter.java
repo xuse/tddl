@@ -1,19 +1,19 @@
 package com.taobao.tddl.common.monitor.stat;
 
 /**
- * Í³¼ÆĞÅÏ¢µÄÈÕÖ¾Êä³ö½Ó¿Ú¡£ <br />
+ * ç»Ÿè®¡ä¿¡æ¯çš„æ—¥å¿—è¾“å‡ºæ¥å£ã€‚ <br />
  * 
- * ¹¤¾ßµÄ¹¦ÄÜÊÇ¶ÔÏàÍ¬Ä¿±êµÄÍ³¼ÆÊı¾İºÏ²¢Êä³ö, ¼ÆËã³ö min/max/avg, ¶¨Ê±Ë¢³öµ½ÈÕÖ¾¡£ <br />
+ * å·¥å…·çš„åŠŸèƒ½æ˜¯å¯¹ç›¸åŒç›®æ ‡çš„ç»Ÿè®¡æ•°æ®åˆå¹¶è¾“å‡º, è®¡ç®—å‡º min/max/avg, å®šæ—¶åˆ·å‡ºåˆ°æ—¥å¿—ã€‚ <br />
  * 
  * <pre>
  * StatLogWriter.write(
- *     new Object[] { key1, key2, key3, ... },  // Í³¼ÆµÄÄ¿±ê
- *     number1, number2, ...);                  // Í³¼ÆÖµ
+ *     new Object[] { key1, key2, key3, ... },  // ç»Ÿè®¡çš„ç›®æ ‡
+ *     number1, number2, ...);                  // ç»Ÿè®¡å€¼
  * 
  * StatLogWriter.write(
- *     new Object[] { key1, key2, key3, ... },  // Í³¼ÆµÄÄ¿±ê
- *     new Object[] { obj1, obj2, obj3, ... },  // Êµ¼ÊµÄÊä³öÏî
- *     number1, number2, ...);                  // Í³¼ÆÖµ
+ *     new Object[] { key1, key2, key3, ... },  // ç»Ÿè®¡çš„ç›®æ ‡
+ *     new Object[] { obj1, obj2, obj3, ... },  // å®é™…çš„è¾“å‡ºé¡¹
+ *     number1, number2, ...);                  // ç»Ÿè®¡å€¼
  * </pre>
  * 
  * @author changyuan.lh
@@ -25,23 +25,23 @@ public abstract class StatLogWriter {
 	}
 
 	/**
-	 * Í³¼ÆĞÅÏ¢·Ö³ÉÈı²¿·Ö£º»ã×ÜÄ¿±ê/key, Í³¼ÆÄ¿±êĞÅÏ¢/fields, Êı¾İ/values.
+	 * ç»Ÿè®¡ä¿¡æ¯åˆ†æˆä¸‰éƒ¨åˆ†ï¼šæ±‡æ€»ç›®æ ‡/key, ç»Ÿè®¡ç›®æ ‡ä¿¡æ¯/fields, æ•°æ®/values.
 	 * 
-	 * Ê×ÏÈ×é¼ş»á¸ù¾İ»ã×ÜÄ¿±ê/key ÔÚÄÚ´æÖĞ»ã¼¯ÈÕÖ¾Êı¾İÒÔ¼õÉÙÈÕÖ¾Á¿, È»ºóË¢³öµ½ÈÕÖ¾ÎÄ¼ş¡£
+	 * é¦–å…ˆç»„ä»¶ä¼šæ ¹æ®æ±‡æ€»ç›®æ ‡/key åœ¨å†…å­˜ä¸­æ±‡é›†æ—¥å¿—æ•°æ®ä»¥å‡å°‘æ—¥å¿—é‡, ç„¶ååˆ·å‡ºåˆ°æ—¥å¿—æ–‡ä»¶ã€‚
 	 * 
 	 * @param keys
-	 *            »ã×ÜµÄÄ¿±ê, Í¨³£Óë×îºóÊä³öµ½ÈÕÖ¾µÄÍ³¼ÆÄ¿±êĞÅÏ¢/fields ÏàÍ¬¡£
+	 *            æ±‡æ€»çš„ç›®æ ‡, é€šå¸¸ä¸æœ€åè¾“å‡ºåˆ°æ—¥å¿—çš„ç»Ÿè®¡ç›®æ ‡ä¿¡æ¯/fields ç›¸åŒã€‚
 	 * 
 	 * @param fields
-	 *            ÈÕÖ¾¼ÇÂ¼×Ö¶Î, ´ú±í×îºóÊä³öµ½ÈÕÖ¾µÄÄÚÈİºÍË³Ğò¡£ÄÚÈİÖÁÉÙ°üº¬»ã×ÜÄ¿±ê/key.
+	 *            æ—¥å¿—è®°å½•å­—æ®µ, ä»£è¡¨æœ€åè¾“å‡ºåˆ°æ—¥å¿—çš„å†…å®¹å’Œé¡ºåºã€‚å†…å®¹è‡³å°‘åŒ…å«æ±‡æ€»ç›®æ ‡/key.
 	 * 
 	 * @param values
-	 *            Êä³öµÄÍ³¼ÆÊı¾İ, Ô¼¶¨µÚÒ»¸öÖµÊÇÊıÁ¿, ºóÃæµÄÊÇÍ³¼ÆÖµ (RT, ²¢·¢Á¿, etc).
+	 *            è¾“å‡ºçš„ç»Ÿè®¡æ•°æ®, çº¦å®šç¬¬ä¸€ä¸ªå€¼æ˜¯æ•°é‡, åé¢çš„æ˜¯ç»Ÿè®¡å€¼ (RT, å¹¶å‘é‡, etc).
 	 */
 	public abstract void write(Object[] keys, Object[] fields, // NL
 			long... values);
 
-	/* ¶à¸öÍ³¼ÆÖµµÄ¼ò±ãµ÷ÓÃÈë¿Ú */
+	/* å¤šä¸ªç»Ÿè®¡å€¼çš„ç®€ä¾¿è°ƒç”¨å…¥å£ */
 	public final void log(Object key, long... values) {
 		Object[] keys = new Object[] { key };
 		write(keys, keys, values);
@@ -57,7 +57,7 @@ public abstract class StatLogWriter {
 		write(keys, keys, values);
 	}
 
-	/* ´ÎÊı/Í³¼ÆÖµµÄ¼ò±ãµ÷ÓÃÈë¿Ú */
+	/* æ¬¡æ•°/ç»Ÿè®¡å€¼çš„ç®€ä¾¿è°ƒç”¨å…¥å£ */
 	public final void stat(Object key, long value) {
 		Object[] keys = new Object[] { key };
 		write(keys, keys, new long[] { 1L, value });

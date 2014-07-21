@@ -21,8 +21,8 @@ import com.taobao.tddl.client.jdbc.sqlexecutor.RealSqlExecutor;
 import com.taobao.tddl.client.util.ExceptionUtils;
 
 /**
- * ÖØÊÔµÄÂß¼­: 1. Ğ´²»ÖØÊÔ 2. sql 1 ¶Ô 1 µÄ¶ÁÈ¡£¬Ö»ÒªÓĞÒ»¸öresultSet£¬¾Í²»ÏÔÊ¾µÄÅ×³ö´íÎó£¬Ö»´ò´íÎólog.
- * Èç¹ûÒ»¸öresultSet¶¼Ã´ÓĞ£¬ÔòÏÔÊ¾Å×³ö´íÎó¡£ 3. sql 1 ¶Ô ¶àµÄ¶ÁÈ¡£¬Ö»ÒªÓĞÒ»¸öresultSet£¬ÄÇÃ´¾Í²»ÏÔÊ¾µÄÅ×³ö´íÎó£¬Ö»´òÓ¡´íÎólog
+ * é‡è¯•çš„é€»è¾‘: 1. å†™ä¸é‡è¯• 2. sql 1 å¯¹ 1 çš„è¯»å–ï¼Œåªè¦æœ‰ä¸€ä¸ªresultSetï¼Œå°±ä¸æ˜¾ç¤ºçš„æŠ›å‡ºé”™è¯¯ï¼Œåªæ‰“é”™è¯¯log.
+ * å¦‚æœä¸€ä¸ªresultSetéƒ½ä¹ˆæœ‰ï¼Œåˆ™æ˜¾ç¤ºæŠ›å‡ºé”™è¯¯ã€‚ 3. sql 1 å¯¹ å¤šçš„è¯»å–ï¼Œåªè¦æœ‰ä¸€ä¸ªresultSetï¼Œé‚£ä¹ˆå°±ä¸æ˜¾ç¤ºçš„æŠ›å‡ºé”™è¯¯ï¼Œåªæ‰“å°é”™è¯¯log
  *
  * @author shenxun
  * @author junyu
@@ -31,45 +31,45 @@ import com.taobao.tddl.client.util.ExceptionUtils;
 public class SimpleTResultSet extends ProxyTResultSet {
 	private static final Log log = LogFactory.getLog(SimpleTResultSet.class);
 	/**
-	 * µ±Ç°³ÖÓĞµÄstatement
+	 * å½“å‰æŒæœ‰çš„statement
 	 */
 	protected Statement statement;
 	/**
-	 * µ±Ç°³ÖÓĞµÄresultSet
+	 * å½“å‰æŒæœ‰çš„resultSet
 	 */
 	protected ResultSet resultSet;
 	/**
-	 * µ±Ç°Êı¾İ¿âselector µÄid
+	 * å½“å‰æ•°æ®åº“selector çš„id
 	 */
 	protected String currentDBIndex = null;
 	protected int fetchSize = -1;
 	protected int tableIndex = 0;
 	/**
-	 * µ÷ÓÃResultSetµÄtStatement
+	 * è°ƒç”¨ResultSetçš„tStatement
 	 */
 	protected final TStatementImp tStatementImp;
 
 	/**
-	 * Ö´ĞĞ¼Æ»®
+	 * æ‰§è¡Œè®¡åˆ’
 	 */
 	protected final ExecutionPlan executionPlan;
 
 	/**
-	 * SqlÖ´ĞĞÆ÷
+	 * Sqlæ‰§è¡Œå™¨
 	 */
 	protected final RealSqlExecutor realSqlExecutor;
 
 	/**
-	 * ÊÇ·ñ³õÊ¼»¯q
+	 * æ˜¯å¦åˆå§‹åŒ–q
 	 */
 	protected boolean inited = false;
 
 	/**
-	 * µ½ÄÄ½áÊø
+	 * åˆ°å“ªç»“æŸ
 	 */
 	protected int limitTo = -1;
 	/**
-	 * ´ÓÄÄ¿ªÊ¼
+	 * ä»å“ªå¼€å§‹
 	 */
 	protected int limitFrom = 0;
 
@@ -89,7 +89,7 @@ public class SimpleTResultSet extends ProxyTResultSet {
 		super(connectionManager);
 		this.tStatementImp = tStatementImp;
 
-		// add by jiechen.qzm ¹Ø±Õ½á¹û¼¯Ê±µÄÅĞ¶ÏĞèÒªÕâ¸öÊ±¼ä
+		// add by jiechen.qzm å…³é—­ç»“æœé›†æ—¶çš„åˆ¤æ–­éœ€è¦è¿™ä¸ªæ—¶é—´
 		super.setResultSetProperty(tStatementImp);
 		// add end
 
@@ -97,7 +97,7 @@ public class SimpleTResultSet extends ProxyTResultSet {
 		this.realSqlExecutor=realSqlExecutor;
 		startQueryTime = System.currentTimeMillis();
 		if(init){
-			//³õÊ¼»¯Ò»ÏÂ
+			//åˆå§‹åŒ–ä¸€ä¸‹
 			hasMoreResourcesOnInit = superReload();
 		}
 	}
@@ -107,12 +107,12 @@ public class SimpleTResultSet extends ProxyTResultSet {
 		if (limitTo == 0) {
 			return false;
 		}
-		// ³õÊ¼»¯
+		// åˆå§‹åŒ–
 		if (!inited) {
 			inited = true;
 			if(!hasMoreResourcesOnInit){
-				//±íÊ¾Ã»ÓĞ¿É¹©Ñ¡ÔñµÄÊı¾İÔ´£¬¹æÔòÄÚÊı¾İÔ´Îª¿Õ£¬»òÒì³££¬×Ü¶øÑÔÖ®Õı³£Çé¿öÏÂ²»¿ÉÄÜ×ßµ½ÕâÀï¡£
-				throw new SQLException("½á¹û¼¯Îª¿Õ£¬¿ÉÄÜÊÇÓÉÓÚÓĞ¿Õ¿â¿Õ±í»òqueryÒì³£µ¼ÖÂ£¬²»Ó¦¸Ã×ßµ½ÕâÀï");
+				//è¡¨ç¤ºæ²¡æœ‰å¯ä¾›é€‰æ‹©çš„æ•°æ®æºï¼Œè§„åˆ™å†…æ•°æ®æºä¸ºç©ºï¼Œæˆ–å¼‚å¸¸ï¼Œæ€»è€Œè¨€ä¹‹æ­£å¸¸æƒ…å†µä¸‹ä¸å¯èƒ½èµ°åˆ°è¿™é‡Œã€‚
+				throw new SQLException("ç»“æœé›†ä¸ºç©ºï¼Œå¯èƒ½æ˜¯ç”±äºæœ‰ç©ºåº“ç©ºè¡¨æˆ–queryå¼‚å¸¸å¯¼è‡´ï¼Œä¸åº”è¯¥èµ°åˆ°è¿™é‡Œ");
 			}
 			Map<String, List<RealSqlContext>> map = executionPlan.getSqlMap();
 			if (map.size() == 0) {
@@ -122,7 +122,7 @@ public class SimpleTResultSet extends ProxyTResultSet {
 			if (tableSize != 1 || map.size() != 1) {
 				for (int i = 0; i < limitFrom; i++) {
 					if (!next()) {
-						// Èç¹ûnext·µ»Øfalse,Ôò±íÊ¾µ±Ç°ÒÑ¾­Ã»ÓĞÊı¾İ¿ÉÒÔ·µ»Ø£¬Ö±½Ó·µ»Øfalse
+						// å¦‚æœnextè¿”å›false,åˆ™è¡¨ç¤ºå½“å‰å·²ç»æ²¡æœ‰æ•°æ®å¯ä»¥è¿”å›ï¼Œç›´æ¥è¿”å›false
 						return false;
 					}
 				}
@@ -130,7 +130,7 @@ public class SimpleTResultSet extends ProxyTResultSet {
 
 		}
 		/*
-		 * // ±íÊ¾µ±Ç°ÒÑ¾­Ã»ÓĞ¿ÉÓÃµÄresultSetÁË¡£ if (resultSet == null) { return false; }
+		 * // è¡¨ç¤ºå½“å‰å·²ç»æ²¡æœ‰å¯ç”¨çš„resultSetäº†ã€‚ if (resultSet == null) { return false; }
 		 */
 		while (true) {
 			if (resultSet == null) {
@@ -141,14 +141,14 @@ public class SimpleTResultSet extends ProxyTResultSet {
 			// it.
 			
 			if (resultSet.next()) {
-				// ÓĞ¿ÉÓÃ×ÊÔ´£¬ÄÇÃ´Ö¸ÕëÒÑ¾­ÏÂÒÆ£¬·µ»Øtrue¼´¿É
+				// æœ‰å¯ç”¨èµ„æºï¼Œé‚£ä¹ˆæŒ‡é’ˆå·²ç»ä¸‹ç§»ï¼Œè¿”å›trueå³å¯
 				limitTo--;
 				return true;
 			}
 			
 			if (!superReload()) {
-				// Èç¹ûÃ»ÓĞ¿ÉÓÃ×ÊÔ´ÁË£¬Òª·µ»Øfalse¡£Èç¹û»¹ÓĞ¿ÉÓÃ×ÊÔ´£¬ÄÇÃ´reload»áÖØÖÃ statementºÍresultset
-				// ×ßµ½resultSet.next()¼ÌĞøÅĞ¶ÏÊÇ·ñÓĞ¿ÉÓÃ×ÊÔ´
+				// å¦‚æœæ²¡æœ‰å¯ç”¨èµ„æºäº†ï¼Œè¦è¿”å›falseã€‚å¦‚æœè¿˜æœ‰å¯ç”¨èµ„æºï¼Œé‚£ä¹ˆreloadä¼šé‡ç½® statementå’Œresultset
+				// èµ°åˆ°resultSet.next()ç»§ç»­åˆ¤æ–­æ˜¯å¦æœ‰å¯ç”¨èµ„æº
 				return false;
 			}
 
@@ -159,16 +159,16 @@ public class SimpleTResultSet extends ProxyTResultSet {
 	protected boolean superReload() throws SQLException{
 		List<SQLException> sqlExceptions = new LinkedList<SQLException>();
 		/**
-		 * ÎŞÂÛÈçºÎÏÈÇåµôÖ®Ç°µÄstatementºÍresultset
-		 * ÒòÎªSimpleTResultSetÖ»³ÖÓĞÒ»¸öresultsetºÍstatement
-		 * ËùÒÔÎŞÂÛ´®ĞĞºÍ²¢ĞĞ±ØĞëÔÚreloadÖ®Ç°ÇåµôÖ®Ç°
-		 * ³ÖÓĞµÄstatementºÍresultset
+		 * æ— è®ºå¦‚ä½•å…ˆæ¸…æ‰ä¹‹å‰çš„statementå’Œresultset
+		 * å› ä¸ºSimpleTResultSetåªæŒæœ‰ä¸€ä¸ªresultsetå’Œstatement
+		 * æ‰€ä»¥æ— è®ºä¸²è¡Œå’Œå¹¶è¡Œå¿…é¡»åœ¨reloadä¹‹å‰æ¸…æ‰ä¹‹å‰
+		 * æŒæœ‰çš„statementå’Œresultset
 		 */
 		closeAndClearResources(sqlExceptions);
 
 		QueryReturn qr=realSqlExecutor.query();
 		
-		//Èç¹ûqrÎªnull,ËµÃ÷½á¹û¼¯È¡¾¡
+		//å¦‚æœqrä¸ºnull,è¯´æ˜ç»“æœé›†å–å°½
 		if(null==qr){
 			return false;
 		}
@@ -203,7 +203,7 @@ public class SimpleTResultSet extends ProxyTResultSet {
 	}
 
 	/**
-	 * Çåµô²¢¹Ø±Õµ±Ç°statementµÄ×ÊÔ´
+	 * æ¸…æ‰å¹¶å…³é—­å½“å‰statementçš„èµ„æº
 	 *
 	 * @param exceptions
 	 * @param closeConnection
@@ -229,7 +229,7 @@ public class SimpleTResultSet extends ProxyTResultSet {
 				statement = null;
 			}
 		}
-		// ´òÉ¨Õ½³¡µÄÊ±ºò²»Å×³öÒì³££¬Èç¹ûÅ×³öÒì³££¬Ôò¿Ï¶¨×îÉÙ²éÁËÒ»´ÎÁË£¬ËùÒÔ²»»á×ßµ½catch¶ÎÖĞ
+		// æ‰“æ‰«æˆ˜åœºçš„æ—¶å€™ä¸æŠ›å‡ºå¼‚å¸¸ï¼Œå¦‚æœæŠ›å‡ºå¼‚å¸¸ï¼Œåˆ™è‚¯å®šæœ€å°‘æŸ¥äº†ä¸€æ¬¡äº†ï¼Œæ‰€ä»¥ä¸ä¼šèµ°åˆ°catchæ®µä¸­
 		return exceptions;
 	}
 
@@ -242,7 +242,7 @@ public class SimpleTResultSet extends ProxyTResultSet {
 
 	protected void checkPoint() throws SQLException {
 		if (resultSet == null) {
-			throw new SQLException("½á¹û¼¯Îª¿Õ»òÒÑ¾­È¡¾¡");
+			throw new SQLException("ç»“æœé›†ä¸ºç©ºæˆ–å·²ç»å–å°½");
 		}
 	}
 
@@ -298,12 +298,12 @@ public class SimpleTResultSet extends ProxyTResultSet {
 		}
 
 		/**
-		 * ·ÀÖ¹²éµ½Ò»°ë·ÅÆú²éÑ¯
+		 * é˜²æ­¢æŸ¥åˆ°ä¸€åŠæ”¾å¼ƒæŸ¥è¯¢
 		 */
 		realSqlExecutor.clearQueryResource();
 
 		closed = true;
-		// Í³¼ÆÕû¸ö²éÑ¯µÄºÄÊ±¡£»òĞí²»ÊÇºÜ×¼£¬µ«±È½ÏÖØÒª¡£
+		// ç»Ÿè®¡æ•´ä¸ªæŸ¥è¯¢çš„è€—æ—¶ã€‚æˆ–è®¸ä¸æ˜¯å¾ˆå‡†ï¼Œä½†æ¯”è¾ƒé‡è¦ã€‚
 		long elapsedTime = System.currentTimeMillis() - startQueryTime;
 		profileDuringTime(exceptions, executionPlan.getVirtualTableName().toString(),
 				executionPlan.getOriginalSql(), elapsedTime);
@@ -327,13 +327,13 @@ public class SimpleTResultSet extends ProxyTResultSet {
 			this.statement = null;
 		}
 
-		// ×îºóÒª³¢ÊÔ¹Ø±Õµ±Ç°Á¬½Ó
+		// æœ€åè¦å°è¯•å…³é—­å½“å‰è¿æ¥
 		if(currentDBIndex != null){
-			//currentDBIndex == nullÔò±íÊ¾»¹Ã»ÓĞ³õÊ¼»¯¾Íµ÷ÓÃÁË¹Ø±Õ
+			//currentDBIndex == nullåˆ™è¡¨ç¤ºè¿˜æ²¡æœ‰åˆå§‹åŒ–å°±è°ƒç”¨äº†å…³é—­
 			exceptions = tryCloseConnection(exceptions, currentDBIndex);
 		}
 
-		//ÒÔ·ÀÍòÒ»
+		//ä»¥é˜²ä¸‡ä¸€
 		for (String key : executionPlan.getSqlMap().keySet()) {
 			exceptions = tryCloseConnection(exceptions, key);
 		}
@@ -344,7 +344,7 @@ public class SimpleTResultSet extends ProxyTResultSet {
 
 	private void writeLogOrThrowSQLException(String message,
 			List<SQLException> sqlExceptions) throws SQLException {
-		// ÕâÊ±ºòÅ×³öÒì³£,Èç¹ûÓĞÒì³£µÄ»°
+		// è¿™æ—¶å€™æŠ›å‡ºå¼‚å¸¸,å¦‚æœæœ‰å¼‚å¸¸çš„è¯
 		ExceptionUtils.throwSQLException(sqlExceptions, executionPlan
 				.getOriginalSql(), executionPlan.getOriginalArgs());
 

@@ -12,7 +12,7 @@ import com.taobao.tddl.jdbc.atom.common.TAtomConstants;
 import com.taobao.tddl.jdbc.atom.jdbc.ConnRestrictEntry;
 
 /**
- * TAtomÊı¾İÔ´È«¾ÖºÍÓ¦ÓÃÅäÖÃµÄDO
+ * TAtomæ•°æ®æºå…¨å±€å’Œåº”ç”¨é…ç½®çš„DO
  * 
  * @author qihao
  * @author shenxun
@@ -59,39 +59,39 @@ public class TAtomDsConfDO implements Cloneable {
 	private Map<String, String> connectionProperties = new HashMap<String, String>();
 
 	/**
-	 * Ğ´ ´ÎÊıÏŞÖÆ
+	 * å†™ æ¬¡æ•°é™åˆ¶
 	 */
 	private int writeRestrictTimes;
 
 	/**
-	 * ¶Á ´ÎÊıÏŞÖÆ
+	 * è¯» æ¬¡æ•°é™åˆ¶
 	 */
 	private int readRestrictTimes;
 
 	/**
-	 * Í³¼ÆÊ±¼äÆ¬ 
+	 * ç»Ÿè®¡æ—¶é—´ç‰‡ 
 	 */
 	private int timeSliceInMillis;
 
 	/**
-	 * Ïß³Ì¼¼ÊõcountÏŞÖÆ
+	 * çº¿ç¨‹æŠ€æœ¯counté™åˆ¶
 	 */
 	private int threadCountRestrict;
 
 	/**
-	 * ÔÊĞí²¢·¢¶ÁµÄ×î´ó¸öÊı£¬0Îª²»ÏŞÖÆ
+	 * å…è®¸å¹¶å‘è¯»çš„æœ€å¤§ä¸ªæ•°ï¼Œ0ä¸ºä¸é™åˆ¶
 	 */
 	private int maxConcurrentReadRestrict;
 
 	/**
-	 * ÔÊĞí²¢·¢Ğ´µÄ×î´ó¸öÊı£¬0Îª²»ÏŞÖÆ
+	 * å…è®¸å¹¶å‘å†™çš„æœ€å¤§ä¸ªæ•°ï¼Œ0ä¸ºä¸é™åˆ¶
 	 */
 	private int maxConcurrentWriteRestrict;
 	
 	private volatile boolean isSingleInGroup;
 
 	/**
-	 * Ó¦ÓÃÁ¬½ÓÏŞÖÆ: ÏŞÖÆÄ³¸öÓ¦ÓÃ¼üÖµµÄ²¢·¢Á¬½ÓÊı¡£
+	 * åº”ç”¨è¿æ¥é™åˆ¶: é™åˆ¶æŸä¸ªåº”ç”¨é”®å€¼çš„å¹¶å‘è¿æ¥æ•°ã€‚
 	 */
 	private List<ConnRestrictEntry> connRestrictEntries;
 	

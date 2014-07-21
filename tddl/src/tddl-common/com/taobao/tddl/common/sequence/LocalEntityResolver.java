@@ -5,7 +5,7 @@ import org.xml.sax.InputSource;
 
 /*
  * @author guangxia
- * @since 1.0, 2009-5-12 ÏÂÎç08:39:02
+ * @since 1.0, 2009-5-12 ä¸‹åˆ08:39:02
  */
 public class LocalEntityResolver implements EntityResolver {
 

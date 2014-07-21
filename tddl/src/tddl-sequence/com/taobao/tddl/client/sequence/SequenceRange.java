@@ -3,7 +3,7 @@ package com.taobao.tddl.client.sequence;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * ĞòÁĞÇø¼ä
+ * åºåˆ—åŒºé—´
  *
  * @author nianbing
  */

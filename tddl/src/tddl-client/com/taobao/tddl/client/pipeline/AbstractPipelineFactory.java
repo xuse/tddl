@@ -18,18 +18,18 @@ import com.taobao.tddl.rule.bean.LogicTable;
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteCondition;
 
 /**
- * @description ³éÏóÀà,Ìá¹©sqlDispatcherÑ¡Ôñ,sqlÀàĞÍÑ¡Ôñ,sqlÔ¤½âÎöºÍ±í¼¶±ğ
- *              Êı¾İ¿âÀàĞÍÑ¡Ôñ µÈ¹¦ÄÜ,¼Ì³ĞPipelineFactory½Ó¿Ú
- *              DefaultPipelineFactoryºÍNewRulePipelineFactory¼Ì³Ğ´ËÀà,
- *              ĞèÒªÊµÏÖgetPipeline()·½·¨.
+ * @description æŠ½è±¡ç±»,æä¾›sqlDispatcheré€‰æ‹©,sqlç±»å‹é€‰æ‹©,sqlé¢„è§£æå’Œè¡¨çº§åˆ«
+ *              æ•°æ®åº“ç±»å‹é€‰æ‹© ç­‰åŠŸèƒ½,ç»§æ‰¿PipelineFactoryæ¥å£
+ *              DefaultPipelineFactoryå’ŒNewRulePipelineFactoryç»§æ‰¿æ­¤ç±»,
+ *              éœ€è¦å®ç°getPipeline()æ–¹æ³•.
  *              
- *              ×Ô¶¨ÒåµÄPipelineFactoryÊµÏÖÕâ¸ö³éÏóÀà,ÒÔ±ãÌá¹©×Ô¶¨ÒåhandlerµÄ
+ *              è‡ªå®šä¹‰çš„PipelineFactoryå®ç°è¿™ä¸ªæŠ½è±¡ç±»,ä»¥ä¾¿æä¾›è‡ªå®šä¹‰handlerçš„
  *              pipeline
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-08-15ÏÂÎç03:24:42
+ * @date 2010-08-15ä¸‹åˆ03:24:42
  */
 public abstract class AbstractPipelineFactory implements PipelineFactory {
 	public static final Log logger=LogFactory.getLog(AbstractPipelineFactory.class);
@@ -66,7 +66,7 @@ public abstract class AbstractPipelineFactory implements PipelineFactory {
 	}
 	
 	public DirectlyRouteCondition sqlPreParse(String sql) throws SQLException {
-		//Èç¹ûÓÃ»§Ö¸¶¨ÁËROUTE_CONDITION»òÕßDB_SELECTOR£¬ÄÇÃ´Ìø¹ıÔ¤½âÎö£¬·ÀÖ¹¸ÉÈÅ
+		//å¦‚æœç”¨æˆ·æŒ‡å®šäº†ROUTE_CONDITIONæˆ–è€…DB_SELECTORï¼Œé‚£ä¹ˆè·³è¿‡é¢„è§£æï¼Œé˜²æ­¢å¹²æ‰°
 		if (null != ThreadLocalMap.get(ThreadLocalString.ROUTE_CONDITION)
 				|| null != ThreadLocalMap.get(ThreadLocalString.DB_SELECTOR)
 				|| null != ThreadLocalMap.get(ThreadLocalString.RULE_SELECTOR)) {
@@ -89,7 +89,7 @@ public abstract class AbstractPipelineFactory implements PipelineFactory {
 		    throw new SQLException("the defaultDispatcher have no defaultDbIndex");	
 		}
 		
-		//±íÃû²»´æÔÚlogicTable mapÖĞ£¬ÄÇÃ´Éú³ÉCondition£¬Ö¸¶¨Ö´ĞĞdbIndex·µ»Ø
+		//è¡¨åä¸å­˜åœ¨logicTable mapä¸­ï¼Œé‚£ä¹ˆç”ŸæˆConditionï¼ŒæŒ‡å®šæ‰§è¡ŒdbIndexè¿”å›
 		DirectlyRouteCondition condition = new DirectlyRouteCondition();
 		condition.setDBId(this.defaultDispatcher.getRoot()
 				.getDefaultDBSelectorID());

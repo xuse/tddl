@@ -5,23 +5,23 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 /**
- * TODO:小心tair有可能的并发问题
+ * TODO:灏忓績tair鏈夊彲鑳界殑骞跺彂闂
  * @author shenxun
  *
  */
 public interface MapCache {
 	/**
-	 * 放入
-	 * @param nameSpace 对应表名，也对应cache中的namespace
+	 * 鏀惧叆
+	 * @param nameSpace 瀵瑰簲琛ㄥ悕锛屼篃瀵瑰簲cache涓殑namespace
 	 * @param values
 	 * @return affect rows
 	 */
 	public int put(String nameSpace ,Map<String, Object> values);
 	/**
-	 * 拿出
-	 * @param nameSpace 对应表名，也对应cache中的namespace
-	 * @param key 对应key
-	 * @param column 该value在sql中的列名，key的列名是和dba进行约定就可以解决的
+	 * 鎷垮嚭
+	 * @param nameSpace 瀵瑰簲琛ㄥ悕锛屼篃瀵瑰簲cache涓殑namespace
+	 * @param key 瀵瑰簲key
+	 * @param column 璇alue鍦╯ql涓殑鍒楀悕锛宬ey鐨勫垪鍚嶆槸鍜宒ba杩涜绾﹀畾灏卞彲浠ヨВ鍐崇殑
 	 * @return
 	 */
 	public Object get(String nameSpace ,Object key,String column);

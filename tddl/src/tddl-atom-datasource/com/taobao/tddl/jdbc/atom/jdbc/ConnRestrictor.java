@@ -10,27 +10,27 @@ import com.alibaba.common.lang.StringUtil;
 import com.taobao.tddl.jdbc.atom.AtomDataSourceHelper;
 
 /**
- * Ó¦ÓÃÁ¬½ÓÏŞÖÆµÄÖ÷ÒªÂß¼­ÊµÏÖ¡£
+ * åº”ç”¨è¿æ¥é™åˆ¶çš„ä¸»è¦é€»è¾‘å®ç°ã€‚
  */
 public class ConnRestrictor {
 
 	/**
-	 * MAP ²ßÂÔµÄÓ¦ÓÃÁ¬½ÓÏŞÖÆ, ¾«È·µÄÆ¥Åä Key ºÍÁ¬½Ó²Û¡£
+	 * MAP ç­–ç•¥çš„åº”ç”¨è¿æ¥é™åˆ¶, ç²¾ç¡®çš„åŒ¹é… Key å’Œè¿æ¥æ§½ã€‚
 	 */
 	private HashMap<String, ConnRestrictSlot> mapConnRestrict;
 
 	/**
-	 * HASH ²ßÂÔµÄÓ¦ÓÃÁ¬½ÓÏŞÖÆ, ÓÃ Hash + È¡Ä£µÄ·½Ê½Æ¥Åä Key ºÍÁ¬½Ó²Û¡£
+	 * HASH ç­–ç•¥çš„åº”ç”¨è¿æ¥é™åˆ¶, ç”¨ Hash + å–æ¨¡çš„æ–¹å¼åŒ¹é… Key å’Œè¿æ¥æ§½ã€‚
 	 */
 	private ConnRestrictSlot[] hashConnRestrict;
 
 	/**
-	 * Ã»ÓĞ¶¨ÒåÒµÎñ¼ü (null Key) µÄÁ¬½ÓÏŞÖÆ²Û¡£
+	 * æ²¡æœ‰å®šä¹‰ä¸šåŠ¡é”® (null Key) çš„è¿æ¥é™åˆ¶æ§½ã€‚
 	 */
 	private ConnRestrictSlot nullKeyRestrictSlot;
 
 	/**
-	 * ³õÊ¼»¯Ó¦ÓÃÁ¬½ÓÏŞÖÆµÄÊı¾İ½á¹¹, ÕâĞ©Êı¾İ½á¹¹Ö»»á±»³õÊ¼»¯Ò»´Î¡£
+	 * åˆå§‹åŒ–åº”ç”¨è¿æ¥é™åˆ¶çš„æ•°æ®ç»“æ„, è¿™äº›æ•°æ®ç»“æ„åªä¼šè¢«åˆå§‹åŒ–ä¸€æ¬¡ã€‚
 	 */
 	public ConnRestrictor(String datasourceKey, List<ConnRestrictEntry> connRestrictEntries) {
 		for (ConnRestrictEntry connRestrictEntry : connRestrictEntries) {
@@ -45,7 +45,7 @@ public class ConnRestrictor {
 					maxHashSize = ConnRestrictEntry.MAX_HASH_RESTRICT_SLOT;
 				}
 				if (hashConnRestrict == null) {
-					// Ã¿¸ö HASH ·ÖÆ¬¶¼ÓÃ¶ÀÁ¢µÄ²Û
+					// æ¯ä¸ª HASH åˆ†ç‰‡éƒ½ç”¨ç‹¬ç«‹çš„æ§½
 					hashConnRestrict = new ConnRestrictSlot[maxHashSize];
 					for (int i = 0; i < maxHashSize; i++) {
 						hashConnRestrict[i] = new ConnRestrictSlot(datasourceKey, 
@@ -59,7 +59,7 @@ public class ConnRestrictor {
 							slotKeys[0], connRestrictEntry);
 				}
 			} else {
-				// ×¢Òâ, ÕâÀï¶à¸öÒµÎñ¼üÍ¬Ê±¹ØÁªµ½Ò»¸ö²Û
+				// æ³¨æ„, è¿™é‡Œå¤šä¸ªä¸šåŠ¡é”®åŒæ—¶å…³è”åˆ°ä¸€ä¸ªæ§½
 				ConnRestrictSlot connRestrictSlot = new ConnRestrictSlot(datasourceKey, 
 						StringUtil.join(slotKeys, '|'), connRestrictEntry);
 				if (mapConnRestrict == null) {
@@ -81,18 +81,18 @@ public class ConnRestrictor {
 	}
 
 	/**
-	 * ´ÓÊı¾İ½á¹¹ÖĞ²éÕÒÓ¦ÓÃÁ¬½ÓÏŞÖÆµÄ²Û¡£
+	 * ä»æ•°æ®ç»“æ„ä¸­æŸ¥æ‰¾åº”ç”¨è¿æ¥é™åˆ¶çš„æ§½ã€‚
 	 */
 	public ConnRestrictSlot findSlot(Object connKey) {
 		if (connKey != null) {
 			ConnRestrictSlot connRestrictSlot = null;
 			if (mapConnRestrict != null) {
-				// Ê×ÏÈ¾«È·Æ¥Åä
+				// é¦–å…ˆç²¾ç¡®åŒ¹é…
 				connRestrictSlot = mapConnRestrict.get(String.valueOf(connKey));
 			}
 			if (connRestrictSlot == null) {
 				if (hashConnRestrict != null) {
-					// Èç¹ûÃ»ÓĞ¾«È·Ö¸¶¨, ÔòÓÃ HASH ·½Ê½
+					// å¦‚æœæ²¡æœ‰ç²¾ç¡®æŒ‡å®š, åˆ™ç”¨ HASH æ–¹å¼
 					final int hash = Math.abs(connKey.hashCode()
 							% hashConnRestrict.length);
 					connRestrictSlot = hashConnRestrict[hash];
@@ -100,22 +100,22 @@ public class ConnRestrictor {
 			}
 			return connRestrictSlot;
 		}
-		// Ã»ÓĞ¶¨ÒåÒµÎñ¼ü, ×ß null Key ²Û
+		// æ²¡æœ‰å®šä¹‰ä¸šåŠ¡é”®, èµ° null Key æ§½
 		return nullKeyRestrictSlot;
 	}
 
 	/**
-	 * Ó¦ÓÃÁ¬½ÓÏŞÖÆµÄÈë¿Úº¯Êı¡£
+	 * åº”ç”¨è¿æ¥é™åˆ¶çš„å…¥å£å‡½æ•°ã€‚
 	 */
 	public ConnRestrictSlot doRestrict(final int timeoutInMillis)
 			throws SQLException {
 		final Object connKey = AtomDataSourceHelper.getConnRestrictKey();
 		ConnRestrictSlot connRestrictSlot = findSlot(connKey);
 		try {
-			// Èç¹ûÃ»ÓĞÆ¥ÅäµÄ²Û, ºöÂÔÏŞÖÆ
+			// å¦‚æœæ²¡æœ‰åŒ¹é…çš„æ§½, å¿½ç•¥é™åˆ¶
 			if (connRestrictSlot != null) {
 				if (!connRestrictSlot.allocateConnection(timeoutInMillis)) {
-					// ×èÈû³¬Ê±
+					// é˜»å¡è¶…æ—¶
 					throw new NestedSQLException(
 							"No connection available for '" + connKey
 									+ "' within configured blocking timeout ("

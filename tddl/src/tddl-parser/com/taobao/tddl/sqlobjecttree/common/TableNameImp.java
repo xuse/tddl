@@ -77,7 +77,7 @@ public class TableNameImp implements TableName{
 		
 	}
 	public boolean equals(Object obj) {
-		//FIXME : equals Ã»ÓĞ¶Ônull½øĞĞÅĞ¶Ï
+		//FIXME : equals æ²¡æœ‰å¯¹nullè¿›è¡Œåˆ¤æ–­
 		if(obj==null){
 			return false;
 		}
@@ -118,7 +118,7 @@ public class TableNameImp implements TableName{
 		}else if(tablename!=null){
 			sb.append(tablename);
 		}else{
-			throw new IllegalArgumentException("±íÃû¶ÔÏóÖĞ²»ÄÜÈ±ÉÙ±íÃû");
+			throw new IllegalArgumentException("è¡¨åå¯¹è±¡ä¸­ä¸èƒ½ç¼ºå°‘è¡¨å");
 		}
 		if (getAlias() != null) {
 			sb.append(isOracle ? " " : " as ").append(getAlias());

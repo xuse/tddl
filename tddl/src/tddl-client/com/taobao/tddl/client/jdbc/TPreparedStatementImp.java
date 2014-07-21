@@ -310,7 +310,7 @@ public class TPreparedStatementImp extends TStatementImp implements
 	}
 
 	/**
-	 * batch ²Ù×÷ÖĞ£¬Èç¹ûÒ»¸öÁ¬½ÓÄÚµÄpst³öÏÖ¸üĞÂÒì³£¡£ ÔòÕû¸öÁ¬½ÓµÄºóĞø¸üĞÂ¶¼»áÖÕÖ¹¡£ µ«ÆäËûÁ¬½ÓµÄ¸üĞÂ»¹»á¼ÌĞø¡£ Ä¿Ç°²¢²»Ìá¹©·µ»ØÖµÉèÖÃ¡£
+	 * batch æ“ä½œä¸­ï¼Œå¦‚æœä¸€ä¸ªè¿æ¥å†…çš„pstå‡ºç°æ›´æ–°å¼‚å¸¸ã€‚ åˆ™æ•´ä¸ªè¿æ¥çš„åç»­æ›´æ–°éƒ½ä¼šç»ˆæ­¢ã€‚ ä½†å…¶ä»–è¿æ¥çš„æ›´æ–°è¿˜ä¼šç»§ç»­ã€‚ ç›®å‰å¹¶ä¸æä¾›è¿”å›å€¼è®¾ç½®ã€‚
 	 */
 	public int[] executeBatch() throws SQLException {
 		if (log.isDebugEnabled()) {
@@ -325,9 +325,9 @@ public class TPreparedStatementImp extends TStatementImp implements
 		List<Integer> result = new ArrayList<Integer>();
 		checkClosed();
 		ensureResultSetIsEmpty();
-//		Õâ¸öµØ·½µÈµ½Ö´ĞĞ¼Æ»®³öÀ´Ö®ºó£¬·¢ÏÖÈ·ÊµÓĞ¿ç¿âµÄÊÂÎñÔÙÓèÒÔ¾Ü¾ø¡£
+//		è¿™ä¸ªåœ°æ–¹ç­‰åˆ°æ‰§è¡Œè®¡åˆ’å‡ºæ¥ä¹‹åï¼Œå‘ç°ç¡®å®æœ‰è·¨åº“çš„äº‹åŠ¡å†äºˆä»¥æ‹’ç»ã€‚
 //		if (!connectionManager.getAutoCommit()) {
-//			throw new SQLException("executeBatchÔİ²»Ö§³ÖÊÂÎñ");
+//			throw new SQLException("executeBatchæš‚ä¸æ”¯æŒäº‹åŠ¡");
 //		}
 		if (pstArgs == null || pstArgs.isEmpty()) {
 			return new int[0];
@@ -335,10 +335,10 @@ public class TPreparedStatementImp extends TStatementImp implements
 		if (batchedArgs != null && !batchedArgs.isEmpty()
 				&& !connectionManager.getAutoCommit()) {
 			throw new SQLException(
-					"ÊÂÎñÖĞÔİÊ±²»Ö§³ÖaddBatch()ºÍaddBatch(String sql)»ìÓÃ£¬ÇëÑ¡ÔñÇ°ÕßÌæ»»£¬ÈçÊ¹ÓÃaddBatch(String sql),ÇëÊ¹ÓÃStatement");
+					"äº‹åŠ¡ä¸­æš‚æ—¶ä¸æ”¯æŒaddBatch()å’ŒaddBatch(String sql)æ··ç”¨ï¼Œè¯·é€‰æ‹©å‰è€…æ›¿æ¢ï¼Œå¦‚ä½¿ç”¨addBatch(String sql),è¯·ä½¿ç”¨Statement");
 		}
 		
-		Map<String/* dbselectorid */, Map<String/* sql */, List/* ÕâÌõsqlµÄ²ÎÊı */<List<ParameterContext>>>> pstExecutionContext = null;
+		Map<String/* dbselectorid */, Map<String/* sql */, List/* è¿™æ¡sqlçš„å‚æ•° */<List<ParameterContext>>>> pstExecutionContext = null;
 
 		DirectlyRouteCondition ruleCondition = (DirectlyRouteCondition) getRouteContiongFromThreadLocal(ThreadLocalString.RULE_SELECTOR);
 		if (ruleCondition != null) {
@@ -349,14 +349,14 @@ public class TPreparedStatementImp extends TStatementImp implements
 			pstExecutionContext = super.sortPreparedBatch(originalSQL, pstArgs,
 					null);
 		}	
-		//add by jiechen.qzm batch²»Ö§³Ö¿ç¿âÊÂÎñ
+		//add by jiechen.qzm batchä¸æ”¯æŒè·¨åº“äº‹åŠ¡
 		if(pstExecutionContext.size() > 1 && !connectionManager.getAutoCommit()) {
-			throw new SQLException("executeBatchÔİ²»Ö§³Ö¿ç¿âÊÂÎñ£¬¸ÃÊÂÎñÉæ¼° " + pstExecutionContext.size() + " ¸ö¿â¡£");
+			throw new SQLException("executeBatchæš‚ä¸æ”¯æŒè·¨åº“äº‹åŠ¡ï¼Œè¯¥äº‹åŠ¡æ¶‰åŠ " + pstExecutionContext.size() + " ä¸ªåº“ã€‚");
 		}
 		
-		//add by jiechen.qzm batch²»Ö§³Ö¿ç¿âÊÂÎñ
+		//add by jiechen.qzm batchä¸æ”¯æŒè·¨åº“äº‹åŠ¡
 		if(pstExecutionContext.size() > 1 && !connectionManager.getAutoCommit()) {
-			throw new SQLException("executeBatchÔİ²»Ö§³Ö¿ç¿âÊÂÎñ£¬¸ÃÊÂÎñÉæ¼° " + pstExecutionContext.size() + " ¸ö¿â¡£");
+			throw new SQLException("executeBatchæš‚ä¸æ”¯æŒè·¨åº“äº‹åŠ¡ï¼Œè¯¥äº‹åŠ¡æ¶‰åŠ " + pstExecutionContext.size() + " ä¸ªåº“ã€‚");
 		}
 
 		for (Entry<String, Map<String, List<List<ParameterContext>>>> entry : pstExecutionContext
@@ -384,19 +384,19 @@ public class TPreparedStatementImp extends TStatementImp implements
 		super.updateCount = 0;
 		ExceptionUtils.throwSQLException(exceptions, "batch",
 				(List<Object>) null);
-		// Ö´ĞĞ¸¸ÀàÖĞµÄbatch²Ù×÷¡£ÒòÎªÓĞ¿ÉÄÜÓÃPreparedStatementÈ´addBatchÁËÒ»Ğ©Ö»ÓĞsqlÃ»ÓĞ²ÎÊıµÄÊı¾İ¡£
-		// ÕâÊ±ºòÓ¦¸Ã·Ö±ğÖ´ĞĞ
-		// TODO:ÕâÀïÓĞ¸öÒşº¬µÄÎÊÌâÊÇ£¬statement.batch²Ù×÷ºÍ
-		// preparedStatement.batch ±¾ÉíÈç¹ûÊÇÓĞÏÈºóË³ĞòµÄ»°£¬ÄÇÃ´ÏÖÔÚµÄ´¦Àí²¢²»ÄÜ±£Ö¤ÏÈºóË³ĞòµÄÇ¿¹ØÏµĞÔ¡£
+		// æ‰§è¡Œçˆ¶ç±»ä¸­çš„batchæ“ä½œã€‚å› ä¸ºæœ‰å¯èƒ½ç”¨PreparedStatementå´addBatchäº†ä¸€äº›åªæœ‰sqlæ²¡æœ‰å‚æ•°çš„æ•°æ®ã€‚
+		// è¿™æ—¶å€™åº”è¯¥åˆ†åˆ«æ‰§è¡Œ
+		// TODO:è¿™é‡Œæœ‰ä¸ªéšå«çš„é—®é¢˜æ˜¯ï¼Œstatement.batchæ“ä½œå’Œ
+		// preparedStatement.batch æœ¬èº«å¦‚æœæ˜¯æœ‰å…ˆåé¡ºåºçš„è¯ï¼Œé‚£ä¹ˆç°åœ¨çš„å¤„ç†å¹¶ä¸èƒ½ä¿è¯å…ˆåé¡ºåºçš„å¼ºå…³ç³»æ€§ã€‚
 		super.executeBatch();
 
-		// Ö»·µ»ØpsµÄ·µ»ØÖµ
+		// åªè¿”å›psçš„è¿”å›å€¼
 		return fromListToArray(result);
 	}
 
 	/**
-	 * batch TPreparedStatement ÅúÁ¿Ö´ĞĞ²Ù×÷¡£ Èç¹ûÓĞÒ»¸öÒì³£³öÏÖ£¬Ôòµ±Ç°preparedStatement³öÏÖÒ»´ÎÒì³£
-	 * ÔòÕë¶Ôµ±Ç°Á¬½ÓµÄËùÓĞ¸üĞÂ¶¼»áÖÕÖ¹¡£
+	 * batch TPreparedStatement æ‰¹é‡æ‰§è¡Œæ“ä½œã€‚ å¦‚æœæœ‰ä¸€ä¸ªå¼‚å¸¸å‡ºç°ï¼Œåˆ™å½“å‰preparedStatementå‡ºç°ä¸€æ¬¡å¼‚å¸¸
+	 * åˆ™é’ˆå¯¹å½“å‰è¿æ¥çš„æ‰€æœ‰æ›´æ–°éƒ½ä¼šç»ˆæ­¢ã€‚
 	 *
 	 * @param sqlExceptions
 	 * @param sqlMap
@@ -414,7 +414,7 @@ public class TPreparedStatementImp extends TStatementImp implements
 						sqlMapEntry.getKey());
 				try {
 					int[] temp = null;
-					// Ìí¼Óbatch²ÎÊı
+					// æ·»åŠ batchå‚æ•°
 					for (List<ParameterContext> params : sqlMapEntry.getValue()) {
 						setBatchParameters(ps, params);
 						ps.addBatch();
@@ -445,8 +445,8 @@ public class TPreparedStatementImp extends TStatementImp implements
 			pstArgs = new LinkedList<Map<Integer, ParameterContext>>();
 		}
 		//#bug 2011-11-15# modify by junyu
-		//newArgÎªÒ»¸öÆÕÍ¨hashMap,Õâ¸ö»áÔì³ÉparameterSettingsË³ĞòÎŞĞ§
-		//Ó¦¸ÃºÍparameterSettingsÒ»Ñù¸Ä³ÉTreeMap
+		//newArgä¸ºä¸€ä¸ªæ™®é€šhashMap,è¿™ä¸ªä¼šé€ æˆparameterSettingsé¡ºåºæ— æ•ˆ
+		//åº”è¯¥å’ŒparameterSettingsä¸€æ ·æ”¹æˆTreeMap
 		Map<Integer, ParameterContext> newArg = new TreeMap<Integer, ParameterContext>();
 		newArg.putAll(parameterSettings);
 

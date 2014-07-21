@@ -15,19 +15,19 @@ import com.taobao.tddl.common.exception.runtime.NotSupportException;
 import com.taobao.tddl.jdbc.group.DataSourceWrapper;
 
 /**
- * °´ÓÅÏÈ¼¶Ñ¡ÔñµÄselector
+ * æŒ‰ä¼˜å…ˆçº§é€‰æ‹©çš„selector
  * 
- * Ã¿´ÎÑ¡ÔñÖ»´ÓÓÅÏÈ¼¶×î¸ßµÄÒ»×éDBÖĞÑ¡Ôñ£¬Èô¶¼²»¿ÉÓÃ£¬²Å¼ÌĞøÔÚÏÂÒ»¸öÓÅÏÈ¼¶µÄDB×éÖĞÑ¡Ôñ
+ * æ¯æ¬¡é€‰æ‹©åªä»ä¼˜å…ˆçº§æœ€é«˜çš„ä¸€ç»„DBä¸­é€‰æ‹©ï¼Œè‹¥éƒ½ä¸å¯ç”¨ï¼Œæ‰ç»§ç»­åœ¨ä¸‹ä¸€ä¸ªä¼˜å…ˆçº§çš„DBç»„ä¸­é€‰æ‹©
  * 
- * ÓÅÏÈ¼¶ÏàÍ¬µÄDB»¹ÓÃËæ»úÑ¡Ôñ
+ * ä¼˜å…ˆçº§ç›¸åŒçš„DBè¿˜ç”¨éšæœºé€‰æ‹©
  * 
- * Ô­Ê¼ĞèÇó£ºTCÒªÇóÔÚÃ¿¸ödbgroupÖĞÓÅÏÈ¶Á±¸¿â£¬µ±±¸¿â²»¿ÉÓÃÊ±£¬×Ô¶¯¶ÁÖ÷¿â 
- * À©Õ¹ĞèÇó£ºÒ»Ö÷¶à±¸£¬ÓÅÏÈËæ»ú¶Á±¸¿â¡£µ±±¸¿â¶¼²»¿ÉÓÃÊ±£¬²Å¶ÁÖ÷¿â
+ * åŸå§‹éœ€æ±‚ï¼šTCè¦æ±‚åœ¨æ¯ä¸ªdbgroupä¸­ä¼˜å…ˆè¯»å¤‡åº“ï¼Œå½“å¤‡åº“ä¸å¯ç”¨æ—¶ï¼Œè‡ªåŠ¨è¯»ä¸»åº“ 
+ * æ‰©å±•éœ€æ±‚ï¼šä¸€ä¸»å¤šå¤‡ï¼Œä¼˜å…ˆéšæœºè¯»å¤‡åº“ã€‚å½“å¤‡åº“éƒ½ä¸å¯ç”¨æ—¶ï¼Œæ‰è¯»ä¸»åº“
  * 
- * ÎªÁË·½±ã´¦ÀíºÍ½Ó¿ÚÒ»ÖÂ£¬ÓĞÈçÏÂÒªÇó£º 
- * 1. Ä¿Ç°Ö»Ö§³Ö¶Á·ÖÓÅÏÈ¼¶×é 
- * 2. Ò»¸öÈ¨ÖØÍÆËÍµÄĞÅÏ¢ÖĞ£¬¡£¡£¡£ 
- * 3. Ò»¸öÊı¾İÔ´Ö»ÄÜÔÚÒ»¸öÓÅÏÈ¼¶×éÖĞ£¿
+ * ä¸ºäº†æ–¹ä¾¿å¤„ç†å’Œæ¥å£ä¸€è‡´ï¼Œæœ‰å¦‚ä¸‹è¦æ±‚ï¼š 
+ * 1. ç›®å‰åªæ”¯æŒè¯»åˆ†ä¼˜å…ˆçº§ç»„ 
+ * 2. ä¸€ä¸ªæƒé‡æ¨é€çš„ä¿¡æ¯ä¸­ï¼Œã€‚ã€‚ã€‚ 
+ * 3. ä¸€ä¸ªæ•°æ®æºåªèƒ½åœ¨ä¸€ä¸ªä¼˜å…ˆçº§ç»„ä¸­ï¼Ÿ
  * 
  * @author linxuan
  * 
@@ -36,7 +36,7 @@ public class PriorityDbGroupSelector extends AbstractDBSelector {
 	private static final Log logger = LogFactory.getLog(PriorityDbGroupSelector.class);
 
 	/**
-	 * °´ÓÅÏÈ¼¶Ë³Ğò´æ·ÅÊı¾İ¿â×é¡£ÔªËØ0ÓÅÏÈ¼¶×î¸ß¡£Ã¿¸öEquityDbManagerÔªËØ´ú±í¾ßÓĞÏàÍ¬ÓÅÏÈ¼¶µÄÒ»×éÊı¾İ¿â
+	 * æŒ‰ä¼˜å…ˆçº§é¡ºåºå­˜æ”¾æ•°æ®åº“ç»„ã€‚å…ƒç´ 0ä¼˜å…ˆçº§æœ€é«˜ã€‚æ¯ä¸ªEquityDbManagerå…ƒç´ ä»£è¡¨å…·æœ‰ç›¸åŒä¼˜å…ˆçº§çš„ä¸€ç»„æ•°æ®åº“
 	 */
 	private EquityDbManager[] priorityGroups;
 
@@ -68,7 +68,7 @@ public class PriorityDbGroupSelector extends AbstractDBSelector {
 	}
 
 	/**
-	 * È¡Ã¿¸ö¼¶±ğµÄweightKeyºÍ×ÜµÄweightKeyµÄ½»¼¯£¬°¤¸öÉèÖÃ
+	 * å–æ¯ä¸ªçº§åˆ«çš„weightKeyå’Œæ€»çš„weightKeyçš„äº¤é›†ï¼ŒæŒ¨ä¸ªè®¾ç½®
 	 */
 	public void setWeight(Map<String, Integer> weightMap) {
 		/*
@@ -114,13 +114,13 @@ public class PriorityDbGroupSelector extends AbstractDBSelector {
 	};
 
 	/**
-	 * »ùÓÚEquityDbManagerµÄtryExecuteÊµÏÖ£¬¶ÔÓÃ»§µÄtryer×öÒ»¸ö°ü×°£¬ÔÚwrapperTryer.onSQLExceptionÖĞ
-	 * ¼ì²âµ½×îºóÒ»¸öeÊÇNoMoreDataSourceExceptionÊ±£¬²»µ÷Ô­tryerµÄonSQLException, ×ª¶øÖØÊÔÆäËûÓÅÏÈ¼¶µÄ
+	 * åŸºäºEquityDbManagerçš„tryExecuteå®ç°ï¼Œå¯¹ç”¨æˆ·çš„tryeråšä¸€ä¸ªåŒ…è£…ï¼Œåœ¨wrapperTryer.onSQLExceptionä¸­
+	 * æ£€æµ‹åˆ°æœ€åä¸€ä¸ªeæ˜¯NoMoreDataSourceExceptionæ—¶ï¼Œä¸è°ƒåŸtryerçš„onSQLException, è½¬è€Œé‡è¯•å…¶ä»–ä¼˜å…ˆçº§çš„
 	 */
 	protected <T> T tryExecuteInternal(Map<DataSource, SQLException> failedDataSources, DataSourceTryer<T> tryer,
 			int times, Object... args) throws SQLException {
 		final List<SQLException> historyExceptions = new ArrayList<SQLException>(0);
-		DataSourceTryer<T> wrapperTryer = new DataSourceTryerWrapper<T>(tryer, historyExceptions); //ÒÆ»¨½ÓÄ¾
+		DataSourceTryer<T> wrapperTryer = new DataSourceTryerWrapper<T>(tryer, historyExceptions); //ç§»èŠ±æ¥æœ¨
 
 		for (int i = 0; i < priorityGroups.length; i++) {
 			try {
@@ -129,7 +129,7 @@ public class PriorityDbGroupSelector extends AbstractDBSelector {
 				logger.warn("NoMoreDataSource for retry for priority group " + i);
 			}
 		}
-		//ËùÓĞµÄÓÅÏÈ¼¶×é¶¼²»¿ÉÓÃ£¬ÔòÅ×³öÒì³£
+		//æ‰€æœ‰çš„ä¼˜å…ˆçº§ç»„éƒ½ä¸å¯ç”¨ï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸
 		return tryer.onSQLException(historyExceptions, exceptionSorter, args);
 	}
 

@@ -20,7 +20,7 @@ import org.apache.log4j.spi.LoggingEvent;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2012-3-28ÏÂÎç05:34:37
+ * @date 2012-3-28ä¸‹åˆ05:34:37
  */
 /**
  * Copyrigh(c) Taobao.com
@@ -28,7 +28,7 @@ import org.apache.log4j.spi.LoggingEvent;
  * @author <a href="zylicfc@gmail.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2012-3-28ÏÂÎç05:34:37
+ * @date 2012-3-28ä¸‹åˆ05:34:37
  * @desc
  */
 public class DailyMaxRollingFileAppender extends FileAppender {

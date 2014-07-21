@@ -7,7 +7,7 @@ public class TDDLSQLExceptionWrapper extends SQLException {
 	public TDDLSQLExceptionWrapper(String message,
 			SQLException targetSQLESqlException) {
 		if (targetSQLESqlException == null) {
-			throw new IllegalArgumentException("±ØÐëÌîÈëSQLException");
+			throw new IllegalArgumentException("å¿…é¡»å¡«å…¥SQLException");
 		}
 		this.targetSQLException = targetSQLESqlException;
 		this.message = message;

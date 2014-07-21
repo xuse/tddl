@@ -14,7 +14,7 @@ import org.apache.log4j.xml.DOMConfigurator;
 import com.taobao.tddl.common.monitor.DailyMaxRollingFileAppender;
 
 /**
- * ¸ÄÔì×ÔhsfµÄÍ¬ÃûÀà¡£È¥µô°æ±¾ºÅ£»ÈÕÖ¾Êä³öÂ·¾¶È¡${user.home}/logs/tddl/
+ * æ”¹é€ è‡ªhsfçš„åŒåç±»ã€‚å»æ‰ç‰ˆæœ¬å·ï¼›æ—¥å¿—è¾“å‡ºè·¯å¾„å–${user.home}/logs/tddl/
  */
 public class LoggerInit {
 	public static final String TDDL_ATOM_STATISTIC_LOG_NAME="TDDL_Atom_Statistic_LOG";
@@ -22,10 +22,10 @@ public class LoggerInit {
 	public static final Logger TDDL_SQL_LOG = Logger.getLogger("TDDL_SQL_LOG");
 	public static final Logger TDDL_MD5_TO_SQL_MAPPING = Logger.getLogger("TDDL_MD5_TO_SQL_MAPPING");
 	public static final Logger TDDL_Nagios_LOG = Logger.getLogger("TDDL_Nagios_LOG");
-	//modify by junyu ,atom ºÍmatrix²ğ¿ª
+	//modify by junyu ,atom å’Œmatrixæ‹†å¼€
 	public static final Logger TDDL_Atom_Statistic_LOG = Logger.getLogger(TDDL_ATOM_STATISTIC_LOG_NAME);
 	public static final Logger TDDL_Matrix_Statistic_LOG = Logger.getLogger("TDDL_Matrix_Statistic_LOG");
-	//add by changyuan.lh, db Ó¦ÓÃÁ¬½ÓÊı, ×èÈûÊ±¼ä, ³¬Ê±Êı
+	//add by changyuan.lh, db åº”ç”¨è¿æ¥æ•°, é˜»å¡æ—¶é—´, è¶…æ—¶æ•°
 	public static final Logger TDDL_Conn_Statistic_LOG = Logger.getLogger("TDDL_Conn_Statistic_LOG");
 	
 	public static final Logger TDDL_Statistic_LOG = Logger.getLogger("TDDL_Statistic_LOG");
@@ -58,7 +58,7 @@ public class LoggerInit {
 		appender.setEncoding("GBK");
 		appender.setLayout(new PatternLayout(pattern));
 		appender.setFile(new File(getLogPath(), fileName).getAbsolutePath());
-		appender.activateOptions();// ºÜÖØÒª£¬·ñÔòÔ­ÓĞÈÕÖ¾ÄÚÈİ»á±»Çå¿Õ
+		appender.activateOptions();// å¾ˆé‡è¦ï¼Œå¦åˆ™åŸæœ‰æ—¥å¿—å†…å®¹ä¼šè¢«æ¸…ç©º
 		return appender;
 	}
 	
@@ -72,7 +72,7 @@ public class LoggerInit {
 		appender.setDatePattern("'.'yyyy-MM-dd-HH");
 		appender.setMaxBackupIndex(maxBackupIndex);
 		appender.setFile(new File(getLogPath(), fileName).getAbsolutePath());
-		appender.activateOptions();// ºÜÖØÒª£¬·ñÔòÔ­ÓĞÈÕÖ¾ÄÚÈİ»á±»Çå¿Õ
+		appender.activateOptions();// å¾ˆé‡è¦ï¼Œå¦åˆ™åŸæœ‰æ—¥å¿—å†…å®¹ä¼šè¢«æ¸…ç©º
 		return appender;
 	}
 
@@ -99,7 +99,7 @@ public class LoggerInit {
 		TDDL_LOG.addAppender(tddlAppender);
 		TDDL_LOG.setLevel(Level.WARN);
 
-//      Õâ¸öÈÕÖ¾ÈÃÓ¦ÓÃ×Ô¼ºÅäÖÃ
+//      è¿™ä¸ªæ—¥å¿—è®©åº”ç”¨è‡ªå·±é…ç½®
 //		TDDL_SQL_LOG.setAdditivity(false);
 //		TDDL_SQL_LOG.removeAllAppenders();
 //		TDDL_SQL_LOG.addAppender(sqlAppender);
@@ -147,10 +147,10 @@ public class LoggerInit {
 
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		Thread.currentThread().setContextClassLoader(LoggerInit.class.getClassLoader());
-		// Ê¹HSFµÄlog4jÅäÖÃÉúĞ§(Logger, Appender)
+		// ä½¿HSFçš„log4jé…ç½®ç”Ÿæ•ˆ(Logger, Appender)
 		DOMConfigurator.configure(LoggerInit.class.getClassLoader().getResource("tddl-log4j.xml"));
 
-		// ÉèÖÃlog4j.xmlÖĞËùÓĞµÄAppender£¬½«ÕâĞ©appenderÊä³öµÄÈÕÖ¾È«²¿½øĞĞ¸Ä±ä
+		// è®¾ç½®log4j.xmlä¸­æ‰€æœ‰çš„Appenderï¼Œå°†è¿™äº›appenderè¾“å‡ºçš„æ—¥å¿—å…¨éƒ¨è¿›è¡Œæ”¹å˜
 		String logPath = getLogPath();
 		//FileAppender fileAppender = null;
 		for (Enumeration<?> e = Logger.getLogger("only_for_get_all_appender").getAllAppenders(); e.hasMoreElements();) {
@@ -160,11 +160,11 @@ public class LoggerInit {
 				File deleteFile = new File(logFileAppender.getFile());
 				File logFile = new File(logPath, logFileAppender.getFile());
 				logFileAppender.setFile(logFile.getAbsolutePath());
-				logFileAppender.activateOptions(); // ºÜÖØÒª£¬·ñÔòÔ­ÓĞÈÕÖ¾ÄÚÈİ»á±»Çå¿Õ
+				logFileAppender.activateOptions(); // å¾ˆé‡è¦ï¼Œå¦åˆ™åŸæœ‰æ—¥å¿—å†…å®¹ä¼šè¢«æ¸…ç©º
 				if (deleteFile.exists()) {
 					deleteFile.delete();
 				}
-				logger.warn("³É¹¦¸Ä±ä" + deleteFile.getName() + "µÄÊä³öÂ·¾¶µ½:" + logFile.getAbsolutePath());
+				logger.warn("æˆåŠŸæ”¹å˜" + deleteFile.getName() + "çš„è¾“å‡ºè·¯å¾„åˆ°:" + logFile.getAbsolutePath());
 			}
 		}
 		Thread.currentThread().setContextClassLoader(loader);

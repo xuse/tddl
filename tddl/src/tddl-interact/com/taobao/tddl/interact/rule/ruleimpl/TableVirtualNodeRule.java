@@ -10,7 +10,7 @@ import com.taobao.tddl.interact.rule.virtualnode.VirtualNodeMap;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-8-8œ¬ŒÁ07:44:24
+ * @date 2011-8-8‰∏ãÂçà07:44:24
  */
 public class TableVirtualNodeRule extends VirtualNodeGroovyRule {
 	public TableVirtualNodeRule(String expression, VirtualNodeMap vNodeMap) {

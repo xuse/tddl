@@ -12,11 +12,11 @@ public class AllowAllLevelTconnection extends AllowReadLevelTConnection {
 	protected boolean validThrowSQLException(String dbIndex, boolean isGoSlave)
 			throws SQLException {
 		if (transactionKey == null) {
-			// Èç¹û»¹Ã»ÓĞÖ¸¶¨¹ıtransactionkey,ÄÇÃ´µ±Ç°µÄĞÂÁ¬½Ó¾Í×÷ÎªÄ¬ÈÏµÄtransactionÁ¬½Ó´æÔÚ
+			// å¦‚æœè¿˜æ²¡æœ‰æŒ‡å®šè¿‡transactionkey,é‚£ä¹ˆå½“å‰çš„æ–°è¿æ¥å°±ä½œä¸ºé»˜è®¤çš„transactionè¿æ¥å­˜åœ¨
 			transactionKey = dbIndex;
 			return true;
 		} else {
-			//ÔÊĞíĞ´Èëµ½¶à¸öÊı¾İ½ÚµãÖĞ£¬ËùÒÔÕâÀï²»Å×³öÒì³£¡£
+			//å…è®¸å†™å…¥åˆ°å¤šä¸ªæ•°æ®èŠ‚ç‚¹ä¸­ï¼Œæ‰€ä»¥è¿™é‡Œä¸æŠ›å‡ºå¼‚å¸¸ã€‚
 			return false;
 		}
 	}

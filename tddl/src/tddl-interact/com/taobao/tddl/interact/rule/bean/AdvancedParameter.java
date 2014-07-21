@@ -9,7 +9,7 @@ import com.alibaba.common.lang.StringUtil;
 import com.taobao.tddl.interact.rule.Rule.RuleColumn;
 
 /**
- * ¹æÔòËùĞèÒªµÄÃ¿Ò»¸ö²ÎÊıËùÓµÓĞµÄÒ»Ğ©»ù±¾ÊôĞÔ£¬°üº¬Ã¶¾ÙÆ÷ËùĞèÒªµÄÒ»Ğ©ĞÅÏ¢
+ * è§„åˆ™æ‰€éœ€è¦çš„æ¯ä¸€ä¸ªå‚æ•°æ‰€æ‹¥æœ‰çš„ä¸€äº›åŸºæœ¬å±æ€§ï¼ŒåŒ…å«æšä¸¾å™¨æ‰€éœ€è¦çš„ä¸€äº›ä¿¡æ¯
  * 
  * @author shenxun
  * @author junyu
@@ -17,27 +17,27 @@ import com.taobao.tddl.interact.rule.Rule.RuleColumn;
  */
 public class AdvancedParameter extends RuleColumn {
 	/**
-	 * ×ÔÔö£¬¸øÃ¶¾ÙÆ÷ÓÃµÄ
+	 * è‡ªå¢ï¼Œç»™æšä¸¾å™¨ç”¨çš„
 	 */
 	public final Comparable<?> atomicIncreateValue;
 
 	/**
-	 * µş¼Ó´ÎÊı£¬¸øÃ¶¾ÙÆ÷ÓÃµÄ
+	 * å åŠ æ¬¡æ•°ï¼Œç»™æšä¸¾å™¨ç”¨çš„
 	 */
 	public final Integer cumulativeTimes;
 
 	/**
-	 * ¾ö¶¨µ±Ç°²ÎÊıÊÇ·ñÔÊĞí·¶Î§²éÑ¯Èç>= <= ...
+	 * å†³å®šå½“å‰å‚æ•°æ˜¯å¦å…è®¸èŒƒå›´æŸ¥è¯¢å¦‚>= <= ...
 	 */
 	public final boolean needMergeValueInCloseInterval;
 
 	/**
-	 * ×ÔÔöµÄÀàĞÍ£¬°üÀ¨
+	 * è‡ªå¢çš„ç±»å‹ï¼ŒåŒ…æ‹¬
 	 */
 	public final AtomIncreaseType atomicIncreateType;
 
 	/**
-	 * ÆğÊ¼Óë½áÊøÖµ¶ÔÏóÁĞ±í£¬Í¨¹ı"|"·Ö¸î
+	 * èµ·å§‹ä¸ç»“æŸå€¼å¯¹è±¡åˆ—è¡¨ï¼Œé€šè¿‡"|"åˆ†å‰²
 	 */
 	public final Range[] rangeArray;
 
@@ -81,7 +81,7 @@ public class AdvancedParameter extends RuleColumn {
 		} else if (basepoint instanceof Calendar) {
 			return enumerateRange((Calendar) basepoint);
 		} else if (basepoint instanceof Date){
-			//add by junyu,ÒòÎªºóÃæevalTimeµÄÊ±ºò°Ñ½á¹û·µ»ØÁËDateÀàĞÍ£¬ËùÒÔÕâ±ßÒ²ÒªÔö¼ÓÕâ¸öÂß¼­
+			//add by junyu,å› ä¸ºåé¢evalTimeçš„æ—¶å€™æŠŠç»“æœè¿”å›äº†Dateç±»å‹ï¼Œæ‰€ä»¥è¿™è¾¹ä¹Ÿè¦å¢åŠ è¿™ä¸ªé€»è¾‘
 			Calendar cal=Calendar.getInstance();
 			cal.setTime((Date)basepoint);
 			return enumerateRange(cal);
@@ -130,7 +130,7 @@ public class AdvancedParameter extends RuleColumn {
 			throw new IllegalArgumentException("atomicIncreateType:" + atomicIncreateType);
 		}
 //		return c;
-		//modify by junyu,Óësql²ÎÊı±£³ÖÒ»ÖÂÀàĞÍ
+		//modify by junyu,ä¸sqlå‚æ•°ä¿æŒä¸€è‡´ç±»å‹
 		return c.getTime();
 	}
 
@@ -148,13 +148,13 @@ public class AdvancedParameter extends RuleColumn {
 	public static final String RANGE_SEGMENT_START_END_SPLITOR = "_";
 
 	/** 
-	 * @param paramToken ¶¨Òå±äÁ¿µÄ·Ö±íÆ¬¶Î£¬ĞÎÊ½ÀàËÆ
+	 * @param paramToken å®šä¹‰å˜é‡çš„åˆ†è¡¨ç‰‡æ®µï¼Œå½¢å¼ç±»ä¼¼
 	 *                   #gmt_create?,1_month,-12_12# #id,1_number,1024# #name,1_string,a_z#
 	 *                   #id,1_number,0_1024|1M_1M+1024#
-	 * @param completeConfig Èç¹ûÎªtrue,ÄÇÃ´paramToken±ØĞëÂú×ã¶ººÅ·Ö¸ôµÄ3¶ÎĞÎÊ½
-	 *                       Èç¹ûÎªfalse,ÄÇÃ´paramToken¿ÉÒÔÖ»ÅäÖÃ·Ö±í»òÕß·Ö±í¼ü
-	 *                       2.3.x£­2.4.3µÄÀÏ¹æÔòÅäÖÃ¸Ã²ÎÊıÎªfalse
-	 *                       2.4.4ºóÖ§³ÖµÄĞÂ¹æÔòÅäÖÃ¸Ã²ÎÊıÎªtrue;
+	 * @param completeConfig å¦‚æœä¸ºtrue,é‚£ä¹ˆparamTokenå¿…é¡»æ»¡è¶³é€—å·åˆ†éš”çš„3æ®µå½¢å¼
+	 *                       å¦‚æœä¸ºfalse,é‚£ä¹ˆparamTokenå¯ä»¥åªé…ç½®åˆ†è¡¨æˆ–è€…åˆ†è¡¨é”®
+	 *                       2.3.xï¼2.4.3çš„è€è§„åˆ™é…ç½®è¯¥å‚æ•°ä¸ºfalse
+	 *                       2.4.4åæ”¯æŒçš„æ–°è§„åˆ™é…ç½®è¯¥å‚æ•°ä¸ºtrue;
 	 */
 	public static AdvancedParameter getAdvancedParamByParamTokenNew(String paramToken, boolean completeConfig) {
 		String key;
@@ -170,12 +170,12 @@ public class AdvancedParameter extends RuleColumn {
 		switch (paramTokens.length) {
 		case 1:
 			if (completeConfig) {
-				throw new IllegalArgumentException("¹æÔò±ØĞëÅäÖÃÍêÈ«£¬¸ñÊ½ÈçÏÂ:#id,1_number,1024#");
+				throw new IllegalArgumentException("è§„åˆ™å¿…é¡»é…ç½®å®Œå…¨ï¼Œæ ¼å¼å¦‚ä¸‹:#id,1_number,1024#");
 			}
 			key = parseKeyPart(paramTokens[0], needAppear);
 			break;
 		case 2:
-			//ÈôÖ»ÓĞÁ½¸ö£¬×ÔÔöÀàĞÍÄ¬ÈÏÎªnumber£¬×ÔÔöÖµÄ¬ÈÏÎª1£» ÆäËûÍ¬case 3
+			//è‹¥åªæœ‰ä¸¤ä¸ªï¼Œè‡ªå¢ç±»å‹é»˜è®¤ä¸ºnumberï¼Œè‡ªå¢å€¼é»˜è®¤ä¸º1ï¼› å…¶ä»–åŒcase 3
 			key = parseKeyPart(paramTokens[0], needAppear);
 			
 			atomicIncreateType = AtomIncreaseType.NUMBER;
@@ -185,7 +185,7 @@ public class AdvancedParameter extends RuleColumn {
 				rangeObjectArray = parseRangeArray(paramTokens[1]);
 				cumulativeTimes = getCumulativeTimes(rangeObjectArray[0]);
 			} catch (NumberFormatException e) {
-				throw new IllegalArgumentException("ÊäÈëµÄ²ÎÊı²»ÎªIntegerÀàĞÍ,²ÎÊıÎª:" + paramToken, e);
+				throw new IllegalArgumentException("è¾“å…¥çš„å‚æ•°ä¸ä¸ºIntegerç±»å‹,å‚æ•°ä¸º:" + paramToken, e);
 			} catch (Exception e) {
 				throw new IllegalArgumentException(e);
 			}
@@ -200,25 +200,25 @@ public class AdvancedParameter extends RuleColumn {
 				atomicIncreateValue = getAtomicIncreaseValue(paramTokens[1], atomicIncreateType);
 
 				rangeObjectArray = parseRangeArray(paramTokens[2]);
-				//³¤¶ÈÎªÈı±Ø¶¨ÓĞ·¶Î§¶¨Òå£¬·ñÔòÖ±½ÓÅ×´í
-				//Èç¹û·¶Î§ÓĞ¶à¶Î("|"·Ö¸î)£¬ÄÇÃ´ÒÔµÚÒ»¶ÎµÄ¿ç¶ÈÎª±ê×¼
+				//é•¿åº¦ä¸ºä¸‰å¿…å®šæœ‰èŒƒå›´å®šä¹‰ï¼Œå¦åˆ™ç›´æ¥æŠ›é”™
+				//å¦‚æœèŒƒå›´æœ‰å¤šæ®µ("|"åˆ†å‰²)ï¼Œé‚£ä¹ˆä»¥ç¬¬ä¸€æ®µçš„è·¨åº¦ä¸ºæ ‡å‡†
 				cumulativeTimes = getCumulativeTimes(rangeObjectArray[0]);
 			} catch (NumberFormatException e) {
-				throw new IllegalArgumentException("ÊäÈëµÄ²ÎÊı²»ÎªIntegerÀàĞÍ,²ÎÊıÎª:" + paramToken, e);
+				throw new IllegalArgumentException("è¾“å…¥çš„å‚æ•°ä¸ä¸ºIntegerç±»å‹,å‚æ•°ä¸º:" + paramToken, e);
 			} catch (Exception e) {
 				throw new IllegalArgumentException(e);
 			}
 			break;
 		default:
-			throw new IllegalArgumentException("´íÎóµÄ²ÎÊı¸öÊı£¬±ØĞëÎª1¸ö»òÕß3¸ö£¬3¸öµÄÊ±ºòÎªÔÊĞíÊ¹ÓÃ" + "Ã¶¾ÙÊ±µÄÊı¾İ");
+			throw new IllegalArgumentException("é”™è¯¯çš„å‚æ•°ä¸ªæ•°ï¼Œå¿…é¡»ä¸º1ä¸ªæˆ–è€…3ä¸ªï¼Œ3ä¸ªçš„æ—¶å€™ä¸ºå…è®¸ä½¿ç”¨" + "æšä¸¾æ—¶çš„æ•°æ®");
 		}
 		return new AdvancedParameter(key, atomicIncreateValue, cumulativeTimes, needAppear[0], atomicIncreateType,
 				rangeObjectArray);
 	}
 	
 	/**
-	 * ColumnName?±íÊ¾¿ÉÑ¡
-	 * @param keyPart ²»¿ÉÄÜ´«Èënull
+	 * ColumnName?è¡¨ç¤ºå¯é€‰
+	 * @param keyPart ä¸å¯èƒ½ä¼ å…¥null
 	 */
 	private static String parseKeyPart(String keyPart, boolean[] needAppear){
 		String key;
@@ -241,13 +241,13 @@ public class AdvancedParameter extends RuleColumn {
 		} else if (increase.length == 2) {
 			return AtomIncreaseType.valueOf(increase[1].toUpperCase());
 		} else {
-			throw new IllegalArgumentException("×ÔÔöÅäÖÃ¶¨Òå´íÎó:" + paramTokenStr);
+			throw new IllegalArgumentException("è‡ªå¢é…ç½®å®šä¹‰é”™è¯¯:" + paramTokenStr);
 		}
 	}
 
 	private static Comparable<?> getAtomicIncreaseValue(String paramTokenStr, AtomIncreaseType type) {
 		String[] increase = StringUtil.split(paramTokenStr.trim(), INCREASE_TYPE_SPLITOR);
-		// Èç¹û³¤¶ÈÎª1,ÄÇÃ´Ä¬ÈÏÎªÊı×ÖÀàĞÍ
+		// å¦‚æœé•¿åº¦ä¸º1,é‚£ä¹ˆé»˜è®¤ä¸ºæ•°å­—ç±»å‹
 		if (increase.length == 1) {
 			return Integer.valueOf(increase[0]);
 		} else if (increase.length == 2) {
@@ -263,10 +263,10 @@ public class AdvancedParameter extends RuleColumn {
 			case HOUR:
 				return new DateEnumerationParameter(Integer.valueOf(increase[0]), Calendar.HOUR_OF_DAY);
 			default:
-				throw new IllegalArgumentException("²»Ö§³ÖµÄ×ÔÔöÀàĞÍ£º" + type);
+				throw new IllegalArgumentException("ä¸æ”¯æŒçš„è‡ªå¢ç±»å‹ï¼š" + type);
 			}
 		} else {
-			throw new IllegalArgumentException("×ÔÔöÅäÖÃ¶¨Òå´íÎó:" + paramTokenStr);
+			throw new IllegalArgumentException("è‡ªå¢é…ç½®å®šä¹‰é”™è¯¯:" + paramTokenStr);
 		}
 	}
 
@@ -286,7 +286,7 @@ public class AdvancedParameter extends RuleColumn {
 			} else if (startEnd.length == 2) {
 				rangeObjArray[i] = new Range(fromReadableInt(startEnd[0]), fromReadableInt(startEnd[1]));
 			} else {
-				throw new IllegalArgumentException("·¶Î§¶¨Òå´íÎó," + paramTokenStr);
+				throw new IllegalArgumentException("èŒƒå›´å®šä¹‰é”™è¯¯," + paramTokenStr);
 			}
 		}
 		return rangeObjArray;
@@ -312,7 +312,7 @@ public class AdvancedParameter extends RuleColumn {
 	}
 
 	/**
-	 * ²ÎÊı×ÔÔöÀàĞÍ£¬ÏÖÔÚÖ§³Ö4ÖÖ(#2011-12-5,modify by junyu,add HOUR type)
+	 * å‚æ•°è‡ªå¢ç±»å‹ï¼Œç°åœ¨æ”¯æŒ4ç§(#2011-12-5,modify by junyu,add HOUR type)
 	 */
 	public static enum AtomIncreaseType {
 		HOUR,DATE, MONTH, YEAR, NUMBER;
@@ -323,8 +323,8 @@ public class AdvancedParameter extends RuleColumn {
 	}
 
 	public static class Range {
-		public final Integer start; // ÆğÊ¼Öµ
-		public final Integer end; // ½áÊøÖµ
+		public final Integer start; // èµ·å§‹å€¼
+		public final Integer end; // ç»“æŸå€¼
 
 		public Range(Integer start, Integer end) {
 			this.start = start;

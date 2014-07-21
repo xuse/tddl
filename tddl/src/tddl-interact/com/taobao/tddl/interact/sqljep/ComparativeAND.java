@@ -3,14 +3,14 @@ package com.taobao.tddl.interact.sqljep;
 import java.util.Comparator;
 
 /**
- * AND½Úµã
- * ÔÚÊµ¼ÊµÄSQLÖĞ£¬Êµ¼ÊÉÏÊÇÀàËÆ
+ * ANDèŠ‚ç‚¹
+ * åœ¨å®é™…çš„SQLä¸­ï¼Œå®é™…ä¸Šæ˜¯ç±»ä¼¼
  * [Comparative]              [comparative]
  * 			\                  /
  * 			  \				  /
  *             [ComparativeAnd]
  *             
- * ÀàËÆÕâÑùµÄ½Úµã³öÏÖ
+ * ç±»ä¼¼è¿™æ ·çš„èŠ‚ç‚¹å‡ºç°
  * 
  * @author shenxun
  *
@@ -30,7 +30,7 @@ public class ComparativeAND extends ComparativeBaseList{
 	
 //	/* (non-Javadoc)
 //	 * @see com.taobao.tddl.common.sqljep.function.ComparativeBaseList#intersect(int, java.lang.Comparable, java.util.Comparator)
-//	 * ĞÂ¹æÔòÀïÃæÒÑ¾­·ÏÆú²»ÓÃ
+//	 * æ–°è§„åˆ™é‡Œé¢å·²ç»åºŸå¼ƒä¸ç”¨
 //	 */
 //	@SuppressWarnings("unchecked")
 //	public boolean intersect(int function,Comparable other,Comparator comparator){

@@ -9,8 +9,8 @@ import javax.sql.DataSource;
 import com.taobao.tddl.common.standard.atom.AtomDsStandard;
 import com.taobao.tddl.common.util.TDDLMBeanServer;
 
-/**抽象的TAtomDataSource 定义，实现了DataSource接口
- * 并且定义了自己的接口抽象方法
+/**鎶借薄鐨凾AtomDataSource 瀹氫箟锛屽疄鐜颁簡DataSource鎺ュ彛
+ * 骞朵笖瀹氫箟浜嗚嚜宸辩殑鎺ュ彛鎶借薄鏂规硶
  * @author qihao
  *
  */

@@ -10,13 +10,13 @@ import com.taobao.tddl.rule.ruleengine.entities.convientobjectmaker.TableMapProv
 import com.taobao.tddl.rule.ruleengine.rule.ListAbstractResultRule;
 
 /**
- * ´«µİ+À©É¢Ò»Ğ©ÊôĞÔµ½Ö¸¶¨µÄ×Ó½ÚµãÖĞ
+ * ä¼ é€’+æ‰©æ•£ä¸€äº›å±æ€§åˆ°æŒ‡å®šçš„å­èŠ‚ç‚¹ä¸­
  * 
- * ÀïÃæÊÇÒ»Ğ©Ò»¶Ô¶àµÄ·Ö·¢¹æÔò£¬ÉèÖÃµ½ÀïÃæµÄËùÓĞ¹æÔò¡£
+ * é‡Œé¢æ˜¯ä¸€äº›ä¸€å¯¹å¤šçš„åˆ†å‘è§„åˆ™ï¼Œè®¾ç½®åˆ°é‡Œé¢çš„æ‰€æœ‰è§„åˆ™ã€‚
  * 
- * Ã»ÓĞÌØ±ğµÄÒâÒå£¬Ö»ÊÇÒ»¸ö¶ÔÒ»ÀàÊÂÎïµÄ³éÏó£¬»á·¢ÏÖÔÚlogictable»òdatabase²ã»áÓĞÒ»Ğ©ÊôĞÔĞèÒª´«µİ¸øËùÓĞ×Ó½Úµã¡£
+ * æ²¡æœ‰ç‰¹åˆ«çš„æ„ä¹‰ï¼Œåªæ˜¯ä¸€ä¸ªå¯¹ä¸€ç±»äº‹ç‰©çš„æŠ½è±¡ï¼Œä¼šå‘ç°åœ¨logictableæˆ–databaseå±‚ä¼šæœ‰ä¸€äº›å±æ€§éœ€è¦ä¼ é€’ç»™æ‰€æœ‰å­èŠ‚ç‚¹ã€‚
  * 
- * ËùÓĞÕâÀàÊı¾İ¶¼¿ÉÒÔ·Åµ½Õâ¸öÂß¼­¶ÔÏóÖĞ¡£
+ * æ‰€æœ‰è¿™ç±»æ•°æ®éƒ½å¯ä»¥æ”¾åˆ°è¿™ä¸ªé€»è¾‘å¯¹è±¡ä¸­ã€‚
  * 
  * 
  * 
@@ -26,39 +26,39 @@ import com.taobao.tddl.rule.ruleengine.rule.ListAbstractResultRule;
 public class OneToManyEntry {
 
 	/**
-	 * ´«µİ¸øÉú³É±íÃûµÄ±ã½İ·½·¨¡£
+	 * ä¼ é€’ç»™ç”Ÿæˆè¡¨åçš„ä¾¿æ·æ–¹æ³•ã€‚
 	 */
 	private String logicTableName;
 
 	/**
-	 * ´ı·Ö·Ö·¢µÄ±í¹æÔò
+	 * å¾…åˆ†åˆ†å‘çš„è¡¨è§„åˆ™
 	 */
 	protected RuleChain transmitedtableRuleChain;
 	/**
-	 * ÊÇ±í¹æÔòµÄÁíÍâÒ»ÖÖ±íÏÖĞÎÊ½
+	 * æ˜¯è¡¨è§„åˆ™çš„å¦å¤–ä¸€ç§è¡¨ç°å½¢å¼
 	 */
 	protected List<ListAbstractResultRule> tableRuleList;
 	/**
-	 * ±íÉú³ÉÆ÷£¬±»database½ÚµãÊ¹ÓÃ
+	 * è¡¨ç”Ÿæˆå™¨ï¼Œè¢«databaseèŠ‚ç‚¹ä½¿ç”¨
 	 */
 	private TableMapProvider tableMapProvider = new DefaultTableMapProvider();
 	DEFAULT_LIST_RESULT_STRAGETY defaultListResultStragety ;
 	private boolean isInited = false;
 
 	// /**
-	// * ¸ºÔğ½«Ò»Ğ©ĞèÒªÀ©É¢µÄÊı¾İ´Ó¸¸´«Êäµ½×Ó½Úµã
-	// * Õâ¸ö·½·¨ÔÚinit·½·¨Ö®Ç°±»µ÷ÓÃ
+	// * è´Ÿè´£å°†ä¸€äº›éœ€è¦æ‰©æ•£çš„æ•°æ®ä»çˆ¶ä¼ è¾“åˆ°å­èŠ‚ç‚¹
+	// * è¿™ä¸ªæ–¹æ³•åœ¨initæ–¹æ³•ä¹‹å‰è¢«è°ƒç”¨
 	// */
 	// public void transmit() {
 	// for (SharedElement sharedElement : subSharedElement.values()) {
 	// if (isCurrentSubSharedElementGlovalEntryTransmitter(sharedElement)) {
 	//
 	// OneToManyEntry transmitter = upcastSubEntry(sharedElement);
-	// //±í¹æÔò´«µİ
+	// //è¡¨è§„åˆ™ä¼ é€’
 	// transmitter.setTableRuleChain(transmitedtableRuleChain);
-	// // ÓÃÓÚ±ã½İµÄ¹¹Ôì±í
+	// // ç”¨äºä¾¿æ·çš„æ„é€ è¡¨
 	// transmitter.setLogicTableName(logicTableName);
-	// // ½«table mapÉú³ÉÆ÷´«µİÏÂÈ¥
+	// // å°†table mapç”Ÿæˆå™¨ä¼ é€’ä¸‹å»
 	// transmitter.setTableMapProvider(tableMapProvider);
 	// }
 	// }
@@ -84,10 +84,10 @@ public class OneToManyEntry {
 	}
 
 	/**
-	 * Õâ¸ö·½·¨ÔÚÄ¬ÈÏµÄÇé¿öÏÂ£¬Ä¿±êÊÇtransmitedtableRuleChain.
-	 * µ«ÔÚdatabase²ã¸²¸ÇÁËÕâ¸ö·½·¨£¬°ÑÄ¿±êÖ¸ÏòÃ¿Ò»¸ödatabaseµÄtableRule.
+	 * è¿™ä¸ªæ–¹æ³•åœ¨é»˜è®¤çš„æƒ…å†µä¸‹ï¼Œç›®æ ‡æ˜¯transmitedtableRuleChain.
+	 * ä½†åœ¨databaseå±‚è¦†ç›–äº†è¿™ä¸ªæ–¹æ³•ï¼ŒæŠŠç›®æ ‡æŒ‡å‘æ¯ä¸€ä¸ªdatabaseçš„tableRule.
 	 * 
-	 * ±¾·½·¨»á±»transmit·½·¨µ÷ÓÃ¡£
+	 * æœ¬æ–¹æ³•ä¼šè¢«transmitæ–¹æ³•è°ƒç”¨ã€‚
 	 * 
 	 * @param tableRule
 	 */
@@ -115,7 +115,7 @@ public class OneToManyEntry {
 				transmitedtableRuleChain = ruleChainImp;
 			} else {
 				throw new IllegalArgumentException(
-						"ruleChainÒÑ¾­ÓĞÊı¾İÁË£¬µ«ÈÔÈ»³¢ÊÔÊ¹ÓÃinitÀ´½øĞĞ³õÊ¼»¯");
+						"ruleChainå·²ç»æœ‰æ•°æ®äº†ï¼Œä½†ä»ç„¶å°è¯•ä½¿ç”¨initæ¥è¿›è¡Œåˆå§‹åŒ–");
 			}
 		}
 		if (transmitedtableRuleChain != null) {
@@ -137,14 +137,14 @@ public class OneToManyEntry {
 	}
 
 	/**
-	 * ÒòÎªtableMapProviderĞèÒª´«µİ¸øÃ¿Ò»¸ödatabase¶ÔÏó£¬Òò´ËÈç¹ûµ±Ç°database¶ÔÏóÒÑ¾­ÓĞÁËtableMapProvider
-	 * ÄÇÃ´¾Í²»ĞèÒªÔÙ½«Íâ²¿µÄtableMapProviderÖ¸¶¨¸øËûÁË
+	 * å› ä¸ºtableMapProvideréœ€è¦ä¼ é€’ç»™æ¯ä¸€ä¸ªdatabaseå¯¹è±¡ï¼Œå› æ­¤å¦‚æœå½“å‰databaseå¯¹è±¡å·²ç»æœ‰äº†tableMapProvider
+	 * é‚£ä¹ˆå°±ä¸éœ€è¦å†å°†å¤–éƒ¨çš„tableMapProvideræŒ‡å®šç»™ä»–äº†
 	 * 
 	 * @param tableMapProvider
 	 */
 	public void setTableMapProvider(TableMapProvider tableMapProvider) {
-		// Èç¹ûÊäÈëµÄtableProvider²»Îª¿Õ
-		// --²¢ÇÒµ±Ç°½ÚµãµÄtableMapProviderÎª¿Õ»òÎªÄ¬ÈÏ±í¹æÔò(Ò²¾ÍÊÇÄ¬ÈÏµÄÒÔlogicTable×÷Îª±í¹æÔòµÄ»°)
+		// å¦‚æœè¾“å…¥çš„tableProviderä¸ä¸ºç©º
+		// --å¹¶ä¸”å½“å‰èŠ‚ç‚¹çš„tableMapProviderä¸ºç©ºæˆ–ä¸ºé»˜è®¤è¡¨è§„åˆ™(ä¹Ÿå°±æ˜¯é»˜è®¤çš„ä»¥logicTableä½œä¸ºè¡¨è§„åˆ™çš„è¯)
 		// --&& (this.tableMapProvider == null || this.tableMapProvider
 		// instanceof DefaultTableMapProvider)
 		if (tableMapProvider != null

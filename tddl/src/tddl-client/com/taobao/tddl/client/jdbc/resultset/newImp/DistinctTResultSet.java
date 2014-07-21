@@ -14,22 +14,22 @@ import com.taobao.tddl.client.jdbc.executeplan.ExecutionPlan;
 import com.taobao.tddl.client.jdbc.resultset.helper.ComparatorRealizer;
 import com.taobao.tddl.client.jdbc.sqlexecutor.RealSqlExecutor;
 /**
- * ÔİÊ±²»×ßÕâ¸öResultSet,¶à¿â¶à±í¿ÉÄÜÓĞĞÔÄÜ·çÏÕ
+ * æš‚æ—¶ä¸èµ°è¿™ä¸ªResultSet,å¤šåº“å¤šè¡¨å¯èƒ½æœ‰æ€§èƒ½é£é™©
  * 
  * @author junyu
  *
  */
 public class DistinctTResultSet extends BaseTResultSet {
-	// Ö»Ö§³Öµ¥ÁĞdistinct
+	// åªæ”¯æŒå•åˆ—distinct
 	private List<String> distinctColumns;
-	// ÒÑ¾­¼ìË÷Êı¾İ,ÓĞÄÚ´æÒç³öµÄ·çÏÕ
+	// å·²ç»æ£€ç´¢æ•°æ®,æœ‰å†…å­˜æº¢å‡ºçš„é£é™©
 	private List<List<Object>> result = new ArrayList<List<Object>>(
 			this.maxSize);
-	//·ÀÖ¹ÄÚ´æ±¬µô
+	//é˜²æ­¢å†…å­˜çˆ†æ‰
 	private int maxSize = 100000;
-	// ±È½ÏÆ÷
+	// æ¯”è¾ƒå™¨
 	private Map<String, Comparator<Object>> compMap = null;
-	// ÅĞ¶¨½á¹û¼¯ÊÇ·ñÈ¡¾¡
+	// åˆ¤å®šç»“æœé›†æ˜¯å¦å–å°½
 	private int rsIndex = 0;
 
 	public DistinctTResultSet(TStatementImp tStatementImp,
@@ -62,7 +62,7 @@ public class DistinctTResultSet extends BaseTResultSet {
 
 			boolean inPreSearch = true;
 			List<Object> record = new ArrayList<Object>(distinctColumns.size());
-			// Ò»¸ö×Ö¶ÎÒ»¸ö×Ö¶Î±È½Ï,¸ù¾İDISTINCT¶¨Òå,DISTINCTËùÓĞ×Ö¶ÎÖµÏàÍ¬,ÄÇÃ´²ÅÏàÍ¬
+			// ä¸€ä¸ªå­—æ®µä¸€ä¸ªå­—æ®µæ¯”è¾ƒ,æ ¹æ®DISTINCTå®šä¹‰,DISTINCTæ‰€æœ‰å­—æ®µå€¼ç›¸åŒ,é‚£ä¹ˆæ‰ç›¸åŒ
 			for (int i = 0; i < distinctColumns.size(); i++) {
 				Object obj = rs.getObject(distinctColumns.get(i));
 				if (!this.contains(i, distinctColumns.get(i), obj)) {
@@ -75,7 +75,7 @@ public class DistinctTResultSet extends BaseTResultSet {
 				if (result.size() < maxSize) {
 					result.add(record);
 				} else {
-					throw new SQLException("[DISTINCT]²éÑ¯³öµÄÊı¾İÌõÊı¶àÓÚÏŞÖÆÖµ"+maxSize+",²éÑ¯Ê§°Ü!");
+					throw new SQLException("[DISTINCT]æŸ¥è¯¢å‡ºçš„æ•°æ®æ¡æ•°å¤šäºé™åˆ¶å€¼"+maxSize+",æŸ¥è¯¢å¤±è´¥!");
 				}
 				return true;
 			} else {
@@ -92,7 +92,7 @@ public class DistinctTResultSet extends BaseTResultSet {
 	}
 
 	/**
-	 * ÅĞ¶¨µ±Ç°¼ìË÷µÄÊı¾İÊÇ·ñ´æÔÚÓÚÒÑ¼ìË÷µÄÊı¾İ,Èç¹ûÖØ¸´ ÔòÖ±½ÓnextÈ¡ÏÂÒ»¸ö.Ö±µ½È¡¾¡
+	 * åˆ¤å®šå½“å‰æ£€ç´¢çš„æ•°æ®æ˜¯å¦å­˜åœ¨äºå·²æ£€ç´¢çš„æ•°æ®,å¦‚æœé‡å¤ åˆ™ç›´æ¥nextå–ä¸‹ä¸€ä¸ª.ç›´åˆ°å–å°½
 	 * 
 	 * @param obj
 	 * @return
@@ -100,7 +100,7 @@ public class DistinctTResultSet extends BaseTResultSet {
 	private boolean contains(int index, String distinctColumn, Object obj) {
 		Comparator<Object> comp = compMap.get(distinctColumn);
 		for (List<Object> re : result) {
-			// Ò»·¢ÏÖÓĞÏàÍ¬¾ÍÖ±½Ó·µ»Øtrue
+			// ä¸€å‘ç°æœ‰ç›¸åŒå°±ç›´æ¥è¿”å›true
 			if (comp.compare(re.get(index), obj) == 0) {
 				return true;
 			}

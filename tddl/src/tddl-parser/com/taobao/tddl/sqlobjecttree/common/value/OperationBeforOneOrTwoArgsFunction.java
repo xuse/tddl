@@ -18,7 +18,7 @@ public abstract class OperationBeforOneOrTwoArgsFunction implements Function {
 			arg1 = values.get(0);
 			arg2 = values.get(1);
 		} else {
-			throw new IllegalArgumentException("²ÎÊı¶àÓÚ2¸ö");
+			throw new IllegalArgumentException("å‚æ•°å¤šäº2ä¸ª");
 		}
 	}
 
@@ -36,7 +36,7 @@ public abstract class OperationBeforOneOrTwoArgsFunction implements Function {
 			if (ret == null) {
 				ret = ((Column) arg2).getColumn();
 			} else {
-				throw new IllegalArgumentException("Ë«²ÎÊıº¯ÊıÖĞ²»ÄÜ³öÏÖ¶à¸öÁĞÃûµÄº¯Êı");
+				throw new IllegalArgumentException("åŒå‚æ•°å‡½æ•°ä¸­ä¸èƒ½å‡ºç°å¤šä¸ªåˆ—åçš„å‡½æ•°");
 			}
 		}
 		return ret;

@@ -11,17 +11,17 @@
 //
 //public interface DBRuleProvider {
 //	/**
-//	 * »ñÈ¡Ä¿±êÊı¾İ¿âidºÍ±íÃûµÄÕû¸öÊı¾İ½á¹¹¡£
-//	 * Ò»¸ödbÊı×é£¬Ã¿¸ödb°üº¬¶à¸ö±íÃû¡£
-//	 * @param virtualTabName ĞéÄâ±íÃû
-//	 * @param comp whereÌõ¼şÖĞÃ¿Ò»¸öÊôĞÔµÄ·¶Î§Ìõ¼ş¡£¾ßÌåÇë²ÎÕÕ{@link Main}ÖĞµÄÊµÏÖ·½Ê½
-//	 * @param position ¶ÔwhereÌõ¼şÖĞµÄÊôĞÔÔÚcomparableÊı×éÖĞÎ»ÖÃµÄÃèÊö¡£
-//	 * i.e:whereÌõ¼şÖĞÓĞÈı¸öÌõ¼ş£º
-//	 * comp[0]=gmt¡¢comp[1]=id¡¢comp[2]=route¡£
-//	 * ÄÇÃ´Õâ¸ö²ÎÊıÓ¦¸ÃÎª"gmt,id,route"
+//	 * è·å–ç›®æ ‡æ•°æ®åº“idå’Œè¡¨åçš„æ•´ä¸ªæ•°æ®ç»“æ„ã€‚
+//	 * ä¸€ä¸ªdbæ•°ç»„ï¼Œæ¯ä¸ªdbåŒ…å«å¤šä¸ªè¡¨åã€‚
+//	 * @param virtualTabName è™šæ‹Ÿè¡¨å
+//	 * @param comp whereæ¡ä»¶ä¸­æ¯ä¸€ä¸ªå±æ€§çš„èŒƒå›´æ¡ä»¶ã€‚å…·ä½“è¯·å‚ç…§{@link Main}ä¸­çš„å®ç°æ–¹å¼
+//	 * @param position å¯¹whereæ¡ä»¶ä¸­çš„å±æ€§åœ¨comparableæ•°ç»„ä¸­ä½ç½®çš„æè¿°ã€‚
+//	 * i.e:whereæ¡ä»¶ä¸­æœ‰ä¸‰ä¸ªæ¡ä»¶ï¼š
+//	 * comp[0]=gmtã€comp[1]=idã€comp[2]=routeã€‚
+//	 * é‚£ä¹ˆè¿™ä¸ªå‚æ•°åº”è¯¥ä¸º"gmt,id,route"
 //	 * 
-//	 * @return Ä¿±êÊı¾İ¿âµÄÏà¹ØÊôĞÔList£¬ListÖĞµÄÃ¿Ò»Ïî¶ÔÓ¦Ò»¸ö·Ö¿â¹æÔò£¬Ã¿Ò»¸ö·Ö¿â
-//	 * ¹æÔòÖĞÓĞÁã¸ö»ò¶à¸ö±íÃû¡£²»»áÎª¿Õ
+//	 * @return ç›®æ ‡æ•°æ®åº“çš„ç›¸å…³å±æ€§Listï¼ŒListä¸­çš„æ¯ä¸€é¡¹å¯¹åº”ä¸€ä¸ªåˆ†åº“è§„åˆ™ï¼Œæ¯ä¸€ä¸ªåˆ†åº“
+//	 * è§„åˆ™ä¸­æœ‰é›¶ä¸ªæˆ–å¤šä¸ªè¡¨åã€‚ä¸ä¼šä¸ºç©º
 //	 * @throws TDLCheckedExcption
 //	 */
 //	public TargetDBMetaData getDBAndTabs(String virtualTabName,
@@ -30,16 +30,16 @@
 //	public TargetDBMetaData getDBAndTabs(String virtualTableName,
 //			String databaseGroupsID,Set<String> tables)throws TDLCheckedExcption;
 ////	/**
-////	 * »ñÈ¡·Ö¿âÁĞÃû
-////	 * @param virtualTabName ĞéÄâ±íÃû
-////	 *  @param isPK Èç¹ûĞèÒª»ñµÃpkÔòÎªtrue,·ñÔòÎªfalse
-////	 * @return  ·µ»ØÁĞÃû¼¯
-////	 * 			·µ»Øempty set, if doesn't have split column
+////	 * è·å–åˆ†åº“åˆ—å
+////	 * @param virtualTabName è™šæ‹Ÿè¡¨å
+////	 *  @param isPK å¦‚æœéœ€è¦è·å¾—pkåˆ™ä¸ºtrue,å¦åˆ™ä¸ºfalse
+////	 * @return  è¿”å›åˆ—åé›†
+////	 * 			è¿”å›empty set, if doesn't have split column
 ////	 */
 ////	public Set<String> getSplitDBColumns(String virtualTabName,boolean isPK);
 ////	/**
-////	 * »ñÈ¡µ±Ç°ĞéÄâ±íµÄ·Ö¿â·Ö±í×Ö¶Î
-////	 * @important Õâ¸ö·½·¨±ØĞëÔÚgetDb_type·½·¨ºóµ÷ÓÃ
+////	 * è·å–å½“å‰è™šæ‹Ÿè¡¨çš„åˆ†åº“åˆ†è¡¨å­—æ®µ
+////	 * @important è¿™ä¸ªæ–¹æ³•å¿…é¡»åœ¨getDb_typeæ–¹æ³•åè°ƒç”¨
 ////	 * @param virtualTableName
 ////	 * @return
 ////	 */
@@ -49,8 +49,8 @@
 //			Map<String, Comparative> colMap, int databaseRuleIndex,
 //			int tableRuleIndex) throws TDLCheckedExcption;
 //	/**
-//	 * »ñÈ¡µ±Ç°sql µÄtype.¿´ÊÇ·ñÊÇmysql»¹ÊÇoracleÀàĞÍ»¹ÊÇÆäËûÊ²Ã´ÀàĞÍ¡£
-//	 * ÎªÁËĞÔÄÜ¿¼ÂÇ£¬Õâ¸ö·½·¨±ØĞëÓÅÏÈÓÚgetPartitionColumns·½·¨µ÷ÓÃ¡£ÒòÎª»áÀÁ¼ÓÔØÒ»´Î¡£
+//	 * è·å–å½“å‰sql çš„type.çœ‹æ˜¯å¦æ˜¯mysqlè¿˜æ˜¯oracleç±»å‹è¿˜æ˜¯å…¶ä»–ä»€ä¹ˆç±»å‹ã€‚
+//	 * ä¸ºäº†æ€§èƒ½è€ƒè™‘ï¼Œè¿™ä¸ªæ–¹æ³•å¿…é¡»ä¼˜å…ˆäºgetPartitionColumnsæ–¹æ³•è°ƒç”¨ã€‚å› ä¸ºä¼šæ‡’åŠ è½½ä¸€æ¬¡ã€‚
 //	 * @return
 //	 */
 //	public DBType getDBType();

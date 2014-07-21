@@ -27,7 +27,7 @@ import com.taobao.tddl.rule.le.extend.MatchResultCompare;
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-3-29ÉÏÎç11:02:23
+ * @date 2011-3-29ä¸Šåˆ11:02:23
  */
 public class TddlRule extends TddlRuleInner implements TddlRuleExtend,
 		TddlRuleMetaData {
@@ -54,7 +54,7 @@ public class TddlRule extends TddlRuleInner implements TddlRuleExtend,
 		if (null != shardColumn && !shardColumn.isEmpty()) {
 			return shardColumn;
 		}
-		// Èç¹ûcacheÃ»ÃüÖĞ£¬Ôò´Ó¹æÔòÀïÕÒ·Ö¿â·Ö±í×Ö¶Î
+		// å¦‚æœcacheæ²¡å‘½ä¸­ï¼Œåˆ™ä»è§„åˆ™é‡Œæ‰¾åˆ†åº“åˆ†è¡¨å­—æ®µ
 		shardColumn = new HashSet<String>();
 		VirtualTableRoot virtualTableRoot = super.vtrs.get(this.versionIndex
 				.get(0));
@@ -87,7 +87,7 @@ public class TddlRule extends TddlRuleInner implements TddlRuleExtend,
 			}
 		}
 		if (!shardColumn.isEmpty()) {
-			// Èç¹û×ß¹æÔòÕÒµ½ÁË½«½á¹û·ÅÈë»º´æ
+			// å¦‚æœèµ°è§„åˆ™æ‰¾åˆ°äº†å°†ç»“æœæ”¾å…¥ç¼“å­˜
 			this.shardColumnCache.put(logicTable, shardColumn);
 		}
 		return shardColumn;
@@ -213,16 +213,16 @@ public class TddlRule extends TddlRuleInner implements TddlRuleExtend,
 		}
 
 		/*
-		 * Õâ¸öÂß¼­×öÁËĞŞ¸Ä¡£½«Ê¹ÓÃ¹æÔò°æ±¾µÄÂß¼­£¬È«²¿½»¸ø versionIndex À´¾ö¶¨
+		 * è¿™ä¸ªé€»è¾‘åšäº†ä¿®æ”¹ã€‚å°†ä½¿ç”¨è§„åˆ™ç‰ˆæœ¬çš„é€»è¾‘ï¼Œå…¨éƒ¨äº¤ç»™ versionIndex æ¥å†³å®š
 		 * 
 		 * 
-		// Èç¹ûÖ»ÓĞµ¥Ì×¹æÔò,Ö±½Ó·µ»ØÕâÌ×¹æÔòµÄÂ·ÓÉ½á¹û
+		// å¦‚æœåªæœ‰å•å¥—è§„åˆ™,ç›´æ¥è¿”å›è¿™å¥—è§„åˆ™çš„è·¯ç”±ç»“æœ
 		if (this.vtrs.size() == 1) {
 			return route0(vtab, conditionStr,
 					this.vtrs.get(versionIndex.get(0)));
 		}
 
-		// Èç¹û²»Ö¹Ò»Ì×¹æÔò,ÄÇÃ´¼ÆËãÁ½Ì×¹æÔò,Ä¬ÈÏ¶¼·µ»Ø¾É¹æÔò¼ÆËã½á¹û
+		// å¦‚æœä¸æ­¢ä¸€å¥—è§„åˆ™,é‚£ä¹ˆè®¡ç®—ä¸¤å¥—è§„åˆ™,é»˜è®¤éƒ½è¿”å›æ—§è§„åˆ™è®¡ç®—ç»“æœ
 		if (this.vtrs.size() != 2 || this.versionIndex.size() != 2) {
 			throw new RuntimeException(
 					"not support more than 2 copy rule compare");
@@ -238,7 +238,7 @@ public class TddlRule extends TddlRuleInner implements TddlRuleExtend,
 					"not support more than 2 copy rule compare");
 		}
 
-		// µÚÒ»¸öÅÅÎ»µÄÎª¾É¹æÔò
+		// ç¬¬ä¸€ä¸ªæ’ä½çš„ä¸ºæ—§è§„åˆ™
 		VirtualTableRoot oldVirtualTableRoot = vtrs.get(versionIndex.get(0));
 		VirtualTable oldRule = oldVirtualTableRoot.getVirtualTable(vtab);
 		List<TargetDB> oldTarget = null;
@@ -248,13 +248,13 @@ public class TddlRule extends TddlRuleInner implements TddlRuleExtend,
 			oldTarget = this.getTargetDb(oldRule, conditionStr);
 		}
 
-		// Èç¹ûÎªselect,Ö±½Ó·µ»Ø¾É¹æÔò¼ÆËã½á¹û
+		// å¦‚æœä¸ºselect,ç›´æ¥è¿”å›æ—§è§„åˆ™è®¡ç®—ç»“æœ
 		if (sqlType.equals(SqlType.SELECT)
 				|| sqlType.equals(SqlType.SELECT_FOR_UPDATE)) {
 			return oldTarget;
 		}
 
-		// µÚ¶ş¸öÅÅÎ»µÄÎªĞÂ¹æÔò
+		// ç¬¬äºŒä¸ªæ’ä½çš„ä¸ºæ–°è§„åˆ™
 		VirtualTableRoot newVirtualTableRoot = vtrs.get(versionIndex.get(1));
 		VirtualTable newRule = newVirtualTableRoot.getVirtualTable(vtab);
 		List<TargetDB> newTarget = null;
@@ -264,7 +264,7 @@ public class TddlRule extends TddlRuleInner implements TddlRuleExtend,
 			newTarget = this.getTargetDb(newRule, conditionStr);
 		}
 
-		// ½øĞĞ±È½Ï
+		// è¿›è¡Œæ¯”è¾ƒ
 		boolean compareResult = MatchResultCompare.targetDbCompare(newTarget,
 				oldTarget, oriDb, oriTable);
 
@@ -339,7 +339,7 @@ public class TddlRule extends TddlRuleInner implements TddlRuleExtend,
 	}
 
 	/**
-	 * Ã»ÓĞ·Ö¿â·Ö±íµÄÂß¼­±í£¬·µ»ØÖ¸¶¨¿â±í
+	 * æ²¡æœ‰åˆ†åº“åˆ†è¡¨çš„é€»è¾‘è¡¨ï¼Œè¿”å›æŒ‡å®šåº“è¡¨
 	 * 
 	 * @param vtab
 	 * @param vtrCurrent
@@ -357,7 +357,7 @@ public class TddlRule extends TddlRuleInner implements TddlRuleExtend,
 	}
 
 	/**
-	 * Ã»ÓĞ·Ö¿â·Ö±íµÄÂß¼­±í£¬·µ»ØÖ¸¶¨¿â±í
+	 * æ²¡æœ‰åˆ†åº“åˆ†è¡¨çš„é€»è¾‘è¡¨ï¼Œè¿”å›æŒ‡å®šåº“è¡¨
 	 * 
 	 * @param vtab
 	 * @param vtrCurrent
@@ -373,7 +373,7 @@ public class TddlRule extends TddlRuleInner implements TddlRuleExtend,
 	}
 
 	/**
-	 * Ã»ÓĞ·Ö¿â·Ö±íµÄÂß¼­±í£¬ÏÈ´ÓdbIndexÖĞ»ñÈ¡Ó³ÉäµÄ¿â£¬Ã»ÓĞÔò·µ»ØÄ¬ÈÏµÄ¿â
+	 * æ²¡æœ‰åˆ†åº“åˆ†è¡¨çš„é€»è¾‘è¡¨ï¼Œå…ˆä»dbIndexä¸­è·å–æ˜ å°„çš„åº“ï¼Œæ²¡æœ‰åˆ™è¿”å›é»˜è®¤çš„åº“
 	 * 
 	 * @param vtab
 	 * @param vtrCurrent

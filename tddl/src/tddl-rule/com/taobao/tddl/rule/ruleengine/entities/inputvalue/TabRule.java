@@ -14,12 +14,12 @@ import com.taobao.tddl.rule.ruleengine.impl.type.TypeRegister;
 
 public class TabRule {
 	/**
-	 * tab1,tab2,tab3¡£¡£¡£¡£
+	 * tab1,tab2,tab3ã€‚ã€‚ã€‚ã€‚
 	 */
 	public final static int SPLIT_BY_COMMA = 1;
 
 	/**
-	 * ĞéÄâ±íÃû+Êı×Ö·¶Î§vtab[1-2]
+	 * è™šæ‹Ÿè¡¨å+æ•°å­—èŒƒå›´vtab[1-2]
 	 */
 	public final static int VTAB_NAME_PLUS_NUMBER_RANGE = 2;
 	private String padding="";
@@ -67,7 +67,7 @@ public class TabRule {
 	public void setPrimaryKey(String primaryKey) {
 		if(primaryKey!=null){
 			if(primaryKey.contains(",")){
-				throw new IllegalArgumentException("²»ÄÜÓĞÁ½¸ö»ò¶à¸öÖ÷¼ü");
+				throw new IllegalArgumentException("ä¸èƒ½æœ‰ä¸¤ä¸ªæˆ–å¤šä¸ªä¸»é”®");
 			}
 			this.primaryKey = primaryKey.toLowerCase();
 		}
@@ -96,17 +96,17 @@ public class TabRule {
 		}else{
 			Integer widthInt=Integer.valueOf(width);
 			if(widthInt>8){
-				throw new IllegalArgumentException("Õ¼Î»·û²»ÄÜ³¬¹ı8Î»");
+				throw new IllegalArgumentException("å ä½ç¬¦ä¸èƒ½è¶…è¿‡8ä½");
 			}
 			if(widthInt<=0){
-				throw new IllegalArgumentException("Õ¼Î»·û²»ÄÜÎª¸ºÖµ»òÎª0");
+				throw new IllegalArgumentException("å ä½ç¬¦ä¸èƒ½ä¸ºè´Ÿå€¼æˆ–ä¸º0");
 			}
 			this.width = widthInt;
 		}
 	}
 
 	/**
-	 * ×öÁË¿ÕÖ¸Õë¼ì²é
+	 * åšäº†ç©ºæŒ‡é’ˆæ£€æŸ¥
 	 * 
 	 * @param defaultTable
 	 */
@@ -118,9 +118,9 @@ public class TabRule {
 
 
 	private Collection<String> getCollection( String targetTables) {
-		//²»×öÕâ¸ö¼ì²éÁË£¬µ«Èç¹ûĞèÒªÉèÖÃpaddingºÍplaceHolder±ØĞëÖÆ¶¨ÕâÁ½¸ö²ÎÊı
+		//ä¸åšè¿™ä¸ªæ£€æŸ¥äº†ï¼Œä½†å¦‚æœéœ€è¦è®¾ç½®paddingå’ŒplaceHolderå¿…é¡»åˆ¶å®šè¿™ä¸¤ä¸ªå‚æ•°
 //		if(!initedPadding||!initedPlaceHolder){
-//			throw new IllegalStateException("Ó¦ÏÈ³õÊ¼»¯paddingºÍplaceHolder");
+//			throw new IllegalStateException("åº”å…ˆåˆå§‹åŒ–paddingå’ŒplaceHolder");
 //		}
 		List<String> retCol = new ArrayList<String>();;
 		int type = -100;
@@ -154,7 +154,7 @@ public class TabRule {
 				}
 				break;
 			default:
-				throw new NotSupportException("»¹²»Ö§³ÖµÄÇé¿ö");
+				throw new NotSupportException("è¿˜ä¸æ”¯æŒçš„æƒ…å†µ");
 			}
 		}
 		return retCol;
@@ -167,11 +167,11 @@ public class TabRule {
 		TableNameTypeHandler tHandler = TypeRegister.getTableNameHandler(type);
 		int curPos = parseDefaultTables(0, tabToken,startEnd, vTab);
 		if (curPos < tabToken.length() -1) {
-			//ÓĞ2¸ö []
+			//æœ‰2ä¸ª []
 			List<Integer> startEnd2 = new ArrayList<Integer>();
 			curPos = parseDefaultTables(curPos, tabToken, startEnd2, vTab);
 			if (curPos == -1) {
-				throw new TDLRunTimeException("½âÎödefaultTableRange³ö´í" + tabToken);
+				throw new TDLRunTimeException("è§£ædefaultTableRangeå‡ºé”™" + tabToken);
 			}
 			tHandler.buildAllPassableTable(collection, step, step, vTab.toString(), startEnd.get(0), startEnd2.get(0), startEnd.get(1), startEnd2.get(1), padding,width);
 		} else {
@@ -181,8 +181,8 @@ public class TabRule {
 	}
 	
 	/**
-	 * ½âÎö×Ö·û´® [00-09]
-	 * @return ½áÊøµÄÎ»ÖÃ£¬ -1±íÊ¾½âÎö²»³É¹¦
+	 * è§£æå­—ç¬¦ä¸² [00-09]
+	 * @return ç»“æŸçš„ä½ç½®ï¼Œ -1è¡¨ç¤ºè§£æä¸æˆåŠŸ
 	 */
 	private int parseDefaultTables(int cur, String tabToken, List<Integer> startEnd, StringBuffer vTab) {
 		int st = tabToken.indexOf("[", cur);

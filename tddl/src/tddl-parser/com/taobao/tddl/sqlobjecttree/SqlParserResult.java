@@ -9,55 +9,55 @@ import com.taobao.tddl.interact.bean.ComparativeMapChoicer;
 import com.taobao.tddl.sqlobjecttree.outputhandlerimpl.HandlerContainer;
 
 /**
- * DMLCommon dmlc ÖĞËùÓĞÓÃµ½µÄ·½·¨µÄ³éÏó
+ * DMLCommon dmlc ä¸­æ‰€æœ‰ç”¨åˆ°çš„æ–¹æ³•çš„æŠ½è±¡
  *  
  * @author linxuan
  */
 public interface SqlParserResult {
 	/**
-	 * »ñÈ¡µ±Ç°±íÃû
+	 * è·å–å½“å‰è¡¨å
 	 * @return
 	 */
 	Set<String> getTableName();
 
 	/**
-	 * »ñÈ¡sqlµÄSKIPÖµÈç¹ûÓĞµÄ»°£¬Ã»ÓĞµÄÇé¿öÏÂ»á·µ»ØDEFAULTÖµ
-	 * TODO ¿¼ÂÇ°Ñ²ÎÊıÈ¥µô¡£ÒòÎªÔÚ½âÎöÕâ¸ö¶ÔÏóÊ±£¬ÒÑ¾­½«param´«¸ø¹ı½âÎöÆ÷ÁË
+	 * è·å–sqlçš„SKIPå€¼å¦‚æœæœ‰çš„è¯ï¼Œæ²¡æœ‰çš„æƒ…å†µä¸‹ä¼šè¿”å›DEFAULTå€¼
+	 * TODO è€ƒè™‘æŠŠå‚æ•°å»æ‰ã€‚å› ä¸ºåœ¨è§£æè¿™ä¸ªå¯¹è±¡æ—¶ï¼Œå·²ç»å°†paramä¼ ç»™è¿‡è§£æå™¨äº†
 	 * @param param
 	 * @return
 	 */
 	int getSkip(List<Object> param);
 
 	/**
-	 * »ñÈ¡sqlµÄmaxÖµÈç¹ûÓĞµÄ»°£¬Ã»ÓĞµÄ»°»á·µ»ØDEFAULTÖµ
-	 * TODO ¿¼ÂÇ°Ñ²ÎÊıÈ¥µô¡£ÒòÎªÔÚ½âÎöÕâ¸ö¶ÔÏóÊ±£¬ÒÑ¾­½«param´«¸ø¹ı½âÎöÆ÷ÁË
+	 * è·å–sqlçš„maxå€¼å¦‚æœæœ‰çš„è¯ï¼Œæ²¡æœ‰çš„è¯ä¼šè¿”å›DEFAULTå€¼
+	 * TODO è€ƒè™‘æŠŠå‚æ•°å»æ‰ã€‚å› ä¸ºåœ¨è§£æè¿™ä¸ªå¯¹è±¡æ—¶ï¼Œå·²ç»å°†paramä¼ ç»™è¿‡è§£æå™¨äº†
 	 * @param param
 	 * @return
 	 */
 	int getMax(List<Object> param);
 
 	/**
-	 * »òĞíµ±Ç°sqlµÄ×îÍâ²ãµÄgroup function.Èç¹ûÓĞÇÒ½öÓĞÒ»¸ögroup function,ÄÇÃ´Ê¹ÓÃ¸Ãfunction
-	 * Èç¹ûÃ»ÓĞgroup function»òÕßÓĞ¶à¸ögroup function.Ôò·µ»ØNORMAL
+	 * æˆ–è®¸å½“å‰sqlçš„æœ€å¤–å±‚çš„group function.å¦‚æœæœ‰ä¸”ä»…æœ‰ä¸€ä¸ªgroup function,é‚£ä¹ˆä½¿ç”¨è¯¥function
+	 * å¦‚æœæ²¡æœ‰group functionæˆ–è€…æœ‰å¤šä¸ªgroup function.åˆ™è¿”å›NORMAL
 	 * 
 	 * @return
 	 */
 	GroupFunctionType getGroupFuncType();
 
 	/**
-	 * »ñÈ¡order by µÄĞÅÏ¢
+	 * è·å–order by çš„ä¿¡æ¯
 	 * @return
 	 */
 	List<OrderByEle> getOrderByEles();
 	
 	/**
-	 * »ñÈ¡group by ĞÅÏ¢
+	 * è·å–group by ä¿¡æ¯
 	 * @return
 	 */
 	List<OrderByEle> getGroupByEles();
 
 	/**
-	 * ·´ÏòÊä³öµÄ½Ó¿Ú
+	 * åå‘è¾“å‡ºçš„æ¥å£
 	 * @param tables
 	 * @param args
 	 * @param skip
@@ -66,40 +66,40 @@ public interface SqlParserResult {
 	 * @param modifiedMap
 	 * @return
 	 */
-	public List<SqlAndTableAtParser> getSqlReadyToRun(Collection<Map<String/*ĞéÄâ±íÃû*/,String/*ÕæÊµ±íÃû*/>> tables, List<Object> args,
+	public List<SqlAndTableAtParser> getSqlReadyToRun(Collection<Map<String/*è™šæ‹Ÿè¡¨å*/,String/*çœŸå®è¡¨å*/>> tables, List<Object> args,
 			HandlerContainer handlerContainer);
 	
 	 /**
-	  * »ñÈ¡½á¹û¼¯É¸Ñ¡Æ÷
+	  * è·å–ç»“æœé›†ç­›é€‰å™¨
 	 * @return
 	 */
 	ComparativeMapChoicer getComparativeMapChoicer();
 	
 	/**
-	 * @tofix ÒÑ¾­½«Distinct µ±×öÁËÒ»¸ö·½·¨£¬ Distinct ºÍºóÃæµÄcolumn£¬Ò»Æğ×÷ÎªÒ»¸öFunction column,
-	 *        ´Ë´¦¼ÌĞø±£ÁôÕâ¸öDistinct£¬×÷ÎªÒ»¸öÈßÓà£¬ÊÇÒòÎªºóÃæµÄ·Ö¿â·Ö±íÊ±µÄ´úÂëĞèÒªµ÷ÓÃÕâ¸öÊôĞÔÀ´½øĞĞ²Ù×÷!
-	 *        ´ËDistinctÖ»×÷ÎªÈßÓà£¬¸ù¾İParser½á¹û¶ÔÏó·½ÏòÊä³ö×é³ÉSQLµÄStringÊ±½«²»ÔÙÊä³ö´ËDistinct--add by
+	 * @tofix å·²ç»å°†Distinct å½“åšäº†ä¸€ä¸ªæ–¹æ³•ï¼Œ Distinct å’Œåé¢çš„columnï¼Œä¸€èµ·ä½œä¸ºä¸€ä¸ªFunction column,
+	 *        æ­¤å¤„ç»§ç»­ä¿ç•™è¿™ä¸ªDistinctï¼Œä½œä¸ºä¸€ä¸ªå†—ä½™ï¼Œæ˜¯å› ä¸ºåé¢çš„åˆ†åº“åˆ†è¡¨æ—¶çš„ä»£ç éœ€è¦è°ƒç”¨è¿™ä¸ªå±æ€§æ¥è¿›è¡Œæ“ä½œ!
+	 *        æ­¤Distinctåªä½œä¸ºå†—ä½™ï¼Œæ ¹æ®Parserç»“æœå¯¹è±¡æ–¹å‘è¾“å‡ºç»„æˆSQLçš„Stringæ—¶å°†ä¸å†è¾“å‡ºæ­¤Distinct--add by
 	 *        mazhidan.pt
 	 *        
 	 */
 	public List<String> getDistinctColumn();
 	
 	/**
-	 * ÅĞ¶¨ÊÇ·ñ´æÔÚhaving
+	 * åˆ¤å®šæ˜¯å¦å­˜åœ¨having
 	 * @return
 	 */
 	public boolean hasHavingCondition();
 	
 	/**
-	 * È¡µÃin ĞÅÏ¢
-	 * ÊµÏÖÀà±£Ö¤Õâ¸öList²»»áÎªnull
+	 * å–å¾—in ä¿¡æ¯
+	 * å®ç°ç±»ä¿è¯è¿™ä¸ªListä¸ä¼šä¸ºnull
 	 * @return
 	 */
 	public List<InExpressionObject> getInExpressionObjectList();
 	
 	/**
-	 * ¸ñÊ½»¯ºóµÄsql£¬
-	 * 1.¶à¸öin²ÎÊı:id in (?,?,?) »á±»ºÏ²¢ÎªÒ»¸ö²ÎÊı:id in (?)
+	 * æ ¼å¼åŒ–åçš„sqlï¼Œ
+	 * 1.å¤šä¸ªinå‚æ•°:id in (?,?,?) ä¼šè¢«åˆå¹¶ä¸ºä¸€ä¸ªå‚æ•°:id in (?)
 	 * @return
 	 */
 	public String getFormatSql();

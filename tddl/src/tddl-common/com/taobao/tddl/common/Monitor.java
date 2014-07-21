@@ -30,7 +30,7 @@ public class Monitor {
 	//public static final String KEY1_TABLE = "TDDL_TABLE|";
 	//public static final String KEY2_EXEC_SQL = "TDDL_SQL|";
 	public static final String KEY2_SYNC = "Sync";
-	public static final String KEY2_SYNC_CONTEXT_SQL = "SyncServerContextSql"; //added by huali£¬ÊÇÔÚÍ¬²½·şÎñÆ÷Í¬²½µÄÊ±ºòÉèÖÃ¸øcontextµÄsql£¬·ñÔò¼à¿ØµÄ´úÂë»áNPE 
+	public static final String KEY2_SYNC_CONTEXT_SQL = "SyncServerContextSql"; //added by hualiï¼Œæ˜¯åœ¨åŒæ­¥æœåŠ¡å™¨åŒæ­¥çš„æ—¶å€™è®¾ç½®ç»™contextçš„sqlï¼Œå¦åˆ™ç›‘æ§çš„ä»£ç ä¼šNPE 
 	public static final String KEY3_BatchUpdateSyncLog = "BatchUpdateSyncLog";
 	public static final String KEY3_BatchDeleteSyncLog = "BatchDeleteSyncLog";
 	public static final String KEY3_SyncLogFetched = "SyncLogFetched";
@@ -38,17 +38,17 @@ public class Monitor {
 	public static final String KEY3_UpdateSlaveRow_dup_all = "UpdateSlaveRow_dup_all";
 	public static final String KEY3_PARSE_SQL = "PARSE_SQL_SUCCESS";
 	public static final String KEY3_TAIR_HIT_RATING = "TAIR_HIT_RATING";
-	public static final String KEY3_GET_DB_AND_TABLES = "GET_DB_ANDTABLES_SUCCESS";//»á¼ÇÂ¼×ßÔòÒıÇæÓÃµÄÊ±¼äºÍ×ÜºÄÊ±
+	public static final String KEY3_GET_DB_AND_TABLES = "GET_DB_ANDTABLES_SUCCESS";//ä¼šè®°å½•èµ°åˆ™å¼•æ“ç”¨çš„æ—¶é—´å’Œæ€»è€—æ—¶
 	/**
-	 * Ö´ĞĞsqlµÄ×ÜÊ±¼ä£¬°üº¬ÕæÕıÊı¾İ¿âµÄÖ´ĞĞÊ±¼äºÍ×ÜÊ±¼ä
+	 * æ‰§è¡Œsqlçš„æ€»æ—¶é—´ï¼ŒåŒ…å«çœŸæ­£æ•°æ®åº“çš„æ‰§è¡Œæ—¶é—´å’Œæ€»æ—¶é—´
 	 */
 	public static final String KEY3_EXECUTE_A_SQL_SUCCESS = "EXECUTE_A_SQL_SUCCESS";
 	/**
-	 * ×Ü¹²Ö´ĞĞÁË¼¸¸ö¿â£¬¼¸¸ö±í
+	 * æ€»å…±æ‰§è¡Œäº†å‡ ä¸ªåº“ï¼Œå‡ ä¸ªè¡¨
 	 */
 	public static final String KEY3_EXECUTE_A_SQL_SUCCESS_DBTAB = "EXECUTE_A_SQL_SUCCESS_DBTAB";
 	/**
-	 * Ö´ĞĞsqlµÄ×ÜÊ±¼ä£¬°üº¬ÕæÕıÊı¾İ¿âµÄÖ´ĞĞÊ±¼äºÍ×ÜÊ±¼ä
+	 * æ‰§è¡Œsqlçš„æ€»æ—¶é—´ï¼ŒåŒ…å«çœŸæ­£æ•°æ®åº“çš„æ‰§è¡Œæ—¶é—´å’Œæ€»æ—¶é—´
 	 */
 	public static final String KEY3_EXECUTE_A_SQL_TIMEOUT = "EXECUTE_A_SQL_TIMEOUT";
 
@@ -61,72 +61,72 @@ public class Monitor {
 	public static final String KEY2_REPLICATION_SQL = "TDDL_REPLICATION_SQL|";
 
 	/**
-	 * ¸´ÖÆµ½´Ó¿â³É¹¦£¬¼ÆÈëĞ´¿âÊ±¼äºÍ×ÜºÄ·ÑÊ±¼ä
+	 * å¤åˆ¶åˆ°ä»åº“æˆåŠŸï¼Œè®¡å…¥å†™åº“æ—¶é—´å’Œæ€»è€—è´¹æ—¶é—´
 	 */
 	public static final String KEY3_COPY_2_SLAVE_SUCCESS = "COPY_2_SLAVE_SUCCESS";
 
 	/**
-	 * ¼ÇÂ¼´ÓÉú³ÉÈÎÎñµ½¸ÃÈÎÎñ¿ªÊ¼±»Ö´ĞĞÖ®¼äËùÏûºÄµÄÊ±¼ä
+	 * è®°å½•ä»ç”Ÿæˆä»»åŠ¡åˆ°è¯¥ä»»åŠ¡å¼€å§‹è¢«æ‰§è¡Œä¹‹é—´æ‰€æ¶ˆè€—çš„æ—¶é—´
 	 */
 	public static final String KEY3_COPY_2_SLAVE_SUCCESS_TIME_CONSUMING_IN_THREADPOOL = "COPY_2_SLAVE_SUCCESS_TIME_CONSUMING_IN_THREADPOOL";
 	/**
-	 * ¸´ÖÆµ½´Ó¿â³¬Ê±£¬Òª¼ÇÂ¼²éÑ¯+Ğ´ÈësqlËùºÄ·ÑµÄÊ±¼ä¡£
+	 * å¤åˆ¶åˆ°ä»åº“è¶…æ—¶ï¼Œè¦è®°å½•æŸ¥è¯¢+å†™å…¥sqlæ‰€è€—è´¹çš„æ—¶é—´ã€‚
 	 */
 	public static final String KEY3_COPY_2_SLAVE_TIMEOUT = "COPY_2_SLAVE_TIMEOUT";
 
 	/**
-	 * ¼ÇÂ¼´ÓÉú³ÉÈÎÎñµ½¸ÃÈÎÎñ¿ªÊ¼±»Ö´ĞĞÖ®¼äËùÏûºÄµÄÊ±¼ä
+	 * è®°å½•ä»ç”Ÿæˆä»»åŠ¡åˆ°è¯¥ä»»åŠ¡å¼€å§‹è¢«æ‰§è¡Œä¹‹é—´æ‰€æ¶ˆè€—çš„æ—¶é—´
 	 */
 	public static final String KEY3_COPY_2_SLAVE_TIMEOUT_TIME_CONSUMING_IN_THREADPOOL = "COPY_2_SLAVE_TIMEOUT_TIME_CONSUMING_IN_THREADPOOL";
 	/**
-	 * ¸´ÖÆµ½´Ó¿âÒì³££¬²»¼ÆÈëÖ÷¼ü³åÍ»ÈÏÎª¸üĞÂ³É¹¦ÕâÖÖÇé¿ö¡£
+	 * å¤åˆ¶åˆ°ä»åº“å¼‚å¸¸ï¼Œä¸è®¡å…¥ä¸»é”®å†²çªè®¤ä¸ºæ›´æ–°æˆåŠŸè¿™ç§æƒ…å†µã€‚
 	 */
 	public static final String KEY3_COPY_2_SLAVE_EXCEPTION = "COPY_2_SLAVE_EXCEPTION";
 
 	public static final String KEY3_COPY_2_SLAVE_EXCEPTION_TIME_CONSUMING_IN_THREADPOOL = "COPY_2_SLAVE_EXCEPTION_TIME_CONSUMING_IN_THREADPOOL";
 
 	/**
-	 * Ê¹ÓÃsyncCenter£¬¸´ÖÆ³É¹¦×ÜºÄ·ÑÊ±¼ä£¨ÇëÇósyncCenterÇ°£¬µ½syncCenter·µ»ØÏìÓ¦ºó£©
+	 * ä½¿ç”¨syncCenterï¼Œå¤åˆ¶æˆåŠŸæ€»è€—è´¹æ—¶é—´ï¼ˆè¯·æ±‚syncCenterå‰ï¼Œåˆ°syncCenterè¿”å›å“åº”åï¼‰
 	 */
 	public static final String KEY3_SYNC_VIA_CENTER_SUCCESS = "SYNC_VIA_CENTER_SUCCESS";
 	/**
-	 * Ê¹ÓÃsyncCenter£¬¸´ÖÆ³¬Ê±Ê±¼ä£¨ÇëÇósyncCenterÇ°£¬µ½syncCenter·µ»ØÏìÓ¦ºó£©
+	 * ä½¿ç”¨syncCenterï¼Œå¤åˆ¶è¶…æ—¶æ—¶é—´ï¼ˆè¯·æ±‚syncCenterå‰ï¼Œåˆ°syncCenterè¿”å›å“åº”åï¼‰
 	 */
 	public static final String KEY3_SYNC_VIA_CENTER_TIMEOUT = "SYNC_VIA_CENTER_TIMEOUT";
 	/**
-	 * Ê¹ÓÃsyncCenter£¬¸´ÖÆ³¬Ê±Ê±£¬ÈÎÎñÔÚ¶ÓÁĞÖĞµÄµÈ´ıÊ±¼ä
+	 * ä½¿ç”¨syncCenterï¼Œå¤åˆ¶è¶…æ—¶æ—¶ï¼Œä»»åŠ¡åœ¨é˜Ÿåˆ—ä¸­çš„ç­‰å¾…æ—¶é—´
 	 */
 	public static final String KEY3_SYNC_VIA_CENTER_TIMEOUT_TIME_IN_QUEUE = "SYNC_VIA_CENTER_TIMEOUT_TIME_IN_QUEUE";
 	/**
-	 * value1£ºÊ¹ÓÃsyncCenter£¬ÔÚ³¬Ê±¼äwaitForResponseTimeoutÄÚ,Ã»ÓĞµÈµ½server·µ»ØµÄ´ÎÊı¡£value2£º×Ü´ÎÊı
+	 * value1ï¼šä½¿ç”¨syncCenterï¼Œåœ¨è¶…æ—¶é—´waitForResponseTimeoutå†…,æ²¡æœ‰ç­‰åˆ°serverè¿”å›çš„æ¬¡æ•°ã€‚value2ï¼šæ€»æ¬¡æ•°
 	 */
 	public static final String KEY3_SYNC_VIA_CENTER_NO_RESPONSE = "SYNC_VIA_CENTER_NO_RESPONSE";
 	
 	/**
-	 * TDDL Êı¾İ¿â£¨·ÖÍ°£©Á¬½ÓÊı
+	 * TDDL æ•°æ®åº“ï¼ˆåˆ†æ¡¶ï¼‰è¿æ¥æ•°
 	 */
 	public static final String KEY3_CONN_NUMBER = "CONN_NUM";
 	/**
-	 * TDDL Êı¾İ¿â£¨·ÖÍ°£©Á¬½Ó×èÈûÊ±¼ä
+	 * TDDL æ•°æ®åº“ï¼ˆåˆ†æ¡¶ï¼‰è¿æ¥é˜»å¡æ—¶é—´
 	 */
 	public static final String KEY3_CONN_BLOCKING = "CONN_BLOCKING";
 	
-	/** changyuan.lh: TDDL Í³¼ÆÈÕÖ¾ */
+	/** changyuan.lh: TDDL ç»Ÿè®¡æ—¥å¿— */
 	private static final BufferedLogWriter bufferedStatLogWriter = new BufferedLogWriter(
-			/* XXX: ¼ÇÂ¼ĞĞ¸´ÖÆÈÕÖ¾Óë SQL ½âÎöÈÕÖ¾, Key µÄÁ¿Óë SQL ÊıÁ¿ÏàÍ¬ */
+			/* XXX: è®°å½•è¡Œå¤åˆ¶æ—¥å¿—ä¸ SQL è§£ææ—¥å¿—, Key çš„é‡ä¸ SQL æ•°é‡ç›¸åŒ */
 			1024, 4096, new Log4jLogWriter(LoggerInit.TDDL_Statistic_LOG));
 	private static final BufferedLogWriter atomBufferedStatLogWriter = new BufferedLogWriter(
-			/* XXX: ¼ÇÂ¼µ¥¿âµÄ SQL Ö´ĞĞ¼ÇÂ¼, Key µÄÁ¿ÊÇ SQL x µ¥¿âÎïÀí±í x ÎïÀí¿âÊıÁ¿ */
+			/* XXX: è®°å½•å•åº“çš„ SQL æ‰§è¡Œè®°å½•, Key çš„é‡æ˜¯ SQL x å•åº“ç‰©ç†è¡¨ x ç‰©ç†åº“æ•°é‡ */
 			2048, 131072, new Log4jLogWriter(LoggerInit.TDDL_Atom_Statistic_LOG));
 	private static final BufferedLogWriter matrixBufferedStatLogWriter = new BufferedLogWriter(
-			/* XXX: ¼ÇÂ¼Âß¼­±íÒÔ¼°ÎïÀí¿â/ÎïÀí±í µÄ SQL Ö´ĞĞ¼ÇÂ¼, Key Á¿×î´óÊÇ SQL x µ¥¿âÎïÀí±í x ÎïÀí¿âÊıÁ¿ */
+			/* XXX: è®°å½•é€»è¾‘è¡¨ä»¥åŠç‰©ç†åº“/ç‰©ç†è¡¨ çš„ SQL æ‰§è¡Œè®°å½•, Key é‡æœ€å¤§æ˜¯ SQL x å•åº“ç‰©ç†è¡¨ x ç‰©ç†åº“æ•°é‡ */
 			2048, 131072, new Log4jLogWriter(LoggerInit.TDDL_Matrix_Statistic_LOG));
 	private static final SoftRefLogWriter connRefStatLogWriter = new SoftRefLogWriter(
-			/* XXX: ¼ÇÂ¼ Atom Á¬½Ó³ØÒÔ¼°ÒµÎñ·ÖÍ°µÄÁ¬½ÓÉêÇë¼ÇÂ¼, Key Á¿×î´óÊÇÎïÀí¿â x ÒµÎñ·ÖÍ°ÊıÁ¿ */
+			/* XXX: è®°å½• Atom è¿æ¥æ± ä»¥åŠä¸šåŠ¡åˆ†æ¡¶çš„è¿æ¥ç”³è¯·è®°å½•, Key é‡æœ€å¤§æ˜¯ç‰©ç†åº“ x ä¸šåŠ¡åˆ†æ¡¶æ•°é‡ */
 			false, new MinMaxAvgLogWriter(", ", LoggerInit.TDDL_Conn_Statistic_LOG));
 	
 	/**
-	 * ¼ÇlogµÄÊ±¼ä
+	 * è®°logçš„æ—¶é—´
 	 */
 	public static final String KEY3_WRITE_LOG_SUCCESS = "WRITE_LOG_SUCCESS";
 
@@ -143,16 +143,16 @@ public class Monitor {
 	}
 
 	private static volatile RECORD_TYPE recordType = RECORD_TYPE.RECORD_SQL;
-	private static volatile int left = 0; //´Ó×óÆğ±£Áô¶àÉÙ¸ö×Ö·û
-	private static volatile int right = 0;//´ÓÓÒÆğ±£Áô¶àÉÙ¸ö×Ö·û
+	private static volatile int left = 0; //ä»å·¦èµ·ä¿ç•™å¤šå°‘ä¸ªå­—ç¬¦
+	private static volatile int right = 0;//ä»å³èµ·ä¿ç•™å¤šå°‘ä¸ªå­—ç¬¦
 	private static volatile String[] excludsKeys = null;
-	private static volatile String[] includeKeys = null; //°×Ãûµ¥
+	private static volatile String[] includeKeys = null; //ç™½åå•
 	public static volatile Boolean isStatRealDbInWrapperDs = null;
 	//modify by junyu,2012-3-28
-	public static volatile boolean isStatAtomSql = true; //Ä¬ÈÏ²»´òÓ¡sqlÈÕÖ¾
-	public static volatile int sqlTimeout=500; //Ä¬ÈÏ³¬Ê±500ºÁÃë
-	public static volatile int atomSamplingRate=100;//ÖµÖ»ÄÜÎª0-100,ÈÕÖ¾µÄ²ÉÑùÆµÂÊ
-	public static volatile int statChannelMask = 7; //°´Î»£º¹ş²ª|BufferedStatLogWriter|StatMonitor
+	public static volatile boolean isStatAtomSql = true; //é»˜è®¤ä¸æ‰“å°sqlæ—¥å¿—
+	public static volatile int sqlTimeout=500; //é»˜è®¤è¶…æ—¶500æ¯«ç§’
+	public static volatile int atomSamplingRate=100;//å€¼åªèƒ½ä¸º0-100,æ—¥å¿—çš„é‡‡æ ·é¢‘ç‡
+	public static volatile int statChannelMask = 7; //æŒ‰ä½ï¼šå“ˆå‹ƒ|BufferedStatLogWriter|StatMonitor
 	public static volatile int dumpInterval = -1;
 	public static volatile int cacheSize = -1;
 	static {
@@ -161,11 +161,11 @@ public class Monitor {
 
 	//private static AsynWriter<String> inputWriter;
 	private static void init() {
-		// changyuan.lh: ³õÊ¼»¯ TDDL ÈÕÖ¾, BufferedStatLogWriter ÒÆµ½ÕâÀï
+		// changyuan.lh: åˆå§‹åŒ– TDDL æ—¥å¿—, BufferedStatLogWriter ç§»åˆ°è¿™é‡Œ
 		LoggerInit.initTddlLog();
 
 		if ("TDDL".equals(APPNAME)) {
-			logger.warn("²»Ö¸¶¨TDDLÒÔÍâµÄappNameÔò²»¶©ÔÄ");
+			logger.warn("ä¸æŒ‡å®šTDDLä»¥å¤–çš„appNameåˆ™ä¸è®¢é˜…");
 			return;
 		}
 		//DATA_ID_TDDL_CLIENT_CONFIG = DATA_ID_PREFIX + "{0}_tddlconfig"
@@ -281,7 +281,7 @@ public class Monitor {
 							if(Integer.valueOf(value) % 100==0){
 								rate=100;
 							}else{
-								rate=Integer.valueOf(value) % 100;//Èç¹û³¬¹ı100,È¡ÓàÁ¿
+								rate=Integer.valueOf(value) % 100;//å¦‚æœè¶…è¿‡100,å–ä½™é‡
 							}
 							atomSamplingRate=rate;
 							logger.warn("atomSqlSamplingRate switch from [" + old + "] to [" + atomSamplingRate + "]");
@@ -306,14 +306,14 @@ public class Monitor {
 	public static final StatMonitor statMonitor = StatMonitor.getInstance();
 
 	private static void addMonitor(String key1, String key2, String key3, long value1, long value2) {
-		//Ò»¶ÎÊ±¼äÄÚ²åÈÕÖ¾¿âµÄÊ§°ÜÂÊºÍÆ½¾ùÏìÓ¦Ê±¼ä
+		//ä¸€æ®µæ—¶é—´å†…æ’æ—¥å¿—åº“çš„å¤±è´¥ç‡å’Œå¹³å‡å“åº”æ—¶é—´
 		if (KEY3_WRITE_LOG_SUCCESS.equals(key3)) {
 			statMonitor.addStat(key1, "", NagiosUtils.KEY_INSERT_LOGDB_FAIL_RATE, 0);
 			statMonitor.addStat(key1, "", NagiosUtils.KEY_INSERT_LOGDB_TIME_AVG, value1);
 		} else if (KEY3_WRITE_LOG_EXCEPTION.equals(key3)) {
 			statMonitor.addStat(key1, "", NagiosUtils.KEY_INSERT_LOGDB_FAIL_RATE, 1);
 		}
-		//Ò»¶ÎÊ±¼äÄÚĞĞ¸´ÖÆµÄÊ§°ÜÂÊºÍÆ½¾ùÏìÓ¦Ê±¼ä
+		//ä¸€æ®µæ—¶é—´å†…è¡Œå¤åˆ¶çš„å¤±è´¥ç‡å’Œå¹³å‡å“åº”æ—¶é—´
 		else if (KEY3_COPY_2_SLAVE_SUCCESS.equals(key3)) {
 			statMonitor.addStat(key1, "", NagiosUtils.KEY_REPLICATION_FAIL_RATE, 0);
 			statMonitor.addStat(key1, "", NagiosUtils.KEY_REPLICATION_TIME_AVG, value1);
@@ -324,17 +324,17 @@ public class Monitor {
 
 	public static String buildTableKey1(String virtualTableName) {
 		//return KEY1_TABLE+virtualTableName;
-		return "" + virtualTableName; //±£Ö¤²»·µ»Ønull
+		return "" + virtualTableName; //ä¿è¯ä¸è¿”å›null
 	}
 
 	/**
-	 * ¼ÇÂ¼sql
-	 * ²»¼ÇÂ¼sql
-	 * ¼ÇÂ¼Ç°½ØÈ¡sql
-	 * ¼ÇÂ¼ºó½ØÈ¡sql
-	 * ¼ÇÂ¼md5
+	 * è®°å½•sql
+	 * ä¸è®°å½•sql
+	 * è®°å½•å‰æˆªå–sql
+	 * è®°å½•åæˆªå–sql
+	 * è®°å½•md5
 	 * 
-	 * ÏÈ×óºóÓÒ
+	 * å…ˆå·¦åå³
 	 * 
 	 * @param sql
 	 * @return
@@ -375,7 +375,7 @@ public class Monitor {
 		case NONE:
 			return "";
 		default:
-			throw new IllegalArgumentException("²»·ûºÏÒªÇóµÄ¼ÇÂ¼logÀàĞÍ! " + recordType);
+			throw new IllegalArgumentException("ä¸ç¬¦åˆè¦æ±‚çš„è®°å½•logç±»å‹! " + recordType);
 		}
 
 	}
@@ -387,7 +387,7 @@ public class Monitor {
 	}
 
 	/**
-	 * Êı¾İ¸´ÖÆ¹ı³ÌÖĞĞèÒªÓÃµ½µÄsqlµÄkey
+	 * æ•°æ®å¤åˆ¶è¿‡ç¨‹ä¸­éœ€è¦ç”¨åˆ°çš„sqlçš„key
 	 * 
 	 * @param sql
 	 * @return
@@ -397,29 +397,29 @@ public class Monitor {
 	}
 
 	/**
-	 * @param key1 Ò»°ãÊÇÂß¼­±íÃû£¬appnameµÈ
-	 * @param key2 Ò»°ãÊÇSQL
-	 * @param key3 Ò»Ğ©³É¹¦¡¢Ê§°Ü¡¢³¬Ê±¡¢ÃüÖĞÂÊµÈ±êÖ¾
-	 * @param value1 Ö´ĞĞÊ±¼ä
-	 * @param value2 ´ÎÊı
+	 * @param key1 ä¸€èˆ¬æ˜¯é€»è¾‘è¡¨åï¼Œappnameç­‰
+	 * @param key2 ä¸€èˆ¬æ˜¯SQL
+	 * @param key3 ä¸€äº›æˆåŠŸã€å¤±è´¥ã€è¶…æ—¶ã€å‘½ä¸­ç‡ç­‰æ ‡å¿—
+	 * @param value1 æ‰§è¡Œæ—¶é—´
+	 * @param value2 æ¬¡æ•°
 	 */
 	public static void add(String key1, String key2, String key3, long value1, long value2) {
 		if (isExclude(key1, key2, key3)) {
 			return;
 		}
 		if ((statChannelMask & 4) == 4) { // 100
-			MonitorLog.addStat(key1, "", key3, value1, value2); // ¹ş²ªÈÕÖ¾ÔİÊ±±£Áô
+			MonitorLog.addStat(key1, "", key3, value1, value2); // å“ˆå‹ƒæ—¥å¿—æš‚æ—¶ä¿ç•™
 		}
 		if ((statChannelMask & 2) == 2) { // 010
 			bufferedStatLogWriter.stat(key2, key1, key3, value2, value1); //
 		}
 		if ((statChannelMask & 1) == 1) { // 001
-			addMonitor(key1, key2, key3, value1, value2); // Æ½¾ùÏìÓ¦Ê±¼äµÈ¶¯Ì¬¼à¿ØNagois
+			addMonitor(key1, key2, key3, value1, value2); // å¹³å‡å“åº”æ—¶é—´ç­‰åŠ¨æ€ç›‘æ§Nagois
 		}
 	}
 	
 	public static void atomSqlAdd(String key1,String key2,String key3,String key4,String key5,String key6,long value1,long value2){
-		// changyuan.lh XXX: Êä³öË³ĞòÊÇ  key1(sql), key2(group), attach1, attach2, attach3, key3(flag)
+		// changyuan.lh XXX: è¾“å‡ºé¡ºåºæ˜¯  key1(sql), key2(group), attach1, attach2, attach3, key3(flag)
 		atomBufferedStatLogWriter.write(new Object[] { key2, key1, key3 }, 
 				new Object[] { key2, key1, key4, key5, key6, key3 }, new long[] { value2, value1 });
 	}
@@ -428,7 +428,7 @@ public class Monitor {
 		matrixBufferedStatLogWriter.stat(key2, key1, key3, value2, value1);
 	}
 	
-	// »ñµÃÒ»¸öÍ³¼Æ¶ÔÏó, ²»ÓÃ¿ÉÒÔÖ±½ÓÅ×Æú
+	// è·å¾—ä¸€ä¸ªç»Ÿè®¡å¯¹è±¡, ä¸ç”¨å¯ä»¥ç›´æ¥æŠ›å¼ƒ
 	public static LogCounter connStat(String obj1, String obj2, String obj3) {
 		Object[] objs = new Object[] { obj1, obj2, obj3 };
 		return connRefStatLogWriter.getCounter(objs, objs);
@@ -455,7 +455,7 @@ public class Monitor {
 	}
 
 	public static boolean isInclude(String sql) {
-		if (includeKeys != null && includeKeys.length != 0) { // ´æÔÚ°×Ãûµ¥
+		if (includeKeys != null && includeKeys.length != 0) { // å­˜åœ¨ç™½åå•
 			boolean discard = true;
 			for (String whiteItem : includeKeys) {
 				if (sql.indexOf(whiteItem) != -1) {
@@ -464,7 +464,7 @@ public class Monitor {
 				}
 			}
 			if (discard) {
-				return false; // ²»ÔÚ°×Ãûµ¥ÖĞ£¬²»Êä³öÈÕÖ¾£¬ÒÔ¼õÉÙÈÕÖ¾Á¿
+				return false; // ä¸åœ¨ç™½åå•ä¸­ï¼Œä¸è¾“å‡ºæ—¥å¿—ï¼Œä»¥å‡å°‘æ—¥å¿—é‡
 			}
 		}
 		return true;

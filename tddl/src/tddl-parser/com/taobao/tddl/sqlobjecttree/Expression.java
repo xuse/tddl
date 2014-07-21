@@ -4,28 +4,28 @@ import com.taobao.tddl.common.sqlobjecttree.SQLFragment;
 
 
 /**
- * ±í´ïÊ½
+ * è¡¨è¾¾å¼
  * 
- * ÀàËÆ
+ * ç±»ä¼¼
  * column comparasion value
- * Èç
+ * å¦‚
  * col = 1;
- * »òcol2 > 2;
+ * æˆ–col2 > 2;
  * @author shenxun
  *
  */
 public interface Expression extends SQLFragment{
 	
 	/**
-	 *	½«±í´ïÊ½col = 1 or col = 2 ...ÕâÑùµÄ±í´ïÊ½×é¡£³éÏóÎªÒ»¸ömap.
-	 *	mapµÄkeyÊÇcol£¬Ò²¾ÍÊÇÁĞÃû
-	 *	mapµÄvalueÊÇÖµµÄ¼¯ºÏ£¬¶ÔÓ¦µÄÊµ¼ÊÀàĞÍÊÇComparative.
-	 *	ÀıÈçÉÏÃæµÄcol = 1 or col = 2;
-	 *	¾­¹ıÕâ¸ö·½·¨ºó£¬¾Í»á±»±äÎªcol -> (=1 or =2);
+	 *	å°†è¡¨è¾¾å¼col = 1 or col = 2 ...è¿™æ ·çš„è¡¨è¾¾å¼ç»„ã€‚æŠ½è±¡ä¸ºä¸€ä¸ªmap.
+	 *	mapçš„keyæ˜¯colï¼Œä¹Ÿå°±æ˜¯åˆ—å
+	 *	mapçš„valueæ˜¯å€¼çš„é›†åˆï¼Œå¯¹åº”çš„å®é™…ç±»å‹æ˜¯Comparative.
+	 *	ä¾‹å¦‚ä¸Šé¢çš„col = 1 or col = 2;
+	 *	ç»è¿‡è¿™ä¸ªæ–¹æ³•åï¼Œå°±ä¼šè¢«å˜ä¸ºcol -> (=1 or =2);
 	 *
 	 *	
 	 * @param visitor
-	 * @param inAnd ±êÃ÷µ±Ç°ÊÇ·ñÔÚandExpressionGroupÖĞ
+	 * @param inAnd æ ‡æ˜å½“å‰æ˜¯å¦åœ¨andExpressionGroupä¸­
 	 */
 	public void eval(RowJepVisitor visitor, boolean inAnd);
 }

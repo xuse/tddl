@@ -8,7 +8,7 @@ package com.taobao.tddl.sqlobjecttree;
 public enum GroupFunctionType {
 	MIN,MAX,COUNT,AVG,SUM,
 	/**
-	 * ╥гртио╣дхн╨нр╩жжгИ©Ж 
+	 * И²·Д╩╔Д╦┼Г └Д╩╩Д╫∙Д╦─Г╖█Ф┐┘Е├╣ 
 	 */
 	NORMAL
 }

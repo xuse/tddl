@@ -53,7 +53,7 @@
 //	}
 //	
 //	/**
-//	 * @deprecated ���ֶ��Ѿ��������벻Ҫʹ�á�
+//	 * @deprecated 该字段已经废弃。请不要使用。
 //	 * @param id
 //	 * @return
 //	 */
@@ -71,11 +71,11 @@
 //	}
 //
 //	/**
-//	 * ����userid��ȡDBRoute("db1" || "db2"), ���Ҹ���userid�ĵ�һ���ַ����ú�xid
-//	 * ������SqlMapBaseDAOSupport.getDBRouteManager.getTemplates(dr, sqlid)����ȡ
+//	 * 根据userid获取DBRoute("db1" || "db2"), 并且根据userid的第一个字符设置好xid
+//	 * 可以用SqlMapBaseDAOSupport.getDBRouteManager.getTemplates(dr, sqlid)来获取
 //	 * 
 //	 * @param userid
-//	 * @return Ĭ��null
+//	 * @return 默认null
 //	 */
 //	public static final DBRoute getDBRouteWithXidByUserid(String userid) {
 //		if (null == userid || 32 != userid.trim().length()) {
@@ -119,7 +119,7 @@
 //	}
 //
 //	/**
-//	 * @deprecated ���ֶ��Ѿ��������벻Ҫʹ�á�
+//	 * @deprecated 该字段已经废弃。请不要使用。
 //	 * @return Returns the userId.
 //	 */
 //	@Deprecated
@@ -131,7 +131,7 @@
 //		return userIDL;
 //	}
 //	/**
-//	 * @deprecated ���ֶ��Ѿ��������벻Ҫʹ�á�
+//	 * @deprecated 该字段已经废弃。请不要使用。
 //	 * @param userId
 //	 *            The userId to set.
 //	 */
@@ -141,13 +141,13 @@
 //		routingStrategy = BY_USER;
 //	}
 //	/**
-//	 * @param userId Լ��Ϊ����>=0�ſ�������ʹ��
-//	 * @exception RuntimeException ��������ֵ<0��
+//	 * @param userId 约定为必须>=0才可以正常使用
+//	 * @exception RuntimeException 如果输入的值<0；
 //	 *            The userId to set.
 //	 */
 //	public void setUserId(long userId) {
 //		if(userId<0){
-//			throw new RuntimeException("long ��userID����С��0");
+//			throw new RuntimeException("long 型userID不能小于0");
 //		}
 //		this.userIDL = userId;
 //		routingStrategy = BY_USER_LONG;

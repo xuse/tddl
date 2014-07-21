@@ -11,7 +11,7 @@
 //		}else if(max instanceof Integer){
 //			obj=(Integer)max;
 //		}else{
-//			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+//			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 //		}
 //		modifiedMap.put(index,obj);
 //	}

@@ -44,7 +44,7 @@ public abstract class AbstractDBSelector implements DBSelector {
 	}
 	private DBType dbType = DBType.MYSQL;
 	protected ExceptionSorter exceptionSorter = exceptionSorters.get(dbType);
-	private String id = "undefined"; // idÖµÎ´Ê¹ÓÃ
+	private String id = "undefined"; // idå€¼æœªä½¿ç”¨
 
 	private static final int default_retryBadDbInterval = 2000; // milliseconds
 	protected static int retryBadDbInterval; // milliseconds
@@ -68,7 +68,7 @@ public abstract class AbstractDBSelector implements DBSelector {
 		this.readable = readable;
 	}
 
-	protected boolean isSupportRetry = true; // Ä¬ÈÏÇé¿öÏÂÖ§³ÖÖØÊÔ
+	protected boolean isSupportRetry = true; // é»˜è®¤æƒ…å†µä¸‹æ”¯æŒé‡è¯•
 
 	public boolean isSupportRetry() {
 		return isSupportRetry;
@@ -97,7 +97,7 @@ public abstract class AbstractDBSelector implements DBSelector {
 	}
 
 	/**
-	 * ÔÚÒ»¸öÊı¾İ¿âÉÏÖ´ĞĞ£¬ÓĞµ¥Ïß³ÌÊÔ¶Á
+	 * åœ¨ä¸€ä¸ªæ•°æ®åº“ä¸Šæ‰§è¡Œï¼Œæœ‰å•çº¿ç¨‹è¯•è¯»
 	 * 
 	 * @param <T>
 	 * @param dsHolder
@@ -127,8 +127,8 @@ public abstract class AbstractDBSelector implements DBSelector {
 						- dsHolder.lastRetryTime > retryBadDbInterval;
 				if (toTry && dsHolder.lock.tryLock()) {
 					try {
-						T t = tryer.tryOnDataSource(dsHolder.dsw, args); // Í¬Ò»¸öÊ±¼äÖ»»áÓĞÒ»¸öÏß³Ì¼ÌĞøÊ¹ÓÃÕâ¸öÊı¾İÔ´¡£
-						dsHolder.isNotAvailable = false; // ÓÃÒ»¸öÏß³ÌÖØÊÔ£¬Ö´ĞĞ³É¹¦Ôò±ê¼ÇÎª¿ÉÓÃ£¬×Ô¶¯»Ö¸´
+						T t = tryer.tryOnDataSource(dsHolder.dsw, args); // åŒä¸€ä¸ªæ—¶é—´åªä¼šæœ‰ä¸€ä¸ªçº¿ç¨‹ç»§ç»­ä½¿ç”¨è¿™ä¸ªæ•°æ®æºã€‚
+						dsHolder.isNotAvailable = false; // ç”¨ä¸€ä¸ªçº¿ç¨‹é‡è¯•ï¼Œæ‰§è¡ŒæˆåŠŸåˆ™æ ‡è®°ä¸ºå¯ç”¨ï¼Œè‡ªåŠ¨æ¢å¤
 						return t;
 					} finally {
 						dsHolder.lastRetryTime = System.currentTimeMillis();
@@ -142,7 +142,7 @@ public abstract class AbstractDBSelector implements DBSelector {
 							args);
 				}
 			} else {
-				return tryer.tryOnDataSource(dsHolder.dsw, args); // ÓĞÒ»´Î³É¹¦Ö±½Ó·µ»Ø
+				return tryer.tryOnDataSource(dsHolder.dsw, args); // æœ‰ä¸€æ¬¡æˆåŠŸç›´æ¥è¿”å›
 			}
 		} catch (SQLException e) {
 			if (exceptionSorter.isExceptionFatal(e)) {
@@ -156,8 +156,8 @@ public abstract class AbstractDBSelector implements DBSelector {
 	}
 
 	/**
-	 * ÔÚÖ¸¶¨µ¥¿âÉÏÖ´ĞĞ£¬²»¹ıµ÷ÓÃ·½ÎªÖ±½ÓÉè¶¨group indexµÄ£¬Èç¹ûÖ¸¶¨µÄÊı¾İ¿â²»¿ÉÓÃ£¬
-	 * È»ºóÓÖÖ¸¶¨ÁËThreadLocalString.RETRY_IF_SET_DS_INDEX Îªtrue,ÄÇÃ´×ßÈ¨ÖØ(Èç¹ûÓĞÈ¨ÖØµÄ»°)
+	 * åœ¨æŒ‡å®šå•åº“ä¸Šæ‰§è¡Œï¼Œä¸è¿‡è°ƒç”¨æ–¹ä¸ºç›´æ¥è®¾å®šgroup indexçš„ï¼Œå¦‚æœæŒ‡å®šçš„æ•°æ®åº“ä¸å¯ç”¨ï¼Œ
+	 * ç„¶ååˆæŒ‡å®šäº†ThreadLocalString.RETRY_IF_SET_DS_INDEX ä¸ºtrue,é‚£ä¹ˆèµ°æƒé‡(å¦‚æœæœ‰æƒé‡çš„è¯)
 	 * @param <T>
 	 * @param dsHolder
 	 * @param failedDataSources
@@ -188,15 +188,15 @@ public abstract class AbstractDBSelector implements DBSelector {
 				
 				if (toTry && dsHolder.lock.tryLock()) {
 					try {
-						T t = tryer.tryOnDataSource(dsHolder.dsw, args); // Í¬Ò»¸öÊ±¼äÖ»»áÓĞÒ»¸öÏß³Ì¼ÌĞøÊ¹ÓÃÕâ¸öÊı¾İÔ´¡£
-						dsHolder.isNotAvailable = false; // ÓÃÒ»¸öÏß³ÌÖØÊÔ£¬Ö´ĞĞ³É¹¦Ôò±ê¼ÇÎª¿ÉÓÃ£¬×Ô¶¯»Ö¸´
+						T t = tryer.tryOnDataSource(dsHolder.dsw, args); // åŒä¸€ä¸ªæ—¶é—´åªä¼šæœ‰ä¸€ä¸ªçº¿ç¨‹ç»§ç»­ä½¿ç”¨è¿™ä¸ªæ•°æ®æºã€‚
+						dsHolder.isNotAvailable = false; // ç”¨ä¸€ä¸ªçº¿ç¨‹é‡è¯•ï¼Œæ‰§è¡ŒæˆåŠŸåˆ™æ ‡è®°ä¸ºå¯ç”¨ï¼Œè‡ªåŠ¨æ¢å¤
 						return t;
 					} finally {
 						dsHolder.lastRetryTime = System.currentTimeMillis();
 						dsHolder.lock.unlock();
 					}
 				} else if (index.failRetry) {
-					//FIXME:ÕâÀïĞèÒª¿´ÏÂ£¬Èç¹ûÔÚÊÂÎñÖĞ£¬ÊÇ·ñÓ¦¸ÃÖØÊÔ¡£
+					//FIXME:è¿™é‡Œéœ€è¦çœ‹ä¸‹ï¼Œå¦‚æœåœ¨äº‹åŠ¡ä¸­ï¼Œæ˜¯å¦åº”è¯¥é‡è¯•ã€‚
 					return tryExecuteInternal(failedDataSources, tryer, times,
 							args);
 				} else {
@@ -207,7 +207,7 @@ public abstract class AbstractDBSelector implements DBSelector {
 							args);
 				}
 			} else {
-				return tryer.tryOnDataSource(dsHolder.dsw, args); // ÓĞÒ»´Î³É¹¦Ö±½Ó·µ»Ø
+				return tryer.tryOnDataSource(dsHolder.dsw, args); // æœ‰ä¸€æ¬¡æˆåŠŸç›´æ¥è¿”å›
 			}
 		} catch (SQLException e) {
 			if (exceptionSorter.isExceptionFatal(e)) {
@@ -225,7 +225,7 @@ public abstract class AbstractDBSelector implements DBSelector {
 	public <T> T tryExecute(Map<DataSource, SQLException> failedDataSources,
 			DataSourceTryer<T> tryer, int times, Object... args)
 			throws SQLException {
-		// dataSourceIndex·ÅÔÚargs×îºóÒ»¸ö.ÒÔºó¸Ä¶¯Òª×¢Òâ
+		// dataSourceIndexæ”¾åœ¨argsæœ€åä¸€ä¸ª.ä»¥åæ”¹åŠ¨è¦æ³¨æ„
 		// local set dataSourceIndex was placed first
 		GroupIndex dataSourceIndex = null;
 		if (args != null && args.length > 0) {
@@ -297,8 +297,8 @@ public abstract class AbstractDBSelector implements DBSelector {
 							}
 						}
 					}
-					//ÕâÀï»»ÁËÒıÓÃ£¬Íâ²¿ÒıÓÃÊÇ²»»á±äµÄ£¬µ«ÊÇ×îÖÕÇåÀíµÄÊ±ºòÊÇÍ¬Ò»¸öÏß³Ì
-					//ÉÏµÄthreadlocal±äÁ¿£¬ËùÒÔÓ¦¸Ã²»»áÓĞÓ°Ïì¡£
+					//è¿™é‡Œæ¢äº†å¼•ç”¨ï¼Œå¤–éƒ¨å¼•ç”¨æ˜¯ä¸ä¼šå˜çš„ï¼Œä½†æ˜¯æœ€ç»ˆæ¸…ç†çš„æ—¶å€™æ˜¯åŒä¸€ä¸ªçº¿ç¨‹
+					//ä¸Šçš„threadlocalå˜é‡ï¼Œæ‰€ä»¥åº”è¯¥ä¸ä¼šæœ‰å½±å“ã€‚
 					if(index != null) dataSourceIndex=new GroupIndex(index,false);
 				}
 
@@ -342,13 +342,13 @@ public abstract class AbstractDBSelector implements DBSelector {
 			}
 		}
 
-		// Èç¹ûÒµÎñ²ãÖ±½ÓÖ¸¶¨ÁËÒ»¸öÊı¾İÔ´£¬¾ÍÖ±½ÓÔÚÖ¸¶¨µÄÊı¾İÔ´ÉÏ½øĞĞ²éÑ¯¸üĞÂ²Ù×÷£¬Ê§°ÜÊ±²»ÔÙÖØÊÔ¡£
+		// å¦‚æœä¸šåŠ¡å±‚ç›´æ¥æŒ‡å®šäº†ä¸€ä¸ªæ•°æ®æºï¼Œå°±ç›´æ¥åœ¨æŒ‡å®šçš„æ•°æ®æºä¸Šè¿›è¡ŒæŸ¥è¯¢æ›´æ–°æ“ä½œï¼Œå¤±è´¥æ—¶ä¸å†é‡è¯•ã€‚
 		if (dataSourceIndex != null
 				&& dataSourceIndex.index != NOT_EXIST_USER_SPECIFIED_INDEX) {
 			DataSourceHolder dsHolder = findDataSourceWrapperByIndex(dataSourceIndex.index);
 			if (dsHolder == null) {
-				throw new IllegalArgumentException("ÕÒ²»µ½Ë÷Òı±àºÅÎª '"
-						+ dataSourceIndex + "'µÄÊı¾İÔ´");
+				throw new IllegalArgumentException("æ‰¾ä¸åˆ°ç´¢å¼•ç¼–å·ä¸º '"
+						+ dataSourceIndex + "'çš„æ•°æ®æº");
 			}
 			// return tryOnDataSourceHolder(dsHolder, failedDataSources, tryer,
 			// times, args);
@@ -375,7 +375,7 @@ public abstract class AbstractDBSelector implements DBSelector {
 	}
 
 	public final void setExceptionSorter(ExceptionSorter exceptionSorter) {
-		// add by shenxun:Ö÷Òª»¹ÊÇ·½±ã²âÊÔ¡£¡£¹¹ÔìÕû¸ödbSelector½á¹¹Ì«¸´ÔÓ
+		// add by shenxun:ä¸»è¦è¿˜æ˜¯æ–¹ä¾¿æµ‹è¯•ã€‚ã€‚æ„é€ æ•´ä¸ªdbSelectorç»“æ„å¤ªå¤æ‚
 		this.exceptionSorter = exceptionSorter;
 	}
 

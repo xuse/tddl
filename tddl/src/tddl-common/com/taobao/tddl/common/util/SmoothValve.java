@@ -12,14 +12,14 @@ import org.apache.commons.logging.LogFactory;
 import com.taobao.tddl.common.ConfigServerHelper;
 
 /**
- * Æ½»¬·§ÃÅ¡£ÓÃÓÚ¿ÉÓÃĞÔ×´Ì¬ÇĞ»»¡£
- * ½â¾ö²»¿ÉÓÃµ½¿ÉÓÃÊ±£¬Ë²¼äµÄÁ÷Á¿¡¢Á¬½ÓµÈµÄ±©Ôö³å»÷ÎÊÌâ
+ * å¹³æ»‘é˜€é—¨ã€‚ç”¨äºå¯ç”¨æ€§çŠ¶æ€åˆ‡æ¢ã€‚
+ * è§£å†³ä¸å¯ç”¨åˆ°å¯ç”¨æ—¶ï¼Œç¬é—´çš„æµé‡ã€è¿æ¥ç­‰çš„æš´å¢å†²å‡»é—®é¢˜
  * 
- * µÚÒ»ÅúÖ»ÔÊĞíÖ´ĞĞ1´Î£¬µÚ¶şÅúÔÊĞíÖ´ĞĞ2´Î£¬¡£¡£¡£×îºóÒ»ÅúÖ®ºó²»ÔÙÏŞÖÆ(batchLimits)
- * Ã¿Ò»ÅúµÄÃû¶îÓÃ¾¡£¬Òª¼ä¸ôtimeDelayºÁÃëºó£¬²Å¿ªÊ¼ÏÂÒ»ÅúÃû¶îµÄ·¢·Å¡£
- * ÔÚÕâ¸ö¼ä¸ôÊ±¼äÆÚ¼äµÄÇëÇóÖ±½Ó¾Ü¾ø¡£
+ * ç¬¬ä¸€æ‰¹åªå…è®¸æ‰§è¡Œ1æ¬¡ï¼Œç¬¬äºŒæ‰¹å…è®¸æ‰§è¡Œ2æ¬¡ï¼Œã€‚ã€‚ã€‚æœ€åä¸€æ‰¹ä¹‹åä¸å†é™åˆ¶(batchLimits)
+ * æ¯ä¸€æ‰¹çš„åé¢ç”¨å°½ï¼Œè¦é—´éš”timeDelayæ¯«ç§’åï¼Œæ‰å¼€å§‹ä¸‹ä¸€æ‰¹åé¢çš„å‘æ”¾ã€‚
+ * åœ¨è¿™ä¸ªé—´éš”æ—¶é—´æœŸé—´çš„è¯·æ±‚ç›´æ¥æ‹’ç»ã€‚
  * 
- * ÔÊĞí¸ºÊıµÄlimit£¬º¬ÒåÎª1/nµÄ¸ÅÂÊÈ¥Ö´ĞĞ¡£¾ßÌå¼û¹¹Ôìº¯Êı
+ * å…è®¸è´Ÿæ•°çš„limitï¼Œå«ä¹‰ä¸º1/nçš„æ¦‚ç‡å»æ‰§è¡Œã€‚å…·ä½“è§æ„é€ å‡½æ•°
  * 
  * @author linxuan
  *
@@ -28,7 +28,7 @@ public class SmoothValve {
 	private static final Log log = LogFactory.getLog(SmoothValve.class);
 
 	private volatile boolean available = true;
-	private volatile boolean isInSmooth = false; //ÊÇ·ñÔÚÆ½»¬ÆÚ
+	private volatile boolean isInSmooth = false; //æ˜¯å¦åœ¨å¹³æ»‘æœŸ
 	private final AtomicInteger count = new AtomicInteger();
 	private final AtomicInteger batchNo = new AtomicInteger();
 	private final int[] batchLimits;
@@ -43,12 +43,12 @@ public class SmoothValve {
 
 	/**
 	 * @param timeDelay
-	 * @param batchLimits ÔÊĞí¸ºÊıµÄlimit£¬ÎªÁË½â¾öclietÊıÁ¿Ïàµ±¶àÊ±£¬Ã¿¸öclient·ÅÒ»¸öÇëÇó½øÀ´¶¼»á³å¿å·şÎñÆ÷µÄ³¡¾°£º
-	 *    -1ºÍ0×÷ÓÃÏàÍ¬£¬±íÊ¾·ÅÆúµ±Ç°³¢ÊÔ£¬Ö»ÊÇ¶àÑÓ³ÙÁËÒ»Ğ©Ê±¼ä¡£ËùÒÔÒ»°ã²»Éè
-	 *    -2±íÊ¾ÕâÅú³¢ÊÔÖĞ£¬Ö»Ëæ»ú·ÅÈëËùÓĞclientµÄ1/2(ÈÃµ±Ç°²Ù×÷1/2µÄ¸ÅÂÊÍ¨¹ı)
-	 *    -3±íÊ¾ÕâÅú³¢ÊÔÖĞ£¬Ö»Ëæ»ú·ÅÈëËùÓĞclientµÄ1/3(ÈÃµ±Ç°²Ù×÷1/3µÄ¸ÅÂÊÍ¨¹ı)
+	 * @param batchLimits å…è®¸è´Ÿæ•°çš„limitï¼Œä¸ºäº†è§£å†³clietæ•°é‡ç›¸å½“å¤šæ—¶ï¼Œæ¯ä¸ªclientæ”¾ä¸€ä¸ªè¯·æ±‚è¿›æ¥éƒ½ä¼šå†²å®æœåŠ¡å™¨çš„åœºæ™¯ï¼š
+	 *    -1å’Œ0ä½œç”¨ç›¸åŒï¼Œè¡¨ç¤ºæ”¾å¼ƒå½“å‰å°è¯•ï¼Œåªæ˜¯å¤šå»¶è¿Ÿäº†ä¸€äº›æ—¶é—´ã€‚æ‰€ä»¥ä¸€èˆ¬ä¸è®¾
+	 *    -2è¡¨ç¤ºè¿™æ‰¹å°è¯•ä¸­ï¼Œåªéšæœºæ”¾å…¥æ‰€æœ‰clientçš„1/2(è®©å½“å‰æ“ä½œ1/2çš„æ¦‚ç‡é€šè¿‡)
+	 *    -3è¡¨ç¤ºè¿™æ‰¹å°è¯•ä¸­ï¼Œåªéšæœºæ”¾å…¥æ‰€æœ‰clientçš„1/3(è®©å½“å‰æ“ä½œ1/3çš„æ¦‚ç‡é€šè¿‡)
 	 *    ...
-	 * ÀıÈç£ºbatchLimits = new int[] { -4,-3,-2, 1, 2, 4, 8, 16, 32 };
+	 * ä¾‹å¦‚ï¼šbatchLimits = new int[] { -4,-3,-2, 1, 2, 4, 8, 16, 32 };
 	 */
 	public SmoothValve(long timeDelay, int[] batchLimits) {
 		this.timeDelay = timeDelay;
@@ -58,19 +58,19 @@ public class SmoothValve {
 	private volatile boolean hasRejectInLastBatch = false;
 
 	/**
-	 * @return ·µ»ØÆ½»¬¿ØÖÆºóµÄ¿ÉÓÃ²»¿ÉÓÃĞÅÏ¢
-	 * true: ¿ÉÓÃ£» false£º²»¿ÉÓÃ£¬»òÕß¿ÉÓÃµ«Ã»Í¨¹ıÏŞÁ÷
+	 * @return è¿”å›å¹³æ»‘æ§åˆ¶åçš„å¯ç”¨ä¸å¯ç”¨ä¿¡æ¯
+	 * true: å¯ç”¨ï¼› falseï¼šä¸å¯ç”¨ï¼Œæˆ–è€…å¯ç”¨ä½†æ²¡é€šè¿‡é™æµ
 	 */
 	public boolean smoothThroughOnInitial() {
-		if (timeDelay == 0) { //Ïàµ±ÓÚÍêÈ«¹Ø±ÕÕâ¸ö¹¦ÄÜ
+		if (timeDelay == 0) { //ç›¸å½“äºå®Œå…¨å…³é—­è¿™ä¸ªåŠŸèƒ½
 			return true;
 		}
-		while (isInSmooth && available) { //ÒÑ¿ÉÓÃ£¬ÇÒÔÚÆ½»¬ÆÚ
+		while (isInSmooth && available) { //å·²å¯ç”¨ï¼Œä¸”åœ¨å¹³æ»‘æœŸ
 			int batch = batchNo.get();
 			if (batch >= batchLimits.length) {
-				//modify by junyu,Õâ¸ö´úÂëÔÚÓ¦ÓÃ¸ß·åÆÚ»á³öÏÖÖÂÃüÒì³££¬×îºóÒ»¸öbatchÒ»Ö±±»¾Ü¾ø£¬ÄÇÃ´Ö»ÄÜÖØÆôÓ¦ÓÃ
+				//modify by junyu,è¿™ä¸ªä»£ç åœ¨åº”ç”¨é«˜å³°æœŸä¼šå‡ºç°è‡´å‘½å¼‚å¸¸ï¼Œæœ€åä¸€ä¸ªbatchä¸€ç›´è¢«æ‹’ç»ï¼Œé‚£ä¹ˆåªèƒ½é‡å¯åº”ç”¨
 //				if (hasRejectInLastBatch) {
-//					//Èç¹ûÕâÊ±·¢¾õÉÏ´Î»¹ÓĞreject£¬Ôò¼ÌĞø×îºóÒ»¸öbatchLimit
+//					//å¦‚æœè¿™æ—¶å‘è§‰ä¸Šæ¬¡è¿˜æœ‰rejectï¼Œåˆ™ç»§ç»­æœ€åä¸€ä¸ªbatchLimit
 //					batchNo.set(batchLimits.length - 1);
 //					hasRejectInLastBatch = false;
 //					continue;
@@ -79,37 +79,37 @@ public class SmoothValve {
 				count.set(0);
 				batchNo.set(0);
 				rejectCount.set(0);
-				return available; //·µ»Ø¿ÉÓÃ
+				return available; //è¿”å›å¯ç”¨
 			}
 			hasRejectInLastBatch = false;
 			int limit = batchLimits[batch];
-			if (limit < -1) { //0ºÍ-1²»¹Ü£¬ºóÃæ»áÖ±½Ó·ÅÆú
+			if (limit < -1) { //0å’Œ-1ä¸ç®¡ï¼Œåé¢ä¼šç›´æ¥æ”¾å¼ƒ
 				int randomInt = new Random().nextInt(-limit);
 				if (randomInt == 0) {
-					return available; //·µ»Ø¿ÉÓÃ
+					return available; //è¿”å›å¯ç”¨
 				} else {
 					logReject(rejectCount, limit);
-					return false; //·µ»Ø²»¿ÉÓÃ
+					return false; //è¿”å›ä¸å¯ç”¨
 				}
 			}
 			int current = count.get();
 			while (current < limit) {
 				if (count.compareAndSet(current, current + 1)) {
 					timeBegin = System.currentTimeMillis();
-					return available; //·µ»Ø¿ÉÓÃ
+					return available; //è¿”å›å¯ç”¨
 				}
 				current = count.get();
 			}
 
 			//current >= limit
 			if (System.currentTimeMillis() - timeBegin > timeDelay) {
-				//timeDelay * (batch + 1) ÕâÑù×ö¿ÉÄÜ»áÈËÎªÔì³É¾Û¼¯±©Ôö
-				//³¬¹ıÊ±¼ä£¬²ÅÉèÖÃÏÂÒ»¸öÅú´Î
+				//timeDelay * (batch + 1) è¿™æ ·åšå¯èƒ½ä¼šäººä¸ºé€ æˆèšé›†æš´å¢
+				//è¶…è¿‡æ—¶é—´ï¼Œæ‰è®¾ç½®ä¸‹ä¸€ä¸ªæ‰¹æ¬¡
 				batchNo.compareAndSet(batch, batch + 1);
-				//¼ÌĞøÑ­»·
+				//ç»§ç»­å¾ªç¯
 			} else {
 				logReject(rejectCount, limit);
-				return false; //·µ»Ø²»¿ÉÓÃ
+				return false; //è¿”å›ä¸å¯ç”¨
 			}
 		}
 		return available;
@@ -122,7 +122,7 @@ public class SmoothValve {
 	}
 
 	/**
-	 * @return ·µ»ØÊµ¼Ê¿ÉÓÃ²»¿ÉÓÃµÄĞÅÏ¢
+	 * @return è¿”å›å®é™…å¯ç”¨ä¸å¯ç”¨çš„ä¿¡æ¯
 	 */
 	public boolean isAvailable() {
 		return available;
@@ -133,7 +133,7 @@ public class SmoothValve {
 	}
 
 	/**
-	 * ÉèÖÃÎª¿ÉÓÃ
+	 * è®¾ç½®ä¸ºå¯ç”¨
 	 */
 	public void setAvailable() {
 		if (available) {
@@ -146,7 +146,7 @@ public class SmoothValve {
 	}
 
 	/**
-	 * ÉèÖÃÎª²»¿ÉÓÃ
+	 * è®¾ç½®ä¸ºä¸å¯ç”¨
 	 */
 	public void setNotAvailable() {
 		if (available) {

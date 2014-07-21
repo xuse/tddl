@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Ôö¼ÓRouteCondition·½Ê½ÏÂ£¬¶ÔjoinµÄ¼òµ¥Ö§³Ö£¬ÕâÀïÖ»ÊÇÌí¼ÓÁË±»joinµÄĞéÄâ±íÃû£¬ÔÚ¶Ôsql½øĞĞ±íÃûÌæ»»µÄÊ±ºòÓÃµ½
+ * å¢åŠ RouteConditionæ–¹å¼ä¸‹ï¼Œå¯¹joinçš„ç®€å•æ”¯æŒï¼Œè¿™é‡Œåªæ˜¯æ·»åŠ äº†è¢«joinçš„è™šæ‹Ÿè¡¨åï¼Œåœ¨å¯¹sqlè¿›è¡Œè¡¨åæ›¿æ¢çš„æ—¶å€™ç”¨åˆ°
  * @author jiangping
  *
- * @version $Id: JoinCondition.java, v 0.1 2010-1-29 ÏÂÎç02:02:01 jiangping Exp $
+ * @version $Id: JoinCondition.java, v 0.1 2010-1-29 ä¸‹åˆ02:02:01 jiangping Exp $
  */
 public class JoinCondition extends AdvanceCondition {
     List<String> virtualJoinTableNames = new ArrayList<String>();
@@ -31,12 +31,12 @@ public class JoinCondition extends AdvanceCondition {
     }
 
     /**
-     * Ìí¼Ó±»joinµÄĞéÄâ±íÃû
+     * æ·»åŠ è¢«joinçš„è™šæ‹Ÿè¡¨å
      * @param virtualTableName
      */
     public void addVirtualJoinTableName(String virtualTableName) {
         if (virtualTableName == null) {
-            throw new IllegalArgumentException("ÇëÊäÈëÂß¼­±íÃû");
+            throw new IllegalArgumentException("è¯·è¾“å…¥é€»è¾‘è¡¨å");
         }
         this.virtualJoinTableNames.add(virtualTableName.toLowerCase());
     }

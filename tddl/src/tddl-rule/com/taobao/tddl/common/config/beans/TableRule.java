@@ -22,7 +22,7 @@ import com.taobao.tddl.rule.bean.SimpleTableTwoColumnsMapProvider;
 import com.taobao.tddl.rule.ruleengine.entities.inputvalue.TabRule;
 
 /**
- * Ò»¸öÂß¼­±íÔõÑù·Ö¿â·Ö±í
+ * ä¸€ä¸ªé€»è¾‘è¡¨æ€æ ·åˆ†åº“åˆ†è¡¨
  * 
  * @author linxuan
  * 
@@ -42,23 +42,23 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 	private Object[] dbRules; // string expression or mappingrule
 	private Object[] tbRules; // string expression or mappingrule
 
-	//private String[] uniqueKeys; //°áµ½ĞĞ¸´ÖÆÅäÖÃÖĞ
-	//private boolean needRowCopy; //¸ù¾İÂß¼­±íÔÚ²»ÔÚĞĞ¸´ÖÆÅäÖÃÖĞÀ´ÉèÖÃ
+	//private String[] uniqueKeys; //æ¬åˆ°è¡Œå¤åˆ¶é…ç½®ä¸­
+	//private boolean needRowCopy; //æ ¹æ®é€»è¾‘è¡¨åœ¨ä¸åœ¨è¡Œå¤åˆ¶é…ç½®ä¸­æ¥è®¾ç½®
 
 	private boolean allowReverseOutput;
-	private boolean disableFullTableScan = true; // ÊÇ·ñ¹Ø±ÕÈ«±íÉ¨Ãè
+	private boolean disableFullTableScan = true; // æ˜¯å¦å…³é—­å…¨è¡¨æ‰«æ
 
 	/**
-	 * ÓÃÀ´Ìæ»»dbRules¡¢tbRulesÖĞµÄÕ¼Î»·û
-	 * ÓÅÏÈÓÃdbRuleParames£¬tbRuleParamesÌæ»»£¬ÆäÎª¿ÕÊ±ÔÙÓÃruleParamesÌæ»»
+	 * ç”¨æ¥æ›¿æ¢dbRulesã€tbRulesä¸­çš„å ä½ç¬¦
+	 * ä¼˜å…ˆç”¨dbRuleParamesï¼ŒtbRuleParamesæ›¿æ¢ï¼Œå…¶ä¸ºç©ºæ—¶å†ç”¨ruleParamesæ›¿æ¢
 	 */
 	private String[] ruleParames;
 	private String[] dbRuleParames;
 	private String[] tbRuleParames;
 	
 	/**
-	 * ÃèÊö±íºó×ºÅäÖÃ¡£¸ñÊ½£º throughAllDB:[_0000-_0063]
-	 * #Èç¹û3ÌØÊâµÄ£ºthroughAllDB:[_0000-_0063],3:[_00-_63] resetForEachDB:[_0-_4]
+	 * æè¿°è¡¨åç¼€é…ç½®ã€‚æ ¼å¼ï¼š throughAllDB:[_0000-_0063]
+	 * #å¦‚æœ3ç‰¹æ®Šçš„ï¼šthroughAllDB:[_0000-_0063],3:[_00-_63] resetForEachDB:[_0-_4]
 	 * twoColumnForEachDB: [_00-_99],[_00-_11] dbIndexForEachDB:[_00-_09]
 	 */
 	private SuffixManager suffixManager = new SuffixManager();
@@ -69,24 +69,24 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 	private String fromDateString;
 	private String toDateString;
 	private String groovyScript;
-	//add by junyu:ÓÃ»§×Ô¶¨Òå°ü
+	//add by junyu:ç”¨æˆ·è‡ªå®šä¹‰åŒ…
 	private List<String> extraPackages;
 
 	/**
-	 * ÊÇ·ñÖ»¸ù¾İÈÕÆÚ½øĞĞ·Ö±í¡£
-	 * TODO:ÖØ¹¹ÖĞÓ¦¸ÃÖ»ÓĞÒ»¸öÕâ¸ö×Ö¶Î³öÏÖ¡£È«²¿·ÅÈëÒ»Ì×¹æÔòÉú³ÉÖĞ¼´¿É¡£
+	 * æ˜¯å¦åªæ ¹æ®æ—¥æœŸè¿›è¡Œåˆ†è¡¨ã€‚
+	 * TODO:é‡æ„ä¸­åº”è¯¥åªæœ‰ä¸€ä¸ªè¿™ä¸ªå­—æ®µå‡ºç°ã€‚å…¨éƒ¨æ”¾å…¥ä¸€å¥—è§„åˆ™ç”Ÿæˆä¸­å³å¯ã€‚
 	 */
 	private boolean isOnlyDateSharding = false;
 
 	/**
-	 * ¼¸ÄêÒÔºóµ½½ñÌì£¿ÓÃÓÚ×Ô¶¯Éú³Éµ±Ç°Ê±¼ä·¶Î§Ç°ºóµÄ±íÃû£¬
-	 * ÕâÑù¾Í²»ĞèÒªĞ´ËÀfromµÄÊ±¼äÁË¡£
+	 * å‡ å¹´ä»¥ååˆ°ä»Šå¤©ï¼Ÿç”¨äºè‡ªåŠ¨ç”Ÿæˆå½“å‰æ—¶é—´èŒƒå›´å‰åçš„è¡¨åï¼Œ
+	 * è¿™æ ·å°±ä¸éœ€è¦å†™æ­»fromçš„æ—¶é—´äº†ã€‚
 	 */
 	private int yearsToNow = 2;
 
 	/**
-	 * ½ñÌìÒÔºó¶àÉÙÄê£¿ÓÃÓÚ×Ô¶¯Éú³Éµ±Ç°Ê±¼ä·¶Î§Ç°ºóµÄ±íÃû£¬
-	 * ÕâÑù¾Í²»ĞèÒªĞ´ËÀtoµÄÊ±¼äÁË¡£
+	 * ä»Šå¤©ä»¥åå¤šå°‘å¹´ï¼Ÿç”¨äºè‡ªåŠ¨ç”Ÿæˆå½“å‰æ—¶é—´èŒƒå›´å‰åçš„è¡¨åï¼Œ
+	 * è¿™æ ·å°±ä¸éœ€è¦å†™æ­»toçš„æ—¶é—´äº†ã€‚
 	 */
 	private int yearsBehindNow = 2;
 
@@ -123,11 +123,11 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 			return;
 		}
 		if (dbIndexPrefix == null && dbIndexPattern == null || dbIndexCount <= 0) {
-			throw new IllegalArgumentException("dbIndexesÃ»ÓĞÅäÖÃ");
+			throw new IllegalArgumentException("dbIndexesæ²¡æœ‰é…ç½®");
 		}
 		dbIndexes = new String[dbIndexCount];
 		if (dbIndexPrefix != null) {
-			// °´dbIndexPrefixºÍdbIndexCountÉú³ÉdbIndexes
+			// æŒ‰dbIndexPrefixå’ŒdbIndexCountç”ŸæˆdbIndexes
 			int suffixLen = Integer.valueOf(dbIndexCount).toString().length();
 			for (int i = 0; i < dbIndexCount; i++) {
 				String suffix = String.valueOf(i);
@@ -174,7 +174,7 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 			return template;
 		}
 		if (params.length != 0 && params[0].indexOf(":") != -1) {
-			// Ö»ÒªparamsµÄµÚÒ»¸ö²ÎÊıÖĞº¬ÓĞÃ°ºÅ£¬¾ÍÈÏÎªÊÇNamedParam
+			// åªè¦paramsçš„ç¬¬ä¸€ä¸ªå‚æ•°ä¸­å«æœ‰å†’å·ï¼Œå°±è®¤ä¸ºæ˜¯NamedParam
 			return replaceWithNamedParam(template, params);
 		}
 		return new MessageFormat(template).format(params);
@@ -186,7 +186,7 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 			int index = param.indexOf(":");
 			if (index == -1) {
 				throw new IllegalArgumentException(
-						"Ê¹ÓÃÃû×Ö»¯µÄÕ¼Î»·ûÌæ»»Ê§°Ü£¡Çë¼ì²éÅäÖÃ¡£ params:" + Arrays.asList(params));
+						"ä½¿ç”¨åå­—åŒ–çš„å ä½ç¬¦æ›¿æ¢å¤±è´¥ï¼è¯·æ£€æŸ¥é…ç½®ã€‚ params:" + Arrays.asList(params));
 			}
 			args.put(param.substring(0, index).trim(), param.substring(
 					index + 1).trim());
@@ -216,7 +216,7 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 			for (Object obj : tableRule.getDbRuleArray()) {
 				if (obj instanceof MappingRuleBean) {
 					throw new IllegalArgumentException(
-							"TDDL ÔÚĞÂ°æ±¾ÖĞ²»ÔÙÖ§³Ömapping rule");
+							"TDDL åœ¨æ–°ç‰ˆæœ¬ä¸­ä¸å†æ”¯æŒmapping rule");
 //					 addMappingRule((MappingRuleBean) obj, dbRules,invokeBySpring);
 				} else {
 					dbRules.add((String) obj);
@@ -230,7 +230,7 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 			for (Object obj : tableRule.getTbRuleArray()) {
 				if (obj instanceof MappingRuleBean) {
 //					throw new IllegalArgumentException(
-//							"TDDL ÔÚĞÂ°æ±¾ÖĞ²»ÔÙÖ§³Ömapping rule");
+//							"TDDL åœ¨æ–°ç‰ˆæœ¬ä¸­ä¸å†æ”¯æŒmapping rule");
 					 addMappingRule((MappingRuleBean) obj, tbRules,invokeBySpring);
 				} else {
 					tbRules.add((String) obj);
@@ -239,28 +239,28 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 			switch (tableRule.getTableGenerationType()) {
 
 			case SIMPLE:
-				// TODO:ÖØ¹¹´Ë´¦£¬½«TableMapProviderºÍTableRuleºÏ²¢£¬×îÖÕ²úÉúÒ»¸öMap¾Í¿ÉÒÔÁË¡£
+				// TODO:é‡æ„æ­¤å¤„ï¼Œå°†TableMapProviderå’ŒTableRuleåˆå¹¶ï¼Œæœ€ç»ˆäº§ç”Ÿä¸€ä¸ªMapå°±å¯ä»¥äº†ã€‚
 				buildSimpleTableRule(tableRule, this, tbRules);
 				break;
 			case DATE_SIMPLE_AUTO:
 				if (tableRule.getFromDateString() != null
 						|| tableRule.getToDateString() != null) {
 					throw new IllegalArgumentException(
-							"×Ô¶¯ÈÕÆÚÉú³ÉÊ±£¬²»ĞèÒªÊ¹ÓÃfromDateStringºÍtoDataStringÊôĞÔ");
+							"è‡ªåŠ¨æ—¥æœŸç”Ÿæˆæ—¶ï¼Œä¸éœ€è¦ä½¿ç”¨fromDateStringå’ŒtoDataStringå±æ€§");
 				}
 				
 				setTableRuleStringList(tbRules);
 				setExtraPackagesStr(extraPackages);
-				// ×Ô¶¯ÌîĞ´ÈÕÆÚ
+				// è‡ªåŠ¨å¡«å†™æ—¥æœŸ
 				SimpleDateTableMapProvider provider1 = new SimpleDateTableMapProvider();
 				fillDateMapProvider(tableRule, provider1);
 				String timeStyle = provider1.getInputTimeStyle();
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
 						timeStyle);
-				// »ñÈ¡µ±Ç°Ê±¼ä
+				// è·å–å½“å‰æ—¶é—´
 				Calendar calfrom = Calendar.getInstance();
 				Calendar calto = (Calendar) calfrom.clone();
-				// ÍùÇ°ÍÆÁ½Äê
+				// å¾€å‰æ¨ä¸¤å¹´
 				calfrom.add(Calendar.YEAR, -tableRule.getYearsToNow());
 				Date from = calfrom.getTime();
 				calto.add(Calendar.YEAR, tableRule.getYearsBehindNow());
@@ -294,7 +294,7 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 		/*if (tableRule.getUniqueKeyArray() != null) {
 			setUniqueKeys(Arrays.asList(tableRule.getUniqueKeyArray()));
 		}*/
-		//setNeedRowCopy(tableRule.isNeedRowCopy());//ÎŞÓÃµ÷ÓÃ
+		//setNeedRowCopy(tableRule.isNeedRowCopy());//æ— ç”¨è°ƒç”¨
 		if (tableRule.isDisableFullTableScan()) {
 			setDefaultListResultStragety(DEFAULT_LIST_RESULT_STRAGETY.NONE);
 		} else {
@@ -319,13 +319,13 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 
 	private void buildSimpleTableRule(TableRule tableRule, SimpleLogicTable st,
 			List<Object> tbRules) {
-		// Èç¹ûÊÇ2ÁĞµÄÇé¿ö¾ÍÓÃ2ÁĞµÄÀà£¬·ñÔò°´ÒÔÇ°µÄÂß¼­×ß
+		// å¦‚æœæ˜¯2åˆ—çš„æƒ…å†µå°±ç”¨2åˆ—çš„ç±»ï¼Œå¦åˆ™æŒ‰ä»¥å‰çš„é€»è¾‘èµ°
 		st.setSimpleTableMapProvider(getTableMapProvider(tableRule));
 		SuffixManager suffixManager = tableRule.getSuffixManager();
 		Suffix suf = suffixManager.getSuffix(0);
 		st.setTableRuleStringList(tbRules);
 		st.setExtraPackagesStr(extraPackages);
-		// ·Ö±í¹æÔò´æÔÚ£¬²ÅÉèÖÃ±íºó×ºÊôĞÔ£¬ÉèÖÃÁËÈÎºÎÒ»¸öÊôĞÔ£¬¾Í±íÊ¾ÓÃsimpleTableMapProvider
+		// åˆ†è¡¨è§„åˆ™å­˜åœ¨ï¼Œæ‰è®¾ç½®è¡¨åç¼€å±æ€§ï¼Œè®¾ç½®äº†ä»»ä½•ä¸€ä¸ªå±æ€§ï¼Œå°±è¡¨ç¤ºç”¨simpleTableMapProvider
 		st.setFrom(suf.getTbSuffixFrom());
 		st.setTo(suf.getTbSuffixTo());
 		st.setWidth(suf.getTbSuffixWidth());
@@ -333,7 +333,7 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 		st.setTablesNumberForEachDatabases(suf.getTbNumForEachDb());
 	}
 	
-    // modify by junyu DatabaseBasedMappingÒÆµ½ÁËcache¹¤³ÌÏÂ
+    // modify by junyu DatabaseBasedMappingç§»åˆ°äº†cacheå·¥ç¨‹ä¸‹
     // protected ThreadLocal<List<DatabaseBasedMapping>> mappingHandlers;
 
 	@Deprecated
@@ -349,7 +349,7 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 //			throw new IllegalArgumentException("spring applicatoin is null");
 //		}
 //		if (!springApplicationContext.containsBean(bean.getMappingRuleBeanId())) {
-//			// Èç¹û¸¸SpringContextÖĞ²»°üº¬MappingRuleBeanIdµÄ¶¨Òå,ÔòºöÂÔÕâÌõÓ³Éä¹æÔò
+//			// å¦‚æœçˆ¶SpringContextä¸­ä¸åŒ…å«MappingRuleBeanIdçš„å®šä¹‰,åˆ™å¿½ç•¥è¿™æ¡æ˜ å°„è§„åˆ™
 //			logger.warn("Discard a mapping rule because there is no definition for mappingRuleBeanId: "
 //					+ bean.getMappingRuleBeanId());
 //			return;
@@ -369,9 +369,9 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 //				this.mappingHandlers.set(handlers);
 //			}
 //			handlers.add(mappingHandler);
-//			// Ö»ÊÇ¼òµ¥µÄÉèÎªthisµÄ»°£¬ÔÚÊÂÎñÖĞ¶ÁÂ·ÓÉ±í»á×ßµ½Ö÷¿â£¬·ÇÊÂÎñµÄ¶Á²Å»á×ß¶Á¿â¡£ËùÒÔÓÃThreadLocal×öÌØÊâ´¦Àí
+//			// åªæ˜¯ç®€å•çš„è®¾ä¸ºthisçš„è¯ï¼Œåœ¨äº‹åŠ¡ä¸­è¯»è·¯ç”±è¡¨ä¼šèµ°åˆ°ä¸»åº“ï¼Œéäº‹åŠ¡çš„è¯»æ‰ä¼šèµ°è¯»åº“ã€‚æ‰€ä»¥ç”¨ThreadLocalåšç‰¹æ®Šå¤„ç†
 //			mappingHandler.setRouteDatasource((DataSource) this);
-//			throw new IllegalArgumentException("²»ÔÙÖ§³ÖÕâÖÖÇé¿ö£¬ÇëÖ±½ÓÊ¹ÓÃmappingHandler.setRouteDatasourceÀ´Ö¸¶¨ĞèÒªÊ¹ÓÃµÄdatasource");
+//			throw new IllegalArgumentException("ä¸å†æ”¯æŒè¿™ç§æƒ…å†µï¼Œè¯·ç›´æ¥ä½¿ç”¨mappingHandler.setRouteDatasourceæ¥æŒ‡å®šéœ€è¦ä½¿ç”¨çš„datasource");
 //		}
 //		mr.setMappingHandler(mappingHandler);
 //		dbRules.add(mr);
@@ -407,7 +407,7 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 	}
 
 	/**
-	 * Éú³ÉÔÂ·İ±íÃûµÄ¶«¶«½áÊø
+	 * ç”Ÿæˆæœˆä»½è¡¨åçš„ä¸œä¸œç»“æŸ
 	 */
 	public static class ParseException extends Exception {
 		private static final long serialVersionUID = 1L;
@@ -458,7 +458,7 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 
 	public void setDbRules(String dbRules) {
 		if (this.dbRules == null) {
-			// ÓÅÏÈ¼¶±ÈdbRuleArrayµÍ
+			// ä¼˜å…ˆçº§æ¯”dbRuleArrayä½
 			this.dbRules = dbRules.split("\\|");
 		}
 	}
@@ -473,14 +473,14 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 
 	public void setTbRules(String tbRules) {
 		if (this.tbRules == null) {
-			// ÓÅÏÈ¼¶±ÈtbRuleArrayµÍ
+			// ä¼˜å…ˆçº§æ¯”tbRuleArrayä½
 			this.tbRules = tbRules.split("\\|");
 		}
 	}
 
 	public void setRuleParames(String ruleParames) {
 		if (ruleParames.indexOf('|') != -1) {
-			// ÓÅÏÈÓÃ|Ïß·Ö¸ô,ÒòÎªÓĞĞ©¹æÔò±í´ïÊ½ÖĞ»áÓĞ¶ººÅ
+			// ä¼˜å…ˆç”¨|çº¿åˆ†éš”,å› ä¸ºæœ‰äº›è§„åˆ™è¡¨è¾¾å¼ä¸­ä¼šæœ‰é€—å·
 			this.ruleParames = ruleParames.split("\\|");
 		} else {
 			this.ruleParames = ruleParames.split(",");
@@ -585,7 +585,7 @@ public class TableRule extends SimpleLogicTable implements Cloneable {
 	}
 
 	/**
-	 * »ñÈ¡Éú³É²ßÂÔ£¬ÒÔºóTableRule½øĞĞĞ¡ÖØ¹¹£¬½«getSimpleTableRuleÊµÏÖºó¿É·Ï³ı
+	 * è·å–ç”Ÿæˆç­–ç•¥ï¼Œä»¥åTableRuleè¿›è¡Œå°é‡æ„ï¼Œå°†getSimpleTableRuleå®ç°åå¯åºŸé™¤
 	 * 
 	 * @return
 	 */

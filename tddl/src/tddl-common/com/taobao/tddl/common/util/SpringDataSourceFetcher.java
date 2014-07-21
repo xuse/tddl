@@ -15,7 +15,7 @@ import com.taobao.tddl.interact.rule.bean.DBType;
  */
 public class SpringDataSourceFetcher implements DataSourceFetcher, ApplicationContextAware {
 
-	private ApplicationContext springContext; // ÄÃµ½ÉÏÏÂÎÄ
+	private ApplicationContext springContext; // æ‹¿åˆ°ä¸Šä¸‹æ–‡
 	private DBType dbType = DBType.MYSQL;
 
 	@Override
@@ -39,6 +39,6 @@ public class SpringDataSourceFetcher implements DataSourceFetcher, ApplicationCo
 		else if ("mysql".equalsIgnoreCase(type))
 			dbType = DBType.MYSQL;
 		else
-			throw new IllegalArgumentException(type + " ²»ÊÇÓĞĞ§µÄÊı¾İ¿âÀàĞÍ£¬Ö»ÄÜÊÇmysql»òoracle(²»Çø·Ö´óĞ¡Ğ´)");
+			throw new IllegalArgumentException(type + " ä¸æ˜¯æœ‰æ•ˆçš„æ•°æ®åº“ç±»å‹ï¼Œåªèƒ½æ˜¯mysqlæˆ–oracle(ä¸åŒºåˆ†å¤§å°å†™)");
 	}
 }

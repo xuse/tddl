@@ -10,9 +10,9 @@ import com.taobao.tddl.common.config.beans.Suffix;
 import com.taobao.tddl.rule.ruleengine.util.RuleUtils;
 
 /**
- * Ö§³Ö2ÁĞÍ¬Ê±·Ö¿â·Ö±í
- * ±ÈÈç: ¸ù¾İuserid ºó2Î» % 100 ,gmtcreateÈ¡ÔÂ·İ % 12
- * Éú³ÉºóµÄ±íÃû: xxxx_01_01 ~~ xxxx_99_11
+ * æ”¯æŒ2åˆ—åŒæ—¶åˆ†åº“åˆ†è¡¨
+ * æ¯”å¦‚: æ ¹æ®userid å2ä½ % 100 ,gmtcreateå–æœˆä»½ % 12
+ * ç”Ÿæˆåçš„è¡¨å: xxxx_01_01 ~~ xxxx_99_11
  * @author liang.chenl
  *
  */

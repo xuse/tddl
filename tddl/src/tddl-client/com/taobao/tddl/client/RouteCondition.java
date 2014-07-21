@@ -1,9 +1,9 @@
 package com.taobao.tddl.client;
 
 /**
- * Í¨ÓÃ½Ó¿Ú£¬¿ÉÒÔÍ¨¹ıÖØĞ´{@link RouteHandler} ²¢ÇÒ×¢²áµ½{@link RouteHandlerRegister}
- * ÉÏµÄ·½Ê½À´¼ÓÔØĞÂµÄ×Ô¶¨ÒåconditionHandler.ÕâÑù¾Í¿ÉÒÔÖ§³Ö¶àÖÖ²»Í¬µÄÌõ¼şÒÔ¼°´¦Àí¡£ {@link RouteHandlerRegister}
- * ÖĞµÄkeyÎªRouteConditionÊµÏÖµÄclassÈ«Ãû³Æ¡£
+ * é€šç”¨æ¥å£ï¼Œå¯ä»¥é€šè¿‡é‡å†™{@link RouteHandler} å¹¶ä¸”æ³¨å†Œåˆ°{@link RouteHandlerRegister}
+ * ä¸Šçš„æ–¹å¼æ¥åŠ è½½æ–°çš„è‡ªå®šä¹‰conditionHandler.è¿™æ ·å°±å¯ä»¥æ”¯æŒå¤šç§ä¸åŒçš„æ¡ä»¶ä»¥åŠå¤„ç†ã€‚ {@link RouteHandlerRegister}
+ * ä¸­çš„keyä¸ºRouteConditionå®ç°çš„classå…¨åç§°ã€‚
  * 
  * 
  * @author shenxun

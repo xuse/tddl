@@ -11,7 +11,7 @@ import com.taobao.tddl.common.exception.lru.LRUHashMapException;
 
 
 /**
- * ²¢·¢×î½ü×îÉÙÊ¹ÓÃHashMap ×¢Òâ£ºÒªÌí¼ÓÒ»¸ö£¬Ò»¶¨Òª»áÉ¾³ıÒ»¸ö£¬ËùÒÔ£¬×ÜµÄÈİÁ¿ÊÇ²»»á¸Ä±äµÄ¡£
+ * å¹¶å‘æœ€è¿‘æœ€å°‘ä½¿ç”¨HashMap æ³¨æ„ï¼šè¦æ·»åŠ ä¸€ä¸ªï¼Œä¸€å®šè¦ä¼šåˆ é™¤ä¸€ä¸ªï¼Œæ‰€ä»¥ï¼Œæ€»çš„å®¹é‡æ˜¯ä¸ä¼šæ”¹å˜çš„ã€‚
  * 
  * @author xudanhui.pt Jan 19, 2011,2:59:42 PM
  */
@@ -89,7 +89,7 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 	}
 
 	/**
-	 * HashËø·ÖÀë¶Î
+	 * Hashé”åˆ†ç¦»æ®µ
 	 * 
 	 * @author xudanhui.pt Jan 19, 2011,3:08:09 PM
 	 * @param <K>
@@ -99,34 +99,34 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 			Serializable {
 		private static final long serialVersionUID = 1L;
 		/**
-		 * ãĞÖµ
+		 * é˜ˆå€¼
 		 */
 		transient int threshold;
 		/**
-		 * ¼ÆÊı
+		 * è®¡æ•°
 		 */
 		transient volatile int count;
 		/**
-		 * ĞŞ¸Ä±ê¼Ç
+		 * ä¿®æ”¹æ ‡è®°
 		 */
 		transient int modCount;
 		/**
-		 * hash±í
+		 * hashè¡¨
 		 */
 		transient volatile HashEntry<K, V>[] table;
 		/**
-		 * ¶ÎÄÚÍ·½Úµã£¬ÉÚ±ø½Úµã¡£
+		 * æ®µå†…å¤´èŠ‚ç‚¹ï¼Œå“¨å…µèŠ‚ç‚¹ã€‚
 		 */
 		transient final HashEntry<K, V> header;
 
 		Segment(int initialCapacity, float lf) {
-			// ´´½¨hash±í
+			// åˆ›å»ºhashè¡¨
 			table = HashEntry.<K, V> newArray(initialCapacity);
-			// ¼ÆËããĞÖµ
+			// è®¡ç®—é˜ˆå€¼
 			threshold = (int) (initialCapacity * lf);
-			// ¶ÎÄÚ¼ÆÊı³õÖµÎª0
+			// æ®µå†…è®¡æ•°åˆå€¼ä¸º0
 			count = 0;
-			// ¹¹½¨Ë«ÏòÁ´±íµÄÍ·½Úµã
+			// æ„å»ºåŒå‘é“¾è¡¨çš„å¤´èŠ‚ç‚¹
 			header = new HashEntry(null, -1, null, null, null, null,
 					new AtomicBoolean(false));
 			header.linknext = header;
@@ -138,13 +138,13 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 			return new Segment[i];
 		}
 
-		// È¡µÃhash±íÖĞµÚÒ»¸öÖµ
+		// å–å¾—hashè¡¨ä¸­ç¬¬ä¸€ä¸ªå€¼
 		HashEntry<K, V> getFirst(int hash) {
 			HashEntry<K, V>[] tab = table;
 			return tab[hash & (tab.length - 1)];
 		}
 
-		// ÔÚÓĞËøµÄÇé¿öÏÂ¶ÁÖµ
+		// åœ¨æœ‰é”çš„æƒ…å†µä¸‹è¯»å€¼
 		V readValueUnderLock(HashEntry<K, V> e) {
 			lock();
 			try {
@@ -154,19 +154,19 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 			}
 		}
 
-		// °Ñ½ÚµãÒÆ¶¯µ½Ë«ÏòÁ´±íµÄÍ·²¿
+		// æŠŠèŠ‚ç‚¹ç§»åŠ¨åˆ°åŒå‘é“¾è¡¨çš„å¤´éƒ¨
 		void moveNodeToHeader(HashEntry<K, V> e) {
 			lock();
 			try {
 
-				// TODO ÕâÀïĞèÒªĞŞ¸ÄÒ»ÏÂ¿Õ²Ù×÷µÄÑéÖ¤
+				// TODO è¿™é‡Œéœ€è¦ä¿®æ”¹ä¸€ä¸‹ç©ºæ“ä½œçš„éªŒè¯
 				if (!e.dead.get()) {
 
-					// ´ÓÍË»¯Á¬±íÖĞ¶Ï¿ªÁ¬½Ó
+					// ä»é€€åŒ–è¿è¡¨ä¸­æ–­å¼€è¿æ¥
 					e.linkpref.linknext = e.linknext;
 					e.linknext.linkpref = e.linkpref;
 
-					// Ìí¼Óµ½ÍË»¯Á´±íÍ·²¿
+					// æ·»åŠ åˆ°é€€åŒ–é“¾è¡¨å¤´éƒ¨
 					header.linknext.linkpref = e;
 					e.linknext = header.linknext;
 					e.linkpref = header;
@@ -178,21 +178,21 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 
 		}
 
-		// get²Ù×÷
+		// getæ“ä½œ
 		V get(Object key, int hash) {
 			HashEntry<K, V> e = getFirst(hash);
-			// ±éÀú²éÕÒ
+			// éå†æŸ¥æ‰¾
 			while (e != null) {
 				if (e.hash == hash && key.equals(e.key)) {
 					V v = e.value;
-					// °Ñ½ÚµãÒÆ¶¯µ½Í·²¿¡£
+					// æŠŠèŠ‚ç‚¹ç§»åŠ¨åˆ°å¤´éƒ¨ã€‚
 					moveNodeToHeader(e);
 					if (v != null)
 						return v;
-					// ÔÚËøµÄÇé¿ö¶Á£¬±Ø¶¨ÄÜ¶Áµ½¡£
-					// tab[index] = new HashEntry<K,V>(key, hash, first, value)£¬
-					// value¸³ÖµºÍtab[index]¸³Öµ¿ÉÄÜ»áÖØĞÂÅÅĞò£¬ÖØĞÂÅÅĞòÖ®ºó£¬¿ÉÄÜ»á¶Á¿ÕÖµ
-					// ¶Áµ½¿ÕÖµµÄ»°£¬ÔÚÓĞËøµÄÇé¿öÔÚÔÙ¶ÁÒ»±é£¬Ò»¶¨ÄÜ¶Á£¡
+					// åœ¨é”çš„æƒ…å†µè¯»ï¼Œå¿…å®šèƒ½è¯»åˆ°ã€‚
+					// tab[index] = new HashEntry<K,V>(key, hash, first, value)ï¼Œ
+					// valueèµ‹å€¼å’Œtab[index]èµ‹å€¼å¯èƒ½ä¼šé‡æ–°æ’åºï¼Œé‡æ–°æ’åºä¹‹åï¼Œå¯èƒ½ä¼šè¯»ç©ºå€¼
+					// è¯»åˆ°ç©ºå€¼çš„è¯ï¼Œåœ¨æœ‰é”çš„æƒ…å†µåœ¨å†è¯»ä¸€éï¼Œä¸€å®šèƒ½è¯»ï¼
 					return readValueUnderLock(e); // recheck
 				}
 				e = e.next;
@@ -200,42 +200,42 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 			return null;
 		}
 
-		// É¾³ıÀÏ½Úµã
+		// åˆ é™¤è€èŠ‚ç‚¹
 		private void removeOldNode() throws LRUHashMapException {
 			lock();
 			try {
 				int c = count;
-				// Ö´ĞĞÉ¾³ı²Ù×÷¡£
+				// æ‰§è¡Œåˆ é™¤æ“ä½œã€‚
 				HashEntry<K, V> node = header.linkpref;
 				if (node == null) {
-					throw new LRUHashMapException("segmentÖĞµÄÍË»¯Á´±í±ÀÀ££¡");
+					throw new LRUHashMapException("segmentä¸­çš„é€€åŒ–é“¾è¡¨å´©æºƒï¼");
 				}
 				if (node == header) {
-					throw new LRUHashMapException("segmentÖĞÍË»¯Á´±íÒÑ¾­Îª¿Õ£¡");
+					throw new LRUHashMapException("segmentä¸­é€€åŒ–é“¾è¡¨å·²ç»ä¸ºç©ºï¼");
 				}
-				// ÒÑ¾­±ê¼ÇÎªËÀÍö£¬ÀíÂÛÉÏÀ´Ëµ£¬²»»áÓĞÕâÑùµÄÇé¿ö¡£
+				// å·²ç»æ ‡è®°ä¸ºæ­»äº¡ï¼Œç†è®ºä¸Šæ¥è¯´ï¼Œä¸ä¼šæœ‰è¿™æ ·çš„æƒ…å†µã€‚
 				if (node.dead.get()) {
-					throw new LRUHashMapException("node·ÇÕı³£ËÀÍö");
+					throw new LRUHashMapException("nodeéæ­£å¸¸æ­»äº¡");
 				}
-				remove(node.key, node.hash, node.value);//É¾³ı½Úµã
+				remove(node.key, node.hash, node.value);//åˆ é™¤èŠ‚ç‚¹
 			} finally {
 				unlock();
 			}
 		}
 
-		// ²åÈë²Ù×÷
+		// æ’å…¥æ“ä½œ
 		V put(K key, int hash, V value, boolean onlyIfAbsent)
 				throws LRUHashMapException {
 			lock();
 			try {
 				int c = count;
-				// Èç¹ûµ±Ç°½ÚµãÊıÁ¿ÒÑ¾­´óÓÚµÈÓÚãĞÖµ
+				// å¦‚æœå½“å‰èŠ‚ç‚¹æ•°é‡å·²ç»å¤§äºç­‰äºé˜ˆå€¼
 				if (c >= threshold) {
-					removeOldNode();// É¾²»µô¾Í»áÅ×³ö´íÎó£¬Å×³ö´íÎó¾ÍÍêÁË£¡
+					removeOldNode();// åˆ ä¸æ‰å°±ä¼šæŠ›å‡ºé”™è¯¯ï¼ŒæŠ›å‡ºé”™è¯¯å°±å®Œäº†ï¼
 					c=count;
 				}
 
-				// Ö´ĞĞput²Ù×÷£¡
+				// æ‰§è¡Œputæ“ä½œï¼
 				HashEntry<K, V>[] tab = table;
 				int index = hash & (tab.length - 1);
 				HashEntry<K, V> first = tab[index];
@@ -248,7 +248,7 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 					oldValue = e.value;
 					if (!onlyIfAbsent) {
 						e.value = value;
-						moveNodeToHeader(e);// ÒÆ¶¯µ½Í·²¿
+						moveNodeToHeader(e);// ç§»åŠ¨åˆ°å¤´éƒ¨
 					}
 				} else {
 					oldValue = null;
@@ -271,7 +271,7 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 			return null;
 		}
 
-		// É¾³ı³ÌĞò
+		// åˆ é™¤ç¨‹åº
 		V remove(Object key, int hash, Object value) {
 			lock();
 			try {
@@ -285,29 +285,29 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 
 				V oldValue = null;
 				if (e != null) {
-					// °Ñ½Úµã´ÓHashÁ´±íÖĞÍÑÀë³öÀ´
+					// æŠŠèŠ‚ç‚¹ä»Hashé“¾è¡¨ä¸­è„±ç¦»å‡ºæ¥
 					e.dead.set(true);
-					// °ÑÎ²²¿½Úµã´ÓÁ´±íÖĞÉ¾³ı£¡
+					// æŠŠå°¾éƒ¨èŠ‚ç‚¹ä»é“¾è¡¨ä¸­åˆ é™¤ï¼
 					e.linkpref.linknext = e.linknext;
 					e.linknext.linkpref = e.linkpref;
 
-					// °Ñ½Úµã´Óhash²ÛÖĞÉ¾³ı
+					// æŠŠèŠ‚ç‚¹ä»hashæ§½ä¸­åˆ é™¤
 					V v = e.value;
 					if (value == null || value.equals(v)) {
 						oldValue = v;
 						++modCount;
 						HashEntry<K, V> newFirst = e.next;
-						// Ñ­»·É¾³ı
+						// å¾ªç¯åˆ é™¤
 						for (HashEntry<K, V> p = first; p != e; p = p.next) {
 							HashEntry<K, V> newNode = new HashEntry<K, V>(
 									p.key, p.hash, newFirst, p.value,
 									p.linknext, p.linkpref, new AtomicBoolean(
 											false));
-							// µ÷ÕûÁ´±í
+							// è°ƒæ•´é“¾è¡¨
 							p.linknext.linkpref = newNode;
 							p.linkpref.linknext = newNode;
-							p.dead.set(true);// ±ê¼ÇËÀÍö£¬Õâ¸öºÜÖØÒª£¡
-							// ¸³Öµ
+							p.dead.set(true);// æ ‡è®°æ­»äº¡ï¼Œè¿™ä¸ªå¾ˆé‡è¦ï¼
+							// èµ‹å€¼
 							newFirst = newNode;
 						}
 						tab[index] = newFirst;
@@ -323,7 +323,7 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 	}
 
 	/**
-	 * Hash²ÛÄÚÁ´±íµÄ½Úµã
+	 * Hashæ§½å†…é“¾è¡¨çš„èŠ‚ç‚¹
 	 * 
 	 * @author xudanhui.pt Jan 19, 2011,3:04:07 PM
 	 * @param <K>
@@ -331,31 +331,31 @@ public class ConcurrentLRUHashMap<K, V> extends AbstractMap<K, V> implements
 	 */
 	static class HashEntry<K, V> {
 		/**
-		 * ¼ü
+		 * é”®
 		 */
 		final K key;
 		/**
-		 * hashÖµ
+		 * hashå€¼
 		 */
 		final int hash;
 		/**
-		 * Öµ
+		 * å€¼
 		 */
 		volatile V value;
 		/**
-		 * hashÁ´Ö¸Õë
+		 * hashé“¾æŒ‡é’ˆ
 		 */
 		final HashEntry<K, V> next;
 		/**
-		 * Ë«ÏòÁ´±íµÄÏÂÒ»¸ö½Úµã
+		 * åŒå‘é“¾è¡¨çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
 		 */
 		HashEntry<K, V> linknext;
 		/**
-		 * Ë«ÏòÁ´±íµÄÏÂÒ»¸ö½Úµã
+		 * åŒå‘é“¾è¡¨çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
 		 */
 		HashEntry<K, V> linkpref;
 		/**
-		 * ËÀÍö±ê¼Ç
+		 * æ­»äº¡æ ‡è®°
 		 */
 		AtomicBoolean dead;
 

@@ -23,7 +23,7 @@ import com.taobao.tddl.sqlobjecttree.outputhandlerimpl.HandlerContainer;
 public class ControllerUtils
 {
 	/**
-	 * Ìí¼Ó·Ö¿âµÄÏà¹ØĞÅÏ¢£¬µ«Èç¹ûÎ¨Ò»¼üºÍ·Ö¿â¼üµÄkeyÒ»ÖÂ£¬Ôò·Ö¿â¼üÄÚ²»»áÖØ¸´³öÏÖÎ¨Ò»¼üÒÑ¾­ÓĞµÄkey=value¶Ô 
+	 * æ·»åŠ åˆ†åº“çš„ç›¸å…³ä¿¡æ¯ï¼Œä½†å¦‚æœå”¯ä¸€é”®å’Œåˆ†åº“é”®çš„keyä¸€è‡´ï¼Œåˆ™åˆ†åº“é”®å†…ä¸ä¼šé‡å¤å‡ºç°å”¯ä¸€é”®å·²ç»æœ‰çš„key=valueå¯¹ 
 	 * 
 	 * @param mapList
 	 * @param retMeta
@@ -39,10 +39,10 @@ public class ControllerUtils
 		for (Entry<String, Comparative> oneValue : mapList.entrySet())
 		{
 			String sharedKey = toLowerCaseIgnoreNull(oneValue.getKey());
-			// Èç¹û·Ö¿â¼üºÍÎ¨Ò»¼üÖØ¸´£¬Ôò·Ö¿â¼üÄÚ²»ÖØ¸´³öÏÖÎ¨Ò»¼ü
+			// å¦‚æœåˆ†åº“é”®å’Œå”¯ä¸€é”®é‡å¤ï¼Œåˆ™åˆ†åº“é”®å†…ä¸é‡å¤å‡ºç°å”¯ä¸€é”®
 			if (!sharedKey.equals(uniqueColumnKey))
 			{
-				// ¸øÇ°¶Ë´«ÈëµÄÈ«²¿ÊÇĞ¡Ğ´
+				// ç»™å‰ç«¯ä¼ å…¥çš„å…¨éƒ¨æ˜¯å°å†™
 				ColumnMetaData colMeta = new ColumnMetaData(sharedKey,
 						oneValue.getValue());
 				retMeta.addSplitDB(colMeta);
@@ -60,7 +60,7 @@ public class ControllerUtils
 	}
 
 	/**
-	 * ÕâÀï·µ»ØnullÈç¹ûÃ»ÓĞÖ÷¼ü£¬ÎªµÄÊÇÔÚTStatementÖĞÒÑ¾­×öÁË¶ÔpkÎªnullµÄÅĞ¶Ï£¬ÎªÁË±£Ö¤²âÊÔÒ»ÖÂĞÔ
+	 * è¿™é‡Œè¿”å›nullå¦‚æœæ²¡æœ‰ä¸»é”®ï¼Œä¸ºçš„æ˜¯åœ¨TStatementä¸­å·²ç»åšäº†å¯¹pkä¸ºnullçš„åˆ¤æ–­ï¼Œä¸ºäº†ä¿è¯æµ‹è¯•ä¸€è‡´æ€§
 	 * 
 	 * @param retMeta
 	 * @return
@@ -93,11 +93,11 @@ public class ControllerUtils
 	}
 
 	/**
-	 * ´´½¨Ö´ĞĞ¼Æ»®
+	 * åˆ›å»ºæ‰§è¡Œè®¡åˆ’
 	 * 
-	 * ÆäÖĞ±íµÄÖ´ĞĞ¼Æ»®£¬Èç¹ûÓĞ¶à¸ö¿âÀïÃæµÄ¶à¸ö±íµÄ¸öÊı²»Í¬£¬ÄÇÃ´°´ÕÕ±íµÄÊıÁ¿×î¶àµÄÄÇ¸öÖµÎª×¼¡£
-	 * ¼´£ºÈçdb1~5£¬±íµÄ¸öÊı·Ö±ğÎª0,0,0,0,1:ÄÇÃ´·µ»ØµÄ±íÖ´ĞĞ¼Æ»®ÎªSINGLE
-	 * Èô£¬±íµÄ¸öÊı·Ö±ğÎª0,1,2,3,4,5£ºÄÇÃ´·µ»Ø±íµÄÖ´ĞĞ¼Æ»®ÎªMULTIPLE.
+	 * å…¶ä¸­è¡¨çš„æ‰§è¡Œè®¡åˆ’ï¼Œå¦‚æœæœ‰å¤šä¸ªåº“é‡Œé¢çš„å¤šä¸ªè¡¨çš„ä¸ªæ•°ä¸åŒï¼Œé‚£ä¹ˆæŒ‰ç…§è¡¨çš„æ•°é‡æœ€å¤šçš„é‚£ä¸ªå€¼ä¸ºå‡†ã€‚
+	 * å³ï¼šå¦‚db1~5ï¼Œè¡¨çš„ä¸ªæ•°åˆ†åˆ«ä¸º0,0,0,0,1:é‚£ä¹ˆè¿”å›çš„è¡¨æ‰§è¡Œè®¡åˆ’ä¸ºSINGLE
+	 * è‹¥ï¼Œè¡¨çš„ä¸ªæ•°åˆ†åˆ«ä¸º0,1,2,3,4,5ï¼šé‚£ä¹ˆè¿”å›è¡¨çš„æ‰§è¡Œè®¡åˆ’ä¸ºMULTIPLE.
 	 * 
 	 * @param dispatcherResult
 	 * @param targetDBList
@@ -121,7 +121,7 @@ public class ControllerUtils
 			List<Map<String, String>>  set = targetDB.getTableNames();
 			dispatcherResult.setTableExecutePlan(buildTableExecutePlan(set,
 					null));
-			// Èç¹û±íÎªnone£¬ÄÇÃ´¿âÒ²Îªnone.Èç¹û±í²»Îªnone£¬ÄÇÃ´¿âÎªsingle
+			// å¦‚æœè¡¨ä¸ºnoneï¼Œé‚£ä¹ˆåº“ä¹Ÿä¸ºnone.å¦‚æœè¡¨ä¸ä¸ºnoneï¼Œé‚£ä¹ˆåº“ä¸ºsingle
 			if (dispatcherResult.getTableExecutePlan() != EXECUTE_PLAN.NONE)
 			{
 				dispatcherResult.setDatabaseExecutePlan(EXECUTE_PLAN.SINGLE);
@@ -162,7 +162,7 @@ public class ControllerUtils
 			throw new IllegalStateException("targetTab is null");
 		}
 		int tableSize = tableSet.size();
-		// ²»¿ÉÄÜÎª¸ºÊı
+		// ä¸å¯èƒ½ä¸ºè´Ÿæ•°
 		switch (tableSize)
 		{
 		case 0:
@@ -179,8 +179,8 @@ public class ControllerUtils
 	}
 
 	/**
-	 * Ìí¼Ó·Ö±íµÄÏà¹ØĞÅÏ¢£¬µ«Èç¹ûÎ¨Ò»¼üºÍ·Ö±í¼üµÄkeyÒ»ÖÂ£¬Ôò·Ö±í¼üÄÚ²»»áÖØ¸´³öÏÖÎ¨Ò»¼üÒÑ¾­ÓĞµÄkey=value¶Ô
-	 * Í¬Ê±£¬Èç¹û·Ö¿â¼üÖĞËùÓĞµÄkey£¬Ò²²»»á³öÏÖÔÚ·Ö±í¼üÖĞ
+	 * æ·»åŠ åˆ†è¡¨çš„ç›¸å…³ä¿¡æ¯ï¼Œä½†å¦‚æœå”¯ä¸€é”®å’Œåˆ†è¡¨é”®çš„keyä¸€è‡´ï¼Œåˆ™åˆ†è¡¨é”®å†…ä¸ä¼šé‡å¤å‡ºç°å”¯ä¸€é”®å·²ç»æœ‰çš„key=valueå¯¹
+	 * åŒæ—¶ï¼Œå¦‚æœåˆ†åº“é”®ä¸­æ‰€æœ‰çš„keyï¼Œä¹Ÿä¸ä¼šå‡ºç°åœ¨åˆ†è¡¨é”®ä¸­
 	 * 
 	 * @param mapList
 	 * @param retMeta
@@ -200,7 +200,7 @@ public class ControllerUtils
 			Set<String> dbSharedingKeys = getDatabaseSharedingKeys(retMeta);
 
 			String sharedKey = toLowerCaseIgnoreNull(oneValue.getKey());
-			// Èç¹û·Ö±í¼üºÍÎ¨Ò»¼ü»ò·Ö¿â¼üÖØ¸´£¬Ôò·Ö±í¼üÄÚ²»ÖØ¸´³öÏÖÎ¨Ò»¼üºÍ·Ö¿â¼ü
+			// å¦‚æœåˆ†è¡¨é”®å’Œå”¯ä¸€é”®æˆ–åˆ†åº“é”®é‡å¤ï¼Œåˆ™åˆ†è¡¨é”®å†…ä¸é‡å¤å‡ºç°å”¯ä¸€é”®å’Œåˆ†åº“é”®
 			if (!sharedKey.equals(uniqueColumnKey)
 					&& !dbSharedingKeys.contains(sharedKey))
 			{
@@ -228,7 +228,7 @@ public class ControllerUtils
 	}
 
 	/**
-	 * ½«µ¥Âß¼­±íµÄtargetDB×ª»»ÎªdatabaseExecutionContext
+	 * å°†å•é€»è¾‘è¡¨çš„targetDBè½¬æ¢ä¸ºdatabaseExecutionContext
 	 * 
 	 * @param targetDBs
 	 * @return
@@ -253,14 +253,14 @@ public class ControllerUtils
 	}
 	
 	/**
-	 * ´´½¨·´ÏòÊä³öÏà¹ØµÄcontext£¬·´ÏòÊä³öÄ¿Ç°Ö÷ÒªÊÇ½â¾öÒÔÏÂÎÊÌâ
+	 * åˆ›å»ºåå‘è¾“å‡ºç›¸å…³çš„contextï¼Œåå‘è¾“å‡ºç›®å‰ä¸»è¦æ˜¯è§£å†³ä»¥ä¸‹é—®é¢˜
 	 * 
-	 * :1.Èç¹ûsqlÖĞ´øÓĞÁË·ûºÏ±íÃûÌæ»»patternµÄ×Ö¶Î£¬²¢ÇÒ²»Ïë±»Ìæ»»µô¡£ 2.Èç¹ûsqlÖĞ°üº¬ÁË¿ç±íµÄlimit m,nµÄ²Ù×÷£¬
-	 * 3.update+Êı¾İ¸´ÖÆµÄÇé¿öÏÂ£¬ÒòÎª·Ö¿âµÄversion×Ö¶ÎÄ¬ÈÏµÄÇé¿öÏÂÊÇnull.
-	 * ËùÒÔwhereÌõ¼şÖĞÒª¼ÓÈëifnull»òÕßnvlÀ´±£Ö¤½«Ô­À´ÎªNullµÄ²ÎÊı»¹Ô­Îª0¡¢
-	 * ÕâÁ½ÖÖÇé¿öÏÂ¶¼ĞèÒª½øĞĞ·´ÏòÊä³ö£¬Ò²¼´Í¨¹ı¶ÔÏóÊ÷·´ÏòÉú³Ésql.
+	 * :1.å¦‚æœsqlä¸­å¸¦æœ‰äº†ç¬¦åˆè¡¨åæ›¿æ¢patternçš„å­—æ®µï¼Œå¹¶ä¸”ä¸æƒ³è¢«æ›¿æ¢æ‰ã€‚ 2.å¦‚æœsqlä¸­åŒ…å«äº†è·¨è¡¨çš„limit m,nçš„æ“ä½œï¼Œ
+	 * 3.update+æ•°æ®å¤åˆ¶çš„æƒ…å†µä¸‹ï¼Œå› ä¸ºåˆ†åº“çš„versionå­—æ®µé»˜è®¤çš„æƒ…å†µä¸‹æ˜¯null.
+	 * æ‰€ä»¥whereæ¡ä»¶ä¸­è¦åŠ å…¥ifnullæˆ–è€…nvlæ¥ä¿è¯å°†åŸæ¥ä¸ºNullçš„å‚æ•°è¿˜åŸä¸º0ã€
+	 * è¿™ä¸¤ç§æƒ…å†µä¸‹éƒ½éœ€è¦è¿›è¡Œåå‘è¾“å‡ºï¼Œä¹Ÿå³é€šè¿‡å¯¹è±¡æ ‘åå‘ç”Ÿæˆsql.
 	 * 
-	 * ÆäÓàµÄÇé¿öÒòÎª·´ÏòÊä³ö±¾ÉíÒ²»á´øÀ´·çÏÕÒò´Ë²»½øĞĞ·´Ïò¡£
+	 * å…¶ä½™çš„æƒ…å†µå› ä¸ºåå‘è¾“å‡ºæœ¬èº«ä¹Ÿä¼šå¸¦æ¥é£é™©å› æ­¤ä¸è¿›è¡Œåå‘ã€‚
 	 * 
 	 * @param args
 	 * @param dmlc
@@ -282,9 +282,9 @@ public class ControllerUtils
 		for (DatabaseExecutionContext databaseExecutionContext : databaseExecutionContexts)
 		{
 
-			// Èç¹ûÄ¿±êÊı¾İ¿âÎªÒ»¸öÔòÓĞ¿ÉÄÜÊÇµ¥¿âµ¥±í»òµ¥¿â¶à±í
+			// å¦‚æœç›®æ ‡æ•°æ®åº“ä¸ºä¸€ä¸ªåˆ™æœ‰å¯èƒ½æ˜¯å•åº“å•è¡¨æˆ–å•åº“å¤šè¡¨
 			HandlerContainer handler = new HandlerContainer();
-			// ÏÈ´¦ÀíÌØÊâÇé¿ö
+			// å…ˆå¤„ç†ç‰¹æ®Šæƒ…å†µ
 			if (needRowCopy && dmlc instanceof Update)
 			{
 				if (isMySQL)
@@ -297,21 +297,21 @@ public class ControllerUtils
 
 				retMeta.needAllowReverseOutput(true);
 			}
-			// Èç¹ûskip max ²»Îª¿Õ£¬²¢ÇÒÊÇ¶à±í²éÑ¯
+			// å¦‚æœskip max ä¸ä¸ºç©ºï¼Œå¹¶ä¸”æ˜¯å¤šè¡¨æŸ¥è¯¢
 			if (skip != DMLCommon.DEFAULT_SKIP_MAX
 					&& max != DMLCommon.DEFAULT_SKIP_MAX)
 			{
 				EXECUTE_PLAN dbExecutionPlan = retMeta.getDatabaseExecutePlan();
 				EXECUTE_PLAN tabExecutionPlan = retMeta.getTableExecutePlan();
-				// ÅĞ¶ÏÊÇ·ñÊÇ¸ö¶à±í²éÑ¯
+				// åˆ¤æ–­æ˜¯å¦æ˜¯ä¸ªå¤šè¡¨æŸ¥è¯¢
 				if (dbExecutionPlan.equals(EXECUTE_PLAN.MULTIPLE)
 						||tabExecutionPlan.equals(EXECUTE_PLAN.MULTIPLE))
-				{ // ¶à±í²éÑ¯£¬²¢ÇÒskip max²»Îª¿Õ
+				{ // å¤šè¡¨æŸ¥è¯¢ï¼Œå¹¶ä¸”skip maxä¸ä¸ºç©º
 					handler.changeRange(0, max);
 					retMeta.needAllowReverseOutput(true);
 				}
 			}
-			// ´¦ÀíÕı³£Çé¿ö£¬Ö»ĞèÒªÅĞ¶ÏÊÇ·ñĞèÒª·´ÏòÊä³ö£¬Èç¹ûĞèÒªÔò¸ü»»±íÃûºÍindex
+			// å¤„ç†æ­£å¸¸æƒ…å†µï¼Œåªéœ€è¦åˆ¤æ–­æ˜¯å¦éœ€è¦åå‘è¾“å‡ºï¼Œå¦‚æœéœ€è¦åˆ™æ›´æ¢è¡¨åå’Œindex
 			if (retMeta.allowReverseOutput())
 			{
 				handler.changeIndex();

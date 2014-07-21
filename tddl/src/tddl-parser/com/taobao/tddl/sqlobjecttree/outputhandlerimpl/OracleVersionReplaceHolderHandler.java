@@ -5,7 +5,7 @@ import java.util.Map;
 import com.taobao.tddl.sqlobjecttree.ReplacableWrapper;
 
 /**
- * oracle + sync_version用的东西
+ * oracle + sync_version鐢ㄧ殑涓滆タ
  * 
  * @author shenxun
  *

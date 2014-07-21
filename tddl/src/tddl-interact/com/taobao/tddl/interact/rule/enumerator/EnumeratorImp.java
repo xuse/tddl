@@ -31,10 +31,10 @@ public class EnumeratorImp implements Enumerator {
 	}
 	private boolean isDebug = false;
 	/**
-	 * ¸ù¾İ´«ÈëµÄ²ÎÊı¾ö¶¨Ê¹ÓÃÄÄÀàÃ¶¾ÙÆ÷
+	 * æ ¹æ®ä¼ å…¥çš„å‚æ•°å†³å®šä½¿ç”¨å“ªç±»æšä¸¾å™¨
 	 * 
-	 * TODO Ó¦¸Ã½«Ã¶¾ÙÆ÷ÏŞ¶¨·¶Î§ËõĞ¡£¬ÆäÊµÃ¶¾ÙÆ÷µÄºËĞÄ×÷ÓÃ¾ÍÊÇËãa > ? and a < ?ÕâÑùµÄ±í´ïÊ½£¬
-	 * ¶øÆäËûµÄÊ±ºòÊÇ²»ĞèÒªÓÃÕâÖÖ×ÔÔö+Ã¶¾ÙµÄ·½Ê½À´¸ãµÄ¡£
+	 * TODO åº”è¯¥å°†æšä¸¾å™¨é™å®šèŒƒå›´ç¼©å°ï¼Œå…¶å®æšä¸¾å™¨çš„æ ¸å¿ƒä½œç”¨å°±æ˜¯ç®—a > ? and a < ?è¿™æ ·çš„è¡¨è¾¾å¼ï¼Œ
+	 * è€Œå…¶ä»–çš„æ—¶å€™æ˜¯ä¸éœ€è¦ç”¨è¿™ç§è‡ªå¢+æšä¸¾çš„æ–¹å¼æ¥æçš„ã€‚
 	 * @param comp
 	 * @param needMergeValueInCloseInterval
 	 * @return
@@ -45,7 +45,7 @@ public class EnumeratorImp implements Enumerator {
 			return enumeratorMap.get(DEFAULT_ENUMERATOR);
 		}
 		if(comp == null){
-			throw new IllegalArgumentException("²»ÖªµÀµ±Ç°ÖµÊÇÊ²Ã´ÀàĞÍµÄ£¬ÎŞ·¨ÕÒµ½¶ÔÓ¦µÄÃ¶¾ÙÆ÷"+comp);
+			throw new IllegalArgumentException("ä¸çŸ¥é“å½“å‰å€¼æ˜¯ä»€ä¹ˆç±»å‹çš„ï¼Œæ— æ³•æ‰¾åˆ°å¯¹åº”çš„æšä¸¾å™¨"+comp);
 		}
 		
 		Comparable value = comp.getValue();
@@ -59,7 +59,7 @@ public class EnumeratorImp implements Enumerator {
 		}else if(value instanceof Comparative){
 			return getCloseIntervalEnumeratorHandlerByComparative(comp,needMergeValueInCloseInterval);
 		}else{
-			//±íÃ÷ÊÇÒ»¸öcomparative¶ÔÏó
+			//è¡¨æ˜æ˜¯ä¸€ä¸ªcomparativeå¯¹è±¡
 			CloseIntervalFieldsEnumeratorHandler enumeratorHandler = enumeratorMap.get(value.getClass().getName());
 			if(enumeratorHandler != null){
 				return enumeratorHandler;
@@ -117,7 +117,7 @@ public class EnumeratorImp implements Enumerator {
 	private void processComparativeAnd(Comparable<?> condition,
 			Set<Object> retValue,Integer cumulativeTimes,Comparable<?> atomIncrValue,boolean needMergeValueInCloseInterval) {
 		List<Comparative> andList = ((ComparativeAND) condition).getList();
-		// ¶àÓàÁ½¸ö¸Ğ¾õÃ»Ê²Ã´Êµ¼ÊµÄÒâÒå£¬Åöµ½ÁËÔÙ´¦Àí
+		// å¤šä½™ä¸¤ä¸ªæ„Ÿè§‰æ²¡ä»€ä¹ˆå®é™…çš„æ„ä¹‰ï¼Œç¢°åˆ°äº†å†å¤„ç†
 		if (andList.size() == 2) {
 			Comparable<?> arg1 = andList.get(0);
 			Comparable<?> arg2 = andList.get(1);
@@ -127,10 +127,10 @@ public class EnumeratorImp implements Enumerator {
 			Comparative compArg2 = valid2varableInAndIsNotComparativeBaseList(arg2);
 //
 //			if(compArg1 == null){
-//				throw new IllegalArgumentException("and ²ÎÊıÖĞÓĞÒ»¸öÎªnull");
+//				throw new IllegalArgumentException("and å‚æ•°ä¸­æœ‰ä¸€ä¸ªä¸ºnull");
 //			}
 //			if(compArg2 == null){
-//				throw new IllegalArgumentException("and ²ÎÊıÖĞÓĞÒ»¸öÎªnull");
+//				throw new IllegalArgumentException("and å‚æ•°ä¸­æœ‰ä¸€ä¸ªä¸ºnull");
 //			}
 			int compResult = 0;
 			try {
@@ -138,19 +138,19 @@ public class EnumeratorImp implements Enumerator {
 				compArg2.setValue(toPrimaryValue(compArg2.getValue()));
 				compResult = compArg1.getValue().compareTo(compArg2.getValue());
 			} catch (NullPointerException e) {
-				throw new RuntimeException("andÌõ¼şÖĞÓĞÒ»¸öÖµÎªnull",e);
+				throw new RuntimeException("andæ¡ä»¶ä¸­æœ‰ä¸€ä¸ªå€¼ä¸ºnull",e);
 			}
 			
 
 			if (compResult == 0) {
-				// ÖµÏàµÈ£¬Èç¹û¶¼º¬ÓĞ=¹ØÏµ£¬ÄÇÃ´»¹ÓĞ¸ö¹«¹²µã£¬·ñÔòÒ»¸ö¹«¹²µã¶¼Ã»ÓĞ
+				// å€¼ç›¸ç­‰ï¼Œå¦‚æœéƒ½å«æœ‰=å…³ç³»ï¼Œé‚£ä¹ˆè¿˜æœ‰ä¸ªå…¬å…±ç‚¹ï¼Œå¦åˆ™ä¸€ä¸ªå…¬å…±ç‚¹éƒ½æ²¡æœ‰
 				if (containsEquvilentRelation(compArg1)
 						&& containsEquvilentRelation(compArg2)) {
 
 					retValue.add(compArg1.getValue());
 				}
 				// else{
-				// Ò»¸ö¹«¹²µã¶¼Ã»ÓĞµÄÇé¿ö£¬ÈÓµô
+				// ä¸€ä¸ªå…¬å…±ç‚¹éƒ½æ²¡æœ‰çš„æƒ…å†µï¼Œæ‰”æ‰
 				// }
 			} else if (compResult < 0) {
 				// arg1 < arg2
@@ -163,12 +163,12 @@ public class EnumeratorImp implements Enumerator {
 						compArg1,cumulativeTimes,atomIncrValue,needMergeValueInCloseInterval);
 			}
 		} else {
-			throw new IllegalArgumentException("Ä¿Ç°Ö»Ö§³ÖÒ»¸öand½ÚµãÉÏÓĞÁ½¸ö×Ó½Úµã");
+			throw new IllegalArgumentException("ç›®å‰åªæ”¯æŒä¸€ä¸ªandèŠ‚ç‚¹ä¸Šæœ‰ä¸¤ä¸ªå­èŠ‚ç‚¹");
 		}
 	}
 
 	/**
-	 * ´¦ÀíÔÚÒ»¸öandÌõ¼şÖĞµÄÁ½¸ö²»Í¬µÄargument
+	 * å¤„ç†åœ¨ä¸€ä¸ªandæ¡ä»¶ä¸­çš„ä¸¤ä¸ªä¸åŒçš„argument
 	 * 
 	 * @param samplingField
 	 * @param from
@@ -185,15 +185,15 @@ public class EnumeratorImp implements Enumerator {
 			if (temp != null) {
 				retValue.add(temp);
 			}else{
-				//±ÕÇø¼äÒÑ¾­´¦Àí¹ı£¬x >= ? and x = ? »òÕß x <= ? and x = ?ÓĞ½»µÄÒ²´¦Àí¹ı£¬´¿´âµÄ> ºÍ <ÒÑ¾­±»×ª»¯Îª >= ÒÔ¼°<=
-				//ÕâÀïÖ÷Òª´¦ÀíÈıÀàÇé¿ö x <= 3 and x>=5  ÕâÀà£¬
+				//é—­åŒºé—´å·²ç»å¤„ç†è¿‡ï¼Œx >= ? and x = ? æˆ–è€… x <= ? and x = ?æœ‰äº¤çš„ä¹Ÿå¤„ç†è¿‡ï¼Œçº¯ç²¹çš„> å’Œ <å·²ç»è¢«è½¬åŒ–ä¸º >= ä»¥åŠ<=
+				//è¿™é‡Œä¸»è¦å¤„ç†ä¸‰ç±»æƒ…å†µ x <= 3 and x>=5  è¿™ç±»ï¼Œ
 				if(from.getComparison() == Comparative.LessThanOrEqual||
 						from.getComparison() == Comparative.LessThan){
 					if(to.getComparison() == Comparative.LessThanOrEqual
 						||to.getComparison() == Comparative.LessThan){
 						processAllPassableFields(from, retValue, cumulativeTimes, atomIncrValue,needMergeValueInCloseInterval);
 					}else{
-						//toÎªGreaterThanOrEqual,»î×ÅÎªEquals ÄÇÃ´ÊÇ¸ö¿ªÇø¼ä¡£do nothing.
+						//toä¸ºGreaterThanOrEqual,æ´»ç€ä¸ºEquals é‚£ä¹ˆæ˜¯ä¸ªå¼€åŒºé—´ã€‚do nothing.
 						
 					}
 				}else if(to.getComparison() == Comparative.GreaterThanOrEqual||
@@ -202,22 +202,22 @@ public class EnumeratorImp implements Enumerator {
 							from.getComparison() == Comparative.GreaterThan	){
 						processAllPassableFields(to, retValue, cumulativeTimes, atomIncrValue,needMergeValueInCloseInterval);
 					}else{
-						//fromÎªLessThanOrEqual£¬»òÕßÎªEquals,Îª¿ªÇø¼ä
+						//fromä¸ºLessThanOrEqualï¼Œæˆ–è€…ä¸ºEquals,ä¸ºå¼€åŒºé—´
 					}
 				}else{
 					throw new IllegalArgumentException("should not be here");
 				}
 			}
 			// else{
-			// ²»ÊÇ0<x and x=3ÕâÖÖÇé¿ö
+			// ä¸æ˜¯0<x and x=3è¿™ç§æƒ…å†µ
 			// }
 		}
 	}
 
 	/**
-	 * ´¦ÀíÒ»¸öandÌõ¼şÖĞ x > 1 and x = 3 ÀàËÆÕâÑùµÄÇé¿ö£¬ÒòÎªÇ°ÃæÒÑ¾­¶Ôfrom ºÍ to ÏàµÈµÄÇé¿ö×÷ÁË´¦Àí
-	 * Òò´ËÕâÀïÖ»ĞèÒª´¦Àí²»µÈµÄÇé¿öÖĞµÄÉÏÊöÎÊÌâ¡£
-	 * Í¬Ê±Ò²´¦ÀíÁËx = 1 and x = 2ÕâÖÖÇé¿ö¡£ÒÔ¼°x = 1 and x>2 ºÍx < 1 and x =2ÕâÖÖÇé¿ö
+	 * å¤„ç†ä¸€ä¸ªandæ¡ä»¶ä¸­ x > 1 and x = 3 ç±»ä¼¼è¿™æ ·çš„æƒ…å†µï¼Œå› ä¸ºå‰é¢å·²ç»å¯¹from å’Œ to ç›¸ç­‰çš„æƒ…å†µä½œäº†å¤„ç†
+	 * å› æ­¤è¿™é‡Œåªéœ€è¦å¤„ç†ä¸ç­‰çš„æƒ…å†µä¸­çš„ä¸Šè¿°é—®é¢˜ã€‚
+	 * åŒæ—¶ä¹Ÿå¤„ç†äº†x = 1 and x = 2è¿™ç§æƒ…å†µã€‚ä»¥åŠx = 1 and x>2 å’Œx < 1 and x =2è¿™ç§æƒ…å†µ
 	 * 
 	 * @param from
 	 * @param to
@@ -248,7 +248,7 @@ public class EnumeratorImp implements Enumerator {
 
 		int toComparasion = to.getComparison();
 
-		// ±¾À´Ïë¼òµ¥Í¨¹ıÊıÖµ±È´óĞ¡£¬µ«·¢ÏÖÀïÃæ»¹ÓĞnot in,likeÕâÀàµÄ±ê¼Ç£¬»¹ÊÇ±£ÊØµãĞ´Çå³ş
+		// æœ¬æ¥æƒ³ç®€å•é€šè¿‡æ•°å€¼æ¯”å¤§å°ï¼Œä½†å‘ç°é‡Œé¢è¿˜æœ‰not in,likeè¿™ç±»çš„æ ‡è®°ï¼Œè¿˜æ˜¯ä¿å®ˆç‚¹å†™æ¸…æ¥š
 		if ((fromComparasion == Comparative.GreaterThan || fromComparasion == Comparative.GreaterThanOrEqual)
 				&& (toComparasion == Comparative.LessThan || toComparasion == Comparative.LessThanOrEqual)) {
 			return true;
@@ -262,7 +262,7 @@ public class EnumeratorImp implements Enumerator {
 			Comparable<?> arg) {
 		if (arg instanceof ComparativeBaseList) {
 
-			throw new IllegalArgumentException("ÔÚÒ»×éandÌõ¼şÖĞÖ»Ö§³ÖÁ½¸ö·¶Î§µÄÖµ¹²Í¬¾ö¶¨·Ö±í£¬²»Ö§³Ö3¸ö");
+			throw new IllegalArgumentException("åœ¨ä¸€ç»„andæ¡ä»¶ä¸­åªæ”¯æŒä¸¤ä¸ªèŒƒå›´çš„å€¼å…±åŒå†³å®šåˆ†è¡¨ï¼Œä¸æ”¯æŒ3ä¸ª");
 		}
 
 		if (arg instanceof Comparative) {
@@ -271,16 +271,16 @@ public class EnumeratorImp implements Enumerator {
 
 			if (comparison == 0) {
 
-				// 0µÄÊ±ºòÒâÎ¶×ÅÕâ¸ö·ÇCOmparativeBaseListµÄComparativeÊÇ¸ö´¿´âµÄ°ü×°¶ÔÏó¡£
+				// 0çš„æ—¶å€™æ„å‘³ç€è¿™ä¸ªéCOmparativeBaseListçš„Comparativeæ˜¯ä¸ªçº¯ç²¹çš„åŒ…è£…å¯¹è±¡ã€‚
 				return valid2varableInAndIsNotComparativeBaseList(comp
 						.getValue());
 			} else {
 
-				// ÆäËû¾ÍÊÇÓĞÒâÒåµÄÖµ¶ÔÏóÁË
+				// å…¶ä»–å°±æ˜¯æœ‰æ„ä¹‰çš„å€¼å¯¹è±¡äº†
 				return comp;
 			}
 		} else {
-			// ·ñÔò¾ÍÊÇ»ù±¾¶ÔÏó£¬Ó¦¸ÃÓÃµÈÓÚ°ü×°
+			// å¦åˆ™å°±æ˜¯åŸºæœ¬å¯¹è±¡ï¼Œåº”è¯¥ç”¨ç­‰äºåŒ…è£…
 			throw new IllegalArgumentException("input value is not a comparative: "+arg);
 			// return new Comparative(Comparative.Equivalent,arg);
 		}
@@ -294,19 +294,19 @@ public class EnumeratorImp implements Enumerator {
 		switch (comparison) {
 		case 0:
 
-			// Îª0 µÄÊ±ºò±íÊ¾´¿´âµÄ°ü×°¶ÔÏó¡£
+			// ä¸º0 çš„æ—¶å€™è¡¨ç¤ºçº¯ç²¹çš„åŒ…è£…å¯¹è±¡ã€‚
 			process(comp.getValue(), retValue,cumulativeTimes,atomIncrValue,needMergeValueInCloseInterval);
 			break;
 		case Comparative.Equivalent:
 
-			// µÈÓÚ¹ØÏµ£¬Ö±½Ó·ÅÔÚcollection
+			// ç­‰äºå…³ç³»ï¼Œç›´æ¥æ”¾åœ¨collection
 			retValue.add(toPrimaryValue(comp.getValue()));
 			break;
 		case Comparative.GreaterThan:
 		case Comparative.GreaterThanOrEqual:
 		case Comparative.LessThan:
 		case Comparative.LessThanOrEqual:
-			//¸÷ÖÖĞèÒªÈ«È¡µÄÇé¿ö
+			//å„ç§éœ€è¦å…¨å–çš„æƒ…å†µ
 			throw new EnumerationInterruptException(comp);
 		default:
 			throw new NotSupportException("not support yet");
@@ -325,7 +325,7 @@ public class EnumeratorImp implements Enumerator {
 	}
 
 	/**
-	 * Çî¾Ù³ö´Ófromµ½toÖĞµÄËùÓĞÖµ£¬¸ù¾İ×ÔÔövalue
+	 * ç©·ä¸¾å‡ºä»fromåˆ°toä¸­çš„æ‰€æœ‰å€¼ï¼Œæ ¹æ®è‡ªå¢value
 	 * 
 	 * @param from
 	 * @param to
@@ -334,15 +334,15 @@ public class EnumeratorImp implements Enumerator {
 			Comparative from, Comparative to, Set<Object> retValue,Integer cumulativeTimes,Comparable<?> atomIncrValue
 			,boolean needMergeValueInCloseInterval){
 		if(!needMergeValueInCloseInterval){
-			throw new IllegalArgumentException("Çë´ò¿ª¹æÔòµÄneedMergeValueInCloseIntervalÑ¡Ïî£¬ÒÔÖ§³Ö·Ö¿â·Ö±íÌõ¼şÖĞÊ¹ÓÃ> < >= <=");
+			throw new IllegalArgumentException("è¯·æ‰“å¼€è§„åˆ™çš„needMergeValueInCloseIntervalé€‰é¡¹ï¼Œä»¥æ”¯æŒåˆ†åº“åˆ†è¡¨æ¡ä»¶ä¸­ä½¿ç”¨> < >= <=");
 		}
-		//ÖØ¹¹ ÏÖÔÚÕâÖÖ¼Ü¹¹ÏÂ£¬id =? id in (?,?,?)¶¼ÄÜ×ß×î¶ÌÂ·¾¶£¬µ«Èç¹ûÓĞ¶à¸ö id > ? and id < ? or id> ? and id<? ÔòÒª´ÓmapÖĞ²é¶à´Î¡£²»¹ıÒòÎªÕâÖÖÇé¿ö±È½ÏÉÙ£¬Òò´Ë¿ÉÒÔºöÂÔ
+		//é‡æ„ ç°åœ¨è¿™ç§æ¶æ„ä¸‹ï¼Œid =? id in (?,?,?)éƒ½èƒ½èµ°æœ€çŸ­è·¯å¾„ï¼Œä½†å¦‚æœæœ‰å¤šä¸ª id > ? and id < ? or id> ? and id<? åˆ™è¦ä»mapä¸­æŸ¥å¤šæ¬¡ã€‚ä¸è¿‡å› ä¸ºè¿™ç§æƒ…å†µæ¯”è¾ƒå°‘ï¼Œå› æ­¤å¯ä»¥å¿½ç•¥
 		CloseIntervalFieldsEnumeratorHandler closeIntervalFieldsEnumeratorHandler = getCloseIntervalEnumeratorHandlerByComparative(from, needMergeValueInCloseInterval);
 		closeIntervalFieldsEnumeratorHandler.mergeFeildOfDefinitionInCloseInterval(from, to, retValue, cumulativeTimes, atomIncrValue);
 	}
 	/**
-	 * º¯ÊıµÄÄ¿±êÊÇ·µ»ØÈ«²¿¿ÉÄÜµÄÖµ£¬Ö÷ÒªÓÃÓÚÎŞÏŞµÄ¶¨ÒåÓòµÄ´¦Àí£¬Ò»°ãµÄËµ£¬¶ÔÓÚ²¿·ÖÁ¬Ğø²¿·Ö²»Á¬ĞøµÄº¯ÊıÇúÏß¡£
-	 * Õâ¸öÖµÓ¦¸ÃÊÇ´ÓÈÎÒâÒ»¸öÖµ¿ªÊ¼£¬°´ÕÕÔ­×Ó×ÔÔöÖµÓë±¶ÊıÇî¾Ù³ö¸Ãº¯ÊıµÄyµÄÒ»¸ö±ä»¯ÖÜÆÚÖĞx¶ÔÓ¦µÄ±ä»¯ÖÜÆÚµÄËùÓĞµã¼´¿É¡£
+	 * å‡½æ•°çš„ç›®æ ‡æ˜¯è¿”å›å…¨éƒ¨å¯èƒ½çš„å€¼ï¼Œä¸»è¦ç”¨äºæ— é™çš„å®šä¹‰åŸŸçš„å¤„ç†ï¼Œä¸€èˆ¬çš„è¯´ï¼Œå¯¹äºéƒ¨åˆ†è¿ç»­éƒ¨åˆ†ä¸è¿ç»­çš„å‡½æ•°æ›²çº¿ã€‚
+	 * è¿™ä¸ªå€¼åº”è¯¥æ˜¯ä»ä»»æ„ä¸€ä¸ªå€¼å¼€å§‹ï¼ŒæŒ‰ç…§åŸå­è‡ªå¢å€¼ä¸å€æ•°ç©·ä¸¾å‡ºè¯¥å‡½æ•°çš„yçš„ä¸€ä¸ªå˜åŒ–å‘¨æœŸä¸­xå¯¹åº”çš„å˜åŒ–å‘¨æœŸçš„æ‰€æœ‰ç‚¹å³å¯ã€‚
 	 * @param retValue
 	 * @param cumulativeTimes
 	 * @param atomIncrValue
@@ -350,9 +350,9 @@ public class EnumeratorImp implements Enumerator {
 	private void processAllPassableFields(Comparative source ,Set<Object> retValue,Integer cumulativeTimes,Comparable<?> atomIncrValue,
 			boolean needMergeValueInCloseInterval){
 		if(!needMergeValueInCloseInterval){
-			throw new IllegalArgumentException("Çë´ò¿ª¹æÔòµÄneedMergeValueInCloseIntervalÑ¡Ïî£¬ÒÔÖ§³Ö·Ö¿â·Ö±íÌõ¼şÖĞÊ¹ÓÃ> < >= <=");
+			throw new IllegalArgumentException("è¯·æ‰“å¼€è§„åˆ™çš„needMergeValueInCloseIntervalé€‰é¡¹ï¼Œä»¥æ”¯æŒåˆ†åº“åˆ†è¡¨æ¡ä»¶ä¸­ä½¿ç”¨> < >= <=");
 		}
-		//ÖØ¹¹ ÏÖÔÚÕâÖÖ¼Ü¹¹ÏÂ£¬id =? id in (?,?,?)¶¼ÄÜ×ß×î¶ÌÂ·¾¶£¬µ«Èç¹ûÓĞ¶à¸ö id > ? and id < ? or id> ? and id<? ÔòÒª´ÓmapÖĞ²é¶à´Î¡£²»¹ıÒòÎªÕâÖÖÇé¿ö±È½ÏÉÙ£¬Òò´Ë¿ÉÒÔºöÂÔ
+		//é‡æ„ ç°åœ¨è¿™ç§æ¶æ„ä¸‹ï¼Œid =? id in (?,?,?)éƒ½èƒ½èµ°æœ€çŸ­è·¯å¾„ï¼Œä½†å¦‚æœæœ‰å¤šä¸ª id > ? and id < ? or id> ? and id<? åˆ™è¦ä»mapä¸­æŸ¥å¤šæ¬¡ã€‚ä¸è¿‡å› ä¸ºè¿™ç§æƒ…å†µæ¯”è¾ƒå°‘ï¼Œå› æ­¤å¯ä»¥å¿½ç•¥
 		CloseIntervalFieldsEnumeratorHandler closeIntervalFieldsEnumeratorHandler = getCloseIntervalEnumeratorHandlerByComparative(source, needMergeValueInCloseInterval);
 		closeIntervalFieldsEnumeratorHandler.processAllPassableFields(source, retValue, cumulativeTimes, atomIncrValue);
 	}

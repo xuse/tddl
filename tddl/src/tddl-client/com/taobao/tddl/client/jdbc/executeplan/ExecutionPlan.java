@@ -12,9 +12,9 @@ import com.taobao.tddl.sqlobjecttree.GroupFunctionType;
 import com.taobao.tddl.sqlobjecttree.OrderByEle;
 
 /**
- * Õâ¸ö½Ó¿ÚÊÇsqlÖ´ĞĞÆ÷Ö´ĞĞsqlµÄÒÀ¾İ¡£
+ * è¿™ä¸ªæ¥å£æ˜¯sqlæ‰§è¡Œå™¨æ‰§è¡Œsqlçš„ä¾æ®ã€‚
  * 
- * °üº¬ÁËsqlÖ´ĞĞµÄÒ»Ğ©»ù±¾µÄĞÅÏ¢¡£
+ * åŒ…å«äº†sqlæ‰§è¡Œçš„ä¸€äº›åŸºæœ¬çš„ä¿¡æ¯ã€‚
  * 
  * @author shenxun
  *
@@ -22,53 +22,53 @@ import com.taobao.tddl.sqlobjecttree.OrderByEle;
 public interface ExecutionPlan {
 	/**
 	 * 
-	 * @return ·Ç¿Õ
+	 * @return éç©º
 	 */
-	Map<String/*db Selector id */, List<RealSqlContext>/*ÕæÕıÔÚµ±Ç°databaseÉÏÖ´ĞĞµÄsqlµÄÁĞ±í*/> getSqlMap(); 
+	Map<String/*db Selector id */, List<RealSqlContext>/*çœŸæ­£åœ¨å½“å‰databaseä¸Šæ‰§è¡Œçš„sqlçš„åˆ—è¡¨*/> getSqlMap(); 
 	/**
-	 * »ñÈ¡order by ĞÅÏ¢
+	 * è·å–order by ä¿¡æ¯
 	 * @return
 	 */
 	public List<OrderByEle> getOrderByColumns() ;
 	/**
-	 * »ñÈ¡skipÖµ
+	 * è·å–skipå€¼
 	 * @return
 	 */
 	public int getSkip();
 	/**
-	 * »ñÈ¡maxµÄÖµ
+	 * è·å–maxçš„å€¼
 	 * @return
 	 */
 	public int getMax() ;
 	
 	/**
-	 * »ñÈ¡Êı¾İ¸´ÖÆËùĞèÒªµÄĞÅÏ¢
+	 * è·å–æ•°æ®å¤åˆ¶æ‰€éœ€è¦çš„ä¿¡æ¯
 	 * 
 	 * @return
 	 */
 	public List<SqlExecuteEvent> getEvents() ;
 	
 	/**
-	 * »ñÈ¡group function
+	 * è·å–group function
 	 * @return
 	 */
 	public GroupFunctionType getGroupFunctionType();
 	
 	/**
-	 * »ñÈ¡ĞéÄâ±íÃû
+	 * è·å–è™šæ‹Ÿè¡¨å
 	 * @return
 	 */
 	public LogicTableName getVirtualTableName();
 	
 	/**
-	 *  ÊÇ·ñ·µ»ØmappingRule
+	 *  æ˜¯å¦è¿”å›mappingRule
 	 *  
 	 * @return
 	 */
 	public boolean mappingRuleReturnNullValue();
 	
 	/**
-	 * ÊÇ·ñ×ß´Ó¿â½øĞĞ¶ÁĞ´¡£
+	 * æ˜¯å¦èµ°ä»åº“è¿›è¡Œè¯»å†™ã€‚
 	 * 
 	 * @return
 	 */
@@ -78,9 +78,9 @@ public interface ExecutionPlan {
 	
 	public Map<Integer, ParameterContext> getOriginalArgs();
 	/**
-	 * Èç¹ûÊÇÖ»Õë¶ÔÒ»¸öÁ¬½Ó£¬Ö»Ö´ĞĞÒ»ÌõsqlµÄ³¡¾°ÏÂ£¬×ß×î¼òµ¥µÄÖ±½ÓÊ¹ÓÃÔ­ÓĞStatementµÄÄ£Ê½
+	 * å¦‚æœæ˜¯åªé’ˆå¯¹ä¸€ä¸ªè¿æ¥ï¼Œåªæ‰§è¡Œä¸€æ¡sqlçš„åœºæ™¯ä¸‹ï¼Œèµ°æœ€ç®€å•çš„ç›´æ¥ä½¿ç”¨åŸæœ‰Statementçš„æ¨¡å¼
 	 * 
-	 * @return true Èç¹ûÊ¹ÓÃ¼òµ¥Ä£Ê½
+	 * @return true å¦‚æœä½¿ç”¨ç®€å•æ¨¡å¼
 	 */
 	public boolean isUsingRealConnection();
 	

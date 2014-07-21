@@ -5,20 +5,20 @@ import java.text.MessageFormat;
 import com.taobao.tddl.common.util.StringUtils;
 
 /**
- * atom ds里面跟获取配置相关的key
+ * atom ds閲岄潰璺熻幏鍙栭厤缃浉鍏崇殑key
  * @author JIECHEN
  *
  */
 public class TAtomConfConstants {
 
 	/**
-	 * 全局配置dataId模板
+	 * 鍏ㄥ眬閰嶇疆dataId妯℃澘
 	 */
 	private static final MessageFormat GLOBAL_FORMAT = new MessageFormat(
 			"com.taobao.tddl.atom.global.{0}");
 
 	/**
-	 * 应用配置dataId模板
+	 * 搴旂敤閰嶇疆dataId妯℃澘
 	 */
 	private static final MessageFormat APP_FORMAT = new MessageFormat(
 			"com.taobao.tddl.atom.app.{0}.{1}");
@@ -27,7 +27,7 @@ public class TAtomConfConstants {
 			"com.taobao.tddl.atom.passwd.{0}.{1}.{2}");
 
 	/**
-	 * dbName模板
+	 * dbName妯℃澘
 	 */
 	private static final MessageFormat DB_NAME_FORMAT = new MessageFormat(
 			"atom.dbkey.{0}^{1}^{2}");
@@ -36,10 +36,10 @@ public class TAtomConfConstants {
 	
 
 	/**
-	 * 根据dbKey获取全局配置dataId
+	 * 鏍规嵁dbKey鑾峰彇鍏ㄥ眬閰嶇疆dataId
 	 *
 	 * @param dbKey
-	 *            数据库名KEY
+	 *            鏁版嵁搴撳悕KEY
 	 * @return
 	 */
 	public static String getGlobalDataId(String dbKey) {
@@ -47,7 +47,7 @@ public class TAtomConfConstants {
 	}
 
 	/**
-	 * 根据应用名和dbKey获取指定的应用配置dataId
+	 * 鏍规嵁搴旂敤鍚嶅拰dbKey鑾峰彇鎸囧畾鐨勫簲鐢ㄩ厤缃甦ataId
 	 *
 	 * @param appName
 	 * @param dbKey
@@ -58,7 +58,7 @@ public class TAtomConfConstants {
 	}
 
 	/**
-	 * 根据dbKey和userName获得对应的passwd的dataId
+	 * 鏍规嵁dbKey鍜寀serName鑾峰緱瀵瑰簲鐨刾asswd鐨刣ataId
 	 *
 	 * @param dbKey
 	 * @param userName

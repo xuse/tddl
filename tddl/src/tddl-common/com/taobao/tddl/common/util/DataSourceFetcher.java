@@ -5,7 +5,7 @@ import javax.sql.DataSource;
 import com.taobao.tddl.interact.rule.bean.DBType;
 
 /**
- * ÎªÁË±ÜÃâ¶ÔTGroupDataSourceÕâÒ»²ã¶ÔspringµÄÒÀÀµ
+ * ä¸ºäº†é¿å…å¯¹TGroupDataSourceè¿™ä¸€å±‚å¯¹springçš„ä¾èµ–
  * 
  * @author linxuan
  * 

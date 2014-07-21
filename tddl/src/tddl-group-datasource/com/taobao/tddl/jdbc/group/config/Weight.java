@@ -7,47 +7,47 @@ import java.util.regex.Pattern;
 
 /**
  * 
- * <p> Êý¾Ý¿âÈ¨ÖØÅäÖÃ£¬È¨ÖØÔ½´ó£¬±»Ñ¡ÖÐµÄ»úÂÊÔ½´ó.
+ * <p> æ•°æ®åº“æƒé‡é…ç½®ï¼Œæƒé‡è¶Šå¤§ï¼Œè¢«é€‰ä¸­çš„æœºçŽ‡è¶Šå¤§.
  * 
- * <p> È¨ÖØÅäÖÃÄ£Ê½:
+ * <p> æƒé‡é…ç½®æ¨¡å¼:
  * <p> [r|R](\\d*) [w|W](\\d*) [p|P](\\d*) [q|Q](\\d*) [i|I](\\d*)
  * 
- * <p> ×ÖÄ¸r»òR±íÊ¾¿ÉÒÔ¶ÔÊý¾Ý¿â½øÐÐ¶Á²Ù×÷, ºóÃæ¸úÒ»¸öÊý×Ö±íÊ¾¶Á²Ù×÷µÄÈ¨ÖØ£¬Èç¹û×ÖÄ¸r»òRºóÃæÃ»ÓÐÊý×Ö£¬ÔòÄ¬ÈÏÊÇ10;
+ * <p> å­—æ¯ræˆ–Rè¡¨ç¤ºå¯ä»¥å¯¹æ•°æ®åº“è¿›è¡Œè¯»æ“ä½œ, åŽé¢è·Ÿä¸€ä¸ªæ•°å­—è¡¨ç¤ºè¯»æ“ä½œçš„æƒé‡ï¼Œå¦‚æžœå­—æ¯ræˆ–RåŽé¢æ²¡æœ‰æ•°å­—ï¼Œåˆ™é»˜è®¤æ˜¯10;
  * 
- * <p> ×ÖÄ¸w»òW±íÊ¾¿ÉÒÔ¶ÔÊý¾Ý¿â½øÐÐÐ´²Ù×÷, ºóÃæ¸úÒ»¸öÊý×Ö±íÊ¾Ð´²Ù×÷µÄÈ¨ÖØ£¬Èç¹û×ÖÄ¸w»òWºóÃæÃ»ÓÐÊý×Ö£¬ÔòÄ¬ÈÏÊÇ10;<
+ * <p> å­—æ¯wæˆ–Wè¡¨ç¤ºå¯ä»¥å¯¹æ•°æ®åº“è¿›è¡Œå†™æ“ä½œ, åŽé¢è·Ÿä¸€ä¸ªæ•°å­—è¡¨ç¤ºå†™æ“ä½œçš„æƒé‡ï¼Œå¦‚æžœå­—æ¯wæˆ–WåŽé¢æ²¡æœ‰æ•°å­—ï¼Œåˆ™é»˜è®¤æ˜¯10;<
  * 
- * <p> ×ÖÄ¸p»òP±íÊ¾¶Á²Ù×÷µÄÓÅÏÈ¼¶, Êý×ÖÔ½´óÓÅÏÈ¼¶Ô½¸ß£¬¶Á²Ù×÷ÓÅÏÈ´ÓÓÅÏÈ¼¶×î¸ßµÄÊý¾Ý¿âÖÐ¶ÁÊý¾Ý£¬
- * Èç¹û×ÖÄ¸p»òPºóÃæÃ»ÓÐÊý×Ö£¬ÔòÄ¬ÈÏÓÅÏÈ¼¶ÊÇ0;
+ * <p> å­—æ¯pæˆ–Pè¡¨ç¤ºè¯»æ“ä½œçš„ä¼˜å…ˆçº§, æ•°å­—è¶Šå¤§ä¼˜å…ˆçº§è¶Šé«˜ï¼Œè¯»æ“ä½œä¼˜å…ˆä»Žä¼˜å…ˆçº§æœ€é«˜çš„æ•°æ®åº“ä¸­è¯»æ•°æ®ï¼Œ
+ * å¦‚æžœå­—æ¯pæˆ–PåŽé¢æ²¡æœ‰æ•°å­—ï¼Œåˆ™é»˜è®¤ä¼˜å…ˆçº§æ˜¯0;
  * 
- * <p> ×ÖÄ¸q»òQ±íÊ¾Ð´²Ù×÷µÄÓÅÏÈ¼¶, Êý×ÖÔ½´óÓÅÏÈ¼¶Ô½¸ß£¬Ð´²Ù×÷ÓÅÏÈ´ÓÓÅÏÈ¼¶×î¸ßµÄÊý¾Ý¿âÖÐÐ´Êý¾Ý£¬
- * Èç¹û×ÖÄ¸q»òQºóÃæÃ»ÓÐÊý×Ö£¬ÔòÄ¬ÈÏÓÅÏÈ¼¶ÊÇ0.
+ * <p> å­—æ¯qæˆ–Qè¡¨ç¤ºå†™æ“ä½œçš„ä¼˜å…ˆçº§, æ•°å­—è¶Šå¤§ä¼˜å…ˆçº§è¶Šé«˜ï¼Œå†™æ“ä½œä¼˜å…ˆä»Žä¼˜å…ˆçº§æœ€é«˜çš„æ•°æ®åº“ä¸­å†™æ•°æ®ï¼Œ
+ * å¦‚æžœå­—æ¯qæˆ–QåŽé¢æ²¡æœ‰æ•°å­—ï¼Œåˆ™é»˜è®¤ä¼˜å…ˆçº§æ˜¯0.
  * 
- * <p> ×ÖÄ¸i»òI±íÊ¾¶¯Ì¬DBIndex, ºÍÓÃ»§Í¨¹ýthreadLocalÖ¸¶¨µÄdbIndex½áºÏ£¬ÊµÏÖrwÖ®ÉÏ¸üÁé»îµÄÂ·ÓÉ
- *     Ò»¸ödb¿ÉÒÔÍ¬Ê±ÅäÖÃ¶à¸öi£»²»Í¬µÄdb¿ÉÒÔÅäÖÃÏàÍ¬µÄi£¬ÀýÈç db0:i0i2,db1:i1,db2:i1,db3:i2Ôò
- *         ÓÃ»§Ö¸¶¨dbIndex=0£¬Â·ÓÉµ½db0£»£¨Ö»ÓÐdb0ÓÐi0£©
- *         ÓÃ»§Ö¸¶¨dbIndex=1£¬Ëæ»úÂ·ÓÉµ½db1ºÍdb2£»£¨db1ºÍdb2¶¼ÓÐi1£©
- *         ÓÃ»§Ö¸¶¨dbIndex=2£¬Ëæ»úÂ·ÓÉµ½db0ºÍdb3£»£¨db0ºÍdb3¶¼ÓÐi2£©
+ * <p> å­—æ¯iæˆ–Iè¡¨ç¤ºåŠ¨æ€DBIndex, å’Œç”¨æˆ·é€šè¿‡threadLocalæŒ‡å®šçš„dbIndexç»“åˆï¼Œå®žçŽ°rwä¹‹ä¸Šæ›´çµæ´»çš„è·¯ç”±
+ *     ä¸€ä¸ªdbå¯ä»¥åŒæ—¶é…ç½®å¤šä¸ªiï¼›ä¸åŒçš„dbå¯ä»¥é…ç½®ç›¸åŒçš„iï¼Œä¾‹å¦‚ db0:i0i2,db1:i1,db2:i1,db3:i2åˆ™
+ *         ç”¨æˆ·æŒ‡å®šdbIndex=0ï¼Œè·¯ç”±åˆ°db0ï¼›ï¼ˆåªæœ‰db0æœ‰i0ï¼‰
+ *         ç”¨æˆ·æŒ‡å®šdbIndex=1ï¼Œéšæœºè·¯ç”±åˆ°db1å’Œdb2ï¼›ï¼ˆdb1å’Œdb2éƒ½æœ‰i1ï¼‰
+ *         ç”¨æˆ·æŒ‡å®šdbIndex=2ï¼Œéšæœºè·¯ç”±åˆ°db0å’Œdb3ï¼›ï¼ˆdb0å’Œdb3éƒ½æœ‰i2ï¼‰
  *
- * <p> Èç£ºdb1: r10w10p2, db2: r20p2, db3: rp3£¬Ôò¶ÔÓ¦ÈçÏÂÈý¸öWeight:
+ * <p> å¦‚ï¼šdb1: r10w10p2, db2: r20p2, db3: rp3ï¼Œåˆ™å¯¹åº”å¦‚ä¸‹ä¸‰ä¸ªWeight:
  * db1: Weight(r10w10p2)
  * db2: Weight(r20p2)
  * db3: Weight(rp3)
  * 
- * <p> ÔÚÕâ¸öÀý×ÓÖÐ£¬¶Ôdb1, db2£¬db3ÕâÈý¸öÊý¾Ý¿âµÄ¶Á²Ù×÷·Ö³ÉÁËÁ½¸öÓÅÏÈ¼¶:
+ * <p> åœ¨è¿™ä¸ªä¾‹å­ä¸­ï¼Œå¯¹db1, db2ï¼Œdb3è¿™ä¸‰ä¸ªæ•°æ®åº“çš„è¯»æ“ä½œåˆ†æˆäº†ä¸¤ä¸ªä¼˜å…ˆçº§:
  * p3->[db3]
  * p2->[db1, db2]
  * 
- * µ±½øÐÐ¶Á²Ù×÷Ê±£¬ÒòÎªdb3µÄÓÅÏÈ¼¶×î¸ß£¬ËùÒÔÓÅÏÈ´Ódb3¶Á£¬
- * Èç¹ûdb3ÎÞ·¨½øÐÐ¶Á²Ù×÷£¬ÔÙ´Ódb1, db2ÖÐËæ»úÑ¡Ò»¸ö£¬ÒòÎªdb2µÄ¶ÁÈ¨ÖØÊÇ20£¬¶ødb1ÊÇ10£¬ËùÒÔdb2±»Ñ¡ÖÐµÄ»úÂÊ±Èdb1¸ü´ó¡£
+ * å½“è¿›è¡Œè¯»æ“ä½œæ—¶ï¼Œå› ä¸ºdb3çš„ä¼˜å…ˆçº§æœ€é«˜ï¼Œæ‰€ä»¥ä¼˜å…ˆä»Ždb3è¯»ï¼Œ
+ * å¦‚æžœdb3æ— æ³•è¿›è¡Œè¯»æ“ä½œï¼Œå†ä»Ždb1, db2ä¸­éšæœºé€‰ä¸€ä¸ªï¼Œå› ä¸ºdb2çš„è¯»æƒé‡æ˜¯20ï¼Œè€Œdb1æ˜¯10ï¼Œæ‰€ä»¥db2è¢«é€‰ä¸­çš„æœºçŽ‡æ¯”db1æ›´å¤§ã€‚
  * 
- * <p> Èç¹ûÔÚÊý¾Ý¿âÃûºóÃæÃ»ÓÐÉèÖÃÈ¨ÖØ×Ö·û´®£¬¾ÍÈÏÎªÈ¨ÖØ×Ö·û´®ÊÇnull,
- * Èç: db1: r10w10, db2, db3£¬Ôò¶ÔÓ¦ÈçÏÂÈý¸öWeight:
+ * <p> å¦‚æžœåœ¨æ•°æ®åº“ååŽé¢æ²¡æœ‰è®¾ç½®æƒé‡å­—ç¬¦ä¸²ï¼Œå°±è®¤ä¸ºæƒé‡å­—ç¬¦ä¸²æ˜¯null,
+ * å¦‚: db1: r10w10, db2, db3ï¼Œåˆ™å¯¹åº”å¦‚ä¸‹ä¸‰ä¸ªWeight:
  * db1: Weight(r10w10)
  * db2: Weight(null)
  * db3: Weight(null)
  * 
- * <p> <b>ÎªÁË¼æÈÝ2.4Ö®Ç°µÄÀÏ°æ±¾£¬µ±È¨ÖØ×Ö·û´®ÊÇnullÊ±£¬Ïàµ±ÓÚ"r10w10p0q0",
- * ¶ÔÓÚÉÏÃæµÄÀý×Ó£¬Êµ¼ÊµÄÊý¾Ý¿âÈ¨ÖØÅäÖÃÊÇ£ºdb1: r10w10p0q0, db2: r10w10p0q0, db3: r10w10p0q0¡£<b>
+ * <p> <b>ä¸ºäº†å…¼å®¹2.4ä¹‹å‰çš„è€ç‰ˆæœ¬ï¼Œå½“æƒé‡å­—ç¬¦ä¸²æ˜¯nullæ—¶ï¼Œç›¸å½“äºŽ"r10w10p0q0",
+ * å¯¹äºŽä¸Šé¢çš„ä¾‹å­ï¼Œå®žé™…çš„æ•°æ®åº“æƒé‡é…ç½®æ˜¯ï¼šdb1: r10w10p0q0, db2: r10w10p0q0, db3: r10w10p0q0ã€‚<b>
  * 
  * @author yangzhu
  * @author linxuan add indexes i/I at 2011/01/21
@@ -61,29 +61,29 @@ public class Weight {
 	private static final Pattern weightPattern_i = Pattern.compile("[I](\\d*)");
 
 	/**
-	 * ¶ÁÈ¨ÖØ£¬Ä¬ÈÏÊÇ10
+	 * è¯»æƒé‡ï¼Œé»˜è®¤æ˜¯10
 	 */
 	public final int r;
 
 	/**
-	 * Ð´È¨ÖØ£¬Ä¬ÈÏÊÇ10
+	 * å†™æƒé‡ï¼Œé»˜è®¤æ˜¯10
 	 */
 	public final int w;
 
 	/**
-	 * ¶ÁÓÅÏÈ¼¶£¬Ä¬ÈÏÊÇ0
+	 * è¯»ä¼˜å…ˆçº§ï¼Œé»˜è®¤æ˜¯0
 	 */
 	public final int p;
 
 	/**
-	 * Ð´ÓÅÏÈ¼¶£¬Ä¬ÈÏÊÇ0
+	 * å†™ä¼˜å…ˆçº§ï¼Œé»˜è®¤æ˜¯0
 	 */
 	public final int q;
 
 	public final Set<Integer> indexes;
 
 	public Weight(String weightStr) {
-		//¼æÈÝ2.4Ö®Ç°µÄÀÏ°æ±¾£¬µ±È¨ÖØ×Ö·û´®ÊÇnullÊ±£¬Ïàµ±ÓÚ"r10w10p0q0",
+		//å…¼å®¹2.4ä¹‹å‰çš„è€ç‰ˆæœ¬ï¼Œå½“æƒé‡å­—ç¬¦ä¸²æ˜¯nullæ—¶ï¼Œç›¸å½“äºŽ"r10w10p0q0",
 		if (weightStr == null) {
 			r = 10;
 			w = 10;
@@ -93,8 +93,8 @@ public class Weight {
 		} else {
 			weightStr = weightStr.trim().toUpperCase();
 
-			//Èç¹û×ÖÄ¸'R'ÔÚweightStrÖÐÕÒ²»µ½£¬Ôò¶ÁÈ¨ÖØÊÇ0£¬
-			//Èç¹û×ÖÄ¸'R'ÔÚweightStrÖÐÒÑÕÒµ½ÁË£¬µ«ÊÇÔÚ×ÖÄ¸'R'ºóÃæÃ»ÓÐÊý×Ö£¬ÊÇ¶ÁÈ¨ÖØÊÇ10
+			//å¦‚æžœå­—æ¯'R'åœ¨weightSträ¸­æ‰¾ä¸åˆ°ï¼Œåˆ™è¯»æƒé‡æ˜¯0ï¼Œ
+			//å¦‚æžœå­—æ¯'R'åœ¨weightSträ¸­å·²æ‰¾åˆ°äº†ï¼Œä½†æ˜¯åœ¨å­—æ¯'R'åŽé¢æ²¡æœ‰æ•°å­—ï¼Œæ˜¯è¯»æƒé‡æ˜¯10
 			r = getUnitWeight(weightStr, 'R', weightPattern_r, 0, 10);
 
 			w = getUnitWeight(weightStr, 'W', weightPattern_w, 0, 10);
@@ -112,9 +112,9 @@ public class Weight {
 		return "Weight[r=" + r + ", w=" + w + ", p=" + p + ", q=" + q + ", indexes=" + indexes + "]";
 	}
 
-	//Èç¹û×Ö·ûcÔÚweightStrÖÐÕÒ²»µ½£¬Ôò·µ»ØdefaultValue1£¬
-	//Èç¹û×Ö·ûcÔÚweightStrÖÐÒÑ¾­ÕÒµ½ÁË£¬µ«ÊÇÔÚ×ÖÄ¸cºóÃæÃ»ÓÐÊý×Ö£¬Ôò·µ»ØdefaultValue2,
-	//·ñÔò·µ»Ø×ÖÄ¸cºóÃæ µÄÊý×Ö.
+	//å¦‚æžœå­—ç¬¦cåœ¨weightSträ¸­æ‰¾ä¸åˆ°ï¼Œåˆ™è¿”å›ždefaultValue1ï¼Œ
+	//å¦‚æžœå­—ç¬¦cåœ¨weightSträ¸­å·²ç»æ‰¾åˆ°äº†ï¼Œä½†æ˜¯åœ¨å­—æ¯cåŽé¢æ²¡æœ‰æ•°å­—ï¼Œåˆ™è¿”å›ždefaultValue2,
+	//å¦åˆ™è¿”å›žå­—æ¯cåŽé¢ çš„æ•°å­—.
 	private static int getUnitWeight(String weightStr, char c, Pattern p, int defaultValue1, int defaultValue2) {
 		if (weightStr.indexOf(c) == -1) {
 			return defaultValue1;

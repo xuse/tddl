@@ -5,7 +5,7 @@ package com.taobao.tddl.interact.rule.virtualnode;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-8-8ÏÂÎç07:08:45
+ * @date 2011-8-8ä¸‹åˆ07:08:45
  */
 public interface VirtualNodeMap {
 	String tableSplitor="_";

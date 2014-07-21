@@ -11,53 +11,53 @@ import com.taobao.tddl.rule.ruleengine.entities.abstractentities.RuleChain;
 import com.taobao.tddl.rule.ruleengine.entities.inputvalue.CalculationContextInternal;
 
 /**
- * @description ¹æÔò¼ÆËãµÄÄÚ²¿context,Ö÷Òª·ÅÒ»Ğ©Ò»´Îsql²Ù×÷ÖĞÔ­±¾ĞèÒª¶à´ÎÖØ¸´¼ÆËãµ«²»»á¸Ä±äµÄ½á¹û,ÒÔ¼°
- *              ¼ÆËã¿âºÍ±íÊ±¶¼ĞèÒªµÄÒ»Ğ©¹æÔòĞÅÏ¢ºÍ¹²ÏíĞÅÏ¢.
+ * @description è§„åˆ™è®¡ç®—çš„å†…éƒ¨context,ä¸»è¦æ”¾ä¸€äº›ä¸€æ¬¡sqlæ“ä½œä¸­åŸæœ¬éœ€è¦å¤šæ¬¡é‡å¤è®¡ç®—ä½†ä¸ä¼šæ”¹å˜çš„ç»“æœ,ä»¥åŠ
+ *              è®¡ç®—åº“å’Œè¡¨æ—¶éƒ½éœ€è¦çš„ä¸€äº›è§„åˆ™ä¿¡æ¯å’Œå…±äº«ä¿¡æ¯.
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-12-03ÏÂÎç01:14:52
+ * @date 2010-12-03ä¸‹åˆ01:14:52
  */
 public class RuleContext {
 	/**
-	 * ¼´ÅäÖÃÖĞµÄTableRule
+	 * å³é…ç½®ä¸­çš„TableRule
 	 */
 	protected LogicTableRule rule=null;
 	
 	/**
-	 * ÊÇ·ñĞèÒªsourceKey
-	 * Ä¬ÈÏ²»ĞèÒª,joinºÍÊ¹ÓÃid in¹é×éĞèÒª
+	 * æ˜¯å¦éœ€è¦sourceKey
+	 * é»˜è®¤ä¸éœ€è¦,joinå’Œä½¿ç”¨id inå½’ç»„éœ€è¦
 	 */
 	protected boolean needSourceKey=false;
 	
 	/**
-	 * ±í¼ÆËãÉÏÏÂÎÄ
+	 * è¡¨è®¡ç®—ä¸Šä¸‹æ–‡
 	 */
-	protected Map<RuleChain, CalculationContextInternal/* ´ı¼ÆËãµÄ½á¹û */> calContextMap;
+	protected Map<RuleChain, CalculationContextInternal/* å¾…è®¡ç®—çš„ç»“æœ */> calContextMap;
 
 	/**
-	 * ÊÇ·ñÊÇµÚÒ»´Î¼ÆËã±í
+	 * æ˜¯å¦æ˜¯ç¬¬ä¸€æ¬¡è®¡ç®—è¡¨
 	 */
 	protected boolean firstTableCalculate=true;
 	
 	/**
-	 * ÒÑ¾­Ã¶¾Ù¹ıµÄ±í²ÎÊı
+	 * å·²ç»æšä¸¾è¿‡çš„è¡¨å‚æ•°
 	 */
 	protected Map<String,Set<Object>> tabArgsMap;
 	
 	/**
-	 * ±í¹æÔòÃ»ÓĞÊ±µÄsourceKey Map
+	 * è¡¨è§„åˆ™æ²¡æœ‰æ—¶çš„sourceKey Map
 	 */
 	protected Map<String, Field> tabSourceWithNoRule;
 	
 	/**
-	 * ·Ö¿â·Ö±í¼ü½»¼¯
+	 * åˆ†åº“åˆ†è¡¨é”®äº¤é›†
 	 */
 	protected List<String> dbAndTabWithSameColumn;
 
 	/**
-	 * ¿â±íÃ»ÓĞ½»¼¯²ÎÊıÊ±,»º´æ±í¼ÆËã½á¹û
+	 * åº“è¡¨æ²¡æœ‰äº¤é›†å‚æ•°æ—¶,ç¼“å­˜è¡¨è®¡ç®—ç»“æœ
 	 */
 	protected Map<String,Field> tabResultSet;
 	

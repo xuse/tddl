@@ -4,7 +4,7 @@ import com.taobao.tddl.common.sequence.Config.Route;
 
 /*
  * @author guangxia
- * @since 1.0, 2009-4-27 ÏÂÎç05:09:40
+ * @since 1.0, 2009-4-27 ä¸‹åˆ05:09:40
  */
 public class IDParseImp implements IDParse<Long, Integer, Integer> {
 	private Config config;
@@ -14,9 +14,9 @@ public class IDParseImp implements IDParse<Long, Integer, Integer> {
 	}
 	
 	/*
-	 * @param id ´øÉ¢¿âÉ¢±íĞÅÏ¢µÄid
-	 * @param config ´ÓÅäÖÃÎÄ¼şÖĞ¶ÁÈ¡µ½µÄÅäÖÃ
-	 * @return °ÑÉ¢¿âÉ¢±íĞÅÏ¢ºÍÔ­Ê¼idÉú³ÉÆ÷Éú³ÉÉú³ÉµÄid·ÖÀëºóµÄÒ»¸öbean
+	 * @param id å¸¦æ•£åº“æ•£è¡¨ä¿¡æ¯çš„id
+	 * @param config ä»é…ç½®æ–‡ä»¶ä¸­è¯»å–åˆ°çš„é…ç½®
+	 * @return æŠŠæ•£åº“æ•£è¡¨ä¿¡æ¯å’ŒåŸå§‹idç”Ÿæˆå™¨ç”Ÿæˆç”Ÿæˆçš„idåˆ†ç¦»åçš„ä¸€ä¸ªbean
 	 */
 	public DetachID<Long, Integer, Integer> parse(Long id) {
 		DetachID<Long, Integer, Integer> detachID = new DetachID<Long, Integer, Integer>();
@@ -28,7 +28,7 @@ public class IDParseImp implements IDParse<Long, Integer, Integer> {
 		int routeBits;
 		if(config.isPositionRight()) {
 			detachID.setId(id / pow10[size]);
-			//routeBits²»ÄÜ³¬¹ı8Î»£¨Ê®½øÖÆÎ»£©
+			//routeBitsä¸èƒ½è¶…è¿‡8ä½ï¼ˆåè¿›åˆ¶ä½ï¼‰
 			routeBits = (int) (id % pow10[size]);
 		} else {
 			detachID.setId(size == 0 ? id : id % pow10[19 - size]);

@@ -2,7 +2,7 @@ package com.taobao.tddl.client.jdbc.replication;
 
 /*
  * @author guangxia
- * @since 1.0, 2010-4-13 ÏÂÎç05:46:30
+ * @since 1.0, 2010-4-13 ä¸‹åˆ05:46:30
  */
 public class SyncReplicationAdapter extends ReplicationAdapter {
 

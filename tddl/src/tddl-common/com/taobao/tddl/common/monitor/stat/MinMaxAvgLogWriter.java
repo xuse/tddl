@@ -5,7 +5,7 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 
 /**
- * À©Õ¹ Log4j Logger µÄÍ³¼ÆÈÕÖ¾Êä³öÀà, Î¨Ò»µÄÇø±ğÊÇÔÚÊä³ö count/sum/min/max ºóÔö¼ÓÆ½¾ùÖµ¡£
+ * æ‰©å±• Log4j Logger çš„ç»Ÿè®¡æ—¥å¿—è¾“å‡ºç±», å”¯ä¸€çš„åŒºåˆ«æ˜¯åœ¨è¾“å‡º count/sum/min/max åå¢åŠ å¹³å‡å€¼ã€‚
  * 
  * @author changyuan.lh
  */

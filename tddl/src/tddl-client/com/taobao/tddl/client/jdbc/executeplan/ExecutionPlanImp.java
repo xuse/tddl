@@ -12,19 +12,19 @@ import com.taobao.tddl.sqlobjecttree.GroupFunctionType;
 import com.taobao.tddl.sqlobjecttree.OrderByEle;
 public class ExecutionPlanImp implements ExecutionPlan {
 	/**
-	 * ¸´ÖÆevent
+	 * å¤åˆ¶event
 	 */
 	private List<SqlExecuteEvent> events;
 	/**
-	 * group º¯ÊıµÄÀàĞÍ
+	 * group å‡½æ•°çš„ç±»å‹
 	 */
 	private GroupFunctionType groupFunctionType;
 	/**
-	 * ×î´ó
+	 * æœ€å¤§
 	 */
 	private int max;
 	/**
-	 * ×îĞ¡
+	 * æœ€å°
 	 */
 	private int skip;
 	/**
@@ -36,29 +36,29 @@ public class ExecutionPlanImp implements ExecutionPlan {
 	 */
 	private List<OrderByEle> orderByColumns;
 	/**
-	 * Ô´²ÎÊı
+	 * æºå‚æ•°
 	 */
 	private Map<Integer, ParameterContext> originalArgs;
 	/**
-	 * ÊÇ·ñÊÇ×ß¶Á¿âµÄsql
+	 * æ˜¯å¦æ˜¯èµ°è¯»åº“çš„sql
 	 */
 	private boolean isGoSlave;
 	/**
-	 * Ó³Éä¹æÔòÊÇ·ñ·µ»Ø¿ÕÖµ£¬Õâ¸ö²»ĞèÒªÌ«Àí½â£¬ÒÔºó¹À¼ÆÃ»¼¸¸öÒµÎñ»áÓÃµÄ×Ö¶Î¡£
+	 * æ˜ å°„è§„åˆ™æ˜¯å¦è¿”å›ç©ºå€¼ï¼Œè¿™ä¸ªä¸éœ€è¦å¤ªç†è§£ï¼Œä»¥åä¼°è®¡æ²¡å‡ ä¸ªä¸šåŠ¡ä¼šç”¨çš„å­—æ®µã€‚
 	 */
 	private boolean mappingRuleReturnNullValue;
 	/**
-	 * Ô´sql
+	 * æºsql
 	 */
 	private String originalSql;
 
 	/**
-	 * ĞéÄâ±íÃû
+	 * è™šæ‹Ÿè¡¨å
 	 */
 	private LogicTableName virtualTableName;
 	
 	/**
-	 * ±¾´Î²Ù×÷ÊÇ·ñÊ¹ÓÃ²¢ĞĞÖ´ĞĞ
+	 * æœ¬æ¬¡æ“ä½œæ˜¯å¦ä½¿ç”¨å¹¶è¡Œæ‰§è¡Œ
 	 */
     private boolean useParallel;
     

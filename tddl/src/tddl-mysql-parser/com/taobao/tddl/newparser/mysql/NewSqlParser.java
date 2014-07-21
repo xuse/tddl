@@ -21,7 +21,7 @@ public abstract class NewSqlParser implements SQLParser {
 			final boolean isMysql);
 	
 	/**
-	 * ´ÓSQLStatement×ª»»³ÉSqlParserResult
+	 * ä»SQLStatementè½¬æ¢æˆSqlParserResult
 	 * @param statement
 	 * @param sql
 	 * @return
@@ -53,7 +53,7 @@ public abstract class NewSqlParser implements SQLParser {
 	}
 	
 	/**
-	 * Ìî³äparser resultµÄsql format×Ö¶Î
+	 * å¡«å……parser resultçš„sql formatå­—æ®µ
 	 * @param statement
 	 * @param result
 	 */
@@ -63,7 +63,7 @@ public abstract class NewSqlParser implements SQLParser {
 //	}
 	
 	/**
-	 * Ìî³äparser resultµÄsql format×Ö¶Î
+	 * å¡«å……parser resultçš„sql formatå­—æ®µ
 	 * @param statement
 	 * @param result
 	 */

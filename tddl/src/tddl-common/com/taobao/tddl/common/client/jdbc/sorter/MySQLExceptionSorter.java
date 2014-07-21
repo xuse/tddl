@@ -38,7 +38,7 @@ public class MySQLExceptionSorter implements ExceptionSorter, Serializable {
 	private static final long serialVersionUID = 2375890129763721017L;
 
 	public boolean isExceptionFatal(SQLException e) {
-		int loopCount = 20; //·ÀÖ¹ÈËÎªÊ§Îó£¬µ±Á½¸öThrowable»¥Îª¶Ô·½µÄinitCause()Ê±£¬Ôì³ÉËÀÑ­»·
+		int loopCount = 20; //é˜²æ­¢äººä¸ºå¤±è¯¯ï¼Œå½“ä¸¤ä¸ªThrowableäº’ä¸ºå¯¹æ–¹çš„initCause()æ—¶ï¼Œé€ æˆæ­»å¾ªç¯
 
 		Throwable cause = e;
 		while (cause != null) {
@@ -93,7 +93,7 @@ public class MySQLExceptionSorter implements ExceptionSorter, Serializable {
 		final String error_text = e.getMessage();
 
 		if ("no datasource!".equals(error_text) || "no alive datasource".equals(error_text)) {
-			//¼æÈİrjdbcÅ×³öµÄ´íÎó
+			//å…¼å®¹rjdbcæŠ›å‡ºçš„é”™è¯¯
 			return true;
 		}
 
@@ -110,7 +110,7 @@ public class MySQLExceptionSorter implements ExceptionSorter, Serializable {
 	private static List<ExceptionSorter> externalExceptionSorters;
 
 	/**
-	 * @param sorter Íâ²¿µÄExceptionSorterÖ»ĞèÅĞ¶ÏSQLException±¾Éí¼´¿É£¬²»ĞèÒªÅĞ¶ÏÆäcauseÁ´
+	 * @param sorter å¤–éƒ¨çš„ExceptionSorteråªéœ€åˆ¤æ–­SQLExceptionæœ¬èº«å³å¯ï¼Œä¸éœ€è¦åˆ¤æ–­å…¶causeé“¾
 	 */
 	public static void addExceptionSorter(ExceptionSorter sorter) {
 		if (externalExceptionSorters == null) {

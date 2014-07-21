@@ -4,7 +4,7 @@ import com.taobao.tddl.common.sync.BucketSwitcher.BucketTaker;
 
 /**
  * 
- * 性能优先的非精确实现
+ * 鎬ц兘浼樺厛鐨勯潪绮剧‘瀹炵幇
  *   
  * @author guangxia
  *
@@ -67,7 +67,7 @@ public class MatrixBucketSwitcher<T> {
 	}
 
 	/**
-	 * 支持动态监控和调整bucketSize
+	 * 鏀寔鍔ㄦ�佺洃鎺у拰璋冩暣bucketSize
 	 */
 	public int getBucketSize() {
 		return bucketSize;

@@ -27,7 +27,7 @@ public class SimpleRealSqlExecutorImp extends RealSqlExecutorImp {
 
 	@Override
 	public QueryReturn query() throws SQLException {
-		// ËµÃ÷µÚÒ»´Î½øÀ´£¬·ñÔò²»ÔÊĞíÖĞÍ¾×ß³¬Àà²éÑ¯
+		// è¯´æ˜ç¬¬ä¸€æ¬¡è¿›æ¥ï¼Œå¦åˆ™ä¸å…è®¸ä¸­é€”èµ°è¶…ç±»æŸ¥è¯¢
 		if (null == queryReturnQueue && useParallel()) {
 			alwaysUseParallel = true;
 			QueryReturn qr = super.query();
@@ -35,7 +35,7 @@ public class SimpleRealSqlExecutorImp extends RealSqlExecutorImp {
 			return qr;
 		}
 
-		// Èç¹û×ß²¢ĞĞ£¬ÄÇÃ´Ò»Ö±×ß²¢ĞĞ£¬ÇĞ»»Îª´®ĞĞºó£¬Õâ´Î²éÑ¯Ò²»á×ßÍê²¢ĞĞ¡£
+		// å¦‚æœèµ°å¹¶è¡Œï¼Œé‚£ä¹ˆä¸€ç›´èµ°å¹¶è¡Œï¼Œåˆ‡æ¢ä¸ºä¸²è¡Œåï¼Œè¿™æ¬¡æŸ¥è¯¢ä¹Ÿä¼šèµ°å®Œå¹¶è¡Œã€‚
 		if (alwaysUseParallel) {
 			QueryReturn qr = super.query();
 			queryConnectionManage(qr);
@@ -60,13 +60,13 @@ public class SimpleRealSqlExecutorImp extends RealSqlExecutorImp {
 	Map<String, Integer> conWithStatements = null;
 
 	/**
-	 * Ê¹ÓÃ²¢ĞĞ·½Ê½£¬²¢ÇÒÄÃÒ»¸ö£¬¹ØÒ»¸ö£¬ĞèÒª¿¼ÂÇÁ¬½Ó¹Ø±ÕÎÊÌâ¡£
+	 * ä½¿ç”¨å¹¶è¡Œæ–¹å¼ï¼Œå¹¶ä¸”æ‹¿ä¸€ä¸ªï¼Œå…³ä¸€ä¸ªï¼Œéœ€è¦è€ƒè™‘è¿æ¥å…³é—­é—®é¢˜ã€‚
 	 * 
 	 * @param qr
 	 */
 	private void queryConnectionManage(QueryReturn qr) {
 		if (null != needCloseConection) {
-			// ²âÊÔÊ¹ÓÃ
+			// æµ‹è¯•ä½¿ç”¨
 			// logger.debug("--------needCloseConection-------"+needCloseConection);
 			// logger.debug("--------needCloseConection statement num-------"+conWithStatements.get(needCloseConection));
 			parallelExecutor.tryCloseConnection(needCloseConection);
@@ -85,7 +85,7 @@ public class SimpleRealSqlExecutorImp extends RealSqlExecutorImp {
 				}
 			}
 
-			// Èç¹ûµ±Ç°ds resultset¼ÆÊı-1ºóĞ¡ÓÚµÈÓÚ0,µ±Ç°ds resultsetÈ¡¾¡
+			// å¦‚æœå½“å‰ds resultsetè®¡æ•°-1åå°äºç­‰äº0,å½“å‰ds resultsetå–å°½
 			int remain = conWithStatements.get(qr.getCurrentDBIndex()) - 1;
 			conWithStatements.put(qr.getCurrentDBIndex(), remain);
 			if (remain <= 0) {

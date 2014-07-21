@@ -23,7 +23,7 @@ public class Str2NumList extends OneArgFunction{
 		if(val instanceof String){
 			argList=((String)val).split(",");
 		}else{
-			throw new IllegalArgumentException("²»Ó¦¸Ã³öÏÖ³ıstringÒÔÍâÆäËûÀàĞÍµÄ²ÎÊı");
+			throw new IllegalArgumentException("ä¸åº”è¯¥å‡ºç°é™¤stringä»¥å¤–å…¶ä»–ç±»å‹çš„å‚æ•°");
 		}
 		return buildOr(argList);
 	}

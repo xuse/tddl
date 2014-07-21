@@ -7,6 +7,6 @@ public class CantFindTargetTabRuleTypeException extends TDLRunTimeException{
 	 */
 	private static final long serialVersionUID = -7179888759169646552L;
 	public CantFindTargetTabRuleTypeException(String msg) {
-		super("ÎŞ·¨¸ù¾İÊäÈëµÄtableRule:"+msg+"ÕÒµ½¶ÔÓ¦µÄ´¦Àí·½·¨¡£");
+		super("æ— æ³•æ ¹æ®è¾“å…¥çš„tableRule:"+msg+"æ‰¾åˆ°å¯¹åº”çš„å¤„ç†æ–¹æ³•ã€‚");
 	}
 }

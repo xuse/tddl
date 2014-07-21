@@ -3,9 +3,9 @@ package com.taobao.tddl.jdbc.druid.exception;
 import java.sql.SQLException;
 
 /**
- * Atom²ãÍ¨¹ıExceptionSorter¼ì²âµ½Êı¾İÔ´²»¿ÉÓÃÊ±Å×³ö£¬
- * »òÕßÊı¾İ¿â²»¿ÉÓÃ£¬Í¬Ê±Ã»ÓĞtrylockµ½ÖØÊÔ»ú»áÊ±Ò²Å×³ö
- * ±ãÓÚgroup²ãÖØÊÔ
+ * Atomå±‚é€šè¿‡ExceptionSorteræ£€æµ‹åˆ°æ•°æ®æºä¸å¯ç”¨æ—¶æŠ›å‡ºï¼Œ
+ * æˆ–è€…æ•°æ®åº“ä¸å¯ç”¨ï¼ŒåŒæ—¶æ²¡æœ‰trylockåˆ°é‡è¯•æœºä¼šæ—¶ä¹ŸæŠ›å‡º
+ * ä¾¿äºgroupå±‚é‡è¯•
  * 
  * 
  * @author linxuan

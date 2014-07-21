@@ -17,7 +17,7 @@
 //	@Override
 //	public boolean eval(
 //	Map<String, SharedValueElement> sharedValueElementMap) {
-//		//设置当前的Context
+//		//璁剧疆褰撳墠鐨凜ontext
 //		for(Entry<String, SharedValueElement> sharedValueElement:sharedValueElementMap.entrySet()){
 //			bind.setVariable(sharedValueElement.getKey(), sharedValueElement.getValue().comp);
 //		}

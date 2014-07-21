@@ -8,20 +8,20 @@ import com.taobao.tddl.common.sqlobjecttree.Column;
 import com.taobao.tddl.common.sqlobjecttree.SQLFragment;
 
 /**
- * ÓÃÓÚ±ê×¢joinÓï¾ä¡£ ¶ÔÓÚinner join ,Êµ¼ÊÉÏÓĞÁ½ÖÖĞ´·¨¡£ Ò»ÖÖÊÇÊ¹ÓÃ±ê×¼µÄjoinÓï¾ä¡£ ÁíÍâÒ»ÖÖÔòÊÇÊ¹ÓÃ id = id µÄ·½Ê½À´½øĞĞ¡£
+ * ç”¨äºæ ‡æ³¨joinè¯­å¥ã€‚ å¯¹äºinner join ,å®é™…ä¸Šæœ‰ä¸¤ç§å†™æ³•ã€‚ ä¸€ç§æ˜¯ä½¿ç”¨æ ‡å‡†çš„joinè¯­å¥ã€‚ å¦å¤–ä¸€ç§åˆ™æ˜¯ä½¿ç”¨ id = id çš„æ–¹å¼æ¥è¿›è¡Œã€‚
  * 
- * ÕâÀïµÄ¶ÔÏóÊÇÕë¶ÔµÚÒ»ÖÖÀàĞÍµÄsql½øĞĞµÄ¡£
+ * è¿™é‡Œçš„å¯¹è±¡æ˜¯é’ˆå¯¹ç¬¬ä¸€ç§ç±»å‹çš„sqlè¿›è¡Œçš„ã€‚
  * 
  * @author whisper select * from tab a inner(left,right..etc) join tab2 as b on
- *         a.id = b.id where user_id = ? ÕâÀïÓÃÓÚ¼ÇÂ¼join tab2 as b on a.id = b.id
- *         Õâ¸ö×Ö¶Î¡£
+ *         a.id = b.id where user_id = ? è¿™é‡Œç”¨äºè®°å½•join tab2 as b on a.id = b.id
+ *         è¿™ä¸ªå­—æ®µã€‚
  * 
- *         ÎªÁË·½±ãÆğ¼û£¬Õâ¸öÊı¾İ×Ö¶Î»¹ÊÇ¸ú×Å±íÃû×ß±È½Ï·½±ãÒ»Ğ©
+ *         ä¸ºäº†æ–¹ä¾¿èµ·è§ï¼Œè¿™ä¸ªæ•°æ®å­—æ®µè¿˜æ˜¯è·Ÿç€è¡¨åèµ°æ¯”è¾ƒæ–¹ä¾¿ä¸€äº›
  */
 public class JoinClause implements SQLFragment {
 
 	/**
-	 * ÓÃÓÚ±ê×¢±íÃû
+	 * ç”¨äºæ ‡æ³¨è¡¨å
 	 */
 	private TableName tableName;
 
@@ -106,7 +106,7 @@ public class JoinClause implements SQLFragment {
 	}
 
 	public void appendAliasToSQLMap(Map<String, SQLFragment> map) {
-		// Ö»ÓĞ±íÃûÄÇ¸öµØ·½ÊÇÔÊĞíÖ¸¶¨±ğÃûµÄ
+		// åªæœ‰è¡¨åé‚£ä¸ªåœ°æ–¹æ˜¯å…è®¸æŒ‡å®šåˆ«åçš„
 		if (tableName != null) {
 			tableName.appendAliasToSQLMap(map);
 		}

@@ -12,7 +12,7 @@ public abstract class OneArgFunction implements Function{
 	protected Object arg1;
 	public void setValue(List<Object> values) {
 		if(values.size()!=1){
-			throw new IllegalArgumentException("²ÎÊı²»ÎªÒ»¸ö");
+			throw new IllegalArgumentException("å‚æ•°ä¸ä¸ºä¸€ä¸ª");
 		}
 		arg1=values.get(0);
 	}

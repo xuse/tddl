@@ -19,7 +19,7 @@ public class MaxWrapper extends PageWrapperCommon{
 		}else if(limitTo instanceof Integer){
 			obj=(Integer)limitTo;
 		}else{
-			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 		}
 		modifiedMap.put(index,obj);
 	}

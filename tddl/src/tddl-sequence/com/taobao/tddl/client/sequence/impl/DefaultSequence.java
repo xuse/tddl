@@ -9,7 +9,7 @@ import com.taobao.tddl.client.sequence.SequenceRange;
 import com.taobao.tddl.client.sequence.exception.SequenceException;
 
 /**
- * 序列默认实现
+ * 搴忓垪榛樿瀹炵幇
  *
  * @author shenxun
  */
@@ -19,7 +19,7 @@ public class DefaultSequence implements Sequence {
 	private SequenceDao sequenceDao;
 
 	/**
-	 * 序列名称
+	 * 搴忓垪鍚嶇О
 	 */
 	private String name;
 

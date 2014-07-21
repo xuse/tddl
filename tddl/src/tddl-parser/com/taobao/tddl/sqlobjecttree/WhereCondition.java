@@ -11,7 +11,7 @@ import com.taobao.tddl.sqlobjecttree.common.expression.ExpressionGroup;
 import com.taobao.tddl.sqlobjecttree.common.expression.OrExpressionGroup;
 
 /**
- * whereÓï¾äµÄÌõ¼ş
+ * whereè¯­å¥çš„æ¡ä»¶
  * 
  * @author shenxun
  * 
@@ -42,7 +42,7 @@ public  class WhereCondition implements SQLFragment{
 	}
 	
 	/**
-	 * Çå¿ÕwhereCondition
+	 * æ¸…ç©ºwhereCondition
 	 */
 	public void clear() {
 		expGroup = null;

@@ -8,7 +8,7 @@ import com.taobao.tddl.client.jdbc.executeplan.ExecutionPlan;
 import com.taobao.tddl.client.jdbc.sqlexecutor.RealSqlExecutor;
 
 /**
- * µ÷ÓÃrs.nextÓÀÔ¶·µ»ØfalseµÄ¿Õ½á¹û¼¯¡£ Ö÷ÒªÓÃÓÚÒ»Ğ©ÌØÊâµÄÇé¿ö
+ * è°ƒç”¨rs.nextæ°¸è¿œè¿”å›falseçš„ç©ºç»“æœé›†ã€‚ ä¸»è¦ç”¨äºä¸€äº›ç‰¹æ®Šçš„æƒ…å†µ
  * 
  * @author shenxun
  * @author junyu

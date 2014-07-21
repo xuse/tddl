@@ -73,7 +73,7 @@ public class LongPartDiscontinousRangeEnumerator extends NumberPartDiscontinousR
 		if (atomicIncreationValue == null) {
 			atomicIncreationValue = DEFAULT_LONG_ATOMIC_VALUE;
 		}
-		//��> < �滻Ϊ>= <=
+		//把> < 替换为>= <=
 		begin = changeGreater2GreaterOrEq(begin);
 		begin = changeLess2LessOrEq(begin);
 

@@ -15,30 +15,30 @@ import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.JoinCondition;
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.RuleRouteCondition;
 
 /**
- * @description Õâ¸öhandlerÖ÷ÒªÊÇ¸ù¾İRouteConditionÉú³Ésql½âÎö½á¹û,
- *              ¹¦ÄÜÓëSqlParserHandlerÆ½ĞĞ,µ«ÓëÆä²»Í¬µÄÊÇ,Õâ¸öhandler
- *              Ö»ÊÇÄ£ÄâÁËÏÂSqlParserµÄĞĞÎª,Æä½âÎö³öÀ´µÄ·Ö¿â·Ö±í×Ö¶Î
- *              ÒÔ¼°ÆäËûÊôĞÔ(²Î¼ûSimpleCondition¼°Æä×ÓÀà)ÊÇÓÃ»§ÊÖ¶¯ Ö¸¶¨,¶ø²»ÊÇ¸ù¾İsql½âÎöµÃ³ö.
+ * @description è¿™ä¸ªhandlerä¸»è¦æ˜¯æ ¹æ®RouteConditionç”Ÿæˆsqlè§£æç»“æœ,
+ *              åŠŸèƒ½ä¸SqlParserHandlerå¹³è¡Œ,ä½†ä¸å…¶ä¸åŒçš„æ˜¯,è¿™ä¸ªhandler
+ *              åªæ˜¯æ¨¡æ‹Ÿäº†ä¸‹SqlParserçš„è¡Œä¸º,å…¶è§£æå‡ºæ¥çš„åˆ†åº“åˆ†è¡¨å­—æ®µ
+ *              ä»¥åŠå…¶ä»–å±æ€§(å‚è§SimpleConditionåŠå…¶å­ç±»)æ˜¯ç”¨æˆ·æ‰‹åŠ¨ æŒ‡å®š,è€Œä¸æ˜¯æ ¹æ®sqlè§£æå¾—å‡º.
  * 
- *              ÓÃ»§Ö¸¶¨·Ö¿â·Ö±í×Ö¶Î¿ÉÒÔÊµÀı»°Ò»¸öSimpleCondition,²¢ÇÒ
- *              Éè¶¨ÏàÓ¦ÊôĞÔ,×îÖÕ½«ÊµÀı·ÅÈëThreadLocalMap¼´¿É(Ïê¼ûÊ¾Àı).
+ *              ç”¨æˆ·æŒ‡å®šåˆ†åº“åˆ†è¡¨å­—æ®µå¯ä»¥å®ä¾‹è¯ä¸€ä¸ªSimpleCondition,å¹¶ä¸”
+ *              è®¾å®šç›¸åº”å±æ€§,æœ€ç»ˆå°†å®ä¾‹æ”¾å…¥ThreadLocalMapå³å¯(è¯¦è§ç¤ºä¾‹).
  * 
- *              ÕâÑù¿ÉÒÔ´ïµ½µÄÒ»ÖÖĞ§¹û¾ÍÊÇsqlÖĞ²»ĞèÒª¼ÓÈë·Ö¿â·Ö±í×Ö¶Î,¼´¿É
- *              ½øĞĞ·Ö¿â·Ö±í,µ«ÊÇThreadLocalMapºÜÈİÒ×±»¸ÉÈÅ(ÒòÎªÃ¿´ÎÖ´ĞĞºó
- *              ¼´±»Çåµô,ËùÒÔÈç¹ûÔÚÕıÊ½sqlÇ°Ö´ĞĞÒ»Ìõ²»Ïà¹ØµÄsql,µ¼ÖÂÕıÊ½
- *              Ö´ĞĞsqlÊ±,SimpleConditionÒÑ¾­±»Çå³ı´Ó¶ø³ö´í),ËùÒÔ²»ÍÆ¼öÕâÃ´ Ê¹ÓÃ.
+ *              è¿™æ ·å¯ä»¥è¾¾åˆ°çš„ä¸€ç§æ•ˆæœå°±æ˜¯sqlä¸­ä¸éœ€è¦åŠ å…¥åˆ†åº“åˆ†è¡¨å­—æ®µ,å³å¯
+ *              è¿›è¡Œåˆ†åº“åˆ†è¡¨,ä½†æ˜¯ThreadLocalMapå¾ˆå®¹æ˜“è¢«å¹²æ‰°(å› ä¸ºæ¯æ¬¡æ‰§è¡Œå
+ *              å³è¢«æ¸…æ‰,æ‰€ä»¥å¦‚æœåœ¨æ­£å¼sqlå‰æ‰§è¡Œä¸€æ¡ä¸ç›¸å…³çš„sql,å¯¼è‡´æ­£å¼
+ *              æ‰§è¡Œsqlæ—¶,SimpleConditionå·²ç»è¢«æ¸…é™¤ä»è€Œå‡ºé”™),æ‰€ä»¥ä¸æ¨èè¿™ä¹ˆ ä½¿ç”¨.
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.4
  * @since 1.6
- * @date 2010-09-08ÏÂÎç03:33:32
+ * @date 2010-09-08ä¸‹åˆ03:33:32
  */
 public class RouteConditionHandler extends AbstractHandler {
 	public static final String HANDLER_NAME = "RouteConditionHandler";
 	private final Log log = LogFactory.getLog(RouteConditionHandler.class);
 
 	/**
-	 * RouteConditionHandlerÖ»»á¶ÔNOSQLPARSEÀàĞÍµÄÖ´ĞĞ½øĞĞ´¦Àí£¬ÆäÓàÈ«²¿ÂÔ¹ı
+	 * RouteConditionHandleråªä¼šå¯¹NOSQLPARSEç±»å‹çš„æ‰§è¡Œè¿›è¡Œå¤„ç†ï¼Œå…¶ä½™å…¨éƒ¨ç•¥è¿‡
 	 */
 	public void handleDown(DataBus dataBus) throws SQLException {
 		FlowType flowType = getPipeLineRuntimeInfo(dataBus).getFlowType();
@@ -49,7 +49,7 @@ public class RouteConditionHandler extends AbstractHandler {
 	}
 
 	/**
-	 * ½âÎöSQLÈë¿Ú£¬RouteConditionÖ÷ÒªÊÇµÃµ½Ò»¸öSqlParserResult½á¹¹ÒÔ±ã Ö®ºóµÄHandlerÊ¹ÓÃ¡£
+	 * è§£æSQLå…¥å£ï¼ŒRouteConditionä¸»è¦æ˜¯å¾—åˆ°ä¸€ä¸ªSqlParserResultç»“æ„ä»¥ä¾¿ ä¹‹åçš„Handlerä½¿ç”¨ã€‚
 	 * 
 	 * @param dataBus
 	 */
@@ -76,7 +76,7 @@ public class RouteConditionHandler extends AbstractHandler {
 	}
 
 	/**
-	 * ÉèÖÃ½á¹û
+	 * è®¾ç½®ç»“æœ
 	 * 
 	 * @param sqlParserResult
 	 * @param logicTableName

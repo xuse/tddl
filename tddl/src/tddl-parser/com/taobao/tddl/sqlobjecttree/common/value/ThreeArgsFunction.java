@@ -14,7 +14,7 @@ public abstract class ThreeArgsFunction implements Function{
 	protected Object arg3;
 	public void setValue(List<Object> values) {
 		if(values.size()!=3){
-			throw new IllegalArgumentException("²ÎÊıÉÙÓÚÈı¸ö");
+			throw new IllegalArgumentException("å‚æ•°å°‘äºä¸‰ä¸ª");
 		}
 		arg1=values.get(0);
 		arg2=values.get(1);
@@ -32,14 +32,14 @@ public abstract class ThreeArgsFunction implements Function{
 			if(ret==null){
 				ret=((Column)arg2).getColumn();
 			}else{
-				throw new IllegalArgumentException("Èı²ÎÊıº¯ÊıÖĞ²»ÄÜ³öÏÖ¶à¸öÁĞÃûµÄº¯Êı");
+				throw new IllegalArgumentException("ä¸‰å‚æ•°å‡½æ•°ä¸­ä¸èƒ½å‡ºç°å¤šä¸ªåˆ—åçš„å‡½æ•°");
 			}
 		}
 		if(arg3 instanceof Column){
 			if(ret==null){
 				ret=((Column)arg3).getColumn();
 			}else{
-				throw new IllegalArgumentException("Èı²ÎÊıº¯ÊıÖĞ²»ÄÜ³öÏÖ¶à¸öÁĞÃûµÄº¯Êı");
+				throw new IllegalArgumentException("ä¸‰å‚æ•°å‡½æ•°ä¸­ä¸èƒ½å‡ºç°å¤šä¸ªåˆ—åçš„å‡½æ•°");
 			}
 		}
 		return ret;

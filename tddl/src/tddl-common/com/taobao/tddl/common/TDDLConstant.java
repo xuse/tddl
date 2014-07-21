@@ -1,13 +1,13 @@
 //Copyright(c) Taobao.com
 package com.taobao.tddl.common;
 /**
- * @description TDDL整个工程的常量类
+ * @description TDDL鏁翠釜宸ョ▼鐨勫父閲忕被
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-5-23上午09:54:49
+ * @date 2011-5-23涓婂崍09:54:49
  */
 public class TDDLConstant {
-	//初次获取diamond配置超时时间
+	//鍒濇鑾峰彇diamond閰嶇疆瓒呮椂鏃堕棿
     public static final long DIAMOND_GET_DATA_TIMEOUT=10*1000;
 }

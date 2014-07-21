@@ -28,7 +28,7 @@
 //		try {
 //			retString = (String)value;
 //		} catch (ClassCastException e) {
-//			throw new ClassCastException("½Å±¾µÄ·µ»ØÖµ±ØÐëÎªStringÀàÐÍµÄÖµ");
+//			throw new ClassCastException("è„šæœ¬çš„è¿”å›žå€¼å¿…é¡»ä¸ºStringç±»åž‹çš„å€¼");
 //		}
 //		return retString;
 //	}

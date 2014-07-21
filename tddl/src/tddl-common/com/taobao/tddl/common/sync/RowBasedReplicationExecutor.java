@@ -50,14 +50,14 @@ import com.taobao.tddl.interact.rule.bean.DBType;
 public class RowBasedReplicationExecutor {
 	private static long timeoutThreshold = 200;
 	private static final Log log = LogFactory.getLog(RowBasedReplicationExecutor.class);
-	private static final long masterAbsentReserveTime = 72*60*60*1000; //Ö÷¿â¼ÇÂ¼²»´æÔÚµÄÈÕÖ¾£¬ÖÁÉÙ±£ÁôÊ±¼ä£º72Ğ¡Ê±
+	private static final long masterAbsentReserveTime = 72*60*60*1000; //ä¸»åº“è®°å½•ä¸å­˜åœ¨çš„æ—¥å¿—ï¼Œè‡³å°‘ä¿ç•™æ—¶é—´ï¼š72å°æ—¶
 
 	private static final QueryForMapHandler queryForMapHandler = new MetaDataQueryForMapHandler(); 
 
 	static class SqlArgs {
 		public final String sql;
 		public final Object[] args;
-		public final String[] argNames; //Ğ¡Ğ´ÁĞÃû£¨Ò²¿ÉÒÔ²»ÊÇÁĞÃû£¬½ö½öÊÇÒ»¸ö²ÎÊıÃû×Ö£©,Óëargs¶ÔÓ¦
+		public final String[] argNames; //å°å†™åˆ—åï¼ˆä¹Ÿå¯ä»¥ä¸æ˜¯åˆ—åï¼Œä»…ä»…æ˜¯ä¸€ä¸ªå‚æ•°åå­—ï¼‰,ä¸argså¯¹åº”
 
 		public SqlArgs(String sql, Object[] args) {
 			this.sql = sql;
@@ -83,12 +83,12 @@ public class RowBasedReplicationExecutor {
 	}
 
 	/**
-	 * ÊµÊ±ĞĞ¸´ÖÆºÍÊÂºó²¹³¥·şÎñÆ÷¹²ÓÃ¸Ã·½·¨¡£
+	 * å®æ—¶è¡Œå¤åˆ¶å’Œäº‹åè¡¥å¿æœåŠ¡å™¨å…±ç”¨è¯¥æ–¹æ³•ã€‚
 	 * @return 
-	 *   true£ºÊµÊ±ÏÂ£º±íÊ¾¸´ÖÆ³É¹¦£¬²¢ÇÒlog¼ÇÂ¼³É¹¦É¾³ı£»²¹³¥ÏÂ£º±íÊ¾¸´ÖÆ³É¹¦£¬»òÊ§°Ü²¿·Ö²»ÒªÇó±£ÁôÈÕÖ¾¡£¿ÉÒÔÉ¾³ıÈÕÖ¾
-	 *   flase£ºÊµÊ±ÏÂ£º±íÊ¾¸´ÖÆÊ§°Ü¡£log¼ÇÂ¼ÈÔÈ»´æÔÚÈÕÖ¾±íÖĞ£»²¹³¥ÏÂ£ºÒªÇó±£ÁôÈÕÖ¾¼ÇÂ¼
-	 * ÊµÊ±ĞĞ¸´ÖÆµ÷ÓÃ¸Ã·½·¨·µ»Øfalse²»É¾³ıÈÕÖ¾¼ÇÂ¼£¬½»¸ø²¹³¥·şÎñÆ÷´¦Àí
-	 * ²¹³¥·şÎñÆ÷µ÷ÓÃ¸Ã·½·¨·µ»Øfalse£¬¿ÉÊÓÇé¿öÉ¾³ıÈÕÖ¾¼ÇÂ¼
+	 *   trueï¼šå®æ—¶ä¸‹ï¼šè¡¨ç¤ºå¤åˆ¶æˆåŠŸï¼Œå¹¶ä¸”logè®°å½•æˆåŠŸåˆ é™¤ï¼›è¡¥å¿ä¸‹ï¼šè¡¨ç¤ºå¤åˆ¶æˆåŠŸï¼Œæˆ–å¤±è´¥éƒ¨åˆ†ä¸è¦æ±‚ä¿ç•™æ—¥å¿—ã€‚å¯ä»¥åˆ é™¤æ—¥å¿—
+	 *   flaseï¼šå®æ—¶ä¸‹ï¼šè¡¨ç¤ºå¤åˆ¶å¤±è´¥ã€‚logè®°å½•ä»ç„¶å­˜åœ¨æ—¥å¿—è¡¨ä¸­ï¼›è¡¥å¿ä¸‹ï¼šè¦æ±‚ä¿ç•™æ—¥å¿—è®°å½•
+	 * å®æ—¶è¡Œå¤åˆ¶è°ƒç”¨è¯¥æ–¹æ³•è¿”å›falseä¸åˆ é™¤æ—¥å¿—è®°å½•ï¼Œäº¤ç»™è¡¥å¿æœåŠ¡å™¨å¤„ç†
+	 * è¡¥å¿æœåŠ¡å™¨è°ƒç”¨è¯¥æ–¹æ³•è¿”å›falseï¼Œå¯è§†æƒ…å†µåˆ é™¤æ—¥å¿—è®°å½•
 	 */
 	public static boolean execute(RowBasedReplicationContext context, boolean isDeleteSyncLog) {
 		try {
@@ -100,7 +100,7 @@ public class RowBasedReplicationExecutor {
 				isReserveSyncLog[0] = false;
 				long timeConsumingInWritingDatabase = 0;
 				for (SlaveInfo slave : slaves) {
-					//Èç¹ûÒµÎñ×¢ÈëÁËslaveDataHandler£¬ÄÇÃ´ÈÃÆäÖØĞÂÉú³ÉmasterRow
+					//å¦‚æœä¸šåŠ¡æ³¨å…¥äº†slaveDataHandlerï¼Œé‚£ä¹ˆè®©å…¶é‡æ–°ç”ŸæˆmasterRow
 					if(slave.getSlaveDataHandler()!=null){
 						masterRow=slave.getSlaveDataHandler().handle(masterRow, slave);
 					}
@@ -122,17 +122,17 @@ public class RowBasedReplicationExecutor {
 				}
 
 				profile(null, context, timeoutThreshold, timeConsumingInWritingDatabase, "");
-				// É¾³ıÍ¬²½ÈÕÖ¾
+				// åˆ é™¤åŒæ­¥æ—¥å¿—
 				if (isDeleteSyncLog && !isReserveSyncLog[0]) {
 					deleteSyncLog(context);
 				}
-				return !isReserveSyncLog[0]; //·µ»Øfalse±£ÁôÈÕÖ¾£¬trueÉ¾³ıÈÕÖ¾
+				return !isReserveSyncLog[0]; //è¿”å›falseä¿ç•™æ—¥å¿—ï¼Œtrueåˆ é™¤æ—¥å¿—
 			} else {
-				log.warn(messageNotFoundRow("Ö÷¿â¼ÇÂ¼²»´æÔÚ", context));
+				log.warn(messageNotFoundRow("ä¸»åº“è®°å½•ä¸å­˜åœ¨", context));
 				if (new Date().getTime() - context.getCreateTime().getTime() > masterAbsentReserveTime) {
-					//Ö÷¿â¼ÇÂ¼²»´æÔÚ£¬Í¬Ê±ÈÕÖ¾´´½¨Ê±¼äÔÚ72Ğ¡Ê±Ö®Ç°£¬Ö±½ÓÉ¾³ı
+					//ä¸»åº“è®°å½•ä¸å­˜åœ¨ï¼ŒåŒæ—¶æ—¥å¿—åˆ›å»ºæ—¶é—´åœ¨72å°æ—¶ä¹‹å‰ï¼Œç›´æ¥åˆ é™¤
 					if (isDeleteSyncLog) {
-						//ÆäÊµ¸ù±¾²»»á½øÈëÕâÀï£¬ÊµÊ±ĞĞ¸´ÖÆ²»¿ÉÄÜÑÓ³Ù72Ğ¡Ê±£¬ÎªÁËÂß¼­ÍêÕûĞÔ£¬±£Áô´ËÅĞ¶Ï
+						//å…¶å®æ ¹æœ¬ä¸ä¼šè¿›å…¥è¿™é‡Œï¼Œå®æ—¶è¡Œå¤åˆ¶ä¸å¯èƒ½å»¶è¿Ÿ72å°æ—¶ï¼Œä¸ºäº†é€»è¾‘å®Œæ•´æ€§ï¼Œä¿ç•™æ­¤åˆ¤æ–­
 						deleteSyncLog(context); 
 					}
 					return true;
@@ -150,18 +150,18 @@ public class RowBasedReplicationExecutor {
 		//sql.append("select ").append(masterColumns).append(" from ").append(context.getMasterLogicTableName());
 		StringBuilder whereSql = new StringBuilder("where ").append(context.getPrimaryKeyColumn()).append(" = ?");
 		args.add(context.getPrimaryKeyValue());
-		//ÔÚwhereÌõ¼şÖĞÌí¼Ó·Ö¿â¼ü
+		//åœ¨whereæ¡ä»¶ä¸­æ·»åŠ åˆ†åº“é”®
 		if (context.getMasterDatabaseShardColumn() != null && context.getMasterDatabaseShardValue() != null
 				&& !context.getMasterDatabaseShardColumn().equalsIgnoreCase(context.getPrimaryKeyColumn())) {
-			//µ±Í¬²½ÈÕÖ¾¼ÇÂ¼ÓĞ·Ö¿âĞÅÏ¢£¬²¢ÇÒ·Ö¿âÁĞ²»µÈÓÚÖ÷¼üÁĞÊ±£¬¼ÓÈë·Ö¿âÁĞ²éÑ¯Ìõ¼ş
+			//å½“åŒæ­¥æ—¥å¿—è®°å½•æœ‰åˆ†åº“ä¿¡æ¯ï¼Œå¹¶ä¸”åˆ†åº“åˆ—ä¸ç­‰äºä¸»é”®åˆ—æ—¶ï¼ŒåŠ å…¥åˆ†åº“åˆ—æŸ¥è¯¢æ¡ä»¶
 			whereSql.append(" and ").append(context.getMasterDatabaseShardColumn()).append(" = ?");
 			args.add(context.getMasterDatabaseShardValue());
 		}
-		//ÔÚwhereÌõ¼şÖĞÌí¼Ó·Ö±í¼ü
+		//åœ¨whereæ¡ä»¶ä¸­æ·»åŠ åˆ†è¡¨é”®
 		if (context.getMasterTableShardColumn() != null && context.getMasterTableShardValue() != null
 				&& !context.getMasterTableShardColumn().equalsIgnoreCase(context.getPrimaryKeyColumn())
 				&& !context.getMasterTableShardColumn().equalsIgnoreCase(context.getMasterDatabaseShardColumn())) {
-			//µ±Í¬²½ÈÕÖ¾¼ÇÂ¼ÓĞ·Ö±íĞÅÏ¢£¬²¢ÇÒ·Ö±íÁĞ²»µÈÓÚÖ÷¼üÁĞºÍ·Ö¿âÁĞÊ±£¬¼ÓÈë·Ö±íÁĞ²éÑ¯Ìõ¼ş
+			//å½“åŒæ­¥æ—¥å¿—è®°å½•æœ‰åˆ†è¡¨ä¿¡æ¯ï¼Œå¹¶ä¸”åˆ†è¡¨åˆ—ä¸ç­‰äºä¸»é”®åˆ—å’Œåˆ†åº“åˆ—æ—¶ï¼ŒåŠ å…¥åˆ†è¡¨åˆ—æŸ¥è¯¢æ¡ä»¶
 			whereSql.append(" and ").append(context.getMasterTableShardColumn()).append(" = ?");
 			args.add(context.getMasterTableShardValue());
 		}
@@ -192,18 +192,18 @@ public class RowBasedReplicationExecutor {
 			}
 			return updateSlaveRow(context, masterRow, slave);
 		default:
-			throw new RuntimeException("²»ÆÚÍûµÄSQLÀàĞÍ: " + context.getSqlType());
+			throw new RuntimeException("ä¸æœŸæœ›çš„SQLç±»å‹: " + context.getSqlType());
 		}
 	}
 
 	private static String messageNotFoundRow(String title, RowBasedReplicationContext context) {
 		StringBuilder message = new StringBuilder(title);
-		message.append(", Âß¼­±íÃû: [").append(context.getMasterLogicTableName());
-		message.append("], Ö÷¼ü: [").append(context.getPrimaryKeyColumn()).append(" = ").append(
+		message.append(", é€»è¾‘è¡¨å: [").append(context.getMasterLogicTableName());
+		message.append("], ä¸»é”®: [").append(context.getPrimaryKeyColumn()).append(" = ").append(
 				context.getPrimaryKeyValue());
-		message.append("], ·Ö¿â¼ü: [").append(context.getMasterDatabaseShardColumn()).append(" = ").append(
+		message.append("], åˆ†åº“é”®: [").append(context.getMasterDatabaseShardColumn()).append(" = ").append(
 				context.getMasterDatabaseShardValue());
-		message.append("], ·Ö±í¼ü: [").append(context.getMasterTableShardColumn()).append(" = ").append(
+		message.append("], åˆ†è¡¨é”®: [").append(context.getMasterTableShardColumn()).append(" = ").append(
 				context.getMasterTableShardValue());
 		message.append("]");
 
@@ -211,7 +211,7 @@ public class RowBasedReplicationExecutor {
 	}
 
 	/**
-	 * @param masterRow Ö÷¿âµÄÒ»Ìõ¼ÇÂ¼£¬key£ºÁĞÃû£»value£ºÁĞÖµ
+	 * @param masterRow ä¸»åº“çš„ä¸€æ¡è®°å½•ï¼Œkeyï¼šåˆ—åï¼›valueï¼šåˆ—å€¼
 	 */
 	protected static long insertSlaveRow(RowBasedReplicationContext context, Map<String, Object> masterRow,
 			SlaveInfo slave, boolean throwOnExist) {
@@ -308,14 +308,14 @@ public class RowBasedReplicationExecutor {
 			SlaveInfo slave) {
 		if (slave.isDisableUpdate()) {
 			if (slave.isAutoInsert()) {
-				//ÔÚAutoInsertµÄÇé¿öÏÂ£¬¼´Ê¹update¹Ø±ÕÁË£¬Èç¹û·¢ÏÖ·Ö¿â¼ÇÂ¼²»´æÔÚ£¬Ò²Ö±½Ó²åÈë¡£Êı¾İ×¼±¸ÆÚ¼äÊ¹ÓÃ
-				//Ê¹AutoInsert¿ª¹Ø¶ÀÁ¢ÓÚupdate¿ª¹Ø¡£
+				//åœ¨AutoInsertçš„æƒ…å†µä¸‹ï¼Œå³ä½¿updateå…³é—­äº†ï¼Œå¦‚æœå‘ç°åˆ†åº“è®°å½•ä¸å­˜åœ¨ï¼Œä¹Ÿç›´æ¥æ’å…¥ã€‚æ•°æ®å‡†å¤‡æœŸé—´ä½¿ç”¨
+				//ä½¿AutoInsertå¼€å…³ç‹¬ç«‹äºupdateå¼€å…³ã€‚
 				Map<String, Object> slaveRow = getSlaveRow(context, masterRow, slave);
 				if (slaveRow == null) {
-					// ·Ö¿â¼ÇÂ¼²»´æÔÚ
-					log.warn(messageNotFoundRow(slave.getName()+"·Ö¿â¼ÇÂ¼²»´æÔÚ×Ô¶¯²åÈë", context));
-					//¿¼ÂÇµ½ÊÇ¹Ø±ÕupdateµÄÇé¿ö£¬¹Ê·Ö¿â¼ÇÂ¼²»´æÔÚ×Ô¶¯²åÈë¶ø±¨Ö÷¼ü³åÍ»Ê±£¬µ±×ö³É¹¦¡£
-					//·ñÔòÈô±£ÁôÈÕÖ¾,²¹³¥ÔÙ´Î´¦ÀíÊ±£¬·Ö¿â¼ÇÂ¼ÒÑ´æÔÚ£¬ÓÉÓÚ¹Ø±ÕÁËupdate£¬¼´Ê¹ÕâÊ±Ö÷¿â°æ±¾ĞÂ£¬Ò²ÊÇ²»ÄÜupdateµÄ
+					// åˆ†åº“è®°å½•ä¸å­˜åœ¨
+					log.warn(messageNotFoundRow(slave.getName()+"åˆ†åº“è®°å½•ä¸å­˜åœ¨è‡ªåŠ¨æ’å…¥", context));
+					//è€ƒè™‘åˆ°æ˜¯å…³é—­updateçš„æƒ…å†µï¼Œæ•…åˆ†åº“è®°å½•ä¸å­˜åœ¨è‡ªåŠ¨æ’å…¥è€ŒæŠ¥ä¸»é”®å†²çªæ—¶ï¼Œå½“åšæˆåŠŸã€‚
+					//å¦åˆ™è‹¥ä¿ç•™æ—¥å¿—,è¡¥å¿å†æ¬¡å¤„ç†æ—¶ï¼Œåˆ†åº“è®°å½•å·²å­˜åœ¨ï¼Œç”±äºå…³é—­äº†updateï¼Œå³ä½¿è¿™æ—¶ä¸»åº“ç‰ˆæœ¬æ–°ï¼Œä¹Ÿæ˜¯ä¸èƒ½updateçš„
 					return insertSlaveRow(context, masterRow, slave, false);
 				}
 			}
@@ -328,59 +328,59 @@ public class RowBasedReplicationExecutor {
 		}
 		long beforeUpdateSlaveDBTime = System.currentTimeMillis();
 
-		if(DBType.ORACLE.equals(slave.getDbType())){ //TODO ÕâÀïÓĞ¸ö¼Ù¶¨£ºÖ÷¿â¶¼ÊÇOracle
+		if(DBType.ORACLE.equals(slave.getDbType())){ //TODO è¿™é‡Œæœ‰ä¸ªå‡å®šï¼šä¸»åº“éƒ½æ˜¯Oracle
 		PreparedStatementSetter pss = getPss(context.getMasterLogicTableName(), sqlInfo.args, sqlInfo.argNames);
 		if (slave.getJdbcTemplate().update(sqlInfo.sql, pss) != 0) {
-			Monitor.add(Monitor.KEY1, Monitor.KEY2_SYNC, Monitor.KEY3_UpdateSlaveRow_dup_all, 0, 1); //ÖØ¸´Í¬²½±ÈÂÊ
+			Monitor.add(Monitor.KEY1, Monitor.KEY2_SYNC, Monitor.KEY3_UpdateSlaveRow_dup_all, 0, 1); //é‡å¤åŒæ­¥æ¯”ç‡
 			return System.currentTimeMillis() - beforeUpdateSlaveDBTime;
 		}
-		}else{//MYSQLµÈÆäËûÊı¾İ¿â¡£µ±Ö÷¿âÊÇOracle·Ö¿âÊÇMysqlÊ±£¬ÓÃOracleµÄmetaÉèÖÃ·Ö¿âµÄsetObject3»áÓĞÎÊÌâ
+		}else{//MYSQLç­‰å…¶ä»–æ•°æ®åº“ã€‚å½“ä¸»åº“æ˜¯Oracleåˆ†åº“æ˜¯Mysqlæ—¶ï¼Œç”¨Oracleçš„metaè®¾ç½®åˆ†åº“çš„setObject3ä¼šæœ‰é—®é¢˜
 			if (slave.getJdbcTemplate().update(sqlInfo.sql, sqlInfo.args) != 0) {
-				Monitor.add(Monitor.KEY1, Monitor.KEY2_SYNC, Monitor.KEY3_UpdateSlaveRow_dup_all, 0, 1); //ÖØ¸´Í¬²½±ÈÂÊ
+				Monitor.add(Monitor.KEY1, Monitor.KEY2_SYNC, Monitor.KEY3_UpdateSlaveRow_dup_all, 0, 1); //é‡å¤åŒæ­¥æ¯”ç‡
 				return System.currentTimeMillis() - beforeUpdateSlaveDBTime;
 			}
 		}
 
-		// »ñÈ¡¸Ã·Ö¿â¼ÇÂ¼£¬ÒÔ±ã»ñÖªÎªÊ²Ã´»á¸üĞÂ²»³É¹¦
+		// è·å–è¯¥åˆ†åº“è®°å½•ï¼Œä»¥ä¾¿è·çŸ¥ä¸ºä»€ä¹ˆä¼šæ›´æ–°ä¸æˆåŠŸ
 		Map<String, Object> slaveRow = getSlaveRow(context, masterRow, slave);
 		RuntimeException exc = null;
 		if (slaveRow == null) {
-			// ·Ö¿â¼ÇÂ¼²»´æÔÚ
+			// åˆ†åº“è®°å½•ä¸å­˜åœ¨
 			if (slave.isAutoInsert()) {
 				/**
-				 * ÈôÖ÷¼ü³åÍ»ÒªÅ×´í£¨throwOnExist´«true£©£¬ÒÔ±£ÁôÈÕÖ¾¡£·ñÔòupdateÊÂ¼ş½ô½Ó×ÅinsertÊÂ¼ş·¢ÉúµÄÇé¿öÏÂ£¬
-				 * Èç¹ûupdateÏÈ´¦Àí»á×ßµ½ÕâÀï½øĞĞ×Ô¶¯²åÈë£¬ÕâÊ±Èç¹ûinsertÊÂ¼şÇÀÏÈÖ´ĞĞ³É¹¦£¬Ôò×Ô¶¯²åÈë»áÖ÷¼ü³åÍ»£¬
-				 * Õâ¸ö´íÎóÈç¹û²»Å×³öÀ´µÄ»°£¬insertSlaveRow»áµ±×ö³É¹¦£¬É¾³ıÈÕÖ¾¡£´Ó¶ø¸üĞÂ»á¶ªÊ§¡£
+				 * è‹¥ä¸»é”®å†²çªè¦æŠ›é”™ï¼ˆthrowOnExistä¼ trueï¼‰ï¼Œä»¥ä¿ç•™æ—¥å¿—ã€‚å¦åˆ™updateäº‹ä»¶ç´§æ¥ç€insertäº‹ä»¶å‘ç”Ÿçš„æƒ…å†µä¸‹ï¼Œ
+				 * å¦‚æœupdateå…ˆå¤„ç†ä¼šèµ°åˆ°è¿™é‡Œè¿›è¡Œè‡ªåŠ¨æ’å…¥ï¼Œè¿™æ—¶å¦‚æœinsertäº‹ä»¶æŠ¢å…ˆæ‰§è¡ŒæˆåŠŸï¼Œåˆ™è‡ªåŠ¨æ’å…¥ä¼šä¸»é”®å†²çªï¼Œ
+				 * è¿™ä¸ªé”™è¯¯å¦‚æœä¸æŠ›å‡ºæ¥çš„è¯ï¼ŒinsertSlaveRowä¼šå½“åšæˆåŠŸï¼Œåˆ é™¤æ—¥å¿—ã€‚ä»è€Œæ›´æ–°ä¼šä¸¢å¤±ã€‚
 				 */
 				if (log.isInfoEnabled()) {
-					log.info(messageNotFoundRow(slave.getName()+"·Ö¿â¼ÇÂ¼²»´æÔÚ×Ô¶¯²åÈë", context));
+					log.info(messageNotFoundRow(slave.getName()+"åˆ†åº“è®°å½•ä¸å­˜åœ¨è‡ªåŠ¨æ’å…¥", context));
 				}
 				return insertSlaveRow(context, masterRow, slave, true);
 			} else {
-				exc = new RuntimeException(messageNotFoundRow(slave.getName()+"·Ö¿â¼ÇÂ¼²»´æÔÚ", context));
+				exc = new RuntimeException(messageNotFoundRow(slave.getName()+"åˆ†åº“è®°å½•ä¸å­˜åœ¨", context));
 			}
 			profile(exc, context, timeoutThreshold, System.currentTimeMillis() - beforeUpdateSlaveDBTime, slave.getIdentity());
 			throw exc;
 		} else if (slave.isNoSyncVersion()) {
-			//Ã»ÓĞ°æ±¾ºÅ¿É±È½Ï£¬µ±×ö³É¹¦(insert updateË³Ğòµßµ¹£¬update´¥·¢insertÏÈÖ´ĞĞ£¬ÔÚgetSlaveRowÇ°£¬insertÍê³É£¬»á×ßµ½ÕâÀï)
+			//æ²¡æœ‰ç‰ˆæœ¬å·å¯æ¯”è¾ƒï¼Œå½“åšæˆåŠŸ(insert updateé¡ºåºé¢ å€’ï¼Œupdateè§¦å‘insertå…ˆæ‰§è¡Œï¼Œåœ¨getSlaveRowå‰ï¼Œinsertå®Œæˆï¼Œä¼šèµ°åˆ°è¿™é‡Œ)
 			return System.currentTimeMillis()-beforeUpdateSlaveDBTime;
 		} else {
-			// ·Ö¿â¼ÇÂ¼´æÔÚ£¬¿ÉÄÜÒòÎªÖ÷¿â¼ÇÂ¼°æ±¾ºÅ±È·Ö¿â¼ÇÂ¼°æ±¾ºÅ¾É£¬ËùÒÔ¸üĞÂ²»³É¹¦
+			// åˆ†åº“è®°å½•å­˜åœ¨ï¼Œå¯èƒ½å› ä¸ºä¸»åº“è®°å½•ç‰ˆæœ¬å·æ¯”åˆ†åº“è®°å½•ç‰ˆæœ¬å·æ—§ï¼Œæ‰€ä»¥æ›´æ–°ä¸æˆåŠŸ
 			long masterVersion = getSyncVersion(masterRow.get(SyncConstants.SYNC_VERSION_COLUMN_NAME));
 			long slaveVersion = getSyncVersion(slaveRow.get(SyncConstants.SYNC_VERSION_COLUMN_NAME));
 
 			if (slaveVersion >= masterVersion) {
-				// ·Ö¿â¼ÇÂ¼°æ±¾ºÅ´óÓÚµÈÓÚÖ÷¿â¼ÇÂ¼°æ±¾ºÅ£¬·Ö¿â¼ÇÂ¼ÒÑ¾­±»¸üĞÂ£¬Êı¾İÍ¬²½³É¹¦
-				log.warn("·Ö¿â¼ÇÂ¼°æ±¾ºÅ´óÓÚµÈÓÚÖ÷¿â¼ÇÂ¼°æ±¾ºÅ. masterVersion=" + masterVersion + ",slaveVersion=" + slaveVersion
+				// åˆ†åº“è®°å½•ç‰ˆæœ¬å·å¤§äºç­‰äºä¸»åº“è®°å½•ç‰ˆæœ¬å·ï¼Œåˆ†åº“è®°å½•å·²ç»è¢«æ›´æ–°ï¼Œæ•°æ®åŒæ­¥æˆåŠŸ
+				log.warn("åˆ†åº“è®°å½•ç‰ˆæœ¬å·å¤§äºç­‰äºä¸»åº“è®°å½•ç‰ˆæœ¬å·. masterVersion=" + masterVersion + ",slaveVersion=" + slaveVersion
 						+ ",PrimaryKeyValue=" + context.getPrimaryKeyValue());
-				Monitor.add(Monitor.KEY1, Monitor.KEY2_SYNC, Monitor.KEY3_UpdateSlaveRow_dup_all, 1, 1); //ÖØ¸´Í¬²½±ÈÂÊ
+				Monitor.add(Monitor.KEY1, Monitor.KEY2_SYNC, Monitor.KEY3_UpdateSlaveRow_dup_all, 1, 1); //é‡å¤åŒæ­¥æ¯”ç‡
 				return System.currentTimeMillis()-beforeUpdateSlaveDBTime;
 			} else {
-				exc = new RuntimeException("·Ö¿â¼ÇÂ¼°æ±¾ºÅĞ¡ÓÚÖ÷¿â¼ÇÂ¼°æ±¾ºÅ");
+				exc = new RuntimeException("åˆ†åº“è®°å½•ç‰ˆæœ¬å·å°äºä¸»åº“è®°å½•ç‰ˆæœ¬å·");
 				profile(exc, context, timeoutThreshold, System.currentTimeMillis()-beforeUpdateSlaveDBTime, slave.getIdentity());
-				// ·Ö¿â¼ÇÂ¼°æ±¾ºÅĞ¡ÓÚÖ÷¿â¼ÇÂ¼°æ±¾ºÅ£¬µ«ÊÇ¸Õ²ÅÓÖÃ»ÓĞ¸üĞÂ
-				// ¿ÉÄÜµÄÔ­ÒòÊÇ¸üĞÂµÄÊ±ºò¼ÇÂ¼²»´æÔÚ£¬È»ºóÔÚÕâ±ßupdateºó£¬²¢·¢µÄÖ´ĞĞÁËinsert
-				// ²¢ÇÒ²åÈëµÄÊÇÀÏµÄ¼ÇÂ¼£¬ÕâÀï¾ÍÈÏÎªÊı¾İÍ¬²½Ê§°Ü
+				// åˆ†åº“è®°å½•ç‰ˆæœ¬å·å°äºä¸»åº“è®°å½•ç‰ˆæœ¬å·ï¼Œä½†æ˜¯åˆšæ‰åˆæ²¡æœ‰æ›´æ–°
+				// å¯èƒ½çš„åŸå› æ˜¯æ›´æ–°çš„æ—¶å€™è®°å½•ä¸å­˜åœ¨ï¼Œç„¶ååœ¨è¿™è¾¹updateåï¼Œå¹¶å‘çš„æ‰§è¡Œäº†insert
+				// å¹¶ä¸”æ’å…¥çš„æ˜¯è€çš„è®°å½•ï¼Œè¿™é‡Œå°±è®¤ä¸ºæ•°æ®åŒæ­¥å¤±è´¥
 				throw exc;
 			}
 		}
@@ -486,7 +486,7 @@ public class RowBasedReplicationExecutor {
 				sql.append(" and nvl(");
 				break;
 			default:
-				throw new RuntimeException("ÓĞÁËĞÂµÄdbType¶øÕâÀïÃ»ÓĞ¸üĞÂ");
+				throw new RuntimeException("æœ‰äº†æ–°çš„dbTypeè€Œè¿™é‡Œæ²¡æœ‰æ›´æ–°");
 			}
 			sql.append(SyncConstants.SYNC_VERSION_COLUMN_NAME).append(", ?)").append(" < ?");
 			args.add(SyncConstants.SYNC_VERSION_DEFAULT_VALUE);
@@ -504,8 +504,8 @@ public class RowBasedReplicationExecutor {
 		List<Object> args = new ArrayList<Object>();
 
 		//sql.append("select * from ").append(slave.getName());
-		//Ä¿Ç°¶ÔÓÚÒµÎñµÄ·Ö¿âÖ»·µ»Øsync_version¾Í¹»ÓÃÁË
-		//TODO Ä¿Ç°½âÎö²»ÁËselect 1 from auction_id_route; count(1) ËäÈ»¿ÉÒÔ½âÎö£¬µ«ÓïÒå²»Ò»ÖÂ£¬ËùÒÔÔİÊ±»¹ÓÃ*
+		//ç›®å‰å¯¹äºä¸šåŠ¡çš„åˆ†åº“åªè¿”å›sync_versionå°±å¤Ÿç”¨äº†
+		//TODO ç›®å‰è§£æä¸äº†select 1 from auction_id_route; count(1) è™½ç„¶å¯ä»¥è§£æï¼Œä½†è¯­ä¹‰ä¸ä¸€è‡´ï¼Œæ‰€ä»¥æš‚æ—¶è¿˜ç”¨*
 		String selectCols = slave.isNoSyncVersion() ? "1" : SyncConstants.SYNC_VERSION_COLUMN_NAME;
 		sql.append("select ").append(selectCols).append(" from ").append(slave.getName());
 		sql.append(" where ").append(context.getPrimaryKeyColumn()).append(" = ?");
@@ -528,7 +528,7 @@ public class RowBasedReplicationExecutor {
 	}
 
 	/**
-	 * Ö»ÓÃµ½sync_version×Ö¶Î 
+	 * åªç”¨åˆ°sync_versionå­—æ®µ 
 	 */
 	@SuppressWarnings("unchecked")
 	private static Map<String, Object> getSlaveRow(RowBasedReplicationContext context, Map<String, Object> masterRow,
@@ -549,7 +549,7 @@ public class RowBasedReplicationExecutor {
 
 	public static void deleteSyncLog(RowBasedReplicationContext context) {
 		if (context.getSyncLogId() == null) {
-			return; //Ñ¡Ôñ·ÇÍ¬²½²åÈëÈÕÖ¾¿âµÄ²ßÂÔÊ±£¬»áÓĞÕâÖÖÇé¿ö
+			return; //é€‰æ‹©éåŒæ­¥æ’å…¥æ—¥å¿—åº“çš„ç­–ç•¥æ—¶ï¼Œä¼šæœ‰è¿™ç§æƒ…å†µ
 		}
 		StringBuilder sql = new StringBuilder();
 		sql.append("delete from sync_log_").append(SyncUtils.getSyncLogTableSuffix(context.getSyncLogId()));
@@ -563,16 +563,16 @@ public class RowBasedReplicationExecutor {
 	}
 
 	/**
-	 * Ê¹ÓÃÁËjdbcÅúÁ¿¸üĞÂ¹¦ÄÜµÄdelete
+	 * ä½¿ç”¨äº†jdbcæ‰¹é‡æ›´æ–°åŠŸèƒ½çš„delete
 	 */
 	public static void batchDeleteSyncLog(Collection<RowBasedReplicationContext> contexts) {
 		long timeused, time0 = System.currentTimeMillis();
 		String sqlpattern = "delete from sync_log_{0} where id = ?";
 
 		/**
-		 * ½«ËùÓĞRowBasedReplicationContext£¬°´ÈÕÖ¾¿â¡¢Ã¿¸ö¿âÃ¿¸öÈÕÖ¾±í¶ÔÓ¦µÄupdateSql·ÖÀà£¬¹²Á½¼¶
+		 * å°†æ‰€æœ‰RowBasedReplicationContextï¼ŒæŒ‰æ—¥å¿—åº“ã€æ¯ä¸ªåº“æ¯ä¸ªæ—¥å¿—è¡¨å¯¹åº”çš„updateSqlåˆ†ç±»ï¼Œå…±ä¸¤çº§
 		 */
-		Map<JdbcTemplate, Map<String/*¾ßÌålog±íµÄSQL*/, List<RowBasedReplicationContext>>> sortedContexts = 
+		Map<JdbcTemplate, Map<String/*å…·ä½“logè¡¨çš„SQL*/, List<RowBasedReplicationContext>>> sortedContexts = 
 				buildSortedContexts(contexts, sqlpattern.toString());
 
 		for (Map.Entry<JdbcTemplate, Map<String, List<RowBasedReplicationContext>>> e0 : sortedContexts.entrySet()) {
@@ -602,7 +602,7 @@ public class RowBasedReplicationExecutor {
 	private final static int extraListSizePlus = 5;
 	
 	/**
-	 * Ê¹ÓÃÁËjdbcÅúÁ¿¸üĞÂ¹¦ÄÜµÄdelete
+	 * ä½¿ç”¨äº†jdbcæ‰¹é‡æ›´æ–°åŠŸèƒ½çš„delete
 	 */
 	public static void inDeleteSyncLog(Collection<RowBasedReplicationContext> contexts, int onceSize) {
 		onceSize += extraListSizePlus;
@@ -614,9 +614,9 @@ public class RowBasedReplicationExecutor {
 		sqlpattern.append(")");
 
 		/**
-		 * ½«ËùÓĞRowBasedReplicationContext£¬°´ÈÕÖ¾¿â¡¢Ã¿¸ö¿âÃ¿¸öÈÕÖ¾±í¶ÔÓ¦µÄupdateSql·ÖÀà£¬¹²Á½¼¶
+		 * å°†æ‰€æœ‰RowBasedReplicationContextï¼ŒæŒ‰æ—¥å¿—åº“ã€æ¯ä¸ªåº“æ¯ä¸ªæ—¥å¿—è¡¨å¯¹åº”çš„updateSqlåˆ†ç±»ï¼Œå…±ä¸¤çº§
 		 */
-		Map<JdbcTemplate, Map<String/*¾ßÌålog±íµÄSQL*/, List<RowBasedReplicationContext>>> sortedContexts = 
+		Map<JdbcTemplate, Map<String/*å…·ä½“logè¡¨çš„SQL*/, List<RowBasedReplicationContext>>> sortedContexts = 
 				buildSortedContexts(contexts, sqlpattern.toString());
 
 		for (Map.Entry<JdbcTemplate, Map<String, List<RowBasedReplicationContext>>> e0 : sortedContexts.entrySet()) {
@@ -673,17 +673,17 @@ public class RowBasedReplicationExecutor {
 	}
 	
 	/**
-	 *  next_sync_timeÃ¿´ÎÑÓºóµÄÊ±¼ä = next_sync_time - gmt_create
+	 *  next_sync_timeæ¯æ¬¡å»¶åçš„æ—¶é—´ = next_sync_time - gmt_create
 	 *  1. next_sync_time = next_sync_time + (next_sync_time - gmt_create)  
-	 *  2. next_sync_time = µ±Ç°Ê±¼ä + (next_sync_time - gmt_create)         --Êµ¼Ê²ÉÓÃ
-	 *  3. next_sync_time = µ±Ç°Ê±¼ä + (µ±Ç°Ê±¼ä - gmt_create)  
-	 *  2µÄÖ¸Êı¼¶±¶ºóÑÓ
+	 *  2. next_sync_time = å½“å‰æ—¶é—´ + (next_sync_time - gmt_create)         --å®é™…é‡‡ç”¨
+	 *  3. next_sync_time = å½“å‰æ—¶é—´ + (å½“å‰æ—¶é—´ - gmt_create)  
+	 *  2çš„æŒ‡æ•°çº§å€åå»¶
 	 */
 	public static void updateSyncLog(RowBasedReplicationContext context, final long extraPlusTime) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("update sync_log_").append(SyncUtils.getSyncLogTableSuffix(context.getSyncLogId()));
 		sql.append(" set next_sync_time=? where id = ?");
-		//TODO ÑÓ³ÙÊ±¼ä¿ÉÅä 
+		//TODO å»¶è¿Ÿæ—¶é—´å¯é… 
 
 		Object[] params = new Object[] { getNextSyncTime(context, extraPlusTime), context.getSyncLogId() };
 
@@ -694,16 +694,16 @@ public class RowBasedReplicationExecutor {
 	}
 
 	/**
-	 * Ê¹ÓÃÁËjdbcÅúÁ¿¸üĞÂ¹¦ÄÜµÄupdate
+	 * ä½¿ç”¨äº†jdbcæ‰¹é‡æ›´æ–°åŠŸèƒ½çš„update
 	 */
 	public static void batchUpdateSyncLog(Collection<RowBasedReplicationContext> contexts, final long extraPlusTime) {
 		long timeused, time0 = System.currentTimeMillis();
 		String sqlpattern = "update sync_log_{0} set next_sync_time=? where id = ?";
 
 		/**
-		 * ½«ËùÓĞRowBasedReplicationContext£¬°´ÈÕÖ¾¿â¡¢Ã¿¸ö¿âÃ¿¸öÈÕÖ¾±í¶ÔÓ¦µÄupdateSql·ÖÀà£¬¹²Á½¼¶
+		 * å°†æ‰€æœ‰RowBasedReplicationContextï¼ŒæŒ‰æ—¥å¿—åº“ã€æ¯ä¸ªåº“æ¯ä¸ªæ—¥å¿—è¡¨å¯¹åº”çš„updateSqlåˆ†ç±»ï¼Œå…±ä¸¤çº§
 		 */
-		Map<JdbcTemplate, Map<String/*¾ßÌålog±íµÄSQL*/, List<RowBasedReplicationContext>>> sortedContexts = 
+		Map<JdbcTemplate, Map<String/*å…·ä½“logè¡¨çš„SQL*/, List<RowBasedReplicationContext>>> sortedContexts = 
 				buildSortedContexts(contexts, sqlpattern.toString());
 
 		for (Map.Entry<JdbcTemplate, Map<String, List<RowBasedReplicationContext>>> e0 : sortedContexts.entrySet()) {
@@ -742,9 +742,9 @@ public class RowBasedReplicationExecutor {
 		sqlpattern.append(")");
 
 		/**
-		 * ½«ËùÓĞRowBasedReplicationContext£¬°´ÈÕÖ¾¿â¡¢Ã¿¸ö¿âÃ¿¸öÈÕÖ¾±í¶ÔÓ¦µÄupdateSql·ÖÀà£¬¹²Á½¼¶
+		 * å°†æ‰€æœ‰RowBasedReplicationContextï¼ŒæŒ‰æ—¥å¿—åº“ã€æ¯ä¸ªåº“æ¯ä¸ªæ—¥å¿—è¡¨å¯¹åº”çš„updateSqlåˆ†ç±»ï¼Œå…±ä¸¤çº§
 		 */
-		Map<JdbcTemplate, Map<String/*¾ßÌålog±íµÄSQL*/, List<RowBasedReplicationContext>>> sortedContexts = 
+		Map<JdbcTemplate, Map<String/*å…·ä½“logè¡¨çš„SQL*/, List<RowBasedReplicationContext>>> sortedContexts = 
 			buildSortedContexts(contexts, sqlpattern.toString());
 
 		for (Map.Entry<JdbcTemplate, Map<String, List<RowBasedReplicationContext>>> e0 : sortedContexts.entrySet()) {
@@ -767,9 +767,9 @@ public class RowBasedReplicationExecutor {
 		Monitor.add(Monitor.KEY1, Monitor.KEY2_SYNC, Monitor.KEY3_BatchUpdateSyncLog, contexts.size(), timeused);
 	}
 	
-	private static Map<JdbcTemplate, Map<String/*¾ßÌålog±íµÄSQL*/, List<RowBasedReplicationContext>>> buildSortedContexts(
+	private static Map<JdbcTemplate, Map<String/*å…·ä½“logè¡¨çš„SQL*/, List<RowBasedReplicationContext>>> buildSortedContexts(
 			Collection<RowBasedReplicationContext> contexts, String sqlpattern) {
-		Map<JdbcTemplate, Map<String/*¾ßÌålog±íµÄSQL*/, List<RowBasedReplicationContext>>> sortedContexts = new HashMap<JdbcTemplate, Map<String, List<RowBasedReplicationContext>>>();
+		Map<JdbcTemplate, Map<String/*å…·ä½“logè¡¨çš„SQL*/, List<RowBasedReplicationContext>>> sortedContexts = new HashMap<JdbcTemplate, Map<String, List<RowBasedReplicationContext>>>();
 		for (RowBasedReplicationContext context : contexts) {
 			Map<String, List<RowBasedReplicationContext>> sql2contexts = getHashMap(sortedContexts, context.getSyncLogJdbcTemplate());
 			String sql = MessageFormat.format(sqlpattern, SyncUtils.getSyncLogTableSuffix(context.getSyncLogId()));
@@ -809,8 +809,8 @@ public class RowBasedReplicationExecutor {
 	}
 
 	/**
-	 * Èô´«ÈëkeyÒÑ´æÔÚÓÚmapÖĞ£¬Ôò·µ»ØÒÑ´æÔÚÖµ£¬·ñÔòÎªkey´´½¨Ò»¸öĞÂµÄHashMap²¢·µ»Ø
-	 * @return ÓÀ²»Îª¿Õ¡£ÒÑÓĞÖµ»òĞÂ´´½¨²¢ÇÒÒÑ·ÅÈëmÖĞµÄHashMap
+	 * è‹¥ä¼ å…¥keyå·²å­˜åœ¨äºmapä¸­ï¼Œåˆ™è¿”å›å·²å­˜åœ¨å€¼ï¼Œå¦åˆ™ä¸ºkeyåˆ›å»ºä¸€ä¸ªæ–°çš„HashMapå¹¶è¿”å›
+	 * @return æ°¸ä¸ä¸ºç©ºã€‚å·²æœ‰å€¼æˆ–æ–°åˆ›å»ºå¹¶ä¸”å·²æ”¾å…¥mä¸­çš„HashMap
 	 */
 	@SuppressWarnings("unchecked")
 	private static <K, V> V getHashMap(Map<K, V> m, K key) {
@@ -823,8 +823,8 @@ public class RowBasedReplicationExecutor {
 	}
 
 	/**
-	 * Èô´«ÈëkeyÒÑ´æÔÚÓÚmapÖĞ£¬Ôò·µ»ØÒÑ´æÔÚÖµ£¬·ñÔòÎªkey´´½¨Ò»¸öĞÂµÄArrayList²¢·µ»Ø
-	 * @return ÓÀ²»Îª¿Õ¡£ÒÑÓĞÖµ»òĞÂ´´½¨²¢ÇÒÒÑ·ÅÈëmÖĞµÄArrayList
+	 * è‹¥ä¼ å…¥keyå·²å­˜åœ¨äºmapä¸­ï¼Œåˆ™è¿”å›å·²å­˜åœ¨å€¼ï¼Œå¦åˆ™ä¸ºkeyåˆ›å»ºä¸€ä¸ªæ–°çš„ArrayListå¹¶è¿”å›
+	 * @return æ°¸ä¸ä¸ºç©ºã€‚å·²æœ‰å€¼æˆ–æ–°åˆ›å»ºå¹¶ä¸”å·²æ”¾å…¥mä¸­çš„ArrayList
 	 */
 	@SuppressWarnings("unchecked")
 	private static <K, V> V getArrayList(Map<K, V> m, K key) {

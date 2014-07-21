@@ -28,7 +28,7 @@ public class UseNL implements HintSetter {
 
 	public StringBuilder regTableModifiable(Set<String> oraTabName,
 			List<Object> list, StringBuilder sb) {
-		//TODO:重构加入修改index名的方法
+		//TODO:閲嶆瀯鍔犲叆淇敼index鍚嶇殑鏂规硶
 		sb.append("USE_NL").append("(");
 		boolean firstElement=true;
 		for(String str:args){

@@ -33,7 +33,7 @@ public class MySQLDateFuctionMap {
 		Function cls=null;
 		try {
 			if(key==null||key.trim().equals("")){
-				throw new IllegalArgumentException("group function≤ªƒ‹Œ™ø’");
+				throw new IllegalArgumentException("group function‰∏çËÉΩ‰∏∫Á©∫");
 			}
 			cls=funcMap.get(key.toUpperCase()).newInstance();
 		} catch (InstantiationException e) {

@@ -13,27 +13,27 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.apache.log4j.Logger;
 
 /**
- * ´øÄÚ´æ»ã×Ü¹¦ÄÜµÄÈÕÖ¾Êä³ö¹¤¾ßµÄÁíÒ»ÖÖÊµÏÖ, Ê¹ÓÃ SoftReference/WeakReferece ½â¾ö BufferedLogWriter
- * OldGen ÄÚ´æÕ¼ÓÃºÍ FullGCµÄÎÊÌâ¡£ <br />
+ * å¸¦å†…å­˜æ±‡æ€»åŠŸèƒ½çš„æ—¥å¿—è¾“å‡ºå·¥å…·çš„å¦ä¸€ç§å®ç°, ä½¿ç”¨ SoftReference/WeakReferece è§£å†³ BufferedLogWriter
+ * OldGen å†…å­˜å ç”¨å’Œ FullGCçš„é—®é¢˜ã€‚ <br />
  * 
- * Õâ¸ö¹¤¾ßµÄ·çÏÕÊÇ SoftReference µÄÇåÀíÊ±»úÍêÈ«ÓÉ JVM È·¶¨, ÔÚ´ó²¿·ÖÇé¿öÏÂ¶¼²»»á»ØÊÕ SoftReference ³ı·ÇÄÚ´æ²»×ã,
- * ÕâÑù»áÔì³É²»±ØÒªµÄÄÚ´æÕ¼ÓÃ¡£ <br />
+ * è¿™ä¸ªå·¥å…·çš„é£é™©æ˜¯ SoftReference çš„æ¸…ç†æ—¶æœºå®Œå…¨ç”± JVM ç¡®å®š, åœ¨å¤§éƒ¨åˆ†æƒ…å†µä¸‹éƒ½ä¸ä¼šå›æ”¶ SoftReference é™¤éå†…å­˜ä¸è¶³,
+ * è¿™æ ·ä¼šé€ æˆä¸å¿…è¦çš„å†…å­˜å ç”¨ã€‚ <br />
  * 
- * Èç¹ûÊ¹ÓÃ WeakReference µÄ·çÏÕÊÇÆµ·±µÄ minor GC »á»ØÊÕÍ³¼Æ¼ÇÂ¼, Ôì³É´óÁ¿Í³¼Æ¼ÇÂ¼µÄ¶ªÊ§¡£ <br />
+ * å¦‚æœä½¿ç”¨ WeakReference çš„é£é™©æ˜¯é¢‘ç¹çš„ minor GC ä¼šå›æ”¶ç»Ÿè®¡è®°å½•, é€ æˆå¤§é‡ç»Ÿè®¡è®°å½•çš„ä¸¢å¤±ã€‚ <br />
  * 
- * Òò´Ë½¨ÒéµÄÊ¹ÓÃ·½·¨ÊÇ£º
+ * å› æ­¤å»ºè®®çš„ä½¿ç”¨æ–¹æ³•æ˜¯ï¼š
  * 
  * <pre>
- * // ´´½¨ counter ¶ÔÏó, ²¢ÇÒ±£´æÔÚÄÚ´æ
+ * // åˆ›å»º counter å¯¹è±¡, å¹¶ä¸”ä¿å­˜åœ¨å†…å­˜
  * LogCounter counter = SoftRefLogWriter.getCounter(
- *     new Object[] { key1, key2, key3, ... });  // Í³¼ÆµÄÄ¿±ê 
+ *     new Object[] { key1, key2, key3, ... });  // ç»Ÿè®¡çš„ç›®æ ‡ 
  * 
- * // ´´½¨ counter ¶ÔÏó, ²¢ÇÒ±£´æÔÚÄÚ´æ
+ * // åˆ›å»º counter å¯¹è±¡, å¹¶ä¸”ä¿å­˜åœ¨å†…å­˜
  * LogCounter counter = SoftRefLogWriter.getCounter(
- *     new Object[] { key1, key2, key3, ... },   // Í³¼ÆµÄÄ¿±ê 
- *     new Object[] { obj1, obj2, obj3, ... });  // ¸½¼ÓµÄ¶ÔÏó
+ *     new Object[] { key1, key2, key3, ... },   // ç»Ÿè®¡çš„ç›®æ ‡ 
+ *     new Object[] { obj1, obj2, obj3, ... });  // é™„åŠ çš„å¯¹è±¡
  * 
- * counter.stat(count, value);  // Êä³öÍ³¼ÆÖµ
+ * counter.stat(count, value);  // è¾“å‡ºç»Ÿè®¡å€¼
  * </pre>
  * 
  * @author changyuan.lh
@@ -42,7 +42,7 @@ public class SoftRefLogWriter extends AbstractStatLogWriter {
 
 	protected static final Logger logger = Logger.getLogger(BufferedLogWriter.class);
 
-	protected volatile int flushInterval = 300; // µ¥Î»Ãë¡£Ä¬ÈÏ 5 ·ÖÖÓÈ«Á¿Ë¢³öÒ»´Î
+	protected volatile int flushInterval = 300; // å•ä½ç§’ã€‚é»˜è®¤ 5 åˆ†é’Ÿå…¨é‡åˆ·å‡ºä¸€æ¬¡
 
 	protected volatile boolean softRef = true;
 
@@ -122,7 +122,7 @@ public class SoftRefLogWriter extends AbstractStatLogWriter {
 	}
 
 	/**
-	 * ´´½¨¼ÇÂ¼¶ÔÏóµÄ SoftReference/WeakReference.
+	 * åˆ›å»ºè®°å½•å¯¹è±¡çš„ SoftReference/WeakReference.
 	 */
 	protected final Reference<LogCounter> createLogRef(LogKey logKey,
 			LogCounter counter) {
@@ -131,7 +131,7 @@ public class SoftRefLogWriter extends AbstractStatLogWriter {
 	}
 
 	/**
-	 * ÇåÀíÒÑ¾­»ØÊÕµÄ¶ÔÏóÕ¼¾İµÄ map entry.
+	 * æ¸…ç†å·²ç»å›æ”¶çš„å¯¹è±¡å æ®çš„ map entry.
 	 */
 	protected final void expungeLogRef() {
 		final long expungeMillis = System.currentTimeMillis();
@@ -154,7 +154,7 @@ public class SoftRefLogWriter extends AbstractStatLogWriter {
 	}
 
 	/**
-	 * ´´½¨Ò»¸ö¼ÇÂ¼¶ÔÏó, »òÕß·µ»Ø»º´æÖĞÒÑÓĞµÄ¼ÇÂ¼¡£
+	 * åˆ›å»ºä¸€ä¸ªè®°å½•å¯¹è±¡, æˆ–è€…è¿”å›ç¼“å­˜ä¸­å·²æœ‰çš„è®°å½•ã€‚
 	 */
 	public LogCounter getCounter(Object[] keys, Object[] fields) {
 		ConcurrentHashMap<LogKey, Reference<LogCounter>> map = this.map;
@@ -181,11 +181,11 @@ public class SoftRefLogWriter extends AbstractStatLogWriter {
 	}
 
 	/**
-	 * ÔÚÄÚ´æÖĞ»ã×ÜÍ³¼ÆĞÅÏ¢¡£
+	 * åœ¨å†…å­˜ä¸­æ±‡æ€»ç»Ÿè®¡ä¿¡æ¯ã€‚
 	 */
 	public void write(Object[] keys, Object[] fields, long... values) {
 		if (values.length != 2) {
-			// XXX: ÕâÀïÏŞÖÆ BufferedLogWriter Ö»½ÓÊÜ count + value µÄÊäÈë
+			// XXX: è¿™é‡Œé™åˆ¶ BufferedLogWriter åªæ¥å— count + value çš„è¾“å…¥
 			throw new IllegalArgumentException("Only support 2 values!");
 		}
 		ConcurrentHashMap<LogKey, Reference<LogCounter>> map = this.map;
@@ -244,7 +244,7 @@ public class SoftRefLogWriter extends AbstractStatLogWriter {
 		TimerTask cancelTask = this.flushTask;
 		this.flushTask = new TimerTask() {
 			public void run() {
-				// XXX: ¶¨Ê±Æ÷µÄÖ´ĞĞÓ¦µ±ºÄÊ±·Ç³£¶Ì
+				// XXX: å®šæ—¶å™¨çš„æ‰§è¡Œåº”å½“è€—æ—¶éå¸¸çŸ­
 				flush();
 			}
 		};
@@ -256,13 +256,13 @@ public class SoftRefLogWriter extends AbstractStatLogWriter {
 	}
 
 	/**
-	 * Ë¢³öËùÓĞµÄÈÕÖ¾Í³¼ÆĞÅÏ¢¡£
+	 * åˆ·å‡ºæ‰€æœ‰çš„æ—¥å¿—ç»Ÿè®¡ä¿¡æ¯ã€‚
 	 */
 	protected void flushAll() {
 		final long flushMillis = System.currentTimeMillis();
-		// ÇåÀíÒÑ¾­»ØÊÕµÄ¶ÔÏó
+		// æ¸…ç†å·²ç»å›æ”¶çš„å¯¹è±¡
 		expungeLogRef();
-		// XXX: Êä³öµÄÈÕÖ¾°´ Key ½øĞĞÅÅĞò -- ÏÈÈ¡Ïû
+		// XXX: è¾“å‡ºçš„æ—¥å¿—æŒ‰ Key è¿›è¡Œæ’åº -- å…ˆå–æ¶ˆ
 		// TreeMap<LogKey, Reference<LogCounter>> map = new TreeMap<LogKey,
 		// SoftReference<LogCounter>>(map);
 		ConcurrentHashMap<LogKey, Reference<LogCounter>> map = this.map;

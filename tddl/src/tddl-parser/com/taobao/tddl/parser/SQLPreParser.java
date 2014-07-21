@@ -8,9 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Ê¹ÓÃÔ¼Êø
- * 1. ²»¿¼ÂÇsqlÖĞÒıºÅ×Ö·û´®°üº¬¹Ø¼ü×ÖµÄÇé¿ö¡£¼Ù¶¨sqlÖĞÎŞ×Ö´®¡£¶¼ÓÃprepareStatement¼ÓÎÊºÅ·½Ê½
- * 2. ¶ÔÓÚfromºóÓĞÁ½¸ö±íµÄ£¬°üÀ¨À¨ºÅ·½Ê½µÄÁÙÊ±ÊÓÍ¼£¬Î±±íÖ®Àà£¬¶¼ÒÔµÚÒ»¸ö±íÃûÎª×¼
+ * ä½¿ç”¨çº¦æŸ
+ * 1. ä¸è€ƒè™‘sqlä¸­å¼•å·å­—ç¬¦ä¸²åŒ…å«å…³é”®å­—çš„æƒ…å†µã€‚å‡å®šsqlä¸­æ— å­—ä¸²ã€‚éƒ½ç”¨prepareStatementåŠ é—®å·æ–¹å¼
+ * 2. å¯¹äºfromåæœ‰ä¸¤ä¸ªè¡¨çš„ï¼ŒåŒ…æ‹¬æ‹¬å·æ–¹å¼çš„ä¸´æ—¶è§†å›¾ï¼Œä¼ªè¡¨ä¹‹ç±»ï¼Œéƒ½ä»¥ç¬¬ä¸€ä¸ªè¡¨åä¸ºå‡†
  * 
  * @author linxuan
  *
@@ -25,14 +25,14 @@ public class SQLPreParser {
 	public static String findTableName(String sql0) {
 		if (sql0 == null)
 			return null;
-		sql0 = sql0.trim(); //trim¿ÉÒÔÈ¥µô\\s,°üÀ¨»»ĞĞ·û¡¢ÖÆ±í·ûµÈ
+		sql0 = sql0.trim(); //trimå¯ä»¥å»æ‰\\s,åŒ…æ‹¬æ¢è¡Œç¬¦ã€åˆ¶è¡¨ç¬¦ç­‰
 		if (sql0.length() < 7) {
 			return null;
 		}
 
-		//TODO È¥³ıhint
+		//TODO å»é™¤hint
 		sql0 = sql0.toLowerCase();
-		sql0 = sql0 + " "; //±ãÓÚ´¦Àí
+		sql0 = sql0 + " "; //ä¾¿äºå¤„ç†
 
 		if (sql0.startsWith("update")) {
 			Matcher m = p.matcher(sql0);
@@ -59,7 +59,7 @@ public class SQLPreParser {
 		}
 
 		if (!sql0.startsWith("select")) {
-			return null; //²»ÒÔupdate delete select¿ªÍ·µÄsql
+			return null; //ä¸ä»¥update delete selectå¼€å¤´çš„sql
 		}
 
 		Matcher m = pselect_from.matcher(sql0);

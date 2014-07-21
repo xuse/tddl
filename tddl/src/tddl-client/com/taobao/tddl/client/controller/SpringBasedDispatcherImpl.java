@@ -25,9 +25,9 @@ import com.taobao.tddl.rule.bean.LogicTable;
 import com.taobao.tddl.rule.bean.TDDLRoot;
 
 /**
- * Ö÷Òª¸ºÔğrootÖĞÄÃµ½ĞèÒªµÄĞÅÏ¢¡£È»ºóÓÃmatcher½øĞĞÆ¥Åä¡£
+ * ä¸»è¦è´Ÿè´£rootä¸­æ‹¿åˆ°éœ€è¦çš„ä¿¡æ¯ã€‚ç„¶åç”¨matcherè¿›è¡ŒåŒ¹é…ã€‚
  * 
- * ×îºó·µ»ØĞèÒªµÄ½á¹û
+ * æœ€åè¿”å›éœ€è¦çš„ç»“æœ
  * 
  * @author shenxun
  * 
@@ -36,29 +36,29 @@ public class SpringBasedDispatcherImpl implements SqlDispatcher {
 	static final Log logger = LogFactory
 			.getLog(SpringBasedDispatcherImpl.class);
 	/**
-	 * ĞèÒª×¢ÈëµÄsql ½âÎöÆ÷¶ÔÏó
+	 * éœ€è¦æ³¨å…¥çš„sql è§£æå™¨å¯¹è±¡
 	 */
 	private SQLParser parser = null;
 
 	/**
-	 * TDDLµÄ¸ù½Úµã
+	 * TDDLçš„æ ¹èŠ‚ç‚¹
 	 */
 	TDDLRoot root;
 
 	/**
-	 * ĞÂ¹æÔò¸ù½Úµã
+	 * æ–°è§„åˆ™æ ¹èŠ‚ç‚¹
 	 */
 	VirtualTableRoot vtabroot;
 
 	/**
-	 * Í¨¹ıTDataSource³õÊ¼»¯Ê±×¢ÈëµÄpipelineFactory; Ö÷Òª¹©²âÊÔÊ¹ÓÃ£¬µ±È»Ò²¿ÉÒÔ¶ÀÁ¢Ê¹ÓÃ
+	 * é€šè¿‡TDataSourceåˆå§‹åŒ–æ—¶æ³¨å…¥çš„pipelineFactory; ä¸»è¦ä¾›æµ‹è¯•ä½¿ç”¨ï¼Œå½“ç„¶ä¹Ÿå¯ä»¥ç‹¬ç«‹ä½¿ç”¨
 	 */
 	private PipelineFactory pipelineFactory;
 
 	private Bootstrap bootstrap;
 
 	/**
-	 * ¼æÈİĞÔ·½·¨
+	 * å…¼å®¹æ€§æ–¹æ³•
 	 */
 	public DispatcherResult getDBAndTables(RouteCondition rc) {
 		if (null == bootstrap) {
@@ -67,13 +67,13 @@ public class SpringBasedDispatcherImpl implements SqlDispatcher {
 		try {
 			return bootstrap.bootstrapForGetDBAndTabs(rc, this);
 		} catch (SQLException e) {
-			// Õâ¸ö²½Öè²»Ó¦¸Ã²úÉúÈÎºÎÒì³£
+			// è¿™ä¸ªæ­¥éª¤ä¸åº”è¯¥äº§ç”Ÿä»»ä½•å¼‚å¸¸
 			return null;
 		}
 	}
 
 	/**
-	 * ¼æÈİĞÔ·½·¨
+	 * å…¼å®¹æ€§æ–¹æ³•
 	 */
 	public DispatcherResult getDBAndTables(String sql, List<Object> args) {
 		if (null == bootstrap) {
@@ -82,7 +82,7 @@ public class SpringBasedDispatcherImpl implements SqlDispatcher {
 		try {
 			return bootstrap.bootstrapForGetDBAndTabs(sql, args, this);
 		} catch (SQLException e) {
-			// Õâ¸ö²½Öè²»Ó¦¸Ã²úÉúÈÎºÎÒì³£
+			// è¿™ä¸ªæ­¥éª¤ä¸åº”è¯¥äº§ç”Ÿä»»ä½•å¼‚å¸¸
 			return null;
 		}
 	}
@@ -94,7 +94,7 @@ public class SpringBasedDispatcherImpl implements SqlDispatcher {
 		LogicTable logicTable = root.getLogicTable(StringUtil
 				.toLowerCase(logicTableName));
 		if (logicTable == null) {
-			throw new IllegalArgumentException("Âß¼­±íÃûÎ´ÕÒµ½");
+			throw new IllegalArgumentException("é€»è¾‘è¡¨åæœªæ‰¾åˆ°");
 		}
 		SingleLogicTableName log = new SingleLogicTableName(logicTableName);
 		return new DatabaseAndTablesDispatcherResultImp(
@@ -111,7 +111,7 @@ public class SpringBasedDispatcherImpl implements SqlDispatcher {
 	}
 	
 	/**
-	 * ÎŞÂß¼­µÄgetter/setter
+	 * æ— é€»è¾‘çš„getter/setter
 	 */
 	public SQLParser getParser() {
 		return parser;

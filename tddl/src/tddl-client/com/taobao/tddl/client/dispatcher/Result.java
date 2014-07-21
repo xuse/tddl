@@ -17,43 +17,43 @@ import com.taobao.tddl.sqlobjecttree.GroupFunctionType;
  */
 public interface Result {
 	/**
-	 * »ñÈ¡ĞéÄâ±íÃû
+	 * è·å–è™šæ‹Ÿè¡¨å
 	 * @return
 	 */
 	public LogicTableName getVirtualTableName();
 	
 	/** 
-	 * »ñÈ¡Ä¿±ê¿âºÍÄ¿±ê±íµÄÁĞ±í
-	 * @deprecated ÒÑ¾­·ÏÆú
+	 * è·å–ç›®æ ‡åº“å’Œç›®æ ‡è¡¨çš„åˆ—è¡¨
+	 * @deprecated å·²ç»åºŸå¼ƒ
 	 */
 	public List<TargetDB> getTarget();
 	
 	/**
-	 * »ñÈ¡Ä¿±ê¿âºÍÄ¿±ê±íµÄĞÂ·½·¨
+	 * è·å–ç›®æ ‡åº“å’Œç›®æ ‡è¡¨çš„æ–°æ–¹æ³•
 	 * @return
 	 */
 	public List<DatabaseExecutionContext> getDataBaseExecutionContexts();
 	
 	/**
-	 * »ñÈ¡µ±Ç°sqlµÄselect | columns | from
-	 * ÖĞcolumnsµÄÀàĞÍ
-	 * Èç¹ûÎªmax min countµÈ£¬ÄÇÃ´ÀàĞÍ»áÓĞÏàÓ¦±ä»¯
-	 * Í¬Ê±Èç¹ûgroup functionºÍÆäËûÁĞÃû×Ö¶Î»ìÓÃ£¬ÔòÕâÀï»á·µ»ØNORMAL
+	 * è·å–å½“å‰sqlçš„select | columns | from
+	 * ä¸­columnsçš„ç±»å‹
+	 * å¦‚æœä¸ºmax min countç­‰ï¼Œé‚£ä¹ˆç±»å‹ä¼šæœ‰ç›¸åº”å˜åŒ–
+	 * åŒæ—¶å¦‚æœgroup functionå’Œå…¶ä»–åˆ—åå­—æ®µæ··ç”¨ï¼Œåˆ™è¿™é‡Œä¼šè¿”å›NORMAL
 	 * @return
 	 */
 	public GroupFunctionType getGroupFunctionType();
 	
 	/**
-	 * »ñÈ¡maxÖµ
+	 * è·å–maxå€¼
 	 * 
-	 * @return maxÖµ£¬¶ÔÓ¦oracleÀïÃærownum<= ? »òÕßrownum < ? .mysql¶ÔÓ¦Limint m,nÀïÃæµÄm+n£¬Ä¬ÈÏÖµÊÇ{@link DMLCommon.DEFAULT_SKIP_MAX}
+	 * @return maxå€¼ï¼Œå¯¹åº”oracleé‡Œé¢rownum<= ? æˆ–è€…rownum < ? .mysqlå¯¹åº”Limint m,né‡Œé¢çš„m+nï¼Œé»˜è®¤å€¼æ˜¯{@link DMLCommon.DEFAULT_SKIP_MAX}
 	 */
 	public int getMax();
 
 	/**
-	 * »ñÈ¡skipÖµ¡£
+	 * è·å–skipå€¼ã€‚
 	 * 
-	 * return skipÖµ£¬¶ÔÓ¦oracleÀïÃærownum>= ? »òÕßrownum > ? .mysql¶ÔÓ¦Limint m,nÀïÃæµÄm£¬Ä¬ÈÏÖµÊÇ{@link DMLCommon.DEFAULT_SKIP_MAX}
+	 * return skipå€¼ï¼Œå¯¹åº”oracleé‡Œé¢rownum>= ? æˆ–è€…rownum > ? .mysqlå¯¹åº”Limint m,né‡Œé¢çš„mï¼Œé»˜è®¤å€¼æ˜¯{@link DMLCommon.DEFAULT_SKIP_MAX}
 	 * 
 	 */
 	public int getSkip();

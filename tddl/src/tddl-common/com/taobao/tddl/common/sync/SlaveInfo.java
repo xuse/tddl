@@ -25,24 +25,24 @@ import com.taobao.tddl.interact.rule.bean.DBType;
  *	</slaves>
  * </master>
  * 
- * setterÖĞ±£Ö¤databaseShardColumn¡¢tableShardColumn¡¢name¡¢type¡¢columns¶¼ÎªĞ¡Ğ´
+ * setterä¸­ä¿è¯databaseShardColumnã€tableShardColumnã€nameã€typeã€columnséƒ½ä¸ºå°å†™
  * 
  */
 public class SlaveInfo {
-	private String name; // ±¸¿âÂß¼­±íÃû£¬Setter·½·¨±£Ö¤ÁËĞ¡Ğ´
-	private DBType dbType; // ±¸¿âÊı¾İ¿âÀàĞÍ£ºoracle/mysql£¨SyncConstants.DATABASE_TYPE_MYSQL/DATABASE_TYPE_ORACLE£©
-	private String databaseShardColumn; // ±¸¿â·Ö¿âĞ¡Ğ´ÁĞÃû£¬Setter·½·¨±£Ö¤ÁËĞ¡Ğ´
-	private String tableShardColumn; // ±¸¿â·Ö±íĞ¡Ğ´ÁĞÃû£¬Setter·½·¨±£Ö¤ÁËĞ¡Ğ´
-	private String[] columns; // ĞèÒª¸´ÖÆµÄÁĞµÄĞ¡Ğ´ÁĞÃû£¬È±Ê¡ÎªÖ÷¿âµÄÈ«²¿ÁĞ£»Setter·½·¨±£Ö¤ÁËĞ¡Ğ´
-	private JdbcTemplate jdbcTemplate; // ±¸¿âTDataSource¶ÔÓ¦µÄJdbcTemplate£¬¸ù¾İdataSourceNameÊÖ¹¤ÉèÈë
+	private String name; // å¤‡åº“é€»è¾‘è¡¨åï¼ŒSetteræ–¹æ³•ä¿è¯äº†å°å†™
+	private DBType dbType; // å¤‡åº“æ•°æ®åº“ç±»å‹ï¼šoracle/mysqlï¼ˆSyncConstants.DATABASE_TYPE_MYSQL/DATABASE_TYPE_ORACLEï¼‰
+	private String databaseShardColumn; // å¤‡åº“åˆ†åº“å°å†™åˆ—åï¼ŒSetteræ–¹æ³•ä¿è¯äº†å°å†™
+	private String tableShardColumn; // å¤‡åº“åˆ†è¡¨å°å†™åˆ—åï¼ŒSetteræ–¹æ³•ä¿è¯äº†å°å†™
+	private String[] columns; // éœ€è¦å¤åˆ¶çš„åˆ—çš„å°å†™åˆ—åï¼Œç¼ºçœä¸ºä¸»åº“çš„å…¨éƒ¨åˆ—ï¼›Setteræ–¹æ³•ä¿è¯äº†å°å†™
+	private JdbcTemplate jdbcTemplate; // å¤‡åº“TDataSourceå¯¹åº”çš„JdbcTemplateï¼Œæ ¹æ®dataSourceNameæ‰‹å·¥è®¾å…¥
 	/**
-	 * ±¸¿âTDataSourceÃû³Æ
-	 * 2.4.1Ö®ºóSlaveInfoµÄ DataSourceNameÊôĞÔ±ØĞëÉèÖÃ
-	 * ¸´ÖÆÅäÖÃÍÆËÍµÄ·½Ê½ÏÂ£¬²»Ä¬ÈÏ¸´ÖÆµ½·Ö¿âÊ±£¬ÓÃÀ´Ö¸¶¨Ö÷TDSÖĞµÄdbIndex£¬ÒÔ¸´ÖÆµ½¶ÔÓ¦µÄÊı¾İ¿âÖĞ
+	 * å¤‡åº“TDataSourceåç§°
+	 * 2.4.1ä¹‹åSlaveInfoçš„ DataSourceNameå±æ€§å¿…é¡»è®¾ç½®
+	 * å¤åˆ¶é…ç½®æ¨é€çš„æ–¹å¼ä¸‹ï¼Œä¸é»˜è®¤å¤åˆ¶åˆ°åˆ†åº“æ—¶ï¼Œç”¨æ¥æŒ‡å®šä¸»TDSä¸­çš„dbIndexï¼Œä»¥å¤åˆ¶åˆ°å¯¹åº”çš„æ•°æ®åº“ä¸­
 	 */
 	private String dataSourceName;
-	private SlaveReplicater slaveReplicater; // Í¬²½(¸´ÖÆ)Ä¿±ê²»ÊÇÊı¾İ¿âµÄÇé¿ö£¬ÉèÖÃ¸Ã½Ó¿ÚÊµÏÖ¶¨ÖÆ¹¦ÄÜ
-	private String slaveReplicaterName; //slaveReplicaterµÄ¸¸springÖĞµÄbeanId
+	private SlaveReplicater slaveReplicater; // åŒæ­¥(å¤åˆ¶)ç›®æ ‡ä¸æ˜¯æ•°æ®åº“çš„æƒ…å†µï¼Œè®¾ç½®è¯¥æ¥å£å®ç°å®šåˆ¶åŠŸèƒ½
+	private String slaveReplicaterName; //slaveReplicaterçš„çˆ¶springä¸­çš„beanId
     /**
      * application may want do something special
      * thing like change column value,add column
@@ -60,35 +60,35 @@ public class SlaveInfo {
 	private volatile boolean allowSync = true;
 
 	/**
-	 * ÒÔÏÂÊôĞÔ£¬Ä¬ÈÏfalse
+	 * ä»¥ä¸‹å±æ€§ï¼Œé»˜è®¤false
 	 */
-	private boolean isDisableUpdate; // ÊÇ·ñ¹Ø±Õupdate
-	private boolean isDisableInsert; // ÊÇ·ñ¹Ø±Õinsert
-	private boolean isNoSyncVersion; // ÊÇ·ñ²»¹ØĞÄsync_version(Ö÷¿â»ò±¸¿âÃ»ÓĞsync_version×Ö¶ÎµÄÊ±ºòÉèÎªtrue)
+	private boolean isDisableUpdate; // æ˜¯å¦å…³é—­update
+	private boolean isDisableInsert; // æ˜¯å¦å…³é—­insert
+	private boolean isNoSyncVersion; // æ˜¯å¦ä¸å…³å¿ƒsync_version(ä¸»åº“æˆ–å¤‡åº“æ²¡æœ‰sync_versionå­—æ®µçš„æ—¶å€™è®¾ä¸ºtrue)
 	/**
-	 * true ¸üĞÂÊ±£¬ÈôÖ÷¿âÓĞ¼ÇÂ¼¶ø·Ö¿â¼ÇÂ¼²»´æÔÚ£¬×Ô¶¯²åÈë·Ö¿â£¬·µ»Ø³É¹¦ 
-	 * false ¸üĞÂÊ±£¬ÈôÖ÷¿âÓĞ¼ÇÂ¼¶ø·Ö¿â¼ÇÂ¼²»´æÔÚ£¬Å×³öÒì³£¡£ÈÕÖ¾»á±£Áô¡£Ä¬ÈÏfalse
+	 * true æ›´æ–°æ—¶ï¼Œè‹¥ä¸»åº“æœ‰è®°å½•è€Œåˆ†åº“è®°å½•ä¸å­˜åœ¨ï¼Œè‡ªåŠ¨æ’å…¥åˆ†åº“ï¼Œè¿”å›æˆåŠŸ 
+	 * false æ›´æ–°æ—¶ï¼Œè‹¥ä¸»åº“æœ‰è®°å½•è€Œåˆ†åº“è®°å½•ä¸å­˜åœ¨ï¼ŒæŠ›å‡ºå¼‚å¸¸ã€‚æ—¥å¿—ä¼šä¿ç•™ã€‚é»˜è®¤false
 	 */
-	private boolean isAutoInsert; // ¸üĞÂÊ±£¬ÈôÖ÷¿âÓĞ¼ÇÂ¼¶ø·Ö¿â¼ÇÂ¼²»´æÔÚ£¬ÊÇ·ñ×Ô¶¯²åÈë·Ö¿â¡£·ñÔò±¨´í
+	private boolean isAutoInsert; // æ›´æ–°æ—¶ï¼Œè‹¥ä¸»åº“æœ‰è®°å½•è€Œåˆ†åº“è®°å½•ä¸å­˜åœ¨ï¼Œæ˜¯å¦è‡ªåŠ¨æ’å…¥åˆ†åº“ã€‚å¦åˆ™æŠ¥é”™
 
 	/**
-	 * Ä¬ÈÏtrue£º±¾slaveÊ§°ÜÖ±½ÓÖĞ¶Ï£¬²»ÔÙ½øĞĞºóĞøÆäËûslaveµÄ¸´ÖÆ¡£±£ÁôÈÕÖ¾¿â¼ÇÂ¼£¬Áô´ı²¹³¥·şÎñÆ÷ÖØÊÔ£¨ÕâÊ±ºöÂÔisRetryOnFail£©
-	 * Èç¹ûÉèÖÃÎªfalse£¬ÄÇÃ´µ±Ç°slaveÊ§°Ü£¬ºóĞøÆäËûslave»á¼ÌĞø¸´ÖÆ¡£ÊÇ·ñÒªÇó±£ÁôÈÕÖ¾£¬¿´isRetryOnFailÉèÖÃ
+	 * é»˜è®¤trueï¼šæœ¬slaveå¤±è´¥ç›´æ¥ä¸­æ–­ï¼Œä¸å†è¿›è¡Œåç»­å…¶ä»–slaveçš„å¤åˆ¶ã€‚ä¿ç•™æ—¥å¿—åº“è®°å½•ï¼Œç•™å¾…è¡¥å¿æœåŠ¡å™¨é‡è¯•ï¼ˆè¿™æ—¶å¿½ç•¥isRetryOnFailï¼‰
+	 * å¦‚æœè®¾ç½®ä¸ºfalseï¼Œé‚£ä¹ˆå½“å‰slaveå¤±è´¥ï¼Œåç»­å…¶ä»–slaveä¼šç»§ç»­å¤åˆ¶ã€‚æ˜¯å¦è¦æ±‚ä¿ç•™æ—¥å¿—ï¼Œçœ‹isRetryOnFailè®¾ç½®
 	 */
-	private boolean isBreakOnFail = true; //µ±Ç°slaveÄ¿±êÍ¬²½Ê§°Ü£¬ÊÇ·ñÖ±½ÓÖĞ¶Ï£¬²»ÔÙ½øĞĞºóĞøÆäËûslaveµÄ¸´ÖÆ¡£
+	private boolean isBreakOnFail = true; //å½“å‰slaveç›®æ ‡åŒæ­¥å¤±è´¥ï¼Œæ˜¯å¦ç›´æ¥ä¸­æ–­ï¼Œä¸å†è¿›è¡Œåç»­å…¶ä»–slaveçš„å¤åˆ¶ã€‚
 
 	/**
-	 * Ä¬ÈÏtrue£ºµ±Ç°slaveÄ¿±êÍ¬²½Ê§°Üºó£¬±£ÁôÈÕÖ¾¿â¼ÇÂ¼£¬Áô´ı²¹³¥·şÎñÆ÷ÖØÊÔ
-	 * Èç¹ûÉèÖÃÎªfalse£ºÄÇÃ´ÆäËûslave¶¼³É¹¦»òÕß¶¼²»ÒªÇó±£ÁôÈÕÖ¾£¬ÈÕÖ¾¾ÍÖ±½ÓÉ¾³ıÁË¡£ÕâÑù±¾slaveµÄÕâ´Î¸üĞÂ½«»áÓÀÔ¶¶ªÊ§¡£
-	 * Èç¹ûÉèÖÃÎªfalse, µ±ÆäËûslaveÊ§°ÜÇÒÒªÇó±£ÁôÈÕÖ¾Ê±£¬²¹³¥·şÎñÆ÷ÈÔÈ»»áË³´øÖØÊÔ±¾slave
+	 * é»˜è®¤trueï¼šå½“å‰slaveç›®æ ‡åŒæ­¥å¤±è´¥åï¼Œä¿ç•™æ—¥å¿—åº“è®°å½•ï¼Œç•™å¾…è¡¥å¿æœåŠ¡å™¨é‡è¯•
+	 * å¦‚æœè®¾ç½®ä¸ºfalseï¼šé‚£ä¹ˆå…¶ä»–slaveéƒ½æˆåŠŸæˆ–è€…éƒ½ä¸è¦æ±‚ä¿ç•™æ—¥å¿—ï¼Œæ—¥å¿—å°±ç›´æ¥åˆ é™¤äº†ã€‚è¿™æ ·æœ¬slaveçš„è¿™æ¬¡æ›´æ–°å°†ä¼šæ°¸è¿œä¸¢å¤±ã€‚
+	 * å¦‚æœè®¾ç½®ä¸ºfalse, å½“å…¶ä»–slaveå¤±è´¥ä¸”è¦æ±‚ä¿ç•™æ—¥å¿—æ—¶ï¼Œè¡¥å¿æœåŠ¡å™¨ä»ç„¶ä¼šé¡ºå¸¦é‡è¯•æœ¬slave
 	 */
-	private boolean isRetryOnFail = true;//µ±Ç°slaveÄ¿±êÍ¬²½Ê§°Ü£¬ÊÇ·ñÍ¨¹ı²¹³¥·şÎñÆ÷ÖØÊÔ£¨Ò²¼´ÊÇ·ñ±£ÁôÈÕÖ¾¿â¼ÇÂ¼£©
+	private boolean isRetryOnFail = true;//å½“å‰slaveç›®æ ‡åŒæ­¥å¤±è´¥ï¼Œæ˜¯å¦é€šè¿‡è¡¥å¿æœåŠ¡å™¨é‡è¯•ï¼ˆä¹Ÿå³æ˜¯å¦ä¿ç•™æ—¥å¿—åº“è®°å½•ï¼‰
 	
-	private Map<String/*columnName*/,Object/*¸üĞÂµ½nullÊ±×Ô¶¯»»³ÉµÄÄ¬ÈÏÖµ*/> defaultNullValues = Collections.EMPTY_MAP;
-	private Map<String/*columnName*/, Long[]/*0:×îĞ¡Öµ£¬1£º×î´óÖµ*/> columRanges = Collections.EMPTY_MAP;
+	private Map<String/*columnName*/,Object/*æ›´æ–°åˆ°nullæ—¶è‡ªåŠ¨æ¢æˆçš„é»˜è®¤å€¼*/> defaultNullValues = Collections.EMPTY_MAP;
+	private Map<String/*columnName*/, Long[]/*0:æœ€å°å€¼ï¼Œ1ï¼šæœ€å¤§å€¼*/> columRanges = Collections.EMPTY_MAP;
 
 	/**
-     * ²åÈë»ò¸üĞÂnullµ½Ò»¸öÁĞÊ±£¬°´Õâ¸öÅäÖÃ×Ô¶¯×ªÎªÖ¸¶¨µÄÄ¬ÈÏÖµ¡£Êı¾İÀàĞÍÖ»Ö§³ÖÊıÖµlongºÍString,ÀıÈç£º
+     * æ’å…¥æˆ–æ›´æ–°nullåˆ°ä¸€ä¸ªåˆ—æ—¶ï¼ŒæŒ‰è¿™ä¸ªé…ç½®è‡ªåŠ¨è½¬ä¸ºæŒ‡å®šçš„é»˜è®¤å€¼ã€‚æ•°æ®ç±»å‹åªæ”¯æŒæ•°å€¼longå’ŒString,ä¾‹å¦‚ï¼š
 	 * sku_id:0,item_id:65,seller_id:63
 	 * sku_id:0,item_id:65,name:'aaa'
 	 */
@@ -99,16 +99,16 @@ public class SlaveInfo {
 			String col = cols[i];
 			String[] nv = col.split("\\:");
 			if (nv[1].startsWith("'") && nv[1].endsWith("'")) {
-				colvalues.put(nv[0], nv[1].substring(1, nv[1].length() - 1));// ×Ö·û´®
+				colvalues.put(nv[0], nv[1].substring(1, nv[1].length() - 1));// å­—ç¬¦ä¸²
 			} else {
-				colvalues.put(nv[0], Long.parseLong(nv[1]));// Êı×Ö
+				colvalues.put(nv[0], Long.parseLong(nv[1]));// æ•°å­—
 			}
 		}
 		this.defaultNullValues = colvalues;
 	}
 
 	/**
-     * ²åÈë»ò¸üĞÂÊı×Öµ½Ò»¸öÁĞÊ±£¬°´Õâ¸öÅäÖÃÏŞÖÆ·¶Î§£¬³¬¹ı·¶Î§×Ô¶¯×ªÎª±ß½çÖµ¡£Êı¾İÀàĞÍÖ»Ö§³ÖÊıÖµlongºÍString,ÀıÈç£º
+     * æ’å…¥æˆ–æ›´æ–°æ•°å­—åˆ°ä¸€ä¸ªåˆ—æ—¶ï¼ŒæŒ‰è¿™ä¸ªé…ç½®é™åˆ¶èŒƒå›´ï¼Œè¶…è¿‡èŒƒå›´è‡ªåŠ¨è½¬ä¸ºè¾¹ç•Œå€¼ã€‚æ•°æ®ç±»å‹åªæ”¯æŒæ•°å€¼longå’ŒString,ä¾‹å¦‚ï¼š
 	 * sku_id:0_8,item_id:_65,seller_id:0_
 	 */
 	public void setColumRestrictRanges(String defaultValuesOnNull) {
@@ -282,7 +282,7 @@ public class SlaveInfo {
 	}
 
 	/**
-	 * TODO:NO sync version»¹ĞèÒªÄÜ¹»×îÖÕ¾ö¶¨Ö÷¿âÊÇ·ñĞèÒªsync_version.
+	 * TODO:NO sync versionè¿˜éœ€è¦èƒ½å¤Ÿæœ€ç»ˆå†³å®šä¸»åº“æ˜¯å¦éœ€è¦sync_version.
 	 * 
 	 * @return
 	 */

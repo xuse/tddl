@@ -138,7 +138,7 @@ public class MockPreparedStatement extends MockStatement implements PreparedStat
 
 	private void changeParameters(Map<Integer, Object> changedParameters) {
 		for (Map.Entry<Integer, Object> entry : changedParameters.entrySet()) {
-			// ×¢Òâ£ºSQL½âÎöÄÇ±ß°ó¶¨²ÎÊı´Ó0¿ªÊ¼¼ÆÊı£¬Òò´ËĞèÒª¼Ó1¡£
+			// æ³¨æ„ï¼šSQLè§£æé‚£è¾¹ç»‘å®šå‚æ•°ä»0å¼€å§‹è®¡æ•°ï¼Œå› æ­¤éœ€è¦åŠ 1ã€‚
 			ParameterContext context = parameterSettings.get(entry.getKey() + 1);
 			if (context.getParameterMethod() != ParameterMethod.setNull1
 					&& context.getParameterMethod() != ParameterMethod.setNull2) {

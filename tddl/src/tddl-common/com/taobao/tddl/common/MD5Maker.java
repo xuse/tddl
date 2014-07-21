@@ -27,7 +27,7 @@ public class MD5Maker {
 		return md5Maker;
 	}
 	/**
-	 * 将一个字节数组转化为可见的字符串
+	 * 灏嗕竴涓瓧鑺傛暟缁勮浆鍖栦负鍙鐨勫瓧绗︿覆
 	 * 
 	 * @param bt
 	 * @return
@@ -46,7 +46,7 @@ public class MD5Maker {
 	}
 
 	/**
-	 * 对字符串进行md5
+	 * 瀵瑰瓧绗︿覆杩涜md5
 	 * 
 	 * @param str
 	 * @return md5 byte[16]

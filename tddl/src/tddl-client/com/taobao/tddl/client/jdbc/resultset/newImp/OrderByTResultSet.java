@@ -174,8 +174,8 @@ public class OrderByTResultSet extends BaseTResultSet {
 				}
 
 				/*
-				 * 由于TreeSet不允许存在相同的对象，所以利用hashCode把相同的对象区分开
-				 * 如果存在hashCode也相同的2个对象，那他们的顺序是无关紧要的
+				 * 鐢变簬TreeSet涓嶅厑璁稿瓨鍦ㄧ浉鍚岀殑瀵硅薄锛屾墍浠ュ埄鐢╤ashCode鎶婄浉鍚岀殑瀵硅薄鍖哄垎寮�
+				 * 濡傛灉瀛樺湪hashCode涔熺浉鍚岀殑2涓璞★紝閭ｄ粬浠殑椤哄簭鏄棤鍏崇揣瑕佺殑
 				 */
 				return System.identityHashCode(resultSet1) < System
 						.identityHashCode(resultSet2) ? -1 : 1;

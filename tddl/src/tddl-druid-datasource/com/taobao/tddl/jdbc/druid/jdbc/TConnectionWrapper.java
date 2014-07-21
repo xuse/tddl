@@ -196,7 +196,7 @@ public class TConnectionWrapper implements Connection {
 	
 	void removeOpenedStatements(Statement statement) {
         if (!statements.remove(statement)) {
-            log.warn("current statmenet £º" + statement + " doesn't exist!");
+            log.warn("current statmenet ï¼š" + statement + " doesn't exist!");
         }
     }
 

@@ -3,7 +3,7 @@ package com.taobao.tddl.rule.bean;
 import com.taobao.tddl.rule.ruleengine.entities.abstractentities.SharedElement;
 
 /**
- * ±í£¬Ò²¾ÍÊÇ·Ö¿â·Ö±í¹ı³ÌÖĞµÄ×îĞ¡µ¥Î»
+ * è¡¨ï¼Œä¹Ÿå°±æ˜¯åˆ†åº“åˆ†è¡¨è¿‡ç¨‹ä¸­çš„æœ€å°å•ä½
  * 
  * @author shenxun
  *

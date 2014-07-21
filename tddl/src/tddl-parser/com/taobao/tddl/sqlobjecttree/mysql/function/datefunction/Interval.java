@@ -22,7 +22,7 @@ public class Interval implements Function {
 	@Override
 	public void setValue(List<Object> values) {
 		if(values.size()!=2){
-			throw new IllegalArgumentException("²ÎÊıÉÙÓÚÁ½¸ö");
+			throw new IllegalArgumentException("å‚æ•°å°‘äºä¸¤ä¸ª");
 		}
 		expr=values.get(0);
 		dateUnit= values.get(1);
@@ -38,8 +38,8 @@ public class Interval implements Function {
 		sb.append(" INTERVAL ");
 //		Utils.appendSQL(expr, sb);
 		//fixed by mazhidan.pt
-		//ÒòÎªexpr¿ÉÄÜÎª-1»òÕß1ÕâÑùµÄĞÎÊ½£¬ÒÔÇ°µÄ´úÂë£¬Îª-1Ê±£¬·µ»ØµÄÊÇStringBuilder£¬ÄÜÕı³£·µ»Ø
-		//µ±·µ»ØµÄÎª1Ê±£¬ÀàĞÍÎªString£¬ÔòÊ¹ÓÃUtils.appened¡£  Êä³öµÄÊÇ'1'£¬ÓëÔ­ÎÄÒâË¼²»·ûºÏ
+		//å› ä¸ºexprå¯èƒ½ä¸º-1æˆ–è€…1è¿™æ ·çš„å½¢å¼ï¼Œä»¥å‰çš„ä»£ç ï¼Œä¸º-1æ—¶ï¼Œè¿”å›çš„æ˜¯StringBuilderï¼Œèƒ½æ­£å¸¸è¿”å›
+		//å½“è¿”å›çš„ä¸º1æ—¶ï¼Œç±»å‹ä¸ºStringï¼Œåˆ™ä½¿ç”¨Utils.appenedã€‚  è¾“å‡ºçš„æ˜¯'1'ï¼Œä¸åŸæ–‡æ„æ€ä¸ç¬¦åˆ
 		sb.append(expr.toString());
 		Utils.appendSQL(dateUnit,sb);
 	}

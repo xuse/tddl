@@ -3,7 +3,7 @@ package com.taobao.tddl.rule.ruleengine.impl;
 import java.util.Calendar;
 
 /**
- * month of year ´¦ÀíÆ÷
+ * month of year å¤„ç†å™¨
  * @author shenxun
  *
  */

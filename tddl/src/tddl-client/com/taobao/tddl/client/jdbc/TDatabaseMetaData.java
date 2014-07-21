@@ -433,8 +433,8 @@ public class TDatabaseMetaData implements DatabaseMetaData {
 	}
 
 	/**
-	 * Spring JdbcTemplateµÄbatchUpdateµÈ·½·¨»áµ÷ÓÃÕâ¸öÅĞ¶Ï£¬
-	 * ²¢ÇÒoracleºÍmysql¶¼Ö§³Ö£¨supportBatchUpdates·µ»Øtrue£©
+	 * Spring JdbcTemplateçš„batchUpdateç­‰æ–¹æ³•ä¼šè°ƒç”¨è¿™ä¸ªåˆ¤æ–­ï¼Œ
+	 * å¹¶ä¸”oracleå’Œmysqléƒ½æ”¯æŒï¼ˆsupportBatchUpdatesè¿”å›trueï¼‰
 	 */
 	public boolean supportsBatchUpdates() throws SQLException {
 		return true;

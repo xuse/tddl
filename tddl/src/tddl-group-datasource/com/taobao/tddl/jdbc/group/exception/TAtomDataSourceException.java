@@ -1,6 +1,6 @@
 package com.taobao.tddl.jdbc.group.exception;
 
-//jdk1.5 java.sql.SQLExceptionÃ»ÓÐ´øThrowable causeµÄ¹¹Ôìº¯Êý
+//jdk1.5 java.sql.SQLExceptionæ²¡æœ‰å¸¦Throwable causeçš„æž„é€ å‡½æ•°
 //public class TAtomDataSourceException extends java.sql.SQLException {
 
 /**

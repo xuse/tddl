@@ -17,13 +17,13 @@
 //
 ///*
 // * @author guangxia
-// * @since 1.0, 2010-2-8 ÏÂÎç04:18:39
+// * @since 1.0, 2010-2-8 ä¸‹åˆ04:18:39
 // */
 //public class StatMonitorSingleHash implements StatMonitorMBean {
 //	
 //	private static final Log logger = LogFactory.getLog(StatMonitorSingleHash.class);
 //	
-//	//µ¥Î»ÊÇºÁÃë
+//	//å•ä½æ˜¯æ¯«ç§’
 //    private volatile long statInterval = 5 * 60 * 1000;
 //    private Set<String> blackList = new HashSet<String>(0);
 //    private int limit = 1000;

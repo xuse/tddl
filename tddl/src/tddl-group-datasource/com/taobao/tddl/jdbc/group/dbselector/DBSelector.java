@@ -13,9 +13,9 @@ import com.taobao.tddl.jdbc.group.DataSourceWrapper;
 import com.taobao.tddl.jdbc.group.util.ExceptionUtils;
 
 /**
- * ¶ÔµÈÊı¾İ¿âÑ¡ÔñÆ÷¡£
- * ÔÚÊı¾İÍêÈ«ÏàÍ¬µÄÒ»×é¿âÖĞÑ¡ÔñÒ»¸ö¿â
- * ÓÃÓÚ¶ÔHA/RACÇé¿ö,¶à¸ö¶Á¿âÖĞÈ¡Ò»¸ö¶ÁµÄ²Ù×÷
+ * å¯¹ç­‰æ•°æ®åº“é€‰æ‹©å™¨ã€‚
+ * åœ¨æ•°æ®å®Œå…¨ç›¸åŒçš„ä¸€ç»„åº“ä¸­é€‰æ‹©ä¸€ä¸ªåº“
+ * ç”¨äºå¯¹HA/RACæƒ…å†µ,å¤šä¸ªè¯»åº“ä¸­å–ä¸€ä¸ªè¯»çš„æ“ä½œ
  * 
  * @author linxuan
  */
@@ -23,40 +23,40 @@ public interface DBSelector {
 	public static final int NOT_EXIST_USER_SPECIFIED_INDEX=-1;
 	
 	/**
-	 * @return ·µ»Ø¸ÃSelectorµÄ±êÊ¶
+	 * @return è¿”å›è¯¥Selectorçš„æ ‡è¯†
 	 */
 	String getId();
 
 	/**
-	 * ¶ÔµÈÊı¾İ¿âÑ¡ÔñÆ÷¡£
-	 * ÔÚÊı¾İÍêÈ«ÏàÍ¬µÄÒ»×é¿âÖĞÑ¡ÔñÒ»¸ö¿â
-	 * ÓÃÓÚ¶ÔHA/RACÇé¿ö,¶à¸ö¶Á¿âÖĞÈ¡Ò»¸ö¶ÁµÄ²Ù×÷
+	 * å¯¹ç­‰æ•°æ®åº“é€‰æ‹©å™¨ã€‚
+	 * åœ¨æ•°æ®å®Œå…¨ç›¸åŒçš„ä¸€ç»„åº“ä¸­é€‰æ‹©ä¸€ä¸ªåº“
+	 * ç”¨äºå¯¹HA/RACæƒ…å†µ,å¤šä¸ªè¯»åº“ä¸­å–ä¸€ä¸ªè¯»çš„æ“ä½œ
 	 */
 	DataSource select();
 
 	/**
-	 * ·µ»ØÖ¸¶¨dsKey¶ÔÓ¦µÄÊı¾İÔ´¡£Èô¶ÔÓ¦Êı¾İÔ´µÄµ±Ç°È¨ÖØÎª0£¬Ôò·µ»Ønull
-	 * Õâ¸ö·½·¨Í¬Ê±¿ÉÒÔÓÃÀ´ÅĞ¶ÏÒ»¸ödsKey¶ÔÓ¦µÄ¿âÊÇ·ñ¿É¶Á»ò¿ÉĞ´£º
-	 *   rselector.get(wBaseDsKey) != null Ôò¿É¶Á
-	 *   wselector.get(rBaseDsKey) != null Ôò¿ÉĞ´
-	 * TGroupConnection¶ÁĞ´Á¬½Ó¸´ÓÃµÄ¾ÉÊµÏÖ»áÓÃµ½Õâ¸ö¹¦ÄÜ
+	 * è¿”å›æŒ‡å®šdsKeyå¯¹åº”çš„æ•°æ®æºã€‚è‹¥å¯¹åº”æ•°æ®æºçš„å½“å‰æƒé‡ä¸º0ï¼Œåˆ™è¿”å›null
+	 * è¿™ä¸ªæ–¹æ³•åŒæ—¶å¯ä»¥ç”¨æ¥åˆ¤æ–­ä¸€ä¸ªdsKeyå¯¹åº”çš„åº“æ˜¯å¦å¯è¯»æˆ–å¯å†™ï¼š
+	 *   rselector.get(wBaseDsKey) != null åˆ™å¯è¯»
+	 *   wselector.get(rBaseDsKey) != null åˆ™å¯å†™
+	 * TGroupConnectionè¯»å†™è¿æ¥å¤ç”¨çš„æ—§å®ç°ä¼šç”¨åˆ°è¿™ä¸ªåŠŸèƒ½
 	 * 
-	 * @param dsKey ÄÚ²¿ºÍÃ¿Ò»¸öÎïÀíDataSource¶ÔÓ¦µÄkey, ÔÚ³õÊ¼»¯dbSelectorÊ±Ö¸¶¨
-	 * @return ·µ»ØdsKey¶ÔÓ¦µÄÊı¾İÔ´
+	 * @param dsKey å†…éƒ¨å’Œæ¯ä¸€ä¸ªç‰©ç†DataSourceå¯¹åº”çš„key, åœ¨åˆå§‹åŒ–dbSelectoræ—¶æŒ‡å®š
+	 * @return è¿”å›dsKeyå¯¹åº”çš„æ•°æ®æº
 	 */
 	DataSource get(String dsKey);
 
 	/**
-	 * ÉèÖÃÊı¾İ¿âÀàĞÍ£ºÄ¿Ç°Ö»ÓÃÀ´Ñ¡ÔñexceptionSorter 
+	 * è®¾ç½®æ•°æ®åº“ç±»å‹ï¼šç›®å‰åªç”¨æ¥é€‰æ‹©exceptionSorter 
 	 */
 	void setDbType(DBType dbType);
 
 	/**
-	 * ÒÔÑ¡Ôñµ½µÄDataSourceºÍ´«ÈëµÄargs£¬ÖØÊÔÖ´ĞĞ
+	 * ä»¥é€‰æ‹©åˆ°çš„DataSourceå’Œä¼ å…¥çš„argsï¼Œé‡è¯•æ‰§è¡Œ
 	 *    tryer.tryOnDataSource(String dsKey, DataSource ds, Object... args)
-	 * Ã¿´ÎÑ¡ÔñDataSource»áÅÅ³ıÉÏ´ÎÖØÊÔÊ§°ÜµÄ, Ö±µ½´ïµ½Ö¸¶¨µÄÖØÊÔ´ÎÊı£¬»òÆÚ¼äÅ×³ö·ÇÊı¾İ¿â²»¿ÉÓÃÒì³£
+	 * æ¯æ¬¡é€‰æ‹©DataSourceä¼šæ’é™¤ä¸Šæ¬¡é‡è¯•å¤±è´¥çš„, ç›´åˆ°è¾¾åˆ°æŒ‡å®šçš„é‡è¯•æ¬¡æ•°ï¼Œæˆ–æœŸé—´æŠ›å‡ºéæ•°æ®åº“ä¸å¯ç”¨å¼‚å¸¸
 	 * 
-	 * Å×³öÒì³£ºó£¬ÒÔÀú´ÎÖØÊÔÒì³£ÁĞ±í£¬ºÍ×î³õµÄargs£¬µ÷ÓÃ
+	 * æŠ›å‡ºå¼‚å¸¸åï¼Œä»¥å†æ¬¡é‡è¯•å¼‚å¸¸åˆ—è¡¨ï¼Œå’Œæœ€åˆçš„argsï¼Œè°ƒç”¨
 	 *    tryer.onSQLException(List<SQLException> exceptions, Object... args)
 	 * 
 	 * @param tryer
@@ -67,44 +67,44 @@ public interface DBSelector {
 	<T> T tryExecute(DataSourceTryer<T> tryer, int times, Object... args) throws SQLException;
 
 	/**
-	 * @param failedDataSources: ÔÚµ÷ÓÃ¸Ã·½·¨Ç°£¬ÒÑ¾­µÃÖªÊÔ¹ıÊ§°ÜµÄDataSourceºÍ¶ÔÓ¦µÄSQLException
-	 * ´æÔÚÕâ¸ö²ÎÊıµÄÔ­Òò£¬ÊÇÒòÎªÊı¾İ¿â²Ù×÷¸îÁÑÎªgetConnection/createStatement/execute¼¸²½£¬¶ø²¢²»ÊÇÔÚÒ»¸ö´óµÄtry catchÖĞ
-	 * failedDataSources == null ±íÊ¾²»ĞèÒªÖØÊÔ£¬Óöµ½ÈÎºÎÒì³£Ö±½ÓÅ×³ö¡£ÈçÔÚĞ´¿âÉÏµÄ²Ù×÷
+	 * @param failedDataSources: åœ¨è°ƒç”¨è¯¥æ–¹æ³•å‰ï¼Œå·²ç»å¾—çŸ¥è¯•è¿‡å¤±è´¥çš„DataSourceå’Œå¯¹åº”çš„SQLException
+	 * å­˜åœ¨è¿™ä¸ªå‚æ•°çš„åŸå› ï¼Œæ˜¯å› ä¸ºæ•°æ®åº“æ“ä½œå‰²è£‚ä¸ºgetConnection/createStatement/executeå‡ æ­¥ï¼Œè€Œå¹¶ä¸æ˜¯åœ¨ä¸€ä¸ªå¤§çš„try catchä¸­
+	 * failedDataSources == null è¡¨ç¤ºä¸éœ€è¦é‡è¯•ï¼Œé‡åˆ°ä»»ä½•å¼‚å¸¸ç›´æ¥æŠ›å‡ºã€‚å¦‚åœ¨å†™åº“ä¸Šçš„æ“ä½œ
 	 */
 	<T> T tryExecute(Map<DataSource, SQLException> failedDataSources, DataSourceTryer<T> tryer, int times,
 			Object... args) throws SQLException;
 
 	/**
-	 * ÊÇ·ñÖ§³ÖÖØÊÔ¡£
-	 * Õâ¸ö½Ó¿ÚÊÇÈßÓà½Ó¿Ú¡£Èç¹ûÖØÊÔ¹¦ÄÜ×ã¹»ÎÈ¶¨£¬¿ÉÒÔÈ¥µô¡£±£Áô²»ĞèÒªÖØÊÔµÄ³¡¾°Ìá¹©Ë«ÖØ±£Ö¤
-	 * @return ÊÇ·ñÖ§³ÖÖØÊÔ
+	 * æ˜¯å¦æ”¯æŒé‡è¯•ã€‚
+	 * è¿™ä¸ªæ¥å£æ˜¯å†—ä½™æ¥å£ã€‚å¦‚æœé‡è¯•åŠŸèƒ½è¶³å¤Ÿç¨³å®šï¼Œå¯ä»¥å»æ‰ã€‚ä¿ç•™ä¸éœ€è¦é‡è¯•çš„åœºæ™¯æä¾›åŒé‡ä¿è¯
+	 * @return æ˜¯å¦æ”¯æŒé‡è¯•
 	 */
 	boolean isSupportRetry();
 
 	void setReadable(boolean readable);
 
-	Map<String, DataSource> getDataSources(); //Ö±½Ó»ñÈ¡¶ÔÓ¦µÄÊı¾İÔ´
+	Map<String, DataSource> getDataSources(); //ç›´æ¥è·å–å¯¹åº”çš„æ•°æ®æº
 
 	/**
-	 * ÔÚDBSelector¹ÜÀíµÄÊı¾İÔ´ÉÏÖØÊÔÖ´ĞĞ²Ù×÷µÄ»Øµ÷½Ó¿Ú
+	 * åœ¨DBSelectorç®¡ç†çš„æ•°æ®æºä¸Šé‡è¯•æ‰§è¡Œæ“ä½œçš„å›è°ƒæ¥å£
 	 */
 	public static interface DataSourceTryer<T> {
 		/**
-		 * @param dsKey ÄÚ²¿ºÍÃ¿Ò»¸öÎïÀíDataSource¶ÔÓ¦µÄkey, ÔÚ³õÊ¼»¯dbSelectorÊ±Ö¸¶¨
+		 * @param dsKey å†…éƒ¨å’Œæ¯ä¸€ä¸ªç‰©ç†DataSourceå¯¹åº”çš„key, åœ¨åˆå§‹åŒ–dbSelectoræ—¶æŒ‡å®š
 		 * @param ds
-		 * @param args ÓÃ»§µ÷ÓÃtryExecuteÊ±´«ÈëµÄ²ÎÊıÁĞ±í
+		 * @param args ç”¨æˆ·è°ƒç”¨tryExecuteæ—¶ä¼ å…¥çš„å‚æ•°åˆ—è¡¨
 		 * @return
 		 * @throws SQLException
 		 */
 		//T tryOnDataSource(String dsKey, DataSource ds, Object... args) throws SQLException;
 		/**
-		 * tryExecuteÖĞÖØÊÔµ÷ÓÃtryOnDataSourceÓöµ½·ÇÊı¾İ¿â²»¿ÉÓÃÒì³££¬»òÓÃÍêÖØÊÔ´ÎÊıÊ±£¬»áµ÷ÓÃ¸Ã·½·¨
-		 * @param exceptions Àú´ÎÖØÊÔÊ§°ÜÅ×³öµÄÒì³£¡£
-		 *    ×îºóÒ»¸öÒì³£¿ÉÄÜÊÇÊı¾İ¿â²»¿ÉÓÃµÄÒì³££¬Ò²¿ÉÄÜÊÇÆÕÍ¨µÄSQLÒì³£
-		 *    ×îºóÒ»¸öÖ®Ç°µÄÒì³£ÊÇÊı¾İ¿â²»¿ÉÓÃµÄÒì³£
-		 * @param exceptionSorter µ±Ç°ÓÃµ½µÄÅĞ¶ÏExceptionÀàĞÍµÄ·ÖÀàÆ÷
-		 * @param args ÓëtryOnDataSourceÊ±µÄargsÏàÍ¬£¬¶¼ÊÇÓÃ»§µ÷ÓÃtryExecuteÊ±´«ÈëµÄarg
-		 * @return ÓÃ»§£¨ÊµÏÖÕß£©¾õµÃÊÇ·ñ·µ»ØÊ²Ã´Öµ
+		 * tryExecuteä¸­é‡è¯•è°ƒç”¨tryOnDataSourceé‡åˆ°éæ•°æ®åº“ä¸å¯ç”¨å¼‚å¸¸ï¼Œæˆ–ç”¨å®Œé‡è¯•æ¬¡æ•°æ—¶ï¼Œä¼šè°ƒç”¨è¯¥æ–¹æ³•
+		 * @param exceptions å†æ¬¡é‡è¯•å¤±è´¥æŠ›å‡ºçš„å¼‚å¸¸ã€‚
+		 *    æœ€åä¸€ä¸ªå¼‚å¸¸å¯èƒ½æ˜¯æ•°æ®åº“ä¸å¯ç”¨çš„å¼‚å¸¸ï¼Œä¹Ÿå¯èƒ½æ˜¯æ™®é€šçš„SQLå¼‚å¸¸
+		 *    æœ€åä¸€ä¸ªä¹‹å‰çš„å¼‚å¸¸æ˜¯æ•°æ®åº“ä¸å¯ç”¨çš„å¼‚å¸¸
+		 * @param exceptionSorter å½“å‰ç”¨åˆ°çš„åˆ¤æ–­Exceptionç±»å‹çš„åˆ†ç±»å™¨
+		 * @param args ä¸tryOnDataSourceæ—¶çš„argsç›¸åŒï¼Œéƒ½æ˜¯ç”¨æˆ·è°ƒç”¨tryExecuteæ—¶ä¼ å…¥çš„arg
+		 * @return ç”¨æˆ·ï¼ˆå®ç°è€…ï¼‰è§‰å¾—æ˜¯å¦è¿”å›ä»€ä¹ˆå€¼
 		 * @throws SQLException
 		 */
 		T onSQLException(List<SQLException> exceptions, ExceptionSorter exceptionSorter, Object... args)
@@ -114,7 +114,7 @@ public interface DBSelector {
 	}
 
 	/**
-	 * DataSourceTryer.onSQLException Ö±½ÓÅ×³öÒì³£
+	 * DataSourceTryer.onSQLException ç›´æ¥æŠ›å‡ºå¼‚å¸¸
 	 */
 	public static abstract class AbstractDataSourceTryer<T> implements DataSourceTryer<T> {
 		@SuppressWarnings("unchecked")

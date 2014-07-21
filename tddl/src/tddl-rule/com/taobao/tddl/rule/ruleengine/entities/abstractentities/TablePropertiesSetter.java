@@ -6,13 +6,13 @@ import com.taobao.tddl.rule.ruleengine.entities.convientobjectmaker.TableMapProv
 import com.taobao.tddl.rule.ruleengine.rule.ListAbstractResultRule;
 
 /**
- * ����properties����������
+ * 表名properties的设置器。
  * 
- * �������һ��һ�Զ�Ľڵ㣬��ȻҲ����logicTable�ڵ㣬��ôʹ�õ�ǰ�ӿڵĽ����
+ * 如果是在一个一对多的节点，当然也就是logicTable节点，那么使用当前接口的结果是
  * 
- * ���ø���ǰ�ӿڵ����ݻᱻ��ɢ���ӽڵ㡣
+ * 设置给当前接口的数据会被扩散到子节点。
  * 
- * ����ӽڵ㱾��Ҳ�ж�Ӧ�����ԣ����ӽڵ����Ի�����һ�Զഫ�ݹ��������ԡ�
+ * 如果子节点本身也有对应的属性，则子节点属性会替由一对多传递过来的属性。
  * 
  * @author shenxun
  *

@@ -4,7 +4,7 @@ import com.taobao.tddl.common.client.util.DataSourceType;
 
 
 /**
- * Êı¾İ¿âÀàĞÍÃ¶¾ÙÀàĞÍ
+ * æ•°æ®åº“ç±»å‹æšä¸¾ç±»å‹
  * 
  * @author qihao
  *

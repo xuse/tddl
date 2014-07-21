@@ -2,7 +2,7 @@ package com.taobao.tddl.client.jdbc.listener;
 
 /*
  * @author guangxia
- * @since 1.0, 2010-4-12 ÏÂÎç02:19:17
+ * @since 1.0, 2010-4-12 ä¸‹åˆ02:19:17
  */
 public class HookPoints {
 	

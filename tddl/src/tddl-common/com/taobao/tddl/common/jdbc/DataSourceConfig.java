@@ -11,18 +11,18 @@ import com.taobao.tddl.common.datasource.LocalTxDataSourceDO;
 public class DataSourceConfig implements Cloneable {
 
 	/**
-	 * Êı¾İÔ´µÄĞÅÏ¢DO
+	 * æ•°æ®æºçš„ä¿¡æ¯DO
 	 */
 	private LocalTxDataSourceDO dsConfig;
 
 	private boolean isLocalTxDataSource;
 	/**
-	 * Êı¾İÔ´¶ÔÏó£¬¿ÉÄÜÊÇÖ±½ÓÊµÏÖDataSourceµÄ¶ÔÏó£¬Ò²¿ÉÄÜÊÇ°şÀëJBOOSÊı¾İÔ´µÄLocalTxDataSource¶ÔÏó
+	 * æ•°æ®æºå¯¹è±¡ï¼Œå¯èƒ½æ˜¯ç›´æ¥å®ç°DataSourceçš„å¯¹è±¡ï¼Œä¹Ÿå¯èƒ½æ˜¯å‰¥ç¦»JBOOSæ•°æ®æºçš„LocalTxDataSourceå¯¹è±¡
 	 */
 	private Object dsObject;
 
 	/**
-	 * ÀàĞÍ jndi»òÕßÆäËû
+	 * ç±»å‹ jndiæˆ–è€…å…¶ä»–
 	 */
 	private String type;
 

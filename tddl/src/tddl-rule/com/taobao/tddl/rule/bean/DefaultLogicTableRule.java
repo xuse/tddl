@@ -14,7 +14,7 @@ import com.taobao.tddl.rule.ruleengine.entities.abstractentities.RuleChain;
 import com.taobao.tddl.rule.ruleengine.entities.inputvalue.CalculationContextInternal;
 
 /**
- * Ä¬ÈÏµÄLogicTableRule¼ÆËã,
+ * é»˜è®¤çš„LogicTableRuleè®¡ç®—,
  * 
  * @author shenxun
  * 
@@ -29,13 +29,13 @@ public class DefaultLogicTableRule implements LogicTableRule, Cloneable {
 	}
 	
 //	/**
-//	 * °üÄÚ¿É¼û£¬Íâ²¿²»ÔÊĞíÉèÖÃÕâ¸öÊôĞÔ
+//	 * åŒ…å†…å¯è§ï¼Œå¤–éƒ¨ä¸å…è®¸è®¾ç½®è¿™ä¸ªå±æ€§
 //	 * @param defaultTable
 //	 */
 //	void setDefaultTableInternal(String defaultTable) {
 //		if(this.defaultTable != null){
-//			throw new IllegalArgumentException("should not be here ,default table ÓĞÖµ? ÄÚ²¿³ÖÓĞµÄÖµ"+this.defaultTable
-//					+"£¬ÊäÈëµÄÖµ"+defaultTable);
+//			throw new IllegalArgumentException("should not be here ,default table æœ‰å€¼? å†…éƒ¨æŒæœ‰çš„å€¼"+this.defaultTable
+//					+"ï¼Œè¾“å…¥çš„å€¼"+defaultTable);
 //		}
 //		this.defaultTable = defaultTable;
 //	}
@@ -49,7 +49,7 @@ public class DefaultLogicTableRule implements LogicTableRule, Cloneable {
 //			throw new IllegalArgumentException("database is null");
 //		}
 //		if (databases.contains(",")) {
-//			throw new IllegalArgumentException("²»Ö§³ÖÊ¹ÓÃ¶à¸öÊı¾İÔ´×÷ÎªÄ¬ÈÏÊı¾İÔ´");
+//			throw new IllegalArgumentException("ä¸æ”¯æŒä½¿ç”¨å¤šä¸ªæ•°æ®æºä½œä¸ºé»˜è®¤æ•°æ®æº");
 //		}
 //		this.databases = databases;
 //	}

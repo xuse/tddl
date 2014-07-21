@@ -3,20 +3,20 @@ package com.taobao.tddl.client.sequence;
 import com.taobao.tddl.client.sequence.exception.SequenceException;
 
 /**
- * ´øÂ·ÓÉĞÅÏ¢ĞòÁĞ½Ó¿Ú
+ * å¸¦è·¯ç”±ä¿¡æ¯åºåˆ—æ¥å£
  *
  * @author guangxia
  *
- * @param <DatabaseRouteType> Êı¾İ¿âÂ·ÓÉĞÅÏ¢ÀàĞÍ
- * @param <TableRouteType> ±íÂ·ÓÉĞÅÏ¢ÀàĞÍ
+ * @param <DatabaseRouteType> æ•°æ®åº“è·¯ç”±ä¿¡æ¯ç±»å‹
+ * @param <TableRouteType> è¡¨è·¯ç”±ä¿¡æ¯ç±»å‹
  */
 public interface RoutedSequence<DatabaseRouteType, TableRouteType> {
 	/**
-	 * È¡µÃĞòÁĞÏÂÒ»¸öÖµ
+	 * å–å¾—åºåˆ—ä¸‹ä¸€ä¸ªå€¼
 	 *
-	 * @param databaseRoute Êı¾İ¿âÂ·ÓÉĞÅÏ¢
-	 * @param tableRoute ±íÂ·ÓÉĞÅÏ¢
-	 * @return ·µ»ØĞòÁĞÏÂÒ»¸öÖµ
+	 * @param databaseRoute æ•°æ®åº“è·¯ç”±ä¿¡æ¯
+	 * @param tableRoute è¡¨è·¯ç”±ä¿¡æ¯
+	 * @return è¿”å›åºåˆ—ä¸‹ä¸€ä¸ªå€¼
 	 * @throws SequenceException
 	 */
 	long nextValue(DatabaseRouteType databaseRoute, TableRouteType tableRoute) throws SequenceException;

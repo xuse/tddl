@@ -7,9 +7,9 @@ import com.taobao.tddl.common.sqlobjecttree.SQLFragment;
 
 
 /**
- * ÓÃÓÚÊµÏÖÇ¿ÖÆË÷ÒıºÍÇ¿ÖÆºöÊÓË÷ÒıµÄ½Ó¿Ú
+ * ç”¨äºå®ç°å¼ºåˆ¶ç´¢å¼•å’Œå¼ºåˆ¶å¿½è§†ç´¢å¼•çš„æ¥å£
  * 
- * ±íÊ¾Ò»¸ö±í
+ * è¡¨ç¤ºä¸€ä¸ªè¡¨
  * 
  * @author shenxun
  * 
@@ -17,13 +17,13 @@ import com.taobao.tddl.common.sqlobjecttree.SQLFragment;
 public interface TableName extends SQLFragment{
 	public void setAlias(String alias);
 	/**
-	 * ·µ»ØËùÓĞ±íÃû£¬ÔÚÄÚ²¿»á×ª»»Îªlower case
+	 * è¿”å›æ‰€æœ‰è¡¨åï¼Œåœ¨å†…éƒ¨ä¼šè½¬æ¢ä¸ºlower case
 	 * @return
 	 */
 	public Set<String> getTableName();
 	public String getAlias();
 	/**
-	 * ½«±íÃûºÍ±ğÃû·Åµ½Ò»¸ömapÖĞ£¬ ±ğÃûkey»á×Ô¶¯×ªÎª´óĞ´
+	 * å°†è¡¨åå’Œåˆ«åæ”¾åˆ°ä¸€ä¸ªmapä¸­ï¼Œ åˆ«åkeyä¼šè‡ªåŠ¨è½¬ä¸ºå¤§å†™
 	 * @param map
 	 */
 	public void appendAliasToSQLMap(Map<String, SQLFragment> map);

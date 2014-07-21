@@ -23,7 +23,7 @@ import java.util.Calendar;
 import java.util.Map;
 
 /**
- * ResultSet°ü×°Àà
+ * ResultSetåŒ…è£…ç±»
  * 
  * @author shenxun
  *
@@ -66,7 +66,7 @@ public class TResultSetWrapper implements ResultSet {
 		if (isClosed) {
 			return;
 		}
-		// ·ÇÕı¹æsql²éÑ¯¡£ÀàËÆconnection.getMetaData·½·¨£¬Îª³õÊ¼»¯statement
+		// éæ­£è§„sqlæŸ¥è¯¢ã€‚ç±»ä¼¼connection.getMetaDataæ–¹æ³•ï¼Œä¸ºåˆå§‹åŒ–statement
 		if(tStatementWrapper != null) {
 			tStatementWrapper.decreaseConcurrentRead();
 		}
@@ -242,7 +242,7 @@ public class TResultSetWrapper implements ResultSet {
 	}
 
 	public ResultSetMetaData getMetaData() throws SQLException {
-		//Ö±½Ó·µ»ØresultSetMetaData
+		//ç›´æ¥è¿”å›resultSetMetaData
 		return this.targetResultSet.getMetaData();
 	}
 

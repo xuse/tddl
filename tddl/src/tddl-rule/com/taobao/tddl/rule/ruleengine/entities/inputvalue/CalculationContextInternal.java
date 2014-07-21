@@ -9,11 +9,11 @@ import com.taobao.tddl.rule.ruleengine.rule.ListAbstractResultRule;
 public class CalculationContextInternal {
 	//public final RuleChain ruleChain;
 	//protected Map<String,Set<Object>> result = Collections.emptyMap();
-	//public final int index; //²ÎÓë¼ÆËãµÄ¾ßÌå¹æÔòÊÇ¸ù¾İindex´ÓRuleChainÖĞÈ¡µÃµÄ
+	//public final int index; //å‚ä¸è®¡ç®—çš„å…·ä½“è§„åˆ™æ˜¯æ ¹æ®indexä»RuleChainä¸­å–å¾—çš„
 	public final ListAbstractResultRule rule;
-	public final Map<String/*µ±Ç°²ÎÊıÒªÇóµÄÁĞÃû*/, Comparative> sqlArgs;
+	public final Map<String/*å½“å‰å‚æ•°è¦æ±‚çš„åˆ—å*/, Comparative> sqlArgs;
 
-	public CalculationContextInternal(RuleChain ruleChain, int index, Map<String/*µ±Ç°²ÎÊıÒªÇóµÄÁĞÃû*/, Comparative> sqlArgs) {
+	public CalculationContextInternal(RuleChain ruleChain, int index, Map<String/*å½“å‰å‚æ•°è¦æ±‚çš„åˆ—å*/, Comparative> sqlArgs) {
 		//this.ruleChain = ruleChain;
 		//this.index = index;
 		rule = ruleChain.getRuleByIndex(index);

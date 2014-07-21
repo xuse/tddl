@@ -19,19 +19,19 @@ import com.taobao.tddl.jdbc.group.config.ConfigManager;
 import com.taobao.tddl.jdbc.group.config.GroupExtraConfig;
 
 /**
- * ¶ÔµÈÊı¾İ¿â¹ÜÀíÆ÷
- * ¿ÉÒÔÊÇ¶Á¶ÔµÈ£ºÈç¶à¸ö¶Á¿â£¬Ã¿¸ö¿âµÄÊı¾İÍêÈ«ÏàÍ¬¡£¶ÔµÈ¶ÁÈ¡
- * ¿ÉÒÔÊÇĞ´¶ÔµÈ£ºÈçÈÕÖ¾¿â£¬Ã¿¸ö¿âÊı¾İ²»Í¬£¬Ò»ÌõÊı¾İĞ´ÈëÄÄ¸ö¿â¶¼¿ÉÒÔ¡£¶ÔµÈĞ´Èë
+ * å¯¹ç­‰æ•°æ®åº“ç®¡ç†å™¨
+ * å¯ä»¥æ˜¯è¯»å¯¹ç­‰ï¼šå¦‚å¤šä¸ªè¯»åº“ï¼Œæ¯ä¸ªåº“çš„æ•°æ®å®Œå…¨ç›¸åŒã€‚å¯¹ç­‰è¯»å–
+ * å¯ä»¥æ˜¯å†™å¯¹ç­‰ï¼šå¦‚æ—¥å¿—åº“ï¼Œæ¯ä¸ªåº“æ•°æ®ä¸åŒï¼Œä¸€æ¡æ•°æ®å†™å…¥å“ªä¸ªåº“éƒ½å¯ä»¥ã€‚å¯¹ç­‰å†™å…¥
  *
- * Ö§³Ö¶¯Ì¬ÍÆËÍÈ¨ÖØ£¬¶¯Ì¬¼Ó¼õ¿â
+ * æ”¯æŒåŠ¨æ€æ¨é€æƒé‡ï¼ŒåŠ¨æ€åŠ å‡åº“
  *
  * @author linxuan
  * @author yangzhu
  *
  */
 
-//ÒòÎªµ±ÅäÖÃĞÅÏ¢±ä¶¯Ê±Ã¿´Î¶¼»áÖØĞÂÉú³ÉÒ»¸öĞÂµÄEquityDbManagerÊµÀı£¬
-//ËùÒÔÔ­ÓĞµÄÓë"¶¯Ì¬¸Ä±ä"Ïà¹ØµÄ´úÂëÔÚĞÂµÄEquityDbManagerÊµÏÖÖĞÒÑÈ«²¿É¾³ı
+//å› ä¸ºå½“é…ç½®ä¿¡æ¯å˜åŠ¨æ—¶æ¯æ¬¡éƒ½ä¼šé‡æ–°ç”Ÿæˆä¸€ä¸ªæ–°çš„EquityDbManagerå®ä¾‹ï¼Œ
+//æ‰€ä»¥åŸæœ‰çš„ä¸"åŠ¨æ€æ”¹å˜"ç›¸å…³çš„ä»£ç åœ¨æ–°çš„EquityDbManagerå®ç°ä¸­å·²å…¨éƒ¨åˆ é™¤
 public class EquityDbManager extends AbstractDBSelector {
 	private static final Log logger = LogFactory.getLog(EquityDbManager.class);
 
@@ -65,7 +65,7 @@ public class EquityDbManager extends AbstractDBSelector {
 	}
 
 	/**
-	 * @return ¸ù¾İÈ¨ÖØ£¬Ëæ»ú·µ»ØÒ»¸öDataSource
+	 * @return æ ¹æ®æƒé‡ï¼Œéšæœºè¿”å›ä¸€ä¸ªDataSource
 	 */
 	public DataSource select() {
 		String key = selectAliveKey(weightRandom, null);
@@ -77,9 +77,9 @@ public class EquityDbManager extends AbstractDBSelector {
 	}
 
 	/**
-	 * ·µ»ØÖ¸¶¨dsKey¶ÔÓ¦µÄÊı¾İÔ´¡£Èô¶ÔÓ¦Êı¾İÔ´µÄµ±Ç°È¨ÖØÎª0£¬Ôò·µ»Ønull
-	 * @param dsKey ÄÚ²¿ºÍÃ¿Ò»¸öÎïÀíDataSource¶ÔÓ¦µÄkey, ÔÚ³õÊ¼»¯dbSelectorÊ±Ö¸¶¨
-	 * @return ·µ»ØdsKey¶ÔÓ¦µÄÊı¾İÔ´
+	 * è¿”å›æŒ‡å®šdsKeyå¯¹åº”çš„æ•°æ®æºã€‚è‹¥å¯¹åº”æ•°æ®æºçš„å½“å‰æƒé‡ä¸º0ï¼Œåˆ™è¿”å›null
+	 * @param dsKey å†…éƒ¨å’Œæ¯ä¸€ä¸ªç‰©ç†DataSourceå¯¹åº”çš„key, åœ¨åˆå§‹åŒ–dbSelectoræ—¶æŒ‡å®š
+	 * @return è¿”å›dsKeyå¯¹åº”çš„æ•°æ®æº
 	 */
 	public DataSourceWrapper get(String dsKey) {
 		DataSourceHolder holder = dataSourceMap.get(dsKey);
@@ -89,7 +89,7 @@ public class EquityDbManager extends AbstractDBSelector {
 		return holder == null ? null : holder.dsw;
 	}
 
-	//TODO ¿¼ÂÇ½Ó¿ÚÊÇ·ñËõĞ¡ÎªÖ»·µ»ØDataSource[]
+	//TODO è€ƒè™‘æ¥å£æ˜¯å¦ç¼©å°ä¸ºåªè¿”å›DataSource[]
 	public Map<String, DataSource> getDataSources() {
 		Map<String, DataSource> dsMap = new HashMap<String, DataSource>(dataSourceMap.size());
 		for (Map.Entry<String, DataSourceHolder> e : dataSourceMap.entrySet()) {
@@ -103,15 +103,15 @@ public class EquityDbManager extends AbstractDBSelector {
 	}
 
 	/**
-	 * ÔÚËù¹ÜÀíµÄÊı¾İ¿âÉÏÖØÊÔÖ´ĞĞÒ»¸ö»Øµ÷²Ù×÷¡£Ê§°ÜÁË¸ù¾İÈ¨ÖØÑ¡ÏÂÒ»¸ö¿âÖØÊÔ
-	 * ÒÔ¸ù¾İÈ¨ÖØÑ¡Ôñµ½µÄDataSource£¬ºÍÓÃ»§´«ÈëµÄ×ÔÓÃ²ÎÊıargs£¬ÖØÊÔµ÷ÓÃDataSourceTryerµÄtryOnDataSource·½·¨
-	 * @param failedDataSources ÒÑÖªµÄÊ§°ÜDS¼°ÆäÒì³£
-	 * @param args Í¸´«µ½DataSourceTryerµÄtryOnDataSource·½·¨ÖĞ
-	 * @return null±íÊ¾Ö´ĞĞ³É¹¦¡£·ñÔò±íÊ¾ÖØÊÔ´ÎÄÚÖ´ĞĞÊ§°Ü£¬·µ»ØSQLExceptionÁĞ±í
+	 * åœ¨æ‰€ç®¡ç†çš„æ•°æ®åº“ä¸Šé‡è¯•æ‰§è¡Œä¸€ä¸ªå›è°ƒæ“ä½œã€‚å¤±è´¥äº†æ ¹æ®æƒé‡é€‰ä¸‹ä¸€ä¸ªåº“é‡è¯•
+	 * ä»¥æ ¹æ®æƒé‡é€‰æ‹©åˆ°çš„DataSourceï¼Œå’Œç”¨æˆ·ä¼ å…¥çš„è‡ªç”¨å‚æ•°argsï¼Œé‡è¯•è°ƒç”¨DataSourceTryerçš„tryOnDataSourceæ–¹æ³•
+	 * @param failedDataSources å·²çŸ¥çš„å¤±è´¥DSåŠå…¶å¼‚å¸¸
+	 * @param args é€ä¼ åˆ°DataSourceTryerçš„tryOnDataSourceæ–¹æ³•ä¸­
+	 * @return nullè¡¨ç¤ºæ‰§è¡ŒæˆåŠŸã€‚å¦åˆ™è¡¨ç¤ºé‡è¯•æ¬¡å†…æ‰§è¡Œå¤±è´¥ï¼Œè¿”å›SQLExceptionåˆ—è¡¨
 	 */
 	protected <T> T tryExecuteInternal(Map<DataSource, SQLException> failedDataSources, DataSourceTryer<T> tryer,
 			int times, Object... args) throws SQLException {
-		//Èç¹û²»Ö§³ÖÖØÊÔ£¬°ÑtimesÉèÎª1¾Í¿ÉÒÔÁË
+		//å¦‚æœä¸æ”¯æŒé‡è¯•ï¼ŒæŠŠtimesè®¾ä¸º1å°±å¯ä»¥äº†
 		if (!this.isSupportRetry) {
 			times = 1;
 		}
@@ -120,11 +120,11 @@ public class EquityDbManager extends AbstractDBSelector {
 		List<String> excludeKeys = new ArrayList<String>(0);
 		if (failedDataSources != null) {
 			exceptions.addAll(failedDataSources.values());
-			times = times - failedDataSources.size(); //¿Û³ıÒÑ¾­Ê§°ÜµôµÄÖØÊÔ´ÎÊı
+			times = times - failedDataSources.size(); //æ‰£é™¤å·²ç»å¤±è´¥æ‰çš„é‡è¯•æ¬¡æ•°
 			for (SQLException e : failedDataSources.values()) {
 				if (!exceptionSorter.isExceptionFatal(e)) {
-					//ÓĞÒ»¸öÒì³££¨ÆäÊµÊÇ×îºó¼ÓÈëµÄÒì³££¬ÒòmapÎŞ·¨ÖªµÀË³Ğò£¬Ö»ÄÜ±éÀú£©²»ÊÇÊı¾İ¿â²»¿ÉÓÃÒì³££¬ÔòÅ×³ö
-					//ÊÇ²»ÊÇÓ¦¸ÃÔÚ·¢ÏÖ·ÇÊı¾İ¿âfatalÖ®ºó¾ÍÁ¢¿ÌÅ×³ö£¬¶ø²»ÊÇ·Åµ½failedDataSourcesÕâ¸ömapÀï?(guangxia)
+					//æœ‰ä¸€ä¸ªå¼‚å¸¸ï¼ˆå…¶å®æ˜¯æœ€ååŠ å…¥çš„å¼‚å¸¸ï¼Œå› mapæ— æ³•çŸ¥é“é¡ºåºï¼Œåªèƒ½éå†ï¼‰ä¸æ˜¯æ•°æ®åº“ä¸å¯ç”¨å¼‚å¸¸ï¼Œåˆ™æŠ›å‡º
+					//æ˜¯ä¸æ˜¯åº”è¯¥åœ¨å‘ç°éæ•°æ®åº“fatalä¹‹åå°±ç«‹åˆ»æŠ›å‡ºï¼Œè€Œä¸æ˜¯æ”¾åˆ°failedDataSourcesè¿™ä¸ªmapé‡Œ?(guangxia)
 					return tryer.onSQLException(exceptions, exceptionSorter, args);
 				}
 			}
@@ -132,7 +132,7 @@ public class EquityDbManager extends AbstractDBSelector {
 		for (int i = 0; i < times; i++) {
 			String name = selectAliveKey(wr, excludeKeys);
 			if (name == null) {
-				// ÎªÁËÀ©Õ¹
+				// ä¸ºäº†æ‰©å±•
 				exceptions.add(new NoMoreDataSourceException("tryTime:" + i + ", excludeKeys:" + excludeKeys
 						+ ", weightConfig:" + wr.getWeightConfig()));
 				break;
@@ -140,18 +140,18 @@ public class EquityDbManager extends AbstractDBSelector {
 
 			DataSourceHolder dsHolder = dataSourceMap.get(name);
 			if (dsHolder == null) {
-				//²»Ó¦¸Ã³öÏÖµÄ¡£³õÊ¼»¯Âß¼­Ó¦¸Ã±£Ö¤¿ÕµÄÊı¾İÔ´(null)²»»á±»¼ÓÈëdataSourceMap
+				//ä¸åº”è¯¥å‡ºç°çš„ã€‚åˆå§‹åŒ–é€»è¾‘åº”è¯¥ä¿è¯ç©ºçš„æ•°æ®æº(null)ä¸ä¼šè¢«åŠ å…¥dataSourceMap
 				throw new IllegalStateException("Can't find DataSource for name:" + name);
 			}
 			if (failedDataSources != null && failedDataSources.containsKey(dsHolder.dsw)) {
 				excludeKeys.add(name);
-				i--; //Õâ´Î²»ËãÖØÊÔ´ÎÊı
+				i--; //è¿™æ¬¡ä¸ç®—é‡è¯•æ¬¡æ•°
 				continue;
 			}
-			//TODO ÓĞ±ØÒªÃ¿´Î¶¼¼ì²éDataSourceµÄ×´Ì¬Âğ ¼ì²éÒ»ÏÂÊı¾İÔ´£¬Èç¹ûÊÇNA»òÍùÒ»¸öÖ»¶ÁµÄ¿âÖĞĞ´¼ÇÂ¼¶¼ÒªÖØÊÔÏÂÒ»¸öÊı¾İÔ´
+			//TODO æœ‰å¿…è¦æ¯æ¬¡éƒ½æ£€æŸ¥DataSourceçš„çŠ¶æ€å— æ£€æŸ¥ä¸€ä¸‹æ•°æ®æºï¼Œå¦‚æœæ˜¯NAæˆ–å¾€ä¸€ä¸ªåªè¯»çš„åº“ä¸­å†™è®°å½•éƒ½è¦é‡è¯•ä¸‹ä¸€ä¸ªæ•°æ®æº
 			if (!ConfigManager.isDataSourceAvailable(dsHolder.dsw, this.readable)) {
 				excludeKeys.add(name);
-				i--; //Õâ´Î²»ËãÖØÊÔ´ÎÊı
+				i--; //è¿™æ¬¡ä¸ç®—é‡è¯•æ¬¡æ•°
 				continue;
 			}
 
@@ -160,20 +160,20 @@ public class EquityDbManager extends AbstractDBSelector {
 					boolean toTry = System.currentTimeMillis() - dsHolder.lastRetryTime > retryBadDbInterval;
 					if (toTry && dsHolder.lock.tryLock()) {
 						try {
-							T t = tryer.tryOnDataSource(dsHolder.dsw, args); //Í¬Ò»¸öÊ±¼äÖ»»áÓĞÒ»¸öÏß³Ì¼ÌĞøÊ¹ÓÃÕâ¸öÊı¾İÔ´¡£
-							dsHolder.isNotAvailable = false; //ÓÃÒ»¸öÏß³ÌÖØÊÔ£¬Ö´ĞĞ³É¹¦Ôò±ê¼ÇÎª¿ÉÓÃ£¬×Ô¶¯»Ö¸´
+							T t = tryer.tryOnDataSource(dsHolder.dsw, args); //åŒä¸€ä¸ªæ—¶é—´åªä¼šæœ‰ä¸€ä¸ªçº¿ç¨‹ç»§ç»­ä½¿ç”¨è¿™ä¸ªæ•°æ®æºã€‚
+							dsHolder.isNotAvailable = false; //ç”¨ä¸€ä¸ªçº¿ç¨‹é‡è¯•ï¼Œæ‰§è¡ŒæˆåŠŸåˆ™æ ‡è®°ä¸ºå¯ç”¨ï¼Œè‡ªåŠ¨æ¢å¤
 							return t;
 						} finally {
 							dsHolder.lastRetryTime = System.currentTimeMillis();
 							dsHolder.lock.unlock();
 						}
 					} else {
-						excludeKeys.add(name); //ÆäËûÏß³ÌÌø¹ıÒÑ¾­±ê¼ÇÎªnotAvailableµÄÊı¾İÔ´
-						i--; //Õâ´Î²»ËãÖØÊÔ´ÎÊı
+						excludeKeys.add(name); //å…¶ä»–çº¿ç¨‹è·³è¿‡å·²ç»æ ‡è®°ä¸ºnotAvailableçš„æ•°æ®æº
+						i--; //è¿™æ¬¡ä¸ç®—é‡è¯•æ¬¡æ•°
 						continue;
 					}
 				} else {
-					return tryer.tryOnDataSource(dsHolder.dsw, args); //ÓĞÒ»´Î³É¹¦Ö±½Ó·µ»Ø
+					return tryer.tryOnDataSource(dsHolder.dsw, args); //æœ‰ä¸€æ¬¡æˆåŠŸç›´æ¥è¿”å›
 				}
 			} catch (SQLException e) {
 				exceptions.add(e);
@@ -183,11 +183,11 @@ public class EquityDbManager extends AbstractDBSelector {
 					dsHolder.isNotAvailable = true;
 				}
 				if (!isFatal || failedDataSources == null) {
-					//throw e; //Èç¹û²»ÊÇÊı¾İ¿â²»¿ÉÓÃÒì³££¬»òÕß²»ÒªÇóÖØÊÔ£¬Ö±½ÓÅ×³ö
+					//throw e; //å¦‚æœä¸æ˜¯æ•°æ®åº“ä¸å¯ç”¨å¼‚å¸¸ï¼Œæˆ–è€…ä¸è¦æ±‚é‡è¯•ï¼Œç›´æ¥æŠ›å‡º
 					break;
 				}
 				logger.warn(new StringBuilder().append(i + 1).append("th try locate on [").append(name).append(
-						"] failed:").append(e.getMessage()).toString()); //ÕâÀï²»´òÒì³£Õ»ÁË,È«²¿ÖØÊÔÊ§°Ü²ÅÓÉµ÷ÓÃÕß´ò
+						"] failed:").append(e.getMessage()).toString()); //è¿™é‡Œä¸æ‰“å¼‚å¸¸æ ˆäº†,å…¨éƒ¨é‡è¯•å¤±è´¥æ‰ç”±è°ƒç”¨è€…æ‰“
 				excludeKeys.add(name);
 			}
 		}
@@ -197,14 +197,14 @@ public class EquityDbManager extends AbstractDBSelector {
 	private final Random random = new Random();
 
 	/**
-	 * ·ÖÁ÷£ºËæ»ú·µ»ØÈ¨ÖØ´®Àï°üº¬ÖµÎªdataSourceIndexµÄiµÄÊı¾İÔ´
-	 * Èç¹ûÈ¨ÖØ´®Ã»ÓĞ¶¨Òåi/I£¬ÔòdataSourceIndexµÈÓÚ¼¸£¬¾ÍÂ·ÓÉµ½groupÖĞµÄµÚ¼¸¸öµÄÊı¾İÔ´
+	 * åˆ†æµï¼šéšæœºè¿”å›æƒé‡ä¸²é‡ŒåŒ…å«å€¼ä¸ºdataSourceIndexçš„içš„æ•°æ®æº
+	 * å¦‚æœæƒé‡ä¸²æ²¡æœ‰å®šä¹‰i/Iï¼Œåˆ™dataSourceIndexç­‰äºå‡ ï¼Œå°±è·¯ç”±åˆ°groupä¸­çš„ç¬¬å‡ ä¸ªçš„æ•°æ®æº
 	 *
-     * Ò»¸ödb¿ÉÒÔÍ¬Ê±ÅäÖÃ¶à¸öi£»²»Í¬µÄdb¿ÉÒÔÅäÖÃÏàÍ¬µÄi£¬ÀıÈçÈ¨ÖØ´®= db0:rwi0i2, db1:ri1, db2:ri1, db3:ri2 Ôò
-     *     ÓÃ»§Ö¸¶¨dataSourceIndex=0£¬Â·ÓÉµ½db0£»£¨Ö»ÓĞdb0ÓĞi0£©
-     *     ÓÃ»§Ö¸¶¨dataSourceIndex=1£¬Ëæ»úÂ·ÓÉµ½db1ºÍdb2£»£¨db1ºÍdb2¶¼ÓĞi1£©
-     *     ÓÃ»§Ö¸¶¨dataSourceIndex=2£¬Ëæ»úÂ·ÓÉµ½db0ºÍdb3£»£¨db0ºÍdb3¶¼ÓĞi2£©
-     * Èç¹ûÃ»ÓĞÅäÖÃi£¬ÀıÈçdb0:rw, db1:r; Ö¸¶¨dataSourceIndex=1ÔòÂ·ÓÉµ½db1
+     * ä¸€ä¸ªdbå¯ä»¥åŒæ—¶é…ç½®å¤šä¸ªiï¼›ä¸åŒçš„dbå¯ä»¥é…ç½®ç›¸åŒçš„iï¼Œä¾‹å¦‚æƒé‡ä¸²= db0:rwi0i2, db1:ri1, db2:ri1, db3:ri2 åˆ™
+     *     ç”¨æˆ·æŒ‡å®šdataSourceIndex=0ï¼Œè·¯ç”±åˆ°db0ï¼›ï¼ˆåªæœ‰db0æœ‰i0ï¼‰
+     *     ç”¨æˆ·æŒ‡å®šdataSourceIndex=1ï¼Œéšæœºè·¯ç”±åˆ°db1å’Œdb2ï¼›ï¼ˆdb1å’Œdb2éƒ½æœ‰i1ï¼‰
+     *     ç”¨æˆ·æŒ‡å®šdataSourceIndex=2ï¼Œéšæœºè·¯ç”±åˆ°db0å’Œdb3ï¼›ï¼ˆdb0å’Œdb3éƒ½æœ‰i2ï¼‰
+     * å¦‚æœæ²¡æœ‰é…ç½®iï¼Œä¾‹å¦‚db0:rw, db1:r; æŒ‡å®šdataSourceIndex=1åˆ™è·¯ç”±åˆ°db1
 	 */
 	protected DataSourceHolder findDataSourceWrapperByIndex(int dataSourceIndex) {
 		List<DataSourceHolder> holders = new ArrayList<DataSourceHolder>();

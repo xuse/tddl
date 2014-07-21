@@ -8,7 +8,7 @@ import com.taobao.tddl.sqlobjecttree.common.value.BindVar;
 
 /*
  * @author guangxia
- * @since 1.0, 2009-9-3 ÉÏÎç10:47:48
+ * @since 1.0, 2009-9-3 ä¸Šåˆ10:47:48
  */
 public class OracleFrom extends OraclePageWrapper {
 	
@@ -28,7 +28,7 @@ public class OracleFrom extends OraclePageWrapper {
 		}else if(skip instanceof Integer){
 			obj=(Integer)skip + add;
 		}else{
-			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 		}
 		changeParam.put(((BindVar)comparableExpression.getRight()).getIndex(), obj);
 	}
@@ -39,7 +39,7 @@ public class OracleFrom extends OraclePageWrapper {
 		}else if(skip instanceof Integer){
 			return ((Integer)((Integer)skip + add)).toString();
 		}else{
-			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 		}
 	}
 

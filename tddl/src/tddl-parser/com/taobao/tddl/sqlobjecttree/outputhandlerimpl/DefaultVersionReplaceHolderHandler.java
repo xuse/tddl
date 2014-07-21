@@ -5,7 +5,7 @@ import java.util.Map;
 import com.taobao.tddl.sqlobjecttree.ReplacableWrapper;
 
 /**
- * Ä¬ÈÏÇé¿öÏÂ²»¼ÓÈÎºÎ×Ö¶Î
+ * é»˜è®¤æƒ…å†µä¸‹ä¸åŠ ä»»ä½•å­—æ®µ
  * 
  * @author shenxun
  *

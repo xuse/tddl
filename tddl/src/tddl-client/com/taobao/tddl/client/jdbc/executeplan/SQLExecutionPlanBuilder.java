@@ -3,7 +3,7 @@ package com.taobao.tddl.client.jdbc.executeplan;
 
 
 /**
- * ÓÃÓÚÖÆ¶¨Ö´ÐÐ¼Æ»®µÄ¹¤¾ß¡£
+ * ç”¨äºŽåˆ¶å®šæ‰§è¡Œè®¡åˆ’çš„å·¥å…·ã€‚
  * 
  * @author shenxun
  * 

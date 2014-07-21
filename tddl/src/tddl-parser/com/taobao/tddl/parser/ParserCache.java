@@ -11,7 +11,7 @@ import com.taobao.tddl.sqlobjecttree.DMLCommon;
 
 /*
  * @author guangxia
- * @since 1.0, 2009-9-15 ÉÏÎç10:37:20
+ * @since 1.0, 2009-9-15 ä¸Šåˆ10:37:20
  */
 public class ParserCache {
 	private static final ParserCache instance = new ParserCache();
@@ -46,17 +46,17 @@ public class ParserCache {
 	protected static class ItemValue {
 
 		/**
-		 * Êı¾İµÄCRUDÀàĞÍ
+		 * æ•°æ®çš„CRUDç±»å‹
 		 */
 		private AtomicReference<SqlType> sqlType = new AtomicReference<SqlType>();
 
 		/**
-		 * ³ıÈ¥virtualTableNameÒÔÍâµÄÆäËûsql×Ö¶Î
+		 * é™¤å»virtualTableNameä»¥å¤–çš„å…¶ä»–sqlå­—æ®µ
 		 */
 		private AtomicReference<List<Object>> tableNameReplacement = new AtomicReference<List<Object>>();
 
 		/**
-		 * »º´æµÄÕû¸ösql
+		 * ç¼“å­˜çš„æ•´ä¸ªsql
 		 */
 		private AtomicReference<FutureTask<DMLCommon>> futureDMLCommon = new AtomicReference<FutureTask<DMLCommon>>();
 
@@ -65,11 +65,11 @@ public class ParserCache {
 		}
 
 		public SqlType setSqlTypeIfAbsent(SqlType sqlTypeinput) {
-			//Èç¹ûÔ­ÖµÎªnullÔò»áÔ­×ÓµÄÉèÖÃĞÂÖµ½øÈ¥¡£²¢ÇÒ·µ»ØĞÂÖµ
+			//å¦‚æœåŸå€¼ä¸ºnullåˆ™ä¼šåŸå­çš„è®¾ç½®æ–°å€¼è¿›å»ã€‚å¹¶ä¸”è¿”å›æ–°å€¼
 			if (sqlType.compareAndSet(null, sqlTypeinput)) {
 				return sqlTypeinput;
 			} else {
-				//Èç¹ûÀïÃæµÄÖµÒÑ¾­²»Îªnull£¬Ôò¶ÁÈ¡¸ÃÖµ
+				//å¦‚æœé‡Œé¢çš„å€¼å·²ç»ä¸ä¸ºnullï¼Œåˆ™è¯»å–è¯¥å€¼
 				return sqlType.get();
 			}
 		}
@@ -79,11 +79,11 @@ public class ParserCache {
 		}
 
 		public List<Object> setTableNameReplacementIfAbsent(List<Object> tableNameReplacementList) {
-			//Èç¹ûÔ­ÖµÎªnullÔò»áÔ­×ÓµÄÉèÖÃĞÂÖµ½øÈ¥¡£²¢ÇÒ·µ»ØĞÂÖµ
+			//å¦‚æœåŸå€¼ä¸ºnullåˆ™ä¼šåŸå­çš„è®¾ç½®æ–°å€¼è¿›å»ã€‚å¹¶ä¸”è¿”å›æ–°å€¼
 			if (tableNameReplacement.compareAndSet(null, tableNameReplacementList)) {
 				return tableNameReplacementList;
 			} else {
-				//Èç¹ûÀïÃæµÄÖµÒÑ¾­²»Îªnull£¬Ôò¶ÁÈ¡¸ÃÖµ
+				//å¦‚æœé‡Œé¢çš„å€¼å·²ç»ä¸ä¸ºnullï¼Œåˆ™è¯»å–è¯¥å€¼
 				return tableNameReplacement.get();
 			}
 
@@ -94,11 +94,11 @@ public class ParserCache {
 		}
 
 		public FutureTask<DMLCommon> setFutureDMLCommonIfAbsent(FutureTask<DMLCommon> future) {
-			//Èç¹ûÔ­ÖµÎªnullÔò»áÔ­×ÓµÄÉèÖÃĞÂÖµ½øÈ¥¡£²¢ÇÒ·µ»ØĞÂÖµ
+			//å¦‚æœåŸå€¼ä¸ºnullåˆ™ä¼šåŸå­çš„è®¾ç½®æ–°å€¼è¿›å»ã€‚å¹¶ä¸”è¿”å›æ–°å€¼
 			if (futureDMLCommon.compareAndSet(null, future)) {
 				return future;
 			} else {
-				//Èç¹ûÀïÃæµÄÖµÒÑ¾­²»Îªnull£¬Ôò¶ÁÈ¡¸ÃÖµ
+				//å¦‚æœé‡Œé¢çš„å€¼å·²ç»ä¸ä¸ºnullï¼Œåˆ™è¯»å–è¯¥å€¼
 				return futureDMLCommon.get();
 			}
 		}
@@ -122,10 +122,10 @@ public class ParserCache {
 		ItemValue itemValue = get(sql);
 		SqlType returnSqlType = null;
 		if (itemValue == null) {
-			//ÍêÈ«Ã»ÓĞµÄÇé¿ö£¬ÔÚÕâÖÖÇé¿öÏÂ£¬¿Ï¶¨ÊÇÒòÎª»¹Ã»ÓĞÏÖ³ÉÇëÇó¹ı½âÎöÄ³Ìõsql
+			//å®Œå…¨æ²¡æœ‰çš„æƒ…å†µï¼Œåœ¨è¿™ç§æƒ…å†µä¸‹ï¼Œè‚¯å®šæ˜¯å› ä¸ºè¿˜æ²¡æœ‰ç°æˆè¯·æ±‚è¿‡è§£ææŸæ¡sql
 			lock.lock();
 			try {
-				// Ë«¼ì²élock
+				// åŒæ£€æŸ¥lock
 				itemValue = get(sql);
 				if (itemValue == null) {
 
@@ -137,11 +137,11 @@ public class ParserCache {
 
 				lock.unlock();
 			}
-			//cas ¸üĞÂItemValueÖĞµÄSqlType¶ÔÏó
+			//cas æ›´æ–°ItemValueä¸­çš„SqlTypeå¯¹è±¡
 			returnSqlType = itemValue.setSqlTypeIfAbsent(sqlType);
 
 		} else if (itemValue.getSqlType()== null) {
-			//cas ¸üĞÂItemValueÖĞµÄSqlType¶ÔÏó
+			//cas æ›´æ–°ItemValueä¸­çš„SqlTypeå¯¹è±¡
 			returnSqlType = itemValue.setSqlTypeIfAbsent(sqlType);
 
 		} else {
@@ -174,10 +174,10 @@ public class ParserCache {
 		ItemValue itemValue = get(sql);
 		List<Object> returnList = null;
 		if (itemValue == null) {
-			//ÍêÈ«Ã»ÓĞµÄÇé¿ö£¬ÔÚÕâÖÖÇé¿öÏÂ£¬¿Ï¶¨ÊÇÒòÎª»¹Ã»ÓĞÏÖ³ÉÇëÇó¹ı½âÎöÄ³Ìõsql
+			//å®Œå…¨æ²¡æœ‰çš„æƒ…å†µï¼Œåœ¨è¿™ç§æƒ…å†µä¸‹ï¼Œè‚¯å®šæ˜¯å› ä¸ºè¿˜æ²¡æœ‰ç°æˆè¯·æ±‚è¿‡è§£ææŸæ¡sql
 			lock.lock();
 			try {
-				// Ë«¼ì²élock
+				// åŒæ£€æŸ¥lock
 				itemValue = get(sql);
 				if (itemValue == null) {
 
@@ -189,11 +189,11 @@ public class ParserCache {
 
 				lock.unlock();
 			}
-			//cas ¸üĞÂItemValueÖĞµÄTableNameReplacement¶ÔÏó
+			//cas æ›´æ–°ItemValueä¸­çš„TableNameReplacementå¯¹è±¡
 			returnList = itemValue.setTableNameReplacementIfAbsent(tablenameReplacement);
 
 		} else if (itemValue.getTableNameReplacement() == null) {
-			//cas ¸üĞÂItemValueÖĞµÄTableNameReplacement¶ÔÏó
+			//cas æ›´æ–°ItemValueä¸­çš„TableNameReplacementå¯¹è±¡
 			returnList = itemValue.setTableNameReplacementIfAbsent(tablenameReplacement);
 
 		} else {
@@ -208,10 +208,10 @@ public class ParserCache {
 		ItemValue itemValue = get(sql);
 		FutureTask<DMLCommon> returnFutureTask = null;
 		if (itemValue == null) {
-			//ÍêÈ«Ã»ÓĞµÄÇé¿ö£¬ÔÚÕâÖÖÇé¿öÏÂ£¬¿Ï¶¨ÊÇÒòÎª»¹Ã»ÓĞÏÖ³ÉÇëÇó¹ı½âÎöÄ³Ìõsql
+			//å®Œå…¨æ²¡æœ‰çš„æƒ…å†µï¼Œåœ¨è¿™ç§æƒ…å†µä¸‹ï¼Œè‚¯å®šæ˜¯å› ä¸ºè¿˜æ²¡æœ‰ç°æˆè¯·æ±‚è¿‡è§£ææŸæ¡sql
 			lock.lock();
 			try {
-				// Ë«¼ì²élock
+				// åŒæ£€æŸ¥lock
 				itemValue = get(sql);
 				if (itemValue == null) {
 
@@ -223,11 +223,11 @@ public class ParserCache {
 
 				lock.unlock();
 			}
-			//cas ¸üĞÂItemValueÖĞµÄDMLCommon¶ÔÏó
+			//cas æ›´æ–°ItemValueä¸­çš„DMLCommonå¯¹è±¡
 			returnFutureTask = itemValue.setFutureDMLCommonIfAbsent(future);
 
 		} else if (itemValue.getFutureDMLCommon() == null) {
-			//cas ¸üĞÂItemValueÖĞµÄDMLCommon¶ÔÏó
+			//cas æ›´æ–°ItemValueä¸­çš„DMLCommonå¯¹è±¡
 			returnFutureTask = itemValue.setFutureDMLCommonIfAbsent(future);
 		} else {
 			returnFutureTask = itemValue.getFutureDMLCommon();

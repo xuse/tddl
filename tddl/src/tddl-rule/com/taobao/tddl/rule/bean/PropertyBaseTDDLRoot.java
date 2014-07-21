@@ -27,7 +27,7 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 	
 	/**
 	 * 
-	 * ³õÊ¼»¯TableRule,ÉèÖÃ±ØÒªĞÅÏ¢°üÀ¨
+	 * åˆå§‹åŒ–TableRule,è®¾ç½®å¿…è¦ä¿¡æ¯åŒ…æ‹¬
 	 *     dbIndexes
 	 *     dbRuleArray
 	 *     tbRuleArray
@@ -42,7 +42,7 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 		Map<String/* key */, LogicTable> logicTableMap = new HashMap<String, LogicTable>(
 				tableRules.length);
 		for (int i = 0; i < tableRules.length; i++) {
-			//ÕâÀïĞèÒª·ÖÁÑÎªÁ½¸ö£¬Èç¹ûÔÚÄ³Ò»¸ötableRuleÖĞ£¬»¹ÓĞÊ¹ÓÃ;À´½øĞĞÇĞ·ÖµÄ»°£¬ÄÇÃ´Á½¸öÊ¹ÓÃÏàÍ¬µÄ¹æÔò¡£Ö»ÊÇ±íÃû»»µô
+			//è¿™é‡Œéœ€è¦åˆ†è£‚ä¸ºä¸¤ä¸ªï¼Œå¦‚æœåœ¨æŸä¸€ä¸ªtableRuleä¸­ï¼Œè¿˜æœ‰ä½¿ç”¨;æ¥è¿›è¡Œåˆ‡åˆ†çš„è¯ï¼Œé‚£ä¹ˆä¸¤ä¸ªä½¿ç”¨ç›¸åŒçš„è§„åˆ™ã€‚åªæ˜¯è¡¨åæ¢æ‰
 			String[] cloneSeparator = StringUtil.split(tableRules[i],CLONE_TABLE_SEPARATOR);
 			if(cloneSeparator.length == 1){
 				TableRule tableRule = new TableRule();
@@ -80,7 +80,7 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 			}
 		}
 		
-		//setLogicTableMap(logicTableMap); //ÕâÀï²»ĞèÒªÔÙÈ¥¸ãÒ»±éÁË
+		//setLogicTableMap(logicTableMap); //è¿™é‡Œä¸éœ€è¦å†å»æä¸€éäº†
 		this.logicTableMap = logicTableMap;
 	}
 	private void setDefaultDBIndex(String dbIndex){
@@ -89,10 +89,10 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 		}
 	}
 	/**
-	 * µÃµ½Âß¼­±íÁĞ±í
+	 * å¾—åˆ°é€»è¾‘è¡¨åˆ—è¡¨
 	 * 
 	 * @param prop
-	 * @return ÀıÈç:modDBTab,gmtTab
+	 * @return ä¾‹å¦‚:modDBTab,gmtTab
 	 */
 	private String[] getLogicTableList(Properties prop) {
 		return StringUtil.split(getPropValue(TABLE_RULES, prop),
@@ -100,30 +100,30 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 	}
 
 	/**
-	 * µÃµ½ÊÊÓÃµÄÊı¾İ¿âÀàĞÍ
+	 * å¾—åˆ°é€‚ç”¨çš„æ•°æ®åº“ç±»å‹
 	 * 
 	 * @param prop
-	 * @return ÀıÈç:mysql
+	 * @return ä¾‹å¦‚:mysql
 	 */
 	private String getDBType(Properties prop) {
 		return getPropValue(DB_TYPE, prop);
 	}
 
 	/**
-	 * µÃµ½ÊÊÓÃµÄÊı¾İ¿âÀàĞÍ
+	 * å¾—åˆ°é€‚ç”¨çš„æ•°æ®åº“ç±»å‹
 	 * 
 	 * @param prop
-	 * @return ÀıÈç:mysql
+	 * @return ä¾‹å¦‚:mysql
 	 */
 	private String getDefaultDBIndex(Properties prop) {
 		return getPropValue(DEFAULT_DB_INDEX, prop);
 	}
 	/**
-	 * µÃµ½dbIndexes
+	 * å¾—åˆ°dbIndexes
 	 * 
 	 * @param tableName
 	 * @param prop
-	 * @return ÀıÈç: sample_group_0,sample_group_1
+	 * @return ä¾‹å¦‚: sample_group_0,sample_group_1
 	 */
 	private String getDBIndexes(String tableName, Properties prop) {
 		String key = tableName + DB_INDEXES_SUFFIX;
@@ -131,11 +131,11 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 	}
 
 	/**
-	 * µÃµ½tableIndexes
+	 * å¾—åˆ°tableIndexes
 	 * 
 	 * @param tableName
 	 * @param prop
-	 * @return ÀıÈç£ºthroughAllDB:[_0001-_0004]
+	 * @return ä¾‹å¦‚ï¼šthroughAllDB:[_0001-_0004]
 	 */
 	private String getTabIndexes(String tableName, Properties prop) {
 		String key = tableName + TABLE_INDEXES_SUFFIX;
@@ -143,11 +143,11 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 	}
 
 	/**
-	 * µÃµ½tableRule
+	 * å¾—åˆ°tableRule
 	 * 
 	 * @param tableName
 	 * @param prop
-	 * @return ÀıÈç:#pk#.longValue() % 4 % 2
+	 * @return ä¾‹å¦‚:#pk#.longValue() % 4 % 2
 	 */
 	private Object[] getTableRules(String tableName, Properties prop) {
 		String key = tableName + TABLE_RULEINDEX_SUFFIX;
@@ -155,11 +155,11 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 	}
 
 	/**
-	 * µÃµ½dbRule
+	 * å¾—åˆ°dbRule
 	 * 
 	 * @param tableName
 	 * @param prop
-	 * @return ÀıÈç:(#pk#.longValue() % 4).intdiv(2)
+	 * @return ä¾‹å¦‚:(#pk#.longValue() % 4).intdiv(2)
 	 */
 	private Object[] getDBRules(String tableName, Properties prop) {
 		String key = tableName + DB_RULEINDEX_SUFFIX;
@@ -167,7 +167,7 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 	}
 
 	/**
-	 * ´ÓpropÖĞ¸ù¾İkeyµÃµ½¹æÔò£¬ Èç¹ûÎª¿Õ£¬·µ»Ønull
+	 * ä»propä¸­æ ¹æ®keyå¾—åˆ°è§„åˆ™ï¼Œ å¦‚æœä¸ºç©ºï¼Œè¿”å›null
 	 * 
 	 * @param key
 	 * @param prop
@@ -184,9 +184,9 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 	}
 	
 	/**
-	 * ´ÓpropÖĞ¸ù¾İkeyµÃµ½È«±íÉ¨Ãè¿ª¹Ø
+	 * ä»propä¸­æ ¹æ®keyå¾—åˆ°å…¨è¡¨æ‰«æå¼€å…³
 	 * 
-	 * ÕâÀïÈç¹ûdisableFullTableScanÃ»ÓĞÖµ,ÄÇÃ´·µ»Øtrue
+	 * è¿™é‡Œå¦‚æœdisableFullTableScanæ²¡æœ‰å€¼,é‚£ä¹ˆè¿”å›true
 	 * @param key
 	 * @param prop
 	 * @return
@@ -201,7 +201,7 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 	}
 	
 	/**
-	 * ´ÓpropÖĞ¸ù¾İkeyµÃµ½±í¼¶±ğÊı¾İ¿â±ê¼Ç
+	 * ä»propä¸­æ ¹æ®keyå¾—åˆ°è¡¨çº§åˆ«æ•°æ®åº“æ ‡è®°
 	 * @param tableName
 	 * @param prop
 	 * @return
@@ -216,7 +216,7 @@ public class PropertyBaseTDDLRoot extends TDDLRoot {
 	}
 
 	/**
-	 * ´ÓPropertiesÖĞ¸ù¾İkeyµÃµ½ÏàÓ¦Öµ
+	 * ä»Propertiesä¸­æ ¹æ®keyå¾—åˆ°ç›¸åº”å€¼
 	 * 
 	 * @param key
 	 * @param prop

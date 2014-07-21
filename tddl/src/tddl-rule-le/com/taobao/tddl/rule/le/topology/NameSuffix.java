@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ÃèÊöÒ»¸ö£¨×é£©ÓĞ¹æÂÉµÄºó×º¡£
+ * æè¿°ä¸€ä¸ªï¼ˆç»„ï¼‰æœ‰è§„å¾‹çš„åç¼€ã€‚
  * 
  * <pre>
  *   NameSuffix = Pattern | NameRange

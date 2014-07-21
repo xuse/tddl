@@ -3,7 +3,7 @@ package com.taobao.tddl.sqlobjecttree;
 import java.util.Map;
 
 /**
- * °ü×°Àà
+ * åŒ…è£…ç±»
  * 
  * @author whisper
  *

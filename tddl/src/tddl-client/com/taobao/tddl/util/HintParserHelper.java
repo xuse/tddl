@@ -16,7 +16,7 @@ import com.taobao.tddl.common.util.TStringUtil;
 
 public class HintParserHelper {
 	/**
-	 * ´ÓsqlÖĞ½â³öhint,²¢ÇÒ½«hintÀïÃæµÄ?Ìæ»»Îª²ÎÊıµÄStringĞÎÊ½
+	 * ä»sqlä¸­è§£å‡ºhint,å¹¶ä¸”å°†hinté‡Œé¢çš„?æ›¿æ¢ä¸ºå‚æ•°çš„Stringå½¢å¼
 	 * @param sql
 	 * @param parameterSettings
 	 * @return
@@ -32,7 +32,7 @@ public class HintParserHelper {
 		int parameters = 1;
 		for (int i = 0; i < size; i++) {
 			if (tddlHint.charAt(i) == '?') {
-				// TDDLHINTÖ»ÄÜÉèÖÃ¼òµ¥Öµ
+				// TDDLHINTåªèƒ½è®¾ç½®ç®€å•å€¼
 				ParameterContext param = parameterSettings.get(parameters);
 				if (param.getParameterMethod() == ParameterMethod.setString) {
 					sb.append("'");
@@ -67,15 +67,15 @@ public class HintParserHelper {
 		sql = TStringUtil.removeBetweenWithSplitor(sql, "/*+TDDL(", ")*/");
 		startInfo.setSql(sql);
 
-		// Èç¹ûparametersÎª0£¬ËµÃ÷TDDLhintÖĞÃ»ÓĞ²ÎÊı£¬ËùÒÔÖ±½Ó·µ»Øsql¼´¿É
+		// å¦‚æœparametersä¸º0ï¼Œè¯´æ˜TDDLhintä¸­æ²¡æœ‰å‚æ•°ï¼Œæ‰€ä»¥ç›´æ¥è¿”å›sqlå³å¯
 		if (parameters == 0) {
 			return;
 		}
 
 		Map<Integer, ParameterContext> parametersettings = startInfo
 				.getSqlParam();
-		// TDDLµÄhint±ØĞèĞ´ÔÚSQLÓï¾äµÄ×îÇ°Ãæ£¬Èç¹ûºÍORACLE hintÒ»ÆğÓÃ£¬
-		// Ò²±ØĞèĞ´ÔÚhint×Ö·û´®µÄ×îÇ°Ãæ£¬·ñÔò²ÎÊı·Ç³£ÄÑÒÔ´¦Àí£¬Ò²¾Í»á³ö´í
+		// TDDLçš„hintå¿…éœ€å†™åœ¨SQLè¯­å¥çš„æœ€å‰é¢ï¼Œå¦‚æœå’ŒORACLE hintä¸€èµ·ç”¨ï¼Œ
+		// ä¹Ÿå¿…éœ€å†™åœ¨hintå­—ç¬¦ä¸²çš„æœ€å‰é¢ï¼Œå¦åˆ™å‚æ•°éå¸¸éš¾ä»¥å¤„ç†ï¼Œä¹Ÿå°±ä¼šå‡ºé”™
 		SortedMap<Integer, ParameterContext> tempMap = new TreeMap<Integer, ParameterContext>();
 		for (int i = 1; i <= parameters; i++) {
 			parametersettings.remove(i);
@@ -83,7 +83,7 @@ public class HintParserHelper {
 
 		tempMap.putAll(parametersettings);
 		parametersettings.clear();
-		// Õâ¶ÎĞèÒªĞÔÄÜÓÅ»¯
+		// è¿™æ®µéœ€è¦æ€§èƒ½ä¼˜åŒ–
 		int tempMapSize = tempMap.size();
 		for (int i = 1; i <= tempMapSize; i++) {
 			Integer ind = tempMap.firstKey();

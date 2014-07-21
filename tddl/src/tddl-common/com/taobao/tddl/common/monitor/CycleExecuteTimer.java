@@ -10,7 +10,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * 
- * Ö´ĞĞ¶¨Ê±Æ÷
+ * æ‰§è¡Œå®šæ—¶å™¨
  * 
  * @author junyu
  * 
@@ -28,25 +28,25 @@ public class CycleExecuteTimer {
 	private Thread waitThread;
 
 	/**
-	 * ²»ÔÊĞíµ÷ÓÃÎŞ²Î¹¹Ôìº¯Êı
+	 * ä¸å…è®¸è°ƒç”¨æ— å‚æ„é€ å‡½æ•°
 	 */
 	@SuppressWarnings("unused")
 	private CycleExecuteTimer() {
 	}
 
 	/**
-	 *  ³õÊ¼»¯Ò»¸öÈÎÎñ
+	 *  åˆå§‹åŒ–ä¸€ä¸ªä»»åŠ¡
 	 *  
-	 * @param taskName ÈÎÎñÃû£¬ÓÃÓÚÈÕÖ¾¼ÇÂ¼
+	 * @param taskName ä»»åŠ¡åï¼Œç”¨äºæ—¥å¿—è®°å½•
 	 * 
 	 * @param task
-	 *            ĞèÒªÖ´ĞĞµÄÈÎÎñ
+	 *            éœ€è¦æ‰§è¡Œçš„ä»»åŠ¡
 	 * @param time
-	 *            ¼ä¸ôÊ±¼ä
+	 *            é—´éš”æ—¶é—´
 	 * @param timeUnit
-	 *            ¼ä¸ôÊ±¼äµ¥Î»
+	 *            é—´éš”æ—¶é—´å•ä½
 	 * @param timeComputer
-	 *            ¶¨Ê±Æ÷¡£ÓÃÀ´¼ÆËãÈÎÎñºÎÊ±¿ªÊ¼¡£
+	 *            å®šæ—¶å™¨ã€‚ç”¨æ¥è®¡ç®—ä»»åŠ¡ä½•æ—¶å¼€å§‹ã€‚
 	 */
 	public CycleExecuteTimer(String taskName, Runnable task, long time,
 			TimeUnit timeUnit, TimeComputer timeComputer) {
@@ -59,7 +59,7 @@ public class CycleExecuteTimer {
 
 	public void start() {
 		if (isRun) {
-			logger.warn(taskName + "ÈÎÎñÒÑ¾­ÔÚÔËĞĞ");
+			logger.warn(taskName + "ä»»åŠ¡å·²ç»åœ¨è¿è¡Œ");
 			return;
 		}
 
@@ -74,24 +74,24 @@ public class CycleExecuteTimer {
 			Date startTime = this.timeComputer.getMostNearTime();
 			interval= this.timeComputer.getMostNearTimeInterval();
 
-			logger.warn(taskName + "ÈÎÎñ½«ÔÚ" + startTime + "¿ªÊ¼£¬¾àÀë¿ªÊ¼Ê±¼ä»¹ÓĞ£º"
-					+ interval + "ºÁÃë");
+			logger.warn(taskName + "ä»»åŠ¡å°†åœ¨" + startTime + "å¼€å§‹ï¼Œè·ç¦»å¼€å§‹æ—¶é—´è¿˜æœ‰ï¼š"
+					+ interval + "æ¯«ç§’");
 		}
 
 		/**
-		 * Æô¶¯¹Ì¶¨ÖÜÆÚµÄÈÎÎñ
+		 * å¯åŠ¨å›ºå®šå‘¨æœŸçš„ä»»åŠ¡
 		 */
 		executor.scheduleAtFixedRate(new Runnable() {
 			public void run() {
 				if (!isRun) {
-					logger.warn(taskName + "ÈÎÎñÒÑÍ£Ö¹¡£");
+					logger.warn(taskName + "ä»»åŠ¡å·²åœæ­¢ã€‚");
 					return;
 				}
 
 				try {
 					task.run();
 				} catch (Exception e) {
-					logger.error(taskName + "ÈÎÎñÖ´ĞĞÒì³££¡",e);
+					logger.error(taskName + "ä»»åŠ¡æ‰§è¡Œå¼‚å¸¸ï¼",e);
 				}
 			}
 		}, interval==-1L?0L:interval, this.time, this.timeUnit);

@@ -20,7 +20,7 @@ public class ColumnImp implements Column, SubQueryValue {
 	String alias = null;
 
 	/**
-	 * Îª¿ÕÇëÌînull
+	 * ä¸ºç©ºè¯·å¡«null
 	 * 
 	 * @param table
 	 * @param column
@@ -28,7 +28,7 @@ public class ColumnImp implements Column, SubQueryValue {
 	 */
 	public ColumnImp(String table, String column, String alias) {
 		if (column == null) {
-			throw new IllegalArgumentException("ÁĞµÄÁĞÃû²»ÄÜÎª¿Õ");
+			throw new IllegalArgumentException("åˆ—çš„åˆ—åä¸èƒ½ä¸ºç©º");
 		}
 		this.column = column;
 		this.alias = alias;
@@ -106,10 +106,10 @@ public class ColumnImp implements Column, SubQueryValue {
 		return this;
 	}
 
-	// tab.id=v.id ´¦ÀíÕâ¸öÇé¿öÓÃ
+	// tab.id=v.id å¤„ç†è¿™ä¸ªæƒ…å†µç”¨
 	public Comparable<?> getVal(List<Object> args) {
 		if (aliasMap == null) {
-			throw new IllegalArgumentException("±ØĞëÊäÈëaliasMap");
+			throw new IllegalArgumentException("å¿…é¡»è¾“å…¥aliasMap");
 		}
 		SQLFragment fragement;
 		fragement = aliasMap.get(table.toUpperCase());
@@ -125,8 +125,8 @@ public class ColumnImp implements Column, SubQueryValue {
 				TableNameFunctionImp tbNameFunc = subSelect
 						.getTableNameFunction();
 				if (tbNameFunc == null) {
-					throw new IllegalArgumentException("ÁĞÃû×Ö¶Î:" + table + "."
-							+ column + "²»ÄÜÓ³Éäµ½Ò»¸ö¿ÉÒÔ¸³ÖµµÄ" + "ĞéÄâÁĞÃûÖĞ");
+					throw new IllegalArgumentException("åˆ—åå­—æ®µ:" + table + "."
+							+ column + "ä¸èƒ½æ˜ å°„åˆ°ä¸€ä¸ªå¯ä»¥èµ‹å€¼çš„" + "è™šæ‹Ÿåˆ—åä¸­");
 				} else {
 					Function func = tbNameFunc.getFunction();
 					return func.getVal(args);

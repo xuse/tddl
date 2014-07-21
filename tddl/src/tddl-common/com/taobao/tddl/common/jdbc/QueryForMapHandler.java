@@ -7,19 +7,19 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlTypeValue;
 
 /**
- * ´ÓÒ»¸ö±íÈ¡Ò»¸ö¶ÔÏó¡£
- * 1. ²»ÄÜÃ¿´ÎÓÃselect *
- * 2. È¡µÃSQLTypeµÈĞèÒªµÄÔªĞÅÏ¢
+ * ä»ä¸€ä¸ªè¡¨å–ä¸€ä¸ªå¯¹è±¡ã€‚
+ * 1. ä¸èƒ½æ¯æ¬¡ç”¨select *
+ * 2. å–å¾—SQLTypeç­‰éœ€è¦çš„å…ƒä¿¡æ¯
  * 
- * ½â¾öÁ½¸öÎÊÌâ£º
- * 1. ±ÜÃâselect *
- * 2. Í¨¹ısetObjectÊ±ÏÔÊ½Ö¸¶¨sqlTypeÒÔ±ÜÃâOracle²úÉú¹ı¶àµÄ×ÓÖ´ĞĞ¼Æ»®
+ * è§£å†³ä¸¤ä¸ªé—®é¢˜ï¼š
+ * 1. é¿å…select *
+ * 2. é€šè¿‡setObjectæ—¶æ˜¾å¼æŒ‡å®šsqlTypeä»¥é¿å…Oracleäº§ç”Ÿè¿‡å¤šçš„å­æ‰§è¡Œè®¡åˆ’
  * 
  * @author linxuan
  *
  */
 public interface QueryForMapHandler {
-	//Õâ¸öÀà¿ÉÒÔÊÇstaticµÄ
+	//è¿™ä¸ªç±»å¯ä»¥æ˜¯staticçš„
 	static class ColumnMetaData {
 		public final int sqlType;
 		public final int scale;
@@ -32,12 +32,12 @@ public interface QueryForMapHandler {
 		}
 	}
 
-	//Õâ¸öÀà¿ÉÒÔÊÇstaticµÄ
+	//è¿™ä¸ªç±»å¯ä»¥æ˜¯staticçš„
 	static class TableMetaData {
-		private final Map<String/*Ğ¡Ğ´ÁĞÃû*/, ColumnMetaData/*ÁĞµÄsqlTypeµÈ*/> columnMetaDataMap;
-		public final String[] columnNames; //Ğ¡Ğ´ÁĞÃû
-		public final ColumnMetaData[] columns; //columnNames¶ÔÓ¦µÄColumnMetaData
-		public final String commaColumnNames; //¶ººÅ·Ö¸ôµÄĞ¡Ğ´ÁĞÃû
+		private final Map<String/*å°å†™åˆ—å*/, ColumnMetaData/*åˆ—çš„sqlTypeç­‰*/> columnMetaDataMap;
+		public final String[] columnNames; //å°å†™åˆ—å
+		public final ColumnMetaData[] columns; //columnNameså¯¹åº”çš„ColumnMetaData
+		public final String commaColumnNames; //é€—å·åˆ†éš”çš„å°å†™åˆ—å
 
 		public TableMetaData(String[] columnNames, ColumnMetaData[] columns) {
 			if (columnNames == null || columnNames.length == 0 || columns == null || columns.length == 0
@@ -45,7 +45,7 @@ public interface QueryForMapHandler {
 				throw new IllegalArgumentException("columnNames or columns is null or empty or not match");
 			}
 
-			//¸´ÖÆÒÔ±£Ö¤ÆäÄÚ²¿²»±äµÄÌØĞÔ
+			//å¤åˆ¶ä»¥ä¿è¯å…¶å†…éƒ¨ä¸å˜çš„ç‰¹æ€§
 			this.columnNames = new String[columnNames.length];
 			this.columns = new ColumnMetaData[columns.length];
 			System.arraycopy(columnNames, 0, this.columnNames, 0, columnNames.length);
@@ -112,10 +112,10 @@ public interface QueryForMapHandler {
 	
 	
 	/**
-	 * ´ÓÒ»¸ö±íÈ¡µÃÒ»¸ö¶ÔÏó¡£
-	 * @param tableName ±íÃû
-	 * @param selectColumns nullÔòÓÃselect * £»·ñÔòÓÃÖ¸¶¨µÄ£»Ö»ÔÚµÚÒ»´Î²éÑ¯Ê±Ê¹ÓÃ¡£Ö®ºóÓÃµÚÒ»´Î²éµ½µÄÊµ¼ÊÁĞÃû
-	 * @param whereSql select xxx from xxx where xxx ÖĞ´Ówhere¿ªÊ¼Ö®ºóµÄsql
+	 * ä»ä¸€ä¸ªè¡¨å–å¾—ä¸€ä¸ªå¯¹è±¡ã€‚
+	 * @param tableName è¡¨å
+	 * @param selectColumns nullåˆ™ç”¨select * ï¼›å¦åˆ™ç”¨æŒ‡å®šçš„ï¼›åªåœ¨ç¬¬ä¸€æ¬¡æŸ¥è¯¢æ—¶ä½¿ç”¨ã€‚ä¹‹åç”¨ç¬¬ä¸€æ¬¡æŸ¥åˆ°çš„å®é™…åˆ—å
+	 * @param whereSql select xxx from xxx where xxx ä¸­ä»whereå¼€å§‹ä¹‹åçš„sql
 	 * @param args 
 	 * @return
 	 */
@@ -123,9 +123,9 @@ public interface QueryForMapHandler {
 			Object[] args);
 
 	/**
-	 * ÔÚqueryForMapÖ®ºóµ÷ÓÃ¡£·µ»ØÃ¿¸öÁĞµÄÁĞÃûºÍ¶ÔÓ¦µÄsqlType
-	 * @param tableName Ğ¡Ğ´±íÃû
-	 * @return ¶ÔÓ¦tableµÄTableMetaData
+	 * åœ¨queryForMapä¹‹åè°ƒç”¨ã€‚è¿”å›æ¯ä¸ªåˆ—çš„åˆ—åå’Œå¯¹åº”çš„sqlType
+	 * @param tableName å°å†™è¡¨å
+	 * @return å¯¹åº”tableçš„TableMetaData
 	 */
 	TableMetaData getTableMetaData(String tableName);
 }

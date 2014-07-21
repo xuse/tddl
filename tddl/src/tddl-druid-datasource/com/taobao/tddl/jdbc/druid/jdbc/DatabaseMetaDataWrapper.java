@@ -54,7 +54,7 @@ public class DatabaseMetaDataWrapper implements DatabaseMetaData
 			String typeNamePattern, String attributeNamePattern)
 			throws SQLException
 	{
-		// ÕâÀïconnection ÊÇnull°É£¬µ÷ÓÃ²»µ½µÄ¸Ğ¾õ
+		// è¿™é‡Œconnection æ˜¯nullå§ï¼Œè°ƒç”¨ä¸åˆ°çš„æ„Ÿè§‰
 		return new TResultSetWrapper(null, this.targetMetaData.getAttributes(
 				catalog, schemaPattern, typeNamePattern, attributeNamePattern));
 	}

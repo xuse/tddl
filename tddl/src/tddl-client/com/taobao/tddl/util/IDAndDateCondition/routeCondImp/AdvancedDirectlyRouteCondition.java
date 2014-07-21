@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 用于直接执行sql
+ * 鐢ㄤ簬鐩存帴鎵цsql
  * @author shenxun
  */
 public class AdvancedDirectlyRouteCondition extends DirectlyRouteCondition implements RouteCondition{
@@ -27,8 +27,8 @@ public class AdvancedDirectlyRouteCondition extends DirectlyRouteCondition imple
 		this.shardTableMap = directlyShardTableMap;
 	}
 	
-//	这个方法不能重写父类里面的方法，否则将不支持dbId的设置，
-//  直接导致无法使用AdvancedDirectlyRouteCondition
+//	杩欎釜鏂规硶涓嶈兘閲嶅啓鐖剁被閲岄潰鐨勬柟娉曪紝鍚﹀垯灏嗕笉鏀寔dbId鐨勮缃紝
+//  鐩存帴瀵艰嚧鏃犳硶浣跨敤AdvancedDirectlyRouteCondition
 //  Edit by junyu 
 //  public void setDBId(String dbId){
 //		throw new IllegalArgumentException("advance not support this");

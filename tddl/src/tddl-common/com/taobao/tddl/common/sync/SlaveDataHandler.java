@@ -8,7 +8,7 @@ import java.util.Map;
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-9-27ÉÏÎç11:46:09
+ * @date 2011-9-27ä¸Šåˆ11:46:09
  */
 public interface SlaveDataHandler {
 	/**

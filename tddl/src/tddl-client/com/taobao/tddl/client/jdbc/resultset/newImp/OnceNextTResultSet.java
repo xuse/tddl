@@ -24,7 +24,7 @@ public abstract class OnceNextTResultSet extends PlainAbstractTResultSet {
 	protected boolean isNull;
 	
 	/**
-	 * ³õÊ¼·½·¨ÖĞÖ±½Ó²éÑ¯Êı¾İ²¢ÇÒºÏ²¢Êı¾İ£¬È»ºó¹Ø±ÕÁ¬½Ó
+	 * åˆå§‹æ–¹æ³•ä¸­ç›´æ¥æŸ¥è¯¢æ•°æ®å¹¶ä¸”åˆå¹¶æ•°æ®ï¼Œç„¶åå…³é—­è¿æ¥
 	 * @param connectionManager
 	 * @throws SQLException 
 	 */
@@ -34,7 +34,7 @@ public abstract class OnceNextTResultSet extends PlainAbstractTResultSet {
 	}
 	
 	/**
-	 * Ö»ÊÇ¸ø²âÊÔÊ¹ÓÃ
+	 * åªæ˜¯ç»™æµ‹è¯•ä½¿ç”¨
 	 * @param tStatementImp
 	 * @param connectionManager
 	 * @param executionPlan

@@ -12,100 +12,100 @@ import com.taobao.tddl.sqlobjecttree.GroupFunctionType;
 import com.taobao.tddl.sqlobjecttree.SetElement;
 
 /**
- * Ò»¸ö×îÖÕ¸æËßStatementÒªÔõÃ´×öµÄ¶«Î÷
+ * ä¸€ä¸ªæœ€ç»ˆå‘Šè¯‰Statementè¦æ€ä¹ˆåšçš„ä¸œè¥¿
  * 
- * ¼´°üº¬ÁË·Ö¿â·Ö±íµÄ½á¹û£¬Ò²°üº¬ÁËSQL±¾ÉíµÄĞÅÏ¢£¬ºÍ¹æÔòÖĞµÄÒ»Ğ©ÅäÖÃ
+ * å³åŒ…å«äº†åˆ†åº“åˆ†è¡¨çš„ç»“æœï¼Œä¹ŸåŒ…å«äº†SQLæœ¬èº«çš„ä¿¡æ¯ï¼Œå’Œè§„åˆ™ä¸­çš„ä¸€äº›é…ç½®
  * 
- * ÊÇ´ÓSQL½âÎö¡¢¹æÔò¶ÁÈ¡ºÍÆ¥Åä½á¹ûÖĞ³éÈ¡ĞèÒªĞÅÏ¢×é×°¶ø³ÉµÄ
+ * æ˜¯ä»SQLè§£æã€è§„åˆ™è¯»å–å’ŒåŒ¹é…ç»“æœä¸­æŠ½å–éœ€è¦ä¿¡æ¯ç»„è£…è€Œæˆçš„
  * 
- * TargetDBMeta ºÍ TargetDBMetaData ºÏ²¢À­Ö±¶øÀ´ 1. ĞŞ¸ÄÁË·Ö±í¼ü¿ÉÒÔÎª¶à¸ö
+ * TargetDBMeta å’Œ TargetDBMetaData åˆå¹¶æ‹‰ç›´è€Œæ¥ 1. ä¿®æ”¹äº†åˆ†è¡¨é”®å¯ä»¥ä¸ºå¤šä¸ª
  * 
  * @author linxuan
  * 
  */
 public class DispatcherResultImp implements DispatcherResult {
 	/**
-	 * maxÖµ£¬Èç¹ûsqlÖĞ¸ø¶¨ÁËlimit m,n,»òrownum<xx ÔòmaxÖµ»áËæÖ®±ä»¯ÎªÓ¦ÓÃÖĞµÄÖµ
-	 * ĞèÒª×¢ÒâµÄÊÇ£¬max±¾ÉíÊÇlimitToµÄº¬Òå£¬Òò´ËÆäÊµ×îºó¶¼»á±äÎª xxx<maxÕâÑùµÄÓïÒå
+	 * maxå€¼ï¼Œå¦‚æœsqlä¸­ç»™å®šäº†limit m,n,æˆ–rownum<xx åˆ™maxå€¼ä¼šéšä¹‹å˜åŒ–ä¸ºåº”ç”¨ä¸­çš„å€¼
+	 * éœ€è¦æ³¨æ„çš„æ˜¯ï¼Œmaxæœ¬èº«æ˜¯limitToçš„å«ä¹‰ï¼Œå› æ­¤å…¶å®æœ€åéƒ½ä¼šå˜ä¸º xxx<maxè¿™æ ·çš„è¯­ä¹‰
 	 * <p>
-	 * ¶ÔÓÚoracle: rownum<=n max=n+1
+	 * å¯¹äºoracle: rownum<=n max=n+1
 	 * </p>
 	 * <p>
-	 * ¶ÔÓÚmysql: limit m,n max=m+n
+	 * å¯¹äºmysql: limit m,n max=m+n
 	 * </p>
 	 */
 	private final int max;
 
 	/**
-	 * skipÖµ£¬Èç¹ûsqlÖĞ¸ø¶¨ÁËlimit m,n,»òrownum>xx ÔòskipÖµ»áËæÖ®±ä»¯ÎªÓ¦ÓÃÖĞµÄÖµ
-	 * ĞèÒª×¢ÒâµÄÊÇ£¬skip±¾ÉíÊÇlimitFromµÄº¬Òå£¬Òò´ËÆäÊµ×îºó¶¼»á±äÎª xxx>=mÕâÑùµÄÓïÒå
+	 * skipå€¼ï¼Œå¦‚æœsqlä¸­ç»™å®šäº†limit m,n,æˆ–rownum>xx åˆ™skipå€¼ä¼šéšä¹‹å˜åŒ–ä¸ºåº”ç”¨ä¸­çš„å€¼
+	 * éœ€è¦æ³¨æ„çš„æ˜¯ï¼Œskipæœ¬èº«æ˜¯limitFromçš„å«ä¹‰ï¼Œå› æ­¤å…¶å®æœ€åéƒ½ä¼šå˜ä¸º xxx>=mè¿™æ ·çš„è¯­ä¹‰
 	 * <p>
-	 * ¶ÔÓÚoracle: rownum>n skip=n+1
+	 * å¯¹äºoracle: rownum>n skip=n+1
 	 * </p>
 	 * <p>
-	 * ¶ÔÓÚmysql: limit m,n skip=m
+	 * å¯¹äºmysql: limit m,n skip=m
 	 * </p>
 	 */
 	private final int skip;
 
 	/**
-	 * sql ÖĞµÄorder by ĞÅÏ¢
+	 * sql ä¸­çš„order by ä¿¡æ¯
 	 */
 	private final OrderByMessages orderByMessages;
 
 	/**
-	 * ÔÚsqlÖĞ×îÍâ²ãÇ¶Ì×µÄselectÖĞµÄcolumnsÀïÃæµÄgroup functionĞÅÏ¢¡£ Èô¸Ã´¦ÓĞgroup
-	 * function,Ôòparser»á¶ÔÆä½øĞĞÅĞ¶Ï£¬È·±£Ö»ÓĞÒ»¸ögroup function£¬Ã»ÓĞÆäËûÁĞ¡£Èç¹ûÓĞÔòÅ×³öÒì³£ Èô¾­¼ì²é³ıÁËgroup
-	 * functionÒÔÍâÃ»ÓĞÆäËûÁĞ´æÔÚ£¬Ôò»á·µ»Ø¸Ãgroup function¶ÔÓ¦µÄType Èç¹ûÃ»ÓĞgroup
-	 * function»òÕßÊÇÆäËûÀàĞÍµÄsql(insert updateµÈ)¡£Ôò·µ»Ønormal.
+	 * åœ¨sqlä¸­æœ€å¤–å±‚åµŒå¥—çš„selectä¸­çš„columnsé‡Œé¢çš„group functionä¿¡æ¯ã€‚ è‹¥è¯¥å¤„æœ‰group
+	 * function,åˆ™parserä¼šå¯¹å…¶è¿›è¡Œåˆ¤æ–­ï¼Œç¡®ä¿åªæœ‰ä¸€ä¸ªgroup functionï¼Œæ²¡æœ‰å…¶ä»–åˆ—ã€‚å¦‚æœæœ‰åˆ™æŠ›å‡ºå¼‚å¸¸ è‹¥ç»æ£€æŸ¥é™¤äº†group
+	 * functionä»¥å¤–æ²¡æœ‰å…¶ä»–åˆ—å­˜åœ¨ï¼Œåˆ™ä¼šè¿”å›è¯¥group functionå¯¹åº”çš„Type å¦‚æœæ²¡æœ‰group
+	 * functionæˆ–è€…æ˜¯å…¶ä»–ç±»å‹çš„sql(insert updateç­‰)ã€‚åˆ™è¿”å›normal.
 	 */
 	private final GroupFunctionType groupFunctionType;
 
 	/**
-	 * Ö÷¼ü£¬·Ö¿â¼ü±¾ÉíÊÇ²»ÔÊĞí¶à¸öµÄ
+	 * ä¸»é”®ï¼Œåˆ†åº“é”®æœ¬èº«æ˜¯ä¸å…è®¸å¤šä¸ªçš„
 	 */
 	private ColumnMetaData uniqueKey;
 
 	/**
-	 * ·Ö¿â¼üÁĞ±í£¬ÒòÎª·Ö¿â¼ü±¾ÉíÊÇÔÊĞí¶à¸öµÄ£¬ËùÒÔÊÇ¸ölist.ÀïÃæÈç¹ûÔÚxmlÖĞÅäÖÃÁËparametersÏî£¬ÔòÃ¿Ò»¸ö
-	 * ÓÃ','·Ö¸ôµÄÏîÄ¿¶¼¶ÔÓ¦listÖĞµÄÒ»Ïî¡£ColumnMetaDataÖĞµÄkey¶ÔÓ¦ÁËparametersÀïÃ¿Ò»¸öÓÃ','·Ö¸ôµÄÏîÄ¿
-	 * ¶øvalue¶ÔÓ¦ÒÑ¾­Í¨¹ı¼ÆËã²¢ÇÒ°ó¶¨ÁË±äÁ¿ÒÔºóµÄÖµ£¬Õâ¸öÖµÔÊĞíÎªnull,ÎªnullÔò±íÊ¾ÓÃ»§Ã»ÓĞÔÚsqlÖĞ¸ø³ö¶ÔÓ¦ µÄ²ÎÊı¡£
+	 * åˆ†åº“é”®åˆ—è¡¨ï¼Œå› ä¸ºåˆ†åº“é”®æœ¬èº«æ˜¯å…è®¸å¤šä¸ªçš„ï¼Œæ‰€ä»¥æ˜¯ä¸ªlist.é‡Œé¢å¦‚æœåœ¨xmlä¸­é…ç½®äº†parametersé¡¹ï¼Œåˆ™æ¯ä¸€ä¸ª
+	 * ç”¨','åˆ†éš”çš„é¡¹ç›®éƒ½å¯¹åº”listä¸­çš„ä¸€é¡¹ã€‚ColumnMetaDataä¸­çš„keyå¯¹åº”äº†parametersé‡Œæ¯ä¸€ä¸ªç”¨','åˆ†éš”çš„é¡¹ç›®
+	 * è€Œvalueå¯¹åº”å·²ç»é€šè¿‡è®¡ç®—å¹¶ä¸”ç»‘å®šäº†å˜é‡ä»¥åçš„å€¼ï¼Œè¿™ä¸ªå€¼å…è®¸ä¸ºnull,ä¸ºnullåˆ™è¡¨ç¤ºç”¨æˆ·æ²¡æœ‰åœ¨sqlä¸­ç»™å‡ºå¯¹åº” çš„å‚æ•°ã€‚
 	 */
 	private final List<ColumnMetaData> splitDB = new LinkedList<ColumnMetaData>();
 
 	/**
-	 * ·Ö±í¼ü£¬ÒòÎª·Ö±í¼ü±¾ÉíÊÇÔÊĞí¶à¸öµÄ£¬ËùÒÔÊÇ¸öColumnMetaData¶ÔÏó.ÀïÃæÈç¹ûÔÚxmlÖĞÅäÖÃÁË±í¹æÔòÖĞµÄparametersÏî
-	 * £¬ÔòÃ¿Ò»¸öÓÃ','·Ö¸ôµÄÏîÄ¿¶¼¶ÔÓ¦listÖĞµÄÒ»Ïî¡£ColumnMetaDataÖĞµÄkey¶ÔÓ¦ÁËparametersÀïÃ¿Ò»¸öÓÃ','·Ö¸ôµÄÏîÄ¿
-	 * ¶øvalue¶ÔÓ¦ÒÑ¾­Í¨¹ı¼ÆËã²¢ÇÒ°ó¶¨ÁË±äÁ¿ÒÔºóµÄÖµ£¬Õâ¸öÖµÔÊĞíÎªnull,ÎªnullÔò±íÊ¾ÓÃ»§Ã»ÓĞÔÚsqlÖĞ¸ø³ö¶ÔÓ¦ µÄ²ÎÊı¡£
+	 * åˆ†è¡¨é”®ï¼Œå› ä¸ºåˆ†è¡¨é”®æœ¬èº«æ˜¯å…è®¸å¤šä¸ªçš„ï¼Œæ‰€ä»¥æ˜¯ä¸ªColumnMetaDataå¯¹è±¡.é‡Œé¢å¦‚æœåœ¨xmlä¸­é…ç½®äº†è¡¨è§„åˆ™ä¸­çš„parametersé¡¹
+	 * ï¼Œåˆ™æ¯ä¸€ä¸ªç”¨','åˆ†éš”çš„é¡¹ç›®éƒ½å¯¹åº”listä¸­çš„ä¸€é¡¹ã€‚ColumnMetaDataä¸­çš„keyå¯¹åº”äº†parametersé‡Œæ¯ä¸€ä¸ªç”¨','åˆ†éš”çš„é¡¹ç›®
+	 * è€Œvalueå¯¹åº”å·²ç»é€šè¿‡è®¡ç®—å¹¶ä¸”ç»‘å®šäº†å˜é‡ä»¥åçš„å€¼ï¼Œè¿™ä¸ªå€¼å…è®¸ä¸ºnull,ä¸ºnullåˆ™è¡¨ç¤ºç”¨æˆ·æ²¡æœ‰åœ¨sqlä¸­ç»™å‡ºå¯¹åº” çš„å‚æ•°ã€‚
 	 */
 	private final List<ColumnMetaData> splitTab = new LinkedList<ColumnMetaData>();
 
 	/**
-	 * Êı¾İ¿âÖ´ĞĞ¼Æ»®
+	 * æ•°æ®åº“æ‰§è¡Œè®¡åˆ’
 	 */
 	private EXECUTE_PLAN databaseExecutePlan;
 
 	/**
-	 * ±íµÄÖ´ĞĞ¼Æ»®£¬Èç¹ûÓĞ¶à¸ö¿âÀïÃæµÄ¶à¸ö±íµÄ¸öÊı²»Í¬£¬ÄÇÃ´°´ÕÕ±íµÄÊıÁ¿×î¶àµÄÄÇ¸öÖµÎª×¼¡£
-	 * ¼´£ºÈçdb1~5£¬±íµÄ¸öÊı·Ö±ğÎª0,0,0,0,1:ÄÇÃ´·µ»ØµÄ±íÖ´ĞĞ¼Æ»®ÎªSINGLE
-	 * Èô£¬±íµÄ¸öÊı·Ö±ğÎª0,1,2,3,4,5£ºÄÇÃ´·µ»Ø±íµÄÖ´ĞĞ¼Æ»®ÎªMULTIPLE.
+	 * è¡¨çš„æ‰§è¡Œè®¡åˆ’ï¼Œå¦‚æœæœ‰å¤šä¸ªåº“é‡Œé¢çš„å¤šä¸ªè¡¨çš„ä¸ªæ•°ä¸åŒï¼Œé‚£ä¹ˆæŒ‰ç…§è¡¨çš„æ•°é‡æœ€å¤šçš„é‚£ä¸ªå€¼ä¸ºå‡†ã€‚
+	 * å³ï¼šå¦‚db1~5ï¼Œè¡¨çš„ä¸ªæ•°åˆ†åˆ«ä¸º0,0,0,0,1:é‚£ä¹ˆè¿”å›çš„è¡¨æ‰§è¡Œè®¡åˆ’ä¸ºSINGLE
+	 * è‹¥ï¼Œè¡¨çš„ä¸ªæ•°åˆ†åˆ«ä¸º0,1,2,3,4,5ï¼šé‚£ä¹ˆè¿”å›è¡¨çš„æ‰§è¡Œè®¡åˆ’ä¸ºMULTIPLE.
 	 */
 	private EXECUTE_PLAN tableExecutePlan;
 
 	private List<String> distinctColumns;
 
 	/**
-	 * ÊÇ·ñÔÊĞí·´ÏòÊä³ö
+	 * æ˜¯å¦å…è®¸åå‘è¾“å‡º
 	 */
 	private boolean allowReverseOutput;
 
 	/**
-	 * ÊÇ·ñÔÊĞíĞĞ¸´ÖÆ
+	 * æ˜¯å¦å…è®¸è¡Œå¤åˆ¶
 	 */
 	private final boolean needRowCopy;
 
 	/**
-	 * ĞéÄâ±íÃû
+	 * è™šæ‹Ÿè¡¨å
 	 */
 	private final LogicTableName virtualTableName;
 
@@ -113,7 +113,7 @@ public class DispatcherResultImp implements DispatcherResult {
 
 	private List<DatabaseExecutionContext> databaseExecutionContexts;
 
-	/** ±»joinµÄĞéÄâ±íÃû */
+	/** è¢«joinçš„è™šæ‹Ÿè¡¨å */
 	List<String> virtualJoinTableNames = new ArrayList<String>();
 
 	public DispatcherResultImp(LogicTableName virtualTableName,

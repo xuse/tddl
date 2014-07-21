@@ -3,16 +3,16 @@ package com.taobao.tddl.client.sequence;
 import com.taobao.tddl.client.sequence.exception.SequenceException;
 
 /**
- * 序列DAO接口
+ * 搴忓垪DAO鎺ュ彛
  *
  * @author nianbing
  */
 public interface SequenceDao {
 	/**
-	 * 取得下一个可用的序列区间
+	 * 鍙栧緱涓嬩竴涓彲鐢ㄧ殑搴忓垪鍖洪棿
 	 *
-	 * @param name 序列名称
-	 * @return 返回下一个可用的序列区间
+	 * @param name 搴忓垪鍚嶇О
+	 * @return 杩斿洖涓嬩竴涓彲鐢ㄧ殑搴忓垪鍖洪棿
 	 * @throws SequenceException
 	 */
 	SequenceRange nextRange(String name) throws SequenceException;

@@ -5,7 +5,7 @@ import java.util.List;
 import com.taobao.tddl.interact.rule.bean.SamplingField;
 
 /**
- * Ìí¼ÓÁËÓ³Éä¸½´øµÄ×Ö¶Î£¬
+ * æ·»åŠ äº†æ˜ å°„é™„å¸¦çš„å­—æ®µï¼Œ
  * 
  * @author shenxun
  *

@@ -21,7 +21,7 @@ import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteConditi
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.SimpleCondition;
 
 /**
- * ·½±ãÒµÎñµ÷ÓÃÖ±½Ó½Ó¿ÚµÄ·½·¨
+ * æ–¹ä¾¿ä¸šåŠ¡è°ƒç”¨ç›´æ¥æ¥å£çš„æ–¹æ³•
  * s
  * @author shenxun
  */
@@ -34,14 +34,14 @@ public class RouteHelper {
 
 
     /**
-     * Ö±½ÓÔÚÄ³¸ö¿âÉÏ,Ö´ĞĞÒ»Ìõsql
-     * ÕâÊ±ºòTDDLÖ»×öÁ½¼şÊÂÇé£¬µÚÒ»¸öÊÇĞ­ÖúÅĞ¶ÏÊÇ·ñÔÚÊÂÎñ×´Ì¬¡£
-     * µÚ¶ş¸öÊÂÇéÊÇ£¬½øĞĞ±íÃûµÄÌæ»»¡£
+     * ç›´æ¥åœ¨æŸä¸ªåº“ä¸Š,æ‰§è¡Œä¸€æ¡sql
+     * è¿™æ—¶å€™TDDLåªåšä¸¤ä»¶äº‹æƒ…ï¼Œç¬¬ä¸€ä¸ªæ˜¯ååŠ©åˆ¤æ–­æ˜¯å¦åœ¨äº‹åŠ¡çŠ¶æ€ã€‚
+     * ç¬¬äºŒä¸ªäº‹æƒ…æ˜¯ï¼Œè¿›è¡Œè¡¨åçš„æ›¿æ¢ã€‚
      *
-     * @param dbIndex dbIndexÁĞ±í
-     * @param logicTable Âß¼­±íÃû
-     * @param table Êµ¼Ê±íÃû
-     * @param routeType ¾ö¶¨Õâ¸öhintÊÇÔÚÁ¬½Ó¹Ø±ÕµÄÊ±ºòÇå¿Õ£¬»¹ÊÇÔÚÖ´ĞĞÊ±¾ÍÇå¿Õ
+     * @param dbIndex dbIndexåˆ—è¡¨
+     * @param logicTable é€»è¾‘è¡¨å
+     * @param table å®é™…è¡¨å
+     * @param routeType å†³å®šè¿™ä¸ªhintæ˜¯åœ¨è¿æ¥å…³é—­çš„æ—¶å€™æ¸…ç©ºï¼Œè¿˜æ˜¯åœ¨æ‰§è¡Œæ—¶å°±æ¸…ç©º
      */
     public static void executeByDBAndTab(
             String dbIndex,String logicTable,
@@ -60,13 +60,13 @@ public class RouteHelper {
         ThreadLocalMap.put(ThreadLocalString.DB_SELECTOR, condition);
     }
     /**
-     * Ö±½ÓÔÚÄ³¸ö¿âÉÏ,Ö´ĞĞÒ»Ìõsql
-     * ÕâÊ±ºòTDDLÖ»×öÁ½¼şÊÂÇé£¬µÚÒ»¸öÊÇĞ­ÖúÅĞ¶ÏÊÇ·ñÔÚÊÂÎñ×´Ì¬¡£
-     * µÚ¶ş¸öÊÂÇéÊÇ£¬½øĞĞ±íÃûµÄÌæ»»¡£
+     * ç›´æ¥åœ¨æŸä¸ªåº“ä¸Š,æ‰§è¡Œä¸€æ¡sql
+     * è¿™æ—¶å€™TDDLåªåšä¸¤ä»¶äº‹æƒ…ï¼Œç¬¬ä¸€ä¸ªæ˜¯ååŠ©åˆ¤æ–­æ˜¯å¦åœ¨äº‹åŠ¡çŠ¶æ€ã€‚
+     * ç¬¬äºŒä¸ªäº‹æƒ…æ˜¯ï¼Œè¿›è¡Œè¡¨åçš„æ›¿æ¢ã€‚
      *
-     * @param dbIndex dbIndexÁĞ±í
-     * @param logicTable Âß¼­±íÃû
-     * @param table Êµ¼Ê±íÃû
+     * @param dbIndex dbIndexåˆ—è¡¨
+     * @param logicTable é€»è¾‘è¡¨å
+     * @param table å®é™…è¡¨å
      */
     public static void executeByDBAndTab( String dbIndex,String logicTable,
             String... table){
@@ -74,13 +74,13 @@ public class RouteHelper {
     }
 
     /**
-     * Ö±½ÓÔÚÄ³¸ö¿âÉÏ,Ö´ĞĞÒ»Ìõsql£¬²¢ÔÊĞí½øĞĞ¶à×é±íÃûµÄÌæ»»£¬Ö÷ÒªÄ¿±êÊÇjoinµÄsql
+     * ç›´æ¥åœ¨æŸä¸ªåº“ä¸Š,æ‰§è¡Œä¸€æ¡sqlï¼Œå¹¶å…è®¸è¿›è¡Œå¤šç»„è¡¨åçš„æ›¿æ¢ï¼Œä¸»è¦ç›®æ ‡æ˜¯joinçš„sql
      *
      * tddl should do :
-     * 1. ÅĞ¶ÏÊÂÎñÊÇ·ñ¿ÉÖ´ĞĞ¡£
-     * 2. ½«¶à×é±íÃû½øĞĞÌæ»»¡£
-     * @param dbIndex dbIndexÁĞ±í
-     * @param tableMap Ô´±íÃû->Ä¿±ê±íÃûµÄmap
+     * 1. åˆ¤æ–­äº‹åŠ¡æ˜¯å¦å¯æ‰§è¡Œã€‚
+     * 2. å°†å¤šç»„è¡¨åè¿›è¡Œæ›¿æ¢ã€‚
+     * @param dbIndex dbIndexåˆ—è¡¨
+     * @param tableMap æºè¡¨å->ç›®æ ‡è¡¨åçš„map
      */
     public static void executeByDBAndTab(String dbIndex,
             Map<String/*original table*/,String/*advanced table*/> tableMap) {
@@ -88,11 +88,11 @@ public class RouteHelper {
     }
 
     /**
-     * Ö±½ÓÔÚÄ³¸ö¿âÉÏ,Ö´ĞĞÒ»Ìõsql£¬²¢ÔÊĞí½øĞĞ¶à×é±íÃûµÄÌæ»»£¬Ö÷ÒªÄ¿±êÊÇjoinµÄsql
+     * ç›´æ¥åœ¨æŸä¸ªåº“ä¸Š,æ‰§è¡Œä¸€æ¡sqlï¼Œå¹¶å…è®¸è¿›è¡Œå¤šç»„è¡¨åçš„æ›¿æ¢ï¼Œä¸»è¦ç›®æ ‡æ˜¯joinçš„sql
      *
-     * @param dbIndex dbIndexÁĞ±í
-     * @param tableMap Ô´±íÃû->Ä¿±ê±íÃûµÄmap
-     * @param routeType ¾ö¶¨Õâ¸öhintÊÇÔÚÁ¬½Ó¹Ø±ÕµÄÊ±ºòÇå¿Õ£¬»¹ÊÇÔÚÖ´ĞĞÊ±¾ÍÇå¿Õ
+     * @param dbIndex dbIndexåˆ—è¡¨
+     * @param tableMap æºè¡¨å->ç›®æ ‡è¡¨åçš„map
+     * @param routeType å†³å®šè¿™ä¸ªhintæ˜¯åœ¨è¿æ¥å…³é—­çš„æ—¶å€™æ¸…ç©ºï¼Œè¿˜æ˜¯åœ¨æ‰§è¡Œæ—¶å°±æ¸…ç©º
      */
     public static void executeByDBAndTab(String dbIndex,
             Map<String/*original table*/,String/*advanced table*/> tableMap,ROUTE_TYPE routeType){
@@ -110,11 +110,11 @@ public class RouteHelper {
 
 
     /**
-     * Ö±½ÓÔÚÄ³¸ö¿âÉÏ,Ö´ĞĞÒ»Ìõsql£¬²¢ÔÊĞí½øĞĞ¶à×é±íÃûµÄÌæ»»£¬Ö÷ÒªÄ¿±êÊÇjoinµÄsql
+     * ç›´æ¥åœ¨æŸä¸ªåº“ä¸Š,æ‰§è¡Œä¸€æ¡sqlï¼Œå¹¶å…è®¸è¿›è¡Œå¤šç»„è¡¨åçš„æ›¿æ¢ï¼Œä¸»è¦ç›®æ ‡æ˜¯joinçš„sql
      *
-     * @param dbIndex dbIndexÁĞ±í
-     * @param tableMap Ô´±íÃû->Ä¿±ê±íÃûµÄmap
-     * @param routeType ¾ö¶¨Õâ¸öhintÊÇÔÚÁ¬½Ó¹Ø±ÕµÄÊ±ºòÇå¿Õ£¬»¹ÊÇÔÚÖ´ĞĞÊ±¾ÍÇå¿Õ
+     * @param dbIndex dbIndexåˆ—è¡¨
+     * @param tableMap æºè¡¨å->ç›®æ ‡è¡¨åçš„map
+     * @param routeType å†³å®šè¿™ä¸ªhintæ˜¯åœ¨è¿æ¥å…³é—­çš„æ—¶å€™æ¸…ç©ºï¼Œè¿˜æ˜¯åœ¨æ‰§è¡Œæ—¶å°±æ¸…ç©º
      */
     public static void executeByDBAndTab(String dbIndex,
             List<Map<String/*original table*/,String/*advanced table*/>> tableMap,ROUTE_TYPE routeType){
@@ -130,22 +130,22 @@ public class RouteHelper {
     }
 
     /**
-     * Ö±½ÓÔÚÄ³¸ö¿âÉÏ,Ö´ĞĞÒ»Ìõsql£¬²¢ÔÊĞí½øĞĞ¶à×é±íÃûµÄÌæ»»£¬Ö÷ÒªÄ¿±êÊÇjoinµÄsql
+     * ç›´æ¥åœ¨æŸä¸ªåº“ä¸Š,æ‰§è¡Œä¸€æ¡sqlï¼Œå¹¶å…è®¸è¿›è¡Œå¤šç»„è¡¨åçš„æ›¿æ¢ï¼Œä¸»è¦ç›®æ ‡æ˜¯joinçš„sql
      *
-     * @param dbIndex dbIndexÁĞ±í
-     * @param tableMap Ô´±íÃû->Ä¿±ê±íÃûµÄmap
-     * @param routeType ¾ö¶¨Õâ¸öhintÊÇÔÚÁ¬½Ó¹Ø±ÕµÄÊ±ºòÇå¿Õ£¬»¹ÊÇÔÚÖ´ĞĞÊ±¾ÍÇå¿Õ
+     * @param dbIndex dbIndexåˆ—è¡¨
+     * @param tableMap æºè¡¨å->ç›®æ ‡è¡¨åçš„map
+     * @param routeType å†³å®šè¿™ä¸ªhintæ˜¯åœ¨è¿æ¥å…³é—­çš„æ—¶å€™æ¸…ç©ºï¼Œè¿˜æ˜¯åœ¨æ‰§è¡Œæ—¶å°±æ¸…ç©º
      */
     public static void executeByDBAndTab(String dbIndex,
             List<Map<String/*original table*/,String/*advanced table*/>> tableMap){
     	executeByDBAndTab(dbIndex, tableMap, ROUTE_TYPE.FLUSH_ON_EXECUTE);
     }
     /**
-     * Ö±½ÓÔÚÄ³¸ö¿âÉÏ,Ö´ĞĞÒ»Ìõsql£¬²¢ÔÊĞí½øĞĞ¶à×é±íÃûµÄÌæ»»£¬Ö÷ÒªÄ¿±êÊÇjoinµÄsql
+     * ç›´æ¥åœ¨æŸä¸ªåº“ä¸Š,æ‰§è¡Œä¸€æ¡sqlï¼Œå¹¶å…è®¸è¿›è¡Œå¤šç»„è¡¨åçš„æ›¿æ¢ï¼Œä¸»è¦ç›®æ ‡æ˜¯joinçš„sql
      *
-     * @param dbIndex dbIndexÁĞ±í
-     * @param tableMap Ô´±íÃû->Ä¿±ê±íÃûµÄmap
-     * @param routeType ¾ö¶¨Õâ¸öhintÊÇÔÚÁ¬½Ó¹Ø±ÕµÄÊ±ºòÇå¿Õ£¬»¹ÊÇÔÚÖ´ĞĞÊ±¾ÍÇå¿Õ
+     * @param dbIndex dbIndexåˆ—è¡¨
+     * @param tableMap æºè¡¨å->ç›®æ ‡è¡¨åçš„map
+     * @param routeType å†³å®šè¿™ä¸ªhintæ˜¯åœ¨è¿æ¥å…³é—­çš„æ—¶å€™æ¸…ç©ºï¼Œè¿˜æ˜¯åœ¨æ‰§è¡Œæ—¶å°±æ¸…ç©º
      */
     public static void executeByDBAndTab(Map<String, List<Map<String, String>>> tableMap,ROUTE_TYPE routeType){
     	AdvancedDirectlyRouteCondition condition = new AdvancedDirectlyRouteCondition();
@@ -157,12 +157,12 @@ public class RouteHelper {
     	executeByDBAndTab(tableMap, ROUTE_TYPE.FLUSH_ON_EXECUTE);
     }
     /**
-     * ¸ù¾İdb index Ö´ĞĞÒ»Ìõsql. sql¾ÍÊÇÄãÍ¨¹ıIbatisÊäÈëµÄsql.
+     * æ ¹æ®db index æ‰§è¡Œä¸€æ¡sql. sqlå°±æ˜¯ä½ é€šè¿‡Ibatisè¾“å…¥çš„sql.
      *
-     * Ö»×öÒ»¼şÊÂÇé£¬¾ÍÊÇĞ­ÖúÅĞ¶ÏÊÇ·ñĞèÒª½øĞĞÊÂÎñ
+     * åªåšä¸€ä»¶äº‹æƒ…ï¼Œå°±æ˜¯ååŠ©åˆ¤æ–­æ˜¯å¦éœ€è¦è¿›è¡Œäº‹åŠ¡
      *
-     * @param dbIndex dbIndexÁĞ±í
-     * @param routeType ¾ö¶¨Õâ¸öhintÊÇÔÚÁ¬½Ó¹Ø±ÕµÄÊ±ºòÇå¿Õ£¬»¹ÊÇÔÚÖ´ĞĞÊ±¾ÍÇå¿Õ
+     * @param dbIndex dbIndexåˆ—è¡¨
+     * @param routeType å†³å®šè¿™ä¸ªhintæ˜¯åœ¨è¿æ¥å…³é—­çš„æ—¶å€™æ¸…ç©ºï¼Œè¿˜æ˜¯åœ¨æ‰§è¡Œæ—¶å°±æ¸…ç©º
      */
     public static void executeByDB(String dbIndex,ROUTE_TYPE routeType){
     	DirectlyRouteCondition condition = new DirectlyRouteCondition();
@@ -172,31 +172,31 @@ public class RouteHelper {
     }
 
     /**
-     * ¸ù¾İdb index Ö´ĞĞÒ»Ìõsql. sql¾ÍÊÇÄãÍ¨¹ıIbatisÊäÈëµÄsql.
+     * æ ¹æ®db index æ‰§è¡Œä¸€æ¡sql. sqlå°±æ˜¯ä½ é€šè¿‡Ibatisè¾“å…¥çš„sql.
      *
-     * Ö»×öÒ»¼şÊÂÇé£¬¾ÍÊÇĞ­ÖúÅĞ¶ÏÊÇ·ñĞèÒª½øĞĞÊÂÎñ
+     * åªåšä¸€ä»¶äº‹æƒ…ï¼Œå°±æ˜¯ååŠ©åˆ¤æ–­æ˜¯å¦éœ€è¦è¿›è¡Œäº‹åŠ¡
      *
-     * @param dbIndex dbIndexÁĞ±í
+     * @param dbIndex dbIndexåˆ—è¡¨
      */
     public static void executeByDB(String dbIndex){
     	executeByDB(dbIndex,ROUTE_TYPE.FLUSH_ON_EXECUTE);
     }
 
     /**
-     * Ñ¡ÔñÒ»¸ö¹æÔò¡£
+     * é€‰æ‹©ä¸€ä¸ªè§„åˆ™ã€‚
      *
-     * Ä¬ÈÏÇé¿öÏÂÓĞ¶ÁĞ´·ÖÀëµÄ³¡¾°ÖĞ£¬MASTER¶ÔÓ¦Ö÷¿â£¬SLAVE¶ÔÓ¦¶Á¿â¡£
+     * é»˜è®¤æƒ…å†µä¸‹æœ‰è¯»å†™åˆ†ç¦»çš„åœºæ™¯ä¸­ï¼ŒMASTERå¯¹åº”ä¸»åº“ï¼ŒSLAVEå¯¹åº”è¯»åº“ã€‚
      *
      * @param selector db index key
      */
     public static void selectKey(String selector){
-    	//·½·¨ÊÇÒ»¸ö£¬Èç¹ûÔÚdsMapÖĞ³öÏÖ£¬ÄÇÃ´¾ÍÓÃdsMapÖĞµÄkeyËù¶ÔÓ¦µÄds
-    	//Èç¹ûÃ»ÔÚdsMap,ÄÇÃ´»á²é¿´¹æÔòmapÖĞÊÇ·ñÓĞ¶ÔÓ¦µÄ¹æÔò¡£
+    	//æ–¹æ³•æ˜¯ä¸€ä¸ªï¼Œå¦‚æœåœ¨dsMapä¸­å‡ºç°ï¼Œé‚£ä¹ˆå°±ç”¨dsMapä¸­çš„keyæ‰€å¯¹åº”çš„ds
+    	//å¦‚æœæ²¡åœ¨dsMap,é‚£ä¹ˆä¼šæŸ¥çœ‹è§„åˆ™mapä¸­æ˜¯å¦æœ‰å¯¹åº”çš„è§„åˆ™ã€‚
     	executeByRule(selector,ROUTE_TYPE.FLUSH_ON_EXECUTE);
     }
 
     /**
-     * Ñ¡ÔñÒ»¸ö¹æÔò¡£
+     * é€‰æ‹©ä¸€ä¸ªè§„åˆ™ã€‚
      *
      * @param ruleKey
      */
@@ -208,13 +208,13 @@ public class RouteHelper {
     }
 
     /**
-     * Ñ¡ÔñÒ»¸ö¹æÔò¡£ĞèÒª×¢ÒâµÄÊÇ¹æÔòµÄkey²»ÄÜÓëÊı¾İ¿âÖĞµÄÊı¾İÔ´ÖØÃû¡£
-     * ·ñÔòÓÅÏÈÑ¡ÔñÊı¾İÔ´
+     * é€‰æ‹©ä¸€ä¸ªè§„åˆ™ã€‚éœ€è¦æ³¨æ„çš„æ˜¯è§„åˆ™çš„keyä¸èƒ½ä¸æ•°æ®åº“ä¸­çš„æ•°æ®æºé‡åã€‚
+     * å¦åˆ™ä¼˜å…ˆé€‰æ‹©æ•°æ®æº
      *
-     * Ä¬ÈÏÇé¿öÏÂÓĞ¶ÁĞ´·ÖÀëµÄ³¡¾°ÖĞ£¬MASTER¶ÔÓ¦Ö÷¿â£¬SLAVE¶ÔÓ¦¶Á¿â¡£
+     * é»˜è®¤æƒ…å†µä¸‹æœ‰è¯»å†™åˆ†ç¦»çš„åœºæ™¯ä¸­ï¼ŒMASTERå¯¹åº”ä¸»åº“ï¼ŒSLAVEå¯¹åº”è¯»åº“ã€‚
      *
      * @param selector db index key
-     * @param routeType ¾ö¶¨Õâ¸öhintÊÇÔÚÁ¬½Ó¹Ø±ÕµÄÊ±ºòÇå¿Õ£¬»¹ÊÇÔÚÖ´ĞĞÊ±¾ÍÇå¿Õ
+     * @param routeType å†³å®šè¿™ä¸ªhintæ˜¯åœ¨è¿æ¥å…³é—­çš„æ—¶å€™æ¸…ç©ºï¼Œè¿˜æ˜¯åœ¨æ‰§è¡Œæ—¶å°±æ¸…ç©º
      *
     */
     public static void selectKey(String selector,ROUTE_TYPE routeType){
@@ -222,9 +222,9 @@ public class RouteHelper {
     }
 
 //    /**
-//     * Ö´ĞĞÒ»Ìõsql,ÖĞ¼ä´øÓĞsuffix.
-//     * ÀàËÆ@suffix@
-//     * »òÕß@suffix,key@
+//     * æ‰§è¡Œä¸€æ¡sql,ä¸­é—´å¸¦æœ‰suffix.
+//     * ç±»ä¼¼@suffix@
+//     * æˆ–è€…@suffix,key@
 //     *
 //     * @param dbIndex
 //     * @param suffix
@@ -238,7 +238,7 @@ public class RouteHelper {
 //    }
 
     /**
-     * ¸ù¾İÌõ¼şÑ¡ÔñÊı¾İ¿â½øĞĞÖ´ĞĞsql
+     * æ ¹æ®æ¡ä»¶é€‰æ‹©æ•°æ®åº“è¿›è¡Œæ‰§è¡Œsql
      *
      * @param logicTable
      * @param key

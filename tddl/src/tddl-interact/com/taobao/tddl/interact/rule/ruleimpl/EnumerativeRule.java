@@ -12,7 +12,7 @@ import com.taobao.tddl.interact.rule.util.RuleUtils;
 import com.taobao.tddl.interact.sqljep.Comparative;
 
 /**
- * Í¨¹ıÃèµãÃ¶¾ÙµÄ·½Ê½ÊµÏÖ±È½ÏÊ÷Æ¥Åä
+ * é€šè¿‡æç‚¹æšä¸¾çš„æ–¹å¼å®ç°æ¯”è¾ƒæ ‘åŒ¹é…
  * 
  * @author linxuan
  *
@@ -25,14 +25,14 @@ public abstract class EnumerativeRule<T> extends ExpressionRule<T> {
 	}
 
 	/**
-	 * ½â¾öÁËÒ»¸öÎÊÌâ£ºÈô¹æÔòÖĞÍ¬Ò»¸öÁĞ³öÏÖ¶à´Î£¬±ØĞèÔÚÁĞÃûµÚÒ»´Î³öÏÖµÄµØ·½Ğ´È«²ÎÊı£¬ºóĞøµÄ³öÏÖ¿ÉÒÔ²»Ğ´
+	 * è§£å†³äº†ä¸€ä¸ªé—®é¢˜ï¼šè‹¥è§„åˆ™ä¸­åŒä¸€ä¸ªåˆ—å‡ºç°å¤šæ¬¡ï¼Œå¿…éœ€åœ¨åˆ—åç¬¬ä¸€æ¬¡å‡ºç°çš„åœ°æ–¹å†™å…¨å‚æ•°ï¼Œåç»­çš„å‡ºç°å¯ä»¥ä¸å†™
 	 */
 	@Override
 	protected String parseParam(String paramInDoller, Map<String, RuleColumn> parameters) {
 		RuleColumn ruleColumn = null;
 		if (paramInDoller.indexOf(",") == -1) {
-			//Èç¹ûÃ»ÓĞÆäËû²ÎÊı£¬Ö±½Ó´ÓparametersÖĞÈ¡
-			//ÕâÀï±ØĞèRuleColumnµÄ¶ÔÓÚKeyµÄ´¦Àí·½Ê½Ò»ÖÂ(toUpperCase())£¬·ñÔò½«È¡²»µ½£¬ÕâÊÇÒ»¸ö·çÏÕµã
+			//å¦‚æœæ²¡æœ‰å…¶ä»–å‚æ•°ï¼Œç›´æ¥ä»parametersä¸­å–
+			//è¿™é‡Œå¿…éœ€RuleColumnçš„å¯¹äºKeyçš„å¤„ç†æ–¹å¼ä¸€è‡´(toUpperCase())ï¼Œå¦åˆ™å°†å–ä¸åˆ°ï¼Œè¿™æ˜¯ä¸€ä¸ªé£é™©ç‚¹
 			ruleColumn = parameters.get(paramInDoller.trim().toUpperCase());
 		}
 		if (ruleColumn == null) {
@@ -47,7 +47,7 @@ public abstract class EnumerativeRule<T> extends ExpressionRule<T> {
 	public Map<T, Samples> calculate(Map<String, Comparative> sqlArgs, Object ctx, Object outerCtx) {
 		Map<String, Set<Object>> enumerates = getEnumerates(sqlArgs, ctx);
 		Map<T, Samples> res = new HashMap<T, Samples>(1);
-		for (Map<String, Object> sample : new Samples(enumerates)) { //±éÀúµÑ¿¨¶û³éÑù
+		for (Map<String, Object> sample : new Samples(enumerates)) { //éå†ç¬›å¡å°”æŠ½æ ·
 			T value = this.eval(sample, outerCtx);
 			if (value == null) {
 				throw new IllegalArgumentException("rule eval resulte is null! rule:" + this.expression);
@@ -65,7 +65,7 @@ public abstract class EnumerativeRule<T> extends ExpressionRule<T> {
 	public Set<T> calculateNoTrace(Map<String, Comparative> sqlArgs, Object ctx, Object outerCtx) {
 		Map<String, Set<Object>> enumerates = getEnumerates(sqlArgs, ctx);
 		Set<T> res = new HashSet<T>(1);
-		for (Map<String, Object> sample : new Samples(enumerates)) { //±éÀúµÑ¿¨¶û³éÑù
+		for (Map<String, Object> sample : new Samples(enumerates)) { //éå†ç¬›å¡å°”æŠ½æ ·
 			T value = this.eval(sample, outerCtx);
 			if (value == null) {
 				throw new IllegalArgumentException("rule eval resulte is null! rule:" + this.expression);
@@ -101,7 +101,7 @@ public abstract class EnumerativeRule<T> extends ExpressionRule<T> {
 				}
 				enumerates = RuleUtils.getSamplingField(sqlArgs, withoutCommon);
 				for (String name : commonSamples.getSubColumSet()) {
-					enumerates.put(name, commonSamples.getColumnEnumerates(name)); //¹«¹²ÁĞÖ»Ê¹ÓÃÉÏÒ»²ã¹æÔòµÄÃèµã£¬ÖµÊäÈëµÄ·ÖÁ÷Õ­»¯ÎÊÌâ
+					enumerates.put(name, commonSamples.getColumnEnumerates(name)); //å…¬å…±åˆ—åªä½¿ç”¨ä¸Šä¸€å±‚è§„åˆ™çš„æç‚¹ï¼Œå€¼è¾“å…¥çš„åˆ†æµçª„åŒ–é—®é¢˜
 				}
 			} else if (samplesCtx.dealType == SamplesCtx.merge) {
 				enumerates = RuleUtils.getSamplingField(sqlArgs, thisParam);

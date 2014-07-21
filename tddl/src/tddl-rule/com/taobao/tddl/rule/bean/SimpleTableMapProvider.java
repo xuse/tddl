@@ -12,7 +12,7 @@ import com.taobao.tddl.rule.ruleengine.entities.convientobjectmaker.TableMapProv
 import com.taobao.tddl.rule.ruleengine.util.RuleUtils;
 
 /**
- * Ìá¹©Í¨¹ıÆ´×°µÄ·½Ê½À´Éú³ÉSimpleTableMapµÄ·½Ê½
+ * æä¾›é€šè¿‡æ‹¼è£…çš„æ–¹å¼æ¥ç”ŸæˆSimpleTableMapçš„æ–¹å¼
  * 
  * 
  * 
@@ -37,28 +37,28 @@ public class SimpleTableMapProvider implements TableMapProvider {
 	private String type = NORMAL_TAOBAO_TYPE;
 	/**
 	 * table[padding]suffix
-	 * Ä¬ÈÏµÄpaddingÊÇ_
+	 * é»˜è®¤çš„paddingæ˜¯_
 	 */
 	private String padding;
 	/**
-	 * width ¿í¶È
+	 * width å®½åº¦
 	 */
 	private int width = DEFAULT_INT;
 	/**
-	 * ·Ö±í±êÊ¶Òò×Ó¡£¾ÍÊÇËµ×î¿ªÊ¼´òÍ·µÄÊÇÊ²Ã´±í£¬Èç¹û²»Ö¸¶¨ÔòÄ¬ÈÏÊÇÂß¼­±íÃû
+	 * åˆ†è¡¨æ ‡è¯†å› å­ã€‚å°±æ˜¯è¯´æœ€å¼€å§‹æ‰“å¤´çš„æ˜¯ä»€ä¹ˆè¡¨ï¼Œå¦‚æœä¸æŒ‡å®šåˆ™é»˜è®¤æ˜¯é€»è¾‘è¡¨å
 	 */
 	private String tableFactor;
 	/**
-	 * Âß¼­±íÃû
+	 * é€»è¾‘è¡¨å
 	 */
 	private String logicTable;
 	/**
-	 * Ã¿´Î×ÔÔöÊı
+	 * æ¯æ¬¡è‡ªå¢æ•°
 	 */
 	private int step = 1;
 
 	/**
-	 * Ã¿¸öÊı¾İ¿âµÄ±íµÄ¸öÊı£¬Èç¹ûÖ¸¶¨ÁËÕâÏîÔòÃ¿¸ö±íÄÚµÄ¸öÊı¾ÍÎªÖ¸¶¨¶à¸ö
+	 * æ¯ä¸ªæ•°æ®åº“çš„è¡¨çš„ä¸ªæ•°ï¼Œå¦‚æœæŒ‡å®šäº†è¿™é¡¹åˆ™æ¯ä¸ªè¡¨å†…çš„ä¸ªæ•°å°±ä¸ºæŒ‡å®šå¤šä¸ª
 	 */
 	private int tablesNumberForEachDatabases = DEFAULT_TABLES_NUM_FOR_EACH_DB;
 	/**
@@ -66,7 +66,7 @@ public class SimpleTableMapProvider implements TableMapProvider {
 	 */
 	private String parentID;
 	/**
-	 * Ã¿¸öÊı¾İ¿âµÄ±íµÄ¸öÊıÓĞ¶àÉÙ¸ö
+	 * æ¯ä¸ªæ•°æ®åº“çš„è¡¨çš„ä¸ªæ•°æœ‰å¤šå°‘ä¸ª
 	 * >= ?
 	 */
 	private int from = DEFAULT_INT;
@@ -101,7 +101,7 @@ public class SimpleTableMapProvider implements TableMapProvider {
 		if(w != DEFAULT_INT){
 			suffix = RuleUtils.placeHolder(w, i);
 		}else{
-			//Èç¹û²»ÏÔÊ½Ö¸¶¨width£¬»òÖ¸¶¨Îª-1£¬Ôò²»²¹Áã£¬Ö±½ÓÒÔÊıÖµÎªºó×º				
+			//å¦‚æœä¸æ˜¾å¼æŒ‡å®šwidthï¼Œæˆ–æŒ‡å®šä¸º-1ï¼Œåˆ™ä¸è¡¥é›¶ï¼Œç›´æ¥ä»¥æ•°å€¼ä¸ºåç¼€				
 			suffix = String.valueOf(i);
 		}
 		return suffix;
@@ -148,11 +148,11 @@ public class SimpleTableMapProvider implements TableMapProvider {
 		TYPE typeEnum = TYPE.valueOf(type);
 //		switch (typeEnum) {
 //		case NORMAL:
-//			// Èç¹ûÊÇÕı³£µÄÇé¿öÏÂ£¬ÄÇÃ´Ó¦¸ÃÊÇ±íÃûÒò×Ó+"_"+×î³¤Êı×ÖÎ»ÊıÄÇÑù³¤µÄÎ²×º
-//			// ÀàËÆ tab_001~tab_100
+//			// å¦‚æœæ˜¯æ­£å¸¸çš„æƒ…å†µä¸‹ï¼Œé‚£ä¹ˆåº”è¯¥æ˜¯è¡¨åå› å­+"_"+æœ€é•¿æ•°å­—ä½æ•°é‚£æ ·é•¿çš„å°¾ç¼€
+//			// ç±»ä¼¼ tab_001~tab_100
 //			
 //			break;
-//		//customµÄ·½Ê½ÏÂ£¬²»ĞèÒªÌí¼ÓÄ¬ÈÏµÄpaddingºÍwidth,Ö±½ÓÍË³öcase
+//		//customçš„æ–¹å¼ä¸‹ï¼Œä¸éœ€è¦æ·»åŠ é»˜è®¤çš„paddingå’Œwidth,ç›´æ¥é€€å‡ºcase
 //		default:
 //			break;
 //		}
@@ -163,27 +163,27 @@ public class SimpleTableMapProvider implements TableMapProvider {
 			tableFactor = logicTable;
 		}
 		if(tableFactor == null){
-			throw new IllegalArgumentException("Ã»ÓĞ±íÃûÉú³ÉÒò×Ó");
+			throw new IllegalArgumentException("æ²¡æœ‰è¡¨åç”Ÿæˆå› å­");
 		}
 		
-		// Èç¹ûÃ»ÓĞÉèÖÃÃ¿¸öÊı¾İ¿â±íµÄ¸öÊı£¬ÄÇÃ´±íÊ¾ËùÓĞ±í¶¼ÓÃÍ³Ò»µÄ±íÃû£¬ÀàËÆ(tab_0~tab_3)*16¸öÊı¾İ¿â=64ÕÅ±í
+		// å¦‚æœæ²¡æœ‰è®¾ç½®æ¯ä¸ªæ•°æ®åº“è¡¨çš„ä¸ªæ•°ï¼Œé‚£ä¹ˆè¡¨ç¤ºæ‰€æœ‰è¡¨éƒ½ç”¨ç»Ÿä¸€çš„è¡¨åï¼Œç±»ä¼¼(tab_0~tab_3)*16ä¸ªæ•°æ®åº“=64å¼ è¡¨
 		if (doesNotSetTablesNumberForEachDatabases()) {
 			tableNames = getSuffixList(from, to, width, step, tableFactor,
 					padding);
 		} else {
-			// Èç¹ûÉèÖÃÁËÃ¿¸öÊı¾İ¿â±íµÄ¸öÊı£¬ÄÇÃ´±íÊ¾ËùÓĞ±íÓÃ²»Í¬µÄ±íÃû£¬ÀàËÆ(tab_0~tab63),·Ö²¼ÔÚ16¸öÊı¾İ¿âÉÏ
+			// å¦‚æœè®¾ç½®äº†æ¯ä¸ªæ•°æ®åº“è¡¨çš„ä¸ªæ•°ï¼Œé‚£ä¹ˆè¡¨ç¤ºæ‰€æœ‰è¡¨ç”¨ä¸åŒçš„è¡¨åï¼Œç±»ä¼¼(tab_0~tab63),åˆ†å¸ƒåœ¨16ä¸ªæ•°æ®åº“ä¸Š
 			int multiple = 0;
 			try {
 				multiple = Integer.valueOf(parentID);
 			} catch (NumberFormatException e) {
-				throw new IllegalArgumentException("Ê¹ÓÃsimpleTableMapProvider²¢ÇÒÖ¸¶¨ÁËtablesNumberForEachDatabase²ÎÊı£¬databaseµÄindexÖµ±ØĞëÊÇ¸öintegerÊı×Ö" +
-						"µ±Ç°databaseµÄindexÊÇ:"+parentID);
+				throw new IllegalArgumentException("ä½¿ç”¨simpleTableMapProviderå¹¶ä¸”æŒ‡å®šäº†tablesNumberForEachDatabaseå‚æ•°ï¼Œdatabaseçš„indexå€¼å¿…é¡»æ˜¯ä¸ªintegeræ•°å­—" +
+						"å½“å‰databaseçš„indexæ˜¯:"+parentID);
 			}
-			//bug fix £¬ºöÊÓÁËfromÕâ¸öÊôĞÔ
+			//bug fix ï¼Œå¿½è§†äº†fromè¿™ä¸ªå±æ€§
 			int start = from + tablesNumberForEachDatabases * multiple;
-			// ÒòÎªÎ²×ºµÄ·¶Î§ÊÇµ½<=µÄÊı×Ö£¬ËùÒÔÒª-1.
+			// å› ä¸ºå°¾ç¼€çš„èŒƒå›´æ˜¯åˆ°<=çš„æ•°å­—ï¼Œæ‰€ä»¥è¦-1.
 			int end = start + tablesNumberForEachDatabases - 1;
-			//ÉèÖÃµ±Ç°databaseÀïÃæµÄ±íÃû
+			//è®¾ç½®å½“å‰databaseé‡Œé¢çš„è¡¨å
 			tableNames = getSuffixList(start, end, width, step, tableFactor,
 					padding);
 		}
@@ -216,7 +216,7 @@ public class SimpleTableMapProvider implements TableMapProvider {
 	}
 
 	/**
-	 * Èç¹ûÊÇÕı³£µÄÇé¿öÏÂ£¬ÄÇÃ´Ó¦¸ÃÊÇ±íÃûÒò×Ó+"_"+×î³¤Êı×ÖÎ»ÊıÄÇÑù³¤µÄÎ²×º£¬ÀàËÆ tab_001~tab_100
+	 * å¦‚æœæ˜¯æ­£å¸¸çš„æƒ…å†µä¸‹ï¼Œé‚£ä¹ˆåº”è¯¥æ˜¯è¡¨åå› å­+"_"+æœ€é•¿æ•°å­—ä½æ•°é‚£æ ·é•¿çš„å°¾ç¼€ï¼Œç±»ä¼¼ tab_001~tab_100
 	 */
 	protected void makeRealTableNameTaobaoLike(TYPE typeEnum) {
 		if(typeEnum == TYPE.CUSTOM){
@@ -268,11 +268,11 @@ public class SimpleTableMapProvider implements TableMapProvider {
 	}
 	public void setWidth(int width) {
 		if (width > 8) {
-			throw new IllegalArgumentException("Õ¼Î»·û²»ÄÜ³¬¹ı8Î»");
+			throw new IllegalArgumentException("å ä½ç¬¦ä¸èƒ½è¶…è¿‡8ä½");
 		}
-		//±íºó×ºÕ¼Î»·û¿ÉÒÔÎª0, ´ËÊ±²»²¹Áã
+		//è¡¨åç¼€å ä½ç¬¦å¯ä»¥ä¸º0, æ­¤æ—¶ä¸è¡¥é›¶
 		if (width < 0) {
-			throw new IllegalArgumentException("Õ¼Î»·û²»ÄÜÎª¸ºÖµ");
+			throw new IllegalArgumentException("å ä½ç¬¦ä¸èƒ½ä¸ºè´Ÿå€¼");
 		}
 		this.width = width;
 

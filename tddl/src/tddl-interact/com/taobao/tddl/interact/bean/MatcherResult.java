@@ -6,29 +6,29 @@ import java.util.Map;
 import com.taobao.tddl.interact.sqljep.Comparative;
 
 /**
- * Æ¥ÅäµÄ½á¹û¶ÔÏó£¬¹©¸ø¸øController½øĞĞ·µ»Ø¶ÔÏóµÄÆ´×°
+ * åŒ¹é…çš„ç»“æœå¯¹è±¡ï¼Œä¾›ç»™ç»™Controllerè¿›è¡Œè¿”å›å¯¹è±¡çš„æ‹¼è£…
  * 
  * 
- * ÕâĞ©ÊÇ´¿´âµÄ´ÓÆ¥ÅäÖĞ¿ÉÒÔ»ñµÃµÄÊı¾İ Ö÷ÒªÊÇÓ¦¸Ã×ßÄÄĞ©¿âÄÄĞ©±í£¬ÊÇ·ñ·´ÏòÊä³ö£¬·Ö¿â·Ö±í²ÎÊı
+ * è¿™äº›æ˜¯çº¯ç²¹çš„ä»åŒ¹é…ä¸­å¯ä»¥è·å¾—çš„æ•°æ® ä¸»è¦æ˜¯åº”è¯¥èµ°å“ªäº›åº“å“ªäº›è¡¨ï¼Œæ˜¯å¦åå‘è¾“å‡ºï¼Œåˆ†åº“åˆ†è¡¨å‚æ•°
  * 
  * @author shenxun
  *
  */
 public interface MatcherResult {
 	/**
-	 * ¹æÔò¼ÆËãºóµÄ½á¹û¶ÔÏó
+	 * è§„åˆ™è®¡ç®—åçš„ç»“æœå¯¹è±¡
 	 * @return
 	 */
 	List<TargetDB> getCalculationResult();
 	
 	/**
-	 * Æ¥ÅäµÄ¿â²ÎÊıÊÇÊ²Ã´,²»»á³öÏÖNullÖµ
+	 * åŒ¹é…çš„åº“å‚æ•°æ˜¯ä»€ä¹ˆ,ä¸ä¼šå‡ºç°Nullå€¼
 	 * @return
 	 */
 	Map<String, Comparative> getDatabaseComparativeMap();
 	
 	/**
-	 * Æ¥ÅäµÄ±í²ÎÊıÊÇÊ²Ã´,²»»á³öÏÖnullÖµ
+	 * åŒ¹é…çš„è¡¨å‚æ•°æ˜¯ä»€ä¹ˆ,ä¸ä¼šå‡ºç°nullå€¼
 	 * @return
 	 */
 	Map<String,Comparative> getTableComparativeMap();

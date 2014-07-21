@@ -24,7 +24,7 @@ import com.taobao.tddl.rule.le.config.ConfigDataListener;
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-1-11ÏÂÎç01:17:21
+ * @date 2011-1-11ä¸‹åˆ01:17:21
  */
 @SuppressWarnings("rawtypes")
 public class DefaultConfigDataHandlerFactory implements
@@ -158,8 +158,8 @@ public class DefaultConfigDataHandlerFactory implements
 		if (o == null) {
 			return "null";
 		} else {
-			// ÕâÀïÕâ¸öSystem.identityHashCodeÖ»»áÔÚ³õÊ¼»¯Ê±µ÷ÓÃÒ»´Î£¬ËùÒÔ
-			// Æä¿ÉÄÜ´æÔÚµÄÎÊÌâÓ°Ïì²¢²»´ó¡£
+			// è¿™é‡Œè¿™ä¸ªSystem.identityHashCodeåªä¼šåœ¨åˆå§‹åŒ–æ—¶è°ƒç”¨ä¸€æ¬¡ï¼Œæ‰€ä»¥
+			// å…¶å¯èƒ½å­˜åœ¨çš„é—®é¢˜å½±å“å¹¶ä¸å¤§ã€‚
 			return o.getClass().getName() + "@" + System.identityHashCode(o);
 		}
 	}

@@ -8,7 +8,7 @@ import com.taobao.tddl.interact.rule.virtualnode.VirtualNodeMap;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-7-14ÏÂÎç02:08:56
+ * @date 2011-7-14ä¸‹åˆ02:08:56
  */
 public abstract class VirtualNodeGroovyRule extends GroovyRule<String>{
 	private final VirtualNodeMap vNodeMap;

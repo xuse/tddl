@@ -30,11 +30,11 @@ public class MySQLConsistStringRegister {
 		consistReg.put("MINUTE", Minute.class);
 		
 		/**
-		 * Õâ¸ö»áµ¼ÖÂ¹æÔò³åÍ»£¬ÒòÎªYEAR(),MONTH()º¯Êı
-		 * ÓëINTERVALµÄYEAR,MONTHÎÄ±¾Ò»ÖÂ£¬µ«ÊÇANTLR
-		 * µÄlook aheadÌØĞÔ¿ÉÒÔ½â¾öÕâ¸ö³åÍ»£¬ÒòÎªYEAR
-		 * º¯ÊıºóÃæ³öÏÖµÄ·ûºÅÊÇ(,INTERVALµÄYEARºó²»¿ÉÄÜ
-		 * ³öÏÖÕâ¸ö·ûºÅ£¬·´Ö®ÒàÈ»
+		 * è¿™ä¸ªä¼šå¯¼è‡´è§„åˆ™å†²çªï¼Œå› ä¸ºYEAR(),MONTH()å‡½æ•°
+		 * ä¸INTERVALçš„YEAR,MONTHæ–‡æœ¬ä¸€è‡´ï¼Œä½†æ˜¯ANTLR
+		 * çš„look aheadç‰¹æ€§å¯ä»¥è§£å†³è¿™ä¸ªå†²çªï¼Œå› ä¸ºYEAR
+		 * å‡½æ•°åé¢å‡ºç°çš„ç¬¦å·æ˜¯(,INTERVALçš„YEARåä¸å¯èƒ½
+		 * å‡ºç°è¿™ä¸ªç¬¦å·ï¼Œåä¹‹äº¦ç„¶
 		 */
 		consistReg.put("YEAR", IntervalYear.class);
 		consistReg.put("MONTH", IntervalMonth.class);
@@ -46,7 +46,7 @@ public class MySQLConsistStringRegister {
 		Function cls=null;
 		try {
 			if(key==null||key.trim().equals("")){
-				throw new IllegalArgumentException("group function²»ÄÜÎª¿Õ");
+				throw new IllegalArgumentException("group functionä¸èƒ½ä¸ºç©º");
 			}
 			cls=consistReg.get(key.toUpperCase()).newInstance();
 		} catch (InstantiationException e) {

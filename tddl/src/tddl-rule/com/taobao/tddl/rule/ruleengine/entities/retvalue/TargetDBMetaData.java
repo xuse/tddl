@@ -7,19 +7,19 @@ import com.taobao.tddl.interact.bean.TargetDB;
 public class TargetDBMetaData {
 
 	/**
-	 * ÊÇ·ñÔÊĞí·´ÏòÊä³ö
+	 * æ˜¯å¦å…è®¸åå‘è¾“å‡º
 	 */
 	private  boolean allowReverseOutput;
 	/**
-	 * Ä¿±ê¿â
+	 * ç›®æ ‡åº“
 	 */
 	private final List<TargetDB> target;
 	/**
-	 * ÊÇ·ñÔÊĞíĞĞ¸´ÖÆ
+	 * æ˜¯å¦å…è®¸è¡Œå¤åˆ¶
 	 */
 	private final boolean needRowCopy;
 	/**
-	 * ĞéÄâ±íÃû
+	 * è™šæ‹Ÿè¡¨å
 	 */
 	private final String virtualTableName;
 	public TargetDBMetaData(String virtualTableName,List<TargetDB> targetdbs,boolean needRowCopy,boolean allowReverseOutput) {

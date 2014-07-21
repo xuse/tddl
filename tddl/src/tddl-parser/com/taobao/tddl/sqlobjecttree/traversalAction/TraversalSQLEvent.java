@@ -5,16 +5,16 @@ import com.taobao.tddl.sqlobjecttree.DMLCommon;
 public class TraversalSQLEvent {
 	public enum StatementType{
 		/**
-		 * 表明sql来自表名 
+		 * 琛ㄦ槑sql鏉ヨ嚜琛ㄥ悕 
 		 */
 		TABLE,
 		/**
-		 * 表明sql来自where条件
+		 * 琛ㄦ槑sql鏉ヨ嚜where鏉′欢
 		 */
 		WHERE
 		,
 		/**
-		 * 表明来自最底层
+		 * 琛ㄦ槑鏉ヨ嚜鏈�搴曞眰
 		 */
 		NORMAL
 	}

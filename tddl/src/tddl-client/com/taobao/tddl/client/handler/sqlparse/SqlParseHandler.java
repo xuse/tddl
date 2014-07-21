@@ -19,21 +19,21 @@ import com.taobao.tddl.parser.SQLParser;
 import com.taobao.tddl.sqlobjecttree.SqlParserResult;
 
 /**
- * @description ´ËhandlerÖ÷Òª¹¦ÄÜÊÇ½øĞĞsql½âÎö,´ÓsqlÖĞµÃµ½ÎÒÃÇĞèÒªµÄĞÅÏ¢,°üÀ¨
- *              ±í,ÁĞ,²ÎÊıÁĞÒÔ¼°¶ÔÓ¦µÄĞòÁĞ(PreparedStatement)»òÕßÖµ(Statement),
- *              Order by,Group By,Limit M,N¶ÔÏóµÈ.
+ * @description æ­¤handlerä¸»è¦åŠŸèƒ½æ˜¯è¿›è¡Œsqlè§£æ,ä»sqlä¸­å¾—åˆ°æˆ‘ä»¬éœ€è¦çš„ä¿¡æ¯,åŒ…æ‹¬
+ *              è¡¨,åˆ—,å‚æ•°åˆ—ä»¥åŠå¯¹åº”çš„åºåˆ—(PreparedStatement)æˆ–è€…å€¼(Statement),
+ *              Order by,Group By,Limit M,Nå¯¹è±¡ç­‰.
  *              
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.4
  * @since 1.6
- * @date 2010-09-02ÏÂÎç04:33:32
+ * @date 2010-09-02ä¸‹åˆ04:33:32
  */
 public class SqlParseHandler extends AbstractHandler {
 	public static final String HANDLER_NAME = "SqlParseHandler";
 	private Log log = LogFactory.getLog(SqlParseHandler.class);
 
 	/**
-	 * SqlParseHandlerÖ»¶ÔÄ¬ÈÏµÄÖ´ĞĞÀàĞÍ½øĞĞ´¦Àí
+	 * SqlParseHandleråªå¯¹é»˜è®¤çš„æ‰§è¡Œç±»å‹è¿›è¡Œå¤„ç†
 	 */
 	public void handleDown(DataBus dataBus) throws SQLException {
 		FlowType flowType = getPipeLineRuntimeInfo(dataBus).getFlowType();
@@ -46,7 +46,7 @@ public class SqlParseHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Ô¤´¦Àí,ÏÖÔÚÖ÷Òª½øĞĞgroupHintµÄÔİÊ±È¥³ı
+	 * é¢„å¤„ç†,ç°åœ¨ä¸»è¦è¿›è¡ŒgroupHintçš„æš‚æ—¶å»é™¤
 	 * @param dataBus
 	 */
 	protected void preHandle(DataBus dataBus){
@@ -60,7 +60,7 @@ public class SqlParseHandler extends AbstractHandler {
 	}
 	
 	/**
-	 * ºó´¦Àí,ÏÖÔÚÖ÷Òª½øĞĞÔÚsql½âÎöºó½«groupHintÌí¼Ó»ØÈ¥
+	 * åå¤„ç†,ç°åœ¨ä¸»è¦è¿›è¡Œåœ¨sqlè§£æåå°†groupHintæ·»åŠ å›å»
 	 * @param dataBus
 	 */
 	protected void afterHandle(DataBus dataBus){
@@ -77,14 +77,14 @@ public class SqlParseHandler extends AbstractHandler {
 	}
 	
 	/**
-	 * Sql½âÎöÈë¿Ú
+	 * Sqlè§£æå…¥å£
 	 * 
 	 * @param dataBus
 	 */
 	protected void parse(DataBus dataBus) {
 		PipelineRuntimeInfo runtime = getPipeLineRuntimeInfo(dataBus);
 		/**
-		 * µÃµ½±¾´¦ÀíÆ÷ĞèÒªµÄÊı¾İ
+		 * å¾—åˆ°æœ¬å¤„ç†å™¨éœ€è¦çš„æ•°æ®
 		 */
 		DBType dbType = (DBType) runtime.getStartInfo().getDbType();
 		boolean isMySQL = DBType.MYSQL.equals(dbType);
@@ -92,11 +92,11 @@ public class SqlParseHandler extends AbstractHandler {
 		String sql = runtime.getStartInfo().getSql();
 		
 		/**
-		 * sql½âÎöµÃµ½µÄ½á¹û(sqlÖ´ĞĞÏà¹Ø)
+		 * sqlè§£æå¾—åˆ°çš„ç»“æœ(sqlæ‰§è¡Œç›¸å…³)
 		 */
 		SqlParserResult sqlParserResult = null;
 		/**
-		 * sql½âÎöµÄ¸½¼Ó½á¹û£¬ÓÃÓÚĞÅÏ¢¹ÜµÀ´«µİ
+		 * sqlè§£æçš„é™„åŠ ç»“æœï¼Œç”¨äºä¿¡æ¯ç®¡é“ä¼ é€’
 		 */
 		SqlMetaData sqlMetaData = null;
 		if(sqlParser instanceof NewSqlParser){
@@ -114,7 +114,7 @@ public class SqlParseHandler extends AbstractHandler {
 	}
 
 	/**
-	 * ÉèÖÃ½á¹û£¬Ö÷ÒªÎªSqlParserResultºÍstatement
+	 * è®¾ç½®ç»“æœï¼Œä¸»è¦ä¸ºSqlParserResultå’Œstatement
 	 * @param sqlParserResult
 	 * @param isRealSqlParsed
 	 * @param statement

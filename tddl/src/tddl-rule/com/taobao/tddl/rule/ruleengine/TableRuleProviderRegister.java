@@ -35,7 +35,7 @@ public class TableRuleProviderRegister {
 		if (key == null) {
 			return null;
 		}
-		// 6_12 ÖØ¹¹ĞŞ¸ÄÁËgetTableRuleµÄ·½·¨£¬Ê¹Æä¸ü¼ÓÍ³Ò»
+		// 6_12 é‡æ„ä¿®æ”¹äº†getTableRuleçš„æ–¹æ³•ï¼Œä½¿å…¶æ›´åŠ ç»Ÿä¸€
 		if (key.startsWith(ModTabProvider.FUNCTION_NAME_MOD)) {
 			provider = reg.get(ModTabProvider.FUNCTION_NAME_MOD);
 		} else {
@@ -43,15 +43,15 @@ public class TableRuleProviderRegister {
 			String[] keyToken = key.split("_");
 			provider = reg.get(keyToken[0]);
 		}
-		//TODO: provider ==nullµÄÊ±ºò¸üºÃµÄÌáÊ¾
+		//TODO: provider ==nullçš„æ—¶å€™æ›´å¥½çš„æç¤º
 		// if (provider != null) {
 		return provider;
-		// ÒòÎªÏÖÔÚµÄÂß¼­ÒÑ¾­·´¹ıÀ´ÁË£¬ËùÒÔÎŞ·¨¸ù¾İtableExpressionÕÒµ½
-		// ÊÇÕı³£µÄ
+		// å› ä¸ºç°åœ¨çš„é€»è¾‘å·²ç»åè¿‡æ¥äº†ï¼Œæ‰€ä»¥æ— æ³•æ ¹æ®tableExpressionæ‰¾åˆ°
+		// æ˜¯æ­£å¸¸çš„
 		// }
 		// else {
 		// throw new IllegalArgumentException("key = " + key +
-		// ", ²»ÄÜÕÒµ½Ö¸¶¨µÄtableRuleProvider´¦Àí»ú");
+		// ", ä¸èƒ½æ‰¾åˆ°æŒ‡å®šçš„tableRuleProviderå¤„ç†æœº");
 		// }
 	}
 }

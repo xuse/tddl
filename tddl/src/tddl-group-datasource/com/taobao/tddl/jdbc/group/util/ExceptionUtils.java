@@ -148,9 +148,9 @@ public class ExceptionUtils {
 	}
 	
 	/**
-	 * 打印sqlException 到error log里，这并不会阻断整个执行流程，但为了保证不丢失log,所以必须将异常打印出去
+	 * 鎵撳嵃sqlException 鍒癳rror log閲岋紝杩欏苟涓嶄細闃绘柇鏁翠釜鎵ц娴佺▼锛屼絾涓轰簡淇濊瘉涓嶄涪澶眑og,鎵�浠ュ繀椤诲皢寮傚父鎵撳嵃鍑哄幓
 	 * 
-	 * 打印后的异常list会被清空
+	 * 鎵撳嵃鍚庣殑寮傚父list浼氳娓呯┖
 	 * 
 	 * @param logger
 	 * @param message

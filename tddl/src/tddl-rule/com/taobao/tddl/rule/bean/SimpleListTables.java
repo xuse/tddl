@@ -6,8 +6,8 @@
 //import com.taobao.tddl.rule.ruleengine.util.RuleUtils;
 //
 ///**
-// * Ìá¹©Ò»ÖÖ¼òÒ×µÄ·½Ê½£¬ÈÃÒµÎñ·½¿ÉÒÔÍ¨¹ı¼òµ¥µÄ¼¸¸ö²ÎÊı¶¯Ì¬Éú³ÉËùÓĞµÄ±í£¬²»ÓÃÒ»¸öÒ»¸ö
-// * È¥Ö¸¶¨
+// * æä¾›ä¸€ç§ç®€æ˜“çš„æ–¹å¼ï¼Œè®©ä¸šåŠ¡æ–¹å¯ä»¥é€šè¿‡ç®€å•çš„å‡ ä¸ªå‚æ•°åŠ¨æ€ç”Ÿæˆæ‰€æœ‰çš„è¡¨ï¼Œä¸ç”¨ä¸€ä¸ªä¸€ä¸ª
+// * å»æŒ‡å®š
 // * @author shenxun
 // *
 // */
@@ -31,11 +31,11 @@
 //	private int step = DEFAULT_STEP;
 //
 //	/**
-//	 * ¼ÇÂ¼µ±Ç°ÒÑ¾­µ½´ïµÄindexÖµÊÇ¶àÉÙ
+//	 * è®°å½•å½“å‰å·²ç»åˆ°è¾¾çš„indexå€¼æ˜¯å¤šå°‘
 //	 */
 //	private int currentIndex = 0;
 //	/**
-//	 * Ã¿¸öÊı¾İ¿âµÄ±íµÄ¸öÊıÓĞ¶àÉÙ¸ö
+//	 * æ¯ä¸ªæ•°æ®åº“çš„è¡¨çš„ä¸ªæ•°æœ‰å¤šå°‘ä¸ª
 //	 */
 //	private int tablesNumberInEachDatabases = -1;
 //	private int from;
@@ -47,10 +47,10 @@
 //
 //	public void setWidth(int width) {
 //		if (width > 8) {
-//			throw new IllegalArgumentException("Õ¼Î»·û²»ÄÜ³¬¹ı8Î»");
+//			throw new IllegalArgumentException("å ä½ç¬¦ä¸èƒ½è¶…è¿‡8ä½");
 //		}
 //		if (width <= 0) {
-//			throw new IllegalArgumentException("Õ¼Î»·û²»ÄÜÎª¸ºÖµ»òÎª0");
+//			throw new IllegalArgumentException("å ä½ç¬¦ä¸èƒ½ä¸ºè´Ÿå€¼æˆ–ä¸º0");
 //		}
 //		this.width = width;
 //
@@ -64,8 +64,8 @@
 //		TYPE typeEnum = TYPE.valueOf(type);
 //		switch (typeEnum) {
 //		case NORMAL:
-//			// Èç¹ûÊÇÕı³£µÄÇé¿öÏÂ£¬ÄÇÃ´Ó¦¸ÃÊÇ±íÃûÒò×Ó+"_"+×î³¤Êı×ÖÎ»ÊıÄÇÑù³¤µÄÎ²×º
-//			// ÀàËÆ tab_001~tab_100
+//			// å¦‚æœæ˜¯æ­£å¸¸çš„æƒ…å†µä¸‹ï¼Œé‚£ä¹ˆåº”è¯¥æ˜¯è¡¨åå› å­+"_"+æœ€é•¿æ•°å­—ä½æ•°é‚£æ ·é•¿çš„å°¾ç¼€
+//			// ç±»ä¼¼ tab_001~tab_100
 //			padding = DEFAULT_PADDING;
 //			String tempStr = String.valueOf(to);
 //			int endNumberLength = tempStr.length();
@@ -75,17 +75,17 @@
 //			break;
 //		}
 //		List<String> tableNames;
-//		//Èç¹ûÃ»ÓĞÉèÖÃÃ¿¸öÊı¾İ¿â±íµÄ¸öÊı£¬ÄÇÃ´±íÊ¾ËùÓĞ±í¶¼ÓÃÍ³Ò»µÄ±íÃû£¬ÀàËÆ(tab_0~tab_3)*16¸öÊı¾İ¿â=64ÕÅ±í
+//		//å¦‚æœæ²¡æœ‰è®¾ç½®æ¯ä¸ªæ•°æ®åº“è¡¨çš„ä¸ªæ•°ï¼Œé‚£ä¹ˆè¡¨ç¤ºæ‰€æœ‰è¡¨éƒ½ç”¨ç»Ÿä¸€çš„è¡¨åï¼Œç±»ä¼¼(tab_0~tab_3)*16ä¸ªæ•°æ®åº“=64å¼ è¡¨
 //		
 //		if(tablesNumberInEachDatabases == -1){
 //			tableNames = getSuffixList(from, to, width, step,
 //					tableFactor, padding);
 //		}else{
-//			//Èç¹ûÉèÖÃÁËÃ¿¸öÊı¾İ¿â±íµÄ¸öÊı£¬ÄÇÃ´±íÊ¾ËùÓĞ±íÓÃ²»Í¬µÄ±íÃû£¬ÀàËÆ(tab_0~tab63)
+//			//å¦‚æœè®¾ç½®äº†æ¯ä¸ªæ•°æ®åº“è¡¨çš„ä¸ªæ•°ï¼Œé‚£ä¹ˆè¡¨ç¤ºæ‰€æœ‰è¡¨ç”¨ä¸åŒçš„è¡¨åï¼Œç±»ä¼¼(tab_0~tab63)
 //			int start = currentIndex;
-//			//ÒòÎªÎ²×ºµÄ·¶Î§ÊÇµ½<=µÄÊı×Ö£¬ËùÒÔÒª-1.
+//			//å› ä¸ºå°¾ç¼€çš„èŒƒå›´æ˜¯åˆ°<=çš„æ•°å­—ï¼Œæ‰€ä»¥è¦-1.
 //			int end =currentIndex+tablesNumberInEachDatabases-1;
-//			//µ±Ç°index Ó¦¸ÃÊÇµ±Ç°È¡µ½ÔªËØÎ²×º+1
+//			//å½“å‰index åº”è¯¥æ˜¯å½“å‰å–åˆ°å…ƒç´ å°¾ç¼€+1
 //			currentIndex = end+1;
 //			tableNames = getSuffixList(start, end, width, step, tableFactor, padding);
 //		}

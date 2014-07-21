@@ -36,7 +36,7 @@ public class Utils {
 		}else if(target instanceof Comparable){
 			return (Comparable<?>)target;
 		}else{
-			//Column ÕâÀàµÄ¡£Ö±½Ó·µ»Ø²»¿É±È½Ï¶ÔÏó
+			//Column è¿™ç±»çš„ã€‚ç›´æ¥è¿”å›ä¸å¯æ¯”è¾ƒå¯¹è±¡
 			return UnknowValueObject.getUnknowValueObject();
 		}
 	}
@@ -56,7 +56,7 @@ public class Utils {
 	}
 
 	/**
-	 * ´¦ÀíÄÚÁªListValueObject
+	 * å¤„ç†å†…è”ListValueObject
 	 * 
 	 * @param obj
 	 * @param sb
@@ -94,7 +94,7 @@ public class Utils {
 		return sb;
 	}
 	/**
-	 * ´¦ÀíÄÚÁªListValueObject
+	 * å¤„ç†å†…è”ListValueObject
 	 * 
 	 * @param obj
 	 * @param sb
@@ -139,7 +139,7 @@ public class Utils {
 				((SQLFragment) obj).appendSQL(sb);
 			}
 		} else if(obj==null){
-			throw new RuntimeException("expressionÖĞµÄÖµ²»ÄÜÎªnull,Èç¹ûÏëÊ¹ÓÃnullÇëÊ¹ÓÃDBFunctionsÌá¹©µÄNULL");
+			throw new RuntimeException("expressionä¸­çš„å€¼ä¸èƒ½ä¸ºnull,å¦‚æœæƒ³ä½¿ç”¨nullè¯·ä½¿ç”¨DBFunctionsæä¾›çš„NULL");
 		} else if(obj instanceof String) {
 			sb.append("'").append(obj).append("'");
 		} else {
@@ -177,8 +177,8 @@ public class Utils {
 	}
 
 	/**
-	 * Ìí¼ÓÒ»¸ötableName¶ÔÏó£¬ÒòÎªÊÇÔÚ´´½¨sqlµÄwalker·½·¨ÖĞµ÷ÓÃ Òò´Ë±»Éè¼ÆÎª·ÇÏß³Ì°²È«µÄÒÔÌáÉıĞÔÄÜ¡£ ²»ÄÜÔÚ³ıÁËsql
-	 * walkerÒÔÍâµÄÆäËûµÄ·½µ÷ÓÃÕâ¸ö·½·¨
+	 * æ·»åŠ ä¸€ä¸ªtableNameå¯¹è±¡ï¼Œå› ä¸ºæ˜¯åœ¨åˆ›å»ºsqlçš„walkeræ–¹æ³•ä¸­è°ƒç”¨ å› æ­¤è¢«è®¾è®¡ä¸ºéçº¿ç¨‹å®‰å…¨çš„ä»¥æå‡æ€§èƒ½ã€‚ ä¸èƒ½åœ¨é™¤äº†sql
+	 * walkerä»¥å¤–çš„å…¶ä»–çš„æ–¹è°ƒç”¨è¿™ä¸ªæ–¹æ³•
 	 * 
 	 * @param tableName
 	 * @param schemaName
@@ -201,7 +201,7 @@ public class Utils {
 		return temp;
 	}
 	/**
-	 * Ìí¼ÓÒ»¸öqueryµÄtableName¶ÔÏó not thread safe ²»ÒªÔÚ³ımysql walkerÒÔÍâµÄµØ·½µ÷ÓÃ´Ë·½·¨
+	 * æ·»åŠ ä¸€ä¸ªqueryçš„tableNameå¯¹è±¡ not thread safe ä¸è¦åœ¨é™¤mysql walkerä»¥å¤–çš„åœ°æ–¹è°ƒç”¨æ­¤æ–¹æ³•
 	 * 
 	 * @param select
 	 * @param alias

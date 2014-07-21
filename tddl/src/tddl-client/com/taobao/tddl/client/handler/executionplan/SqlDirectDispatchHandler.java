@@ -24,30 +24,30 @@ import com.taobao.tddl.sqlobjecttree.DMLCommon;
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteCondition;
 
 /**
- * @description ´ËhandlerÖ÷Òª¹¦ÄÜÊÇ¶ÔÓÚÖ±½ÓÖ¸¶¨¿âµÄsqlÉú³ÉExecutionPlan,¹¦ÄÜ
- *              ÉÏÓëExecutionPlanHandlerÆ½ĞĞ.
+ * @description æ­¤handlerä¸»è¦åŠŸèƒ½æ˜¯å¯¹äºç›´æ¥æŒ‡å®šåº“çš„sqlç”ŸæˆExecutionPlan,åŠŸèƒ½
+ *              ä¸Šä¸ExecutionPlanHandlerå¹³è¡Œ.
  *              
- *              ÎÒÃÇ³£³£ĞèÒªÍ¨¹ıTDataSourceÖ´ĞĞ·Ö¿â·Ö±íµÄsqlºÍ²»×ö·Ö¿â·Ö±íµÄsql,
- *              ÕâÔÚ2.4.xÖ®Ç°Ïà¶ÔÀ´ËµÊÇ±È½ÏÀ§ÄÑµÄÊÂÇé,ÄÇÃ´ÎÒÃÇÔÚºóĞø°æ±¾ÖĞÌá¹©ÁË
- *              ÕâÃ´Ò»ÖÖ½â¾ö·½°¸,Ö»ÒªÄã¸æËßÎÒÔÚÄÄ¸ö¿âÉÏÖ´ĞĞ,ÄÇÃ´TDDL½«²»¶ÔÕâÖÖsql
- *              ½øĞĞ½âÎöºÍ¹æÔò¼ÆËã,Ö±½ÓÔÚÄ¿±ê¿âÉÏÖ´ĞĞµôsql.¶øÕâ¸öhandlerÒ²¾ÍÊÇ½«
- *              ÕâÖÖÖ±½ÓÖ´ĞĞµÄÉÏÏÂÎÄ·â×°³ÉExecutionPlanÌá¹©¸øÖ®ºóµÄÖ´ĞĞÒıÇæÖ´ĞĞ.
+ *              æˆ‘ä»¬å¸¸å¸¸éœ€è¦é€šè¿‡TDataSourceæ‰§è¡Œåˆ†åº“åˆ†è¡¨çš„sqlå’Œä¸åšåˆ†åº“åˆ†è¡¨çš„sql,
+ *              è¿™åœ¨2.4.xä¹‹å‰ç›¸å¯¹æ¥è¯´æ˜¯æ¯”è¾ƒå›°éš¾çš„äº‹æƒ…,é‚£ä¹ˆæˆ‘ä»¬åœ¨åç»­ç‰ˆæœ¬ä¸­æä¾›äº†
+ *              è¿™ä¹ˆä¸€ç§è§£å†³æ–¹æ¡ˆ,åªè¦ä½ å‘Šè¯‰æˆ‘åœ¨å“ªä¸ªåº“ä¸Šæ‰§è¡Œ,é‚£ä¹ˆTDDLå°†ä¸å¯¹è¿™ç§sql
+ *              è¿›è¡Œè§£æå’Œè§„åˆ™è®¡ç®—,ç›´æ¥åœ¨ç›®æ ‡åº“ä¸Šæ‰§è¡Œæ‰sql.è€Œè¿™ä¸ªhandlerä¹Ÿå°±æ˜¯å°†
+ *              è¿™ç§ç›´æ¥æ‰§è¡Œçš„ä¸Šä¸‹æ–‡å°è£…æˆExecutionPlanæä¾›ç»™ä¹‹åçš„æ‰§è¡Œå¼•æ“æ‰§è¡Œ.
  *              
- *              ÎÒÃÇ¿ÉÒÔÊ¹ÓÃRouteHelper.executeByDB(dbIndex)¸æËßTDDLÄãËùÒªÖ±½ÓÖ´ĞĞ
- *              sqlµÄÄ¿±ê¿â,µ±È»ÄãÏÖÔÚÒ²¿ÉÒÔÔÚ¹æÔòÎÄ¼şÖĞµÄShardRule BeanÏÂÅäÉÏ
- *              defaultDbIndex,ÄÇÃ´Äã²»¸æËßÎÒÖ±½ÓÖ´ĞĞµÄÄ¿±ê¿â,²¢ÇÒsqlÖĞµÄµÚÒ»ÕÅ±í
- *              Ã»ÓĞ·Ö¿â·Ö±í,ÎÒÃÇ½«»á°ÑÕâÌõsqlÔÚdefaultDbIndexÉÏÖ´ĞĞµô.
+ *              æˆ‘ä»¬å¯ä»¥ä½¿ç”¨RouteHelper.executeByDB(dbIndex)å‘Šè¯‰TDDLä½ æ‰€è¦ç›´æ¥æ‰§è¡Œ
+ *              sqlçš„ç›®æ ‡åº“,å½“ç„¶ä½ ç°åœ¨ä¹Ÿå¯ä»¥åœ¨è§„åˆ™æ–‡ä»¶ä¸­çš„ShardRule Beanä¸‹é…ä¸Š
+ *              defaultDbIndex,é‚£ä¹ˆä½ ä¸å‘Šè¯‰æˆ‘ç›´æ¥æ‰§è¡Œçš„ç›®æ ‡åº“,å¹¶ä¸”sqlä¸­çš„ç¬¬ä¸€å¼ è¡¨
+ *              æ²¡æœ‰åˆ†åº“åˆ†è¡¨,æˆ‘ä»¬å°†ä¼šæŠŠè¿™æ¡sqlåœ¨defaultDbIndexä¸Šæ‰§è¡Œæ‰.
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.4
  * @since 1.6
- * @date 2010-09-08ÏÂÎç06:33:32
+ * @date 2010-09-08ä¸‹åˆ06:33:32
  */
 public class SqlDirectDispatchHandler extends AbstractHandler {
 	public static final String HANDLER_NAME = "SqlDirectDispatchHandler";
 	private final Log log = LogFactory.getLog(SqlDirectDispatchHandler.class);
 
 	/**
-	 * DirectDispatchHandlerÖ÷ÒªÊ¹ÓÃÓÚ²»·Ö¿â£¬Ò²²»·Ö±íµÄcase
+	 * DirectDispatchHandlerä¸»è¦ä½¿ç”¨äºä¸åˆ†åº“ï¼Œä¹Ÿä¸åˆ†è¡¨çš„case
 	 */
 	public void handleDown(DataBus dataBus) throws SQLException {
 		if (FlowType.DIRECT == getPipeLineRuntimeInfo(dataBus).getFlowType()) {
@@ -56,7 +56,7 @@ public class SqlDirectDispatchHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Ö±½Ó¹¹½¨Ö´ĞĞ¼Æ»®£¬Ö÷ÌåÊı¾İ½á¹¹Ê½DirectlyRouteCondition
+	 * ç›´æ¥æ„å»ºæ‰§è¡Œè®¡åˆ’ï¼Œä¸»ä½“æ•°æ®ç»“æ„å¼DirectlyRouteCondition
 	 * 
 	 * @param dataBus
 	 * @throws SQLException
@@ -70,13 +70,13 @@ public class SqlDirectDispatchHandler extends AbstractHandler {
 				.getSqlParam();
 
 		/**
-		 * ¹¹½¨Ö´ĞĞ¼Æ»®
+		 * æ„å»ºæ‰§è¡Œè®¡åˆ’
 		 */
 		ExecutionPlan executionPlan = getDirectlyExecutionPlan(sql, sqlParam,
 				directlyRouteCondition);
 
 		/**
-		 * ÉèÖÃÖ´ĞĞ¼Æ»®
+		 * è®¾ç½®æ‰§è¡Œè®¡åˆ’
 		 */
 		setResult(executionPlan, runtime);
 
@@ -84,7 +84,7 @@ public class SqlDirectDispatchHandler extends AbstractHandler {
 	}
 
 	/**
-	 * µÃµ½Ö±½ÓÖ´ĞĞµÄÖ´ĞĞ¼Æ»®
+	 * å¾—åˆ°ç›´æ¥æ‰§è¡Œçš„æ‰§è¡Œè®¡åˆ’
 	 * 
 	 * @param sql
 	 * @param parameterSettings
@@ -108,7 +108,7 @@ public class SqlDirectDispatchHandler extends AbstractHandler {
 					tableMapList.size());
 			boolean isUsingRealConnection = false;
 			if (tableMapList.isEmpty()) {
-				// Èç¹ûÎª¿Õ£¬ÔòÖ±½ÓÊ¹ÓÃÔ­sql
+				// å¦‚æœä¸ºç©ºï¼Œåˆ™ç›´æ¥ä½¿ç”¨åŸsql
 				RealSqlContextImp realSqlContext = new RealSqlContextImp();
 				realSqlContext.setArgument(parameterSettings);
 				realSqlContext.setSql(replaceMultiTableName(sql, new HashMap<String, String>()));
@@ -119,17 +119,17 @@ public class SqlDirectDispatchHandler extends AbstractHandler {
 						.getValue()) {
 
 					if (!isUsingRealConnection) {
-						// µÚÒ»´Î½øÈëµÄÊ±ºò±íÊ¾Ê¹ÓÃÕæÊµÁ¬½Ó;
+						// ç¬¬ä¸€æ¬¡è¿›å…¥çš„æ—¶å€™è¡¨ç¤ºä½¿ç”¨çœŸå®è¿æ¥;
 						isUsingRealConnection = true;
 					} else {
-						// isUsingRealConnection = true.ÒòÎªÄ¬ÈÏÎªfalse.ËùÒÔÎªtrueÒ»¶¨ÊÇÒòÎª
-						// ÓĞ¶àÓÚÒ»ÌõsqlĞèÒªÖ´ĞĞ¡£
+						// isUsingRealConnection = true.å› ä¸ºé»˜è®¤ä¸ºfalse.æ‰€ä»¥ä¸ºtrueä¸€å®šæ˜¯å› ä¸º
+						// æœ‰å¤šäºä¸€æ¡sqléœ€è¦æ‰§è¡Œã€‚
 						isUsingRealConnection = false;
 					}
 					RealSqlContextImp realSqlContext = new RealSqlContextImp();
 					realSqlContext.setArgument(parameterSettings);
 					realSqlContext.setRealTable(targetMap.values().toString());
-					// Ìæ»»±íÃû
+					// æ›¿æ¢è¡¨å
 					realSqlContext
 							.setSql(replaceMultiTableName(sql, targetMap));
 					realSqlContexts.add(realSqlContext);

@@ -6,7 +6,7 @@ import com.taobao.tddl.rule.ruleengine.entities.abstractentities.SharedElement;
 
 /**
  * 
- * 用于创建database中持有多个表的map
+ * 鐢ㄤ簬鍒涘缓database涓寔鏈夊涓〃鐨刴ap
  * 
  * @author shenxun
  *

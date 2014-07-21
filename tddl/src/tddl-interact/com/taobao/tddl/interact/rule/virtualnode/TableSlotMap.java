@@ -15,7 +15,7 @@ import com.taobao.tddl.interact.rule.util.VirturalNodeUtil;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-6-2ÏÂÎç03:13:08
+ * @date 2011-6-2ä¸‹åˆ03:13:08
  */
 public class TableSlotMap extends WrappedLogic implements VirtualNodeMap{
     private String logicTable;

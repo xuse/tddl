@@ -11,13 +11,13 @@ import com.taobao.tddl.common.sync.BucketSwitcher.BucketTaker;
 
 /*
  * @author guangxia
- * @since 1.0, 2010-1-21 ÏÂÎç04:36:13
+ * @since 1.0, 2010-1-21 ä¸‹åˆ04:36:13
  * 
- * ÃâÔğÉùÃ÷:
- * ÓÉÓÚÖ§³Ö¶¯Ì¬¸ÄÅäÖÃ£¬ËùÒÔÊ¹µÃÕâ¸öÀàºÍÕâ¸öÀàµ÷ÓÃµÄÀà¶¼µ½´¦³äÂúÁËÂ©¶´
- * ºÜ¶àµØ·½¶¼ÓĞ¿ÉÄÜ»áÔÚ¶¯Ì¬¸ÄÅäÖÃµÄÊ±ºò·¢ÏÖÊı¾İ¶ªÊ§
- * ËùÒÔÕâÊÇÒ»¸ö²»ÑÏ¸ñµÄÊµÏÖ
- * ĞÒºÃ£¬¶ªÊı¾İµÄºó¹ûÖ»»áÒıÆğÑÓ³ÙµÄ´¦Àí»òÕßÖØ¸´´¦Àí£¬²»»á´íÎóµØÉ¾³ıÊı¾İ
+ * å…è´£å£°æ˜:
+ * ç”±äºæ”¯æŒåŠ¨æ€æ”¹é…ç½®ï¼Œæ‰€ä»¥ä½¿å¾—è¿™ä¸ªç±»å’Œè¿™ä¸ªç±»è°ƒç”¨çš„ç±»éƒ½åˆ°å¤„å……æ»¡äº†æ¼æ´
+ * å¾ˆå¤šåœ°æ–¹éƒ½æœ‰å¯èƒ½ä¼šåœ¨åŠ¨æ€æ”¹é…ç½®çš„æ—¶å€™å‘ç°æ•°æ®ä¸¢å¤±
+ * æ‰€ä»¥è¿™æ˜¯ä¸€ä¸ªä¸ä¸¥æ ¼çš„å®ç°
+ * å¹¸å¥½ï¼Œä¸¢æ•°æ®çš„åæœåªä¼šå¼•èµ·å»¶è¿Ÿçš„å¤„ç†æˆ–è€…é‡å¤å¤„ç†ï¼Œä¸ä¼šé”™è¯¯åœ°åˆ é™¤æ•°æ®
  */
 public class RowBasedReplicaterUseIn extends RowBasedReplicater {
 	
@@ -89,10 +89,10 @@ public class RowBasedReplicaterUseIn extends RowBasedReplicater {
 		Switchers local_switchers = switchers;
 		int dbNum = local_switchers.getDbNum(dataSource);
 		if (success) {
-			//Èç¹û¸´ÖÆ³É¹¦£¬·ÅÈëdeleteBucketSwitcherµÈ´ıÅúÁ¿É¾³ı
+			//å¦‚æœå¤åˆ¶æˆåŠŸï¼Œæ”¾å…¥deleteBucketSwitcherç­‰å¾…æ‰¹é‡åˆ é™¤
 			local_switchers.deleteBucketSwitcher.pourin(context, dbNum, tableNum);
 		} else {
-			//Èç¹û¸´ÖÆ²»³É¹¦£¬·ÅÈëupdateBucketSwitcherµÈ´ıÅúÁ¿¸üĞÂnext_sync_time
+			//å¦‚æœå¤åˆ¶ä¸æˆåŠŸï¼Œæ”¾å…¥updateBucketSwitcherç­‰å¾…æ‰¹é‡æ›´æ–°next_sync_time
 			local_switchers.updateBucketSwitcher.pourin(context, dbNum, tableNum);
 		}
 	}

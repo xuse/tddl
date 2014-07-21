@@ -3,16 +3,16 @@ package com.taobao.tddl.common.config.beans;
 import java.util.Map;
 
 public class SyncLogDBSet {
-	private Map<String/*Êý¾Ý¿âÄÚ²¿Ë÷Òý*/, Datasource> synclogDatasources;
+	private Map<String/*æ•°æ®åº“å†…éƒ¨ç´¢å¼•*/, Datasource> synclogDatasources;
 	private String synclogDatasourceWeight;
 
 	/**
-	 * ÓÐÂß¼­µÄgetter/setter
+	 * æœ‰é€»è¾‘çš„getter/setter
 	 */
 
 
 	/**
-	 * ÎÞÂß¼­µÄgetter/setter
+	 * æ— é€»è¾‘çš„getter/setter
 	 */
 	public Map<String, Datasource> getSynclogDatasources() {
 		return synclogDatasources;

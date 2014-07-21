@@ -51,7 +51,7 @@ public class RangeSelector implements SQLFragment {
 			}else if(obj instanceof Integer){
 				return ((Integer) obj);
 			}else{
-				throw new IllegalArgumentException("绑定变量发生错误:当前的绑定变量是" + obj+"不是一个int对象");
+				throw new IllegalArgumentException("缁戝畾鍙橀噺鍙戠敓閿欒:褰撳墠鐨勭粦瀹氬彉閲忔槸" + obj+"涓嶆槸涓�涓猧nt瀵硅薄");
 			}
 			
 		}
@@ -72,7 +72,7 @@ public class RangeSelector implements SQLFragment {
 			}else if(obj instanceof Integer){
 				intVal= (Integer) obj;
 			}else{
-				throw new IllegalArgumentException("绑定变量发生错误:当前的绑定变量是" + obj+"不是一个int对象");
+				throw new IllegalArgumentException("缁戝畾鍙橀噺鍙戠敓閿欒:褰撳墠鐨勭粦瀹氬彉閲忔槸" + obj+"涓嶆槸涓�涓猧nt瀵硅薄");
 			}
 		} else {
 			intVal =DMLCommon.DEFAULT_SKIP_MAX;

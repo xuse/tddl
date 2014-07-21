@@ -1,7 +1,7 @@
 package com.taobao.tddl.rule.ruleengine.rule;
 
 public class RuleExecutionContext {
-	//TODO:这个应该放到具体实现中去
+	//TODO:杩欎釜搴旇鏀惧埌鍏蜂綋瀹炵幇涓幓
 	public static final String ITEM_NUM_TO_USER_NUM_NAMESPACE ="ITEMNUM2USERNUM";
 	public static final String ITEM_CHAR_TO_USER_NUM_AND_ITEM_NUM_NAMESPACE ="ITEMNUM2USERNUM";
 	public static  final  String ITEM_NUM_COLUMN="ITEM_NUM";

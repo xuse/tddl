@@ -10,7 +10,7 @@ import com.taobao.tddl.common.util.NestThreadLocalMap;
 
 /**
  * 
- * ¿ÉÖ±½ÓÓÃÓÚgroovy¹æÔòÖĞµÄ±ã½İ·½·¨
+ * å¯ç›´æ¥ç”¨äºgroovyè§„åˆ™ä¸­çš„ä¾¿æ·æ–¹æ³•
  * 
  * @author shenxun
  * @author linxuan
@@ -22,7 +22,7 @@ public class GroovyStaticMethod {
 			10000000000000000L, 100000000000000000L, 1000000000000000000L };
 
 	/**
-	 * @return ·µ»Ø4Î»Äê·İ
+	 * @return è¿”å›4ä½å¹´ä»½
 	 */
 	public static int yyyy(Date date) {
 		Calendar cal = getCalendar(date);
@@ -34,7 +34,7 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * @return ·µ»Ø2Î»Äê·İ£¨Äê·İµÄºóÁ½Î»£©
+	 * @return è¿”å›2ä½å¹´ä»½ï¼ˆå¹´ä»½çš„åä¸¤ä½ï¼‰
 	 */
 	public static int yy(Date date) {
 		Calendar cal = getCalendar(date);
@@ -46,7 +46,7 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * @return ·µ»ØÔÂ·İÊı×Ö£¬×¢Òâ£º´Ó1¿ªÊ¼£º1-12£¨·µ»Ø Calendar.MONTH¶ÔÓ¦µÄÖµ¼Ó1£©
+	 * @return è¿”å›æœˆä»½æ•°å­—ï¼Œæ³¨æ„ï¼šä»1å¼€å§‹ï¼š1-12ï¼ˆè¿”å› Calendar.MONTHå¯¹åº”çš„å€¼åŠ 1ï¼‰
 	 */
 	public static int month(Date date) {
 		Calendar cal = getCalendar(date);
@@ -58,7 +58,7 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * @return ·µ»Ø2Î»µÄÔÂ·İ×Ö´®£¬´Ó01¿ªÊ¼£º01-12£¨Calendar.MONTH¶ÔÓ¦µÄÖµ¼Ó1£©
+	 * @return è¿”å›2ä½çš„æœˆä»½å­—ä¸²ï¼Œä»01å¼€å§‹ï¼š01-12ï¼ˆCalendar.MONTHå¯¹åº”çš„å€¼åŠ 1ï¼‰
 	 */
 	public static String mm(Date date) {
 		Calendar cal = getCalendar(date);
@@ -72,7 +72,7 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * @return ·µ»Ø Calendar.DAY_OF_WEEK ¶ÔÓ¦µÄÖµ
+	 * @return è¿”å› Calendar.DAY_OF_WEEK å¯¹åº”çš„å€¼
 	 */
 	public static int week(Date date) {
 		Calendar cal = getCalendar(date);
@@ -84,7 +84,7 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * ¾É¹æÔòÄ¬ÈÏµÄdayofweek : Èç¹ûoffset  = 0;ÄÇÃ´ÎªÄ¬ÈÏ
+	 * æ—§è§„åˆ™é»˜è®¤çš„dayofweek : å¦‚æœoffset  = 0;é‚£ä¹ˆä¸ºé»˜è®¤
 	 * SUNDAY=1; MONDAY=2; TUESDAY=3; WEDNESDAY=4; THURSDAY=5; FRIDAY=6; SATURDAY=7;
 	 */
 	public static int dayofweek(Date date, int offset) {
@@ -97,8 +97,8 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * ¾É¹æÔòµÄdayofweek.ÒòÎª¾É¹æÔò¼ÆËã½á¹ûÎªÊı×éÏÂ±ê£¬ÓÈÆä±í¹æÔò½á¹ûÊÇ¿âÄÚ±íÊı×éÏÂ±ê£¬±ØĞë´Ó0¿ªÊ¼£¬
-	 * Òò´Ë±ØĞëÈÃday of week´Ó0 ¿ªÊ¼¡£Í¨¹ıÖ±½Óoffset = -1 ½â¾ö£ºĞÇÆÚÈÕ=0,ĞÇÆÚÒ»=1,...ĞÇÆÚÁù=6
+	 * æ—§è§„åˆ™çš„dayofweek.å› ä¸ºæ—§è§„åˆ™è®¡ç®—ç»“æœä¸ºæ•°ç»„ä¸‹æ ‡ï¼Œå°¤å…¶è¡¨è§„åˆ™ç»“æœæ˜¯åº“å†…è¡¨æ•°ç»„ä¸‹æ ‡ï¼Œå¿…é¡»ä»0å¼€å§‹ï¼Œ
+	 * å› æ­¤å¿…é¡»è®©day of weekä»0 å¼€å§‹ã€‚é€šè¿‡ç›´æ¥offset = -1 è§£å†³ï¼šæ˜ŸæœŸæ—¥=0,æ˜ŸæœŸä¸€=1,...æ˜ŸæœŸå…­=6
 	 */
 	public static int dayofweek(Date date) {
 		return dayofweek(date, -1);
@@ -109,7 +109,7 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * @return ·µ»Ø4Î»Äê·İºÍ2Î»ÔÂ·İµÄ×Ö´®£¬ÔÂ·İ´Ó01¿ªÊ¼£º01-12
+	 * @return è¿”å›4ä½å¹´ä»½å’Œ2ä½æœˆä»½çš„å­—ä¸²ï¼Œæœˆä»½ä»01å¼€å§‹ï¼š01-12
 	 */
 	public static String yyyymm(Date date) {
 		Calendar cal = getCalendar(date);
@@ -121,7 +121,7 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * @return ·µ»Ø 4Î»Äê·İ_2Î»ÔÂ·İ µÄ×Ö´®£¬ÔÂ·İ´Ó01¿ªÊ¼£º01-12
+	 * @return è¿”å› 4ä½å¹´ä»½_2ä½æœˆä»½ çš„å­—ä¸²ï¼Œæœˆä»½ä»01å¼€å§‹ï¼š01-12
 	 */
 	public static String yyyy_mm(Date date) {
 		Calendar cal = getCalendar(date);
@@ -133,7 +133,7 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * @return ·µ»Ø2Î»Äê·İºÍ2Î»ÔÂ·İµÄ×Ö´®£¬ÔÂ·İ´Ó01¿ªÊ¼£º01-12
+	 * @return è¿”å›2ä½å¹´ä»½å’Œ2ä½æœˆä»½çš„å­—ä¸²ï¼Œæœˆä»½ä»01å¼€å§‹ï¼š01-12
 	 */
 	public static String yymm(Date date) {
 		Calendar cal = getCalendar(date);
@@ -145,7 +145,7 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * @return ·µ»Ø 2Î»Äê·İ_2Î»ÔÂ·İ µÄ×Ö´®£¬ÔÂ·İ´Ó01¿ªÊ¼£º01-12
+	 * @return è¿”å› 2ä½å¹´ä»½_2ä½æœˆä»½ çš„å­—ä¸²ï¼Œæœˆä»½ä»01å¼€å§‹ï¼š01-12
 	 */
 	public static String yy_mm(Date date) {
 		Calendar cal = getCalendar(date);
@@ -157,7 +157,7 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * @return ·µ»Ø Calendar.DATE ¶ÔÓ¦µÄÖµ¡£Ã¿ÔÂµÄ1ºÅÖµÎª1, 2ºÅÖµÎª2...
+	 * @return è¿”å› Calendar.DATE å¯¹åº”çš„å€¼ã€‚æ¯æœˆçš„1å·å€¼ä¸º1, 2å·å€¼ä¸º2...
 	 */
 	public static int date(Date date) {
 		Calendar cal = getCalendar(date);
@@ -183,20 +183,20 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * @param bit ²¹ÆëºóµÄ³¤¶È
-	 * @param table ÊıÖµ 
-	 * @return ·µ»ØÇ°Ãæ²¹0´ïµ½bit³¤¶ÈµÄ×Ö·û´®¡£Èç¹ûtable³¤¶È´óÓÚbit£¬Ôò·µ»ØtableµÄÔ­Ê¼Öµ
+	 * @param bit è¡¥é½åçš„é•¿åº¦
+	 * @param table æ•°å€¼ 
+	 * @return è¿”å›å‰é¢è¡¥0è¾¾åˆ°bité•¿åº¦çš„å­—ç¬¦ä¸²ã€‚å¦‚æœtableé•¿åº¦å¤§äºbitï¼Œåˆ™è¿”å›tableçš„åŸå§‹å€¼
 	 */
 	public static String placeHolder(int bit, long table) {
 		if (bit > 18) {
-			throw new IllegalArgumentException("½ØÈ¡µÄÎ»Êı²»ÄÜ´óÓÚ18Î»");
+			throw new IllegalArgumentException("æˆªå–çš„ä½æ•°ä¸èƒ½å¤§äº18ä½");
 		}
 		if (table == 0) {
-			//bugfix ±»0³ı
+			//bugfix è¢«0é™¤
 			return String.valueOf(pow10[bit]).substring(1);
 		}
 		if (table >= pow10[bit - 1]) {
-			//µ±ÊıÖµµÄwidth >= ÒªÇóµÄ²¹ÆëÎ»ÊıÊ±£¬Ó¦¸ÃÖ±½Ó·µ»ØÔ­Ê¼ÊıÖµ
+			//å½“æ•°å€¼çš„width >= è¦æ±‚çš„è¡¥é½ä½æ•°æ—¶ï¼Œåº”è¯¥ç›´æ¥è¿”å›åŸå§‹æ•°å€¼
 			return String.valueOf(table);
 		}
 		long max = pow10[bit];
@@ -206,26 +206,26 @@ public class GroovyStaticMethod {
 
 	private static long getModRight(long targetID, int size, int bitNumber) {
 		if (bitNumber < size) {
-			throw new IllegalArgumentException("ÊäÈëµÄÎ»Êı±ÈÒªÇóµÄsize»¹Ğ¡");
+			throw new IllegalArgumentException("è¾“å…¥çš„ä½æ•°æ¯”è¦æ±‚çš„sizeè¿˜å°");
 		}
 		return (size == 0 ? 0 : targetID / pow10[bitNumber - size]);
 	}
 
 	/**
-	 * ´Ó×ó¿ªÊ¼£¬È¡Ö¸¶¨¶àµÄÎ»Êı¡£Ä¬ÈÏÊÇÒ»¸ölongĞÎ³¤¶ÈµÄÊı¾İ£¬Ò²¾ÍÊÇbitNumber= 19
+	 * ä»å·¦å¼€å§‹ï¼Œå–æŒ‡å®šå¤šçš„ä½æ•°ã€‚é»˜è®¤æ˜¯ä¸€ä¸ªlongå½¢é•¿åº¦çš„æ•°æ®ï¼Œä¹Ÿå°±æ˜¯bitNumber= 19
 	 * 
-	 * @param targetID Ä¿±êid£¬Ò²¾ÍÊÇµÈ´ı±»decodeµÄÊı¾İ
-	 * @param st ´ÓÄÄ¶ù¿ªÊ¼È¡£¬Èç¹ûÏëÈ¡×î×ó±ßµÄÒ»Î»ÄÇÃ´¿ÉÒÔÊäÈëst = 0;ed =1;
-	 * @param ed È¡µ½ÄÄ¶ù£¬Èç¹ûÏëÈ¡×î×ó±ßµÄÁ½Î»£¬ÄÇÃ´¿ÉÒÔÊäÈëst = 0;ed = 2;
+	 * @param targetID ç›®æ ‡idï¼Œä¹Ÿå°±æ˜¯ç­‰å¾…è¢«decodeçš„æ•°æ®
+	 * @param st ä»å“ªå„¿å¼€å§‹å–ï¼Œå¦‚æœæƒ³å–æœ€å·¦è¾¹çš„ä¸€ä½é‚£ä¹ˆå¯ä»¥è¾“å…¥st = 0;ed =1;
+	 * @param ed å–åˆ°å“ªå„¿ï¼Œå¦‚æœæƒ³å–æœ€å·¦è¾¹çš„ä¸¤ä½ï¼Œé‚£ä¹ˆå¯ä»¥è¾“å…¥st = 0;ed = 2;
 	 * @return
 	 */
 	//	public static long leftBetween(long targetID,int st,int ed){
 	//		int sizeAll = st + ed - 1;
 	//		if(sizeAll >= 19||sizeAll <= 0){
-	//			throw new IllegalArgumentException("½ØÈ¡19Î»ÇëÖ±½ÓÊ¹ÓÃÔªÊı¾İ¡£");
+	//			throw new IllegalArgumentException("æˆªå–19ä½è¯·ç›´æ¥ä½¿ç”¨å…ƒæ•°æ®ã€‚");
 	//		}
 	//		if(targetID / pow10[sizeAll] < 1){
-	//			throw new IllegalArgumentException(targetID+",Ğ¡ÓÚ"+(st+ed)+"Î»£¬²»ÄÜ½øĞĞ¼ÆËã");
+	//			throw new IllegalArgumentException(targetID+",å°äº"+(st+ed)+"ä½ï¼Œä¸èƒ½è¿›è¡Œè®¡ç®—");
 	//		}
 	//		long end = getModRight(targetID, ed,19);
 	//		return end % pow10[(ed-st)];
@@ -265,23 +265,23 @@ public class GroovyStaticMethod {
 	}
 
 	/**
-	 * ´ÓÓÒ¿ªÊ¼£¬È¡Ö¸¶¨¶àµÄÎ»Êı¡£
-	 * ¼ÙÈç²ÎÊıÊÇ1234567.ÄÇÃ´rightBetwen(1234567,2,3) ·µ»ØµÄÊı¾İÊÇ 345
-	 * rightBetween(10000234,2,2) ·µ»ØµÄÊı¾İÊÇ2
-	 * rightBetween(10000234,3,2) ·µ»ØµÄÊı¾İÊÇ0
+	 * ä»å³å¼€å§‹ï¼Œå–æŒ‡å®šå¤šçš„ä½æ•°ã€‚
+	 * å‡å¦‚å‚æ•°æ˜¯1234567.é‚£ä¹ˆrightBetwen(1234567,2,3) è¿”å›çš„æ•°æ®æ˜¯ 345
+	 * rightBetween(10000234,2,2) è¿”å›çš„æ•°æ®æ˜¯2
+	 * rightBetween(10000234,3,2) è¿”å›çš„æ•°æ®æ˜¯0
 	 * 
-	 * @param targetID Ä¿±êid£¬Ò²¾ÍÊÇµÈ´ı±»decodeµÄÊı¾İ
-	 * @param closeFrom ´ÓÄÄ¶ù¿ªÊ¼È¡£¬Èç¹ûÏëÈ¡×îÓÒ±ßµÄÒ»Î»ÄÇÃ´¿ÉÒÔÊäÈëst = 0;ed =1;
-	 * @param openTo È¡µ½ÄÄ¶ù£¬Èç¹ûÏëÈ¡×îÓÒ±ßµÄÁ½Î»£¬ÄÇÃ´¿ÉÒÔÊäÈëst = 0;ed = 2;
+	 * @param targetID ç›®æ ‡idï¼Œä¹Ÿå°±æ˜¯ç­‰å¾…è¢«decodeçš„æ•°æ®
+	 * @param closeFrom ä»å“ªå„¿å¼€å§‹å–ï¼Œå¦‚æœæƒ³å–æœ€å³è¾¹çš„ä¸€ä½é‚£ä¹ˆå¯ä»¥è¾“å…¥st = 0;ed =1;
+	 * @param openTo å–åˆ°å“ªå„¿ï¼Œå¦‚æœæƒ³å–æœ€å³è¾¹çš„ä¸¤ä½ï¼Œé‚£ä¹ˆå¯ä»¥è¾“å…¥st = 0;ed = 2;
 	 * @throws
-	 * 		IllegalArgumentException Èç¹ûst+ed -1 >= 19,ÕâÊ±ºò¶ÔlongÀ´Ëµ²»ĞèÒª½ØÈ¡¡£
-	 * 								 Èç¹ûtargetIdĞ¡ÓÚst+ed£¬
+	 * 		IllegalArgumentException å¦‚æœst+ed -1 >= 19,è¿™æ—¶å€™å¯¹longæ¥è¯´ä¸éœ€è¦æˆªå–ã€‚
+	 * 								 å¦‚æœtargetIdå°äºst+edï¼Œ
 	 * @return
 	 */
 	public static long rightCut(long targetID, int closeFrom, int openTo) {
 		int sizeAll = closeFrom + openTo - 1;
 		if (sizeAll >= 19 || sizeAll < 0) {
-			throw new IllegalArgumentException("½ØÈ¡19Î»ÇëÖ±½ÓÊ¹ÓÃÔªÊı¾İ¡£");
+			throw new IllegalArgumentException("æˆªå–19ä½è¯·ç›´æ¥ä½¿ç”¨å…ƒæ•°æ®ã€‚");
 		}
 
 		long right = targetID / pow10[(closeFrom)];
@@ -292,14 +292,14 @@ public class GroovyStaticMethod {
 
 	public static long right(long targetID, int size) {
 		if (size >= 19 || size < 0) {
-			throw new IllegalArgumentException("½ØÈ¡19Î»ÇëÖ±½ÓÊ¹ÓÃÔªÊı¾İ¡£");
+			throw new IllegalArgumentException("æˆªå–19ä½è¯·ç›´æ¥ä½¿ç”¨å…ƒæ•°æ®ã€‚");
 		}
 		return targetID % pow10[size];
 	}
 
 	public static void validate(long targetID, int size) {
 		if (targetID / pow10[size - 1] < 1) {
-			throw new IllegalArgumentException(targetID + ",Ğ¡ÓÚ" + (size) + "Î»£¬²»ÄÜ½øĞĞ¼ÆËã");
+			throw new IllegalArgumentException(targetID + ",å°äº" + (size) + "ä½ï¼Œä¸èƒ½è¿›è¡Œè®¡ç®—");
 		}
 	}
 

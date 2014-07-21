@@ -14,7 +14,7 @@ import com.taobao.tddl.rule.ruleengine.entities.inputvalue.TabRule;
 
 /**
  * rightConvertMod_3_128
- * ±íÃûÒ»¸öÊäÈëÊı¾İµÄ×îºó3Î»×Ö·û´®£¬°´ÕÕ16½øÖÆ×ª10½øÖÆ×ª»¯ÎªÊı×Ö£¬È»ºómod 128¡£
+ * è¡¨åä¸€ä¸ªè¾“å…¥æ•°æ®çš„æœ€å3ä½å­—ç¬¦ä¸²ï¼ŒæŒ‰ç…§16è¿›åˆ¶è½¬10è¿›åˆ¶è½¬åŒ–ä¸ºæ•°å­—ï¼Œç„¶åmod 128ã€‚
  * @author shenxun
  *
  */
@@ -32,8 +32,8 @@ public class RightConvertModTabProvider extends CommonTableRuleProvider {
 
 			temp = Integer.valueOf(str);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("·ÖÎörightConvertMod²ÎÊı·¢Éú´íÎó£¬"
-					+ exceptionStr + "Îª:" + str);
+			throw new IllegalArgumentException("åˆ†ærightConvertModå‚æ•°å‘ç”Ÿé”™è¯¯ï¼Œ"
+					+ exceptionStr + "ä¸º:" + str);
 		}
 		return temp;
 	}
@@ -51,7 +51,7 @@ public class RightConvertModTabProvider extends CommonTableRuleProvider {
 	}
 	private ModDecIntValueClass getDecimalIntAndMod(TabRule tab,
 			Comparable<?> comparative,Comparable<?> comparativeEnd) {
-		// ÒòÎªÔÚ»ñµÃ´ËProviderÊ±ÒÑ¾­×ö¹ınot null¼ì²é²»ÓÃÔÙ×öÀ²
+		// å› ä¸ºåœ¨è·å¾—æ­¤Provideræ—¶å·²ç»åšè¿‡not nullæ£€æŸ¥ä¸ç”¨å†åšå•¦
 		String expression = tab.getExpFunction();
 		String[] expToken = expression.split("_");
 		String valueStrStart = comparative.toString();
@@ -62,7 +62,7 @@ public class RightConvertModTabProvider extends CommonTableRuleProvider {
                 int expTokenLength=expToken.length;
                 int rightLength =0;
                 int modVal = 0;
-                //´ÓconvertNumberSystem½øÖÆ×ª»¯Îª10½øÖÆ
+                //ä»convertNumberSystemè¿›åˆ¶è½¬åŒ–ä¸º10è¿›åˆ¶
                 int convertNumberSystem=16;
 		if (expTokenLength == 3) {
                     rightLength = getVal(expToken[1], "subLength");
@@ -72,7 +72,7 @@ public class RightConvertModTabProvider extends CommonTableRuleProvider {
                     convertNumberSystem = getVal(expToken[2], "convertNumberSystem");
                     modVal = getVal(expToken[3], "mod");
                 }else{
-                    throw new IllegalArgumentException("rightConvertMod ±ØĞëÓĞÁ½¸ö»òÈı¸ö²ÎÊı");
+                    throw new IllegalArgumentException("rightConvertMod å¿…é¡»æœ‰ä¸¤ä¸ªæˆ–ä¸‰ä¸ªå‚æ•°");
                 }
 		 
 		long decInt = getTargetValueToDecimal(valueStrStart, rightLength,convertNumberSystem);
@@ -118,7 +118,7 @@ public class RightConvertModTabProvider extends CommonTableRuleProvider {
 		try {
 			beModedValue = Long.valueOf(subString,convertNumberSystem);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("Ö»Ö§³Ö16½øÖÆµÄÊı¾İ£¬µ±Ç°ÊäÈëµÄÊı¾İÎª:"+valueStr);
+			throw new IllegalArgumentException("åªæ”¯æŒ16è¿›åˆ¶çš„æ•°æ®ï¼Œå½“å‰è¾“å…¥çš„æ•°æ®ä¸º:"+valueStr);
 		}
 		return beModedValue;
 	}
@@ -126,13 +126,13 @@ public class RightConvertModTabProvider extends CommonTableRuleProvider {
 	
 	/* (non-Javadoc)
 	 * @see com.taobao.tddl.rule.ruleengine.impl.CommonTableRuleProvider#openRangeCheck(java.lang.Comparable, java.lang.Comparable)
-	 * StringµÄ±È½ÏµÄÊ±ºò±È½ÏÌØÊâÒò´ËÒª¶ÀÁ¢³öÀ´
+	 * Stringçš„æ¯”è¾ƒçš„æ—¶å€™æ¯”è¾ƒç‰¹æ®Šå› æ­¤è¦ç‹¬ç«‹å‡ºæ¥
 	 */
 	@SuppressWarnings("unchecked")
 	protected void openRangeCheck(TabRule tab,Comparable st, Comparable ed) {
 		ModDecIntValueClass modDecInt = getDecimalIntAndMod(tab, st,ed);
 		if ((modDecInt.decIntStart)>(modDecInt.decIntEnd)) {
-			log.info("´óÓÚ×î´óÖµ£¬Ğ¡ÓÚ×îĞ¡ÖµµÄ¿ªÇø¼äµÄÇé¿ö");
+			log.info("å¤§äºæœ€å¤§å€¼ï¼Œå°äºæœ€å°å€¼çš„å¼€åŒºé—´çš„æƒ…å†µ");
 			return ;
 		}
 	}

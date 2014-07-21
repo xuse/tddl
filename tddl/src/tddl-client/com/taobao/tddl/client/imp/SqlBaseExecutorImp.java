@@ -58,7 +58,7 @@ public class SqlBaseExecutorImp implements SqlBaseExecutor {
 	}
 
 //	/**
-//	 * »ñÈ¡½á¹û¼¯
+//	 * è·å–ç»“æœé›†
 //	 * 
 //	 * @param statementID
 //	 * @param parameterObject
@@ -81,13 +81,13 @@ public class SqlBaseExecutorImp implements SqlBaseExecutor {
 //		Set<String[]> tableVsPoolSet;
 //		long time=0;
 //		boolean needCalculation = false;
-//		// Õë¶ÔÁĞ±íÖĞµÄÃ¿Ò»Ïî
+//		// é’ˆå¯¹åˆ—è¡¨ä¸­çš„æ¯ä¸€é¡¹
 //		for (TableNameObj tab : tempSortList) {
 //			tableVsPoolSet = poolMap.get(tab);
 //
 //			putTableMergeConditionToThreadLocalMap(rev.getVTabName(), tableVsPoolSet, tab);
 //			param = addSkipMax2ParamMap(parameterObject, skip, max);
-//			// È¡Êı¾İ¡£
+//			// å–æ•°æ®ã€‚
 //			time=System.currentTimeMillis();
 //			List tempList = sqlMapClientTemplate.queryForList(statementID,
 //					param);
@@ -99,7 +99,7 @@ public class SqlBaseExecutorImp implements SqlBaseExecutor {
 //				log.warn(param.size()+"],elapsed time is "+tempTime);
 //			}
 //			log.info("run queryForList once,elapsed time is "+tempTime);
-//			// Èç¹ûÎ´È¡µ½
+//			// å¦‚æœæœªå–åˆ°
 //			if (tempList == null || tempList.size() == 0) {
 //				needCalculation = true;
 //				log.debug("can't at least one element,need calculation this db");
@@ -109,12 +109,12 @@ public class SqlBaseExecutorImp implements SqlBaseExecutor {
 //				needCalculation = false;
 //			}
 //			/*
-//			 * Èç¹ûÒ»¸ö±í¶ÔÓ¦ÁË¶à¸ö¶Á¿â£¬Ôò±íÊ¾ÔÚÕâ´Î²éÑ¯ÖĞÉæ¼°ÁË¶à¿â²éÑ¯£¬ÔİÊ±²»Ö§³Ö
+//			 * å¦‚æœä¸€ä¸ªè¡¨å¯¹åº”äº†å¤šä¸ªè¯»åº“ï¼Œåˆ™è¡¨ç¤ºåœ¨è¿™æ¬¡æŸ¥è¯¢ä¸­æ¶‰åŠäº†å¤šåº“æŸ¥è¯¢ï¼Œæš‚æ—¶ä¸æ”¯æŒ
 //			 */
 //			if (tableVsPoolSet.size() != 1) {
-//				throw new TDLRunTimeException("Ä¿Ç°»¹²»Ö§³Ö¶à±í¶à¿â²éÑ¯£¬ÇëÖ¸¶¨Î¨Ò»¶ÁÊı¾İ¿â");
+//				throw new TDLRunTimeException("ç›®å‰è¿˜ä¸æ”¯æŒå¤šè¡¨å¤šåº“æŸ¥è¯¢ï¼Œè¯·æŒ‡å®šå”¯ä¸€è¯»æ•°æ®åº“");
 //			} else {
-//				// Ïòºó¶ËÌá½»ÅÅĞò±íÃûºÍ
+//				// å‘åç«¯æäº¤æ’åºè¡¨åå’Œ
 //	
 //				if (retObjs.size() >= range) {
 //					break;
@@ -131,19 +131,19 @@ public class SqlBaseExecutorImp implements SqlBaseExecutor {
 //						count = ((BigDecimal) obj).longValue();
 //					} else {
 //						throw new TDLRunTimeException(
-//								"count²éÑ¯½á¹û²»ÊÇinteger,bigDecimal»òlong,ÎŞ·¨½øĞĞÀÛ¼Ó");
+//								"countæŸ¥è¯¢ç»“æœä¸æ˜¯integer,bigDecimalæˆ–long,æ— æ³•è¿›è¡Œç´¯åŠ ");
 //					}
 //
 //					/*
-//					 * ÕâÀï»áÓĞ¸öÎÊÌâ£¬Èç¹ûÊı¾İÏîÔö³¤ºÜ¿ìµÄÇé¿öÏÂ£¬
-//					 * ÓĞ¿ÉÄÜ³öÏÖËäÈ»È¡Êı¾İÊ±Î´Î´È¡µ½£¬µ«ÔÚÏÂ´ÎcountÊ±È´È¡µ½´óÓÚskipÖµµÄcountÖµµÄÇé¿ö
-//					 * ¸ü»µµÄÇé¿öÊÇcountÖµ¿ÉÄÜ»¹´óÓÚmax. ÕâÖÖÇé¿öÎŞ·¨ÅĞ¶Ï¡£ µ«Ô¤¼Æ²»»á¾­³£·¢Éú¡£
+//					 * è¿™é‡Œä¼šæœ‰ä¸ªé—®é¢˜ï¼Œå¦‚æœæ•°æ®é¡¹å¢é•¿å¾ˆå¿«çš„æƒ…å†µä¸‹ï¼Œ
+//					 * æœ‰å¯èƒ½å‡ºç°è™½ç„¶å–æ•°æ®æ—¶æœªæœªå–åˆ°ï¼Œä½†åœ¨ä¸‹æ¬¡countæ—¶å´å–åˆ°å¤§äºskipå€¼çš„countå€¼çš„æƒ…å†µ
+//					 * æ›´åçš„æƒ…å†µæ˜¯countå€¼å¯èƒ½è¿˜å¤§äºmax. è¿™ç§æƒ…å†µæ— æ³•åˆ¤æ–­ã€‚ ä½†é¢„è®¡ä¸ä¼šç»å¸¸å‘ç”Ÿã€‚
 //					 */
 //					if (skip >= count) {
 //						skip = skip - count;
 //						max = max - count;
 //					} else {
-//						// ³¬¹ıskipÖµ»òÕßÉõÖÁ³¬¹ımaxÖµµÄ»°£¬max=range
+//						// è¶…è¿‡skipå€¼æˆ–è€…ç”šè‡³è¶…è¿‡maxå€¼çš„è¯ï¼Œmax=range
 //						max =range;
 //						skip=0;
 //						
@@ -167,7 +167,7 @@ public class SqlBaseExecutorImp implements SqlBaseExecutor {
 //	}
 //
 //	/**
-//	 * ÅÅĞò±íÃû
+//	 * æ’åºè¡¨å
 //	 * 
 //	 * @param rev
 //	 * @param poolMap
@@ -200,7 +200,7 @@ public class SqlBaseExecutorImp implements SqlBaseExecutor {
 //	}
 //
 //	/**
-//	 * ½¨Á¢±íÃû->¶Á³ØµÄkey -value¹ØÏµ
+//	 * å»ºç«‹è¡¨å->è¯»æ± çš„key -valueå…³ç³»
 //	 * 
 //	 * @param dbs
 //	 * @param poolMap
@@ -233,7 +233,7 @@ public class SqlBaseExecutorImp implements SqlBaseExecutor {
 //	}
 
 	/**
-	 * Ìí¼ÓskipºÍmaxµ½²ÎÊıÄÚ£¬Ğ´ËÀÁËstartºÍend,Í¬Ê±Ç¿ÖÆÒªÇóparameterObject±ØĞëÎªMap
+	 * æ·»åŠ skipå’Œmaxåˆ°å‚æ•°å†…ï¼Œå†™æ­»äº†startå’Œend,åŒæ—¶å¼ºåˆ¶è¦æ±‚parameterObjectå¿…é¡»ä¸ºMap
 	 * 
 	 * @param parameterObject
 	 * @param skip
@@ -247,7 +247,7 @@ public class SqlBaseExecutorImp implements SqlBaseExecutor {
 			param.put("start", Long.valueOf(skip));
 			param.put("end", Long.valueOf(max));
 		} else {
-			throw new RuntimeException("ÇëÒÔMapÎª²ÎÊıÊäÈë£¬·ñÔòÎŞ·¨¶¯Ì¬Ìí¼ÓstartºÍend½øĞĞ·ÖÒ³");
+			throw new RuntimeException("è¯·ä»¥Mapä¸ºå‚æ•°è¾“å…¥ï¼Œå¦åˆ™æ— æ³•åŠ¨æ€æ·»åŠ startå’Œendè¿›è¡Œåˆ†é¡µ");
 		}
 		return param;
 	}*/

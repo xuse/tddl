@@ -25,8 +25,8 @@ import com.taobao.tddl.common.util.mbean.TDDLMBean;
  * @author <a href="zylicfc@gmail.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-1-11上午11:22:29
- * @desc 持久配置中心diamond实现
+ * @date 2011-1-11涓婂崍11:22:29
+ * @desc 鎸佷箙閰嶇疆涓績diamond瀹炵幇
  */
 public class DiamondConfigDataHandler implements ConfigDataHandler {
 	private static final Log logger = LogFactory

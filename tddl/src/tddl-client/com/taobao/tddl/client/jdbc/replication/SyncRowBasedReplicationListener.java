@@ -12,6 +12,6 @@ public class SyncRowBasedReplicationListener extends RowBasedReplicationListener
 
 	@Override
 	protected void asyncInsertSyncLog2Db(SqlExecuteEvent event) {
-		throw new UnsupportedOperationException("asyncInsertSyncLog2Db:同步Listener不支持异步插入日志库");
+		throw new UnsupportedOperationException("asyncInsertSyncLog2Db:鍚屾Listener涓嶆敮鎸佸紓姝ユ彃鍏ユ棩蹇楀簱");
 	}
 }

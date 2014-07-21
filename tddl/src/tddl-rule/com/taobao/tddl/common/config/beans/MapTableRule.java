@@ -17,7 +17,7 @@ import com.taobao.tddl.rule.ruleengine.entities.convientobjectmaker.TableMapProv
 import com.taobao.tddl.rule.ruleengine.util.RuleUtils;
 
 /**
- * ÔÊĞí×Ô¼ºÖ¸¶¨ËùÓĞ·Ö¿âºÍ·Ö±í¡£ µ«¹æÔò±ØĞëÍ³Ò»¡£Ò²¾ÍÊÇ±í¹æÔòÁ´ºÍ¿â¹æÔòÁ´È«¾ÖÎ¨Ò»
+ * å…è®¸è‡ªå·±æŒ‡å®šæ‰€æœ‰åˆ†åº“å’Œåˆ†è¡¨ã€‚ ä½†è§„åˆ™å¿…é¡»ç»Ÿä¸€ã€‚ä¹Ÿå°±æ˜¯è¡¨è§„åˆ™é“¾å’Œåº“è§„åˆ™é“¾å…¨å±€å”¯ä¸€
  * 
  * @author shenxun
  */
@@ -26,7 +26,7 @@ public class MapTableRule extends LogicTable {
 	}
 
 	/**
-	 * ¿âµÄmap.key¾ÍÊÇ¼ÆËã¹æÔòºó»ñÈ¡µÄkey,value¾ÍÊÇ
+	 * åº“çš„map.keyå°±æ˜¯è®¡ç®—è§„åˆ™åè·å–çš„key,valueå°±æ˜¯
 	 */
 	private Map<String, String> dbMap = null;
 	private Map<String, String> tabMap = null;
@@ -54,10 +54,10 @@ public class MapTableRule extends LogicTable {
 				return retMap;
 			}
 		};
-		// ÉèÖÃdbMap
+		// è®¾ç½®dbMap
 		setDatabaseMapProvider(mapProvider);
 
-		// ÉèÖÃtabMap
+		// è®¾ç½®tabMap
 		final Map<String, String> tempTabMap = tabMap;
 		TableMapProvider tabMap = new TableMapProvider() {
 
@@ -82,7 +82,7 @@ public class MapTableRule extends LogicTable {
 		};
 		setTableMapProvider(tabMap);
 
-		// ³õÊ¼»¯¹æÔò
+		// åˆå§‹åŒ–è§„åˆ™
 		boolean isDatabase = true;
 		RuleChain rc = RuleUtils.getRuleChainByRuleStringList(dbShardingRule,
 				GroovyListRuleEngine.class, isDatabase,extraPackagesStr);

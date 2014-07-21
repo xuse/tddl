@@ -3,8 +3,8 @@ package com.taobao.tddl.common.util;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ½«Ê±¼äÆ¬·ÖÎª¶à¸ö²Û£¬Ã¿¸ö²ÛÒ»¸ö¼ÆÊıÆ÷¡£ÓÎ±ê°´Ê±¼äÑ­»·±éÀúÃ¿¸ö²Û¡£ÓÎ±êÒÆ¶¯Ê±²ÅÇåÁã²¢ÇÒÖ»ÇåÁãµ±Ç°µÄ²Û£»
- * ÒòÎª²ÉÓÃmod¼ÆËã(cursor = currentTime % timeslice/aSlotTime)£¬ÓÎ±êµ½Í·»á×Ô¶¯ÕÛ»ØÀ´£¬ÊÂÊµÉÏÊÇÒ»¸ö»·
+ * å°†æ—¶é—´ç‰‡åˆ†ä¸ºå¤šä¸ªæ§½ï¼Œæ¯ä¸ªæ§½ä¸€ä¸ªè®¡æ•°å™¨ã€‚æ¸¸æ ‡æŒ‰æ—¶é—´å¾ªç¯éå†æ¯ä¸ªæ§½ã€‚æ¸¸æ ‡ç§»åŠ¨æ—¶æ‰æ¸…é›¶å¹¶ä¸”åªæ¸…é›¶å½“å‰çš„æ§½ï¼›
+ * å› ä¸ºé‡‡ç”¨modè®¡ç®—(cursor = currentTime % timeslice/aSlotTime)ï¼Œæ¸¸æ ‡åˆ°å¤´ä¼šè‡ªåŠ¨æŠ˜å›æ¥ï¼Œäº‹å®ä¸Šæ˜¯ä¸€ä¸ªç¯
  * 
  *                     cursor
  *                       | 
@@ -19,29 +19,29 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  */
 public class TimesliceFlowControl {
-	private final static int MAX_SLOT = 20; //×î¶à20Æ¬
-	private final static int MIN_SLOT_TIME = 500; //slotÊ±¼ä×îÉÙ500ºÁÃë
+	private final static int MAX_SLOT = 20; //æœ€å¤š20ç‰‡
+	private final static int MIN_SLOT_TIME = 500; //slotæ—¶é—´æœ€å°‘500æ¯«ç§’
 
 	private final String name;
-	private final AtomicInteger[] slots; //²ÛÊı×é£¬×îĞ¡µÄÊ±¼äÁ£¶ÈÊı×é
-	private final int aSlotTimeMillis; //Ò»¸ö²ÛµÄÊ±¼ä£¬×îĞ¡µÄÊ±¼äµ¥Î»
-	private final int timesliceMillis; //×ÜµÄÊ±¼ä´°¿Ú£¨Ê±¼äÆ¬£©´óĞ¡
-	private final int timesliceMaxIns; //Ê±¼äÆ¬ÄÚÔÊĞíµÄ×î´ó·ÃÎÊ´ÎÊı(½øÈë¸öÊı)
+	private final AtomicInteger[] slots; //æ§½æ•°ç»„ï¼Œæœ€å°çš„æ—¶é—´ç²’åº¦æ•°ç»„
+	private final int aSlotTimeMillis; //ä¸€ä¸ªæ§½çš„æ—¶é—´ï¼Œæœ€å°çš„æ—¶é—´å•ä½
+	private final int timesliceMillis; //æ€»çš„æ—¶é—´çª—å£ï¼ˆæ—¶é—´ç‰‡ï¼‰å¤§å°
+	private final int timesliceMaxIns; //æ—¶é—´ç‰‡å†…å…è®¸çš„æœ€å¤§è®¿é—®æ¬¡æ•°(è¿›å…¥ä¸ªæ•°)
 
-	private final AtomicInteger total = new AtomicInteger(); //×ÜµÄ¼ÆÊı
-	private final AtomicInteger totalReject = new AtomicInteger(); //×ÜµÄ¾Ü¾ø/³¬ÏŞ¼ÆÊı
-	private volatile int cursor = 0; //ÓÎ±ê
-	private volatile long cursorTimeMillis = System.currentTimeMillis(); //µ±Ç°slotµÄ¿ªÊ¼Ê±¼ä
+	private final AtomicInteger total = new AtomicInteger(); //æ€»çš„è®¡æ•°
+	private final AtomicInteger totalReject = new AtomicInteger(); //æ€»çš„æ‹’ç»/è¶…é™è®¡æ•°
+	private volatile int cursor = 0; //æ¸¸æ ‡
+	private volatile long cursorTimeMillis = System.currentTimeMillis(); //å½“å‰slotçš„å¼€å§‹æ—¶é—´
 
 	/**
-	 * @param name Á÷¿ØµÄÃû³Æ
-	 * @param slotTimeMillis //Ò»¸ö²ÛµÄÊ±¼ä
-	 * @param slotCount //²ÛµÄÊıÄ¿
-	 * @param limit //Ê±¼ä´°¿ÚÄÚ×î¶àÔÊĞíÖ´ĞĞµÄ´ÎÊı£¬ÉèÎª0Ôò²»ÏŞÖÆ
+	 * @param name æµæ§çš„åç§°
+	 * @param slotTimeMillis //ä¸€ä¸ªæ§½çš„æ—¶é—´
+	 * @param slotCount //æ§½çš„æ•°ç›®
+	 * @param limit //æ—¶é—´çª—å£å†…æœ€å¤šå…è®¸æ‰§è¡Œçš„æ¬¡æ•°ï¼Œè®¾ä¸º0åˆ™ä¸é™åˆ¶
 	 */
 	public TimesliceFlowControl(String name, int aSlotTimeMillis, int slotCount, int timesliceMaxIns) {
 		if (slotCount < 2) {
-			throw new IllegalArgumentException("slotÖÁÉÙÒªÓĞÁ½¸ö");
+			throw new IllegalArgumentException("slotè‡³å°‘è¦æœ‰ä¸¤ä¸ª");
 		}
 		this.name = name;
 		this.aSlotTimeMillis = aSlotTimeMillis;
@@ -55,30 +55,30 @@ public class TimesliceFlowControl {
 	}
 
 	/**
-	 * ×îĞ¡µÄÊ±¼äµ¥Î»È¡Ä¬ÈÏµÄ500ºÁÃë
-	 * @param name Á÷¿ØµÄÃû³Æ
-	 * @param timesliceMillis Ê±¼äÆ¬; ´«0±íÊ¾Ê¹ÓÃÄ¬ÈÏÖµ1·ÖÖÓ
-	 * @param limit Ê±¼äÆ¬ÄÚ×î¶àÔÊĞíÖ´ĞĞ¶àÉÙ´Î£¬ÉèÎª0Ôò²»ÏŞÖÆ
+	 * æœ€å°çš„æ—¶é—´å•ä½å–é»˜è®¤çš„500æ¯«ç§’
+	 * @param name æµæ§çš„åç§°
+	 * @param timesliceMillis æ—¶é—´ç‰‡; ä¼ 0è¡¨ç¤ºä½¿ç”¨é»˜è®¤å€¼1åˆ†é’Ÿ
+	 * @param limit æ—¶é—´ç‰‡å†…æœ€å¤šå…è®¸æ‰§è¡Œå¤šå°‘æ¬¡ï¼Œè®¾ä¸º0åˆ™ä¸é™åˆ¶
 	 */
 	public TimesliceFlowControl(String name, int timesliceMillis, int timesliceMaxIns) {
 		if (timesliceMillis == 0) {
-			timesliceMillis = 60 * 1000; //Ê±¼äÆ¬Ä¬ÈÏ1·ÖÖÓ
+			timesliceMillis = 60 * 1000; //æ—¶é—´ç‰‡é»˜è®¤1åˆ†é’Ÿ
 		}
 		if (timesliceMillis < 2 * MIN_SLOT_TIME) {
-			throw new IllegalArgumentException("Ê±¼äÆ¬×îÉÙ" + (2 * MIN_SLOT_TIME));
+			throw new IllegalArgumentException("æ—¶é—´ç‰‡æœ€å°‘" + (2 * MIN_SLOT_TIME));
 		}
 
 		//this(name, 500, timesliceMillis / 500, limit);
-		int slotCount = MAX_SLOT; //Ä¬ÈÏ·Ö20¸öslot
+		int slotCount = MAX_SLOT; //é»˜è®¤åˆ†20ä¸ªslot
 		int slotTime = timesliceMillis / slotCount;
 		if (slotTime < MIN_SLOT_TIME) {
-			slotTime = MIN_SLOT_TIME; //Èç¹ûslotÊ±¼äĞ¡ÓÚMIN_SLOT_TIME£¬Ôò×îĞ¡°ëÃë
+			slotTime = MIN_SLOT_TIME; //å¦‚æœslotæ—¶é—´å°äºMIN_SLOT_TIMEï¼Œåˆ™æœ€å°åŠç§’
 			slotCount = timesliceMillis / slotTime;
 		}
 
 		this.name = name;
 		this.aSlotTimeMillis = slotTime;
-		//this.timesliceMillis = timesliceMillis; //Ö±½Ó¸³ÖµÒòÎª½ØÓàµÄ¹ØÏµ£¬»áÊı×éÔ½½ç
+		//this.timesliceMillis = timesliceMillis; //ç›´æ¥èµ‹å€¼å› ä¸ºæˆªä½™çš„å…³ç³»ï¼Œä¼šæ•°ç»„è¶Šç•Œ
 		this.timesliceMillis = aSlotTimeMillis * slotCount;
 		this.timesliceMaxIns = timesliceMaxIns;
 
@@ -104,52 +104,52 @@ public class TimesliceFlowControl {
 
 		if (index != cursor) {
 			int oldCursor = cursor;
-			cursor = index; //¾¡¿ì¸³ĞÂÖµ
+			cursor = index; //å°½å¿«èµ‹æ–°å€¼
 			final long oldCursorTimeMillis = cursorTimeMillis;
-			cursorTimeMillis = current; //¾¡¿ì¸³ĞÂÖµ
+			cursorTimeMillis = current; //å°½å¿«èµ‹æ–°å€¼
 
-			//¶à¸öÏß³Ì»á½øÈëÏÂÃæÕâÀï£¬µ«ÊÇÃ¿¸öÏß³Ì¼ÆËãµÄtotal»á´óÖÂÏàÍ¬
+			//å¤šä¸ªçº¿ç¨‹ä¼šè¿›å…¥ä¸‹é¢è¿™é‡Œï¼Œä½†æ˜¯æ¯ä¸ªçº¿ç¨‹è®¡ç®—çš„totalä¼šå¤§è‡´ç›¸åŒ
 			if (current - oldCursorTimeMillis > timesliceMillis) {
-				//Ê±¼ä²î´óÓÚtimesliceMillis£¬ÔòÕû¸öÊ±¼äÆ¬¶¼Ó¦¸ÃÇåÁãÁË
+				//æ—¶é—´å·®å¤§äºtimesliceMillisï¼Œåˆ™æ•´ä¸ªæ—¶é—´ç‰‡éƒ½åº”è¯¥æ¸…é›¶äº†
 				for (int i = 0; i < slots.length; i++) {
-					slots[i].set(0); //ÇåÁã£¬ºöÂÔ²¢·¢Ôì³ÉµÄ¼ÆÊı³öÈë
+					slots[i].set(0); //æ¸…é›¶ï¼Œå¿½ç•¥å¹¶å‘é€ æˆçš„è®¡æ•°å‡ºå…¥
 				}
 				this.total.set(0);
 			} else {
 				do {
-					//³ÔÎ²£¨Î²ÇåÁã£©£¬¿¼ÂÇÌøÔ¾µÄÇé¿ö
+					//åƒå°¾ï¼ˆå°¾æ¸…é›¶ï¼‰ï¼Œè€ƒè™‘è·³è·ƒçš„æƒ…å†µ
 					oldCursor++;
 					if (oldCursor >= slots.length) {
 						oldCursor = 0;
 					}
-					slots[oldCursor].set(0); //ÇåÁã£¬ºöÂÔ²¢·¢Ôì³ÉµÄ¼ÆÊı³öÈë
+					slots[oldCursor].set(0); //æ¸…é›¶ï¼Œå¿½ç•¥å¹¶å‘é€ æˆçš„è®¡æ•°å‡ºå…¥
 				} while (oldCursor != index);
 
 				//int clearCount = slots[index].get();
-				//slots[index].set(0); //ÇåÁã£¬ºöÂÔ²¢·¢Ôì³ÉµÄ¼ÆÊı³öÈë
+				//slots[index].set(0); //æ¸…é›¶ï¼Œå¿½ç•¥å¹¶å‘é€ æˆçš„è®¡æ•°å‡ºå…¥
 				int newtotal = 0;
 				for (int i = 0; i < slots.length; i++) {
-					newtotal += slots[i].get(); //°üÀ¨ÁËĞÂµÄµ±Ç°²Û
+					newtotal += slots[i].get(); //åŒ…æ‹¬äº†æ–°çš„å½“å‰æ§½
 				}
-				this.total.set(newtotal); //ÉèÖÃ×ÜÊı£¬ºöÂÔ²¢·¢Ôì³ÉµÄ¼ÆÊı³öÈë
+				this.total.set(newtotal); //è®¾ç½®æ€»æ•°ï¼Œå¿½ç•¥å¹¶å‘é€ æˆçš„è®¡æ•°å‡ºå…¥
 			}
 		} else {
 			if (current - cursorTimeMillis > aSlotTimeMillis) {
-				//indexÏàÍ¬µ«ÊÇÊ±¼ä²î´óÓÚÒ»¸öslotµÄÊ±¼ä£¬ËµÃ÷Õû¸öÊ±¼äÆ¬¶¼ĞèÒªÇåÁãÁË
-				cursorTimeMillis = current; //¾¡¿ì¸³ĞÂÖµ
+				//indexç›¸åŒä½†æ˜¯æ—¶é—´å·®å¤§äºä¸€ä¸ªslotçš„æ—¶é—´ï¼Œè¯´æ˜æ•´ä¸ªæ—¶é—´ç‰‡éƒ½éœ€è¦æ¸…é›¶äº†
+				cursorTimeMillis = current; //å°½å¿«èµ‹æ–°å€¼
 				for (int i = 0; i < slots.length; i++) {
-					slots[i].set(0); //ÇåÁã£¬ºöÂÔ²¢·¢Ôì³ÉµÄ¼ÆÊı³öÈë
+					slots[i].set(0); //æ¸…é›¶ï¼Œå¿½ç•¥å¹¶å‘é€ æˆçš„è®¡æ•°å‡ºå…¥
 				}
 				this.total.set(0);
 			}
-			//ÊÇ·ñÎªÁË±ÜÃâ¿ªÏú£¬²»×öÉÏÃæµÄÅĞ¶Ï£¿
+			//æ˜¯å¦ä¸ºäº†é¿å…å¼€é”€ï¼Œä¸åšä¸Šé¢çš„åˆ¤æ–­ï¼Ÿ
 		}
 
 		if (timesliceMaxIns == 0) {
-			return true; //0Îª²»ÏŞÖÆ
+			return true; //0ä¸ºä¸é™åˆ¶
 		}
 		if (this.total.get() < timesliceMaxIns) {
-			//·ÅÀ´µÄ²Å¼ÆÊı£¬¾Ü¾øµÄ²»¼ÆÊı
+			//æ”¾æ¥çš„æ‰è®¡æ•°ï¼Œæ‹’ç»çš„ä¸è®¡æ•°
 			slots[index].incrementAndGet();
 			total.incrementAndGet();
 			return true;
@@ -160,14 +160,14 @@ public class TimesliceFlowControl {
 	}
 
 	/**
-	 * @return µ±Ç°Ê±¼äÆ¬ÄÚµÄ×ÜÖ´ĞĞ´ÎÊı
+	 * @return å½“å‰æ—¶é—´ç‰‡å†…çš„æ€»æ‰§è¡Œæ¬¡æ•°
 	 */
 	public int getCurrentCount() {
 		return total.get();
 	}
 
 	/**
-	 * @return ·µ»ØÓĞÊ·ÒÔÀ´(¶ÔÏó´´½¨ÒÔÀ´)±»¾Ü¾ø/³¬ÏŞµÄ´ÎÊı
+	 * @return è¿”å›æœ‰å²ä»¥æ¥(å¯¹è±¡åˆ›å»ºä»¥æ¥)è¢«æ‹’ç»/è¶…é™çš„æ¬¡æ•°
 	 */
 	public int getTotalRejectCount() {
 		return totalReject.get();

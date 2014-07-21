@@ -14,7 +14,7 @@ public class RangeWrapper extends PageWrapperCommon {
 		} else if (skip instanceof Integer && max instanceof Integer) {
 			return String.valueOf(getSubInt(skip, max));
 		} else {
-			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 		}
 
 	}
@@ -34,7 +34,7 @@ public class RangeWrapper extends PageWrapperCommon {
 		} else if (skip instanceof Integer && max instanceof Integer) {
 			modifiedMap.put(index, getSubInt(skip, max));
 		} else {
-			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 		}
 	}
 }

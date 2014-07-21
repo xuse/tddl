@@ -7,10 +7,10 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * BucketSwitcherÊµÏÖ
+ * BucketSwitcherå®ç°
  * 
- * ¾«È·ÊµÏÖ£º
- * ÓÉÓÚÓÃArrayBlockingQueueÊµÏÖ£¬¸ß²¢·¢ÏÂpourin²»»á¶ªÊ§Êı¾İ
+ * ç²¾ç¡®å®ç°ï¼š
+ * ç”±äºç”¨ArrayBlockingQueueå®ç°ï¼Œé«˜å¹¶å‘ä¸‹pourinä¸ä¼šä¸¢å¤±æ•°æ®
  *   
  * @author guangxia
  *
@@ -87,7 +87,7 @@ public class StrictBucketSwitcher<T> implements BucketSwitcher<T> {
 		}
 	}
 	
-	/**Èç¹ûµ±Ç°¶ÓÁĞÀïÓĞÈÎÎñ£¬ÔòÇÀÕ¼²¢·Åµ½×Ô¼º¶ÓÁĞÀï
+	/**å¦‚æœå½“å‰é˜Ÿåˆ—é‡Œæœ‰ä»»åŠ¡ï¼Œåˆ™æŠ¢å å¹¶æ”¾åˆ°è‡ªå·±é˜Ÿåˆ—é‡Œ
 	 * 
 	 * @return
 	 */
@@ -106,7 +106,7 @@ public class StrictBucketSwitcher<T> implements BucketSwitcher<T> {
 	}
 
 	/**
-	 * Ö§³Ö¶¯Ì¬¼à¿ØºÍµ÷ÕûbucketSize
+	 * æ”¯æŒåŠ¨æ€ç›‘æ§å’Œè°ƒæ•´bucketSize
 	 */
 	public int getBucketSize() {
 		return bucketSize;

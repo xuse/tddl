@@ -14,9 +14,9 @@ import com.taobao.tddl.rule.ruleengine.entities.convientobjectmaker.TableMapProv
 import com.taobao.tddl.rule.ruleengine.util.RuleUtils;
 
 /**
- * ¼òµ¥±í¹æÔò£¬ÓÃÓÚÊµÏÖ×î»ù´¡µÄ¹æÔòµÄ¼¯ºÏ£¬»á½«Ò»Ğ©³£ÓÃÊôĞÔÀ­Æ½£¬
+ * ç®€å•è¡¨è§„åˆ™ï¼Œç”¨äºå®ç°æœ€åŸºç¡€çš„è§„åˆ™çš„é›†åˆï¼Œä¼šå°†ä¸€äº›å¸¸ç”¨å±æ€§æ‹‰å¹³ï¼Œ
  * 
- * ¹¹ÔìºÃÒÔºó±ä³ÉÔËĞĞÊ±¿ÉÒÔÊ¹ÓÃµÄÔËĞĞÊ±Êı¾İ£¬È»ºó½øĞĞÔËĞĞ¡£
+ * æ„é€ å¥½ä»¥åå˜æˆè¿è¡Œæ—¶å¯ä»¥ä½¿ç”¨çš„è¿è¡Œæ—¶æ•°æ®ï¼Œç„¶åè¿›è¡Œè¿è¡Œã€‚
  * 
  * @author shenxun
  *
@@ -27,7 +27,7 @@ public class SimpleLogicTable extends LogicTable{
 	String databases;
 	
 	/**
-	 * ·Ö¿â¼ü
+	 * åˆ†åº“é”®
 	 */
 	String shardingKey;
 	
@@ -38,33 +38,33 @@ public class SimpleLogicTable extends LogicTable{
 	boolean isSimpleTableMapPropertiesChanged;
 
 	/**
-	 * ´ó²¿·ÖÒµÎñÓ¦ÓÃ¿ÉÒÔÊ¹ÓÃÕâ¸ötableMapProviderÖ±½Ó½øĞĞÅäÖÃ£¬¸ã¶¨·Ö±í
+	 * å¤§éƒ¨åˆ†ä¸šåŠ¡åº”ç”¨å¯ä»¥ä½¿ç”¨è¿™ä¸ªtableMapProviderç›´æ¥è¿›è¡Œé…ç½®ï¼Œæå®šåˆ†è¡¨
 	 */
 	private SimpleTableMapProvider simpleTableMapProvider = new SimpleTableMapProvider();
 	/**
-	 * È«¾Ö¼òµ¥·Ö±íÄ£Ê½
+	 * å…¨å±€ç®€å•åˆ†è¡¨æ¨¡å¼
 	 */
 	TableMapProvider globalCustomTableMapProvider;
 	
 	/**
-	 * ¼òµ¥µÄ±í¹æÔòÉú³É
+	 * ç®€å•çš„è¡¨è§„åˆ™ç”Ÿæˆ
 	 */
 	SimpleListDatabaseMapProvider simpleDatabaseMapProvider = new SimpleListDatabaseMapProvider();
 	
 	/**
-	 * ÊÇ·ñÊ¹ÓÃ×Ô¶¯Éú³É¹æÔò£¬Ò»°ãÀ´ËµÓÃ²»ÉÏ
-	 * Ö»ÊÇÎªÁËÇ¿ÖÆ¸øÒµÎñÒ»¸ö²»Ê¹ÓÃ×Ô¶¯¹æÔòµÄÑ¡Ïî£¬ÒÔ±¸²»Ê±Ö®Ğè¡£
+	 * æ˜¯å¦ä½¿ç”¨è‡ªåŠ¨ç”Ÿæˆè§„åˆ™ï¼Œä¸€èˆ¬æ¥è¯´ç”¨ä¸ä¸Š
+	 * åªæ˜¯ä¸ºäº†å¼ºåˆ¶ç»™ä¸šåŠ¡ä¸€ä¸ªä¸ä½¿ç”¨è‡ªåŠ¨è§„åˆ™çš„é€‰é¡¹ï¼Œä»¥å¤‡ä¸æ—¶ä¹‹éœ€ã€‚
 	 */
 	boolean useAutoGeneratingRule = true;
 	
 	/**
-	 * µ±·Ö¿â¼üºÍ·Ö±í¼ü¶¼Ö¸¶¨µÄÇé¿öÏÂ£¬
-	 * ×Ô¶¯Éú³ÉËùÓĞ¹æÔò£¬Ö»Òª·Ö¿â¼üºÍ·Ö±í¼üÓĞÒ»¸öÖ¸¶¨ÁË¡£ÄÇÃ´¾ÍĞèÒª×Ô¶¯Éú³É¹æÔò¡£
+	 * å½“åˆ†åº“é”®å’Œåˆ†è¡¨é”®éƒ½æŒ‡å®šçš„æƒ…å†µä¸‹ï¼Œ
+	 * è‡ªåŠ¨ç”Ÿæˆæ‰€æœ‰è§„åˆ™ï¼Œåªè¦åˆ†åº“é”®å’Œåˆ†è¡¨é”®æœ‰ä¸€ä¸ªæŒ‡å®šäº†ã€‚é‚£ä¹ˆå°±éœ€è¦è‡ªåŠ¨ç”Ÿæˆè§„åˆ™ã€‚
 	 * 
-	 * ×Ô¶¯Éú³É¹æÔò»á¸²¸ÇËùÓĞÒÑ¾­´æÔÚµÄ¹æÔò¡£
+	 * è‡ªåŠ¨ç”Ÿæˆè§„åˆ™ä¼šè¦†ç›–æ‰€æœ‰å·²ç»å­˜åœ¨çš„è§„åˆ™ã€‚
 	 *
 	 * 
-	 * @return ÊÇ·ñ¿ÉÒÔÊ¹ÓÃ×Ô¶¯¹æÔòÉú³É
+	 * @return æ˜¯å¦å¯ä»¥ä½¿ç”¨è‡ªåŠ¨è§„åˆ™ç”Ÿæˆ
 	 */
 	protected boolean canUseAutoGenerationRule(){
 		if(!useAutoGeneratingRule){
@@ -78,7 +78,7 @@ public class SimpleLogicTable extends LogicTable{
 	
 	protected void valid(int databasesSize, int tableSizeForEachDatabase) {
 		if(databasesSize == 0 || tableSizeForEachDatabase == 0 ){
-			//·Ö¿â¼üºÍ·Ö±í¼üÎª0£¬¿ÉÄÜÊÇÓÉÓÚ·Ö¿â»ò·Ö±íÃ»ÓĞÖ¸¶¨¡£Õâ¸öÊ±ºòÊÇ²»ĞèÒªÆ´½ÓµÄ
+			//åˆ†åº“é”®å’Œåˆ†è¡¨é”®ä¸º0ï¼Œå¯èƒ½æ˜¯ç”±äºåˆ†åº“æˆ–åˆ†è¡¨æ²¡æœ‰æŒ‡å®šã€‚è¿™ä¸ªæ—¶å€™æ˜¯ä¸éœ€è¦æ‹¼æ¥çš„
 			return;
 		}
 		int dividend = 0;
@@ -91,8 +91,8 @@ public class SimpleLogicTable extends LogicTable{
 			divisor = databasesSize;
 		}
 		if(dividend % divisor != 0){
-			throw new IllegalArgumentException("·Ö±í¸öÊı±ØĞëÊÇ·Ö¿â¸öÊıµÄ±¶Êı," +
-					"·Ö¿âÊÇ:"+databasesSize+"·Ö±íÊÇ:"+tableSizeForEachDatabase);
+			throw new IllegalArgumentException("åˆ†è¡¨ä¸ªæ•°å¿…é¡»æ˜¯åˆ†åº“ä¸ªæ•°çš„å€æ•°," +
+					"åˆ†åº“æ˜¯:"+databasesSize+"åˆ†è¡¨æ˜¯:"+tableSizeForEachDatabase);
 		}
 	}
 	
@@ -188,19 +188,19 @@ public class SimpleLogicTable extends LogicTable{
 	
 	static interface AutoGenerationRuleHandler{
 		/**
-		 * »ñÈ¡·Ö±í¹æÔò
-		 * @param tableShardingKey ·Ö±í¼ü
-		 * @param tablesSize ±íµÄ×Ü¸öÊı
-		 * @param tableSizeForEachDatabase Ã¿¸ö¿âµÄ±íµÄ¸öÊı
+		 * è·å–åˆ†è¡¨è§„åˆ™
+		 * @param tableShardingKey åˆ†è¡¨é”®
+		 * @param tablesSize è¡¨çš„æ€»ä¸ªæ•°
+		 * @param tableSizeForEachDatabase æ¯ä¸ªåº“çš„è¡¨çš„ä¸ªæ•°
 		 * @return
 		 */
 		String getTableRule(String tableShardingKey,int tablesSize,
 				int tableSizeForEachDatabase);
-		/**»ñÈ¡·Ö¿â¹æÔò
+		/**è·å–åˆ†åº“è§„åˆ™
 		 * 
-		 * @param tableShardingKey ·Ö±í¼ü
-		 * @param tablesSize ±íµÄ×Ü¸öÊı
-		 * @param tableSizeForEachDatabase Ã¿¸ö¿âµÄ±íµÄ¸öÊı
+		 * @param tableShardingKey åˆ†è¡¨é”®
+		 * @param tablesSize è¡¨çš„æ€»ä¸ªæ•°
+		 * @param tableSizeForEachDatabase æ¯ä¸ªåº“çš„è¡¨çš„ä¸ªæ•°
 		 * 
 		 * @return
 		 */
@@ -210,39 +210,39 @@ public class SimpleLogicTable extends LogicTable{
 	
 	AutoGenerationRuleHandler decideAutoGenerationRuleHandler(int databaseSize,int tableSizeForEachDatabase){
 		if(databaseSize <= 0 || tableSizeForEachDatabase <= 0){
-			throw new IllegalArgumentException("×îÉÙĞèÒªÒ»¸ö¿â,Ò»ÕÅ±í");
+			throw new IllegalArgumentException("æœ€å°‘éœ€è¦ä¸€ä¸ªåº“,ä¸€å¼ è¡¨");
 		}
 		if(databaseSize == 1){
 			if(tableSizeForEachDatabase == 1){
-				//µ¥¿âµ¥±í¹¹Ôì
+				//å•åº“å•è¡¨æ„é€ 
 				return new NoneAGRuleHandler();
 			}else{
-				//µ¥¿â¶à±í¹¹Ôì
+				//å•åº“å¤šè¡¨æ„é€ 
 				return new TableAGRuleHandler();
 			}
 		}else{
 			if(tableSizeForEachDatabase == 1){
-				//¶à¿âµ¥±í
+				//å¤šåº“å•è¡¨
 				return new DatabaseAGRuleHandler();
 			}else{
-				//¶à¿â¶à±í
+				//å¤šåº“å¤šè¡¨
 				return new DatabaseAndTableAGRuleHandler();
 			}
 		}
 	}
 	
 	/**
-	 * ×Ô¶¯Éú³É¹æÔò¡£
+	 * è‡ªåŠ¨ç”Ÿæˆè§„åˆ™ã€‚
 	 * 
-	 * µ±Ö¸¶¨ÁËÒ»¸ödatabaseKey»òtableKeyµÄÊ±ºò´¥·¢¡£
+	 * å½“æŒ‡å®šäº†ä¸€ä¸ªdatabaseKeyæˆ–tableKeyçš„æ—¶å€™è§¦å‘ã€‚
 	 * 
-	 * ×Ô¶¯Éú³ÉÒ»Ìõ¹æÔò¡£
+	 * è‡ªåŠ¨ç”Ÿæˆä¸€æ¡è§„åˆ™ã€‚
 	 * 
-	 * È»ºóÈç¹ûÃ»ÓĞÍ¨¹ıÍâ²¿À´Ö¸¶¨String¹æÔòµÄ»°¡£¾Í»áÊ¹ÓÃµ±Ç°¹æÔòÀ´Ìæ´úÍâ²¿¹æÔò¡£
+	 * ç„¶åå¦‚æœæ²¡æœ‰é€šè¿‡å¤–éƒ¨æ¥æŒ‡å®šStringè§„åˆ™çš„è¯ã€‚å°±ä¼šä½¿ç”¨å½“å‰è§„åˆ™æ¥æ›¿ä»£å¤–éƒ¨è§„åˆ™ã€‚
 	 * 
-	 * Èç¹ûÓĞÍâ²¿Ö¸¶¨µÄ¹æÔò£¬ÄÇÃ´Ê¹ÓÃÍâ²¿¹æÔò¡£
+	 * å¦‚æœæœ‰å¤–éƒ¨æŒ‡å®šçš„è§„åˆ™ï¼Œé‚£ä¹ˆä½¿ç”¨å¤–éƒ¨è§„åˆ™ã€‚
 	 * 
-	 * ÓÅÏÈ¼¶×îµÍµÄÒ»ÖÖ¹æÔòÉú³ÉÆ÷¡£
+	 * ä¼˜å…ˆçº§æœ€ä½çš„ä¸€ç§è§„åˆ™ç”Ÿæˆå™¨ã€‚
 	 */
 	protected void processAutoGenerationRule(){
 		if(!canUseAutoGenerationRule()){
@@ -251,10 +251,10 @@ public class SimpleLogicTable extends LogicTable{
 		int databaseSize = simpleDatabaseMapProvider.getDatasourceKeys().size();
 		int tablesNumberForEachDatabases = getTablesNumberForEachDatabases();
 		valid(databaseSize, tablesNumberForEachDatabases);
-		//ËùÓĞ¿âµÄ×Ü±í¸öÊı
+		//æ‰€æœ‰åº“çš„æ€»è¡¨ä¸ªæ•°
 		AutoGenerationRuleHandler agrHandler = decideAutoGenerationRuleHandler(databaseSize, tablesNumberForEachDatabases);
 		String dbRule = agrHandler.getDatabaseRule(shardingKey, databaseSize, tablesNumberForEachDatabases);
-		//Ö»ÓĞµ±databaseRuleStringListÎªnullµÄÇé¿öÏÂ²ÅÓÃÄ¬ÈÏ¹æÔòÌæ»»Ö®¡£
+		//åªæœ‰å½“databaseRuleStringListä¸ºnullçš„æƒ…å†µä¸‹æ‰ç”¨é»˜è®¤è§„åˆ™æ›¿æ¢ä¹‹ã€‚
 		if(dbRule != null&& this.databaseRuleStringList == null){
 			this.databaseRuleStringList = new ArrayList<Object>(1);
 			log.info("auto generation rule for database: "+ dbRule);
@@ -271,7 +271,7 @@ public class SimpleLogicTable extends LogicTable{
 	protected int getTablesNumberForEachDatabases() {
 		int tablesNumberForEachDatabases = simpleTableMapProvider.getTablesNumberForEachDatabases();
 		if(tablesNumberForEachDatabases == SimpleTableMapProvider.DEFAULT_TABLES_NUM_FOR_EACH_DB){
-			//Èç¹ûÃ¿¸ö¿âÄÚ±í¸öÊıµÈÓÚÄ¬ÈÏÖµ£¬ÄÇÃ´Ó¦¸ÃÊÇto-from+1ÕâÃ´¶àÕÅ±í
+			//å¦‚æœæ¯ä¸ªåº“å†…è¡¨ä¸ªæ•°ç­‰äºé»˜è®¤å€¼ï¼Œé‚£ä¹ˆåº”è¯¥æ˜¯to-from+1è¿™ä¹ˆå¤šå¼ è¡¨
 			tablesNumberForEachDatabases = simpleTableMapProvider.getTo() - simpleTableMapProvider.getFrom() + 1;
 		}
 		return tablesNumberForEachDatabases;
@@ -285,7 +285,7 @@ public class SimpleLogicTable extends LogicTable{
 	@Override
 	public void init(boolean invokeBySpring) {
 		boolean isDatabase = true;
-		//Çë×¢ÒâÕâÀï²»ÒªËæÒâµßµ¹³õÊ¼»¯Ë³Ğò
+		//è¯·æ³¨æ„è¿™é‡Œä¸è¦éšæ„é¢ å€’åˆå§‹åŒ–é¡ºåº
 		if(superClassDatabaseProviderIsNull()){
 			
 			setSimpleDatabaseMapToSuperLogicTable();
@@ -340,7 +340,7 @@ public class SimpleLogicTable extends LogicTable{
 	}
 	
 	/**
-	 * Óë{@linkplain setLogicTableName}º¬ÒåÒ»ÖÂ
+	 * ä¸{@linkplain setLogicTableName}å«ä¹‰ä¸€è‡´
 	 * @param logicTable
 	 */
 	public void setLogicTable(String logicTable) {
@@ -363,7 +363,7 @@ public class SimpleLogicTable extends LogicTable{
 	}
 
 	/**
-	 * Óë{@linkplain setLogicTableName}º¬ÒåÒ»ÖÂ
+	 * ä¸{@linkplain setLogicTableName}å«ä¹‰ä¸€è‡´
 	 * @param tableFactor
 	 */
 	public void setTableFactor(String tableFactor) {

@@ -26,7 +26,7 @@
 //		try {
 //			bool = (Boolean) value;
 //		} catch (ClassCastException e) {
-//			throw new ClassCastException("½Å±¾µÄ·µ»ØÖµ±ØÐëÎªBooleanÀàÐÍµÄÖµ");
+//			throw new ClassCastException("è„šæœ¬çš„è¿”å›žå€¼å¿…é¡»ä¸ºBooleanç±»åž‹çš„å€¼");
 //		}
 //		return bool;
 //	}

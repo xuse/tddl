@@ -1,6 +1,6 @@
 package com.taobao.tddl.jdbc.atom.listener;
 
-/**Ó¦ÓÃÅäÖÃ±ä»¯¼àÌıÆ÷
+/**åº”ç”¨é…ç½®å˜åŒ–ç›‘å¬å™¨
  * 
  * @author qihao
  *

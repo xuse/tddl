@@ -40,7 +40,7 @@ public class PlainAbstractTResultSet extends ProxyTResultSet {
 	}
 
 	/**
-	 * ²âÊÔÁôÏÂµÄºóÃÅ¡£ÔÊĞí²»µ÷ÓÃinit·½·¨
+	 * æµ‹è¯•ç•™ä¸‹çš„åé—¨ã€‚å…è®¸ä¸è°ƒç”¨initæ–¹æ³•
 	 *
 	 * @param tStatementImp
 	 * @param connectionManager
@@ -62,36 +62,36 @@ public class PlainAbstractTResultSet extends ProxyTResultSet {
 
 	private long startQueryTime = 0;
 	/**
-	 * ÊÇ·ñÔÊĞíÑéÖ¤ËùÓĞµÄ¿âºÍ±í
+	 * æ˜¯å¦å…è®¸éªŒè¯æ‰€æœ‰çš„åº“å’Œè¡¨
 	 */
 	protected boolean enableProfileRealDBAndTables;
 
 	/**
-	 * Ö´ĞĞ¼Æ»®
+	 * æ‰§è¡Œè®¡åˆ’
 	 */
 	protected final ExecutionPlan executionPlan;
 
 	/**
-	 * µ±Ç°³ÖÓĞµÄÕæÕıµÄ½á¹û¼¯
+	 * å½“å‰æŒæœ‰çš„çœŸæ­£çš„ç»“æœé›†
 	 */
 	protected List<ResultSet> actualResultSets;
 	/**
-	 * µ±Ç°³ÖÓĞµÄËùÓĞstatement
+	 * å½“å‰æŒæœ‰çš„æ‰€æœ‰statement
 	 */
 	protected Set<Statement> actualStatements;
 
 	/**
-	 * Ë­ĞÂ½¨ÁËµ±Ç°½á¹û¼¯£¿
+	 * è°æ–°å»ºäº†å½“å‰ç»“æœé›†ï¼Ÿ
 	 */
 	protected final TStatementImp tStatementImp;
 
 	/**
-	 * sqlÖ´ĞĞÆ÷
+	 * sqlæ‰§è¡Œå™¨
 	 */
 	protected final RealSqlExecutor realSqlExecutor;
 
 	/**
-	 * ³õÊ¼»¯µÄ·½·¨£¬ Õâ¸ö·½·¨¿ÉÒÔ³õÊ¼»¯Êı¾İÔ´£¬Ä¬ÈÏµÄÊµÏÖÊÇ ÓëTStatementµÄÖØÊÔÒ»ÖÂµÄÒ»Ì×ÖØÊÔ»úÖÆ¡£Ä¿µÄÊÇÈÃÒ»Ğ©±ØĞë´ò¿ªÈ«±íµÄ²éÑ¯¿ÉÒÔ¼æÈİ¡£
+	 * åˆå§‹åŒ–çš„æ–¹æ³•ï¼Œ è¿™ä¸ªæ–¹æ³•å¯ä»¥åˆå§‹åŒ–æ•°æ®æºï¼Œé»˜è®¤çš„å®ç°æ˜¯ ä¸TStatementçš„é‡è¯•ä¸€è‡´çš„ä¸€å¥—é‡è¯•æœºåˆ¶ã€‚ç›®çš„æ˜¯è®©ä¸€äº›å¿…é¡»æ‰“å¼€å…¨è¡¨çš„æŸ¥è¯¢å¯ä»¥å…¼å®¹ã€‚
 	 *
 	 *
 	 * @param connectionManager
@@ -102,9 +102,9 @@ public class PlainAbstractTResultSet extends ProxyTResultSet {
 			ExecutionPlan context) throws SQLException {
 		startQueryTime = System.currentTimeMillis();
 		checkClosed();
-		Map<String/* db Selector id */, List<RealSqlContext>/* ÕæÕıÔÚµ±Ç°databaseÉÏÖ´ĞĞµÄsqlµÄÁĞ±í */> sqlMap = context
+		Map<String/* db Selector id */, List<RealSqlContext>/* çœŸæ­£åœ¨å½“å‰databaseä¸Šæ‰§è¡Œçš„sqlçš„åˆ—è¡¨ */> sqlMap = context
 				.getSqlMap();
-		// ÏÈ¼ÆËãÒ»ÏÂ±íµÄ×Ü¸öÊı£¬ÕâÑù³õÊ¼»¯µÄÊ±ºò¿ÉÒÔÊ¡Ğ©Á¦Æø
+		// å…ˆè®¡ç®—ä¸€ä¸‹è¡¨çš„æ€»ä¸ªæ•°ï¼Œè¿™æ ·åˆå§‹åŒ–çš„æ—¶å€™å¯ä»¥çœäº›åŠ›æ°”
 		int tableSize = 0;
 		for (List<RealSqlContext> l : sqlMap.values()) {
 			tableSize += l.size();
@@ -114,7 +114,7 @@ public class PlainAbstractTResultSet extends ProxyTResultSet {
 		actualResultSets = new ArrayList<ResultSet>(tableSize);
 		actualStatements = new HashSet<Statement>(tableSize);
 
-		// ÕæÕıµÄ½øĞĞ²éÑ¯²Ù×÷ÁË¡£
+		// çœŸæ­£çš„è¿›è¡ŒæŸ¥è¯¢æ“ä½œäº†ã€‚
 		boolean needBreak = false;
 		for (Entry<String, List<RealSqlContext>> dbEntry : sqlMap.entrySet()) {
 			if (needBreak) {
@@ -146,7 +146,7 @@ public class PlainAbstractTResultSet extends ProxyTResultSet {
 
 		int databaseSize = sqlMap.size();
 
-		// ²éÑ¯ÖĞÖ»¶Ôdb tab½øĞĞÍ³¼Æ¡£Å×Òì³£Ò²µ¥¶ÀÍ³¼Æ
+		// æŸ¥è¯¢ä¸­åªå¯¹db tabè¿›è¡Œç»Ÿè®¡ã€‚æŠ›å¼‚å¸¸ä¹Ÿå•ç‹¬ç»Ÿè®¡
 		profileNumberOfDBAndTablesOnly(
 				context.getVirtualTableName().toString(), databaseSize,
 				tableSize, context.getOriginalSql());
@@ -159,14 +159,14 @@ public class PlainAbstractTResultSet extends ProxyTResultSet {
 			.getLog(PlainAbstractTResultSet.class);
 
 	/**
-	 * bug fix by shenxun : Ô­À´»á·¢ÉúÒ»¸öÇé¿ö¾ÍÊÇÈç¹ûTStatementµ÷ÓÃÁËclose()·½·¨
-	 * ¶ø±¾ÉíÆä¹ÜÀíµÄTResultSetÃ»ÓĞclosedÊ±ºò¡£Íâ²¿»áÊ¹ÓÃiteratorÀ´±éÀúÃ¿Ò»¸ö
-	 * TResultSet£¬µ÷ÓÃ¹Ø±ÕµÄ·½·¨£¬µ«ÒòÎªTResultSetµÄclose·½·¨»á»Øµ÷
-	 * TStatementÀïÃæÓÃÓÚ´´½¨iteratorµÄSet<ResultSet>¶ÔÏó£¬²¢Ê¹ÓÃremove·½·¨¡£
-	 * Õâ¾Í»áÅ×³öÒ»¸öconcurrentModificationException¡£
+	 * bug fix by shenxun : åŸæ¥ä¼šå‘ç”Ÿä¸€ä¸ªæƒ…å†µå°±æ˜¯å¦‚æœTStatementè°ƒç”¨äº†close()æ–¹æ³•
+	 * è€Œæœ¬èº«å…¶ç®¡ç†çš„TResultSetæ²¡æœ‰closedæ—¶å€™ã€‚å¤–éƒ¨ä¼šä½¿ç”¨iteratoræ¥éå†æ¯ä¸€ä¸ª
+	 * TResultSetï¼Œè°ƒç”¨å…³é—­çš„æ–¹æ³•ï¼Œä½†å› ä¸ºTResultSetçš„closeæ–¹æ³•ä¼šå›è°ƒ
+	 * TStatementé‡Œé¢ç”¨äºåˆ›å»ºiteratorçš„Set<ResultSet>å¯¹è±¡ï¼Œå¹¶ä½¿ç”¨removeæ–¹æ³•ã€‚
+	 * è¿™å°±ä¼šæŠ›å‡ºä¸€ä¸ªconcurrentModificationExceptionã€‚
 	 *
 	 * @param removeThis
-	 *            Ä¿Ç°ÔÚTResultSetÖĞ£¬ÊÇ·ñÎªtrue¶¼²»»áÓ°ÏìÈÎºÎÊÂÇéÁË
+	 *            ç›®å‰åœ¨TResultSetä¸­ï¼Œæ˜¯å¦ä¸ºtrueéƒ½ä¸ä¼šå½±å“ä»»ä½•äº‹æƒ…äº†
 	 * @throws SQLException
 	 */
 	@SuppressWarnings("unchecked")
@@ -181,18 +181,18 @@ public class PlainAbstractTResultSet extends ProxyTResultSet {
 		}
 
 		/**
-		 * ·ÀÖ¹²éµ½Ò»°ë·ÅÆú²éÑ¯
+		 * é˜²æ­¢æŸ¥åˆ°ä¸€åŠæ”¾å¼ƒæŸ¥è¯¢
 		 */
 		realSqlExecutor.clearQueryResource();
 
-		// Í³¼ÆÕû¸ö²éÑ¯µÄºÄÊ±¡£»òĞí²»ÊÇºÜ×¼£¬µ«±È½ÏÖØÒª¡£
+		// ç»Ÿè®¡æ•´ä¸ªæŸ¥è¯¢çš„è€—æ—¶ã€‚æˆ–è®¸ä¸æ˜¯å¾ˆå‡†ï¼Œä½†æ¯”è¾ƒé‡è¦ã€‚
 		long elapsedTime = System.currentTimeMillis() - startQueryTime;
 
 		profileDuringTime(exceptions, executionPlan.getVirtualTableName()
 				.toString(), executionPlan.getOriginalSql(), elapsedTime);
 
 		try {
-			// ¹Ø±Õresultset
+			// å…³é—­resultset
 			for (ResultSet rs : actualResultSets) {
 				try {
 					rs.close();
@@ -201,7 +201,7 @@ public class PlainAbstractTResultSet extends ProxyTResultSet {
 				}
 			}
 
-			// ¹Ø±Õstatement
+			// å…³é—­statement
 			for (Statement stmt : actualStatements) {
 				try {
 					stmt.close();
@@ -213,16 +213,16 @@ public class PlainAbstractTResultSet extends ProxyTResultSet {
 			closed = true;
 			actualStatements.clear();
 			actualResultSets.clear();
-			// ²»ĞèÒªÒÆ³ıµ±Ç°resultSet´Ó¸¸Àà£¬ÒòÎª×ÓÀàÖ»ÊÇ¹Ø±Õ£¬»¹²»ĞèÒªÒÆ³ı¡£
+			// ä¸éœ€è¦ç§»é™¤å½“å‰resultSetä»çˆ¶ç±»ï¼Œå› ä¸ºå­ç±»åªæ˜¯å…³é—­ï¼Œè¿˜ä¸éœ€è¦ç§»é™¤ã€‚
 			// if (removeThis) {
 			// tStatementImp.removeCurrentTResultSet(this);
 			// }
 		}
-		// Í¨Öª¸¸Àà¹Ø±ÕËùÓĞÁ¬½Ó
+		// é€šçŸ¥çˆ¶ç±»å…³é—­æ‰€æœ‰è¿æ¥
 		for (String key : executionPlan.getSqlMap().keySet()) {
 			exceptions = tryCloseConnection(exceptions, key);
 		}
-		// Å×³öÒì³££¬Èç¹ûexception ²»Îªnull
+		// æŠ›å‡ºå¼‚å¸¸ï¼Œå¦‚æœexception ä¸ä¸ºnull
 		ExceptionUtils.throwSQLException(exceptions,
 				"sql exception during close resources", Collections.EMPTY_LIST);
 

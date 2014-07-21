@@ -19,7 +19,7 @@ public class RowBasedReplicationTask implements Runnable {
 		long asyncThreadRunTime = System.currentTimeMillis();
 		context.setReplicationStartTime(asyncThreadRunTime);
 
-		//Èç¹ûtaskListener²»Îªnull£¬Ôò²»Á¢¼´É¾³ısynclog£¬¶øÊÇ½»¸øtaskListener×öÅúÁ¿²Ù×÷
+		//å¦‚æœtaskListenerä¸ä¸ºnullï¼Œåˆ™ä¸ç«‹å³åˆ é™¤synclogï¼Œè€Œæ˜¯äº¤ç»™taskListeneråšæ‰¹é‡æ“ä½œ
 		boolean success = RowBasedReplicationExecutor.execute(context, taskListener == null);
 
 		if (this.taskListener != null) {

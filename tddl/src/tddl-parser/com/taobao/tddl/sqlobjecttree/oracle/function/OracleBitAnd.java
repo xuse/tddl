@@ -4,7 +4,7 @@ import com.taobao.tddl.sqlobjecttree.common.value.OperationBeforTwoArgsFunction;
 
 /*
  * @author guangxia
- * @since 1.0, 2009-10-27 œ¬ŒÁ05:14:04
+ * @since 1.0, 2009-10-27 ‰∏ãÂçà05:14:04
  */
 public class OracleBitAnd extends OperationBeforTwoArgsFunction {
 

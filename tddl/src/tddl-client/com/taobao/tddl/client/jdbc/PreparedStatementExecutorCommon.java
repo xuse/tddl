@@ -25,7 +25,7 @@ public abstract class PreparedStatementExecutorCommon extends
 	}
 
 	/**
-	 * Á¬½Ó¹ÜÀíÆ÷
+	 * è¿æ¥ç®¡ç†å™¨
 	 */
 	protected final ConnectionManager connectionManager;
 

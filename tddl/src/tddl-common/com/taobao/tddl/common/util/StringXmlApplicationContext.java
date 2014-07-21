@@ -6,8 +6,8 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 
 /**
- * ×Ö·û´®ĞÎÊ½µÄSpring ApplicationContextÊµÏÖ¡£
- * Ö§³Ö¶¯Ì¬¶©ÔÄspringÅäÖÃµÄ´¦Àí
+ * å­—ç¬¦ä¸²å½¢å¼çš„Spring ApplicationContextå®ç°ã€‚
+ * æ”¯æŒåŠ¨æ€è®¢é˜…springé…ç½®çš„å¤„ç†
  * 
  * @author linxuan
  *

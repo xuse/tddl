@@ -25,10 +25,10 @@
 //	public List<String> getSqlExecutors(DBRoute dbRoute, String sqlId)
 //			throws DBRouterException {
 //		if (dbRoute == null) {
-//		throw new DBRouterException("必须指定DBRoute,不知道确切库可以用空DBRoute传入");
+//		throw new DBRouterException("蹇呴』鎸囧畾DBRoute,涓嶇煡閬撶‘鍒囧簱鍙互鐢ㄧ┖DBRoute浼犲叆");
 //		}
 //		if (null == dbRoute && null == sqlId) {
-//			throw new DBRouterException("无法确定路由，请检查参数！");
+//			throw new DBRouterException("鏃犳硶纭畾璺敱锛岃妫�鏌ュ弬鏁帮紒");
 //		}
 //
 //		return getDbRouteConfig().routingDB(dbRoute, sqlId);

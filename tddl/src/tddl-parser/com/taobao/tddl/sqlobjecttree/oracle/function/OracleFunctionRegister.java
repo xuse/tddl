@@ -16,7 +16,7 @@ public class OracleFunctionRegister {
 	public final static OracleFunctionRegister reg=new OracleFunctionRegister();
 	private  final static Map<String, Class<? extends Function>> funcReg=new HashMap<String, Class<? extends Function>>();
 	static{
-		//有一个比较特殊的函数是写死在里面的，就是cast
+		//鏈変竴涓瘮杈冪壒娈婄殑鍑芥暟鏄啓姝诲湪閲岄潰鐨勶紝灏辨槸cast
 		//group 
 		funcReg.put("COUNT", Count.class);
 		funcReg.put("MAX", Max.class);
@@ -49,7 +49,7 @@ public class OracleFunctionRegister {
 		Function cls=null;
 		try {
 			if(key==null||key.trim().equals("")){
-				throw new IllegalArgumentException("group function不能为空");
+				throw new IllegalArgumentException("group function涓嶈兘涓虹┖");
 			}
 			cls=funcReg.get(key.toUpperCase()).newInstance();
 		} catch (InstantiationException e) {

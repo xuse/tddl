@@ -12,7 +12,7 @@ import com.taobao.tddl.rule.le.bean.TargetDatabase;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-5-4ÏÂÎç06:26:11
+ * @date 2011-5-4ä¸‹åˆ06:26:11
  */
 public interface TddlRuleInter {
 	/**

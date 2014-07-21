@@ -20,13 +20,13 @@ import com.taobao.tddl.rule.le.inter.TddlRuleTddl;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-4-21ÏÂÎç01:39:37
+ * @date 2011-4-21ä¸‹åˆ01:39:37
  */
 public class TddlRuleInner extends TddlRuleConfig implements TddlRuleTddl{
 	private final VirtualTableRuleMatcher matcher = new VirtualTableRuleMatcher();
 	
 	/**
-	 * ¼òµ¥µ¥Ì×¹æÔòÖ§³Ö(TDDLÊ¹ÓÃ)
+	 * ç®€å•å•å¥—è§„åˆ™æ”¯æŒ(TDDLä½¿ç”¨)
 	 * @param vtab
 	 * @param condition
 	 * @return
@@ -38,7 +38,7 @@ public class TddlRuleInner extends TddlRuleConfig implements TddlRuleTddl{
 	}
 	
 	/**
-	 * ¶àÌ×¹æÔòÖ§³Ö(TDDLÊ¹ÓÃ)
+	 * å¤šå¥—è§„åˆ™æ”¯æŒ(TDDLä½¿ç”¨)
 	 * @param vtab
 	 * @param condition
 	 * @return
@@ -62,7 +62,7 @@ public class TddlRuleInner extends TddlRuleConfig implements TddlRuleTddl{
 	
 
 	/**
-	 * Ö¸¶¨Ò»Ì×¹æÔò¼ÆËã
+	 * æŒ‡å®šä¸€å¥—è§„åˆ™è®¡ç®—
 	 * @param vtab
 	 * @param condition
 	 * @return
@@ -79,7 +79,7 @@ public class TddlRuleInner extends TddlRuleConfig implements TddlRuleTddl{
 	}
 	
 	/**
-	 * ĞÂ¾É¹æÔò¼ÆËã²¢±È½Ï,²»´øÄ¿±ê¿âÅĞ¶¨
+	 * æ–°æ—§è§„åˆ™è®¡ç®—å¹¶æ¯”è¾ƒ,ä¸å¸¦ç›®æ ‡åº“åˆ¤å®š
 	 * 
 	 * @param vtab
 	 * @param conditionStr
@@ -92,7 +92,7 @@ public class TddlRuleInner extends TddlRuleConfig implements TddlRuleTddl{
 	}
 	
 	/**
-	 * ĞÂ¾É¹æÔò¼ÆËã²¢±È½Ï,´øÄ¿±ê¿âÅĞ¶¨
+	 * æ–°æ—§è§„åˆ™è®¡ç®—å¹¶æ¯”è¾ƒ,å¸¦ç›®æ ‡åº“åˆ¤å®š
 	 * 
 	 * @param vtab
 	 * @param conditionStr
@@ -106,15 +106,15 @@ public class TddlRuleInner extends TddlRuleConfig implements TddlRuleTddl{
 					"routeWithMulVersion method just support multy version rule,use route method instead or config with multy version style!");
 		}
 		/*
-		 * Õâ¸öÂß¼­×öÁËĞŞ¸Ä¡£½«Ê¹ÓÃ¹æÔò°æ±¾µÄÂß¼­£¬È«²¿½»¸ø versionIndex À´¾ö¶¨
+		 * è¿™ä¸ªé€»è¾‘åšäº†ä¿®æ”¹ã€‚å°†ä½¿ç”¨è§„åˆ™ç‰ˆæœ¬çš„é€»è¾‘ï¼Œå…¨éƒ¨äº¤ç»™ versionIndex æ¥å†³å®š
 		 * 
 		 * 
-		// Èç¹ûÖ»ÓĞµ¥Ì×¹æÔò,Ö±½Ó·µ»ØÕâÌ×¹æÔòµÄÂ·ÓÉ½á¹û
+		// å¦‚æœåªæœ‰å•å¥—è§„åˆ™,ç›´æ¥è¿”å›è¿™å¥—è§„åˆ™çš„è·¯ç”±ç»“æœ
 		if (this.vtrs.size() == 1) {
 			return route(vtab, choicer,args,needSourceKey,this.vtrs.get(versionIndex.get(0)));
 		}
 
-		// Èç¹û²»Ö¹Ò»Ì×¹æÔò,ÄÇÃ´¼ÆËãÁ½Ì×¹æÔò,Ä¬ÈÏ¶¼·µ»ØĞÂ¹æÔò
+		// å¦‚æœä¸æ­¢ä¸€å¥—è§„åˆ™,é‚£ä¹ˆè®¡ç®—ä¸¤å¥—è§„åˆ™,é»˜è®¤éƒ½è¿”å›æ–°è§„åˆ™
 		if (this.vtrs.size() != 2 || this.versionIndex.size() != 2) {
 			throw new RuntimeException(
 					"not support more than 2 copy rule compare");
@@ -129,14 +129,14 @@ public class TddlRuleInner extends TddlRuleConfig implements TddlRuleTddl{
 					"not support more than 2 copy rule compare");
 		}
 		
-		// µÚÒ»¸öÅÅÎ»µÄÎª¾É¹æÔò
+		// ç¬¬ä¸€ä¸ªæ’ä½çš„ä¸ºæ—§è§„åˆ™
 		MatcherResult oldResult =route(vtab,choicer,args,needSourceKey, this.vtrs.get(versionIndex.get(0)));
 		
 		if (sqlType.equals(SqlType.SELECT)
 				|| sqlType.equals(SqlType.SELECT_FOR_UPDATE)) {
 			return oldResult;
 		} else {
-			// µÚ¶ş¸öÅÅÎ»µÄÎªĞÂ¹æÔò
+			// ç¬¬äºŒä¸ªæ’ä½çš„ä¸ºæ–°è§„åˆ™
 			MatcherResult newResult =route(vtab,choicer,args,needSourceKey, this.vtrs.get(versionIndex.get(1)));
 
 			boolean compareResult = MatchResultCompare.matchResultCompare(newResult,

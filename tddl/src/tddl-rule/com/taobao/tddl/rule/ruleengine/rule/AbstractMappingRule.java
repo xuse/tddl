@@ -14,10 +14,10 @@ import com.taobao.tddl.interact.rule.bean.SamplingField;
 import com.taobao.tddl.rule.groovy.GroovyListRuleEngine;
 
 /**
- * ³éÏó·½·¨£¬ÓÃÓÚ¶Ô¶ÔmappingµÄ³éÏó¡£
- * »áÏÈ½øĞĞÃ¶¾Ù£¬È»ºóµÑ¿¨¶û»ı£¬ÄÃµ½ÀïÃæµÄ
- * ĞèÒª×öÓ³ÉäµÄ¶ÔÏóÒÔºó£¬µ÷ÓÃget·½·¨½øĞĞÓ³Éä¡£
- * È»ºó½«Ó³ÉäµÄ½á¹û´øÈëtargetRule½øĞĞÔËËã
+ * æŠ½è±¡æ–¹æ³•ï¼Œç”¨äºå¯¹å¯¹mappingçš„æŠ½è±¡ã€‚
+ * ä¼šå…ˆè¿›è¡Œæšä¸¾ï¼Œç„¶åç¬›å¡å°”ç§¯ï¼Œæ‹¿åˆ°é‡Œé¢çš„
+ * éœ€è¦åšæ˜ å°„çš„å¯¹è±¡ä»¥åï¼Œè°ƒç”¨getæ–¹æ³•è¿›è¡Œæ˜ å°„ã€‚
+ * ç„¶åå°†æ˜ å°„çš„ç»“æœå¸¦å…¥targetRuleè¿›è¡Œè¿ç®—
  * 
  * @author shenxun
  *
@@ -26,19 +26,19 @@ public abstract class AbstractMappingRule extends CartesianProductBasedListResul
 //	protected CartesianProductBasedListResultRule targetRule;
 	Log logger = LogFactory.getLog(AbstractMappingRule.class);
 	/**
-	 * ×ªÒâÒÔºóµÄÄ¿±ê¹æÔò
+	 * è½¬æ„ä»¥åçš„ç›®æ ‡è§„åˆ™
 	 */
 	protected GroovyListRuleEngine targetRule = new GroovyListRuleEngine();
 	/**
-	 * ×ª»»ºóµÄÄ¿±êÁĞÃû
+	 * è½¬æ¢åçš„ç›®æ ‡åˆ—å
 	 */
 	private String targetKey = null;
 	
 	/* (non-Javadoc)
 	 * @see com.taobao.tddl.rule.ruleengine.rule.CartesianProductBasedListResultRule#evalueateSamplingField(com.taobao.tddl.rule.ruleengine.cartesianproductcalculator.SamplingField)
 	 * 
-	 * ²âÊÔÁËÍ¨¹ıÓ³Éä¹æÔò£¬Õı³£·µ»Ø½á¹ûºÍÓ³ÉäºóÊı¾İÕâ¸ötestCase,¶ÔÓ¦ÔÚ·Ö¿âÊ±È¡Êı¾İÕâ¸öÂß¼­¡£
-	 * @Test void com.taobao.tddl.rule.intergration.TairBasedMappingRuleIntegrationTest.test_Õı³£Ó³Éä_2¸öÊı¾İ_×ßtair_×ßtairÒÔºó»á½«targetKeyÒ²¼ÇÂ¼ÏÂÀ´_·ÅÈëtargtKeyºÍtargetValueSetÖĞ()
+	 * æµ‹è¯•äº†é€šè¿‡æ˜ å°„è§„åˆ™ï¼Œæ­£å¸¸è¿”å›ç»“æœå’Œæ˜ å°„åæ•°æ®è¿™ä¸ªtestCase,å¯¹åº”åœ¨åˆ†åº“æ—¶å–æ•°æ®è¿™ä¸ªé€»è¾‘ã€‚
+	 * @Test void com.taobao.tddl.rule.intergration.TairBasedMappingRuleIntegrationTest.test_æ­£å¸¸æ˜ å°„_2ä¸ªæ•°æ®_èµ°tair_èµ°tairä»¥åä¼šå°†targetKeyä¹Ÿè®°å½•ä¸‹æ¥_æ”¾å…¥targtKeyå’ŒtargetValueSetä¸­()
 	 * 
 	 * 
 	 * 
@@ -50,11 +50,11 @@ public abstract class AbstractMappingRule extends CartesianProductBasedListResul
 		List<String> columns = samplingField.getColumns();
 		List<Object> enumFields = samplingField.getEnumFields();
 		if(columns != null&& columns.size() == 1){
-			//Ó³ÉäÒÔºóµÄÊı¾İ
+			//æ˜ å°„ä»¥åçš„æ•°æ®
 			
 			Object target = null;
 			if(samplingField.getMappingValue() != null&&samplingField.getMappingTargetKey().equals(targetKey)){
-				//»ñÈ¡µÄÓ³ÉäÖµ²»Îª¿Õ£¬²¢ÇÒtargetKey = targetKey.Ôò±íÊ¾Êı¾İÒÑ¾­±»·Ö¿âÈ¡³ö£¬²¢ÇÒÕıºÃ¿ÉÒÔ±»·Ö±íËùÊ¹ÓÃ¡£
+				//è·å–çš„æ˜ å°„å€¼ä¸ä¸ºç©ºï¼Œå¹¶ä¸”targetKey = targetKey.åˆ™è¡¨ç¤ºæ•°æ®å·²ç»è¢«åˆ†åº“å–å‡ºï¼Œå¹¶ä¸”æ­£å¥½å¯ä»¥è¢«åˆ†è¡¨æ‰€ä½¿ç”¨ã€‚
 				target = samplingField.getMappingValue();
 			}else{
 				target = get(targetKey,columns.get(0),enumFields.get(0));
@@ -68,33 +68,33 @@ public abstract class AbstractMappingRule extends CartesianProductBasedListResul
 			argumentMap.put(targetKey, target);
 			logger.debug("invoke target rule ,value is "+target);
 			Object[] args = new Object[] { argumentMap, extraParameterContext };
-			//¹¹Ôì²ÎÊı¼ÓÖµ £¬½øĞĞ²éÑ¯
+			//æ„é€ å‚æ•°åŠ å€¼ ï¼Œè¿›è¡ŒæŸ¥è¯¢
 			String resultString = targetRule.imvokeMethod(args);
 			ResultAndMappingKey result = null;
 			if(resultString != null){
-				//·µ»Ø¹æÔò½á¹ûºÍÆä¶ÔÓ¦µÄmapping key
+				//è¿”å›è§„åˆ™ç»“æœå’Œå…¶å¯¹åº”çš„mapping key
 				result = new ResultAndMappingKey(resultString);
 				result.mappingKey = target;
                 result.mappingTargetColumn = targetKey;
 			}else{
-				//½á¹ûÎª¿ÕÔòÅ×³öÒì³££¬ÕâºÍÓ³ÉäÃ»ÓĞÈ¡µ½targetValueÊÇÁ½¸ö²ãÃæµÄÊÂÇé¡£
-				throw new IllegalArgumentException("¹æÔòÒıÇæµÄ½á¹û²»ÄÜÎªnull");
+				//ç»“æœä¸ºç©ºåˆ™æŠ›å‡ºå¼‚å¸¸ï¼Œè¿™å’Œæ˜ å°„æ²¡æœ‰å–åˆ°targetValueæ˜¯ä¸¤ä¸ªå±‚é¢çš„äº‹æƒ…ã€‚
+				throw new IllegalArgumentException("è§„åˆ™å¼•æ“çš„ç»“æœä¸èƒ½ä¸ºnull");
 			}
 			return result;
 		}else{
-			throw new IllegalStateException("ÁĞÃû²»·ûÒªÇó:columns:"+columns);
+			throw new IllegalStateException("åˆ—åä¸ç¬¦è¦æ±‚:columns:"+columns);
 		}
 	}
 
 	
 	@Override
 	protected boolean ruleRequireThrowRuntimeExceptionWhenSetIsEmpty() {
-		//ÔÚmapping ruleÖĞ£¬ĞèÒªÔÚÎª¿Õ´®µÄÊ±ºòÅ×³öÒì³£
+		//åœ¨mapping ruleä¸­ï¼Œéœ€è¦åœ¨ä¸ºç©ºä¸²çš„æ—¶å€™æŠ›å‡ºå¼‚å¸¸
 		return true;
 	}
 	
 	/**
-	 * ¸ù¾İsourceKeyºÍsourceValue»ñÈ¡ ÓÃÓÚtargerRuleÀïµÄ²ÎÊıµÄtargetValue
+	 * æ ¹æ®sourceKeyå’ŒsourceValueè·å– ç”¨äºtargerRuleé‡Œçš„å‚æ•°çš„targetValue
 	 * 
 	 * @param sourceKey
 	 * @param sourceValue
@@ -110,14 +110,14 @@ public abstract class AbstractMappingRule extends CartesianProductBasedListResul
 		if (targetRule == null) {
 			throw new IllegalArgumentException("target rule is null");
 		}
-		// ½âÎöÄ¿±ê¹æÔò¡£
+		// è§£æç›®æ ‡è§„åˆ™ã€‚
 		targetRule.initRule();
-		// ´Ó½âÎöºóµÄÄ¿±ê¹æÔòÀïÄÃµ½µ±Ç°²ÎÊı
+		// ä»è§£æåçš„ç›®æ ‡è§„åˆ™é‡Œæ‹¿åˆ°å½“å‰å‚æ•°
 		Set<AdvancedParameter> advancedParameters = targetRule.getParameters();
 		if (advancedParameters.size() != 1) {
-			throw new IllegalArgumentException("Ä¿±ê¹æÔòµÄ²ÎÊı±ØĞëÎª1¸ö£¬²ÅÄÜÊ¹ÓÃ" + "Ó³Éä¹æÔò");
+			throw new IllegalArgumentException("ç›®æ ‡è§„åˆ™çš„å‚æ•°å¿…é¡»ä¸º1ä¸ªï¼Œæ‰èƒ½ä½¿ç”¨" + "æ˜ å°„è§„åˆ™");
 		}
-		// È·ÈÏ²ÎÊıÎ¨Ò»ÒÔºó£¬È¡³ö¸Ã²ÎÊı
+		// ç¡®è®¤å‚æ•°å”¯ä¸€ä»¥åï¼Œå–å‡ºè¯¥å‚æ•°
 		AdvancedParameter advancedParameter = advancedParameters.iterator()
 				.next();
 		targetKey = advancedParameter.key;
@@ -133,7 +133,7 @@ public abstract class AbstractMappingRule extends CartesianProductBasedListResul
 
 	@Override
 	/**
-	 * ±ØÌîÏî £¬Ó³ÉäºóÓ¦¸Ã×ßµÄ¹æÔòÊÇÉ¶
+	 * å¿…å¡«é¡¹ ï¼Œæ˜ å°„ååº”è¯¥èµ°çš„è§„åˆ™æ˜¯å•¥
 	 */
 	public void setExpression(String expression) {
 		targetRule.setExpression(expression);

@@ -18,7 +18,7 @@ import com.taobao.tddl.rule.le.util.ComparativeStringAnalyser;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-3-29ÉÏÎç10:53:21
+ * @date 2011-3-29ä¸Šåˆ10:53:21
  */
 public class SimpleComparativeMapChoicer implements ComparativeMapChoicer {
 	private static final Log log=LogFactory.getLog(SimpleComparativeMapChoicer.class);
@@ -33,7 +33,7 @@ public class SimpleComparativeMapChoicer implements ComparativeMapChoicer {
 		if(conditionStr!=null){
 			this.comparativeMap=ComparativeStringAnalyser.decodeComparativeString2Map(conditionStr);
 		}else{
-			log.info("Î´´«Èë·Ö¿â·Ö±íÌõ¼şºÍÖµ");
+			log.info("æœªä¼ å…¥åˆ†åº“åˆ†è¡¨æ¡ä»¶å’Œå€¼");
 		}
 	}
 

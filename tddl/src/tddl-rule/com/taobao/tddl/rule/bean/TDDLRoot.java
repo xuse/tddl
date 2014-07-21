@@ -16,15 +16,15 @@ public class TDDLRoot {
 	protected DBType dbType = DBType.MYSQL;
 	protected Map<String/* key */, LogicTable> logicTableMap;
 	protected String defaultDBSelectorID;
-	//trueÔòÊ¹ÓÃid in¹é×éÓÅ»¯
+	//trueåˆ™ä½¿ç”¨id inå½’ç»„ä¼˜åŒ–
 	protected boolean needIdInGroup=false;
-	//trueÔòÊ¹ÓÃ¶à±íµÄDistinctÖ§³Ö
+	//trueåˆ™ä½¿ç”¨å¤šè¡¨çš„Distinctæ”¯æŒ
 	protected boolean completeDistinct=false;
-	//tureÔòÊ¹ÓÃËã¿âºóÂíÉÏËã±íµÄ¹æÔò¼ÆËã·½Ê½
+	//tureåˆ™ä½¿ç”¨ç®—åº“åé©¬ä¸Šç®—è¡¨çš„è§„åˆ™è®¡ç®—æ–¹å¼
 	protected boolean newTypeRuleCalculate=false;
 
 	/**
-	 * ĞèÒª×¢ÒâÕâ¸öinit·½·¨ÊÇºÍÄÚ²¿³ÖÓĞµÄÀàµÄinit·½·¨ÎŞ¹ØµÄ£¬ ËäÈ»¿ÉÒÔÔÚ·ÅÔÚÒ»¸ö³õÊ¼»¯Á´ÖĞ
+	 * éœ€è¦æ³¨æ„è¿™ä¸ªinitæ–¹æ³•æ˜¯å’Œå†…éƒ¨æŒæœ‰çš„ç±»çš„initæ–¹æ³•æ— å…³çš„ï¼Œ è™½ç„¶å¯ä»¥åœ¨æ”¾åœ¨ä¸€ä¸ªåˆå§‹åŒ–é“¾ä¸­
 	 */
 	public void init() {
 		for (Entry<String, LogicTable> logicTableEntry : logicTableMap
@@ -33,11 +33,11 @@ public class TDDLRoot {
 			LogicTable logicTable = logicTableEntry.getValue();
 			String logicTableName = logicTable.getLogicTableName();
 			if (logicTableName == null || logicTableName.length() == 0) {
-				// Èç¹ûÃ»ÓĞÖ¸¶¨logicTableName,
-				// ÄÇÃ´ÒÔmapµÄkey×÷ÎªlogicTableµÄkey
+				// å¦‚æœæ²¡æœ‰æŒ‡å®šlogicTableName,
+				// é‚£ä¹ˆä»¥mapçš„keyä½œä¸ºlogicTableçš„key
 				logicTable.setLogicTableName(logicTableEntry.getKey());
 			}
-			//modify by junyu 2010.10.26 OracleºÍMysql»ìÓÃ¸ÄÔì
+			//modify by junyu 2010.10.26 Oracleå’ŒMysqlæ··ç”¨æ”¹é€ 
 			logicTable.setShardRuleDbType(dbType);
 			logicTable.init(false);
 
@@ -48,18 +48,18 @@ public class TDDLRoot {
 	public LogicTableRule getLogicTableMap(String logicTableName) {
 		LogicTableRule logicTableRule = getLogicTable(logicTableName);
 		if (logicTableRule == null) {
-			// Âß¼­±íÃû²»´æÔÚÓÚ¹æÔò±íÖĞ£¬³¢ÊÔ´ÓÄ¬ÈÏ±í¹æÔòÑ°ÕÒ£¬
-			// Èç¹ûÔÙÕÒ²»µ½¾ÍÅ×Òì³£ÁË¡£
+			// é€»è¾‘è¡¨åä¸å­˜åœ¨äºè§„åˆ™è¡¨ä¸­ï¼Œå°è¯•ä»é»˜è®¤è¡¨è§„åˆ™å¯»æ‰¾ï¼Œ
+			// å¦‚æœå†æ‰¾ä¸åˆ°å°±æŠ›å¼‚å¸¸äº†ã€‚
 			if (defaultDBSelectorID != null
 					&& defaultDBSelectorID.length() != 0) {
-				// Èç¹ûÓĞÄ¬ÈÏ¹æÔò£¬ÄÇÃ´ÒòÎªÄ¬ÈÏ¹æÔòÖĞ³ÖÓĞµÄÖ»ÓĞÊı¾İÔ´£¬
-				// ĞèÒª½«±íÃû¸³¸ø¿ËÂ¡Ò»·İÒÔºóµÄËû£¬ÕâÑù±£Ö¤Ïß³Ì°²È«
+				// å¦‚æœæœ‰é»˜è®¤è§„åˆ™ï¼Œé‚£ä¹ˆå› ä¸ºé»˜è®¤è§„åˆ™ä¸­æŒæœ‰çš„åªæœ‰æ•°æ®æºï¼Œ
+				// éœ€è¦å°†è¡¨åèµ‹ç»™å…‹éš†ä¸€ä»½ä»¥åçš„ä»–ï¼Œè¿™æ ·ä¿è¯çº¿ç¨‹å®‰å…¨
 				log.debug("use default table rule");
 				DefaultLogicTableRule defaultLogicTableRule = new DefaultLogicTableRule(
 						defaultDBSelectorID, logicTableName);
 				logicTableRule = defaultLogicTableRule;
 			} else {
-				throw new IllegalArgumentException("Î´ÄÜÕÒµ½¶ÔÓ¦¹æÔò,Âß¼­±í:"
+				throw new IllegalArgumentException("æœªèƒ½æ‰¾åˆ°å¯¹åº”è§„åˆ™,é€»è¾‘è¡¨:"
 						+ logicTableName);
 			}
 		}
@@ -76,7 +76,7 @@ public class TDDLRoot {
 	}
 
 	/**
-	 * logicMapµÄkey±ØĞë¶¼ÏÔÊ¾µÄÉèÖÃÎªĞ¡Ğ´
+	 * logicMapçš„keyå¿…é¡»éƒ½æ˜¾ç¤ºçš„è®¾ç½®ä¸ºå°å†™
 	 * 
 	 * @param logicTableMap
 	 */

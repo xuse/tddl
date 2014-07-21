@@ -9,47 +9,47 @@ import java.util.concurrent.Executor;
  * @author <a href="zylicfc@gmail.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-1-11ÉÏÎç11:22:29
- * @desc »ñÈ¡ÅäÖÃµÄ´¦ÀíÆ÷
+ * @date 2011-1-11ä¸Šåˆ11:22:29
+ * @desc è·å–é…ç½®çš„å¤„ç†å™¨
  */
 public interface ConfigDataHandler {
 	public static final String FIRST_SERVER_STRATEGY = "firstServer";
 	public static final String FIRST_CACHE_THEN_SERVER_STRATEGY="firstCache";
 
 	/**
-	 * DefaultConfigDataHandler»áÔÚ ÊµÀı»¯¾ßÌåµÄHandlerÖ®ºóµ÷ÓÃ´Ë·½·¨ ¸øÓèHandlerÏà¹ØĞÅÏ¢
-	 * @param dataId             Êı¾İÔÚÅäÖÃÆ½Ì¨ÉÏ×¢²áµÄid
-	 * @param listenerList       Êı¾İ¼àÌıÆ÷ÁĞ±í
-	 * @param prop               È«¾ÖÅäÖÃºÍÔËĞĞÊ±
+	 * DefaultConfigDataHandlerä¼šåœ¨ å®ä¾‹åŒ–å…·ä½“çš„Handlerä¹‹åè°ƒç”¨æ­¤æ–¹æ³• ç»™äºˆHandlerç›¸å…³ä¿¡æ¯
+	 * @param dataId             æ•°æ®åœ¨é…ç½®å¹³å°ä¸Šæ³¨å†Œçš„id
+	 * @param listenerList       æ•°æ®ç›‘å¬å™¨åˆ—è¡¨
+	 * @param prop               å…¨å±€é…ç½®å’Œè¿è¡Œæ—¶
 	 */
 	void init(String dataId, List<ConfigDataListener> listenerList,
 			Map<String, Object> prop, String unitName);
 
 	/**
-	 * ´ÓÅäÖÃÖĞĞÄÀ­È¡Êı¾İ
-	 * @param timeout    »ñÈ¡ÅäÖÃĞÅÏ¢³¬Ê±Ê±¼ä
-	 * @param strategy   »ñÈ¡ÅäÖÃ²ßÂÔ
+	 * ä»é…ç½®ä¸­å¿ƒæ‹‰å–æ•°æ®
+	 * @param timeout    è·å–é…ç½®ä¿¡æ¯è¶…æ—¶æ—¶é—´
+	 * @param strategy   è·å–é…ç½®ç­–ç•¥
 	 * @return 
 	 */
 	String getData(long timeout, String strategy);
 
 	/**
-	 * ÎªÍÆËÍ¹ıÀ´µÄÊı¾İ×¢²á´¦ÀíµÄ¼àÌıÆ÷
-	 * @param configDataListener    ¼àÌıÆ÷
-	 * @param executor              Ö´ĞĞµÄexecutor
+	 * ä¸ºæ¨é€è¿‡æ¥çš„æ•°æ®æ³¨å†Œå¤„ç†çš„ç›‘å¬å™¨
+	 * @param configDataListener    ç›‘å¬å™¨
+	 * @param executor              æ‰§è¡Œçš„executor
 	 */
 	void addListener(ConfigDataListener configDataListener, Executor executor);
 
 	/**
-	 * ÎªÍÆËÍ¹ıÀ´µÄÊı¾İ×¢²á¶à¸ö´¦Àí¼àÌıÆ÷
-	 * @param configDataListenerList  ¼àÌıÆ÷ÁĞ±í
-	 * @param executor                Ö´ĞĞµÄexecutor
+	 * ä¸ºæ¨é€è¿‡æ¥çš„æ•°æ®æ³¨å†Œå¤šä¸ªå¤„ç†ç›‘å¬å™¨
+	 * @param configDataListenerList  ç›‘å¬å™¨åˆ—è¡¨
+	 * @param executor                æ‰§è¡Œçš„executor
 	 */
 	void addListeners(List<ConfigDataListener> configDataListenerList,
 			Executor executor);
 
 	/**
-	 * Í£Ö¹µ×²ãÅäÖÃ¹ÜÀíÆ÷
+	 * åœæ­¢åº•å±‚é…ç½®ç®¡ç†å™¨
 	 */
 	void closeUnderManager();
 }

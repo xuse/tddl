@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * ³éÏóÀà -- ÓÃÀ´ÔÚ BufferedLogWriter/SoftRefLogWriter Ö®¼ä¹²ÏíÒ»Ğ©¶ÔÏó¡£
+ * æŠ½è±¡ç±» -- ç”¨æ¥åœ¨ BufferedLogWriter/SoftRefLogWriter ä¹‹é—´å…±äº«ä¸€äº›å¯¹è±¡ã€‚
  * 
  * @author changyuan.lh
  */
@@ -17,7 +17,7 @@ public abstract class AbstractStatLogWriter extends StatLogWriter {
 
 	protected static ExecutorService flushExecutor = Executors
 			.newSingleThreadExecutor(new ThreadFactory() {
-				// changyuan.lh: ¸øÏß³ÌÃüÃû, ²¢ÇÒÉèÖÃ³ÉºóÌ¨ÔËĞĞ
+				// changyuan.lh: ç»™çº¿ç¨‹å‘½å, å¹¶ä¸”è®¾ç½®æˆåå°è¿è¡Œ
 				public Thread newThread(Runnable r) {
 					Thread thd = new Thread(r,
 							"BufferedStatLogWriter-Flush-Executor");
@@ -111,8 +111,8 @@ public abstract class AbstractStatLogWriter extends StatLogWriter {
 		private final Object[] fields;
 		private final AtomicLong count = new AtomicLong();
 		private final AtomicLong value = new AtomicLong();
-		private final AtomicLong min = new AtomicLong(Long.MAX_VALUE); // value×îĞ¡Öµ
-		private final AtomicLong max = new AtomicLong(Long.MIN_VALUE); // value×î´óÖµ
+		private final AtomicLong min = new AtomicLong(Long.MAX_VALUE); // valueæœ€å°å€¼
+		private final AtomicLong max = new AtomicLong(Long.MIN_VALUE); // valueæœ€å¤§å€¼
 
 		public LogCounter(LogKey logKey, Object[] fields) {
 			this.logKey = logKey;
@@ -142,11 +142,11 @@ public abstract class AbstractStatLogWriter extends StatLogWriter {
 			this.value.addAndGet(v);
 			long vmin = min.get();
 			while (v < vmin && !min.compareAndSet(vmin, v)) {
-				vmin = min.get(); // ÓĞ¿ÉÄÜÒÑ¾­±»ÆäËûÏß³ÌÉèÖÃÁËÒ»¸ö´ÎĞ¡µÄ£¬ËùÒÔ¼ÌĞøÅĞ¶Ï
+				vmin = min.get(); // æœ‰å¯èƒ½å·²ç»è¢«å…¶ä»–çº¿ç¨‹è®¾ç½®äº†ä¸€ä¸ªæ¬¡å°çš„ï¼Œæ‰€ä»¥ç»§ç»­åˆ¤æ–­
 			}
 			long vmax = max.get();
 			while (v > vmax && max.compareAndSet(vmax, v)) {
-				vmax = max.get(); // ÓĞ¿ÉÄÜÒÑ¾­±»ÆäËûÏß³ÌÉèÖÃÁËÒ»¸ö´Î´óµÄ£¬ËùÒÔ¼ÌĞøÅĞ¶Ï
+				vmax = max.get(); // æœ‰å¯èƒ½å·²ç»è¢«å…¶ä»–çº¿ç¨‹è®¾ç½®äº†ä¸€ä¸ªæ¬¡å¤§çš„ï¼Œæ‰€ä»¥ç»§ç»­åˆ¤æ–­
 			}
 		}
 
@@ -162,7 +162,7 @@ public abstract class AbstractStatLogWriter extends StatLogWriter {
 		}
 
 		public final long getValue() {
-			// XXX: ±£³Ö¼æÈİ, Êä³ö×ÜÊı¶ø²»ÊÇÆ½¾ùÊı
+			// XXX: ä¿æŒå…¼å®¹, è¾“å‡ºæ€»æ•°è€Œä¸æ˜¯å¹³å‡æ•°
 			return this.value.get();
 		}
 

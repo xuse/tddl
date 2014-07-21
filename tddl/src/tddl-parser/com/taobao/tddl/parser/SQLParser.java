@@ -3,7 +3,7 @@ package com.taobao.tddl.parser;
 import com.taobao.tddl.sqlobjecttree.SqlParserResult;
 
 /**
- * SQL½âÎöÆ÷»ùÀà
+ * SQLè§£æå™¨åŸºç±»
  * 
  * @author shenxun 
  *

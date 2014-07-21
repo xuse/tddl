@@ -11,14 +11,14 @@ import com.taobao.tddl.jdbc.group.config.ConfigManager;
 import com.taobao.tddl.jdbc.group.config.GroupExtraConfig;
 
 /**
- * ���������ڼ������л��ĳ�����DBAͨ�������������л���Ż�ȥ�޸�ÿ��TAtomDataSource�����á�
- * ������d0,d1,d2�����⣬���һ���л�ʱ��Ӧÿ��TAtomDataSource��״̬��������: ===================== d0 d1
+ * 用于运行期间主备切换的场景，DBA通常在做完主备切换后才会去修改每个TAtomDataSource的配置。
+ * 假设有d0,d1,d2三个库，完成一次切换时对应每个TAtomDataSource的状态快照如下: ===================== d0 d1
  * d2 (1) rw r r (2) na r r (3) na rw r (4) r rw r =====================
  *
- * (1)���л�ǰ������״̬���գ�(4)���л���ɺ��״̬���գ�(2)��(3)���м���̵�״̬���ա�
+ * (1)是切换前正常的状态快照，(4)是切换完成后的状态快照，(2)、(3)是中间过程的状态快照。
  *
- * ���ҵ��ϵͳ��״̬(1)��(3)��(4)��Ҫ����и��²���������²�������������Ϊ��������״̬�ж����ҵ�һ������"w"��db��
- * ���ҵ��ϵͳ��״̬(2)��Ҫ����и��²���������²������ܾ����׳��쳣����Ϊ�����״̬���Ҳ�������"w"��db��
+ * 如果业务系统在状态(1)、(3)、(4)下要求进行更新操作，则更新操作被允许，因为在这三个状态中都能找到一个含有"w"的db，
+ * 如果业务系统在状态(2)下要求进行更新操作，则更新操作被拒绝，抛出异常，因为在这个状态中找不到含有"w"的db，
  *
  * @author yangzhu
  */
@@ -36,7 +36,7 @@ public class RuntimeWritableAtomDBSelector extends AbstractDBSelector {
 
 		this.equityDbManager = new EquityDbManager(dataSourceWrapperMap,
 				dummyWeightMap, groupExtraConfig);
-		this.readable = false; // ֻ����д
+		this.readable = false; // 只用于写
 		this.dataSourceWrapperMap = dataSourceWrapperMap;
 	}
 

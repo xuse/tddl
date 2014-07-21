@@ -4,9 +4,9 @@ public class ParameterContext {
 	private ParameterMethod parameterMethod;
 	/**
 	 * args[0]: parameterIndex
-	 * args[1]: ²ÎÊıÖµ
-	 * args[2]: length ÊÊÓÃÓÚ£ºsetAsciiStream¡¢setBinaryStream¡¢setCharacterStream¡¢setUnicodeStream
-	 * ¡£¡£¡£
+	 * args[1]: å‚æ•°å€¼
+	 * args[2]: length é€‚ç”¨äºï¼šsetAsciiStreamã€setBinaryStreamã€setCharacterStreamã€setUnicodeStream
+	 * ã€‚ã€‚ã€‚
 	 * 
 	 */
 	private Object[] args;

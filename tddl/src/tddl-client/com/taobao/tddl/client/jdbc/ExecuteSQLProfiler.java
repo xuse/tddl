@@ -17,13 +17,13 @@ import com.taobao.tddl.common.Monitor;
 
 public abstract class ExecuteSQLProfiler {
 	/**
-	 * ÊÇ·ñÔÊĞíÑéÖ¤ËùÓĞµÄ¿âºÍ±í
+	 * æ˜¯å¦å…è®¸éªŒè¯æ‰€æœ‰çš„åº“å’Œè¡¨
 	 */
 	private boolean enableProfileRealDBAndTables;
 
 	protected long timeoutForEachTable = DEFAULT_TIMEOUT_FOR_EACH_TABLE;
 	/**
-	 * Ä¬ÈÏµÄÃ¿¸ö±íÖ´ĞĞsqlµÄ³¬Ê±Ê±¼ä,Ö÷ÒªÓÃÓÚ´òÈÕÖ¾
+	 * é»˜è®¤çš„æ¯ä¸ªè¡¨æ‰§è¡Œsqlçš„è¶…æ—¶æ—¶é—´,ä¸»è¦ç”¨äºæ‰“æ—¥å¿—
 	 */
 	public static final long DEFAULT_TIMEOUT_FOR_EACH_TABLE = 100;
 
@@ -45,7 +45,7 @@ public abstract class ExecuteSQLProfiler {
 	}
 
 	/**
-	 * Ö»¶Ôdb+tab½øĞĞprofile
+	 * åªå¯¹db+tabè¿›è¡Œprofile
 	 * 
 	 * @param virtualTableName
 	 * @param databaseSize
@@ -108,7 +108,7 @@ public abstract class ExecuteSQLProfiler {
 	}
 
 	/**
-	 * Òì³£Çé¿öÏÂµÄprofile£¬Ö»ÓĞµ±exceptionÁ´²»Îª¿Õ£¬²¢ÇÒÄÚ²¿Ò²·Ç¿ÕlistµÄÇé¿öÏÂ²Å»áÊä³ö¡£
+	 * å¼‚å¸¸æƒ…å†µä¸‹çš„profileï¼Œåªæœ‰å½“exceptioné“¾ä¸ä¸ºç©ºï¼Œå¹¶ä¸”å†…éƒ¨ä¹Ÿéç©ºlistçš„æƒ…å†µä¸‹æ‰ä¼šè¾“å‡ºã€‚
 	 * 
 	 * @param exceptions
 	 * @param virtualTableName

@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 /**
- * Âß¼­±í¼¶±ğµÄÍØÆË½á¹¹ÃèÊö¡£
+ * é€»è¾‘è¡¨çº§åˆ«çš„æ‹“æ‰‘ç»“æ„æè¿°ã€‚
  * 
  * <pre>
  *   TableTopology = Name "{" GROUP *( "," GROUP ) "}"
@@ -90,7 +90,7 @@ public final class TableTopology {
 			prefix.isEmpty() ? null : NamePattern.unescape(prefix),
 			new ArrayList<NameSuffix>());
 		index = namePattern.loadSuffix(input, i + 1);
-		// TODO: ÕâÀïÓ¦¸ÃÊÇ¶ººÅ: input.charAt(index)
+		// TODO: è¿™é‡Œåº”è¯¥æ˜¯é€—å·: input.charAt(index)
 		map.put(group, namePattern);
 		group = null;
 		i = index - 1;

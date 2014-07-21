@@ -25,7 +25,7 @@ public class BoundedConcurrentHashMap<K, V> extends LinkedHashMap<K, V> {
 //	private final Lock writeLock = lock.writeLock();
 
 	public BoundedConcurrentHashMap(int capacity) {
-		super(capacity * 4  / 3 + 1, 0.75f, true); //ÓÅ»¯£º³ËÒÔ4/3ÒÔ±ÜÃâresize()
+		super(capacity * 4  / 3 + 1, 0.75f, true); //ä¼˜åŒ–ï¼šä¹˜ä»¥4/3ä»¥é¿å…resize()
 		this.capacity = capacity;
 	}
 

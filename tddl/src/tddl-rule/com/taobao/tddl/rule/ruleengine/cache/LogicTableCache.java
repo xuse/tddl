@@ -5,7 +5,7 @@
 //import com.taobao.tddl.rule.ruleengine.entities.abstractentities.RuleChain;
 //
 ///**
-// * Âß¼­±íÄÚÒ»Ğ©ĞèÒªcacheµÄÊı¾İ
+// * é€»è¾‘è¡¨å†…ä¸€äº›éœ€è¦cacheçš„æ•°æ®
 // * @author shenxun
 // *
 // */
@@ -19,7 +19,7 @@
 //		if(isModifiable)
 //			this.ruleChain=ruleChain;
 //		else
-//			throw new IllegalArgumentException("²»ÔÊĞíĞŞ¸Ä");
+//			throw new IllegalArgumentException("ä¸å…è®¸ä¿®æ”¹");
 //	}
 //	public boolean isModifiable() {
 //		return isModifiable;

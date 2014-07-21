@@ -7,44 +7,44 @@ import com.taobao.tddl.client.databus.DataBus;
 import com.taobao.tddl.client.handler.Handler;
 
 /**
- * @description ¹ÜÏßÄÚ²¿Ê¹ÓÃÊı¾İ½á¹¹(¼´Á´±íÔªËØ),·â×°ÁËhandler,Ò»¸öhandler
- *              ¶ÔÓ¦Ò»¸öHandlerContext
+ * @description ç®¡çº¿å†…éƒ¨ä½¿ç”¨æ•°æ®ç»“æ„(å³é“¾è¡¨å…ƒç´ ),å°è£…äº†handler,ä¸€ä¸ªhandler
+ *              å¯¹åº”ä¸€ä¸ªHandlerContext
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-08-15ÏÂÎç03:54:42
+ * @date 2010-08-15ä¸‹åˆ03:54:42
  */
 public interface HandlerContext <T> {
 	
 	/**
-	 * È¡µÃµ±Ç°µÄ¹ÜÏßÊµÀı
+	 * å–å¾—å½“å‰çš„ç®¡çº¿å®ä¾‹
 	 * 
 	 * @return
 	 */
     Pipeline getPipeLine();
     
     /**
-     * È¡µÃµ±Ç°Ö´ĞĞÆ÷ÉÏÏÂÎÄ
+     * å–å¾—å½“å‰æ‰§è¡Œå™¨ä¸Šä¸‹æ–‡
      * 
      * @return
      */
     String getName();
     
     /**
-     * È¡µÃ°ó¶¨µÄÖ´ĞĞÆ÷
+     * å–å¾—ç»‘å®šçš„æ‰§è¡Œå™¨
      *
      * @return
      */
     Handler getHandler();
     
     /**
-     * ´¦ÀíÍê±ÏºóÏòºó´«µİÊı¾İ×ÜÏß
-     * 1.contextÎ¬»¤ÆäÇ°ºó½Úµã£¬ÓÉPipeline³õÊ¼»¯°ó¶¨¡£
-     * 2.·½·¨µ÷ÓÃ×ÔÉí°ó¶¨µÄHandler´¦ÀíÍêÒµÎñºó£¬
-     *   È¡µÃÆäÁÚ½ÓµÄcongtext½Úµã£¬²¢ÇÒµ÷ÓÃÏÂÒ»¸ö
-     *   context½ÚµãµÄflowNext
-     * 3.Èç¹ûnext½ÚµãÎªnull£¬ÏÖÔÚµÄÉè¼ÆÊÇµ÷ÓÃ½áÊø¡£
+     * å¤„ç†å®Œæ¯•åå‘åä¼ é€’æ•°æ®æ€»çº¿
+     * 1.contextç»´æŠ¤å…¶å‰åèŠ‚ç‚¹ï¼Œç”±Pipelineåˆå§‹åŒ–ç»‘å®šã€‚
+     * 2.æ–¹æ³•è°ƒç”¨è‡ªèº«ç»‘å®šçš„Handlerå¤„ç†å®Œä¸šåŠ¡åï¼Œ
+     *   å–å¾—å…¶é‚»æ¥çš„congtextèŠ‚ç‚¹ï¼Œå¹¶ä¸”è°ƒç”¨ä¸‹ä¸€ä¸ª
+     *   contextèŠ‚ç‚¹çš„flowNext
+     * 3.å¦‚æœnextèŠ‚ç‚¹ä¸ºnullï¼Œç°åœ¨çš„è®¾è®¡æ˜¯è°ƒç”¨ç»“æŸã€‚
      * 
      * @param dataBus
      * @throws SQLException

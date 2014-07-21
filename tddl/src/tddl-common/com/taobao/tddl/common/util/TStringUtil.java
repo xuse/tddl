@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TDDL×¨ÓÃµÄ×Ö·û´¦Àí±ã½İÀà
+ * TDDLä¸“ç”¨çš„å­—ç¬¦å¤„ç†ä¾¿æ·ç±»
  * 
  * @author linxuan
  * 
@@ -15,7 +15,7 @@ public class TStringUtil {
 //	}
 
 	/**
-	 * »ñµÃµÚÒ»¸östart£¬endÖ®¼äµÄ×Ö´®£¬ ²»°üÀ¨start£¬end±¾Éí¡£·µ»ØÖµÒÑ×öÁËtrim
+	 * è·å¾—ç¬¬ä¸€ä¸ªstartï¼Œendä¹‹é—´çš„å­—ä¸²ï¼Œ ä¸åŒ…æ‹¬startï¼Œendæœ¬èº«ã€‚è¿”å›å€¼å·²åšäº†trim
 	 */
 	public static String getBetween(String sql, String start, String end) {
 		int index0 = sql.indexOf(start);
@@ -30,7 +30,7 @@ public class TStringUtil {
 	}
 
 	/**
-	 * Ö»×öÒ»´ÎÇĞ·Ö
+	 * åªåšä¸€æ¬¡åˆ‡åˆ†
 	 * @param str
 	 * @param splitor
 	 * @return
@@ -71,7 +71,7 @@ public class TStringUtil {
 	}
 	
 	/**
-	 * È¥³ıµÚÒ»¸östart,endÖ®¼äµÄ×Ö·û´®£¬°üÀ¨start,end±¾Éí
+	 * å»é™¤ç¬¬ä¸€ä¸ªstart,endä¹‹é—´çš„å­—ç¬¦ä¸²ï¼ŒåŒ…æ‹¬start,endæœ¬èº«
 	 * 
 	 * @param sql
 	 * @param start
@@ -113,7 +113,7 @@ public class TStringUtil {
 	}
 
 	/**
-	 * ½«ËùÓĞ/t/s/nµÈ¿Õ°×·ûÈ«²¿Ìæ»»Îª¿Õ¸ñ£¬²¢ÇÒÈ¥³ı¶àÓà¿Õ°× ¸÷ÖÖ²»Í¬ÊµÏÖµÄ±È½Ï²âÊÔ£¬²Î¼û£ºTStringUtilTest
+	 * å°†æ‰€æœ‰/t/s/nç­‰ç©ºç™½ç¬¦å…¨éƒ¨æ›¿æ¢ä¸ºç©ºæ ¼ï¼Œå¹¶ä¸”å»é™¤å¤šä½™ç©ºç™½ å„ç§ä¸åŒå®ç°çš„æ¯”è¾ƒæµ‹è¯•ï¼Œå‚è§ï¼šTStringUtilTest
 	 */
 	public static String fillTabWithSpace(String str) {
 		if (str == null) {
@@ -138,7 +138,7 @@ public class TStringUtil {
 				index0 = index1 = -1;
 			} else {
 				if (index0 == -1) {
-					index0 = index1 = i; // µÚÒ»¸ö¿Õ°×
+					index0 = index1 = i; // ç¬¬ä¸€ä¸ªç©ºç™½
 				} else {
 					index1 = i;
 				}

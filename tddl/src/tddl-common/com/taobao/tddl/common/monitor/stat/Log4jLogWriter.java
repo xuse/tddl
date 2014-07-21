@@ -6,31 +6,31 @@ import org.apache.commons.lang.time.FastDateFormat;
 import org.apache.log4j.Logger;
 
 /**
- * ���� Log4j Logger ��ͳ����־����ࡣ
+ * 基于 Log4j Logger 的统计日志输出类。
  * 
- * ��֤���¼���, ��־ˢ���ĽṹΪ��
+ * 保证向下兼容, 日志刷出的结构为：
  * 
  * <pre>
  * key1(sql)	key2(dbname)	key3(flag)	val1(count)	val2(sum)		val3(min)		val4(max)		time
- * sql		logicDbName	ִ�гɹ�		ִ�д���		��Ӧʱ��		��С��Ӧʱ��	�����Ӧʱ��	��־ʱ��
- * sql		realDbName1	ִ�гɹ�		ִ�д���		��Ӧʱ��		��С��Ӧʱ��	�����Ӧʱ��	��־ʱ��
- * sql		realDbName2	ִ�гɹ�		ִ�д���		��Ӧʱ��		��С��Ӧʱ��	�����Ӧʱ��	��־ʱ��
- * sql		realDbName2	ִ��ʧ��		ִ�д���		��Ӧʱ��		��С��Ӧʱ��	�����Ӧʱ��	��־ʱ��
- * sql		realDbName2	ִ�г�ʱ		ִ�д���		��Ӧʱ��		��С��Ӧʱ��	�����Ӧʱ��	��־ʱ��
- * sql		null		�����ɹ�		ִ�д���		��Ӧʱ��		��С��Ӧʱ��	�����Ӧʱ��	��־ʱ��
- * sql		null		����ʧ��		ִ�д���		��Ӧʱ��		��С��Ӧʱ��	�����Ӧʱ��	��־ʱ��
- * sql		null		��������		ִ�д���		���д���		NA		NA		��־ʱ��
+ * sql		logicDbName	执行成功		执行次数		响应时间		最小响应时间	最大响应时间	日志时间
+ * sql		realDbName1	执行成功		执行次数		响应时间		最小响应时间	最大响应时间	日志时间
+ * sql		realDbName2	执行成功		执行次数		响应时间		最小响应时间	最大响应时间	日志时间
+ * sql		realDbName2	执行失败		执行次数		响应时间		最小响应时间	最大响应时间	日志时间
+ * sql		realDbName2	执行超时		执行次数		响应时间		最小响应时间	最大响应时间	日志时间
+ * sql		null		解析成功		执行次数		响应时间		最小响应时间	最大响应时间	日志时间
+ * sql		null		解析失败		执行次数		响应时间		最小响应时间	最大响应时间	日志时间
+ * sql		null		解析命中		执行次数		命中次数		NA		NA		日志时间
  * </pre>
  * 
  * @author changyuan.lh
  */
 public class Log4jLogWriter extends StatLogWriter {
 
-	/** XXX: �ĳ� commons-lang �Դ��� {@link FastDateFormat}, ��������̰߳�ȫ�� */
+	/** XXX: 改成 commons-lang 自带的 {@link FastDateFormat}, 这个才是线程安全的 */
 	public static final FastDateFormat df = FastDateFormat
 			.getInstance("yyy-MM-dd HH:mm:ss:SSS");
 
-	protected String fieldSeperator = "#@#"; // SQL �г��ָ���С, ������ʽ����ͻ
+	protected String fieldSeperator = "#@#"; // SQL 中出现概率小, 和正则式不冲突
 	protected String lineSeperator = System.getProperty("line.separator");
 	protected final Logger statLogger;
 
@@ -50,7 +50,7 @@ public class Log4jLogWriter extends StatLogWriter {
 		this.statLogger = statLogger;
 	}
 
-	// XXX: ���������д��Ϣ, Ȼ��д����, ���дʱ��, ����������
+	// XXX: 输出中首先写信息, 然后写数据, 最后写时间, 保持向后兼容
 	protected StringBuffer format(StringBuffer buf, Object[] fields, Date time,
 			long... values) {
 		for (Object field : fields) {

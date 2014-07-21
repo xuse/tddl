@@ -7,7 +7,7 @@ package com.taobao.tddl.rule.le.bean;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-5-4ÏÂÎç12:01:06
+ * @date 2011-5-4ä¸‹åˆ12:01:06
  */
 public interface RuleChangeListener {
     public void onRuleRecieve(String oldRuleStr);

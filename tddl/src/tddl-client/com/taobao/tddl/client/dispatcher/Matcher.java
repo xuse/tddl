@@ -7,19 +7,19 @@ import com.taobao.tddl.interact.bean.MatcherResult;
 import com.taobao.tddl.rule.LogicTableRule;
 
 /**
- * Æ¥Åä¶ÔÏóÓÃµÄ½è¿Ú£¬»á½«sql¼ÆËã³öµÄ½á¹û£¬²ÎÊıÒÔ¼°¹æÔò½øĞĞÆ¥Åä
+ * åŒ¹é…å¯¹è±¡ç”¨çš„å€Ÿå£ï¼Œä¼šå°†sqlè®¡ç®—å‡ºçš„ç»“æœï¼Œå‚æ•°ä»¥åŠè§„åˆ™è¿›è¡ŒåŒ¹é…
  * @author shenxun
  * @author junyu
  */
 public interface Matcher {
 	/**
-	 * ÕâÀïSqlParserResult pr + List<Object> args»¹ĞèÒª³éÏó³öÒ»¸ö¸üĞ¡µÄ¶ÔÏó/½Ó¿Ú
-	 * ·½±ãÒµÎñÍ¨¹ıThreadLocal·½Ê½ÈÆ¹ı½âÎö£¬Ö±½ÓÖ¸¶¨
+	 * è¿™é‡ŒSqlParserResult pr + List<Object> argsè¿˜éœ€è¦æŠ½è±¡å‡ºä¸€ä¸ªæ›´å°çš„å¯¹è±¡/æ¥å£
+	 * æ–¹ä¾¿ä¸šåŠ¡é€šè¿‡ThreadLocalæ–¹å¼ç»•è¿‡è§£æï¼Œç›´æ¥æŒ‡å®š
 	 */
 	MatcherResult match(ComparativeMapChoicer comparativeMapChoicer, List<Object> args, LogicTableRule rule) ;
 
 	/**
-	 * Ö¸¶¨ÏÈËã¿âÔÙËã±í»òÕßËãµ¥¸ö¿âºóÂíÉÏËã±í
+	 * æŒ‡å®šå…ˆç®—åº“å†ç®—è¡¨æˆ–è€…ç®—å•ä¸ªåº“åé©¬ä¸Šç®—è¡¨
 	 * @param useNewTypeRuleCalculate
 	 * @param comparativeMapChoicer
 	 * @param args
@@ -29,7 +29,7 @@ public interface Matcher {
 	MatcherResult match(boolean useNewTypeRuleCalculate,ComparativeMapChoicer comparativeMapChoicer, List<Object> args, LogicTableRule rule);
 
 	/**
-	 * Ö¸¶¨ÏÈËã¿âÔÙËã±í»òÕßËãµ¥¸ö¿âºóÂíÉÏËã±í,²¢ÇÒÖ¸¶¨ÊÇ·ñĞèÒªÌá¹©½á¹ûÖµºÍ²ÎÊıµÄ¶ÔÓ¦¹ØÏµ(sourceKey)
+	 * æŒ‡å®šå…ˆç®—åº“å†ç®—è¡¨æˆ–è€…ç®—å•ä¸ªåº“åé©¬ä¸Šç®—è¡¨,å¹¶ä¸”æŒ‡å®šæ˜¯å¦éœ€è¦æä¾›ç»“æœå€¼å’Œå‚æ•°çš„å¯¹åº”å…³ç³»(sourceKey)
 	 * @param useNewTypeRuleCalculate
 	 * @param comparativeMapChoicer
 	 * @param args

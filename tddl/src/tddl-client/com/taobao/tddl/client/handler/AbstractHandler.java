@@ -22,12 +22,12 @@ import com.taobao.tddl.common.client.util.ThreadLocalMap;
 import com.taobao.tddl.parser.ParserCache;
 
 /**
- * @description ËùÓĞhandlerÊµÏÖÀàµÄ¸¸Àà,Ö÷ÒªÌá¹©ÒÔÏÂ¼¸¸ö·½ÃæµÄ·şÎñ 1.ÈÕÖ¾¼ÇÂ¼·½·¨ 2.¹¦ÄÜÆ½ĞĞhandlerµÄ¹«¹²·½·¨,±ÈÈç±íÃûÌæ»»
+ * @description æ‰€æœ‰handlerå®ç°ç±»çš„çˆ¶ç±»,ä¸»è¦æä¾›ä»¥ä¸‹å‡ ä¸ªæ–¹é¢çš„æœåŠ¡ 1.æ—¥å¿—è®°å½•æ–¹æ³• 2.åŠŸèƒ½å¹³è¡Œhandlerçš„å…¬å…±æ–¹æ³•,æ¯”å¦‚è¡¨åæ›¿æ¢
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-08-27ÏÂÎç04:43:40
+ * @date 2010-08-27ä¸‹åˆ04:43:40
  */
 public abstract class AbstractHandler implements Handler {
 	public static final String ALL_PERF_TABLE_PREFIX = "__test_";
@@ -35,12 +35,12 @@ public abstract class AbstractHandler implements Handler {
 			.getLog(LogUtils.TDDL_SQL_LOG);
 
 	/**
-	 * È«¾Ö±ícache
+	 * å…¨å±€è¡¨cache
 	 */
 	protected static final ParserCache globalCache = ParserCache.instance();
 
 	/**
-	 * µÃµ½ÔËĞĞÊ±ĞÅÏ¢
+	 * å¾—åˆ°è¿è¡Œæ—¶ä¿¡æ¯
 	 * 
 	 * @param dataBus
 	 * @return
@@ -99,7 +99,7 @@ public abstract class AbstractHandler implements Handler {
 	}
 
 	/**
-	 * È¡µÃÈÕÖ¾
+	 * å–å¾—æ—¥å¿—
 	 * 
 	 * @param contents
 	 * @return
@@ -113,7 +113,7 @@ public abstract class AbstractHandler implements Handler {
 	}
 
 	/**
-	 * ´ÓThreadLocalÀïÃæÈ¡µÃ±¾´Î²éÑ¯ÊÇ·ñÊ¹ÓÃ²¢ĞĞ
+	 * ä»ThreadLocalé‡Œé¢å–å¾—æœ¬æ¬¡æŸ¥è¯¢æ˜¯å¦ä½¿ç”¨å¹¶è¡Œ
 	 * 
 	 * @return
 	 */
@@ -129,16 +129,16 @@ public abstract class AbstractHandler implements Handler {
 	}
 
 	/**
-	 * Ìæ»»SQLÓï¾äÖĞĞéÄâ±íÃûÎªÊµ¼Ê±íÃû¡£ »á Ìæ»»_tableName$ Ìæ»»_tableName_ Ìæ»»tableName.
-	 * Ìæ»»tableName( Ôö¼ÓÌæ»» _tableName, ,tableName, ,tableName_
+	 * æ›¿æ¢SQLè¯­å¥ä¸­è™šæ‹Ÿè¡¨åä¸ºå®é™…è¡¨åã€‚ ä¼š æ›¿æ¢_tableName$ æ›¿æ¢_tableName_ æ›¿æ¢tableName.
+	 * æ›¿æ¢tableName( å¢åŠ æ›¿æ¢ _tableName, ,tableName, ,tableName_
 	 * 
 	 * @param originalSql
-	 *            SQLÓï¾ä
+	 *            SQLè¯­å¥
 	 * @param virtualName
-	 *            ĞéÄâ±íÃû
+	 *            è™šæ‹Ÿè¡¨å
 	 * @param actualName
-	 *            Êµ¼Ê±íÃû
-	 * @return ·µ»ØÌæ»»ºóµÄSQLÓï¾ä¡£
+	 *            å®é™…è¡¨å
+	 * @return è¿”å›æ›¿æ¢åçš„SQLè¯­å¥ã€‚
 	 */
 	public String replaceTableName(String originalSql, String virtualName,
 			String actualName, Log log) {
@@ -150,7 +150,7 @@ public abstract class AbstractHandler implements Handler {
 			log.debug(buffer.toString());
 		}
 
-		//È«Á´Â·Ñ¹²âĞèÇó
+		//å…¨é“¾è·¯å‹æµ‹éœ€æ±‚
 		String t=EagleEye.getUserData("t");
 		
 		if (virtualName.equalsIgnoreCase(actualName)
@@ -183,7 +183,7 @@ public abstract class AbstractHandler implements Handler {
 			pieces1 = parseAPattern(virtualName, pieces1, new StringBuilder(
 					"\\,").append(virtualName).append("\\s").toString(),
 					padding);
-			// Ìæ»»,tableName,
+			// æ›¿æ¢,tableName,
 			pieces1 = parseAPattern(virtualName, pieces1, new StringBuilder(
 					"\\,").append(virtualName).append("\\,").toString(),
 					padding);
@@ -191,7 +191,7 @@ public abstract class AbstractHandler implements Handler {
 			sqlPieces = globalCache.setTableNameReplacementIfAbsent(
 					originalSql, sqlPieces);
 		}
-		// Éú³É×îÖÕSQL
+		// ç”Ÿæˆæœ€ç»ˆSQL
 		StringBuilder buffer = new StringBuilder();
 		boolean first = true;
 		for (Object piece : sqlPieces) {
@@ -224,7 +224,7 @@ public abstract class AbstractHandler implements Handler {
 			pieces1.add(originalSql.substring(start1, matcher1.start() + 1));
 			start1 = matcher1.end();
 			if (padding) {
-				// TODO: ´óĞ¡Ğ´ÒªÑéÖ¤Ò»ÏÂ
+				// TODO: å¤§å°å†™è¦éªŒè¯ä¸€ä¸‹
 				pieces1.add(new LogicTable(virtualName));
 			}
 		}
@@ -290,7 +290,7 @@ public abstract class AbstractHandler implements Handler {
 	}
 
 	/**
-	 * ¶à±íÌæ»»£¬ÒòÎª²»³£ÓÃ£¬ËùÒÔÔÚÄÇÊ±Ã»ÓĞºÍµ¥±íÌæ»»½øĞĞºÏ²¢£¬¶øÊÇµ¥¶ÀÄÃ³öÀ´Ò»¸öĞÂµÄ·½·¨¡£ Óëµ¥±í²»Í¬µÄÊÇ£¬ÔÚÌæ»»µÄ¹ı³ÌÖĞÒª¼ÇÂ¼ÏÂ¡£
+	 * å¤šè¡¨æ›¿æ¢ï¼Œå› ä¸ºä¸å¸¸ç”¨ï¼Œæ‰€ä»¥åœ¨é‚£æ—¶æ²¡æœ‰å’Œå•è¡¨æ›¿æ¢è¿›è¡Œåˆå¹¶ï¼Œè€Œæ˜¯å•ç‹¬æ‹¿å‡ºæ¥ä¸€ä¸ªæ–°çš„æ–¹æ³•ã€‚ ä¸å•è¡¨ä¸åŒçš„æ˜¯ï¼Œåœ¨æ›¿æ¢çš„è¿‡ç¨‹ä¸­è¦è®°å½•ä¸‹ã€‚
 	 * 
 	 * @param originalSql
 	 * @param tableToBeReplaced
@@ -329,7 +329,7 @@ public abstract class AbstractHandler implements Handler {
 				String virtualName = entry.getKey();
 				// tab$
 				if (sqlPieces == null) {
-					// µÚÒ»´Î½øÈë£¬µÚ¶ş´ÎÒÔºó½øÈë¾Í»áÓĞsqlPiecesÁË
+					// ç¬¬ä¸€æ¬¡è¿›å…¥ï¼Œç¬¬äºŒæ¬¡ä»¥åè¿›å…¥å°±ä¼šæœ‰sqlPiecesäº†
 					sqlPieces = parseAPattern_begin(virtualName, originalSql,
 							new StringBuilder("\\s").append(virtualName)
 									.append("$").toString(), padding);
@@ -373,7 +373,7 @@ public abstract class AbstractHandler implements Handler {
 						sqlPieces,
 						new StringBuilder("\\,").append(virtualName)
 								.append("\\s").toString(), padding);
-				// Ìæ»»,tableName,
+				// æ›¿æ¢,tableName,
 				sqlPieces = parseAPattern(
 						virtualName,
 						sqlPieces,
@@ -386,13 +386,13 @@ public abstract class AbstractHandler implements Handler {
 
 		}
 
-		// Éú³É×îÖÕSQL
+		// ç”Ÿæˆæœ€ç»ˆSQL
 		StringBuilder buffer = new StringBuilder();
 		for (Object piece : sqlPieces) {
 			if (piece instanceof String) {
 				buffer.append(piece);
 			} else if (piece instanceof LogicTable) {
-				//È«Á´Â·Ñ¹²âĞèÇó
+				//å…¨é“¾è·¯å‹æµ‹éœ€æ±‚
 				String t=EagleEye.getUserData("t");
 				if(!StringUtils.isBlank(t)&&t.equals("1")){
 					buffer.append(ALL_PERF_TABLE_PREFIX);
@@ -419,14 +419,14 @@ public abstract class AbstractHandler implements Handler {
 	}
 	
 	/**
-	 * Á÷×ªÀàĞÍ£¬handlerÖ»¶Ô×Ô¼º¸ĞĞËÈ¤µÄÀàĞÍ½øĞĞ´¦Àí£¬·ñÔòÂÔ¹ı
+	 * æµè½¬ç±»å‹ï¼Œhandleråªå¯¹è‡ªå·±æ„Ÿå…´è¶£çš„ç±»å‹è¿›è¡Œå¤„ç†ï¼Œå¦åˆ™ç•¥è¿‡
 	 * 
 	 * @author junyu
 	 * 
 	 */
 	public enum FlowType {
-		DIRECT, NOSQLPARSE, DEFAULT, BATCH,BATCH_DIRECT,BATCH_NOSQLPARSER,DBANDTAB_RC, // Ö»µÃµ½dispatchResult,»ù±¾²âÊÔÓÃ
+		DIRECT, NOSQLPARSE, DEFAULT, BATCH,BATCH_DIRECT,BATCH_NOSQLPARSER,DBANDTAB_RC, // åªå¾—åˆ°dispatchResult,åŸºæœ¬æµ‹è¯•ç”¨
 		DBANDTAB_SQL
-		// Ö»µÃµ½dispatchResult,»ù±¾²âÊÔÓÃ
+		// åªå¾—åˆ°dispatchResult,åŸºæœ¬æµ‹è¯•ç”¨
 	}
 }

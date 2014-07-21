@@ -7,13 +7,13 @@ import com.taobao.tddl.interact.sqljep.Comparative;
 import com.taobao.tddl.sqlobjecttree.SqlParserResult;
 
 /**
- * ×ß¹æÔòÒıÇæµÄÌõ¼ş±í´ïÊ½
+ * èµ°è§„åˆ™å¼•æ“çš„æ¡ä»¶è¡¨è¾¾å¼
  * @author shenxun
  *
  */
 public interface RuleRouteCondition extends RouteCondition{
 	/**
-	 * ¼æÈİÀÏÊµÏÖ
+	 * å…¼å®¹è€å®ç°
 	 * @return
 	 */
 	public Map<String, Comparative> getParameters() ;

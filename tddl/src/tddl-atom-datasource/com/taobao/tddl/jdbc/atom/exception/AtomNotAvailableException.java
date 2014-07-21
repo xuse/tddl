@@ -3,9 +3,9 @@ package com.taobao.tddl.jdbc.atom.exception;
 import java.sql.SQLException;
 
 /**
- * Atom��ͨ��ExceptionSorter��⵽����Դ������ʱ�׳���
- * �������ݿⲻ���ã�ͬʱû��trylock�����Ի���ʱҲ�׳�
- * ����group������
+ * Atom层通过ExceptionSorter检测到数据源不可用时抛出，
+ * 或者数据库不可用，同时没有trylock到重试机会时也抛出
+ * 便于group层重试
  * 
  * 
  * @author linxuan

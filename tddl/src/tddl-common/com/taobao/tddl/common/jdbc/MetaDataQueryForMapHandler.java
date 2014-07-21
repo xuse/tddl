@@ -13,12 +13,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
-//ÕâÀïµ¼ÖÂÁËtddl¶ÔspringµÄÒÀÀµ
+//è¿™é‡Œå¯¼è‡´äº†tddlå¯¹springçš„ä¾èµ–
 import org.springframework.jdbc.core.ColumnMapRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * µÚÒ»´ÎÍ¨¹ıselect * »ñÈ¡ÁĞÃûºÍsqlType²¢»º´æ¡£Ö®ºóÍ¨¹ıselect columns »ñÈ¡
+ * ç¬¬ä¸€æ¬¡é€šè¿‡select * è·å–åˆ—åå’ŒsqlTypeå¹¶ç¼“å­˜ã€‚ä¹‹åé€šè¿‡select columns è·å–
  * 
  * @author linxuan
  *
@@ -26,9 +26,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class MetaDataQueryForMapHandler implements QueryForMapHandler {
 	private static final Log log = LogFactory.getLog(MetaDataQueryForMapHandler.class);
 
-	private ConcurrentHashMap<String/*Ğ¡Ğ´±íÃû*/, TableMetaData/*±íµÄÔ­ĞÅÏ¢*/> tableMetaDatas = new ConcurrentHashMap<String, TableMetaData>();
-	//ColumnMapRowMapperµ¼ÖÂÁËtddl¶ÔspringµÄÒÀÀµ£¬ÕâÑù²»Ì«ºÃ°É£¿
-	private ConcurrentHashMap<String/*Ğ¡Ğ´±íÃû*/, ColumnMapRowMapper> rowMappers = new ConcurrentHashMap<String, ColumnMapRowMapper>();
+	private ConcurrentHashMap<String/*å°å†™è¡¨å*/, TableMetaData/*è¡¨çš„åŸä¿¡æ¯*/> tableMetaDatas = new ConcurrentHashMap<String, TableMetaData>();
+	//ColumnMapRowMapperå¯¼è‡´äº†tddlå¯¹springçš„ä¾èµ–ï¼Œè¿™æ ·ä¸å¤ªå¥½å§ï¼Ÿ
+	private ConcurrentHashMap<String/*å°å†™è¡¨å*/, ColumnMapRowMapper> rowMappers = new ConcurrentHashMap<String, ColumnMapRowMapper>();
 
 	public MetaDataQueryForMapHandler(){
 		
@@ -43,8 +43,8 @@ public class MetaDataQueryForMapHandler implements QueryForMapHandler {
 		} else {
 			sql.append(tmd.commaColumnNames);
 		}
-		//Èç¹û×ÜsqlµÄÊıÁ¿ÊÇ¹Ì¶¨ÇÒ±È½ÏĞ¡µÄ»°,ÄÜ·ñ¸É´à°ÑÕâÕû¸ösqlÒ²·ÅÔÚ»º´æÀï£¿
-		//²¢ÇÒÕâ¸ösqlµÄ³¤¶ÈÆäÊµÊÇ¿ÉÒÔÔÚ´´½¨Ö®Ç°¾ÍËã³öÀ´µÄ
+		//å¦‚æœæ€»sqlçš„æ•°é‡æ˜¯å›ºå®šä¸”æ¯”è¾ƒå°çš„è¯,èƒ½å¦å¹²è„†æŠŠè¿™æ•´ä¸ªsqlä¹Ÿæ”¾åœ¨ç¼“å­˜é‡Œï¼Ÿ
+		//å¹¶ä¸”è¿™ä¸ªsqlçš„é•¿åº¦å…¶å®æ˜¯å¯ä»¥åœ¨åˆ›å»ºä¹‹å‰å°±ç®—å‡ºæ¥çš„
 		sql.append(" from ").append(tableName).append(" ").append(whereSql);
 
 		if (log.isDebugEnabled()) {
@@ -70,7 +70,7 @@ public class MetaDataQueryForMapHandler implements QueryForMapHandler {
 	}
 
 	/**
-	 * @param tableName Ğ¡Ğ´±íÃû
+	 * @param tableName å°å†™è¡¨å
 	 */
 	private ColumnMapRowMapper getRowMapper(String tableName) {
 		ColumnMapRowMapper rowMapper = rowMappers.get(tableName);
@@ -83,11 +83,11 @@ public class MetaDataQueryForMapHandler implements QueryForMapHandler {
 	}
 
 	/**
-	 * 1. »º´æ ResultSetMetaData µÄ²¿·ÖÖµ
-	 * 2. ½«½á¹ûMapÖĞµÄÁĞÃû(key)×ªÎªĞ¡Ğ´
+	 * 1. ç¼“å­˜ ResultSetMetaData çš„éƒ¨åˆ†å€¼
+	 * 2. å°†ç»“æœMapä¸­çš„åˆ—å(key)è½¬ä¸ºå°å†™
 	 */
 	private class CachedColumnMapRowMapper extends ColumnMapRowMapper {
-		private final String tableName; //Ğ¡Ğ´±íÃû
+		private final String tableName; //å°å†™è¡¨å
 
 		public CachedColumnMapRowMapper(String tableName) {
 			this.tableName = tableName;
@@ -97,7 +97,7 @@ public class MetaDataQueryForMapHandler implements QueryForMapHandler {
 		public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 			TableMetaData tmd = tableMetaDatas.get(tableName);
 			if (tmd == null) {
-				//»ñÈ¡Ò»ĞĞ¼ÇÂ¼£¬Í¬Ê±³õÊ¼»¯metaData 
+				//è·å–ä¸€è¡Œè®°å½•ï¼ŒåŒæ—¶åˆå§‹åŒ–metaData 
 				initMetaData(tableName, rs.getMetaData());
 				tmd = tableMetaDatas.get(tableName);
 				if(tmd == null){
@@ -105,7 +105,7 @@ public class MetaDataQueryForMapHandler implements QueryForMapHandler {
 					return super.mapRow(rs, rowNum);
 				}
 			}
-			//¸ù¾İÒÑÓĞµÄmetadata×ö×ª»» ¡£±£Ö¤ÓÃ»º´æµÄmetadata¶ø²»ÓÃÔÙ»ñÈ¡metadata
+			//æ ¹æ®å·²æœ‰çš„metadataåšè½¬æ¢ ã€‚ä¿è¯ç”¨ç¼“å­˜çš„metadataè€Œä¸ç”¨å†è·å–metadata
 			Map mapOfColValues = super.createColumnMap(tmd.columns.length);
 			for (int i = 1; i <= tmd.columns.length; i++) {
 				String key = getColumnKey(tmd.columnNames[i - 1]);
@@ -120,8 +120,8 @@ public class MetaDataQueryForMapHandler implements QueryForMapHandler {
 		}
 
 		/**
-		 * »ùÓÚJdbcUtils.getResultSetValue(ResultSet rs, int index)Ö»ÊÇ½«ÆäÖĞMetaµÄ·ÃÎÊ±äÎª·ÃÎÊ±¾µØ»º´æ
-		 * @param index£ºthe column index£¬the first column is 1, the second is 2, ... 
+		 * åŸºäºJdbcUtils.getResultSetValue(ResultSet rs, int index)åªæ˜¯å°†å…¶ä¸­Metaçš„è®¿é—®å˜ä¸ºè®¿é—®æœ¬åœ°ç¼“å­˜
+		 * @param indexï¼šthe column indexï¼Œthe first column is 1, the second is 2, ... 
 		 */
 		private Object getResultSetValue(TableMetaData tmd, ResultSet rs, int index) throws SQLException {
 			Object obj = rs.getObject(index);
@@ -154,7 +154,7 @@ public class MetaDataQueryForMapHandler implements QueryForMapHandler {
 	}
 
 	/**
-	 * @param tableName Ğ¡Ğ´±íÃû
+	 * @param tableName å°å†™è¡¨å
 	 */
 	private void initMetaData(String tableName, ResultSetMetaData rsmd) {
 		try {

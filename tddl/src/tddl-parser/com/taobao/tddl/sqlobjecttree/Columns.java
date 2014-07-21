@@ -99,8 +99,8 @@ public class Columns implements SQLFragment {
 	}
 
 	/**
-	 * ½«ÁĞÃûµÄ±ğÃûºÍÁĞÃû±¾Éí·ÅÈëµ½±ğÃûmapÖĞ¡£
-	 * key»á×Ô¶¯×ªÎª´óĞ´
+	 * å°†åˆ—åçš„åˆ«åå’Œåˆ—åæœ¬èº«æ”¾å…¥åˆ°åˆ«åmapä¸­ã€‚
+	 * keyä¼šè‡ªåŠ¨è½¬ä¸ºå¤§å†™
 	 * @param sqlAliasMap
 	 */
 	public void appendAliasToColumnMap(Map<String, SQLFragment> sqlAliasMap) {
@@ -112,7 +112,7 @@ public class Columns implements SQLFragment {
 	}
 	
 	/**
-	 * ·µ»ØÓÃStringĞÎÊ½·â×°ºÃµÄColumnÁĞ±í---µ±ÎªDistinctº¯ÊıÊ±£¬·Ö¿â·Ö±íĞèÒª»ñÈ¡DistinctºóÃæµÄ×÷ÓÃµÄcolumnsµÄÃ¿¸öÁĞµÄÃû³Æ
+	 * è¿”å›ç”¨Stringå½¢å¼å°è£…å¥½çš„Columnåˆ—è¡¨---å½“ä¸ºDistinctå‡½æ•°æ—¶ï¼Œåˆ†åº“åˆ†è¡¨éœ€è¦è·å–Distinctåé¢çš„ä½œç”¨çš„columnsçš„æ¯ä¸ªåˆ—çš„åç§°
 	 * @return
 	 */
 	public List<String> getColList2Str(){

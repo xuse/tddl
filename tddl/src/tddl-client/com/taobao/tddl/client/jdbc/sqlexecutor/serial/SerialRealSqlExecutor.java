@@ -63,9 +63,9 @@ public class SerialRealSqlExecutor extends RealSqlExecutorCommon {
 					profileRealDatabaseAndTables(dbSelectorId, sql, during);
 				}
 			} catch (SQLException e) {
-				//µÚÒ»Ê±¼ä´òÓ¡Òì³£
+				//ç¬¬ä¸€æ—¶é—´æ‰“å°å¼‚å¸¸
 				logger.error(e);
-				// ·¢ÉúÒì³£ºó£¬½«Òì³£ÈûÈëÒ»¸öQueryReturnÀïÃæÖ±½Ó·µ»Ø£¬²»ÔÙ½øĞĞºóĞø²éÑ¯
+				// å‘ç”Ÿå¼‚å¸¸åï¼Œå°†å¼‚å¸¸å¡å…¥ä¸€ä¸ªQueryReturné‡Œé¢ç›´æ¥è¿”å›ï¼Œä¸å†è¿›è¡Œåç»­æŸ¥è¯¢
 				QueryReturn qr = new QueryReturn();
 				qr.add2ExceptionList(e);
 				tryCloseConnection(qr.getExceptions(), dbSelectorId);

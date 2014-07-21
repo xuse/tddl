@@ -8,11 +8,11 @@ import com.taobao.tddl.common.sqlobjecttree.SubQueryValue;
 import com.taobao.tddl.common.sqlobjecttree.Value;
 
 /**
- * ¿É±È½ÏµÄÀà Êµ¼ÊÉÏÊÇÊÇÁ½¸ö¶«Î÷µÄ½áºÏ
+ * å¯æ¯”è¾ƒçš„ç±» å®žé™…ä¸Šæ˜¯æ˜¯ä¸¤ä¸ªä¸œè¥¿çš„ç»“åˆ
  * 
- * ·ûºÅ+Öµ
+ * ç¬¦å·+å€¼
  * 
- * ÀýÈç [> 1] , [< 1] , [= 1]
+ * ä¾‹å¦‚ [> 1] , [< 1] , [= 1]
  * 
  * @author shenxun
  * 
@@ -29,7 +29,7 @@ public class Comparative implements Comparable, Cloneable {
 	public static final int LessThanOrEqual = 8;
 
 	/**
-	 * ±í´ïÊ½È¡·´
+	 * è¡¨è¾¾å¼å–å
 	 * 
 	 * @param function
 	 * @return
@@ -39,7 +39,7 @@ public class Comparative implements Comparable, Cloneable {
 	}
 
 	/**
-	 * ±í´ïÊ½Ç°ºóÎ»ÖÃµ÷»»µÄÊ±ºò
+	 * è¡¨è¾¾å¼å‰åŽä½ç½®è°ƒæ¢çš„æ—¶å€™
 	 * 
 	 * @param function
 	 * @return
@@ -59,7 +59,7 @@ public class Comparative implements Comparable, Cloneable {
 		}
 	}
 
-	private Comparable value; // ÕâÓÐ¿ÉÄÜÓÖÊÇ¸öComparative£¬´Ó¶øÊµÖÊÉÏ±íÊ¾Ò»¿ÎÊ÷£¨±È½ÏÊ÷£©
+	private Comparable value; // è¿™æœ‰å¯èƒ½åˆæ˜¯ä¸ªComparativeï¼Œä»Žè€Œå®žè´¨ä¸Šè¡¨ç¤ºä¸€è¯¾æ ‘ï¼ˆæ¯”è¾ƒæ ‘ï¼‰
 	private int comparison;
 
 	protected Comparative() {
@@ -123,8 +123,8 @@ public class Comparative implements Comparable, Cloneable {
 	}
 
 	/**
-	 * containsË³Ðò°´×Ö·û´Ó¶àµ½ÉÙÅÅÁÐ£¬·ñÔòÂß¼­²»¶Ô£¬ÕâÀï
-	 * ÏÈÕâÑù´¦Àí¡£
+	 * containsé¡ºåºæŒ‰å­—ç¬¦ä»Žå¤šåˆ°å°‘æŽ’åˆ—ï¼Œå¦åˆ™é€»è¾‘ä¸å¯¹ï¼Œè¿™é‡Œ
+	 * å…ˆè¿™æ ·å¤„ç†ã€‚
 	 * @param completeStr
 	 * @return
 	 */
@@ -185,7 +185,7 @@ public class Comparative implements Comparable, Cloneable {
 	}
 	
 	/**
-	 * ½«±äÁ¿°ó¶¨µ½µ±Ç°³ÖÓÐµÄComparable(Comparative)ÖÐ¡£
+	 * å°†å˜é‡ç»‘å®šåˆ°å½“å‰æŒæœ‰çš„Comparable(Comparative)ä¸­ã€‚
 	 * 
 	 * @param arguments
 	 * @param aliasMap
@@ -197,7 +197,7 @@ public class Comparative implements Comparable, Cloneable {
 			if(value instanceof SubQueryValue){
 				((SubQueryValue) value).setAliasMap(aliasMap);
 				comp=((Value)value).getVal(arguments);
-				//ÒýÇæ²»Ö§³ÖÔÚComparative°ü×°ÄÚµÄComparativeOR,Òò´ËÔÚa.id=b.idÕâÖÖÓ³ÉäÖÐÒªÏÔÊ¾µÄ×öÒ»¸öhack.
+				//å¼•æ“Žä¸æ”¯æŒåœ¨ComparativeåŒ…è£…å†…çš„ComparativeOR,å› æ­¤åœ¨a.id=b.idè¿™ç§æ˜ å°„ä¸­è¦æ˜¾ç¤ºçš„åšä¸€ä¸ªhack.
 				if(comp instanceof ComparativeOR){
 					return (ComparativeOR)comp;
 				}

@@ -13,23 +13,23 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * Ò»¸öÃèµã¼¯ºÏµÄ³éÏó¡£Ö§³ÖÏß³Ì²»°²È«µÄµÑ¿¨¶û»ıµü´ú±éÀú¡£Ò»¸öSample±íÊ¾Ò»¸öµÑ¿¨¶û»ı³éÑù
- * ½«¶àÁĞ¶ÀÁ¢µÄÃ¶¾ÙÖµ£¬ÓÃÌØÊâµÄ±éÀú·½·¨£¬×ª»»ÎªµÑ¿¨¶û»ı³éÑù£¨¼´²»Í¬ÁĞÖµµÄ×éºÏ£©
- * Ò»¸öSampleÓÃÒ»¸öMap<String, Object>±íÊ¾£¬key°üº¬ÁË¸÷ÁĞ£¬value¶ÔÓ¦Ã¿ÁĞµÄÒ»¸öÈ¡Öµ
+ * ä¸€ä¸ªæç‚¹é›†åˆçš„æŠ½è±¡ã€‚æ”¯æŒçº¿ç¨‹ä¸å®‰å…¨çš„ç¬›å¡å°”ç§¯è¿­ä»£éå†ã€‚ä¸€ä¸ªSampleè¡¨ç¤ºä¸€ä¸ªç¬›å¡å°”ç§¯æŠ½æ ·
+ * å°†å¤šåˆ—ç‹¬ç«‹çš„æšä¸¾å€¼ï¼Œç”¨ç‰¹æ®Šçš„éå†æ–¹æ³•ï¼Œè½¬æ¢ä¸ºç¬›å¡å°”ç§¯æŠ½æ ·ï¼ˆå³ä¸åŒåˆ—å€¼çš„ç»„åˆï¼‰
+ * ä¸€ä¸ªSampleç”¨ä¸€ä¸ªMap<String, Object>è¡¨ç¤ºï¼ŒkeyåŒ…å«äº†å„åˆ—ï¼Œvalueå¯¹åº”æ¯åˆ—çš„ä¸€ä¸ªå–å€¼
  * 
  * @author linxuan
  *
  */
-public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, Iterator<Map<String, Object>> {
+public class Samples implements Iterable<Map<String/*åˆ—å*/, Object/*åˆ—å€¼*/>>, Iterator<Map<String, Object>> {
 	private final Map<String, Set<Object>> columnEnumerates;
-	private final String[] subColums; //Ê¹ÓÃÄÄ¼¸ÁĞ£¬±ãÓÚ×ösub
-	private final Set<String> subColumSet;//ÓësubColums±£³ÖÒ»ÖÂ£¬±ãÓÚÅĞ,Ö»¶Á
+	private final String[] subColums; //ä½¿ç”¨å“ªå‡ åˆ—ï¼Œä¾¿äºåšsub
+	private final Set<String> subColumSet;//ä¸subColumsä¿æŒä¸€è‡´ï¼Œä¾¿äºåˆ¤,åªè¯»
 
 	public Samples(Map<String, Set<Object>> oriColumnEnumerates1) {
 		this.columnEnumerates = getRealColumnEnumerates(oriColumnEnumerates1);
 
 		this.subColums = columnEnumerates.keySet().toArray(new String[columnEnumerates.size()]);
-		this.subColumSet = columnEnumerates.keySet();//subColumSetÖ»¶Á£¬ÕâÑùÓ¦¸ÃÃ»ÎÊÌâ
+		this.subColumSet = columnEnumerates.keySet();//subColumSetåªè¯»ï¼Œè¿™æ ·åº”è¯¥æ²¡é—®é¢˜
 	}
 	
 	private Map<String, Set<Object>> getRealColumnEnumerates(Map<String, Set<Object>> oriColumnEnumerates){
@@ -62,21 +62,21 @@ public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, I
 			this.columnEnumerates.put(name, new HashSet<Object>(1));
 		}
 		this.subColums = columnNames.toArray(new String[columnEnumerates.size()]);
-		this.subColumSet = Collections.unmodifiableSet(columnNames);//subColumSetÖ»¶Á
+		this.subColumSet = Collections.unmodifiableSet(columnNames);//subColumSetåªè¯»
 	}
 
 	/**
-	 * TODO ÆÀ¹ÀcolumnEnumerates¹²ÏíµÄ·çÏÕ
-	 * @param columns Èç¹ûcolumns°üº¬±¾¶ÔÏócolumnEnumeratesÖĞ²»´æÔÚµÄkey£¬ºó¹û²»¿ÉÔ¤ÆÚ
+	 * TODO è¯„ä¼°columnEnumerateså…±äº«çš„é£é™©
+	 * @param columns å¦‚æœcolumnsåŒ…å«æœ¬å¯¹è±¡columnEnumeratesä¸­ä¸å­˜åœ¨çš„keyï¼Œåæœä¸å¯é¢„æœŸ
 	 */
 	public Samples subSamples(String[] columns) {
 		if (columns.length == this.subColums.length)
-			return this; //ÕâÀï¾Í²»ÅĞ¶ÁcolumnsÊÇ·ñ¶¼ºÍthisÒ»ÖÂÁË£¬ÓĞÒ»¶¨·çÏÕ
-		return new Samples(this.columnEnumerates, columns);//¿ÉÄÜ»áÊ¹µÚÈı²ãsubÓÉĞ¡±ä´ó£¬µ«ÊÇ²»Ó°ÏìÊ¹ÓÃ¡£Ò²Ã»ÓĞÅĞ¶ÁÒ»ÖÂĞÔ
+			return this; //è¿™é‡Œå°±ä¸åˆ¤è¯»columnsæ˜¯å¦éƒ½å’Œthisä¸€è‡´äº†ï¼Œæœ‰ä¸€å®šé£é™©
+		return new Samples(this.columnEnumerates, columns);//å¯èƒ½ä¼šä½¿ç¬¬ä¸‰å±‚subç”±å°å˜å¤§ï¼Œä½†æ˜¯ä¸å½±å“ä½¿ç”¨ã€‚ä¹Ÿæ²¡æœ‰åˆ¤è¯»ä¸€è‡´æ€§
 	}
 	
 	/**
-	 * @return Èç¹ûsubColumsºÍcolumnEnumeratesÏàÍ¬£¬ÔòÖ±½Ó·µ»Ø£¬·ñÔò³éÈ¡
+	 * @return å¦‚æœsubColumså’ŒcolumnEnumeratesç›¸åŒï¼Œåˆ™ç›´æ¥è¿”å›ï¼Œå¦åˆ™æŠ½å–
 	 */
 	public Map<String, Set<Object>> getColumnEnumerates() {
 		if (this.columnEnumerates.size() == subColums.length) {
@@ -91,16 +91,16 @@ public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, I
 	}
 	
 	/**
-	 * @return ÁĞ¸öÊı
+	 * @return åˆ—ä¸ªæ•°
 	 */
 	public int size() {
 		return this.subColums.length;
 	}
 
 	/**
-	 * TODO ÆÀ¹ÀcolumnEnumerates¹²ÏíµÄ·çÏÕ
-	 * ºÏ²¢otherµ½±¾¶ÔÏóµÄcolumnEnumerates£¬otherÖĞµÄÁĞ»á¸²¸Ç±¾¶ÔÏóÖĞµÄÁĞ
-	 * @return ĞÂµÄ¶ÔÏó£¬ºÍ±¾¶ÔÏó¹²ÏícolumnEnumerates£»ËùÒÔmergeºóÓ¦¸ÃÊ¹ÓÃ·µ»ØµÄ¶ÔÏó£¬¶ø²»ÔÙÊ¹ÓÃ±¾¶ÔÏó
+	 * TODO è¯„ä¼°columnEnumerateså…±äº«çš„é£é™©
+	 * åˆå¹¶otheråˆ°æœ¬å¯¹è±¡çš„columnEnumeratesï¼Œotherä¸­çš„åˆ—ä¼šè¦†ç›–æœ¬å¯¹è±¡ä¸­çš„åˆ—
+	 * @return æ–°çš„å¯¹è±¡ï¼Œå’Œæœ¬å¯¹è±¡å…±äº«columnEnumeratesï¼›æ‰€ä»¥mergeååº”è¯¥ä½¿ç”¨è¿”å›çš„å¯¹è±¡ï¼Œè€Œä¸å†ä½¿ç”¨æœ¬å¯¹è±¡
 	 */
 	/*public Samples mergeSamples(Samples other) {
 		this.columnEnumerates.putAll(other.columnEnumerates);
@@ -109,7 +109,7 @@ public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, I
 	}*/
 
 	/**
-	 * ÏòÒ»¸öÁĞÌí¼ÓÃ¶¾ÙÖµ
+	 * å‘ä¸€ä¸ªåˆ—æ·»åŠ æšä¸¾å€¼
 	 */
 	public void addEnumerates(String name, Set<Object> values) {
 		if (columnEnumerates.containsKey(name)) {
@@ -120,7 +120,7 @@ public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, I
 	}
 
 	/**
-	 * Ìí¼ÓÒ»¸öSample×éºÏ¡£ÈôÄ³¸öÁĞÃû²»ÔÚ±¾SamplesÖĞ£¬ÔòÖ±½ÓÅ×¿ÕÖ¸Õë
+	 * æ·»åŠ ä¸€ä¸ªSampleç»„åˆã€‚è‹¥æŸä¸ªåˆ—åä¸åœ¨æœ¬Samplesä¸­ï¼Œåˆ™ç›´æ¥æŠ›ç©ºæŒ‡é’ˆ
 	 */
 	public void addSample(Map<String, Object> aCartesianSample) {
 		for (Map.Entry<String, Object> e : aCartesianSample.entrySet()) {
@@ -129,15 +129,15 @@ public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, I
 	}
 
 	/**
-	 * ÏÂÃæÊÇµÑ¿¨¶û»ıµü´ú±éÀúµÄÊµÏÖ
+	 * ä¸‹é¢æ˜¯ç¬›å¡å°”ç§¯è¿­ä»£éå†çš„å®ç°
 	 */
-	private Map<String, Object> currentCartesianSample; //currentCartesianProductµ±Ç°µÄµÑ¿¨¶ûÖµ
-	private Iterator<Object>[] iterators;//ÕâÖÖ·½Ê½Î²¶ËiteratorÒª·´¸´ÖØĞÂ´ò¿ª£¬KeyIterator¶ÔÏó»á´´½¨±È½Ï¶à¡£¿¼ÂÇÓÃObject[]¼ÓÓÎ±ê
+	private Map<String, Object> currentCartesianSample; //currentCartesianProductå½“å‰çš„ç¬›å¡å°”å€¼
+	private Iterator<Object>[] iterators;//è¿™ç§æ–¹å¼å°¾ç«¯iteratorè¦åå¤é‡æ–°æ‰“å¼€ï¼ŒKeyIteratorå¯¹è±¡ä¼šåˆ›å»ºæ¯”è¾ƒå¤šã€‚è€ƒè™‘ç”¨Object[]åŠ æ¸¸æ ‡
 	private int cursor;
 
 	@SuppressWarnings("unchecked")
 	public Iterator<Map<String, Object>> iterator() {
-		//Ã¿´Îµü´úÇ°Çå¿ÕÉÏ´Îµü´ú×´Ì¬
+		//æ¯æ¬¡è¿­ä»£å‰æ¸…ç©ºä¸Šæ¬¡è¿­ä»£çŠ¶æ€
 		currentCartesianSample = new HashMap<String, Object>(subColums.length);
 		iterators = new Iterator[subColums.length];
 		int i = cursor = 0;
@@ -157,8 +157,8 @@ public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, I
 	}
 
 	/**
-	 * ·µ»Ø½á¹ûÖ»ÄÜ¶ÁÈ¡¡£ÈçÈôĞŞ¸Äºó¹û²»¿ÉÔ¤ÆÚ¡£
-	 * columnSamplesÃ¿¸öÁĞµÄÃ¶¾ÙÖµ¼¯ºÏ±ØĞëÖÁÉÙÓĞÒ»¸öÔªËØ¡£
+	 * è¿”å›ç»“æœåªèƒ½è¯»å–ã€‚å¦‚è‹¥ä¿®æ”¹åæœä¸å¯é¢„æœŸã€‚
+	 * columnSamplesæ¯ä¸ªåˆ—çš„æšä¸¾å€¼é›†åˆå¿…é¡»è‡³å°‘æœ‰ä¸€ä¸ªå…ƒç´ ã€‚
 	 */
 	public Map<String, Object> next() {
 		for (;;) {
@@ -171,9 +171,9 @@ public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, I
 				}
 			} else {
 				if (cursor == 0) {
-					break; //È«²¿½áÊøÁË
+					break; //å…¨éƒ¨ç»“æŸäº†
 				} else {
-					//ÖØĞÂ´ò¿ªµ±Ç°µÄiterator±¸ÏÂÒ»ÂÖÓÃ
+					//é‡æ–°æ‰“å¼€å½“å‰çš„iteratorå¤‡ä¸‹ä¸€è½®ç”¨
 					iterators[cursor] = columnEnumerates.get(subColums[cursor]).iterator();
 					cursor--;
 				}
@@ -187,7 +187,7 @@ public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, I
 	}
 
 	/**
-	 * columnEnumerates¹²Ïí£¬¶øÇÒkeySet¿ÉÄÜºÍsubColums²»Ò»ÖÂ£¬ËùÒÔÕâÀïÒª±£³Ö·µ»ØÖµÓïÒåÒ»ÖÂ
+	 * columnEnumerateså…±äº«ï¼Œè€Œä¸”keySetå¯èƒ½å’ŒsubColumsä¸ä¸€è‡´ï¼Œæ‰€ä»¥è¿™é‡Œè¦ä¿æŒè¿”å›å€¼è¯­ä¹‰ä¸€è‡´
 	 * @return
 	 */
 	/*public Map<String, Set<Object>> getColumnEnumerates() {
@@ -241,7 +241,7 @@ public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, I
 	}
 
 	/**
-	 * ½«Ò»¸ö×Ö½ÚÊı×é×ª»¯Îª¿É¼ûµÄ×Ö·û´®
+	 * å°†ä¸€ä¸ªå­—èŠ‚æ•°ç»„è½¬åŒ–ä¸ºå¯è§çš„å­—ç¬¦ä¸²
 	 */
 	public static String bytes2string(byte[] bt) {
 		int l = bt.length;
@@ -254,11 +254,11 @@ public class Samples implements Iterable<Map<String/*ÁĞÃû*/, Object/*ÁĞÖµ*/>>, I
 	}
 
 	/**
-	 * ½«×Ö·û´®×ª»»Îªbytes
+	 * å°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºbytes
 	 */
 	public static byte[] string2bytes(String str) {
 		if (null == str) {
-			throw new NullPointerException("²ÎÊı²»ÄÜÎª¿Õ");
+			throw new NullPointerException("å‚æ•°ä¸èƒ½ä¸ºç©º");
 		}
 		char[] chs = str.toCharArray();
 		byte[] data = new byte[chs.length/2];

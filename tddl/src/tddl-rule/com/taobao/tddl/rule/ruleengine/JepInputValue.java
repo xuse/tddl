@@ -1,7 +1,7 @@
 package com.taobao.tddl.rule.ruleengine;
 
 /**
- * SQL jep需要的输入参数
+ * SQL jep闇�瑕佺殑杈撳叆鍙傛暟
  * @author shenxun
  *
  */

@@ -22,9 +22,9 @@ import com.taobao.tddl.common.channel.SqlMetaData;
 import com.taobao.tddl.common.util.SqlMetaDataUtil;
 
 /**
- * Ò»¸ö×î×î¾«¼òµÄ½á¹û¼¯°ü×°Àà£¬Ìá¹©Ç³°ü×°¡£
+ * ä¸€ä¸ªæœ€æœ€ç²¾ç®€çš„ç»“æœé›†åŒ…è£…ç±»ï¼Œæä¾›æµ…åŒ…è£…ã€‚
  *
- * ËùÓĞ·½·¨Ö±½ÓÖ¸ÏòresultSetµÄ·½·¨£¬Ö»ÊÊÓÃÓÚ²éÒ»ÕÅ±íµÄ³¡¾°¡£
+ * æ‰€æœ‰æ–¹æ³•ç›´æ¥æŒ‡å‘resultSetçš„æ–¹æ³•ï¼Œåªé€‚ç”¨äºæŸ¥ä¸€å¼ è¡¨çš„åœºæ™¯ã€‚
  *
  * @author shenxun
  * @author junyu
@@ -35,11 +35,11 @@ public class ShallowTResultSetWrapper extends ProxyTResultSet implements ResultS
 
 	private final boolean isPreparedStatement;
 	/**
-	 * ÕæÕıµÄstatement
+	 * çœŸæ­£çš„statement
 	 */
 	private  Statement statement;
 	/**
-	 * ÕæÕıµÄresultSet
+	 * çœŸæ­£çš„resultSet
 	 */
 	private  ResultSet resultSet;
 	private TStatementImp tStatementImp;
@@ -48,7 +48,7 @@ public class ShallowTResultSetWrapper extends ProxyTResultSet implements ResultS
 			ConnectionManager connectionManager, ExecutionPlan executionPlan) throws SQLException {
 		super(connectionManager);
 		startQueryTime = System.currentTimeMillis();
-		Map<String/* db Selector id */, List<RealSqlContext>/* ÕæÕıÔÚµ±Ç°databaseÉÏÖ´ĞĞµÄsqlµÄÁĞ±í */> sqlMap = executionPlan
+		Map<String/* db Selector id */, List<RealSqlContext>/* çœŸæ­£åœ¨å½“å‰databaseä¸Šæ‰§è¡Œçš„sqlçš„åˆ—è¡¨ */> sqlMap = executionPlan
 				.getSqlMap();
 		if (tStatementImp instanceof TPreparedStatementImp) {
 			isPreparedStatement = true;
@@ -79,7 +79,7 @@ public class ShallowTResultSetWrapper extends ProxyTResultSet implements ResultS
 					} else {
 						executeQueryIntervalPST(connection, sql,tStatementImp, executionPlan.getSqlMetaData());
 					}
-					// Èç¹ûÄÜ¹»×ßµ½ÕâÀï£¬±íÊ¾Êı¾İ¿âÎŞÒì³££¬¿ÉÒÔÖÕÖ¹ÖØÊÔÑ­»·¡£
+					// å¦‚æœèƒ½å¤Ÿèµ°åˆ°è¿™é‡Œï¼Œè¡¨ç¤ºæ•°æ®åº“æ— å¼‚å¸¸ï¼Œå¯ä»¥ç»ˆæ­¢é‡è¯•å¾ªç¯ã€‚
 
 					long during = System.currentTimeMillis() - start;
 					profileRealDatabaseAndTables(dbSelectorId, sql, during);
@@ -104,7 +104,7 @@ public class ShallowTResultSetWrapper extends ProxyTResultSet implements ResultS
 
 	private void executeQueryIntervalST(Connection connection,
 			RealSqlContext sql,TStatementImp statementImp, SqlMetaData sqlMetaData) throws SQLException {
-		// ½¨Á¢»á»°
+		// å»ºç«‹ä¼šè¯
 		statement = createStatementInternal(connection);
 		statement.setQueryTimeout(getQueryTimeout());
 		statement.setFetchSize(getFetchSize());
@@ -120,7 +120,7 @@ public class ShallowTResultSetWrapper extends ProxyTResultSet implements ResultS
 
 	private void executeQueryIntervalPST(Connection connection,
 			RealSqlContext sql,TStatementImp statementImp, SqlMetaData sqlMetaData) throws SQLException {
-		// ½¨Á¢»á»°
+		// å»ºç«‹ä¼šè¯
 		PreparedStatement stmt = prepareStatementInternal(connection, sql
 				.getSql());
 		stmt.setQueryTimeout(getQueryTimeout());
@@ -137,7 +137,7 @@ public class ShallowTResultSetWrapper extends ProxyTResultSet implements ResultS
 		super.currentResultSet=resultSet;
 
 	}
-	public void checkSize(Map<String/* db Selector id */, List<RealSqlContext>/* ÕæÕıÔÚµ±Ç°databaseÉÏÖ´ĞĞµÄsqlµÄÁĞ±í */> sqlMap)
+	public void checkSize(Map<String/* db Selector id */, List<RealSqlContext>/* çœŸæ­£åœ¨å½“å‰databaseä¸Šæ‰§è¡Œçš„sqlçš„åˆ—è¡¨ */> sqlMap)
 	throws SQLException{
 		if(sqlMap.size() != 1){
 			throw new SQLException("should not be here , ONLY ONE ds allowed!");
@@ -151,11 +151,11 @@ public class ShallowTResultSetWrapper extends ProxyTResultSet implements ResultS
 	}
 
 	/**
-	 * bug fix by shenxun : Ô­À´»á·¢ÉúÒ»¸öÇé¿ö¾ÍÊÇÈç¹ûTStatementµ÷ÓÃÁËclose()·½·¨
-	 * ¶ø±¾ÉíÆä¹ÜÀíµÄTResultSetÃ»ÓĞclosedÊ±ºò¡£Íâ²¿»áÊ¹ÓÃiteratorÀ´±éÀúÃ¿Ò»¸ö
-	 * TResultSet£¬µ÷ÓÃ¹Ø±ÕµÄ·½·¨£¬µ«ÒòÎªTResultSetµÄclose·½·¨»á»Øµ÷
-	 * TStatementÀïÃæÓÃÓÚ´´½¨iteratorµÄSet<ResultSet>¶ÔÏó£¬²¢Ê¹ÓÃremove·½·¨¡£
-	 * Õâ¾Í»áÅ×³öÒ»¸öconcurrentModificationException¡£
+	 * bug fix by shenxun : åŸæ¥ä¼šå‘ç”Ÿä¸€ä¸ªæƒ…å†µå°±æ˜¯å¦‚æœTStatementè°ƒç”¨äº†close()æ–¹æ³•
+	 * è€Œæœ¬èº«å…¶ç®¡ç†çš„TResultSetæ²¡æœ‰closedæ—¶å€™ã€‚å¤–éƒ¨ä¼šä½¿ç”¨iteratoræ¥éå†æ¯ä¸€ä¸ª
+	 * TResultSetï¼Œè°ƒç”¨å…³é—­çš„æ–¹æ³•ï¼Œä½†å› ä¸ºTResultSetçš„closeæ–¹æ³•ä¼šå›è°ƒ
+	 * TStatementé‡Œé¢ç”¨äºåˆ›å»ºiteratorçš„Set<ResultSet>å¯¹è±¡ï¼Œå¹¶ä½¿ç”¨removeæ–¹æ³•ã€‚
+	 * è¿™å°±ä¼šæŠ›å‡ºä¸€ä¸ªconcurrentModificationExceptionã€‚
 	 *
 	 * @param removeThis
 	 * @throws SQLException
@@ -169,41 +169,41 @@ public class ShallowTResultSetWrapper extends ProxyTResultSet implements ResultS
 		if (closed) {
 			return;
 		}
-		// Í³¼ÆÕû¸ö²éÑ¯µÄºÄÊ±¡£»òĞí²»ÊÇºÜ×¼£¬µ«±È½ÏÖØÒª¡£
+		// ç»Ÿè®¡æ•´ä¸ªæŸ¥è¯¢çš„è€—æ—¶ã€‚æˆ–è®¸ä¸æ˜¯å¾ˆå‡†ï¼Œä½†æ¯”è¾ƒé‡è¦ã€‚
 		long elapsedTime = System.currentTimeMillis() - startQueryTime;
 
 		profileDuringTime(exceptions, executionPlan.getVirtualTableName().toString(),
 				executionPlan.getOriginalSql(), elapsedTime);
 
 		try {
-			// ¹Ø±Õresultset
+			// å…³é—­resultset
 				try {
 					resultSet.close();
 				} catch (SQLException e) {
 					exceptions = appendToExceptionList(exceptions, e);
 				}
 
-			// ¹Ø±Õstatement
+			// å…³é—­statement
 				try {
 					statement.close();
 				} catch (SQLException e) {
 					exceptions = appendToExceptionList(exceptions, e);
 				}
 		} finally {
-			//ÎŞÒâÒå
+			//æ— æ„ä¹‰
 			closed = true;
 		}
 		
-		//×î¼òµ¥µÄresult£¬¶ÔÓ¦µÄ²éÑ¯¼Æ»®ÊÇÒ»Ìõsql£¬Á¬½ÓÔÚconnection.close()·½·¨ÖĞ¹Ø±Õ£¬ÕâÀï²»×öÌáÇ°¹Ø±Õ
+		//æœ€ç®€å•çš„resultï¼Œå¯¹åº”çš„æŸ¥è¯¢è®¡åˆ’æ˜¯ä¸€æ¡sqlï¼Œè¿æ¥åœ¨connection.close()æ–¹æ³•ä¸­å…³é—­ï¼Œè¿™é‡Œä¸åšæå‰å…³é—­
 		//exceptions = closeConnection(exceptions);
 		
-		//Å×³öÒì³££¬Èç¹ûexception ²»Îªnull
+		//æŠ›å‡ºå¼‚å¸¸ï¼Œå¦‚æœexception ä¸ä¸ºnull
 		ExceptionUtils.throwSQLException(exceptions,
 				"sql exception during close resources", Collections.emptyList());
 	}
 	
 	private List<SQLException> closeConnection(List<SQLException> exceptions) {
-		// Í¨Öª¸¸Àà¹Ø±ÕËùÓĞÁ¬½Ó
+		// é€šçŸ¥çˆ¶ç±»å…³é—­æ‰€æœ‰è¿æ¥
 		for (String key : executionPlan.getSqlMap().keySet()) {
 			exceptions = tryCloseConnection(exceptions, key);
 		}
@@ -212,7 +212,7 @@ public class ShallowTResultSetWrapper extends ProxyTResultSet implements ResultS
 
 	public Statement getStatement() throws SQLException {
 		checkRSIsNull();
-		//shenxun : ÕâÀï·µ»Ø°ü×°Àà
+		//shenxun : è¿™é‡Œè¿”å›åŒ…è£…ç±»
 		return tStatementImp;
 	}
 }

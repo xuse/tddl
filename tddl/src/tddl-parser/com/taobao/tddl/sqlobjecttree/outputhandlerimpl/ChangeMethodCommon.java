@@ -20,30 +20,30 @@
 //			Number max,Map<Integer, Object> changeParam) {
 //		if(allowChangePageNumber()){
 //		PageWrapperCommon skipPage=null;
-//		//oracleµÄmax»òÕßmysqlµÄrange¶¼¿ÉÒÔ±»×¢Èëµ½ÕâÀï£¬ÒòÎªmaxºÍrange²»»áÍ¬Ê±³öÏÖ
-//		//Õâ²¿·Ö´úÂëµÄ×÷ÓÃÔÚÓÚÏÈÕÒµ½×î´óµÄÆğÊ¼ÊıÖµ£¬ºÍ½áÊøÊıÖµ¡£
+//		//oracleçš„maxæˆ–è€…mysqlçš„rangeéƒ½å¯ä»¥è¢«æ³¨å…¥åˆ°è¿™é‡Œï¼Œå› ä¸ºmaxå’Œrangeä¸ä¼šåŒæ—¶å‡ºç°
+//		//è¿™éƒ¨åˆ†ä»£ç çš„ä½œç”¨åœ¨äºå…ˆæ‰¾åˆ°æœ€å¤§çš„èµ·å§‹æ•°å€¼ï¼Œå’Œç»“æŸæ•°å€¼ã€‚
 //		PageWrapperCommon maxOrMaxPage=null;
 //		for(Object obj:modifiableTableName){
 //			if(obj instanceof SkipWrapper){
 //				if(skipPage==null){
 //					skipPage=(SkipWrapper)obj;
 //				}else if(skipPage.getVal(args)<((SkipWrapper)obj).getVal(args)){
-//					//µ±Ç°Öµ´óÓÚsnapshotÖĞµÄÖµÊ±£¬ÓëmySelect,Select MyUpdate,Update¡­¡­ÀïÃæµÄ²ÎÊıÒ»ÖÂ¡£
+//					//å½“å‰å€¼å¤§äºsnapshotä¸­çš„å€¼æ—¶ï¼Œä¸mySelect,Select MyUpdate,Updateâ€¦â€¦é‡Œé¢çš„å‚æ•°ä¸€è‡´ã€‚
 //					skipPage=(SkipWrapper)obj;
 //				}else{
-//					//µ±Ç°ÖµĞ¡ÓÚµÈÓÚsnapÖĞµÄÖµ£¬Ê²Ã´Ò²²»×ö¡£
+//					//å½“å‰å€¼å°äºç­‰äºsnapä¸­çš„å€¼ï¼Œä»€ä¹ˆä¹Ÿä¸åšã€‚
 //				}
 //			}else if(obj instanceof MaxWrapper||obj instanceof RangeWrapper){
 //				if(maxOrMaxPage==null){
 //					maxOrMaxPage=(PageWrapperCommon)obj;
 //				}else if(maxOrMaxPage.getVal(args)<((PageWrapperCommon)obj).getVal(args)){
-//					//µ±Ç°Öµ´óÓÚsnapshotÖĞµÄÖµÊ±£¬ÓëmySelect,Select MyUpdate,Update¡­¡­ÀïÃæµÄ²ÎÊıÒ»ÖÂ
+//					//å½“å‰å€¼å¤§äºsnapshotä¸­çš„å€¼æ—¶ï¼Œä¸mySelect,Select MyUpdate,Updateâ€¦â€¦é‡Œé¢çš„å‚æ•°ä¸€è‡´
 //					maxOrMaxPage=(PageWrapperCommon)obj;
 //				}else{
-//					//µ±Ç°ÖµĞ¡ÓÚµÈÓÚsnapÖĞµÄÖµ£¬Ê²Ã´Ò²²»×ö¡£
+//					//å½“å‰å€¼å°äºç­‰äºsnapä¸­çš„å€¼ï¼Œä»€ä¹ˆä¹Ÿä¸åšã€‚
 //				}
 //			}else{
-//				//String ÆäËûµÄÇé¿ö
+//				//String å…¶ä»–çš„æƒ…å†µ
 //			}
 //		}
 //		if(skipPage!=null){
@@ -54,20 +54,20 @@
 //		}
 //		
 //		}
-//		//Ìæ»»²¢Êä³ö
+//		//æ›¿æ¢å¹¶è¾“å‡º
 //		StringBuilder sb=new StringBuilder();
 //		for(Object obj:modifiableTableName){
 //			if(obj instanceof String){
-//					//Õı³£String
+//					//æ­£å¸¸String
 ////					sb.append(getTable(table,originalTable));
 //					sb.append(obj.toString());
 //			}else if(obj instanceof PageWrapperCommon){
-//				//´¦Àí·ÖÒ³
+//				//å¤„ç†åˆ†é¡µ
 ////				needAppendtableName=false;
 //				PageWrapperCommon common=(PageWrapperCommon)obj;
 //				sb.append(common.getSqlEle(skip, max, args,allowChangePageNumber(),changeParam));
 //			}else if(obj instanceof ReplacableWrapper){
-//				//´¦Àíindex£¬±íÃû
+//				//å¤„ç†indexï¼Œè¡¨å
 //				sb.append(getReplacedString(table,(ReplacableWrapper)obj));
 //				
 //			} else if(obj instanceof OraclePageWrapper) {

@@ -15,8 +15,8 @@ import com.taobao.tddl.sqlobjecttree.common.value.UnknowValueObject;
 
 
 /**
- * ±íÊ¾¿É±È½ÏµÄExpression
- * ×ÓÀà¾ÍÊÇ¿É±È½ÏµÄ·½·¨µÄ¾ßÌåÀàĞÍ Èç col = 1, col >1,col <1...µÈµÈ¡£
+ * è¡¨ç¤ºå¯æ¯”è¾ƒçš„Expression
+ * å­ç±»å°±æ˜¯å¯æ¯”è¾ƒçš„æ–¹æ³•çš„å…·ä½“ç±»å‹ å¦‚ col = 1, col >1,col <1...ç­‰ç­‰ã€‚
  * 
  * @author shenxun
  *
@@ -45,15 +45,15 @@ public abstract class ComparableExpression implements Expression{
 			Comparable<?> temp =val.eval();
 		
 			if(colName==null){
-				throw new IllegalArgumentException("sqlÔªËØ£º"+left+"|"+getRelationString()+"|"+right+"ÖĞÎ´ÕÒµ½Ö¸¶¨µÄÁĞÃû,Ä¿Ç°Ö»Ö§³ÖÁĞÃû×Ö¶ÎÔÚ±í´ïÊ½×ó±ß");
+				throw new IllegalArgumentException("sqlå…ƒç´ ï¼š"+left+"|"+getRelationString()+"|"+right+"ä¸­æœªæ‰¾åˆ°æŒ‡å®šçš„åˆ—å,ç›®å‰åªæ”¯æŒåˆ—åå­—æ®µåœ¨è¡¨è¾¾å¼å·¦è¾¹");
 			}
 			visitor.put(colName.toUpperCase(), new ComparableElement(
 					temp, inAnd, operator));
 		} else {
-			//Èç¹û²»ÊÇValue¶ÔÏó
+			//å¦‚æœä¸æ˜¯Valueå¯¹è±¡
 			if(colName==null){
 				if(right instanceof Column){
-					throw new IllegalArgumentException("sqlÔªËØ£º"+left+"|"+getRelationString()+"|"+right+"²»Ö§³ÖÁĞÃûĞ´ÔÚComparativeÓÒ±ß");
+					throw new IllegalArgumentException("sqlå…ƒç´ ï¼š"+left+"|"+getRelationString()+"|"+right+"ä¸æ”¯æŒåˆ—åå†™åœ¨Comparativeå³è¾¹");
 				}
 			}else{
 			if (right instanceof Comparable) {

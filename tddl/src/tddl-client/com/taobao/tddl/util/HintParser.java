@@ -19,7 +19,7 @@ import com.taobao.tddl.common.jdbc.ParameterContext;
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2010-12-24…œŒÁ10:32:16
+ * @date 2010-12-24‰∏äÂçà10:32:16
  */
 public class HintParser {
 	public static Log log = LogFactory.getLog(HintParser.class);
@@ -27,7 +27,7 @@ public class HintParser {
 	public static RouteCondition convertHint2RouteCondition(StartInfo startInfo) {
 		String tddlHint = HintParserHelper.extractHint(startInfo.getSql(),
 				startInfo.getSqlParam());
-		// decode ≥…RouteCondition
+		// decode ÊàêRouteCondition
 		if (null != tddlHint && !tddlHint.equals("")) {
 			try {
 				JSONObject jsonObject = JSONObject.fromObject(tddlHint);

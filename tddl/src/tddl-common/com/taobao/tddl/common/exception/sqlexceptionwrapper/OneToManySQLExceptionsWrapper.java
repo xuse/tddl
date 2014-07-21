@@ -5,8 +5,8 @@
 //import java.util.List;
 //
 ///**
-// * ������һ��SQLexception ������Ϊ�˽�һ�Զ�����Դ�в������쳣����Ǳ��װ��Ȼ���Ϊһ����cause��ɵ�SQLExceptionList
-// * ���ظ�ҵ��Ӧ�ã������Ϳ���ͨ���Ƚ�ֱ�۵ķ�ʽ��������������쳣���ػ�ȥ��
+// * 本意是一个SQLexception 链表，为了将一对多数据源中产生的异常进行潜包装，然后变为一个由cause组成的SQLExceptionList
+// * 返回给业务应用，这样就可以通过比较直观的方式将所有有问题的异常返回回去。
 // * 
 // * @author shenxun
 // *

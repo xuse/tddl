@@ -9,7 +9,7 @@ import com.taobao.tddl.common.monitor.stat.StatLogWriter;
 
 /**
  * 
- * һЩ��ֵ̬�Ĵ�������ֵ̬�������ۼ�ģ�ͣ�����������ʱ��ص�����ӿڼ��뵽old�������
+ * 一些静态值的处理，静态值不符合累加模型，因此在输出的时候回调这个接口加入到old里面输出
  * 
  * @author changyuan.lh
  * @author shenxun
@@ -29,7 +29,7 @@ public interface SnapshotValuesOutputCallBack {
 	}
 
 	/**
-	 * ��ǰ��ͳ�����ݻ��ܣ�
+	 * 当前的统计内容汇总：
 	 * 
 	 * @see TDataSourceState
 	 * @see TDataSourceWrapper

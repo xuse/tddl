@@ -13,7 +13,7 @@ public abstract class OperationBeforTwoArgsFunction implements Function{
 	protected Object arg2;
 	public void setValue(List<Object> values) {
 		if(values.size()!=2){
-			throw new IllegalArgumentException("²ÎÊıÉÙÓÚÁ½¸ö");
+			throw new IllegalArgumentException("å‚æ•°å°‘äºä¸¤ä¸ª");
 		}
 		arg1=values.get(0);
 		arg2=values.get(1);
@@ -33,7 +33,7 @@ public abstract class OperationBeforTwoArgsFunction implements Function{
 			if(ret==null){
 				ret=((Column)arg2).getColumn();
 			}else{
-				throw new IllegalArgumentException("Ë«²ÎÊıº¯ÊıÖĞ²»ÄÜ³öÏÖ¶à¸öÁĞÃûµÄº¯Êı");
+				throw new IllegalArgumentException("åŒå‚æ•°å‡½æ•°ä¸­ä¸èƒ½å‡ºç°å¤šä¸ªåˆ—åçš„å‡½æ•°");
 			}
 		}
 		return ret;

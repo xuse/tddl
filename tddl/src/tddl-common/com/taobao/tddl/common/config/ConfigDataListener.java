@@ -5,15 +5,15 @@ package com.taobao.tddl.common.config;
  * @author <a href="zylicfc@gmail.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-1-11ÉÏÎç11:22:29
- * @desc ½ÓÊÕĞÅÏ¢µÄ»Øµ÷½Ó¿Ú
+ * @date 2011-1-11ä¸Šåˆ11:22:29
+ * @desc æ¥æ”¶ä¿¡æ¯çš„å›è°ƒæ¥å£
  */
 public interface ConfigDataListener {
 	/**
-	 * ÅäÖÃÖĞĞÄ¿Í»§¶ËÊÕµ½Êı¾İÊ±µ÷ÓÃ×¢²áµÄ¼àÌıÆ÷·½·¨£¬
-	 * ²¢°ÑÊÕµ½µÄÊı¾İ´«µİµ½´Ë·½·¨ÖĞ
-	 * @param dataId         Êı¾İÔÚÅäÖÃÖĞĞÄ×¢²áµÄid
-	 * @param data           ×Ö·û´®Êı¾İ
+	 * é…ç½®ä¸­å¿ƒå®¢æˆ·ç«¯æ”¶åˆ°æ•°æ®æ—¶è°ƒç”¨æ³¨å†Œçš„ç›‘å¬å™¨æ–¹æ³•ï¼Œ
+	 * å¹¶æŠŠæ”¶åˆ°çš„æ•°æ®ä¼ é€’åˆ°æ­¤æ–¹æ³•ä¸­
+	 * @param dataId         æ•°æ®åœ¨é…ç½®ä¸­å¿ƒæ³¨å†Œçš„id
+	 * @param data           å­—ç¬¦ä¸²æ•°æ®
 	 */
     void onDataRecieved(String dataId,String data);
 }

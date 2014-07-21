@@ -55,7 +55,7 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	private TDSProperties properties;
 	protected static final Log log = LogFactory.getLog(TConnectionImp.class);
 
-	// TODO: ÒÔºóÈÃÕâ¸öÖµÕæÕıµÄÆğ×÷ÓÃ
+	// TODO: ä»¥åè®©è¿™ä¸ªå€¼çœŸæ­£çš„èµ·ä½œç”¨
 	private int transactionIsolation = -1;
 
 	private boolean closed;
@@ -102,7 +102,7 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	}
 
 	/**
-	 * µ¥¿âÊÂÎñÏŞÖÆ
+	 * å•åº“äº‹åŠ¡é™åˆ¶
 	 */
 	private final static int maxTransactionDSCount = 1;
 
@@ -111,22 +111,22 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	Map<String, Connection> connectionMap = new HashMap<String, Connection>(2);
 
 	/**
-	 * ³¢ÊÔ»ñÈ¡Ò»¸öÁ¬½Ó :
+	 * å°è¯•è·å–ä¸€ä¸ªè¿æ¥ :
 	 * 
 	 * 
-	 * ÊÂÎñÖĞ:
+	 * äº‹åŠ¡ä¸­:
 	 * 
-	 * Èç¹ûgoMaster == true £¬Êı¾İÔ´³¬¹ıÒ»¸ö£¬ »áÅ×´íÎó¡£
+	 * å¦‚æœgoMaster == true ï¼Œæ•°æ®æºè¶…è¿‡ä¸€ä¸ªï¼Œ ä¼šæŠ›é”™è¯¯ã€‚
 	 * 
-	 * Èç¹ûÔÚ·ÇÊÂÎñ¡£ ²»»áÅ×´íÎó¡£
+	 * å¦‚æœåœ¨éäº‹åŠ¡ã€‚ ä¸ä¼šæŠ›é”™è¯¯ã€‚
 	 * 
-	 * ÔÚÃ¿´Î³¢ÊÔ´ÓĞÂ»ñÈ¡Á¬½ÓµÄÊ±ºò£¬¶¼±ØĞëÏÔÊ¾µÄ½«Á¬½ÓÉèÖÃRetryableDatasourceGrooup.autocommit() ÎªÖ¸¶¨µÄÖµ¡£
+	 * åœ¨æ¯æ¬¡å°è¯•ä»æ–°è·å–è¿æ¥çš„æ—¶å€™ï¼Œéƒ½å¿…é¡»æ˜¾ç¤ºçš„å°†è¿æ¥è®¾ç½®RetryableDatasourceGrooup.autocommit() ä¸ºæŒ‡å®šçš„å€¼ã€‚
 	 * 
-	 * ´æÒÉµÄµØ·½ÊÇ£¬Èç¹ûÔÚÊÂÎñÖĞ£¬²éÑ¯ÆäËû¿â£¬ÊÇ·ñÓ¦¸ÃÔÊĞíËû²éÑ¯ÄØ£¿
+	 * å­˜ç–‘çš„åœ°æ–¹æ˜¯ï¼Œå¦‚æœåœ¨äº‹åŠ¡ä¸­ï¼ŒæŸ¥è¯¢å…¶ä»–åº“ï¼Œæ˜¯å¦åº”è¯¥å…è®¸ä»–æŸ¥è¯¢å‘¢ï¼Ÿ
 	 * 
 	 * @param dbIndex
 	 * @param goSlave
-	 *            TODO: ¼æÈİÖ§¸¶±¦µÄÊµÏÖ¡£ËûÃÇÒªÇóÔÚÊÂÎñÖĞ£¬¿ÉÒÔÍ¨¹ıselect²éÑ¯ÆäËûÊı¾İÔ´¡£
+	 *            TODO: å…¼å®¹æ”¯ä»˜å®çš„å®ç°ã€‚ä»–ä»¬è¦æ±‚åœ¨äº‹åŠ¡ä¸­ï¼Œå¯ä»¥é€šè¿‡selectæŸ¥è¯¢å…¶ä»–æ•°æ®æºã€‚
 	 * @return
 	 */
 	public Connection getConnection(String dbIndex, boolean goSlave)
@@ -138,22 +138,22 @@ public class TConnectionImp implements ConnectionManager, Connection {
 			if (datasource == null) {
 				throwMissGroupException(dbIndex);
 			}
-			// µ±Ç°dbIndexÃ»ÓĞ±»ÆäËû¶ÔÏóÊ¹ÓÃ£¬³õÊ¼»¯dsGroupImp,
+			// å½“å‰dbIndexæ²¡æœ‰è¢«å…¶ä»–å¯¹è±¡ä½¿ç”¨ï¼Œåˆå§‹åŒ–dsGroupImp,
 			if (isAutoCommit) {
 				conn = datasource.getConnection();
 				conn.setAutoCommit(isAutoCommit);
 				connectionMap.put(dbIndex, conn);
 			} else {
-				// ÊÂÎñ×´Ì¬ÖĞ
+				// äº‹åŠ¡çŠ¶æ€ä¸­
 				validTransactionCondition(true);
 				conn = datasource.getConnection();
 				conn.setAutoCommit(isAutoCommit);
 				connectionMap.put(dbIndex, conn);
 			}
 		} else {
-			// ±íÊ¾µ±Ç°dbIndexÒÑ¾­±»ÆäËû¶ÔÏóÊ¹ÓÃ¡£ÄÇÃ´½«µ±Ç°ÒıÓÃÌí¼Óµ½Á¬½ÓÒıÓÃÖĞ¡£
-			// ÕâÀïÃ»ÓĞÏÔÊ¾µÄÉèÖÃautoCommit×´Ì¬£¬Ô­ÒòÊÇÄÜ¹»ĞŞ¸ÄautoCommit×´Ì¬µÄµØ·½Ö»ÓĞÁ½¸ö
-			// µÚÒ»¸öÊÇĞÂ½¨µÄÄÇÒ»ÏÂ£¬»¹ÓĞÒ»¸ö¾ÍÊÇsetAutoCommitµÄÄÇÒ»ÏÂ¡£ÕâÀïÖ»ĞèÒª±£³Ö×´Ì¬¡£
+			// è¡¨ç¤ºå½“å‰dbIndexå·²ç»è¢«å…¶ä»–å¯¹è±¡ä½¿ç”¨ã€‚é‚£ä¹ˆå°†å½“å‰å¼•ç”¨æ·»åŠ åˆ°è¿æ¥å¼•ç”¨ä¸­ã€‚
+			// è¿™é‡Œæ²¡æœ‰æ˜¾ç¤ºçš„è®¾ç½®autoCommitçŠ¶æ€ï¼ŒåŸå› æ˜¯èƒ½å¤Ÿä¿®æ”¹autoCommitçŠ¶æ€çš„åœ°æ–¹åªæœ‰ä¸¤ä¸ª
+			// ç¬¬ä¸€ä¸ªæ˜¯æ–°å»ºçš„é‚£ä¸€ä¸‹ï¼Œè¿˜æœ‰ä¸€ä¸ªå°±æ˜¯setAutoCommitçš„é‚£ä¸€ä¸‹ã€‚è¿™é‡Œåªéœ€è¦ä¿æŒçŠ¶æ€ã€‚
 			return conn;
 		}
 
@@ -161,7 +161,7 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	}
 
 	/**
-	 * ÑéÖ¤ÔÚÊÂÎñ×´Ì¬ÖĞ£¬ÊÇ·ñ¿ÉÒÔ´´½¨Êı¾İÔ´
+	 * éªŒè¯åœ¨äº‹åŠ¡çŠ¶æ€ä¸­ï¼Œæ˜¯å¦å¯ä»¥åˆ›å»ºæ•°æ®æº
 	 * 
 	 * @param requiredObject
 	 * @param goSlave
@@ -170,15 +170,15 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	 */
 	protected void validTransactionCondition(boolean createNew)
 			throws SQLException {
-		// Èç¹ûÊÂÎñÊı¾İÔ´³¬¹ıÏŞÖÆ,ÔÚĞÂ½¨Á¬½ÓµÄÊ±ºò£¬ÒªÅ×³öÒªĞÂ½¨µÄÄÇ¸öÁ¬½Ó£¬¶øÔÚsetAutoCommitµÄÊ±ºò£¬²»ÄÜÈ¥µô
+		// å¦‚æœäº‹åŠ¡æ•°æ®æºè¶…è¿‡é™åˆ¶,åœ¨æ–°å»ºè¿æ¥çš„æ—¶å€™ï¼Œè¦æŠ›å‡ºè¦æ–°å»ºçš„é‚£ä¸ªè¿æ¥ï¼Œè€Œåœ¨setAutoCommitçš„æ—¶å€™ï¼Œä¸èƒ½å»æ‰
 		if (connectionMap.size() > (maxTransactionDSCount - (createNew ? 1 : 0)/*
-																				 * ×î´óÔÊĞíÊÂÎñdatasourceÊı
+																				 * æœ€å¤§å…è®¸äº‹åŠ¡datasourceæ•°
 																				 * -
-																				 * µ±Ç°Òª¼ÓÈëµÄdsÊı
-																				 * ¡£
+																				 * å½“å‰è¦åŠ å…¥çš„dsæ•°
+																				 * ã€‚
 																				 */)) {
 			//have a nice log
-			StringBuilder sb=new StringBuilder("ÊÂÎñÖĞ¿ç¿â¸öÊı³¬¹ıÔ¤ÆÚ£¬Ô¤ÆÚÖµ: ");
+			StringBuilder sb=new StringBuilder("äº‹åŠ¡ä¸­è·¨åº“ä¸ªæ•°è¶…è¿‡é¢„æœŸï¼Œé¢„æœŸå€¼: ");
 			sb.append(maxTransactionDSCount);
 			sb.append(",current dbIndexes in connectionMap is:");
 			for(Map.Entry<String, Connection> entry:connectionMap.entrySet()){
@@ -187,7 +187,7 @@ public class TConnectionImp implements ConnectionManager, Connection {
 			}
 
 			throw new SQLException(sb.toString());
-			// TODO: ÕâÀïÔİÊ±²»ÔÊĞíÔÚÊÂÎñÖĞ£¬Ê¹ÓÃ·ÇÊÂÎñÊı¾İÔ´½øĞĞ²éÑ¯¡£·ñÔòÌ«¸´ÔÓÁË¡£
+			// TODO: è¿™é‡Œæš‚æ—¶ä¸å…è®¸åœ¨äº‹åŠ¡ä¸­ï¼Œä½¿ç”¨éäº‹åŠ¡æ•°æ®æºè¿›è¡ŒæŸ¥è¯¢ã€‚å¦åˆ™å¤ªå¤æ‚äº†ã€‚
 		}
 	}
 
@@ -331,11 +331,11 @@ public class TConnectionImp implements ConnectionManager, Connection {
 		// txStart = true;
 
 		List<SQLException> exceptions = null;
-		// ÕâÀï»á±éÀúÕû¸öÊı×é
+		// è¿™é‡Œä¼šéå†æ•´ä¸ªæ•°ç»„
 		for (Entry<String, Connection> conn : connectionMap.entrySet()) {
 			try {
-				// Èç¹ûÔÚsetAutoCommitÖĞ·¢ÉúÁËÒì³££¬Ôò²»ĞèÒªÖØ½¨Á¬½Ó£¬½«ÄÇĞ©´æÔÚµÄÁ¬½ÓÄÚµÄconnection
-				// commit¼´¿É
+				// å¦‚æœåœ¨setAutoCommitä¸­å‘ç”Ÿäº†å¼‚å¸¸ï¼Œåˆ™ä¸éœ€è¦é‡å»ºè¿æ¥ï¼Œå°†é‚£äº›å­˜åœ¨çš„è¿æ¥å†…çš„connection
+				// commitå³å¯
 				if (isTransactionConnection(conn.getKey())) {
 					conn.getValue().commit();
 				}
@@ -396,69 +396,69 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	public void tryClose(String dbIndex) throws SQLException {
 		Connection conn = connectionMap.get(dbIndex);
 		if (conn == null) {
-			// Èç¹ûµ±Ç°dsGroupÃ»ÓĞÔÚmapÄÚ£¬ÄÇÃ´¼òµ¥µÄ·µ»Ø
-			// Åöµ½Ò»¸öµäĞÍµÄ³¡¾°ÊÇÔÚsetAutoCommit(false->true)µÄ¹ı³ÌÖĞ£¬Ò²ÒªÏÔÊ¾µÄ¹Ø±Õ
-			// ÔÚÒì³£×´Ì¬ÖĞÒ²Òª¹Ø±Õ£¬ËùÒÔ»¹ÊÇ´òlog¹Ø±Õ°É¡£
+			// å¦‚æœå½“å‰dsGroupæ²¡æœ‰åœ¨mapå†…ï¼Œé‚£ä¹ˆç®€å•çš„è¿”å›
+			// ç¢°åˆ°ä¸€ä¸ªå…¸å‹çš„åœºæ™¯æ˜¯åœ¨setAutoCommit(false->true)çš„è¿‡ç¨‹ä¸­ï¼Œä¹Ÿè¦æ˜¾ç¤ºçš„å…³é—­
+			// åœ¨å¼‚å¸¸çŠ¶æ€ä¸­ä¹Ÿè¦å…³é—­ï¼Œæ‰€ä»¥è¿˜æ˜¯æ‰“logå…³é—­å§ã€‚
 			// log.warn("should not be here ");
 			return;
 		}
 		
 		if (isAutoCommit && openedStatements.size() <= 1) {
-			// ·ÇÊÂÎñ×´Ì¬ÖĞ,²¢ÇÒ´ò¿ªµÄstatementÖ»ÓĞÒ»¸ö¡£
+			// éäº‹åŠ¡çŠ¶æ€ä¸­,å¹¶ä¸”æ‰“å¼€çš„statementåªæœ‰ä¸€ä¸ªã€‚
 			try {
-				// ½öÓĞµ±Ç°ÒıÓÃµÄÇ°ÌáÏÂ£¬±íÊ¾Íâ²¿ÒÑ¾­Ã»ÓĞÔÙ³ÖÓĞµ±Ç°ÒıÓÃÁË¡£¹Ø±ÕÁ¬½Ó¡£
+				// ä»…æœ‰å½“å‰å¼•ç”¨çš„å‰æä¸‹ï¼Œè¡¨ç¤ºå¤–éƒ¨å·²ç»æ²¡æœ‰å†æŒæœ‰å½“å‰å¼•ç”¨äº†ã€‚å…³é—­è¿æ¥ã€‚
 				conn.close();
 			} finally {
-				// ÒÆ³ıµ±Ç°Êı¾İÔ´
+				// ç§»é™¤å½“å‰æ•°æ®æº
 				connectionMap.remove(dbIndex);
 			}
-			// todo:ÕâÀï»¹ÓĞ¸ö¿ÉÒÔÓÅ»¯µÄµØ·½¾ÍÊÇÈç¹ûopenedStatements.size
-			// >1µÄÊ±ºò£¬±éÀúÕû¸östatements£¬Èç¹ûËùÓĞstatement.isResultSetClosed¶¼Îªtrue£¬Ôò¿ÉÒÔ¹Ø±ÕÁ¬½Ó
+			// todo:è¿™é‡Œè¿˜æœ‰ä¸ªå¯ä»¥ä¼˜åŒ–çš„åœ°æ–¹å°±æ˜¯å¦‚æœopenedStatements.size
+			// >1çš„æ—¶å€™ï¼Œéå†æ•´ä¸ªstatementsï¼Œå¦‚æœæ‰€æœ‰statement.isResultSetClosedéƒ½ä¸ºtrueï¼Œåˆ™å¯ä»¥å…³é—­è¿æ¥
 		}
 	}
 
 	/**
-	 * ÉèÖÃµ±Ç°ÊÂÎñ×´Ì¬¡£
+	 * è®¾ç½®å½“å‰äº‹åŠ¡çŠ¶æ€ã€‚
 	 * 
-	 * Èç¹ûÊÂÎñÖĞµÄManager(autoCommit=false) ,±»µ÷ÓÃÁËConnection.setAutoCommit(true) ·½·¨£¬ÄÇÃ´
-	 * ÕâÊ±ºòÖ»ÓĞ¿ÉÄÜÊÇmaxTransactionDSCount¸ö Èç¹ûµ±Ç°µÄËùÓĞ´ò¿ªµÄstatementÄÚÓĞÎ´¹Ø±ÕµÄ½á¹û¼¯£¬ÔòËùÓĞÁ¬½Ó±ØĞë±£³Ö´ò¿ª¡£
-	 * Èç¹ûÃ»ÓĞstatement,»òÕßÓĞstatementÃ»ÓĞresultSet,»òÕßÓĞresultSet¶øresultSet¹Ø±Õ¡£¶¼¿ÉÒÔ¹Ø±Õµ±Ç°Á¬½Ó
+	 * å¦‚æœäº‹åŠ¡ä¸­çš„Manager(autoCommit=false) ,è¢«è°ƒç”¨äº†Connection.setAutoCommit(true) æ–¹æ³•ï¼Œé‚£ä¹ˆ
+	 * è¿™æ—¶å€™åªæœ‰å¯èƒ½æ˜¯maxTransactionDSCountä¸ª å¦‚æœå½“å‰çš„æ‰€æœ‰æ‰“å¼€çš„statementå†…æœ‰æœªå…³é—­çš„ç»“æœé›†ï¼Œåˆ™æ‰€æœ‰è¿æ¥å¿…é¡»ä¿æŒæ‰“å¼€ã€‚
+	 * å¦‚æœæ²¡æœ‰statement,æˆ–è€…æœ‰statementæ²¡æœ‰resultSet,æˆ–è€…æœ‰resultSetè€ŒresultSetå…³é—­ã€‚éƒ½å¯ä»¥å…³é—­å½“å‰è¿æ¥
 	 * 
-	 * µ±´ÓautoCommit=true ±äÎªautoCommit = falseÊ±£¬»áÏÈ¼ì²éµ±Ç°ManagerÖĞ³ÖÓĞÁË¼¸¸öConnection.
+	 * å½“ä»autoCommit=true å˜ä¸ºautoCommit = falseæ—¶ï¼Œä¼šå…ˆæ£€æŸ¥å½“å‰Managerä¸­æŒæœ‰äº†å‡ ä¸ªConnection.
 	 * 
-	 * Ä¿Ç°¶¨ÒåÖĞ£¬Ó¦ÅĞ¶ÏÔÚÕâ¸öÊ±ºòConnectionµÄ¸öÊı£¬Èç¹û³¬¹ıÒ»¸ö Å×³öÌØ¶¨µÄTransactionException
+	 * ç›®å‰å®šä¹‰ä¸­ï¼Œåº”åˆ¤æ–­åœ¨è¿™ä¸ªæ—¶å€™Connectionçš„ä¸ªæ•°ï¼Œå¦‚æœè¶…è¿‡ä¸€ä¸ª æŠ›å‡ºç‰¹å®šçš„TransactionException
 	 * 
-	 * È»ºó½«µ±Ç°connectionÉèÖÃÎªautoCommit = false;
+	 * ç„¶åå°†å½“å‰connectionè®¾ç½®ä¸ºautoCommit = false;
 	 * 
 	 * 
-	 * Èç¹ûÔÚDatasourceGroup.setAutoCommitµÄÊ±ºò·¢ÉúÁËÒì³££¬ÔòÓ¦¸Ã¹Ø±ÕÁ¬½Ó£¨datasourceGroup»á×Ô¶¯ÖØÊÔ£¬
-	 * Å×³öÒì³£Ôò ±íÊ¾ÖØÊÔÊ§°Ü¡£
+	 * å¦‚æœåœ¨DatasourceGroup.setAutoCommitçš„æ—¶å€™å‘ç”Ÿäº†å¼‚å¸¸ï¼Œåˆ™åº”è¯¥å…³é—­è¿æ¥ï¼ˆdatasourceGroupä¼šè‡ªåŠ¨é‡è¯•ï¼Œ
+	 * æŠ›å‡ºå¼‚å¸¸åˆ™ è¡¨ç¤ºé‡è¯•å¤±è´¥ã€‚
 	 * 
-	 * setAutoCommit¿ÉÄÜÔÚÁ½¸ö³¡¾°ÏÂ±»Ê¹ÓÃ£¬µÚÒ»¸öÊÇconnection¸Õ¸Õ»ñÈ¡µÄÊ±ºò£¬ÕâÊ±ºòÖ»ÊÇÉèÖÃ
-	 * ±êÖ¾Î»£¬²»»áÅ×³öÒì³£¡£µÚ¶şÖÖÔòÊÇÔÚÔËĞĞÖĞÉèÖÃ×Ô¶¯Ìá½»¡£ÕâÖÖÇé¿öÏÂ£¬»áÅ×³öÒì³£
+	 * setAutoCommitå¯èƒ½åœ¨ä¸¤ä¸ªåœºæ™¯ä¸‹è¢«ä½¿ç”¨ï¼Œç¬¬ä¸€ä¸ªæ˜¯connectionåˆšåˆšè·å–çš„æ—¶å€™ï¼Œè¿™æ—¶å€™åªæ˜¯è®¾ç½®
+	 * æ ‡å¿—ä½ï¼Œä¸ä¼šæŠ›å‡ºå¼‚å¸¸ã€‚ç¬¬äºŒç§åˆ™æ˜¯åœ¨è¿è¡Œä¸­è®¾ç½®è‡ªåŠ¨æäº¤ã€‚è¿™ç§æƒ…å†µä¸‹ï¼Œä¼šæŠ›å‡ºå¼‚å¸¸
 	 * 
-	 * Ó¦¸Ã½«µ±Ç°±êÖ¾Î»±äÎª¹Ø±Õ¡£²¢¹Ø±ÕÄÚ²¿ËùÓĞÁ¬½Ó¡£
+	 * åº”è¯¥å°†å½“å‰æ ‡å¿—ä½å˜ä¸ºå…³é—­ã€‚å¹¶å…³é—­å†…éƒ¨æ‰€æœ‰è¿æ¥ã€‚
 	 * 
 	 * @param isAutoCommit
 	 */
 	public void setAutoCommit(boolean autoCommit) throws SQLException {
 		checkClosed();
-		// ÏÈÅÅ³ıÁ½ÖÖ×î³£¼ûµÄ×´Ì¬,true==true ºÍfalse == false
+		// å…ˆæ’é™¤ä¸¤ç§æœ€å¸¸è§çš„çŠ¶æ€,true==true å’Œfalse == false
 		if (this.isAutoCommit == autoCommit) {
-			// Ê²Ã´Ò²²»×ö
+			// ä»€ä¹ˆä¹Ÿä¸åš
 			return;
 		}
 		List<SQLException> sqlExceptions = null;
 		if (autoCommit) {
 			this.isAutoCommit = autoCommit;
 			// this.autoCommit false -> true
-			// ±éÀúÕû¸ö½á¹û¼¯£¬Èç¹ûÒıÓÃ¼ÆÊı²»Îª1£¬Ôò±íÊ¾»¹ÔÚÊ¹ÓÃ£¬ÕâÖÖ»á±»ÏÔÊ¾µÄÉèÖÃ
-			// autoCommitÎªtrue.´Ó¶ø¶ªÊ§ËùÓĞÏÖÓĞ¸üĞÂ¡£
-			// ½«autoCommit false-> true
+			// éå†æ•´ä¸ªç»“æœé›†ï¼Œå¦‚æœå¼•ç”¨è®¡æ•°ä¸ä¸º1ï¼Œåˆ™è¡¨ç¤ºè¿˜åœ¨ä½¿ç”¨ï¼Œè¿™ç§ä¼šè¢«æ˜¾ç¤ºçš„è®¾ç½®
+			// autoCommitä¸ºtrue.ä»è€Œä¸¢å¤±æ‰€æœ‰ç°æœ‰æ›´æ–°ã€‚
+			// å°†autoCommit false-> true
 			sqlExceptions = setAutoCommitFalse2True(autoCommit, sqlExceptions);
 		} else {
 
-			// ÕâÀï¸ù¾İholdabilityµÄÒªÇó£¬ÒªÏÔÊ¾µÄ¹Ø±ÕËùÓĞµÄresultSet
+			// è¿™é‡Œæ ¹æ®holdabilityçš„è¦æ±‚ï¼Œè¦æ˜¾ç¤ºçš„å…³é—­æ‰€æœ‰çš„resultSet
 			Iterator<TStatementImp> iterator = openedStatements.iterator();
 			while (iterator.hasNext()) {
 				TStatementImp it = iterator.next();
@@ -475,7 +475,7 @@ public class TConnectionImp implements ConnectionManager, Connection {
 			// this.autoCommit true ->false
 			sqlExceptions = setAutoCommitTrue2False(autoCommit, sqlExceptions);
 		}
-		// Å×³öÒì³£¡£
+		// æŠ›å‡ºå¼‚å¸¸ã€‚
 		if (sqlExceptions != null && !sqlExceptions.isEmpty()) {
 			throw ExceptionUtils.mergeException(sqlExceptions);
 		}
@@ -487,7 +487,7 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	 * @param sqlExceptions
 	 * @return
 	 * @throws SQLException
-	 *             µ±¿ç¿âÊÂÎñÊı³¬¹ıÔ¤ÆÚÊ±¡£µ«ÒÑ¾­È·±£ÄÚ²¿³ıÁËÕâ¸öÒì³£ÍâÃ»ÓĞÆäËûÒì³£¡£
+	 *             å½“è·¨åº“äº‹åŠ¡æ•°è¶…è¿‡é¢„æœŸæ—¶ã€‚ä½†å·²ç»ç¡®ä¿å†…éƒ¨é™¤äº†è¿™ä¸ªå¼‚å¸¸å¤–æ²¡æœ‰å…¶ä»–å¼‚å¸¸ã€‚
 	 */
 	protected List<SQLException> setAutoCommitTrue2False(boolean autoCommit,
 			List<SQLException> sqlExceptions) throws SQLException {
@@ -504,10 +504,10 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	}
 
 	/**
-	 * ÕâÊ±ºòÖ»ÓĞ¿ÉÄÜÊÇmaxTransactionDSCount¸ö
-	 * Èç¹ûµ±Ç°µÄÊÂÎïÖĞµÄstatementÎª0¸ö¡£±íÊ¾ÊÂÎñ½áÊø£¬Ã»ÓĞÒ»¸öTstatement»¹ÔÚÊ¹ÓÃÁ¬½Ó.ÄÇÃ´ÕâÊ±ºò»á½«Á´½Ó¹Ø±Õ¡£
-	 * Èç¹ûµ±Ç°ÊÂÎñÖĞµÄstatement¸öÊı²»Îª0¸ö
-	 * £¬Ôò±íÊ¾ÊÂÎñ½áÊø£¬»¹ÓĞTstatement¿ÉÄÜÔÚÊ¹ÓÃÁ¬½Ó£¬ÕâÊ±ºòÖ»ÊÇ½«Á´½ÓµÄ×´Ì¬±äÎªautoCommit
+	 * è¿™æ—¶å€™åªæœ‰å¯èƒ½æ˜¯maxTransactionDSCountä¸ª
+	 * å¦‚æœå½“å‰çš„äº‹ç‰©ä¸­çš„statementä¸º0ä¸ªã€‚è¡¨ç¤ºäº‹åŠ¡ç»“æŸï¼Œæ²¡æœ‰ä¸€ä¸ªTstatementè¿˜åœ¨ä½¿ç”¨è¿æ¥.é‚£ä¹ˆè¿™æ—¶å€™ä¼šå°†é“¾æ¥å…³é—­ã€‚
+	 * å¦‚æœå½“å‰äº‹åŠ¡ä¸­çš„statementä¸ªæ•°ä¸ä¸º0ä¸ª
+	 * ï¼Œåˆ™è¡¨ç¤ºäº‹åŠ¡ç»“æŸï¼Œè¿˜æœ‰Tstatementå¯èƒ½åœ¨ä½¿ç”¨è¿æ¥ï¼Œè¿™æ—¶å€™åªæ˜¯å°†é“¾æ¥çš„çŠ¶æ€å˜ä¸ºautoCommit
 	 * 
 	 * @param autoCommit
 	 * @param sqlExceptions
@@ -517,22 +517,22 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	protected List<SQLException> setAutoCommitFalse2True(boolean autoCommit,
 			List<SQLException> sqlExceptions) {
 		boolean closeAndclearRetryableDSGroup = true;
-		// ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ¹é»¹µ±Ç°Á¬½Ó£¬×ÛºÏÀ´Ëµ£¬Ö»ÒªÁ¬½ÓÄÚ
-		// resultSetÎ´¹Ø±Õ£¬¾Í²»ÄÜ¹é»¹Á¬½Ó£¬Èç¹ûstatementÄÚµÄresultSetÎª¿Õ£¬»òÕßresultSetÒÑ¾­È«²¿¹Ø±Õ£¬Ôò¿ÉÒÔ¹Ø±Õµ±Ç°Á¬½Ó¡£
+		// åˆ¤æ–­æ˜¯å¦å¯ä»¥å½’è¿˜å½“å‰è¿æ¥ï¼Œç»¼åˆæ¥è¯´ï¼Œåªè¦è¿æ¥å†…
+		// resultSetæœªå…³é—­ï¼Œå°±ä¸èƒ½å½’è¿˜è¿æ¥ï¼Œå¦‚æœstatementå†…çš„resultSetä¸ºç©ºï¼Œæˆ–è€…resultSetå·²ç»å…¨éƒ¨å…³é—­ï¼Œåˆ™å¯ä»¥å…³é—­å½“å‰è¿æ¥ã€‚
 		Iterator<TStatementImp> iterator = openedStatements.iterator();
 		while (iterator.hasNext()) {
 			TStatementImp it = iterator.next();
 			if (!it.isCurrentRSClosedOrNull()) {
-				// Ö»ÒªÓĞÒ»¸östatment or preparedStatementÃ»ÓĞ¹Ø±Õ£¬¾Í²»ÄÜ¹Ø±Õµ±Ç°Á¬½Ó¡£
+				// åªè¦æœ‰ä¸€ä¸ªstatment or preparedStatementæ²¡æœ‰å…³é—­ï¼Œå°±ä¸èƒ½å…³é—­å½“å‰è¿æ¥ã€‚
 				closeAndclearRetryableDSGroup = false;
 			}
 		}
 
 		for (Entry<String, Connection> entry : connectionMap.entrySet()) {
-			// Èç¹ûÒÑ¾­Ã»ÓĞ´ò¿ªµÄstatement,ÔòÈÏÎªµ±Ç°connection¿ÉÒÔ¹Ø±ÕÁË
+			// å¦‚æœå·²ç»æ²¡æœ‰æ‰“å¼€çš„statement,åˆ™è®¤ä¸ºå½“å‰connectionå¯ä»¥å…³é—­äº†
 			try {
 				if (isTransactionConnection(entry.getKey())) {
-					// ÎªÁË±£³ÖÓïÒåµÄÒ»ÖÂĞÔ£¬ËùÒÔÕâÀïÏÈÏÔÊ¾µÄ±äfalse->true
+					// ä¸ºäº†ä¿æŒè¯­ä¹‰çš„ä¸€è‡´æ€§ï¼Œæ‰€ä»¥è¿™é‡Œå…ˆæ˜¾ç¤ºçš„å˜false->true
 					sqlExceptions = setAutoCommitAndPutSQLExceptionToList(
 							autoCommit, sqlExceptions, entry);
 				}
@@ -576,7 +576,7 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	}
 
 	/**
-	 * ×îÖÕÇå¿Õ»º´æ£¬ÎŞÂÛÊÇ·ñÔÚTStatementµÄÊ±ºòÇå¿ÕÁËhint.
+	 * æœ€ç»ˆæ¸…ç©ºç¼“å­˜ï¼Œæ— è®ºæ˜¯å¦åœ¨TStatementçš„æ—¶å€™æ¸…ç©ºäº†hint.
 	 */
 	public static void flush_hint() {
 		flushOne(ThreadLocalString.ROUTE_CONDITION);
@@ -594,9 +594,9 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	}
 
 	/**
-	 * ¹Ø±ÕµÄË³ĞòÊÇ ÏÈÉèÖÃ±êÖ¾Î» ; È»ºó¹Ø±Õ³ÖÓĞµÄº¢×Ó È»ºóÏû³ı¶Ô³ÖÓĞº¢×ÓµÄÒıÓÃ ×îºó¹Ø±Õ×Ô¼º³ÖÓĞµÄ×ÊÔ´ ×îºóÏû³ı×Ô¼º¶Ô³ÖÓĞ×ÊÔ´µÄÒıÓÃ
+	 * å…³é—­çš„é¡ºåºæ˜¯ å…ˆè®¾ç½®æ ‡å¿—ä½ ; ç„¶åå…³é—­æŒæœ‰çš„å­©å­ ç„¶åæ¶ˆé™¤å¯¹æŒæœ‰å­©å­çš„å¼•ç”¨ æœ€åå…³é—­è‡ªå·±æŒæœ‰çš„èµ„æº æœ€åæ¶ˆé™¤è‡ªå·±å¯¹æŒæœ‰èµ„æºçš„å¼•ç”¨
 	 * 
-	 * ±ØĞëÒª×¢ÒâµÄÊÇ¹Ø±Õ×Ô¼º³ÖÓĞµÄ×ÊÔ´µÄÊ±ºò£¬ËùÓĞ×ÊÔ´¶¼»áÅ×³öÒì³££¬ÕâÊ±²»ÄÜÖÕÖ¹¹Ø±ÕÁ÷³Ì¡£
+	 * å¿…é¡»è¦æ³¨æ„çš„æ˜¯å…³é—­è‡ªå·±æŒæœ‰çš„èµ„æºçš„æ—¶å€™ï¼Œæ‰€æœ‰èµ„æºéƒ½ä¼šæŠ›å‡ºå¼‚å¸¸ï¼Œè¿™æ—¶ä¸èƒ½ç»ˆæ­¢å…³é—­æµç¨‹ã€‚
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
@@ -613,7 +613,7 @@ public class TConnectionImp implements ConnectionManager, Connection {
 
 		List<SQLException> exceptions = null;
 		try {
-			// ¹Ø±Õstatement
+			// å…³é—­statement
 			for (TStatementImp stmt : openedStatements) {
 				try {
 					stmt.closeInterval(closeInvokedByTStatement);
@@ -621,7 +621,7 @@ public class TConnectionImp implements ConnectionManager, Connection {
 					exceptions = appendToExceptionList(exceptions, e);
 				}
 			}
-			// ¹Ø±Õconnection
+			// å…³é—­connection
 			for (Connection conn : connectionMap.values()) {
 				try {
 					conn.close();
@@ -665,11 +665,11 @@ public class TConnectionImp implements ConnectionManager, Connection {
 
 	public void removeCurrentStatement(Statement statement) {
 		if (!openedStatements.remove(statement)) {
-			log.warn("current statmenet £º" + statement + " doesn't exist!");
+			log.warn("current statmenet ï¼š" + statement + " doesn't exist!");
 		}
 	}
 
-	/*---------------------ºóÃæÊÇÎ´ÊµÏÖµÄ·½·¨------------------------------*/
+	/*---------------------åé¢æ˜¯æœªå®ç°çš„æ–¹æ³•------------------------------*/
 
 	public void rollback(Savepoint savepoint) throws SQLException {
 		throw new UnsupportedOperationException("rollback");
@@ -701,8 +701,8 @@ public class TConnectionImp implements ConnectionManager, Connection {
 
 	public void setHoldability(int holdability) throws SQLException {
 		/*
-		 * Èç¹ûÄã¿´µ½ÕâÀï£¬ÄÇÃ´¹§Ï²£¬¹ş¹ş mysqlÄ¬ÈÏÔÚ5.xµÄjdbc driverÀïÃæÒ²Ã»ÓĞÊµÏÖholdability ¡£
-		 * ËùÒÔÄ¬ÈÏ¶¼ÊÇ.CLOSE_CURSORS_AT_COMMIT ÎªÁË¼ò»¯Æğ¼û£¬ÎÒÃÇÒ²¾ÍÖ»ÊµÏÖcloseÕâÖÖ
+		 * å¦‚æœä½ çœ‹åˆ°è¿™é‡Œï¼Œé‚£ä¹ˆæ­å–œï¼Œå“ˆå“ˆ mysqlé»˜è®¤åœ¨5.xçš„jdbc driveré‡Œé¢ä¹Ÿæ²¡æœ‰å®ç°holdability ã€‚
+		 * æ‰€ä»¥é»˜è®¤éƒ½æ˜¯.CLOSE_CURSORS_AT_COMMIT ä¸ºäº†ç®€åŒ–èµ·è§ï¼Œæˆ‘ä»¬ä¹Ÿå°±åªå®ç°closeè¿™ç§
 		 */
 		throw new UnsupportedOperationException("setHoldability");
 	}
@@ -740,14 +740,14 @@ public class TConnectionImp implements ConnectionManager, Connection {
 	}
 
 	/**
-	 * ±£³Ö¿É¶Á¿ÉĞ´
+	 * ä¿æŒå¯è¯»å¯å†™
 	 */
 	public boolean isReadOnly() throws SQLException {
 		return false;
 	}
 
 	/**
-	 * ²»×öÈÎºÎÊÂÇé
+	 * ä¸åšä»»ä½•äº‹æƒ…
 	 */
 	public void setReadOnly(boolean readOnly) throws SQLException {
 		// do nothing

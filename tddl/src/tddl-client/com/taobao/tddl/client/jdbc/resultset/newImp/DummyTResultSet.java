@@ -81,11 +81,11 @@ public abstract class DummyTResultSet extends PreparedStatementExecutorCommon im
 	}
 
 	/**
-	 * bug fix by shenxun : Ô­À´»á·¢ÉúÒ»¸öÇé¿ö¾ÍÊÇÈç¹ûTStatementµ÷ÓÃÁËclose()·½·¨
-	 * ¶ø±¾ÉíÆä¹ÜÀíµÄTResultSetÃ»ÓĞclosedÊ±ºò¡£Íâ²¿»áÊ¹ÓÃiteratorÀ´±éÀúÃ¿Ò»¸ö
-	 * TResultSet£¬µ÷ÓÃ¹Ø±ÕµÄ·½·¨£¬µ«ÒòÎªTResultSetµÄclose·½·¨»á»Øµ÷
-	 * TStatementÀïÃæÓÃÓÚ´´½¨iteratorµÄSet<ResultSet>¶ÔÏó£¬²¢Ê¹ÓÃremove·½·¨¡£
-	 * Õâ¾Í»áÅ×³öÒ»¸öconcurrentModificationException¡£
+	 * bug fix by shenxun : åŸæ¥ä¼šå‘ç”Ÿä¸€ä¸ªæƒ…å†µå°±æ˜¯å¦‚æœTStatementè°ƒç”¨äº†close()æ–¹æ³•
+	 * è€Œæœ¬èº«å…¶ç®¡ç†çš„TResultSetæ²¡æœ‰closedæ—¶å€™ã€‚å¤–éƒ¨ä¼šä½¿ç”¨iteratoræ¥éå†æ¯ä¸€ä¸ª
+	 * TResultSetï¼Œè°ƒç”¨å…³é—­çš„æ–¹æ³•ï¼Œä½†å› ä¸ºTResultSetçš„closeæ–¹æ³•ä¼šå›è°ƒ
+	 * TStatementé‡Œé¢ç”¨äºåˆ›å»ºiteratorçš„Set<ResultSet>å¯¹è±¡ï¼Œå¹¶ä½¿ç”¨removeæ–¹æ³•ã€‚
+	 * è¿™å°±ä¼šæŠ›å‡ºä¸€ä¸ªconcurrentModificationExceptionã€‚
 	 * 
 	 * @param removeThis
 	 * @throws SQLException
@@ -706,10 +706,10 @@ public abstract class DummyTResultSet extends PreparedStatementExecutorCommon im
 	}
 
 	/**
-	 * ÓÃµ±Ç°Á¬½Ó½¨Á¢statementd
+	 * ç”¨å½“å‰è¿æ¥å»ºç«‹statementd
 	 * 
 	 * @param connection
-	 *            µ±Ç°ÕıÔÚÓÃµÄconnection,±¾À´¿ÉÒÔ´ÓmapÖĞÈ¡µ«ÒòÎªĞ§ÂÊÉÏµÄ¿¼ÂÇËùÒÔ»¹ÊÇ²»ÕâÑù×ö
+	 *            å½“å‰æ­£åœ¨ç”¨çš„connection,æœ¬æ¥å¯ä»¥ä»mapä¸­å–ä½†å› ä¸ºæ•ˆç‡ä¸Šçš„è€ƒè™‘æ‰€ä»¥è¿˜æ˜¯ä¸è¿™æ ·åš
 	 * @param connections
 	 * @param dbIndex
 	 * @param retringContext

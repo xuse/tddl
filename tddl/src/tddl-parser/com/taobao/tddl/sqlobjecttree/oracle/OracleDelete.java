@@ -37,8 +37,8 @@ public class OracleDelete extends Delete {
 	public void init() {
 		initAliasAndComparableMap(aliasToSQLFragementMap,repListMap);
 
-		//Õâ¸öExpressionGroupÓÃÓÚ´æ·ÅsqlÖĞËùÓĞµÄrownum Expression.Ä¬ÈÏ¶¼Îªand¹ØÏµ£¬²»¹ıÆäÊµÊÇand»¹ÊÇorÃ»¹ØÏµ¡£
-		//ÒòÎª²»ÒÀÀµÕâ¸ö¹ØÏµ×÷ÊÂÇé¡£
+		//è¿™ä¸ªExpressionGroupç”¨äºå­˜æ”¾sqlä¸­æ‰€æœ‰çš„rownum Expression.é»˜è®¤éƒ½ä¸ºandå…³ç³»ï¼Œä¸è¿‡å…¶å®æ˜¯andè¿˜æ˜¯oræ²¡å…³ç³»ã€‚
+		//å› ä¸ºä¸ä¾èµ–è¿™ä¸ªå…³ç³»ä½œäº‹æƒ…ã€‚
 		rownumComparative =	buildRownumGroup(where.getExpGroup(),tbNames,aliasToSQLFragementMap);
 		
 		registerTraversalActionAndGet();
@@ -49,7 +49,7 @@ public class OracleDelete extends Delete {
 
 	public int getSkip(List<Object> param) {
 		/*
-		 * Õâ¸ögetSkipµÄ·½·¨Êµ¼ÊÉÏ»á±»Ç¶Ì×µ÷ÓÃ¡£
+		 * è¿™ä¸ªgetSkipçš„æ–¹æ³•å®é™…ä¸Šä¼šè¢«åµŒå¥—è°ƒç”¨ã€‚
 		 */
 		// rownum>0 and rownum<10 row>0 nested rownum<10 ;rownum= bigdecimal
 		// long int

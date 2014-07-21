@@ -32,9 +32,9 @@ import com.taobao.tddl.common.util.NamedThreadFactory;
 import com.taobao.tddl.jdbc.group.TGroupDataSource;
 
 /**
- * ÓÃÓÚ¸ù¾İÒ»¸ö»òÒ»×éÊı¾İÔ´Martrix key À´×îÖÕ¶¯Ì¬µÄ´´½¨Êı¾İÔ´listener. È»ºó´ÓÕâ¸ölistener¿ÉÒÔ¶¯Ì¬µÄ´´½¨×Ô¼ºµÄÊı¾İÔ´¡£
- * ÒòÎªÕâÒ»²ã²»ÖªµÀgroup dsºÍatom dsÖ®¼äµÄ¶ÔÓ¦¹ØÏµ¡£ËùÒÔ×î¶àÖ»ÄÜÖ§³Ö2ÖÖÄ£Ê½¡£ 1 . ¸ø¶¨Ò»ÏµÁĞds group matrix key.
- * ¶¯Ì¬´´½¨¡£ 2 . ¸ø¶¨Ò»ÏµÁĞatom dsµÄkey. ¶¯Ì¬´´½¨¡£ Õâ¸öÊÇÆäÖĞÓÃÓÚÖ§³Öds group matrix key ¶¯Ì¬´´½¨Êı¾İÔ´µÄÖ§³ÖÀà¡£
+ * ç”¨äºæ ¹æ®ä¸€ä¸ªæˆ–ä¸€ç»„æ•°æ®æºMartrix key æ¥æœ€ç»ˆåŠ¨æ€çš„åˆ›å»ºæ•°æ®æºlistener. ç„¶åä»è¿™ä¸ªlistenerå¯ä»¥åŠ¨æ€çš„åˆ›å»ºè‡ªå·±çš„æ•°æ®æºã€‚
+ * å› ä¸ºè¿™ä¸€å±‚ä¸çŸ¥é“group dså’Œatom dsä¹‹é—´çš„å¯¹åº”å…³ç³»ã€‚æ‰€ä»¥æœ€å¤šåªèƒ½æ”¯æŒ2ç§æ¨¡å¼ã€‚ 1 . ç»™å®šä¸€ç³»åˆ—ds group matrix key.
+ * åŠ¨æ€åˆ›å»ºã€‚ 2 . ç»™å®šä¸€ç³»åˆ—atom dsçš„key. åŠ¨æ€åˆ›å»ºã€‚ è¿™ä¸ªæ˜¯å…¶ä¸­ç”¨äºæ”¯æŒds group matrix key åŠ¨æ€åˆ›å»ºæ•°æ®æºçš„æ”¯æŒç±»ã€‚
  * 
  * @author shenxun
  */
@@ -63,7 +63,7 @@ public class DataSourceMatrixCreatorImp implements ConfigDataListener {
 		matrixHandler = cdhf.getConfigDataHandlerWithListener(configKey, this, unitName);
 		String data;
 		try {
-			// µÈ10s
+			// ç­‰10s
 			data = matrixHandler.getData(TDDLConstant.DIAMOND_GET_DATA_TIMEOUT,ConfigDataHandler.FIRST_SERVER_STRATEGY);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -77,16 +77,16 @@ public class DataSourceMatrixCreatorImp implements ConfigDataListener {
 
 	private Set<String> getKey2Add(String[] tempArray, Set<String> oldHaveNewDont) {
 		Set<String> newKeyToAdd = new HashSet<String>(Arrays.asList(tempArray));
-		//ÒòÎªÊÇunmodifiedmap £¬ËùÒÔ¸´ÖÆÒ»·İ³öÀ´ÔÙĞŞ¸Ä
+		//å› ä¸ºæ˜¯unmodifiedmap ï¼Œæ‰€ä»¥å¤åˆ¶ä¸€ä»½å‡ºæ¥å†ä¿®æ”¹
 		Set<String> tempOldHaveNewDont = new HashSet<String>(oldHaveNewDont);
 		for (String temp : tempArray) {
 			if (temp == null || temp.length() == 0) {
 				continue;
 			}
 			if (tempOldHaveNewDont.contains(temp)) {
-				// ´Ó¾ÉµÄÁÙÊ±mapÀïÒÆ³ö,Ê£ÏÂµÄÎªÓĞÎÊÌâµÄkey
+				// ä»æ—§çš„ä¸´æ—¶mapé‡Œç§»å‡º,å‰©ä¸‹çš„ä¸ºæœ‰é—®é¢˜çš„key
 				tempOldHaveNewDont.remove(temp);
-				// ´ÓĞÂµÄÁÙÊ±ÀïÒÆ³ö£¬Ê£ÏÂµÄÎªĞèÒªĞÂ¼ÓÈëµÄkey
+				// ä»æ–°çš„ä¸´æ—¶é‡Œç§»å‡ºï¼Œå‰©ä¸‹çš„ä¸ºéœ€è¦æ–°åŠ å…¥çš„key
 				newKeyToAdd.remove(temp);
 			}
 		}
@@ -212,7 +212,7 @@ public class DataSourceMatrixCreatorImp implements ConfigDataListener {
 			ConfigDataHandler cdh = cdhf.getConfigDataHandlerWithListener(str, this, unitName);
 			newMap.put(str, cdh);
 			String data = cdh.getData(TDDLConstant.DIAMOND_GET_DATA_TIMEOUT,ConfigDataHandler.FIRST_SERVER_STRATEGY);
-			// Ìí¼ÓËùÓĞkey
+			// æ·»åŠ æ‰€æœ‰key
 			keySet.addAll(Arrays.asList(propertiesSpliter(data)));
 		}
 		Map<String, DataSource> dsMap = getNewDataSourceMap(keySet);
@@ -248,7 +248,7 @@ public class DataSourceMatrixCreatorImp implements ConfigDataListener {
 	}
 
 	/**
-	 * ÇĞ·Öpeoperties 
+	 * åˆ‡åˆ†peoperties 
 	 * 
 	 * @param target
 	 * @return

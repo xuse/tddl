@@ -42,10 +42,10 @@
 //public class DBRuleProviderImp implements DBRuleProvider {
 //
 //	/**
-//	 * ÒòÎªparserExpressionÄÇÒ»ÏÂÌ«Âı£¬±ØĞë×ö¸öcache
+//	 * å› ä¸ºparserExpressioné‚£ä¸€ä¸‹å¤ªæ…¢ï¼Œå¿…é¡»åšä¸ªcache
 //	 */
 //	private final Map<String/*
-//							 * parameters:expression,»òÕßprimaryKey:PKExpression,¿É×ª»¯ÎªpositionMap
+//							 * parameters:expression,æˆ–è€…primaryKey:PKExpression,å¯è½¬åŒ–ä¸ºpositionMap
 //							 */, RowJEP> rowJepCache = new ConcurrentHashMap<String, RowJEP>();
 //
 //	private final PaginationColumnRowJepType paginationColumnRowJepType = new PaginationColumnRowJepType();
@@ -57,17 +57,17 @@
 //
 //	private Config.Factory IDConfigFactory = null;
 //	/**
-//	 * »º´æÁËµ±Ç°µÄÅäÖÃĞÅÏ¢£¬»¹²»Ö§³Ö¶¯Ì¬Ë¢ĞÂÔØÈë¡£
+//	 * ç¼“å­˜äº†å½“å‰çš„é…ç½®ä¿¡æ¯ï¼Œè¿˜ä¸æ”¯æŒåŠ¨æ€åˆ·æ–°è½½å…¥ã€‚
 //	 */
 //	final Map<String, LogicTabMatrix> tabMap = new ConcurrentHashMap<String, LogicTabMatrix>();
 //	
 //	private volatile boolean inited = false;
 //	/**
-//	 * urlµØÖ·
+//	 * urlåœ°å€
 //	 */
 //	private volatile String url;
 //	/**
-//	 * Xml·ÖÎö¼ÓÔØÆ÷
+//	 * Xmlåˆ†æåŠ è½½å™¨
 //	 */
 //
 //	private TDLXmlParser parser;
@@ -105,7 +105,7 @@
 //	// Map<String, DBRule> rules = logTabs.getAllRules();
 //	// for (DBRule dbRule : rules.values()) {
 //	// if(isPK){
-//	// //pkÖ»ÓĞÒ»¸öÔÚbeanÖĞ±£Ö¤
+//	// //pkåªæœ‰ä¸€ä¸ªåœ¨beanä¸­ä¿è¯
 //	// set.add(dbRule.getPrimaryKey());
 //	// }else{
 //	// set.addAll(dbRule.getPosiMap().keySet());
@@ -123,7 +123,7 @@
 //			throw new CantFindTargetVirtualNameException(virtualTabName);
 //		}
 //		if (colMap == null) {
-//			throw new TDLRunTimeException("Map<String,Comparative> Îª¿Õ");
+//			throw new TDLRunTimeException("Map<String,Comparative> ä¸ºç©º");
 //		}
 //		if (log.isDebugEnabled()) {
 //			log
@@ -143,7 +143,7 @@
 //	}
 //
 //	/**
-//	 * Í¨¹ıComparablemap ·µ»ØTargetDBsÁĞ±í¡£ÊÇÁ½Ì×inputµÄ¹«ÓÃ·½·¨
+//	 * é€šè¿‡Comparablemap è¿”å›TargetDBsåˆ—è¡¨ã€‚æ˜¯ä¸¤å¥—inputçš„å…¬ç”¨æ–¹æ³•
 //	 * 
 //	 * @param virtualTabName
 //	 * @param colListMap
@@ -170,7 +170,7 @@
 //
 //		Collection<DBRule> depositedRules = logTabs.getDepositedRules()
 //				.values();
-//		// Õë¶ÔÂß¼­±íÖĞµÄÃ¿Ò»¸öÏî
+//		// é’ˆå¯¹é€»è¾‘è¡¨ä¸­çš„æ¯ä¸€ä¸ªé¡¹
 //		for (DBRule adb : depositedRules) {
 //			RowJEP jep = null;
 //			Comparable<?>[] repo = null;
@@ -191,9 +191,9 @@
 //								.newInstance(virtualTabName);
 //						// if(conf==null){
 //						// throw new
-//						// IllegalArgumentException("Ä¿±êĞéÄâ±í:"+virtualTabName
-//						// +"²»°üº¬ÔÚÅäÖÃÎÄ¼şÖĞ£¬Çë¼ì²é" +
-//						// "ÓïÒåidÅäÖÃÎÄ¼şÖĞÊÇ·ñÓĞÖ¸¶¨idµÄÏî");
+//						// IllegalArgumentException("ç›®æ ‡è™šæ‹Ÿè¡¨:"+virtualTabName
+//						// +"ä¸åŒ…å«åœ¨é…ç½®æ–‡ä»¶ä¸­ï¼Œè¯·æ£€æŸ¥" +
+//						// "è¯­ä¹‰idé…ç½®æ–‡ä»¶ä¸­æ˜¯å¦æœ‰æŒ‡å®šidçš„é¡¹");
 //						// }
 //						isMatch = ((Boolean) jep.getValue(repo, conf))
 //								.booleanValue();
@@ -205,30 +205,30 @@
 //			} catch (ParseException e) {
 //				throw new ParseSQLJEPException(e);
 //			}
-//			// ·ûºÏÌõ¼şµÄdb
+//			// ç¬¦åˆæ¡ä»¶çš„db
 //			if (isMatch) {
 //				TargetDB db = buildOneTargetDBs(virtualTabName, colMap,
 //						logTabs, adb);
 //				retDBs.add(db);
 //				findAtLeastOneTab = true;
 //				if (repo.length == 1) {
-//					// Èç¹ûÊÇÒ»¸ö·Ö¿â×Ö¶Î£¬µÈÓÚµÄ¹ØÏµ£¬ÔòÕÒµ½¾Í·µ»Ø¡£
+//					// å¦‚æœæ˜¯ä¸€ä¸ªåˆ†åº“å­—æ®µï¼Œç­‰äºçš„å…³ç³»ï¼Œåˆ™æ‰¾åˆ°å°±è¿”å›ã€‚
 //					if ((repo[0] instanceof Comparative)
 //							&& !(repo[0] instanceof ComparativeBaseList)) {
 //						if (((Comparative) (repo[0])).getComparison() == Comparative.Equivalent) {
 //							break;
 //						}
 //						// else{
-//						// ÆäËûÇé¿ö²»Óë´¦Àí£¬°üº¬¸÷ÖÖÆäËûµÄ±È½Ï¹ØÏµ
+//						// å…¶ä»–æƒ…å†µä¸ä¸å¤„ç†ï¼ŒåŒ…å«å„ç§å…¶ä»–çš„æ¯”è¾ƒå…³ç³»
 //						// }
 //					}
 //					// else{
-//					// ÆäËûÇé¿ö²»Óè´¦Àí£¬°üº¬ÁËAnd Or ÕâÁ½ÀàÒÔ¼°ÆäËûµÄÒ»Ğ©·ÇComparativeµÄÇé¿ö
+//					// å…¶ä»–æƒ…å†µä¸äºˆå¤„ç†ï¼ŒåŒ…å«äº†And Or è¿™ä¸¤ç±»ä»¥åŠå…¶ä»–çš„ä¸€äº›éComparativeçš„æƒ…å†µ
 //					// }
 //				}
 //
 //				// }else{
-//				// µ±Ç°¹æÔò²»·ûºÏÊäÈë²ÎÊı£¬Ìø¹ı
+//				// å½“å‰è§„åˆ™ä¸ç¬¦åˆè¾“å…¥å‚æ•°ï¼Œè·³è¿‡
 //				// }
 //			}
 //		}
@@ -260,7 +260,7 @@
 //			}
 //			buildDefaultDBRuleSQL(virtualTabName, colMap, retDBs, logTabs);
 //			// }else{
-//			// ÕÒµ½ÖÁÉÙÒ»¸ö£¬Ìø¹ı
+//			// æ‰¾åˆ°è‡³å°‘ä¸€ä¸ªï¼Œè·³è¿‡
 //			// }
 //		}
 //		TargetDBMetaData meta =null;
@@ -277,7 +277,7 @@
 //	}
 //
 //	/**
-//	 * ÓÃÓÚ½«KeyValueÊı×éÆ´×°³ÉComparableÊı×éºÍpositionÎ»ÖÃÌõ¼şµÄMap
+//	 * ç”¨äºå°†KeyValueæ•°ç»„æ‹¼è£…æˆComparableæ•°ç»„å’Œpositionä½ç½®æ¡ä»¶çš„Map
 //	 * 
 //	 * @param rule
 //	 * @param colMap
@@ -291,7 +291,7 @@
 //			t = colMap.get(ent.getKey());
 //			if (t != null) {
 //				if (comp[ent.getValue()] != null) {
-//					throw new IllegalArgumentException("²»Ö§³Ö·Ö¿â×Ö¶Î³öÏÖÔÚ²»Í¬sqlÇ¶Ì×²ã¼¶ÖĞ");
+//					throw new IllegalArgumentException("ä¸æ”¯æŒåˆ†åº“å­—æ®µå‡ºç°åœ¨ä¸åŒsqlåµŒå¥—å±‚çº§ä¸­");
 //				} else {
 //					comp[ent.getValue()] = t;
 //				}
@@ -302,10 +302,10 @@
 //	}
 //
 //	/**
-//	 * ¼ì²éwhereÌõ¼şÖĞÊÇ·ñ°üº¬µÄËùÓĞ·Ö¿â×Ö¶ÎÊÇ·ñ¶¼ÓĞÖµ£¬Èç¹û¶¼ÓĞÖµÔò·µ»ØpaginationColumnRowJepType
-//	 * Èç¹ûÃ»ÓĞ£¬ÄÇÃ´¼ì²éÊÇ·ñ°üº¬Ö÷¼üidÒÔ¼°Ö÷¼üÌõ¼ş±í´ïÊ½£¬ÓĞÔò·µ»ØprimaryColumnRowJepType
+//	 * æ£€æŸ¥whereæ¡ä»¶ä¸­æ˜¯å¦åŒ…å«çš„æ‰€æœ‰åˆ†åº“å­—æ®µæ˜¯å¦éƒ½æœ‰å€¼ï¼Œå¦‚æœéƒ½æœ‰å€¼åˆ™è¿”å›paginationColumnRowJepType
+//	 * å¦‚æœæ²¡æœ‰ï¼Œé‚£ä¹ˆæ£€æŸ¥æ˜¯å¦åŒ…å«ä¸»é”®idä»¥åŠä¸»é”®æ¡ä»¶è¡¨è¾¾å¼ï¼Œæœ‰åˆ™è¿”å›primaryColumnRowJepType
 //	 * 
-//	 * @important Èç¹û²»ĞŞ¸ÄÒÔÇ°µÄxml£¬»á·¢ÉúÑÏÖØÎÊÌâ£¡£¡£¡ ½«ÒÔÇ°ÔÚxmlÖĞµÄ±í²ÎÊı´Ó¿â²ÎÊıÖĞÈ¥µô£¬»á·¢Éú´íÎó
+//	 * @important å¦‚æœä¸ä¿®æ”¹ä»¥å‰çš„xmlï¼Œä¼šå‘ç”Ÿä¸¥é‡é—®é¢˜ï¼ï¼ï¼ å°†ä»¥å‰åœ¨xmlä¸­çš„è¡¨å‚æ•°ä»åº“å‚æ•°ä¸­å»æ‰ï¼Œä¼šå‘ç”Ÿé”™è¯¯
 //	 * 
 //	 * @param posiMap
 //	 * @param colMap
@@ -315,7 +315,7 @@
 //			Map<String, Comparative> colMap) {
 //		boolean isPaginationColumn = true;
 //		boolean isPrimaryColumn = true;
-//		// ÓÅÏÈÅĞ¶ÏÊÇ·ñÓĞ·Ö¿â×Ö¶Î½øĞĞ·Ö¿â¡£
+//		// ä¼˜å…ˆåˆ¤æ–­æ˜¯å¦æœ‰åˆ†åº“å­—æ®µè¿›è¡Œåˆ†åº“ã€‚
 //		Set<Entry<String, Integer>> entryset = dbRule.getPosiMap().entrySet();
 //		if (entryset.size() == 0) {
 //			isPaginationColumn = false;
@@ -331,7 +331,7 @@
 //		if (isPaginationColumn) {
 //			return this.paginationColumnRowJepType;
 //		}
-//		// È»ºóÅĞ¶ÏÊÇ·ñ¿ÉÒÔ¸ù¾İid½øĞĞ·Ö¿â
+//		// ç„¶ååˆ¤æ–­æ˜¯å¦å¯ä»¥æ ¹æ®idè¿›è¡Œåˆ†åº“
 //		entryset = dbRule.getPrimaryPosiMap().entrySet();
 //		if (entryset.size() == 0) {
 //			isPrimaryColumn = false;
@@ -350,13 +350,13 @@
 //		if (isPrimaryColumn) {
 //			return this.primaryKeyRowJepType;
 //		} else {
-//			// ²»ÄÜ¸ù¾İparameters»òÕßprimaryKeyÕÒµ½Ö¸¶¨µÄ·Ö¿â×Ö¶Î
+//			// ä¸èƒ½æ ¹æ®parametersæˆ–è€…primaryKeyæ‰¾åˆ°æŒ‡å®šçš„åˆ†åº“å­—æ®µ
 //			return this.noSpecficColumnRowJepType;
 //		}
 //	}
 //
 //	/**
-//	 * ×é½¨Ä¬ÈÏDBRule£¬µ±Ã»ÓĞÒ»¸öExpression·ûºÏÒªÇóÊ±µ÷ÓÃ´Ë·½·¨
+//	 * ç»„å»ºé»˜è®¤DBRuleï¼Œå½“æ²¡æœ‰ä¸€ä¸ªExpressionç¬¦åˆè¦æ±‚æ—¶è°ƒç”¨æ­¤æ–¹æ³•
 //	 * 
 //	 * @param vtabname
 //	 * @param colMap
@@ -378,25 +378,25 @@
 //	}
 //
 //	/**
-//	 * Ö§³ÖÍ¨¹ı×¢ÈëurlºÍparserµÄ·½Ê½o »ñÈ¡logixTabMarticMap.
+//	 * æ”¯æŒé€šè¿‡æ³¨å…¥urlå’Œparserçš„æ–¹å¼o è·å–logixTabMarticMap.
 //	 */
 //	private void initTabmap() {
 //		if (!inited) {
-//			// ÓĞ¿ÉÄÜspringÔÚ³õÊ¼»¯µÄ¹ı³ÌÖĞµ¼ÖÂparser!=nullµ«»¹²»ÊÇÒ»¸öÕıÈ·µÄParser¶ÔÏó¡£
-//			// µ±È»¿ÉÄÜĞÔºÜĞ¡
+//			// æœ‰å¯èƒ½springåœ¨åˆå§‹åŒ–çš„è¿‡ç¨‹ä¸­å¯¼è‡´parser!=nullä½†è¿˜ä¸æ˜¯ä¸€ä¸ªæ­£ç¡®çš„Parserå¯¹è±¡ã€‚
+//			// å½“ç„¶å¯èƒ½æ€§å¾ˆå°
 //			synchronized (this) {
 //				if (!inited) {
 //					if (tabMap.size() == 0) {
 //						if (parser == null) {
 //							throw new IllegalArgumentException(
-//									"parserÃ»ÓĞ×¢Èë£¬Ò²Ã»ÓĞÌá¹©tabMap");
+//									"parseræ²¡æœ‰æ³¨å…¥ï¼Œä¹Ÿæ²¡æœ‰æä¾›tabMap");
 //						}
 //						if (url == null || url.trim().equals("")) {
 //							throw new IllegalArgumentException(
-//									"urlÃ»ÓĞÍ¨¹ıÅäÖÃ×¢Èë£¬Ò²Ã»ÓĞÌá¹©tabMap");
+//									"urlæ²¡æœ‰é€šè¿‡é…ç½®æ³¨å…¥ï¼Œä¹Ÿæ²¡æœ‰æä¾›tabMap");
 //						}
 //
-//						// Ê¹ÓÃconcurrentHashMap±£Ö¤putµÄ°²È«¡£
+//						// ä½¿ç”¨concurrentHashMapä¿è¯putçš„å®‰å…¨ã€‚
 //						parser.initLogicTabMarticMap(url, tabMap);
 //
 //						if (IDGeneratorUrl != null) {
@@ -418,7 +418,7 @@
 //	}
 //
 //	/**
-//	 * ×é³ÉÒ»¸öTargetDBs.¸ù¾İÖ¸¶¨µÄÌõ¼ş
+//	 * ç»„æˆä¸€ä¸ªTargetDBs.æ ¹æ®æŒ‡å®šçš„æ¡ä»¶
 //	 * 
 //	 * @param vtabName
 //	 * @param comp
@@ -439,7 +439,7 @@
 //		Set<String> idSet = null;
 //		if (tab.getDBSubTabRule() != null) {
 //			String tabExpression = tab.getDBSubTabRule().getExpFunction();
-//			// Ê×ÏÈ³¢ÊÔ¸ù¾İ·Ö¿â¹æÔòÈ¡±í
+//			// é¦–å…ˆå°è¯•æ ¹æ®åˆ†åº“è§„åˆ™å–è¡¨
 //			provider = TableRuleProviderRegister
 //					.getTableRuleProviderByKey(tabExpression);
 //			if (provider != null) {
@@ -458,10 +458,10 @@
 //			if (tab.getPrimaryKey() != null) {
 //				comp = colMap.get(tab.getPrimaryKey());
 //			}
-//			// Èç¹ûÃ»È¡µ½£¬²¢ÇÒ¿ÉÒÔÕÒµ½pkÖ÷¼ü¡£
+//			// å¦‚æœæ²¡å–åˆ°ï¼Œå¹¶ä¸”å¯ä»¥æ‰¾åˆ°pkä¸»é”®ã€‚
 //			if (idSet.size() == 0 && comp != null && IDConfigFactory != null) {
 //
-//				// Èç¹û·Ö¿â¹æÔò²»ÄÜ»ñÈ¡±í,²¢ÇÒ¿ÉÒÔ¸ù¾İPrimary key ÕÒµ½¶ÔÓ¦µÄcomparative
+//				// å¦‚æœåˆ†åº“è§„åˆ™ä¸èƒ½è·å–è¡¨,å¹¶ä¸”å¯ä»¥æ ¹æ®Primary key æ‰¾åˆ°å¯¹åº”çš„comparative
 //				provider = TableRuleProviderRegister
 //						.getTableRuleProviderByKey("primarykey");
 //				if (logTabs.getTableFactor() != null&&!logTabs.getTableFactor().equals("")) {
@@ -478,8 +478,8 @@
 //			}
 //
 //			if (idSet.size() == 0 && comp == null) {
-//				// Èç¹û²»ÄÜÍ¨¹ı·Ö¿â¹æÔò»ñÈ¡±í£¬²¢ÇÒ²»ÄÜ¸ù¾İprimary key ÕÒµ½¶ÔÓ¦µÄcomparative
-//				// ÒòÎªÇ°ÃæÓĞidSetÎªemptySetµÄÉè¶¨£¬Òò´ËÕâÀïÒª´ÓĞÂ½¨Ò»¸öĞÂµÄSet
+//				// å¦‚æœä¸èƒ½é€šè¿‡åˆ†åº“è§„åˆ™è·å–è¡¨ï¼Œå¹¶ä¸”ä¸èƒ½æ ¹æ®primary key æ‰¾åˆ°å¯¹åº”çš„comparative
+//				// å› ä¸ºå‰é¢æœ‰idSetä¸ºemptySetçš„è®¾å®šï¼Œå› æ­¤è¿™é‡Œè¦ä»æ–°å»ºä¸€ä¸ªæ–°çš„Set
 //				idSet = new HashSet<String>();
 //				idSet.addAll(tab.getDBSubTabRule().getDefaultTable());
 //
@@ -513,11 +513,11 @@
 //					log.debug(sb.toString());
 //				}
 //			} else {
-//				// idset²»Îª0£¬±íÊ¾¿ÉÒÔÈ¡µ½Öµ¡£Òò´ËÊ²Ã´¶¼²»×ö
+//				// idsetä¸ä¸º0ï¼Œè¡¨ç¤ºå¯ä»¥å–åˆ°å€¼ã€‚å› æ­¤ä»€ä¹ˆéƒ½ä¸åš
 //			}
 //			db.setTableNames(idSet);
 //		} else {
-//			// ¶¼Ã»ÓĞÄÇ¾ÍÓÃĞéÄâ±íÃû
+//			// éƒ½æ²¡æœ‰é‚£å°±ç”¨è™šæ‹Ÿè¡¨å
 //			Set<String> arList = new HashSet<String>();
 //
 //			String obj =logTabs.getTableName();
@@ -530,8 +530,8 @@
 //	}
 //
 //	/**
-//	 * ÒòÎªparseExpressionËÙ¶ÈÌ«Âı ËùÒÔ¶Ô·ÖÎöºóµÄExpression½á¹û×öÁËÒ»¸öcache. Ëû»áÏÈ¸ù¾İkey
-//	 * 1:positionÎ»ÖÃ×Ö´®¡£È»ºó¸ù¾İkey 2: expressionÌõ¼ş±í´ïÊ½£¬ÕÒµ½·ÖÎöºóµÄExpression
+//	 * å› ä¸ºparseExpressioné€Ÿåº¦å¤ªæ…¢ æ‰€ä»¥å¯¹åˆ†æåçš„Expressionç»“æœåšäº†ä¸€ä¸ªcache. ä»–ä¼šå…ˆæ ¹æ®key
+//	 * 1:positionä½ç½®å­—ä¸²ã€‚ç„¶åæ ¹æ®key 2: expressionæ¡ä»¶è¡¨è¾¾å¼ï¼Œæ‰¾åˆ°åˆ†æåçš„Expression
 //	 * 
 //	 * @param parameters
 //	 * @param virtualTabName
@@ -549,8 +549,8 @@
 //		RowJEP temp = rowJepCache.get(sb.toString());
 //		log.debug("try to get rowJep object In rowJepCache,parameters is:"
 //				+ parameters + "expression is :" + expression);
-//		// ×î»µµÄÇé¿öÊÇ¶à´ÎÖ´ĞĞifÏÂÃæµÄ´úÂë£¬µ«ÓÉÓÚÀà±äÁ¿Ö»ÓĞrowJEpCacheÒ»¸ö£¬²¢ÇÒËüµÄÊı¾İÍêÕûĞÔ
-//		// ÓÉconcurrentHashMap±£Ö¤£¬Òò´ËÏß³Ì°²È«
+//		// æœ€åçš„æƒ…å†µæ˜¯å¤šæ¬¡æ‰§è¡Œifä¸‹é¢çš„ä»£ç ï¼Œä½†ç”±äºç±»å˜é‡åªæœ‰rowJEpCacheä¸€ä¸ªï¼Œå¹¶ä¸”å®ƒçš„æ•°æ®å®Œæ•´æ€§
+//		// ç”±concurrentHashMapä¿è¯ï¼Œå› æ­¤çº¿ç¨‹å®‰å…¨
 //		if (temp == null) {
 //			log.warn("cant find rowJep by para:" + parameters
 //					+ ",we have to build this rule's cache");
@@ -559,7 +559,7 @@
 //			if (debugEnable) {
 //				time = System.currentTimeMillis();
 //			}
-//			// È«ĞÂµÄrowJepCache
+//			// å…¨æ–°çš„rowJepCache
 //			LogicTabMatrix tabMatrix = tabMap.get(virtualTabName.toLowerCase());
 //			Collection<DBRule> rules = tabMatrix.getDepositedRules().values();
 //			buildOrRebuildMap(rules, rowJepCache);
@@ -575,7 +575,7 @@
 //	}
 //
 //	/**
-//	 * ÔØÈë»òÖØÔØÒ»¸övtableNameËù¶ÔÓ¦µÄRowJEP½âÎö
+//	 * è½½å…¥æˆ–é‡è½½ä¸€ä¸ªvtableNameæ‰€å¯¹åº”çš„RowJEPè§£æ
 //	 * 
 //	 * @param rules
 //	 * @param map
@@ -619,7 +619,7 @@
 //	}
 //
 //	/**
-//	 * ÒòÎª¿¼ÂÇµ½Ô­ÔòÉÏÖ»ÓĞinit»òÕßĞŞ¸ÄÅäÖÃµÄÊ±ºò²Å»áµ÷ÓÃ£¬Èç¹û ÓĞ¶¯Ì¬ĞŞ¸ÄĞèÒª£¬ÔòÇëĞ¡ĞÄ½÷É÷´¦Àí ²âÊÔÓÃ·½·¨
+//	 * å› ä¸ºè€ƒè™‘åˆ°åŸåˆ™ä¸Šåªæœ‰initæˆ–è€…ä¿®æ”¹é…ç½®çš„æ—¶å€™æ‰ä¼šè°ƒç”¨ï¼Œå¦‚æœ æœ‰åŠ¨æ€ä¿®æ”¹éœ€è¦ï¼Œåˆ™è¯·å°å¿ƒè°¨æ…å¤„ç† æµ‹è¯•ç”¨æ–¹æ³•
 //	 * 
 //	 * @param vTab
 //	 * @param DBRule
@@ -702,12 +702,12 @@
 //		initTabmap();
 //		PartitionElement ele = new PartitionElement();
 //		if (table == null) {
-//			throw new IllegalArgumentException("±íÃûÎª¿Õ");
+//			throw new IllegalArgumentException("è¡¨åä¸ºç©º");
 //		}
 //		LogicTabMatrix matrix = tabMap.get(table.toLowerCase());
 //		if (matrix == null) {
 //			throw new IllegalArgumentException(table.toLowerCase()
-//					+ ",Î´ÄÜÔÚ¹æÔòÎÄ¼şÖĞÕÒµ½¶ÔÓ¦µÄĞéÄâ±íÃû");
+//					+ ",æœªèƒ½åœ¨è§„åˆ™æ–‡ä»¶ä¸­æ‰¾åˆ°å¯¹åº”çš„è™šæ‹Ÿè¡¨å");
 //		}
 //		Map<String, DBRule> rules = matrix.getAllRules();
 //
@@ -731,7 +731,7 @@
 //					ele.addPKFirstElement(tempParam);
 //				}
 //			}
-//			// Ö»È¡µÚÒ»¸ö¼´¿É
+//			// åªå–ç¬¬ä¸€ä¸ªå³å¯
 //			return ele;
 //		}
 //		// if (rules != null && rules.size() > 0) {
@@ -761,21 +761,21 @@
 //		
 //		if(logicTable == null){
 //			throw new IllegalArgumentException(virtualTableName
-//					+ ",Î´ÄÜÔÚ¹æÔòÎÄ¼şÖĞÕÒµ½¶ÔÓ¦µÄĞéÄâ±íÃû");
+//					+ ",æœªèƒ½åœ¨è§„åˆ™æ–‡ä»¶ä¸­æ‰¾åˆ°å¯¹åº”çš„è™šæ‹Ÿè¡¨å");
 //		}
 //		DBRule dbRule = logicTable.getAllRules().get(databaseGroupID);
 //		if(dbRule == null){
-//			throw new IllegalArgumentException(databaseGroupID+"£¬Î´ÄÜÕÒµ½¶ÔÓ¦¹æÔò");
+//			throw new IllegalArgumentException(databaseGroupID+"ï¼Œæœªèƒ½æ‰¾åˆ°å¯¹åº”è§„åˆ™");
 //		}
 //		
 //		List<TargetDB> targetDBs = new ArrayList<TargetDB>();
 //		TargetDB db =new TargetDB();
 //		db.setReadPool(dbRule.getReadPool());
 //		db.setWritePool(dbRule.getWritePool());
-//		//²»×ödefaultTableµÄ¼ì²éÁË£¬ÍêÈ«½»¸øÒµÎñ±£Ö¤
+//		//ä¸åšdefaultTableçš„æ£€æŸ¥äº†ï¼Œå®Œå…¨äº¤ç»™ä¸šåŠ¡ä¿è¯
 //		db.setTableNames(tables);
 //		targetDBs.add(db);
-//		//²»ÔÊĞí·´ÏòÊä³ö£¬Ò²²»ÔÊĞíĞĞ¸´ÖÆ¡£
+//		//ä¸å…è®¸åå‘è¾“å‡ºï¼Œä¹Ÿä¸å…è®¸è¡Œå¤åˆ¶ã€‚
 //		TargetDBMetaData meta = new TargetDBMetaData(virtualTableName,targetDBs,logicTable.isNeedRowCopy(),logicTable.isAllowReverseOutput());
 //		return meta;
 //	}

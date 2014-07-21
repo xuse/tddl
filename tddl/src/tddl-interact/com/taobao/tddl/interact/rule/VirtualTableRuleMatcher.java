@@ -22,32 +22,32 @@ import com.taobao.tddl.interact.rule.util.RuleUtils;
 import com.taobao.tddl.interact.sqljep.Comparative;
 
 /**
- * 1.ÔÚ·Ö¿âÁĞºÍ·Ö±íÁĞÃ»ÓĞ½»¼¯µÄÇé¿öÏÂ£¬¸÷×Ô¼ÆËã£¬½á¹û×öµÑ¿¨¶û×éºÏ¡£
+ * 1.åœ¨åˆ†åº“åˆ—å’Œåˆ†è¡¨åˆ—æ²¡æœ‰äº¤é›†çš„æƒ…å†µä¸‹ï¼Œå„è‡ªè®¡ç®—ï¼Œç»“æœåšç¬›å¡å°”ç»„åˆã€‚
  * 
- * 2.ÔÚ·Ö¿âÁĞºÍ·Ö±íÁĞÓĞ½»¼¯£¬¹«¹²ÁĞµÄ¸½¼Ó²ÎÊıÍêÈ«ÏàÍ¬µÄÇé¿öÏÂ£¬¹«¹²ÁĞ¿â±í¹æÔòµÄÃèµã×ÜÊÇÏàÍ¬µÄ¡£
- *   ±íµÄÃèµãÒª¾­¹ı¿â¹æÔò¼ÆËãºó°´¿â·ÖÀà£¬ÔÚÃ¿¸ö¿âÄÚ£¬Ö»¶Ô²úÉú¸Ã¿âµÄÃèµãÖµ½øĞĞ±í¹æÔò¼ÆËãÀ´È·¶¨±í
- *   ·ñÔò¿ÉÄÜ»á²úÉú²»ÔÚ±¾¿âµÄ±í¡£ÀıÈç¿â%2±í%8£º
- *       id%2=0--db0£ºt0,t2,t4,t6
+ * 2.åœ¨åˆ†åº“åˆ—å’Œåˆ†è¡¨åˆ—æœ‰äº¤é›†ï¼Œå…¬å…±åˆ—çš„é™„åŠ å‚æ•°å®Œå…¨ç›¸åŒçš„æƒ…å†µä¸‹ï¼Œå…¬å…±åˆ—åº“è¡¨è§„åˆ™çš„æç‚¹æ€»æ˜¯ç›¸åŒçš„ã€‚
+ *   è¡¨çš„æç‚¹è¦ç»è¿‡åº“è§„åˆ™è®¡ç®—åæŒ‰åº“åˆ†ç±»ï¼Œåœ¨æ¯ä¸ªåº“å†…ï¼Œåªå¯¹äº§ç”Ÿè¯¥åº“çš„æç‚¹å€¼è¿›è¡Œè¡¨è§„åˆ™è®¡ç®—æ¥ç¡®å®šè¡¨
+ *   å¦åˆ™å¯èƒ½ä¼šäº§ç”Ÿä¸åœ¨æœ¬åº“çš„è¡¨ã€‚ä¾‹å¦‚åº“%2è¡¨%8ï¼š
+ *       id%2=0--db0ï¼št0,t2,t4,t6
  *       id%2=1--db1: t1,t3,t5,t7
- *   ±íµÄÃèµã0-7ĞèÒªÏÈ¾­¹ı¿â¹æÔò¼ÆËã£¬°´¿â½á¹û·Ö³ÉÁ½Ààdb0:0,2,4,5ºÍdb1:1,3,5,7ÔÙ·Ö±í½øĞĞ±í¹æÔò¼ÆËã
+ *   è¡¨çš„æç‚¹0-7éœ€è¦å…ˆç»è¿‡åº“è§„åˆ™è®¡ç®—ï¼ŒæŒ‰åº“ç»“æœåˆ†æˆä¸¤ç±»db0:0,2,4,5å’Œdb1:1,3,5,7å†åˆ†è¡¨è¿›è¡Œè¡¨è§„åˆ™è®¡ç®—
  * 
- * 3.ÔÚ·Ö¿âÁĞºÍ·Ö±íÁĞ ÁĞÃûÏàÍ¬ ÀàĞÍ²»Í¬ µÄÇé¿öÏÂ£¬¸÷×ÔÃèµãÈ¡²¢¼¯£¬ÔÙ°´2µÄ·½Ê½¼ÆËã¡£±ÈÈç¿â1_month ±í1_day£¬
- *   µ¥ÔÂdb0£¬Ë«ÔÂdb1£»Ò»ÌìÒ»ÕÅ±í¡£Ôòtime in£¨2ÔÂ5ÈÕ 3ÔÂ8ÈÕ 4ÔÂ20ÈÕ£©ÕıÈ·½á¹ûÓ¦¸ÃÊÇ£º
+ * 3.åœ¨åˆ†åº“åˆ—å’Œåˆ†è¡¨åˆ— åˆ—åç›¸åŒ ç±»å‹ä¸åŒ çš„æƒ…å†µä¸‹ï¼Œå„è‡ªæç‚¹å–å¹¶é›†ï¼Œå†æŒ‰2çš„æ–¹å¼è®¡ç®—ã€‚æ¯”å¦‚åº“1_month è¡¨1_dayï¼Œ
+ *   å•æœˆdb0ï¼ŒåŒæœˆdb1ï¼›ä¸€å¤©ä¸€å¼ è¡¨ã€‚åˆ™time inï¼ˆ2æœˆ5æ—¥ 3æœˆ8æ—¥ 4æœˆ20æ—¥ï¼‰æ­£ç¡®ç»“æœåº”è¯¥æ˜¯ï¼š
  *       db0: t_5,t_20
  *       db1: t_8
- *   ÉÏÊöÀı×ÓÊÇÃèµãÏàÍ¬µÄÇé¿ö¡£¶ÔÓÚÃèµã²»Í¬µÄÇé¿öÀıÈç 5ÔÂ31ÈÕ<=time<=6ÔÂ2ÈÕ¡£
- *   ¿âµÄÃèµãÊÇ5ÔÂ31ÈÕ£¬6ÔÂ1ÈÕ¹²2¸ö£»±íÊÇ5ÔÂ31ÈÕ¡¢6ÔÂ1ÈÕ¡¢6ÔÂ2ÈÕ¹²3¸ö£¬ÕıÈ·µÄ½á¹ûÓ¦¸ÃÊÇ£º
+ *   ä¸Šè¿°ä¾‹å­æ˜¯æç‚¹ç›¸åŒçš„æƒ…å†µã€‚å¯¹äºæç‚¹ä¸åŒçš„æƒ…å†µä¾‹å¦‚ 5æœˆ31æ—¥<=time<=6æœˆ2æ—¥ã€‚
+ *   åº“çš„æç‚¹æ˜¯5æœˆ31æ—¥ï¼Œ6æœˆ1æ—¥å…±2ä¸ªï¼›è¡¨æ˜¯5æœˆ31æ—¥ã€6æœˆ1æ—¥ã€6æœˆ2æ—¥å…±3ä¸ªï¼Œæ­£ç¡®çš„ç»“æœåº”è¯¥æ˜¯ï¼š
  *       db0: t_1,t_2
  *       db1: t_31
- *   ÉÏÊöÁĞ×ÓÊÇ±íµÄÃèµã¶àÓÚ¿â£¬Í¬Ê±°üº¬ÁË¿âµÄÃèµã¡£±íµÄÃèµã±ØĞë¾­¹ı¿â¹æÔò·ÖÀàÔÙ¼ÆËã¡£
- *   ¶ÔÓÚ±íµÄÃèµã²»°üº¬È«²¿¿âÃèµãµÄÇé¿ö£¬ÀıÈç£º¿âÃèµãa,b,c±íÃèµãb,c,d ....
+ *   ä¸Šè¿°åˆ—å­æ˜¯è¡¨çš„æç‚¹å¤šäºåº“ï¼ŒåŒæ—¶åŒ…å«äº†åº“çš„æç‚¹ã€‚è¡¨çš„æç‚¹å¿…é¡»ç»è¿‡åº“è§„åˆ™åˆ†ç±»å†è®¡ç®—ã€‚
+ *   å¯¹äºè¡¨çš„æç‚¹ä¸åŒ…å«å…¨éƒ¨åº“æç‚¹çš„æƒ…å†µï¼Œä¾‹å¦‚ï¼šåº“æç‚¹a,b,cè¡¨æç‚¹b,c,d ....
  *   
- * 4.²»¿¼ÂÇ¿â±í¹æÔòµÄ¹«¹²ÁĞ£¨²ÎÊı£©ÔÚÀàĞÍÏàÍ¬µÄÇé¿öÏÂ£¬µü´ú´ÎÊıµÄ²»Í¬¡£
- *   ÁĞÃûºÍÀàĞÍÏàÍ¬£¬Åä²»Í¬µÄµü´ú´ÎÊıÊÇÒâÒå²»´óµÄ£¬ÀıÈç¿â%2±í%8£¬¼ÆËã¿âµÄÊ±ºò2¸öÃèµã£¬¼ÆËã±íĞèÒª8¸öÃèµã£¬
- *   µ«ÊÇÓÉÓÚÊÇÍ¬Ò»¸öÁĞ£¬±íµÄ8¸öÃèµãĞèÒªÈ«²¿×ßÒ»±é¿â¹æÔò£¬½øĞĞ°´¿â·ÖÀë¾ÛºÏÔÙ¼ÆËã±í£¬²ÅÄÜ±£Ö¤½á¹ûµÄÕıÈ·£º
- *   Èç¹û¿âµÄµü´ú´ÎÊı´óÓÚ±íµÄ£¬ÀıÈç¿âid%8 ±íid%3, Í³Ò»°´¿âµÄÃèµã±í¹æÔò»á¶à¼ÆËã¼¸´Î
+ * 4.ä¸è€ƒè™‘åº“è¡¨è§„åˆ™çš„å…¬å…±åˆ—ï¼ˆå‚æ•°ï¼‰åœ¨ç±»å‹ç›¸åŒçš„æƒ…å†µä¸‹ï¼Œè¿­ä»£æ¬¡æ•°çš„ä¸åŒã€‚
+ *   åˆ—åå’Œç±»å‹ç›¸åŒï¼Œé…ä¸åŒçš„è¿­ä»£æ¬¡æ•°æ˜¯æ„ä¹‰ä¸å¤§çš„ï¼Œä¾‹å¦‚åº“%2è¡¨%8ï¼Œè®¡ç®—åº“çš„æ—¶å€™2ä¸ªæç‚¹ï¼Œè®¡ç®—è¡¨éœ€è¦8ä¸ªæç‚¹ï¼Œ
+ *   ä½†æ˜¯ç”±äºæ˜¯åŒä¸€ä¸ªåˆ—ï¼Œè¡¨çš„8ä¸ªæç‚¹éœ€è¦å…¨éƒ¨èµ°ä¸€éåº“è§„åˆ™ï¼Œè¿›è¡ŒæŒ‰åº“åˆ†ç¦»èšåˆå†è®¡ç®—è¡¨ï¼Œæ‰èƒ½ä¿è¯ç»“æœçš„æ­£ç¡®ï¼š
+ *   å¦‚æœåº“çš„è¿­ä»£æ¬¡æ•°å¤§äºè¡¨çš„ï¼Œä¾‹å¦‚åº“id%8 è¡¨id%3, ç»Ÿä¸€æŒ‰åº“çš„æç‚¹è¡¨è§„åˆ™ä¼šå¤šè®¡ç®—å‡ æ¬¡
  *       DB0:t0,t1,t2; DB1:t0,t1,t2
- *   ºöÂÔÕâÖÖÇé¿ö£¬ËùÒÔ¹«¹²ÁĞ£¨²ÎÊı£©ÔÚÀàĞÍÏàÍ¬Ê±£¬ÒªÇóÓ¦ÓÃ°´×î´óµü´ú´ÎÊıÅä³ÉÒ»ÖÂ¡£
+ *   å¿½ç•¥è¿™ç§æƒ…å†µï¼Œæ‰€ä»¥å…¬å…±åˆ—ï¼ˆå‚æ•°ï¼‰åœ¨ç±»å‹ç›¸åŒæ—¶ï¼Œè¦æ±‚åº”ç”¨æŒ‰æœ€å¤§è¿­ä»£æ¬¡æ•°é…æˆä¸€è‡´ã€‚
  *    
  * @author linxuan
  *
@@ -56,20 +56,20 @@ public class VirtualTableRuleMatcher {
 
     private static final boolean isCrossInto;
     static {
-        //Ìá¹©Ò»¸ö¿ÉÅäÖÃµÄ»ú»á£¬µ«ÊÇÔÚ¾ø´ó¶àÊıÄ¬ÈÏµÄÇé¿öÏÂ£¬²»ÏëÓ°Ïì½Ó¿Ú²ã´ÎºÍ´úÂë½á¹¹
+        //æä¾›ä¸€ä¸ªå¯é…ç½®çš„æœºä¼šï¼Œä½†æ˜¯åœ¨ç»å¤§å¤šæ•°é»˜è®¤çš„æƒ…å†µä¸‹ï¼Œä¸æƒ³å½±å“æ¥å£å±‚æ¬¡å’Œä»£ç ç»“æ„
         String str = System.getProperty("com.taobao.tddl.rule.isCrossIntoCalculate", "false");
         isCrossInto = Boolean.parseBoolean(str);
     }
     
     /**
      * @param comparativeMapChoicer
-     * @param args sqlµÄ²ÎÊıÁĞ±í
-     * @param rule sqlÖĞĞéÄâ±íÃû¶ÔÓ¦µÄ¹æÔò
+     * @param args sqlçš„å‚æ•°åˆ—è¡¨
+     * @param rule sqlä¸­è™šæ‹Ÿè¡¨åå¯¹åº”çš„è§„åˆ™
      * @return
      */
     public MatcherResult match(boolean needSourceKey,ComparativeMapChoicer choicer, List<Object> args, VirtualTableRule<String, String> rule) {
         if (needSourceKey) {
-            //ÔİÊ±²»Ö§³ÖĞéÄâ½Úµã
+            //æš‚æ—¶ä¸æ”¯æŒè™šæ‹ŸèŠ‚ç‚¹
             return matchWithSourceKey(choicer, args, rule);
         } else {
             return matchNoSourceKey(choicer, args, rule);
@@ -78,25 +78,25 @@ public class VirtualTableRuleMatcher {
 
     private MatcherResult matchNoSourceKey(ComparativeMapChoicer choicer, List<Object> args,
             VirtualTableRule<String, String> rule) {
-        //ËùÓĞ¿â±í¹æÔòÖĞÓÃµ½µÄÁĞºÍ¶ÔÓ¦µÄ±È½ÏÊ÷,×÷ÎªÒ»¸ö¹æÔòÁ´Æ¥ÅäÊ±°ó¶¨²ÎÊıµÄ»º´æ¡£
-        //Ò»¿ªÊ¼¾Í°ÑËùÓĞµÄÈ¡³öÀ´²»¹»ÓÅ»¯¡£¿ÉÄÜÓĞĞ©ÊÇ²»ĞèÒªÈ¡µÄ¡£Ò²¾ÍÊ¡ÁËĞ©°ó¶¨²ÎÊıµÄ²Ù×÷
+        //æ‰€æœ‰åº“è¡¨è§„åˆ™ä¸­ç”¨åˆ°çš„åˆ—å’Œå¯¹åº”çš„æ¯”è¾ƒæ ‘,ä½œä¸ºä¸€ä¸ªè§„åˆ™é“¾åŒ¹é…æ—¶ç»‘å®šå‚æ•°çš„ç¼“å­˜ã€‚
+        //ä¸€å¼€å§‹å°±æŠŠæ‰€æœ‰çš„å–å‡ºæ¥ä¸å¤Ÿä¼˜åŒ–ã€‚å¯èƒ½æœ‰äº›æ˜¯ä¸éœ€è¦å–çš„ã€‚ä¹Ÿå°±çœäº†äº›ç»‘å®šå‚æ•°çš„æ“ä½œ
         Map<String, Comparative> allRuleArgs = new HashMap<String, Comparative>(2);
-        Map<String, Comparative> dbRuleArgs = new HashMap<String, Comparative>(2); //Æ¥ÅäµÄ¹æÔòËù¶ÔÓ¦µÄÁĞÃûºÍ±È½ÏÊ÷
-        Map<String, Comparative> tbRuleArgs = new HashMap<String, Comparative>(2); //Æ¥ÅäµÄ¹æÔòËù¶ÔÓ¦µÄÁĞÃûºÍ±È½ÏÊ÷
+        Map<String, Comparative> dbRuleArgs = new HashMap<String, Comparative>(2); //åŒ¹é…çš„è§„åˆ™æ‰€å¯¹åº”çš„åˆ—åå’Œæ¯”è¾ƒæ ‘
+        Map<String, Comparative> tbRuleArgs = new HashMap<String, Comparative>(2); //åŒ¹é…çš„è§„åˆ™æ‰€å¯¹åº”çš„åˆ—åå’Œæ¯”è¾ƒæ ‘
         Object outerCtx = rule.getOuterContext();
         
-        //¾¹È»²»ĞèÒªdefaultDbValueºÍdefaultTbValueÁË
+        //ç«Ÿç„¶ä¸éœ€è¦defaultDbValueå’ŒdefaultTbValueäº†
         Rule<String> dbRule = findMatchedRule(allRuleArgs, rule.getDbShardRules(), dbRuleArgs, choicer, args, rule);
         Rule<String> tbRule = findMatchedRule(allRuleArgs, rule.getTbShardRules(), tbRuleArgs, choicer, args, rule);
 
         Map<String, Set<String>> topology;
         if (dbRule == null && tbRule == null) {
-            //ÈôÎŞ¿â¹æÔò£¬¾²Ì¬ÍØÆËÀïÃæÖ»ÓĞÒ»¸ö¿â£¬ÔòÎŞÂÛÃ»±í¹æÔòÒ²ºÃ£¬È«±íÉ¨Ò²ºÃ£¬½á¹û¶¼ºÍ¾²Ì¬ÍØÆËÒ»Ñù
-            //ÈôÓĞ¿â¹æÔò£¬ÄÇÃ´ÊÇÈ«¿âÉ¨£¬ÔòÎŞÂÛÃ»±í¹æÔòÒ²ºÃ£¬È«±íÉ¨Ò²ºÃ£¬½á¹ûÈÔÈ»ºÍ¾²Ì¬ÍØÆËÒ»Ñù£¡£¡
-            topology = rule.getActualTopology(); //²»²Â²»ÖªµÀ£¬ÊÀ½çÕæÆæÃî
+            //è‹¥æ— åº“è§„åˆ™ï¼Œé™æ€æ‹“æ‰‘é‡Œé¢åªæœ‰ä¸€ä¸ªåº“ï¼Œåˆ™æ— è®ºæ²¡è¡¨è§„åˆ™ä¹Ÿå¥½ï¼Œå…¨è¡¨æ‰«ä¹Ÿå¥½ï¼Œç»“æœéƒ½å’Œé™æ€æ‹“æ‰‘ä¸€æ ·
+            //è‹¥æœ‰åº“è§„åˆ™ï¼Œé‚£ä¹ˆæ˜¯å…¨åº“æ‰«ï¼Œåˆ™æ— è®ºæ²¡è¡¨è§„åˆ™ä¹Ÿå¥½ï¼Œå…¨è¡¨æ‰«ä¹Ÿå¥½ï¼Œç»“æœä»ç„¶å’Œé™æ€æ‹“æ‰‘ä¸€æ ·ï¼ï¼
+            topology = rule.getActualTopology(); //ä¸çŒœä¸çŸ¥é“ï¼Œä¸–ç•ŒçœŸå¥‡å¦™
         } else if (dbRule == null) {
             Set<String> tbValues = tbRule.calculateNoTrace(tbRuleArgs, null, outerCtx);
-            //1.ÎŞ¿â¹æÔò 2.ÓĞµ«ÊÇÃ»Æ¥Åäµ½ £»ÕâÊ±±í¹æÔòÒ»¶¨²»Îª¿Õ£¬ÇÒºÍ¿â¹æÔòÈ«ÎŞ¹ØÁª£¬×Ô¼ºËã×Ô¼ºµÄ
+            //1.æ— åº“è§„åˆ™ 2.æœ‰ä½†æ˜¯æ²¡åŒ¹é…åˆ° ï¼›è¿™æ—¶è¡¨è§„åˆ™ä¸€å®šä¸ä¸ºç©ºï¼Œä¸”å’Œåº“è§„åˆ™å…¨æ— å…³è”ï¼Œè‡ªå·±ç®—è‡ªå·±çš„
             topology = new HashMap<String, Set<String>>(rule.getActualTopology().size());
             for (String dbValue : rule.getActualTopology().keySet()) {
                 topology.put(dbValue, tbValues);
@@ -106,7 +106,7 @@ public class VirtualTableRuleMatcher {
             if(dbRule instanceof VirtualNodeGroovyRule){
                 topology = rule.getActualTopology();
             }else{
-                //1.ÎŞ±í¹æÔò 2.ÓĞµ«ÊÇÃ»Æ¥Åäµ½ £»ÕâÊ±¿â¹æÔòÒ»¶¨²»Îª¿Õ£¬ÇÒºÍ±í¹æÔòÈ«ÎŞ¹ØÁª£¬×Ô¼ºËã×Ô¼ºµÄ
+                //1.æ— è¡¨è§„åˆ™ 2.æœ‰ä½†æ˜¯æ²¡åŒ¹é…åˆ° ï¼›è¿™æ—¶åº“è§„åˆ™ä¸€å®šä¸ä¸ºç©ºï¼Œä¸”å’Œè¡¨è§„åˆ™å…¨æ— å…³è”ï¼Œè‡ªå·±ç®—è‡ªå·±çš„
                 Set<String> dbValues = dbRule.calculateNoTrace(dbRuleArgs, null, outerCtx);
                 topology = new HashMap<String, Set<String>>(dbValues.size());
                 for (String dbValue : dbValues) {
@@ -114,16 +114,16 @@ public class VirtualTableRuleMatcher {
                 }
             }
         } else {
-            //¿´±í¹æÔòºÍ¿â¹æÔòµÄÁĞÓĞÎŞ½»¼¯
+            //çœ‹è¡¨è§„åˆ™å’Œåº“è§„åˆ™çš„åˆ—æœ‰æ— äº¤é›†
             Set<String> commonSet = getCommonColumnSet(dbRule, tbRule);
             String[] commonColumn = commonSet == null ? null : commonSet.toArray(new String[commonSet.size()]);
             if (commonColumn == null || commonColumn.length == 0) {
-                //ÎŞ½»¼¯
-                //modify by junyu,2011-9-23,Ôö¼ÓĞéÄâ½Úµã
+                //æ— äº¤é›†
+                //modify by junyu,2011-9-23,å¢åŠ è™šæ‹ŸèŠ‚ç‚¹
                 Set<String> tbValues = tbRule.calculateNoTrace(tbRuleArgs, null, outerCtx);
                 Set<String> dbValues = null;
                 if(dbRule instanceof VirtualNodeGroovyRule){
-                    //ËµÃ÷dbRuleÊÇĞéÄâÓ³Éä
+                    //è¯´æ˜dbRuleæ˜¯è™šæ‹Ÿæ˜ å°„
                     topology = new HashMap<String, Set<String>>();
                     for(String tab:tbValues){
                         String db = dbRule.calculateVnodeNoTrace(tab, null, outerCtx);
@@ -143,7 +143,7 @@ public class VirtualTableRuleMatcher {
                     }
                 }
             } else {
-                //ÓĞ½»¼¯
+                //æœ‰äº¤é›†
                 if (!isCrossInto) {
                     topology = crossNoSourceKey1(dbRule, dbRuleArgs, tbRule, tbRuleArgs, commonColumn, outerCtx);
                 } else {
@@ -157,27 +157,27 @@ public class VirtualTableRuleMatcher {
     
     private MatcherResult matchWithSourceKey(ComparativeMapChoicer choicer, List<Object> args,
             VirtualTableRule<String, String> rule) {
-        //ËùÓĞ¿â±í¹æÔòÖĞÓÃµ½µÄÁĞºÍ¶ÔÓ¦µÄ±È½ÏÊ÷,×÷ÎªÒ»¸ö¹æÔòÁ´Æ¥ÅäÊ±°ó¶¨²ÎÊıµÄ»º´æ¡£
-        //Ò»¿ªÊ¼¾Í°ÑËùÓĞµÄÈ¡³öÀ´²»¹»ÓÅ»¯¡£¿ÉÄÜÓĞĞ©ÊÇ²»ĞèÒªÈ¡µÄ¡£Ò²¾ÍÊ¡ÁËĞ©°ó¶¨²ÎÊıµÄ²Ù×÷
+        //æ‰€æœ‰åº“è¡¨è§„åˆ™ä¸­ç”¨åˆ°çš„åˆ—å’Œå¯¹åº”çš„æ¯”è¾ƒæ ‘,ä½œä¸ºä¸€ä¸ªè§„åˆ™é“¾åŒ¹é…æ—¶ç»‘å®šå‚æ•°çš„ç¼“å­˜ã€‚
+        //ä¸€å¼€å§‹å°±æŠŠæ‰€æœ‰çš„å–å‡ºæ¥ä¸å¤Ÿä¼˜åŒ–ã€‚å¯èƒ½æœ‰äº›æ˜¯ä¸éœ€è¦å–çš„ã€‚ä¹Ÿå°±çœäº†äº›ç»‘å®šå‚æ•°çš„æ“ä½œ
         Map<String, Comparative> allRuleArgs = new HashMap<String, Comparative>(2);
-        Map<String, Comparative> dbRuleArgs = new HashMap<String, Comparative>(2); //Æ¥ÅäµÄ¹æÔòËù¶ÔÓ¦µÄÁĞÃûºÍ±È½ÏÊ÷
-        Map<String, Comparative> tbRuleArgs = new HashMap<String, Comparative>(2); //Æ¥ÅäµÄ¹æÔòËù¶ÔÓ¦µÄÁĞÃûºÍ±È½ÏÊ÷
+        Map<String, Comparative> dbRuleArgs = new HashMap<String, Comparative>(2); //åŒ¹é…çš„è§„åˆ™æ‰€å¯¹åº”çš„åˆ—åå’Œæ¯”è¾ƒæ ‘
+        Map<String, Comparative> tbRuleArgs = new HashMap<String, Comparative>(2); //åŒ¹é…çš„è§„åˆ™æ‰€å¯¹åº”çš„åˆ—åå’Œæ¯”è¾ƒæ ‘
         Object outerCtx = rule.getOuterContext();
 
-        //¾¹È»²»ĞèÒªdefaultDbValueºÍdefaultTbValueÁË
+        //ç«Ÿç„¶ä¸éœ€è¦defaultDbValueå’ŒdefaultTbValueäº†
         Rule<String> dbRule = findMatchedRule(allRuleArgs, rule.getDbShardRules(), dbRuleArgs, choicer, args, rule);
         Rule<String> tbRule = findMatchedRule(allRuleArgs, rule.getTbShardRules(), tbRuleArgs, choicer, args, rule);
 
         Map<String, Map<String, Field>> topology;
         if (dbRule == null && tbRule == null) {
-            //ÈôÎŞ¿â¹æÔò£¬¾²Ì¬ÍØÆËÀïÃæÖ»ÓĞÒ»¸ö¿â£¬ÔòÎŞÂÛÃ»±í¹æÔòÒ²ºÃ£¬È«±íÉ¨Ò²ºÃ£¬½á¹û¶¼ºÍ¾²Ì¬ÍØÆËÒ»Ñù
-            //ÈôÓĞ¿â¹æÔò£¬ÄÇÃ´ÊÇÈ«¿âÉ¨£¬ÔòÎŞÂÛÃ»±í¹æÔòÒ²ºÃ£¬È«±íÉ¨Ò²ºÃ£¬½á¹ûÈÔÈ»ºÍ¾²Ì¬ÍØÆËÒ»Ñù£¡£¡
+            //è‹¥æ— åº“è§„åˆ™ï¼Œé™æ€æ‹“æ‰‘é‡Œé¢åªæœ‰ä¸€ä¸ªåº“ï¼Œåˆ™æ— è®ºæ²¡è¡¨è§„åˆ™ä¹Ÿå¥½ï¼Œå…¨è¡¨æ‰«ä¹Ÿå¥½ï¼Œç»“æœéƒ½å’Œé™æ€æ‹“æ‰‘ä¸€æ ·
+            //è‹¥æœ‰åº“è§„åˆ™ï¼Œé‚£ä¹ˆæ˜¯å…¨åº“æ‰«ï¼Œåˆ™æ— è®ºæ²¡è¡¨è§„åˆ™ä¹Ÿå¥½ï¼Œå…¨è¡¨æ‰«ä¹Ÿå¥½ï¼Œç»“æœä»ç„¶å’Œé™æ€æ‹“æ‰‘ä¸€æ ·ï¼ï¼
             topology = new HashMap<String, Map<String, Field>>(rule.getActualTopology().size());
             for (Map.Entry<String, Set<String>> e : rule.getActualTopology().entrySet()) {
                 topology.put(e.getKey(), toMapField(e.getValue()));
             }
         } else if (dbRule == null) {
-            //1.ÎŞ¿â¹æÔò 2.ÓĞµ«ÊÇÃ»Æ¥Åäµ½ £»ÕâÊ±±í¹æÔòÒ»¶¨²»Îª¿Õ£¬ÇÒºÍ¿â¹æÔòÈ«ÎŞ¹ØÁª£¬×Ô¼ºËã×Ô¼ºµÄ
+            //1.æ— åº“è§„åˆ™ 2.æœ‰ä½†æ˜¯æ²¡åŒ¹é…åˆ° ï¼›è¿™æ—¶è¡¨è§„åˆ™ä¸€å®šä¸ä¸ºç©ºï¼Œä¸”å’Œåº“è§„åˆ™å…¨æ— å…³è”ï¼Œè‡ªå·±ç®—è‡ªå·±çš„
             Map<String, Samples> tbValues = cast(tbRule.calculate(tbRuleArgs, null, outerCtx));
             topology = new HashMap<String, Map<String, Field>>(rule.getActualTopology().size());
             for (String dbValue : rule.getActualTopology().keySet()) {
@@ -191,30 +191,30 @@ public class VirtualTableRuleMatcher {
                     topology.put(e.getKey(), toMapField(e.getValue()));
                 }
             }else{
-                //1.ÎŞ±í¹æÔò 2.ÓĞµ«ÊÇÃ»Æ¥Åäµ½ £»ÕâÊ±¿â¹æÔòÒ»¶¨²»Îª¿Õ£¬ÇÒºÍ±í¹æÔòÈ«ÎŞ¹ØÁª£¬×Ô¼ºËã×Ô¼ºµÄ
-                // bug fix by leiwen.zh: needIdInGroup²»Ö§³ÖÖ»·Ö¿âµÄ³¡¾° 
+                //1.æ— è¡¨è§„åˆ™ 2.æœ‰ä½†æ˜¯æ²¡åŒ¹é…åˆ° ï¼›è¿™æ—¶åº“è§„åˆ™ä¸€å®šä¸ä¸ºç©ºï¼Œä¸”å’Œè¡¨è§„åˆ™å…¨æ— å…³è”ï¼Œè‡ªå·±ç®—è‡ªå·±çš„
+                // bug fix by leiwen.zh: needIdInGroupä¸æ”¯æŒåªåˆ†åº“çš„åœºæ™¯ 
                 Map<String, Samples> dbValues = cast(dbRule.calculate(dbRuleArgs, null, outerCtx));
                 topology = new HashMap<String, Map<String, Field>>(dbValues.size());
                 for (String dbValue : dbValues.keySet()) {
                     Map<String, Samples> tbValues = new HashMap<String, Samples>();
-                    // ²»·Ö±í,pattern¼´ÎªÊµ¼Ê±íÃû
+                    // ä¸åˆ†è¡¨,patternå³ä¸ºå®é™…è¡¨å
                     String tableName = rule.getTbNamePattern();
-                    // ²»·Ö±í,SampleÓë·Ö¿â±£³ÖÒ»ÖÂ¼´¿É
+                    // ä¸åˆ†è¡¨,Sampleä¸åˆ†åº“ä¿æŒä¸€è‡´å³å¯
                     Samples samples = dbValues.get(dbValue);
                     tbValues.put(tableName, samples);
                     topology.put(dbValue, toMapField(tbValues));
                 }
             }
         } else {
-            //¿´±í¹æÔòºÍ¿â¹æÔòµÄÁĞÓĞÎŞ½»¼¯
+            //çœ‹è¡¨è§„åˆ™å’Œåº“è§„åˆ™çš„åˆ—æœ‰æ— äº¤é›†
             Set<String> commonSet = getCommonColumnSet(dbRule, tbRule);
             String[] commonColumn = commonSet == null ? null : commonSet.toArray(new String[commonSet.size()]);
             if (commonColumn == null || commonColumn.length == 0) {
-                //ÎŞ½»¼¯
-                //modify by junyu,2011-10-24,Ô­±¾Ã»ÓĞ¼ÓÕâ¸ö£¬ĞèÒª²âÊÔÏÂid in group ÓÅ»¯µÄ²¿·Ö
+                //æ— äº¤é›†
+                //modify by junyu,2011-10-24,åŸæœ¬æ²¡æœ‰åŠ è¿™ä¸ªï¼Œéœ€è¦æµ‹è¯•ä¸‹id in group ä¼˜åŒ–çš„éƒ¨åˆ†
                 if(dbRule instanceof VirtualNodeGroovyRule){
                     Map<String,Samples> tbValues =cast(tbRule.calculate(tbRuleArgs, null, outerCtx));
-                    //ËµÃ÷dbRuleÊÇĞéÄâÓ³Éä
+                    //è¯´æ˜dbRuleæ˜¯è™šæ‹Ÿæ˜ å°„
                     topology = new HashMap<String, Map<String,Field>>();
                     Map<String,Map<String,Samples>> templogy=new HashMap<String,Map<String,Samples>>();
                     for(Map.Entry<String,Samples> entry:tbValues.entrySet()){
@@ -239,7 +239,7 @@ public class VirtualTableRuleMatcher {
                         topology.put(dbValue, toMapField(tbValues));
                     }
                 }
-            } else { //ÓĞ½»¼¯
+            } else { //æœ‰äº¤é›†
                 if (!isCrossInto) {
                     topology = crossWithSourceKey1(dbRule, dbRuleArgs, tbRule, tbRuleArgs, commonColumn, outerCtx);
                 } else {
@@ -254,14 +254,14 @@ public class VirtualTableRuleMatcher {
     private Map<String, Set<String>> crossNoSourceKey1(Rule<String> matchedDbRule,
             Map<String, Comparative> matchedDbRuleArgs, Rule<String> matchedTbRule,
             Map<String, Comparative> matchedTbRuleArgs, String[] commonColumn, Object outerCtx) {
-        SamplesCtx dbRuleCtx = null; //¶ÔÓÚ±í¹æÔòÖĞÓë¿â¹æÔòÁĞÃûÏàÍ¬¶ø×ÔÔöÀàĞÍ²»Í¬µÄÁĞ£¬½«Æä±íÃ¶¾Ù½á¹û¼ÓÈë¿â¹æÔòµÄÃ¶¾Ù¼¯
+        SamplesCtx dbRuleCtx = null; //å¯¹äºè¡¨è§„åˆ™ä¸­ä¸åº“è§„åˆ™åˆ—åç›¸åŒè€Œè‡ªå¢ç±»å‹ä¸åŒçš„åˆ—ï¼Œå°†å…¶è¡¨æšä¸¾ç»“æœåŠ å…¥åº“è§„åˆ™çš„æšä¸¾é›†
         Set<AdvancedParameter> mergeInCommon = diffTypeOrOptionalInCommon(matchedDbRule,
             matchedTbRule,
             commonColumn,
             matchedDbRuleArgs,
             matchedTbRuleArgs);
         if (mergeInCommon != null && !mergeInCommon.isEmpty()) {
-            //¹«¹²ÁĞ°üº¬ÓĞÃ¶¾ÙÀàĞÍ²»Í¬µÄÁĞ£¬ÀıÈç¿âÊÇ1_month£¬±íÊ¾1_day
+            //å…¬å…±åˆ—åŒ…å«æœ‰æšä¸¾ç±»å‹ä¸åŒçš„åˆ—ï¼Œä¾‹å¦‚åº“æ˜¯1_monthï¼Œè¡¨ç¤º1_day
             Map<String, Set<Object>> tbTypes = RuleUtils.getSamplingField(matchedTbRuleArgs, mergeInCommon);
             dbRuleCtx = new SamplesCtx(new Samples(tbTypes), SamplesCtx.merge);
         }
@@ -278,14 +278,14 @@ public class VirtualTableRuleMatcher {
     private Map<String, Map<String, Field>> crossWithSourceKey1(Rule<String> matchedDbRule,
             Map<String, Comparative> matchedDbRuleArgs, Rule<String> matchedTbRule,
             Map<String, Comparative> matchedTbRuleArgs, String[] commonColumn, Object outerCtx) {
-        SamplesCtx dbRuleCtx = null; //¶ÔÓÚ±í¹æÔòÖĞÓë¿â¹æÔòÁĞÃûÏàÍ¬¶ø×ÔÔöÀàĞÍ²»Í¬µÄÁĞ£¬½«Æä±íÃ¶¾Ù½á¹û¼ÓÈë¿â¹æÔòµÄÃ¶¾Ù¼¯
+        SamplesCtx dbRuleCtx = null; //å¯¹äºè¡¨è§„åˆ™ä¸­ä¸åº“è§„åˆ™åˆ—åç›¸åŒè€Œè‡ªå¢ç±»å‹ä¸åŒçš„åˆ—ï¼Œå°†å…¶è¡¨æšä¸¾ç»“æœåŠ å…¥åº“è§„åˆ™çš„æšä¸¾é›†
         Set<AdvancedParameter> mergeInCommon = diffTypeOrOptionalInCommon(matchedDbRule,
             matchedTbRule,
             commonColumn,
             matchedDbRuleArgs,
             matchedTbRuleArgs);
         if (mergeInCommon != null && !mergeInCommon.isEmpty()) {
-            //¹«¹²ÁĞ°üº¬ÓĞÃ¶¾ÙÀàĞÍ²»Í¬µÄÁĞ£¬ÀıÈç¿âÊÇ1_month£¬±íÊ¾1_day
+            //å…¬å…±åˆ—åŒ…å«æœ‰æšä¸¾ç±»å‹ä¸åŒçš„åˆ—ï¼Œä¾‹å¦‚åº“æ˜¯1_monthï¼Œè¡¨ç¤º1_day
             Map<String, Set<Object>> tbTypes = RuleUtils.getSamplingField(matchedTbRuleArgs, mergeInCommon);
             dbRuleCtx = new SamplesCtx(new Samples(tbTypes), SamplesCtx.merge);
         }
@@ -302,7 +302,7 @@ public class VirtualTableRuleMatcher {
     private Map<String, Set<String>> crossNoSourceKey2(Rule<String> matchedDbRule,
             Map<String, Comparative> matchedDbRuleArgs, Rule<String> matchedTbRule,
             Map<String, Comparative> matchedTbRuleArgs, Set<String> commonSet, Object outerCtx) {
-        //ÓĞ½»¼¯
+        //æœ‰äº¤é›†
         String[] commonColumn = commonSet == null ? null : commonSet.toArray(new String[commonSet.size()]);
         Set<AdvancedParameter> dbParams = cast(matchedDbRule.getRuleColumnSet());
         Set<AdvancedParameter> tbParams = cast(matchedTbRule.getRuleColumnSet());
@@ -313,7 +313,7 @@ public class VirtualTableRuleMatcher {
             matchedDbRuleArgs,
             matchedTbRuleArgs);
         if (mergeInCommon != null && !mergeInCommon.isEmpty()) {
-            //½«×ÔÔöÀàĞÍ²»Í¬µÄ¹«¹²ÁĞµÄ±íÃ¶¾ÙÖµ¼ÓÈë¿âÃ¶¾ÙÖµÖĞ
+            //å°†è‡ªå¢ç±»å‹ä¸åŒçš„å…¬å…±åˆ—çš„è¡¨æšä¸¾å€¼åŠ å…¥åº“æšä¸¾å€¼ä¸­
             Map<String, Set<Object>> diifTypeTbEnumerates = RuleUtils.getSamplingField(matchedTbRuleArgs,
                 mergeInCommon);
             for (Map.Entry<String, Set<Object>> e : diifTypeTbEnumerates.entrySet()) {
@@ -329,21 +329,21 @@ public class VirtualTableRuleMatcher {
 
         Map<String, Set<String>> topology = new HashMap<String, Set<String>>();
         if (tbOnly.isEmpty()) {
-            //·Ö¿âÁĞÍêÈ«°üº¬ÁË·Ö±íÁĞ
-            for (Map<String, Object> dbSample : new Samples(dbEnumerates)) { //±éÀúµÑ¿¨¶û³éÑù
+            //åˆ†åº“åˆ—å®Œå…¨åŒ…å«äº†åˆ†è¡¨åˆ—
+            for (Map<String, Object> dbSample : new Samples(dbEnumerates)) { //éå†ç¬›å¡å°”æŠ½æ ·
                 String dbIndex = matchedDbRule.eval(dbSample, outerCtx);
                 String tbName = matchedTbRule.eval(dbSample, outerCtx);
                 addToTopology(dbIndex, tbName, topology);
             }
         } else {
-            Map<String, Set<Object>> tbEnumerates = RuleUtils.getSamplingField(matchedTbRuleArgs, tbOnly);//Ö»ÓĞ±íµÄÃ¶¾Ù
+            Map<String, Set<Object>> tbEnumerates = RuleUtils.getSamplingField(matchedTbRuleArgs, tbOnly);//åªæœ‰è¡¨çš„æšä¸¾
             Samples tbSamples = new Samples(tbEnumerates);
-            for (Map<String, Object> dbSample : new Samples(dbEnumerates)) { //±éÀú¿âµÑ¿¨¶û³éÑù
+            for (Map<String, Object> dbSample : new Samples(dbEnumerates)) { //éå†åº“ç¬›å¡å°”æŠ½æ ·
                 String dbIndex = matchedDbRule.eval(dbSample, outerCtx);
-                for (Map<String, Object> tbSample : tbSamples) { //±éÀú±íÖĞµ¥¶ÀÁĞµÄµÑ¿¨¶û³éÑù
+                for (Map<String, Object> tbSample : tbSamples) { //éå†è¡¨ä¸­å•ç‹¬åˆ—çš„ç¬›å¡å°”æŠ½æ ·
                     // dbSample.putAll(tbSample);
                     // String tbName = matchedTbRule.eval(dbSample, outerCtx);
-                    // modify by jianghang at 2013-11-18£¬Ó¦¸ÃÊÇÒÔdbSampleÎªÖ÷¹¹ÔìÃ¶¾ÙÖµ²Å¶Ô
+                    // modify by jianghang at 2013-11-18ï¼Œåº”è¯¥æ˜¯ä»¥dbSampleä¸ºä¸»æ„é€ æšä¸¾å€¼æ‰å¯¹
                     tbSample.putAll(dbSample);
                     String tbName = matchedTbRule.eval(tbSample, outerCtx);
                     addToTopology(dbIndex, tbName, topology);
@@ -356,7 +356,7 @@ public class VirtualTableRuleMatcher {
     private Map<String, Map<String, Field>> crossWithSourceKey2(Rule<String> matchedDbRule,
             Map<String, Comparative> matchedDbRuleArgs, Rule<String> matchedTbRule,
             Map<String, Comparative> matchedTbRuleArgs, Set<String> commonSet, Object outerCtx) {
-        //ÓĞ½»¼¯
+        //æœ‰äº¤é›†
         String[] commonColumn = commonSet == null ? null : commonSet.toArray(new String[commonSet.size()]);
         Set<AdvancedParameter> dbParams = cast(matchedDbRule.getRuleColumnSet());
         Set<AdvancedParameter> tbParams = cast(matchedTbRule.getRuleColumnSet());
@@ -367,7 +367,7 @@ public class VirtualTableRuleMatcher {
             matchedDbRuleArgs,
             matchedTbRuleArgs);
         if (mergeInCommon != null && !mergeInCommon.isEmpty()) {
-            //½«×ÔÔöÀàĞÍ²»Í¬µÄ¹«¹²ÁĞµÄ±íÃ¶¾ÙÖµ¼ÓÈë¿âÃ¶¾ÙÖµÖĞ
+            //å°†è‡ªå¢ç±»å‹ä¸åŒçš„å…¬å…±åˆ—çš„è¡¨æšä¸¾å€¼åŠ å…¥åº“æšä¸¾å€¼ä¸­
             Map<String, Set<Object>> diifTypeTbEnumerates = RuleUtils.getSamplingField(matchedTbRuleArgs,
                 mergeInCommon);
             for (Map.Entry<String, Set<Object>> e : diifTypeTbEnumerates.entrySet()) {
@@ -383,21 +383,21 @@ public class VirtualTableRuleMatcher {
 
         Map<String, Map<String, Field>> topology = new HashMap<String, Map<String, Field>>();
         if (tbOnly.isEmpty()) {
-            //·Ö¿âÁĞÍêÈ«°üº¬ÁË·Ö±íÁĞ
-            for (Map<String, Object> dbSample : new Samples(dbEnumerates)) { //±éÀúµÑ¿¨¶û³éÑù
+            //åˆ†åº“åˆ—å®Œå…¨åŒ…å«äº†åˆ†è¡¨åˆ—
+            for (Map<String, Object> dbSample : new Samples(dbEnumerates)) { //éå†ç¬›å¡å°”æŠ½æ ·
                 String dbIndex = matchedDbRule.eval(dbSample, outerCtx);
                 String tbName = matchedTbRule.eval(dbSample, outerCtx);
                 addToTopologyWithSource(dbIndex, tbName, topology, dbSample, tbParams);
             }
         } else {
-            Map<String, Set<Object>> tbEnumerates = RuleUtils.getSamplingField(matchedTbRuleArgs, tbOnly);//Ö»ÓĞ±íµÄÃ¶¾Ù
+            Map<String, Set<Object>> tbEnumerates = RuleUtils.getSamplingField(matchedTbRuleArgs, tbOnly);//åªæœ‰è¡¨çš„æšä¸¾
             Samples tbSamples = new Samples(tbEnumerates);
-            for (Map<String, Object> dbSample : new Samples(dbEnumerates)) { //±éÀú¿âµÑ¿¨¶û³éÑù
+            for (Map<String, Object> dbSample : new Samples(dbEnumerates)) { //éå†åº“ç¬›å¡å°”æŠ½æ ·
                 String dbIndex = matchedDbRule.eval(dbSample, outerCtx);
-                for (Map<String, Object> tbSample : tbSamples) { //±éÀú±íÖĞµ¥¶ÀÁĞµÄµÑ¿¨¶û³éÑù
+                for (Map<String, Object> tbSample : tbSamples) { //éå†è¡¨ä¸­å•ç‹¬åˆ—çš„ç¬›å¡å°”æŠ½æ ·
                     // dbSample.putAll(tbSample);
                     // String tbName = matchedTbRule.eval(dbSample, outerCtx);
-                    // modify by jianghang at 2013-11-18£¬Ó¦¸ÃÊÇÒÔdbSampleÎªÖ÷¹¹ÔìÃ¶¾ÙÖµ²Å¶Ô
+                    // modify by jianghang at 2013-11-18ï¼Œåº”è¯¥æ˜¯ä»¥dbSampleä¸ºä¸»æ„é€ æšä¸¾å€¼æ‰å¯¹
                     tbSample.putAll(dbSample);
                     String tbName = matchedTbRule.eval(tbSample, outerCtx);
                     addToTopologyWithSource(dbIndex, tbName, topology, dbSample, tbParams);
@@ -437,7 +437,7 @@ public class VirtualTableRuleMatcher {
         }
     }
 
-    private Map<String, Field> toMapField(Map<String/*rule¼ÆËã½á¹û*/, Samples/*µÃµ½¸Ã½á¹ûµÄÑù±¾*/> values) {
+    private Map<String, Field> toMapField(Map<String/*ruleè®¡ç®—ç»“æœ*/, Samples/*å¾—åˆ°è¯¥ç»“æœçš„æ ·æœ¬*/> values) {
         Map<String, Field> res = new HashMap<String, Field>(values.size());
         for (Map.Entry<String, Samples> e : values.entrySet()) {
             Field f = new Field(e.getValue().size());
@@ -489,7 +489,7 @@ public class VirtualTableRuleMatcher {
         if (shardRules != null && shardRules.size() != 0) {
             matchedRule = findMatchedRule(allRuleColumnArgs, shardRules, matchArgs, choicer, args);
             if (matchedRule == null) {
-                //ÓĞ·Ö¿â»ò·Ö±í¹æÔò£¬µ«ÊÇÃ»ÓĞÆ¥Åäµ½£¬ÊÇ·ñÖ´ĞĞÈ«²¿É¨Ãè
+                //æœ‰åˆ†åº“æˆ–åˆ†è¡¨è§„åˆ™ï¼Œä½†æ˜¯æ²¡æœ‰åŒ¹é…åˆ°ï¼Œæ˜¯å¦æ‰§è¡Œå…¨éƒ¨æ‰«æ
                 if (!rule.isAllowFullTableScan()) {
                     List<Set<String>> shardColumns = new LinkedList<Set<String>>();
                     for(Rule<T> r : shardRules){
@@ -507,7 +507,7 @@ public class VirtualTableRuleMatcher {
     }
 
     /**
-     * @return ·µ»ØÁ½¸ö¹æÔòµÄ¹«¹²ÁĞ
+     * @return è¿”å›ä¸¤ä¸ªè§„åˆ™çš„å…¬å…±åˆ—
      */
     private static Set<String> getCommonColumnSet(Rule<String> matchedDbRule, Rule<String> matchedTbRule) {
         Set<String> res = null;
@@ -524,8 +524,8 @@ public class VirtualTableRuleMatcher {
 
     /**
      * <pre>
-     * 1.  dbRuleÖĞºÍtbRuleÖĞ´æÔÚÏàÍ¬µÄÁĞ£¬²¢ÇÒµ±Ç°´¦ÓÚoptional×´Ì¬
-     * 2.  tbRuleÖĞºÍdbRuleÁĞÃûÏàÍ¬¶ø×ÔÔöÀàĞÍ²»ÓÃµÄAdvancedParameter¶ÔÏó
+     * 1.  dbRuleä¸­å’ŒtbRuleä¸­å­˜åœ¨ç›¸åŒçš„åˆ—ï¼Œå¹¶ä¸”å½“å‰å¤„äºoptionalçŠ¶æ€
+     * 2.  tbRuleä¸­å’ŒdbRuleåˆ—åç›¸åŒè€Œè‡ªå¢ç±»å‹ä¸ç”¨çš„AdvancedParameterå¯¹è±¡
      * </pre>
      * 
      * @return
@@ -540,7 +540,7 @@ public class VirtualTableRuleMatcher {
             AdvancedParameter tbap = (AdvancedParameter) tbRule.getRuleColumns().get(common);
             // boolean isOptional = matchedDbRuleArgs.containsKey(common) == false
             // && matchedTbRuleArgs.containsKey(common) == false;
-            // Ö»ÒªÃ¶¾Ù·½Ê½ÖĞÓĞÒ»¸öÖµ²»Ò»Ñù£¬¾ÍĞèÒªºÏ²¢db/tb£¬¼ÆËãdbĞèÒªÄÃµ½max(db,tb)µÄÖµ£¬±ÜÃâ¼ÆËãÒÅÂ©
+            // åªè¦æšä¸¾æ–¹å¼ä¸­æœ‰ä¸€ä¸ªå€¼ä¸ä¸€æ ·ï¼Œå°±éœ€è¦åˆå¹¶db/tbï¼Œè®¡ç®—dbéœ€è¦æ‹¿åˆ°max(db,tb)çš„å€¼ï¼Œé¿å…è®¡ç®—é—æ¼
             if (dbap.atomicIncreateType != tbap.atomicIncreateType || dbap.cumulativeTimes != tbap.atomicIncreateValue
                 || dbap.atomicIncreateValue != tbap.atomicIncreateValue) {
                 if (mergeInCommon == null) {
@@ -554,10 +554,10 @@ public class VirtualTableRuleMatcher {
 
 
     /**
-     * ¹æÔòÒ»£º#a# #b?#
-     * ¹æÔò¶ş£º#a# #c?#
-     * ¹æÔòÈı£º#b?# #d?#
-     * ²ÎÊıÎª(a£¬c)£¬ÔòÑ¡¹æÔò¶ş; ²ÎÊıÎª(a£¬d)ÔòÑ¡¹æÔòÒ»; ²ÎÊıÎª(b)ÔñÑ¡¹æÔòÈı
+     * è§„åˆ™ä¸€ï¼š#a# #b?#
+     * è§„åˆ™äºŒï¼š#a# #c?#
+     * è§„åˆ™ä¸‰ï¼š#b?# #d?#
+     * å‚æ•°ä¸º(aï¼Œc)ï¼Œåˆ™é€‰è§„åˆ™äºŒ; å‚æ•°ä¸º(aï¼Œd)åˆ™é€‰è§„åˆ™ä¸€; å‚æ•°ä¸º(b)æ‹©é€‰è§„åˆ™ä¸‰
      * @param <T>
      * @param allRuleColumnArgs
      * @param rules
@@ -566,7 +566,7 @@ public class VirtualTableRuleMatcher {
      */
     private static <T> Rule<T> findMatchedRule(Map<String, Comparative> allRuleColumnArgs, List<Rule<T>> rules,
             Map<String, Comparative> matchArgs, ComparativeMapChoicer choicer, List<Object> args) {
-        // Æ¥Åä±ØÑ¡ÁĞ
+        // åŒ¹é…å¿…é€‰åˆ—
         for (Rule<T> r : rules) {
             matchArgs.clear();
             for (RuleColumn ruleColumn : r.getRuleColumns().values()) {
@@ -577,11 +577,11 @@ public class VirtualTableRuleMatcher {
                 matchArgs.put(ruleColumn.key, comparative);
             }
             if (matchArgs.size() == r.getRuleColumns().size()) {
-                return r; //ÍêÈ«Æ¥Åä
+                return r; //å®Œå…¨åŒ¹é…
             }
         }
 
-        // Æ¥Åä±ØÑ¡ÁĞ+¿ÉÑ¡ÁĞ
+        // åŒ¹é…å¿…é€‰åˆ—+å¯é€‰åˆ—
         for (Rule<T> r : rules) {
             matchArgs.clear();
             int mandatoryColumnCount = 0;
@@ -598,34 +598,34 @@ public class VirtualTableRuleMatcher {
             }
 
             if (mandatoryColumnCount != 0 && matchArgs.size() == mandatoryColumnCount) {
-                return r; //±ØÑ¡ÁĞÆ¥Åä
+                return r; //å¿…é€‰åˆ—åŒ¹é…
             }
         }
 
-        //Õë¶ÔÃ»ÓĞ±ØÑ¡ÁĞµÄ¹æÔòÈç£ºrule=..#a?#..#b?#.. ²¢ÇÒÖ»ÓĞa»òÕßbÁĞÔÚsqlÖĞÓĞ
+        //é’ˆå¯¹æ²¡æœ‰å¿…é€‰åˆ—çš„è§„åˆ™å¦‚ï¼šrule=..#a?#..#b?#.. å¹¶ä¸”åªæœ‰aæˆ–è€…båˆ—åœ¨sqlä¸­æœ‰
         arule: for (Rule<T> r : rules) {
             matchArgs.clear();
             for (RuleColumn ruleColumn : r.getRuleColumns().values()) {
                 if (!ruleColumn.optional)
-                    continue arule; //Èç¹ûµ±Ç°¹æÔòÓĞ±ØÑ¡Ïî£¬Ö±½ÓÌø¹ı,ÒòÎª×ßµ½ÕâÀï±ØÑ¡ÁĞÒÑ¾­²»Æ¥ÅäÁË
+                    continue arule; //å¦‚æœå½“å‰è§„åˆ™æœ‰å¿…é€‰é¡¹ï¼Œç›´æ¥è·³è¿‡,å› ä¸ºèµ°åˆ°è¿™é‡Œå¿…é€‰åˆ—å·²ç»ä¸åŒ¹é…äº†
                 Comparative comparative = getComparative(ruleColumn.key, allRuleColumnArgs, choicer, args);
                 if (comparative != null) {
                     matchArgs.put(ruleColumn.key, allRuleColumnArgs.get(ruleColumn.key));
                 }
             }
             if (matchArgs.size() != 0) {
-                return r; //µÚÒ»¸öÈ«ÊÇ¿ÉÑ¡ÁĞµÄ¹æÔò£¬²¢ÇÒargs°üº¬¸Ã¹æÔòµÄ²¿·Ö¿ÉÑ¡ÁĞ
+                return r; //ç¬¬ä¸€ä¸ªå…¨æ˜¯å¯é€‰åˆ—çš„è§„åˆ™ï¼Œå¹¶ä¸”argsåŒ…å«è¯¥è§„åˆ™çš„éƒ¨åˆ†å¯é€‰åˆ—
             }
         }
         
         // add by jianghang at 2013-11-18
-        // Èç¹û»¹Ã»ÓĞÆ¥Åä¹æÔò£¬Ôò¿ÉÄÜÒ»ÖÖÇé¿ö¾ÍÊÇËùÓĞµÄRule¶¼²»Âú×ã£¬×îºóÔÙ²éÕÒÒ»´Î¹æÔòÖĞËùÓĞÁĞ¶¼Îª¿ÉÑ¡µÄ½øĞĞ·µ»Ø£¬°´¹æÔòË³Ğò·µ»ØµÚÒ»¸ö
+        // å¦‚æœè¿˜æ²¡æœ‰åŒ¹é…è§„åˆ™ï¼Œåˆ™å¯èƒ½ä¸€ç§æƒ…å†µå°±æ˜¯æ‰€æœ‰çš„Ruleéƒ½ä¸æ»¡è¶³ï¼Œæœ€åå†æŸ¥æ‰¾ä¸€æ¬¡è§„åˆ™ä¸­æ‰€æœ‰åˆ—éƒ½ä¸ºå¯é€‰çš„è¿›è¡Œè¿”å›ï¼ŒæŒ‰è§„åˆ™é¡ºåºè¿”å›ç¬¬ä¸€ä¸ª
         boolean isAllOptional = true;
         for (Rule<T> r : rules) {
             for (RuleColumn ruleColumn : r.getRuleColumns().values()) {
                 if (!ruleColumn.optional) {
                     isAllOptional = false;
-                    break;// Èç¹ûµ±Ç°¹æÔòÓĞ±ØÑ¡Ïî£¬Ö±½ÓÌø¹ı,ÒòÎª×ßµ½ÕâÀï±ØÑ¡ÁĞÒÑ¾­²»Æ¥ÅäÁË
+                    break;// å¦‚æœå½“å‰è§„åˆ™æœ‰å¿…é€‰é¡¹ï¼Œç›´æ¥è·³è¿‡,å› ä¸ºèµ°åˆ°è¿™é‡Œå¿…é€‰åˆ—å·²ç»ä¸åŒ¹é…äº†
                 }
             }
 
@@ -639,11 +639,11 @@ public class VirtualTableRuleMatcher {
 
     private static Comparative getComparative(String colName, Map<String, Comparative> allRuleColumnArgs,
             ComparativeMapChoicer comparativeMapChoicer, List<Object> args) {
-        Comparative comparative = allRuleColumnArgs.get(colName); //ÏÈ´Ó»º´æÖĞ»ñÈ¡
+        Comparative comparative = allRuleColumnArgs.get(colName); //å…ˆä»ç¼“å­˜ä¸­è·å–
         if (comparative == null) {
             comparative = comparativeMapChoicer.getColumnComparative(args, colName);
             if (comparative != null) {
-                allRuleColumnArgs.put(colName, comparative); //·ÅÈë»º´æ
+                allRuleColumnArgs.put(colName, comparative); //æ”¾å…¥ç¼“å­˜
             }
         }
         return comparative;

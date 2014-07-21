@@ -19,7 +19,7 @@
 //
 ///**
 // * 
-// * Òì²½ÇëÇóĞĞ¸´ÖÆÖĞĞÄÍê³É¸´ÖÆµÄĞĞ¸´ÖÆ¼àÌıÆ÷
+// * å¼‚æ­¥è¯·æ±‚è¡Œå¤åˆ¶ä¸­å¿ƒå®Œæˆå¤åˆ¶çš„è¡Œå¤åˆ¶ç›‘å¬å™¨
 // * 
 // * @author linxuan
 // * 
@@ -68,10 +68,10 @@
 //
 //		public void run() {
 //			try {
-//				// ³¢ÊÔ²åÈëÈÕÖ¾¿â
+//				// å°è¯•æ’å…¥æ—¥å¿—åº“
 //				listener.insertSyncLog2Db(event);
 //			} catch (SQLException e) {
-//				// Ê§°ÜÊ±²åÈëµ¥¶ÀµÄlog
+//				// å¤±è´¥æ—¶æ’å…¥å•ç‹¬çš„log
 //				RowBasedReplicationListener.insertSyncLog2LocalFile(localFailSyncLog, event);
 //			}
 //		}
@@ -99,7 +99,7 @@
 //
 //	@Override
 //	protected void asyncInsertSyncLog2Db(SqlExecuteEvent event) {
-//		// ÏÈÍ¬²½²åÈëÒ»ÌõÈ«Á¿log
+//		// å…ˆåŒæ­¥æ’å…¥ä¸€æ¡å…¨é‡log
 //		RowBasedReplicationListener.insertSyncLog2LocalFile(event);
 //		insertSyncLogExecutor.execute(new InsertSyncLogTask(event, this));
 //	}

@@ -8,14 +8,14 @@ import java.util.Date;
  */
 public interface TimeComputer {
 	/**
-	 * µÃµ½¾àÀë×î½üµÄÄ³¸öÊ±¼äµÄ¼ä¸ô
+	 * å¾—åˆ°è·ç¦»æœ€è¿‘çš„æŸä¸ªæ—¶é—´çš„é—´éš”
 	 * 
-	 * @return ºÁÃë¼Æ
+	 * @return æ¯«ç§’è®¡
 	 */
     public long getMostNearTimeInterval();
     
     /**
-     * µÃµ½¾àÀëµÄ×î½üµÄÄ³¸öÊ±¼ä
+     * å¾—åˆ°è·ç¦»çš„æœ€è¿‘çš„æŸä¸ªæ—¶é—´
      * 
      * @return Date
      */

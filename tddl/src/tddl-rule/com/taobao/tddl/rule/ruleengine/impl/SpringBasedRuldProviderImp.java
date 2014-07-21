@@ -27,7 +27,7 @@
 //import com.taobao.tddl.rule.ruleengine.rule.CalculationContext;
 //
 ///**
-// * spring ÎªÒÀÍĞµÄ¹æÔòÒıÇæ
+// * spring ä¸ºä¾æ‰˜çš„è§„åˆ™å¼•æ“
 // * 
 // * @author shenxun
 // * 
@@ -70,8 +70,8 @@
 //			Map<String, Comparative> colMap) throws TDLCheckedExcption {
 //		LogicTable logicTable = root.getLogicTableMap(virtualTabName);
 //		if(logicTable == null){
-//			throw new IllegalArgumentException("²»ÄÜ¸ù¾İÖ¸¶¨Âß¼­±íÃûÕÒµ½¶ÔÓ¦µÄÖ´ĞĞ¹æÔò£¬Âß¼­±íÃû" +
-//					"ÊÇ:"+virtualTabName);
+//			throw new IllegalArgumentException("ä¸èƒ½æ ¹æ®æŒ‡å®šé€»è¾‘è¡¨åæ‰¾åˆ°å¯¹åº”çš„æ‰§è¡Œè§„åˆ™ï¼Œé€»è¾‘è¡¨å" +
+//					"æ˜¯:"+virtualTabName);
 //		}
 //		PartitionElement partitionElement =logicTable.getPartitionElement();
 //		
@@ -91,8 +91,8 @@
 //			int tableRuleIndex) throws TDLCheckedExcption {
 //		LogicTable logicTable = root.getLogicTableMap(logicTableName);
 //		if(logicTable == null){
-//			throw new IllegalArgumentException("²»ÄÜ¸ù¾İÖ¸¶¨Âß¼­±íÃûÕÒµ½¶ÔÓ¦µÄÖ´ĞĞ¹æÔò£¬Âß¼­±íÃû" +
-//					"ÊÇ:"+logicTableName);
+//			throw new IllegalArgumentException("ä¸èƒ½æ ¹æ®æŒ‡å®šé€»è¾‘è¡¨åæ‰¾åˆ°å¯¹åº”çš„æ‰§è¡Œè§„åˆ™ï¼Œé€»è¾‘è¡¨å" +
+//					"æ˜¯:"+logicTableName);
 //		}
 //		TargetDBMetaData returnTargetDBMeta = buildTargetDBMetaData(colMap,
 //				logicTable, databaseRuleIndex, tableRuleIndex);
@@ -115,10 +115,10 @@
 //
 //	/* (non-Javadoc)
 //	 * @see com.taobao.tddl.rule.ruleengine.RouteRuleSet#getPartitionElement(java.lang.String)
-//	 *ĞÂ½Ó¿ÚÒªÇóµÄÊµÏÖ ×öadapter
+//	 *æ–°æ¥å£è¦æ±‚çš„å®ç° åšadapter
 //	 */
 //	public PartitionElement getPartitionElement(String logicTableName) {
-//		// TODO ÒÔºó¿ÉÄÜĞè¸Ä½Ó¿ÚÎª´«ÈëÒ»¸öset
+//		// TODO ä»¥åå¯èƒ½éœ€æ”¹æ¥å£ä¸ºä¼ å…¥ä¸€ä¸ªset
 //		return getPartitionColumns(logicTableName);
 //	}
 //
@@ -149,7 +149,7 @@
 //	@SuppressWarnings("unchecked")
 //	protected TargetDBMetaData getTargetDatabaseMetaDataBydatabaseGroups(
 //			LogicTable clonedLogicTable) {
-//		//±»Ìí¼ÓµÄÄ¿±ê±í
+//		//è¢«æ·»åŠ çš„ç›®æ ‡è¡¨
 //		List<TargetDB> targetDatabases = new ArrayList<TargetDB>();
 //		Map<String,Database> beingSelectedDatabases = (Map<String, Database>) clonedLogicTable
 //				.getSubSharedElements();
@@ -180,24 +180,24 @@
 //		for(Set<String> setStrings:ruleArgs){
 //			for(String key:setStrings){
 //				if(!colMap.containsKey(key)){
-//					//Èç¹û²»contain£¬Ôò±íÊ¾µ±Ç°index¹æÔò²»ÄÜÂú×ã£¬ÄÇÃ´¾ÍÌø³öµ±Ç°µÄsetÑ­»·¡£
+//					//å¦‚æœä¸containï¼Œåˆ™è¡¨ç¤ºå½“å‰indexè§„åˆ™ä¸èƒ½æ»¡è¶³ï¼Œé‚£ä¹ˆå°±è·³å‡ºå½“å‰çš„setå¾ªç¯ã€‚
 //					isMatch = false;
 //					break;
 //				}else{
-//					//Èç¹ûÂú×ãÔòÉèisMatchÎªtrue.È»ºó¼ÌĞø¼ì²éÏÂÒ»¸ö²ÎÊı
+//					//å¦‚æœæ»¡è¶³åˆ™è®¾isMatchä¸ºtrue.ç„¶åç»§ç»­æ£€æŸ¥ä¸‹ä¸€ä¸ªå‚æ•°
 //					isMatch = true;
 //				}
 //			}
-//			//ËùÓĞµ±Ç°List indexÏÂµÄ²ÎÊı¶¼¼ì²éÍê±Ï£¬»òÕßµ±Ç°indexÏÂµÄ¹æÔò£¬ÊäÈëµÄ²ÎÊı²»ÄÜÂú×ã¡£
+//			//æ‰€æœ‰å½“å‰List indexä¸‹çš„å‚æ•°éƒ½æ£€æŸ¥å®Œæ¯•ï¼Œæˆ–è€…å½“å‰indexä¸‹çš„è§„åˆ™ï¼Œè¾“å…¥çš„å‚æ•°ä¸èƒ½æ»¡è¶³ã€‚
 //			if(isMatch){
-//				//Èç¹û¿ÉÒÔÂú×ã
+//				//å¦‚æœå¯ä»¥æ»¡è¶³
 //				return returnIndex;
 //			}else{
-//				//Èç¹û²»ÄÜÂú×ã£¬ÄÇÃ´index×ÔÔö¡£
+//				//å¦‚æœä¸èƒ½æ»¡è¶³ï¼Œé‚£ä¹ˆindexè‡ªå¢ã€‚
 //				returnIndex++;
 //			}
 //		}
-//		//Èç¹ûÃ»ÓĞÒ»Ìõ¹æÔòÂú×ã£¬ÄÇÃ´Ó¦¸Ã·µ»ØÄ¬ÈÏ
+//		//å¦‚æœæ²¡æœ‰ä¸€æ¡è§„åˆ™æ»¡è¶³ï¼Œé‚£ä¹ˆåº”è¯¥è¿”å›é»˜è®¤
 //		return NO_INDEX;
 //	}
 //

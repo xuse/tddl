@@ -5,14 +5,14 @@ import java.util.List;
 public interface SqlMetaData {
 	
 	/**
-	 * Ô­Ê¼µÄsql,¼´Ó¦ÓÃÖ±½Ó¸øµ½µ×²ãµÄsql
+	 * åŸå§‹çš„sql,å³åº”ç”¨ç›´æ¥ç»™åˆ°åº•å±‚çš„sql
 	 * @return
 	 */
 	public String getOriSql();
 	
 	/**
-	 * Õë¶Ô¸ñÊ½»òÕß²ÎÊı¸öÊı²»Í¬£¬µ«±í´ïÓïÒåÒ»ÖÂµÄsqlµÄÍ³Ò»¸ñÊ½»¯
-	 * ÀıÈç id in(?,?...) Í³Ò»Îª id in (?)
+	 * é’ˆå¯¹æ ¼å¼æˆ–è€…å‚æ•°ä¸ªæ•°ä¸åŒï¼Œä½†è¡¨è¾¾è¯­ä¹‰ä¸€è‡´çš„sqlçš„ç»Ÿä¸€æ ¼å¼åŒ–
+	 * ä¾‹å¦‚ id in(?,?...) ç»Ÿä¸€ä¸º id in (?)
 	 * @return
 	 */
 	public String getLogicSql();
@@ -23,7 +23,7 @@ public interface SqlMetaData {
 	public List<String> getLogicTables();
 	
 	/**
-	 * sqlÊÇ·ñ±»½âÎö¹ı
+	 * sqlæ˜¯å¦è¢«è§£æè¿‡
 	 * @return
 	 */
 	public boolean isParsed();

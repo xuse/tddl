@@ -24,7 +24,7 @@ public  class RangePlaceHandler implements ReplaceHandler{
 		return max;
 	}
 	/**
-	 * »»value
+	 * æ¢value
 	 * @param skip
 	 * @param max
 	 * @param max
@@ -52,7 +52,7 @@ public  class RangePlaceHandler implements ReplaceHandler{
 				return value.toString();
 			}
 		}else{
-			throw new IllegalStateException("²»Ó¦¸Ã³öÏÖÃ»ÓĞÖµÖ±½ÓĞ´ÔÚsql,µ«Ò²Ã»ÓĞindexµÄÇé¿ö");
+			throw new IllegalStateException("ä¸åº”è¯¥å‡ºç°æ²¡æœ‰å€¼ç›´æ¥å†™åœ¨sql,ä½†ä¹Ÿæ²¡æœ‰indexçš„æƒ…å†µ");
 		}
 	}
 }

@@ -140,12 +140,12 @@ public class ExprVisitor extends EmptySQLASTVisitor {
 	@Override
 	public void visit(FunctionExpression node) {
 		GroupFunctionType type = decideFunctionType(node);
-		// Èç¹ûÊÇÎÒÃÇ¹ØĞÄµÄ¾ÛºÏº¯Êı²ÅÓĞÒâÒåÈ¥ÁË½â²ÎÊı
+		// å¦‚æœæ˜¯æˆ‘ä»¬å…³å¿ƒçš„èšåˆå‡½æ•°æ‰æœ‰æ„ä¹‰å»äº†è§£å‚æ•°
 		if (type != GroupFunctionType.NORMAL) {
 			List<Object> aggres = new ArrayList<Object>();
 			boolean argDistinct = isDistinct(node);
 			List<Expression> expressions = node.getArguments();
-			// ¾ÛºÏº¯Êı²ÎÊıÖ»ÓĞÒ»¸ö£¬²ÎÊı±í´ïÊ½ÀàĞÍÃ»Ê²Ã´¹ØÏµ
+			// èšåˆå‡½æ•°å‚æ•°åªæœ‰ä¸€ä¸ªï¼Œå‚æ•°è¡¨è¾¾å¼ç±»å‹æ²¡ä»€ä¹ˆå…³ç³»
 			if (expressions != null && expressions.size() == 1) {
 				ExprVisitor v = new ExprVisitor(this.result);
 				expressions.get(0).accept(v);
@@ -160,12 +160,12 @@ public class ExprVisitor extends EmptySQLASTVisitor {
 					aggres, this.getSqlExprStr(node));
 			result.setAggregate(func);
 		} else {
-			// ÆÕÍ¨functionĞèÒª½âÎöÒ»±é£¬»ñÈ¡²ÎÊıcolumnµÈĞÅÏ¢
+			// æ™®é€šfunctionéœ€è¦è§£æä¸€éï¼Œè·å–å‚æ•°columnç­‰ä¿¡æ¯
 			List<Expression> expressions = node.getArguments();
 			for (Expression expr : expressions) {
 				ExprVisitor v = new ExprVisitor(this.result);
 				expr.accept(v);
-				// ÆÕÍ¨functionµÄĞÅÏ¢²»ÊÕ¼¯Ò²ĞĞ
+				// æ™®é€šfunctionçš„ä¿¡æ¯ä¸æ”¶é›†ä¹Ÿè¡Œ
 			}
 		}
 	}
@@ -252,7 +252,7 @@ public class ExprVisitor extends EmptySQLASTVisitor {
 			owner = node.getParent().getIdTextUpUnescape();
 		}
 		String columnName = node.getIdTextUpUnescape();
-		// ÏÈ¼òµ¥µã£¬ºóÃæÒª½øĞĞcolumnµÄ¶à¸ö±í¼ì²â£¬°üÀ¨×Ó²éÑ¯µÄ·Ö¿â·Ö±í×Ö¶Î²»ÄÜºÍÖ÷²éÑ¯²»Ò»ÖÂ
+		// å…ˆç®€å•ç‚¹ï¼Œåé¢è¦è¿›è¡Œcolumnçš„å¤šä¸ªè¡¨æ£€æµ‹ï¼ŒåŒ…æ‹¬å­æŸ¥è¯¢çš„åˆ†åº“åˆ†è¡¨å­—æ®µä¸èƒ½å’Œä¸»æŸ¥è¯¢ä¸ä¸€è‡´
 		this.columnOrValue = new Column(columnName, owner, null);
 	}
 
@@ -392,7 +392,7 @@ public class ExprVisitor extends EmptySQLASTVisitor {
 			if (expr instanceof BinaryOperatorExpression) {
 				Map<Column, Object> c = getComparative((BinaryOperatorExpression) expr);
 				if (c == null) {
-					// ÓĞ¿ÉÄÜÊÇin»òÕßÆäËû±í´ïÊ½
+					// æœ‰å¯èƒ½æ˜¯inæˆ–è€…å…¶ä»–è¡¨è¾¾å¼
 					continue;
 				}
 				for (Map.Entry<Column, Object> temp : c.entrySet()) {
@@ -413,7 +413,7 @@ public class ExprVisitor extends EmptySQLASTVisitor {
 							all.put(temp.getKey().nameUpperCase, (Comparative)temp.getValue());
 						}
 					}else{
-						//ÆäËûÀàĞÍ±»ºöÂÔ
+						//å…¶ä»–ç±»å‹è¢«å¿½ç•¥
 						if (logger.isDebugEnabled()) {
 							logger.debug("discard part of expr,param not suit,expr:"
 									+ expr);
@@ -539,7 +539,7 @@ public class ExprVisitor extends EmptySQLASTVisitor {
 			if (expr instanceof BinaryOperatorExpression) {
 				Map<Column, Object> c = getComparative((BinaryOperatorExpression) expr);
 				if (c == null) {
-					// ÓĞ¿ÉÄÜÊÇin»òÕßÆäËû±í´ïÊ½
+					// æœ‰å¯èƒ½æ˜¯inæˆ–è€…å…¶ä»–è¡¨è¾¾å¼
 					continue;
 				}
 				for (Map.Entry<Column, Object> temp : c.entrySet()) {
@@ -560,7 +560,7 @@ public class ExprVisitor extends EmptySQLASTVisitor {
 							all.put(temp.getKey().nameUpperCase,(Comparative) temp.getValue());
 						}
 					} else {
-						// ÆäËûÀàĞÍ±»ºöÂÔ
+						// å…¶ä»–ç±»å‹è¢«å¿½ç•¥
 						if (logger.isDebugEnabled()) {
 							logger.debug("discard part of expr,param not suit,expr:"
 									+ expr);
@@ -633,7 +633,7 @@ public class ExprVisitor extends EmptySQLASTVisitor {
 		ExprVisitor left = new ExprVisitor(this.result);
 		node.getLeftOprand().accept(left);
 		Column leftColumn = (Column) left.getColumnOrValue();
-		//Èç¹ûleftColumnÊÇÒ»¸ö±í´ïÊ½£¬ÆäÊµ¾Í±ğÈ¥¹Ø×¢Õâ¸öin ±í´ïÊ½ÁË
+		//å¦‚æœleftColumnæ˜¯ä¸€ä¸ªè¡¨è¾¾å¼ï¼Œå…¶å®å°±åˆ«å»å…³æ³¨è¿™ä¸ªin è¡¨è¾¾å¼äº†
 		if (leftColumn != null) {
 			Expression ex = node.getRightOprand();
 			if (node.isNot()) {

@@ -8,12 +8,12 @@ import java.util.List;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-3-29ÏÂÎç02:22:04
+ * @date 2011-3-29ä¸‹åˆ02:22:04
  */
 public class TargetDatabase {
-	//Ä¿±êdbKey
+	//ç›®æ ‡dbKey
 	private String dbIndex;
-	//ËùÒªÖ´ĞĞµÄÊµ¼Ê±í
+	//æ‰€è¦æ‰§è¡Œçš„å®é™…è¡¨
 	private List<String> tableNames;
 	public String getDbIndex() {
 		return dbIndex;

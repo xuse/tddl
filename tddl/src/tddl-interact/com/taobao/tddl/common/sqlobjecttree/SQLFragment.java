@@ -7,8 +7,8 @@ public interface SQLFragment extends Cloneable{
 	
 	 public void appendSQL(StringBuilder sb);
 	 /**
-	  * ½«Ò»¸ösqlÖĞ²»±äµÄStringToken»º´æµ½µÚ¶ş¸ö²ÎÊıÄÇ¸ölistÖĞ£¬tokenÖ®¼äÓĞ¿ÉÄÜ»áÓĞÒ»Ğ©¿É±äµÄ
-	  * ¶«Î÷£¬±ÈÈçlimit m,nÖĞµÄm,n.»¹ÓĞ±íÃûµÈ
+	  * å°†ä¸€ä¸ªsqlä¸­ä¸å˜çš„StringTokenç¼“å­˜åˆ°ç¬¬äºŒä¸ªå‚æ•°é‚£ä¸ªlistä¸­ï¼Œtokenä¹‹é—´æœ‰å¯èƒ½ä¼šæœ‰ä¸€äº›å¯å˜çš„
+	  * ä¸œè¥¿ï¼Œæ¯”å¦‚limit m,nä¸­çš„m,n.è¿˜æœ‰è¡¨åç­‰
 	 * @param logicTableNames
 	 * @param list
 	 * @param sb

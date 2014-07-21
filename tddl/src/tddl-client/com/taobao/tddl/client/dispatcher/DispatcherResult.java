@@ -6,96 +6,96 @@ import com.taobao.tddl.client.controller.ColumnMetaData;
 import com.taobao.tddl.client.controller.OrderByMessages;
 
 /**
- * ¿¼ÂÇµ½Èç¹ûÒªÖ§³ÖÁ½ÖÖÊµÏÖ£¬Ç°¶ËÓÃÆğÀ´»á±È½ÏÂé·³¡£Òò´Ë¶©Á¢¹«¹²µÄ½Ó¿Ú
- * ÄÚ²¿ÊµÏÖ²»ĞèÒªcare.
+ * è€ƒè™‘åˆ°å¦‚æœè¦æ”¯æŒä¸¤ç§å®ç°ï¼Œå‰ç«¯ç”¨èµ·æ¥ä¼šæ¯”è¾ƒéº»çƒ¦ã€‚å› æ­¤è®¢ç«‹å…¬å…±çš„æ¥å£
+ * å†…éƒ¨å®ç°ä¸éœ€è¦care.
  * 
  * @author shenxun
  * 
- *TODO:Ã»ÓĞgroup by element±©Â¶£¬²»¹ıÎÊÌâ²»´ó\
+ *TODO:æ²¡æœ‰group by elementæš´éœ²ï¼Œä¸è¿‡é—®é¢˜ä¸å¤§\
  */
 public interface DispatcherResult extends Result {
 	/**
-	 * ÊÇ·ñÔÊĞí·´ÏòÊä³ö
+	 * æ˜¯å¦å…è®¸åå‘è¾“å‡º
 	 * 
 	 * @return
 	 */
 	public boolean allowReverseOutput();
 
 	/**
-	 * »ñÈ¡·Ö¿â¼ü£¬Èç¹ûĞèÒªĞĞ¸´ÖÆµÄ»°
-	 * ĞèÒª×¢ÒâµÄÊÇ
-	 * primaryKeyºÍ·Ö¿â¼üºÍ·Ö±í¼üÖ®¼äµÄÁĞÊÇ²»»áÖØ¸´µÄ¡£
-	 * Èç¹ûprimaryKeyºÍ·Ö±íÖĞ³öÏÖµÄ£¬ÄÇÃ´·Ö¿âÖĞ¾Í²»»á³öÏÖ
-	 * Èç¹û·Ö¿âÖĞºÍprimaryKeyÖĞ³öÏÖµÄ£¬ÄÇÃ´·Ö±í¾Í²»»á³öÏÖ
+	 * è·å–åˆ†åº“é”®ï¼Œå¦‚æœéœ€è¦è¡Œå¤åˆ¶çš„è¯
+	 * éœ€è¦æ³¨æ„çš„æ˜¯
+	 * primaryKeyå’Œåˆ†åº“é”®å’Œåˆ†è¡¨é”®ä¹‹é—´çš„åˆ—æ˜¯ä¸ä¼šé‡å¤çš„ã€‚
+	 * å¦‚æœprimaryKeyå’Œåˆ†è¡¨ä¸­å‡ºç°çš„ï¼Œé‚£ä¹ˆåˆ†åº“ä¸­å°±ä¸ä¼šå‡ºç°
+	 * å¦‚æœåˆ†åº“ä¸­å’ŒprimaryKeyä¸­å‡ºç°çš„ï¼Œé‚£ä¹ˆåˆ†è¡¨å°±ä¸ä¼šå‡ºç°
 	 * @return
 	 */
     public List<ColumnMetaData> getSplitDB();
 
 	/**
-	 * »ñÈ¡·Ö±í¼ü£¬Èç¹ûĞèÒªĞĞ¸´ÖÆµÄ»°
-	 * primaryKeyºÍ·Ö¿â¼üºÍ·Ö±í¼üÖ®¼äµÄÁĞÊÇ²»»áÖØ¸´µÄ¡£
-	 * Èç¹ûprimaryKeyºÍ·Ö±íÖĞ³öÏÖµÄ£¬ÄÇÃ´·Ö¿âÖĞ¾Í²»»á³öÏÖ
-	 * Èç¹û·Ö¿âÖĞºÍprimaryKeyÖĞ³öÏÖµÄ£¬ÄÇÃ´·Ö±í¾Í²»»á³öÏÖ
+	 * è·å–åˆ†è¡¨é”®ï¼Œå¦‚æœéœ€è¦è¡Œå¤åˆ¶çš„è¯
+	 * primaryKeyå’Œåˆ†åº“é”®å’Œåˆ†è¡¨é”®ä¹‹é—´çš„åˆ—æ˜¯ä¸ä¼šé‡å¤çš„ã€‚
+	 * å¦‚æœprimaryKeyå’Œåˆ†è¡¨ä¸­å‡ºç°çš„ï¼Œé‚£ä¹ˆåˆ†åº“ä¸­å°±ä¸ä¼šå‡ºç°
+	 * å¦‚æœåˆ†åº“ä¸­å’ŒprimaryKeyä¸­å‡ºç°çš„ï¼Œé‚£ä¹ˆåˆ†è¡¨å°±ä¸ä¼šå‡ºç°
 	 * @return
 	 */
 	public List<ColumnMetaData> getSplitTab();
 
 	/**
-	 * »ñÈ¡Ö÷¼ü£¬Èç¹ûĞèÒªĞĞ¸´ÖÆµÄ»°
-	 * primaryKeyºÍ·Ö¿â¼üºÍ·Ö±í¼üÖ®¼äµÄÁĞÊÇ²»»áÖØ¸´µÄ¡£
-	 * Èç¹ûprimaryKeyºÍ·Ö±íÖĞ³öÏÖµÄ£¬ÄÇÃ´·Ö¿âÖĞ¾Í²»»á³öÏÖ
-	 * Èç¹û·Ö¿âÖĞºÍprimaryKeyÖĞ³öÏÖµÄ£¬ÄÇÃ´·Ö±í¾Í²»»á³öÏÖ
+	 * è·å–ä¸»é”®ï¼Œå¦‚æœéœ€è¦è¡Œå¤åˆ¶çš„è¯
+	 * primaryKeyå’Œåˆ†åº“é”®å’Œåˆ†è¡¨é”®ä¹‹é—´çš„åˆ—æ˜¯ä¸ä¼šé‡å¤çš„ã€‚
+	 * å¦‚æœprimaryKeyå’Œåˆ†è¡¨ä¸­å‡ºç°çš„ï¼Œé‚£ä¹ˆåˆ†åº“ä¸­å°±ä¸ä¼šå‡ºç°
+	 * å¦‚æœåˆ†åº“ä¸­å’ŒprimaryKeyä¸­å‡ºç°çš„ï¼Œé‚£ä¹ˆåˆ†è¡¨å°±ä¸ä¼šå‡ºç°
 	 * @return
 	 */
     public ColumnMetaData getPrimaryKey();
 
 	/**
-	 * ÊÇ·ñĞèÒªĞĞ¸´ÖÆ
+	 * æ˜¯å¦éœ€è¦è¡Œå¤åˆ¶
 	 * 
 	 * @return
 	 */
 	public boolean needRowCopy();
 
 	/**
-	 * »ñÈ¡order by ĞÅÏ¢
+	 * è·å–order by ä¿¡æ¯
 	 * @return
 	 */
 	public OrderByMessages getOrderByMessages();
 
 	/**
-	 * »ñÈ¡skipÖµ
-	 * ÒòÎªTDDL²»ÊÇÊı¾İ¿â£¬ËùÒÔÕâÀï×öÁËÒ»¸ö¼Ù¶¨£º
-	 * ÔÚËùÓĞº¬ÒåÎªskipµÄÊı¾İÖĞ£¬×î´óµÄÄÇ¸öÓÀÔ¶ÊÇÓĞÒâÒåµÄ¡£
+	 * è·å–skipå€¼
+	 * å› ä¸ºTDDLä¸æ˜¯æ•°æ®åº“ï¼Œæ‰€ä»¥è¿™é‡Œåšäº†ä¸€ä¸ªå‡å®šï¼š
+	 * åœ¨æ‰€æœ‰å«ä¹‰ä¸ºskipçš„æ•°æ®ä¸­ï¼Œæœ€å¤§çš„é‚£ä¸ªæ°¸è¿œæ˜¯æœ‰æ„ä¹‰çš„ã€‚
 	 * 
-	 * ¶à²ãÇ¶Ì×ÖĞÒ²ÊÇÈç´Ë¡£
+	 * å¤šå±‚åµŒå¥—ä¸­ä¹Ÿæ˜¯å¦‚æ­¤ã€‚
 	 * @return
 	 */
 	public int getSkip();
 
 	/**
-	 * »ñÈ¡maxÖµ¡£
-	 * ÒòÎªTDDL²»ÊÇÊı¾İ¿â£¬ËùÒÔÕâÀï×öÁËÒ»¸ö¼Ù¶¨£º
-	 * ÔÚËùÓĞº¬ÒåÎªmaxµÄÊı¾İÖĞ£¬×î´óµÄÄÇ¸öÓÀÔ¶ÊÇÓĞÒâÒåµÄ¡£
+	 * è·å–maxå€¼ã€‚
+	 * å› ä¸ºTDDLä¸æ˜¯æ•°æ®åº“ï¼Œæ‰€ä»¥è¿™é‡Œåšäº†ä¸€ä¸ªå‡å®šï¼š
+	 * åœ¨æ‰€æœ‰å«ä¹‰ä¸ºmaxçš„æ•°æ®ä¸­ï¼Œæœ€å¤§çš„é‚£ä¸ªæ°¸è¿œæ˜¯æœ‰æ„ä¹‰çš„ã€‚
 	 * 
-	 * ¶à²ãÇ¶Ì×ÖĞÒ²ÊÇÈç´Ë¡£
+	 * å¤šå±‚åµŒå¥—ä¸­ä¹Ÿæ˜¯å¦‚æ­¤ã€‚
 	 * @return
 	 */
 	public int getMax();
 
 	/**
-	 * ÔÊĞí·´ÏòÊä³ö
+	 * å…è®¸åå‘è¾“å‡º
 	 * @param needReverseOutput
 	 */
 	public void needAllowReverseOutput(boolean needReverseOutput);
 
 	/**
-	 * »ñÈ¡Êı¾İ¿âÖ´ĞĞ¼Æ»®
+	 * è·å–æ•°æ®åº“æ‰§è¡Œè®¡åˆ’
 	 * @return
 	 */
 	public EXECUTE_PLAN getDatabaseExecutePlan();
 
 	/**
-	 * ÉèÖÃ
+	 * è®¾ç½®
 	 * @param executePlan
 	 */
 	public void setDatabaseExecutePlan(EXECUTE_PLAN executePlan);
@@ -105,14 +105,14 @@ public interface DispatcherResult extends Result {
 	public void setTableExecutePlan(EXECUTE_PLAN executePlan);
 
     /**
-     * ¼ÇÂ¼±»joinµÄĞéÄâ±íÃû
+     * è®°å½•è¢«joinçš„è™šæ‹Ÿè¡¨å
      * @author jiangping
      * @param virtualJoinTableNames
      */
     public void setVirtualJoinTableNames(List<String> virtualJoinTableNames);
 
     /**
-     * »ñÈ¡±»joinµÄĞéÄâ±íÃû
+     * è·å–è¢«joinçš„è™šæ‹Ÿè¡¨å
      * @author jiangping
      * @return
      */

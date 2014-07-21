@@ -27,14 +27,14 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 	private Object ruleObj;
 	private Method m_routingRuleMap;
 	private static final String IMPORT_STATIC_METHOD = "import static com.taobao.tddl.rule.groovy.staticmethod.GroovyStaticMethod.*;";
-	// Ó¦ÓÃÖÃÈëµÄÉÏÏÂÎÄ£¬¿ÉÒÔÓÃÔÚevelµÄgroovy½Å±¾Àï
+	// åº”ç”¨ç½®å…¥çš„ä¸Šä¸‹æ–‡ï¼Œå¯ä»¥ç”¨åœ¨evelçš„groovyè„šæœ¬é‡Œ
 	private static final String IMPORT_EXTRA_PARAMETER_CONTEXT = "import com.taobao.tddl.interact.rule.bean.ExtraParameterContext;";
 
 	private Map<String, Object> context;
 
 	protected void initInternal() {
 		if (expression == null) {
-			throw new IllegalArgumentException("Î´Ö¸¶¨ expression");
+			throw new IllegalArgumentException("æœªæŒ‡å®š expression");
 		}
 		GroovyClassLoader loader = new GroovyClassLoader(
 				GroovyListRuleEngine.class.getClassLoader());
@@ -47,23 +47,23 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 		}
 
 		try {
-			// ĞÂ½¨ÀàÊµÀı
+			// æ–°å»ºç±»å®ä¾‹
 			ruleObj = c_groovy.newInstance();
-			// »ñÈ¡·½·¨
+			// è·å–æ–¹æ³•
 			m_routingRuleMap = getMethod(c_groovy, "eval", Map.class,
 					ExtraParameterContext.class);
 			if (m_routingRuleMap == null) {
-				throw new IllegalArgumentException("¹æÔò·½·¨Ã»ÕÒµ½");
+				throw new IllegalArgumentException("è§„åˆ™æ–¹æ³•æ²¡æ‰¾åˆ°");
 			}
 			m_routingRuleMap.setAccessible(true);
 
 		} catch (Throwable t) {
-			throw new IllegalArgumentException("ÊµÀı»¯¹æÔò¶ÔÏóÊ§°Ü", t);
+			throw new IllegalArgumentException("å®ä¾‹åŒ–è§„åˆ™å¯¹è±¡å¤±è´¥", t);
 		}
 	}
 
 	private static final Pattern RETURN_WHOLE_WORD_PATTERN = Pattern.compile(
-			"\\breturn\\b", Pattern.CASE_INSENSITIVE);// È«×ÖÆ¥Åä
+			"\\breturn\\b", Pattern.CASE_INSENSITIVE);// å…¨å­—åŒ¹é…
 	private static final Pattern DOLLER_PATTERN = Pattern.compile("#.*?#");
     
 	protected String getGroovyRule(String expression){
@@ -75,7 +75,7 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 	 */
 	protected String getGroovyRule(String expression,String extraPackagesStr) {
 		StringBuffer sb = new StringBuffer();
-		//Ìí¼ÓÓÃ»§×Ô¶¨Òåpackage,ÒÑ¾­´¦Àí
+		//æ·»åŠ ç”¨æˆ·è‡ªå®šä¹‰package,å·²ç»å¤„ç†
 		if(extraPackagesStr!=null){
 		    sb.append(extraPackagesStr);
 		}
@@ -86,7 +86,7 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 		sb.append("public class RULE ").append("{");
 		sb.append("public Object eval(Map map,ExtraParameterContext extraParameterContext){");
 
-		// Ìæ»»²¢×é×°advancedParameter
+		// æ›¿æ¢å¹¶ç»„è£…advancedParameter
 		int start = 0;
 
 		Matcher returnMarcher = RETURN_WHOLE_WORD_PATTERN.matcher(expression);
@@ -104,13 +104,13 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 			}
 			sb.append(expression.substring(start, matcher.start()));
 			sb.append("(map.get(\"");
-			// Ìæ»»³É(map.get("key"));
+			// æ›¿æ¢æˆ(map.get("key"));
 			sb.append(advancedParameter.key);
 			sb.append("\"))");
 
 			start = matcher.end();
 		}
-		// ÉèÖÃĞèÒªÓÃµ½µÄ²ÎÊı
+		// è®¾ç½®éœ€è¦ç”¨åˆ°çš„å‚æ•°
 		setAdvancedParameter(params);
 		sb.append(expression.substring(start));
 		sb.append(";");
@@ -130,7 +130,7 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 		for (int i = 0; i < size; i++) {
 			argumentMap.put(columns.get(i), values.get(i));
 		}
-		// ·ÅÈëÓ¦ÓÃ×Ô¶¨Òå×Ö¶Î
+		// æ”¾å…¥åº”ç”¨è‡ªå®šä¹‰å­—æ®µ
 		if (this.context != null) {
 			for (Map.Entry<String, Object> entry : this.context.entrySet()) {
 				argumentMap.put(entry.getKey(), entry.getValue());
@@ -142,7 +142,7 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 		if (result != null) {
 			return new ResultAndMappingKey(result);
 		} else {
-			throw new IllegalArgumentException("¹æÔòÒıÇæµÄ½á¹û²»ÄÜÎªnull");
+			throw new IllegalArgumentException("è§„åˆ™å¼•æ“çš„ç»“æœä¸èƒ½ä¸ºnull");
 		}
 	}
 
@@ -157,7 +157,7 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 		for (int i = 0; i < size; i++) {
 			argumentMap.put(columns.get(i), values.get(i));
 		}
-		// ·ÅÈëÓ¦ÓÃ×Ô¶¨Òå×Ö¶Î
+		// æ”¾å…¥åº”ç”¨è‡ªå®šä¹‰å­—æ®µ
 		if (this.context != null) {
 			for (Map.Entry<String, Object> entry : this.context.entrySet()) {
 				argumentMap.put(entry.getKey(), entry.getValue());
@@ -169,12 +169,12 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 		if (result != null) {
 			return new ResultAndMappingKey(result);
 		} else {
-			throw new IllegalArgumentException("¹æÔòÒıÇæµÄ½á¹û²»ÄÜÎªnull");
+			throw new IllegalArgumentException("è§„åˆ™å¼•æ“çš„ç»“æœä¸èƒ½ä¸ºnull");
 		}
 	}
 	
 	/**
-	 * Õë¶Ôµ¥columnºÍµ¥¸övalue
+	 * é’ˆå¯¹å•columnå’Œå•ä¸ªvalue
 	 * @param column
 	 * @param value
 	 * @param extraParameterContext
@@ -185,7 +185,7 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 			ExtraParameterContext extraParameterContext) {
 		Map<String, Object> argumentMap = new HashMap<String, Object>(1);
 		argumentMap.put(column, value);
-		// ·ÅÈëÓ¦ÓÃ×Ô¶¨Òå×Ö¶Î
+		// æ”¾å…¥åº”ç”¨è‡ªå®šä¹‰å­—æ®µ
 		if (this.context != null) {
 			for (Map.Entry<String, Object> entry : this.context.entrySet()) {
 				argumentMap.put(entry.getKey(), entry.getValue());
@@ -197,12 +197,12 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 		if (result != null) {
 			return new ResultAndMappingKey(result);
 		} else {
-			throw new IllegalArgumentException("¹æÔòÒıÇæµÄ½á¹û²»ÄÜÎªnull");
+			throw new IllegalArgumentException("è§„åˆ™å¼•æ“çš„ç»“æœä¸èƒ½ä¸ºnull");
 		}
 	}
 
 	/**
-	 * µ÷ÓÃÄ¿±ê·½·¨
+	 * è°ƒç”¨ç›®æ ‡æ–¹æ³•
 	 * 
 	 * @param args
 	 * @return
@@ -223,9 +223,9 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 		try {
 			return c.getMethod(name, parameterTypes);
 		} catch (SecurityException e) {
-			throw new IllegalArgumentException("ÊµÀı»¯¹æÔò¶ÔÏóÊ§°Ü", e);
+			throw new IllegalArgumentException("å®ä¾‹åŒ–è§„åˆ™å¯¹è±¡å¤±è´¥", e);
 		} catch (NoSuchMethodException e) {
-			throw new IllegalArgumentException("Ã»ÓĞÕâ¸ö·½·¨" + name, e);
+			throw new IllegalArgumentException("æ²¡æœ‰è¿™ä¸ªæ–¹æ³•" + name, e);
 		}
 	}
 
@@ -233,15 +233,15 @@ public class GroovyListRuleEngine extends CartesianProductBasedListResultRule {
 		try {
 			return m.invoke(obj, args);
 		} catch (Throwable t) {
-			// logger.warn("µ÷ÓÃ·½·¨£º" + m + "Ê§°Ü", t);
+			// logger.warn("è°ƒç”¨æ–¹æ³•ï¼š" + m + "å¤±è´¥", t);
 			// return null;
-			throw new IllegalArgumentException("µ÷ÓÃ·½·¨Ê§°Ü: " + m + t.getCause(), t);
+			throw new IllegalArgumentException("è°ƒç”¨æ–¹æ³•å¤±è´¥: " + m + t.getCause(), t);
 		}
 	}
 
 	/**
-	 * Èç¹ûÒ»Ìõ¹æÔòÀïÃæÓĞÖØ¸´³öÏÖparameter,ÄÇÃ´ÒÔµÚÒ»¸öÎª×¼
-	 * ´Ë´¦Ã»ÓĞ½øĞĞparamSetÊÇ·ñÎªnullµÄ¼ì²é£¬ÓÉÍâ²¿±£ÕÏ¡£
+	 * å¦‚æœä¸€æ¡è§„åˆ™é‡Œé¢æœ‰é‡å¤å‡ºç°parameter,é‚£ä¹ˆä»¥ç¬¬ä¸€ä¸ªä¸ºå‡†
+	 * æ­¤å¤„æ²¡æœ‰è¿›è¡ŒparamSetæ˜¯å¦ä¸ºnullçš„æ£€æŸ¥ï¼Œç”±å¤–éƒ¨ä¿éšœã€‚
 	 * 
 	 * @param paramSet
 	 * @param param

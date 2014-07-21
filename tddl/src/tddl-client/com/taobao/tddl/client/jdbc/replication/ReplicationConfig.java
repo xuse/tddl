@@ -12,9 +12,9 @@ import com.taobao.tddl.common.config.TddlConfigParser;
 import com.taobao.tddl.common.sync.BizTDDLContext;
 
 /**
- * ĞĞ¸´ÖÆÉÏÏÂÎÄ»·¾³
- * °üº¬ĞĞ¸´ÖÆĞèÒªµÄËùÓĞÅäÖÃ£ºÈÕÖ¾¿âÅäÖÃ¡¢ÈçºÎ¸´ÖÆµÄÅäÖÃ
- * ÊµÊ±ĞĞ¸´ÖÆºÍ²¹³¥·şÎñÆ÷¹²ÓÃ
+ * è¡Œå¤åˆ¶ä¸Šä¸‹æ–‡ç¯å¢ƒ
+ * åŒ…å«è¡Œå¤åˆ¶éœ€è¦çš„æ‰€æœ‰é…ç½®ï¼šæ—¥å¿—åº“é…ç½®ã€å¦‚ä½•å¤åˆ¶çš„é…ç½®
+ * å®æ—¶è¡Œå¤åˆ¶å’Œè¡¥å¿æœåŠ¡å™¨å…±ç”¨
  * 
  * @author linxuan
  *
@@ -24,17 +24,17 @@ public class ReplicationConfig {
 	private boolean isUseLocalConfig = false;
 	private String appName;
 	private Map<String, BizTDDLContext> logicTableName2TDDLContext;
-	private String replicationConfigFile; //ĞÂ±¾µØÎÄ¼şÅäÖÃ
+	private String replicationConfigFile; //æ–°æœ¬åœ°æ–‡ä»¶é…ç½®
 
 	private TddlConfigParser<Map<String, BizTDDLContext>> configParser = new DefaultTddlConfigParser<Map<String, BizTDDLContext>>();
 	private final DataListener replicationListener = new DataListener() {
 		public void onDataReceive(Object data) {
-			//²»Ö§³Ö¶¯Ì¬ĞŞ¸Ä
+			//ä¸æ”¯æŒåŠ¨æ€ä¿®æ”¹
 		}
 
 		public void onDataReceiveAtRegister(Object data) {
 			if (data != null) {
-				//TODO ÓÃruntimeHolder°üÆğÀ´
+				//TODO ç”¨runtimeHolderåŒ…èµ·æ¥
 				ReplicationConfig.this.logicTableName2TDDLContext = configParser.parseCongfig((String) data);
 			}
 		}
@@ -43,22 +43,22 @@ public class ReplicationConfig {
 	public void init(TDataSource tds) {
 		if (!this.isUseLocalConfig) {
 			this.logicTableName2TDDLContext = null;
-			//¶©ÔÄĞĞ¸´ÖÆÅäÖÃ
+			//è®¢é˜…è¡Œå¤åˆ¶é…ç½®
 			Object first = ConfigServerHelper.subscribeReplicationConfig(this.appName, replicationListener);
 			if (first == null) {
-				throw new IllegalStateException("Ã»ÓĞ½ÓÊÕµ½ĞĞ¸´ÖÆÅäÖÃ");
+				throw new IllegalStateException("æ²¡æœ‰æ¥æ”¶åˆ°è¡Œå¤åˆ¶é…ç½®");
 			}
 			if (this.logicTableName2TDDLContext == null) {
-				throw new IllegalStateException("½âÎöĞĞ¸´ÖÆÅäÖÃÊ§°Ü£º" + first);
+				throw new IllegalStateException("è§£æè¡Œå¤åˆ¶é…ç½®å¤±è´¥ï¼š" + first);
 			}
 		} else if (replicationConfigFile != null) {
 			FileSystemXmlApplicationContext ctx = new FileSystemXmlApplicationContext(replicationConfigFile);
 			this.logicTableName2TDDLContext = convert(ctx.getBean("root"));
 		} else if (this.logicTableName2TDDLContext == null) {
-			throw new IllegalArgumentException("logicTableName2TDDLContextÊôĞÔÃ»ÓĞÅäÖÃ");
+			throw new IllegalArgumentException("logicTableName2TDDLContextå±æ€§æ²¡æœ‰é…ç½®");
 		}
 
-		//ÓÃTDataSource³õÊ¼»¯logicTableName2TDDLContext
+		//ç”¨TDataSourceåˆå§‹åŒ–logicTableName2TDDLContext
 		ReplicationHelper.initReplicationContextByTDataSource(tds, this.logicTableName2TDDLContext);
 	}
 
@@ -68,7 +68,7 @@ public class ReplicationConfig {
 	}
 
 	/**
-	 * ÎŞÂß¼­µÄgetter/setter
+	 * æ— é€»è¾‘çš„getter/setter
 	 */
 	/*public EquityDbManager getSyncLogDb() {
 		return syncLogDb;

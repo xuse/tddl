@@ -10,24 +10,24 @@ import com.taobao.tddl.client.handler.sqlparse.SqlParseHandler;
 import com.taobao.tddl.client.handler.validate.SqlDispatchHandler;
 
 /**
- * @description Ä¬ÈÏ¹ÜÏß¹¤³§ÊµÏÖÀà,Ìá¹©Ò»¸ö¹Ì¶¨handlerµÄ¹ÜÏß,Ö»³õÊ¼»¯Ò»´Î,
- *              ÇÒ²»ÄÜ¶¯Ì¬¸Ä±ä¹ÜÏßÖĞhandlerÖÖÀàºÍ´ÎĞò(ËäÈ»ÓĞ¶ÔÍâ½Ó¿Ú·½·¨)
+ * @description é»˜è®¤ç®¡çº¿å·¥å‚å®ç°ç±»,æä¾›ä¸€ä¸ªå›ºå®šhandlerçš„ç®¡çº¿,åªåˆå§‹åŒ–ä¸€æ¬¡,
+ *              ä¸”ä¸èƒ½åŠ¨æ€æ”¹å˜ç®¡çº¿ä¸­handlerç§ç±»å’Œæ¬¡åº(è™½ç„¶æœ‰å¯¹å¤–æ¥å£æ–¹æ³•)
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-08-15ÏÂÎç03:24:42
+ * @date 2010-08-15ä¸‹åˆ03:24:42
  */
 public class DefaultPipelineFactory extends AbstractPipelineFactory {
 	private Pipeline defaultPipeline = new DefaultPipeline();
 
 	{
 		/**
-		 * ³õÊ¼»¯¸÷¸ö¹ÜÏß£¬¹ÜÏß¶¼Îªµ¥Àı
-		 * Ã¿´Î²éÑ¯ºÍÊı¾İ¸üĞÂ¶¼»á·µ»ØÍ¬Ò»¸ö¹ÜÏßÊµÀı¡£
-		 * Î¨Ò»ÓëÒ»¸ö²Ù×÷¶ÔÓ¦µÄÊÇ×ÜÏßÊı¾İ£¬²¢ÇÒÒÔ
-		 * ·½·¨µÄ¾Ö²¿±äÁ¿ÔÚ¹ÜÏßÖĞµÄ²»Í¬´¦ÀíÆ÷Ö®¼ä´«µİ¡£
-		 * ´Ó¶ø´ÓÊı¾İÉÏ±ÜÃâ¶àÏß³ÌÎÊÌâ¡£
+		 * åˆå§‹åŒ–å„ä¸ªç®¡çº¿ï¼Œç®¡çº¿éƒ½ä¸ºå•ä¾‹
+		 * æ¯æ¬¡æŸ¥è¯¢å’Œæ•°æ®æ›´æ–°éƒ½ä¼šè¿”å›åŒä¸€ä¸ªç®¡çº¿å®ä¾‹ã€‚
+		 * å”¯ä¸€ä¸ä¸€ä¸ªæ“ä½œå¯¹åº”çš„æ˜¯æ€»çº¿æ•°æ®ï¼Œå¹¶ä¸”ä»¥
+		 * æ–¹æ³•çš„å±€éƒ¨å˜é‡åœ¨ç®¡çº¿ä¸­çš„ä¸åŒå¤„ç†å™¨ä¹‹é—´ä¼ é€’ã€‚
+		 * ä»è€Œä»æ•°æ®ä¸Šé¿å…å¤šçº¿ç¨‹é—®é¢˜ã€‚
 		 */
 		defaultPipeline.addLast(RouteConditionHandler.HANDLER_NAME,new RouteConditionHandler());
 		defaultPipeline.addLast(SqlParseHandler.HANDLER_NAME,new SqlParseHandler());

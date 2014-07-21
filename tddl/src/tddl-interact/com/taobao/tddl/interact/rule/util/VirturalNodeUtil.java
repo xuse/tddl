@@ -16,7 +16,7 @@ import com.taobao.tddl.interact.sqljep.Comparative;
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-6-2ÏÂÎç04:13:14
+ * @date 2011-6-2ä¸‹åˆ04:13:14
  */
 public class VirturalNodeUtil {
 	private static final String SLOT_PIECE_SPLIT = ",";
@@ -24,23 +24,23 @@ public class VirturalNodeUtil {
 	private static CloseIntervalFieldsEnumeratorHandler enumerator = new IntegerPartDiscontinousRangeEnumerator();
 
 	/**
-	 * ²ÎÊıoriMapµÄvalue¸ñÊ½Îª <b>0,1,2-6</b> 0,1±íÊ¾2¸ö²Û,'-'±íÊ¾Ò»¸ö·¶Î§
+	 * å‚æ•°oriMapçš„valueæ ¼å¼ä¸º <b>0,1,2-6</b> 0,1è¡¨ç¤º2ä¸ªæ§½,'-'è¡¨ç¤ºä¸€ä¸ªèŒƒå›´
 	 * 
-	 * ´Ëº¯ÊıÖĞ½«·¶Î§Ã¶¾Ù³ÉÒ»¸ö¸ö²Û,²¢½«²Û±äÎªkey,Ô­±¾µÄkey±äÎªvalue
+	 * æ­¤å‡½æ•°ä¸­å°†èŒƒå›´æšä¸¾æˆä¸€ä¸ªä¸ªæ§½,å¹¶å°†æ§½å˜ä¸ºkey,åŸæœ¬çš„keyå˜ä¸ºvalue
 	 * 
-	 * example 1:keyÎª 1 valueÎª 1,2,3-6
+	 * example 1:keyä¸º 1 valueä¸º 1,2,3-6
 	 * 
-	 * ·µ»Ø½á¹ûÎª 1->1,2->1,3->1,4->1,5->1,6->1
+	 * è¿”å›ç»“æœä¸º 1->1,2->1,3->1,4->1,5->1,6->1
 	 * 
-	 * example 2:keyÎªdb_group_1 valueÎª1,2 db_group_2 valueÎª3,4-6
-	 * ·µ»Ø½á¹ûÎª 1->db_group_1,2->db_group_1
+	 * example 2:keyä¸ºdb_group_1 valueä¸º1,2 db_group_2 valueä¸º3,4-6
+	 * è¿”å›ç»“æœä¸º 1->db_group_1,2->db_group_1
 	 * 3->db_group_2,4->db_group_2,5->db_group_3,2->db_group_2
 	 * 
 	 * <b>
-	 * ÔİÊ±²»Ö§³ÖÈÎºÎĞÎÊ½µÄvalue¸ñÊ½»¯.¼´_0000,0001Ö®ÀàµÄ×Ö·û´®,Ö»½ÓÊÜ
-	 * ÊıÑ§ĞÎÊ½ÉÏµÄinteger,long
+	 * æš‚æ—¶ä¸æ”¯æŒä»»ä½•å½¢å¼çš„valueæ ¼å¼åŒ–.å³_0000,0001ä¹‹ç±»çš„å­—ç¬¦ä¸²,åªæ¥å—
+	 * æ•°å­¦å½¢å¼ä¸Šçš„integer,long
 	 * 
-	 * ºóĞø¸Ä½ø
+	 * åç»­æ”¹è¿›
 	 * </b>
 	 * @param tableMap
 	 * @return

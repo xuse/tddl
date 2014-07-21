@@ -28,18 +28,18 @@ public class OrExpressionGroup extends ExpressionGroup {
 			i++;
 		}
 		Map<String, Comparative> retMap=new HashMap<String, Comparative>();
-		//¹²ĞèÒª×ön´ÎºÏ²¢
+		//å…±éœ€è¦åšnæ¬¡åˆå¹¶
 		for(int j=0;j<viss.length;j++){
 			Map<String, Comparative> n= viss[j].getComparable();
 			for(Entry<String, Comparative> ent:n.entrySet()){
 				String key=ent.getKey();
 				Comparative val=ent.getValue();
 				Comparative temp=retMap.get(key);
-				//Îª¿ÕµÄÊ±ºò°Ñµ±Ç°µÄAndÊ÷·ÅÔÚMapÖĞ
+				//ä¸ºç©ºçš„æ—¶å€™æŠŠå½“å‰çš„Andæ ‘æ”¾åœ¨Mapä¸­
 				if(temp==null){
 					retMap.put(key, val);
 				}else{
-					//Èç¹û²»Îª¿ÕÔòÔÚÉÏÃæÌí¼ÓÒ»¸öOR½Úµã¡£
+					//å¦‚æœä¸ä¸ºç©ºåˆ™åœ¨ä¸Šé¢æ·»åŠ ä¸€ä¸ªORèŠ‚ç‚¹ã€‚
 					ComparativeOR or=new ComparativeOR();
 					or.addComparative(temp);
 					or.addComparative(val);

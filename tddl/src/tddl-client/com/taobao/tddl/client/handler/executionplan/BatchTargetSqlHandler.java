@@ -22,14 +22,14 @@ import com.taobao.tddl.interact.bean.TargetDB;
 import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteCondition;
 
 /**
- * @description Õâ¸öhandlerºÍExecutionPlanHandler¹¦ÄÜÉÏÊÇÆ½ĞĞµÄ,
- *              Ö»´¦ÀíbatchÏà¹ØÂß¼­,²¢ÇÒbatch»ù±¾ÉÏÊÇ´¦ÀíÊı¾İ¸üĞÂ, ËùÒÔÆä²»±ØÖ§³Öorder by,group by,Ä³Ğ©¾ÛºÏº¯ÊıµÈ
- *              queryÆÕ±éÊ¹ÓÃµÄÌØĞÔ,ËùÒÔÖ»ÊÇ½øĞĞ±íÃûÌæ»»,·µ»ØÄ¿±ê¿âºÍ ¿âÉÏÖ´ĞĞµÄsql¼´¿É.
+ * @description è¿™ä¸ªhandlerå’ŒExecutionPlanHandleråŠŸèƒ½ä¸Šæ˜¯å¹³è¡Œçš„,
+ *              åªå¤„ç†batchç›¸å…³é€»è¾‘,å¹¶ä¸”batchåŸºæœ¬ä¸Šæ˜¯å¤„ç†æ•°æ®æ›´æ–°, æ‰€ä»¥å…¶ä¸å¿…æ”¯æŒorder by,group by,æŸäº›èšåˆå‡½æ•°ç­‰
+ *              queryæ™®éä½¿ç”¨çš„ç‰¹æ€§,æ‰€ä»¥åªæ˜¯è¿›è¡Œè¡¨åæ›¿æ¢,è¿”å›ç›®æ ‡åº“å’Œ åº“ä¸Šæ‰§è¡Œçš„sqlå³å¯.
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-09-03ÏÂÎç01:12:44
+ * @date 2010-09-03ä¸‹åˆ01:12:44
  */
 public class BatchTargetSqlHandler extends AbstractHandler {
 	public static final String HANDLER_NAME = "BatchTargetSqlHandler";

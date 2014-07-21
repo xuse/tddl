@@ -19,7 +19,7 @@ public class UpdateVisitor extends EmptySQLASTVisitor {
 	public void visit(DMLUpdateStatement node) {
 		this.handleTableName(node);
 
-//		set 的expr不需要让tddl知道
+//		set 鐨別xpr涓嶉渶瑕佽tddl鐭ラ亾
 //		List<Pair<Identifier, Expression>> cvs = node.getValues();
 //		for (int i = 0; i < cvs.size(); i++) {
 //			Pair<Identifier, Expression> p = cvs.get(i);

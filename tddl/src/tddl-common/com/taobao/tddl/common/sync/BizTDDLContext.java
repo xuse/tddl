@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class BizTDDLContext{
-	public BizTDDLContext(){/* ±ãÓÚËÑË÷newµÄµØ·½ */};
-	private JdbcTemplate masterJdbcTemplate; //Ö÷¿â×éµÄTDataSource¶ÔÓ¦µÄJdbcTemplate
-	private String masterColumns; //¶ººÅ·Ö¸ôµÄÖ÷¿âÁĞÃû 
+	public BizTDDLContext(){/* ä¾¿äºæœç´¢newçš„åœ°æ–¹ */};
+	private JdbcTemplate masterJdbcTemplate; //ä¸»åº“ç»„çš„TDataSourceå¯¹åº”çš„JdbcTemplate
+	private String masterColumns; //é€—å·åˆ†éš”çš„ä¸»åº“åˆ—å 
 	private List<String> uniqueKeys;
 	private SlaveInfo[] slaveInfos;
 

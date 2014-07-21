@@ -19,7 +19,7 @@ import com.taobao.tddl.rule.bean.TDDLRoot;
 import com.taobao.tddl.sqlobjecttree.SqlParserResult;
 
 /**
- * ´æ·ÅÒ»´Î²éÑ¯»òÕßÒ»´ÎÊı¾İ¸üĞÂ¹ı³ÌÖĞµÄÊı¾İ
+ * å­˜æ”¾ä¸€æ¬¡æŸ¥è¯¢æˆ–è€…ä¸€æ¬¡æ•°æ®æ›´æ–°è¿‡ç¨‹ä¸­çš„æ•°æ®
  * 
  * @author junyu
  *
@@ -27,57 +27,57 @@ import com.taobao.tddl.sqlobjecttree.SqlParserResult;
 public class PipelineRuntimeInfo {
 	public static final String INFO_NAME="PipelineRuntimeInfo";
 	/**
-	 * ³õÊ¼ĞÅÏ¢ÈçÔ­Ê¼sql,²ÎÊıµÈ
+	 * åˆå§‹ä¿¡æ¯å¦‚åŸå§‹sql,å‚æ•°ç­‰
 	 */
 	private StartInfo startInfo;
 	
 	/**
-	 * Sql½âÎö½á¹û£¨RouteConditionÒ²»áÄ£Äâ²úÉúÒ»¸ö£©
+	 * Sqlè§£æç»“æœï¼ˆRouteConditionä¹Ÿä¼šæ¨¡æ‹Ÿäº§ç”Ÿä¸€ä¸ªï¼‰
 	 */
     private SqlParserResult sqlParserResult;
     
     /**
-     * ÊÇ·ñ¾­¹ıÁËSql½âÎöÆ÷£¨RouteConditionÉèÖÃfalse£©
+     * æ˜¯å¦ç»è¿‡äº†Sqlè§£æå™¨ï¼ˆRouteConditionè®¾ç½®falseï¼‰
      */
     private boolean isSqlParsed;
     
     /**
-     * Âß¼­±íÃû£¬¿ÉÒÔ´ÓsqlParserResultÖĞµÃµ½
+     * é€»è¾‘è¡¨åï¼Œå¯ä»¥ä»sqlParserResultä¸­å¾—åˆ°
      */
     private Set<String> logicTableNames;
     
     /**
-     * ÊÇ·ñÔÊĞí·´ÏòÊä³ö
+     * æ˜¯å¦å…è®¸åå‘è¾“å‡º
      */
     private boolean isAllowReverseOutput;
    
     /**
-     * °üº¬ÕæÕıÒªÖ´ĞĞµÄsqlºÍÊı¾İ¿â
+     * åŒ…å«çœŸæ­£è¦æ‰§è¡Œçš„sqlå’Œæ•°æ®åº“
      */
 	private DispatcherResult metaData;
 	
 	/**
-	 * ¹æÔòÆ¥ÅäÆ÷Æ¥Åä³öµÄ½á¹û
+	 * è§„åˆ™åŒ¹é…å™¨åŒ¹é…å‡ºçš„ç»“æœ
 	 */
 	private MatcherResult matcherResult ;
 	
 	/**
-	 * Ö´ĞĞ¼Æ»®£¬×îÖÕ½»¸øÊı¾İ²éÑ¯»òÕßÊı¾İ¸üĞÂ´¦ÀíÆ÷µÄÊı¾İ
+	 * æ‰§è¡Œè®¡åˆ’ï¼Œæœ€ç»ˆäº¤ç»™æ•°æ®æŸ¥è¯¢æˆ–è€…æ•°æ®æ›´æ–°å¤„ç†å™¨çš„æ•°æ®
 	 */
 	private ExecutionPlan executionPlan;
 	
 	/**
-	 * ±£´æsql½âÎöµÄ½á¹ûºÍÔ­Ê¼sqlĞÅÏ¢
+	 * ä¿å­˜sqlè§£æçš„ç»“æœå’ŒåŸå§‹sqlä¿¡æ¯
 	 */
 	private SqlMetaData SqlMetaData;
 
 	/**
-	 * ´ú±íÒ»Ì×¹æÔò£¬ÔÚ³õÊ¼»¯Ê±´Ó¹æÔò³ØÀïÑ¡ÖĞ£¨Ò²ÓĞ¿ÉÄÜÖ¸¶¨ÁËÆäÖĞÒ»Ì×¹æÔò£©
+	 * ä»£è¡¨ä¸€å¥—è§„åˆ™ï¼Œåœ¨åˆå§‹åŒ–æ—¶ä»è§„åˆ™æ± é‡Œé€‰ä¸­ï¼ˆä¹Ÿæœ‰å¯èƒ½æŒ‡å®šäº†å…¶ä¸­ä¸€å¥—è§„åˆ™ï¼‰
 	 */
 	private SqlDispatcher sqlDispatcher;
 	
 	/**
-	 * Á÷×ªÀàĞÍ
+	 * æµè½¬ç±»å‹
 	 */
 	private FlowType flowType;
 	
@@ -86,7 +86,7 @@ public class PipelineRuntimeInfo {
 	private List<String> uniqueColumns;
     
 	/**
-	 * ±»joinµÄĞéÄâ±íÃû
+	 * è¢«joinçš„è™šæ‹Ÿè¡¨å
 	 */
 	private List<String> virtualJoinTableNames= new ArrayList<String>();
 	
@@ -97,19 +97,19 @@ public class PipelineRuntimeInfo {
 	private Map<String, String> alias ;
 	
 	/**
-	 * id in¹é×é±êÊ¶
+	 * id inå½’ç»„æ ‡è¯†
 	 */
 	private boolean needIdInGroup;
 	
 	/**
-	 * ¶à¿â¶à±ídistinct±êÊ¶
+	 * å¤šåº“å¤šè¡¨distinctæ ‡è¯†
 	 */
 	private boolean completeDistinct;
 	
 	/**
-	 * sqlÖĞ´øµÄgroupHint,ĞèÒªÔÚÍ¨¹ısql½âÎöÆ÷
-	 * Ö®Ç°È¥³ı,ÔÚ½âÎöºóÌí¼Ó»Ø,ÔİÊ±²»Ö§³Ö²ÎÊı
-	 * Õ¼Î»
+	 * sqlä¸­å¸¦çš„groupHint,éœ€è¦åœ¨é€šè¿‡sqlè§£æå™¨
+	 * ä¹‹å‰å»é™¤,åœ¨è§£æåæ·»åŠ å›,æš‚æ—¶ä¸æ”¯æŒå‚æ•°
+	 * å ä½
 	 */
 	private String groupHintStr;
 	

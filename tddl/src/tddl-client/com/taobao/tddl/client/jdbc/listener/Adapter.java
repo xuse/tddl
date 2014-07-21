@@ -6,7 +6,7 @@ import com.taobao.tddl.client.jdbc.TDataSource;
 
 /*
  * @author guangxia
- * @since 1.0, 2010-4-13 ÏÂÎç02:34:56
+ * @since 1.0, 2010-4-13 ä¸‹åˆ02:34:56
  */
 public interface Adapter {
 	

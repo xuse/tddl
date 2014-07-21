@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * ÃèÊöÒ»×éÓĞ¹æÂÉµÄÃüÃûÁĞ±í¡£
+ * æè¿°ä¸€ç»„æœ‰è§„å¾‹çš„å‘½ååˆ—è¡¨ã€‚
  * 
  * <pre>
  *   NamePattern = Name | ( Prefix SuffixExpr )
@@ -62,7 +62,7 @@ public final class NamePattern extends NameSuffix {
 	suffixExpr.add(nameSuffix);
     }
 
-    // ²éÕÒÆ¥ÅäµÄÇ°×º³¤¶È
+    // æŸ¥æ‰¾åŒ¹é…çš„å‰ç¼€é•¿åº¦
     private int matchPrefix(String name) {
 	final int len = name.length();
 	boolean underline = false;
@@ -70,42 +70,42 @@ public final class NamePattern extends NameSuffix {
 	int i = 0, match = 0;
 	for (; i < prefix.length(); i++) {
 	    char ch = prefix.charAt(i);
-	    // ¼ì²éÇ°×ºÊÇ·ñÆ¥Åä
+	    // æ£€æŸ¥å‰ç¼€æ˜¯å¦åŒ¹é…
 	    if (i >= len) {
 		return match;
 	    }
-	    // °´ÕÕÊı×ÖºÍÏÂ»®Ïß·Ö¶Î
+	    // æŒ‰ç…§æ•°å­—å’Œä¸‹åˆ’çº¿åˆ†æ®µ
 	    if (ch == '_') {
 		underline = true;
 		number = false;
 	    } else if (Character.isDigit(ch)) {
-		// Êı×Öµ¥¶À·ÖÒ»¶Î
+		// æ•°å­—å•ç‹¬åˆ†ä¸€æ®µ
 		if (!number) {
 		    match = i;
 		}
 		underline = false;
 		number = true;
 	    } else {
-		// ÏÂ»®Ïß½áÊø·ÖÒ»¶Î
+		// ä¸‹åˆ’çº¿ç»“æŸåˆ†ä¸€æ®µ
 		if (underline) {
 		    match = i;
 		}
 		underline = false;
 		number = false;
 	    }
-	    // ¼ì²éÇ°×ºÊÇ·ñÆ¥Åä
+	    // æ£€æŸ¥å‰ç¼€æ˜¯å¦åŒ¹é…
 	    if (ch != name.charAt(i)) {
 		return match;
 	    }
 	}
-	// Èç¹ûÃû×ÖÕıºÃÆ¥ÅäÇ°×º, ĞèÒªÌØÊâ´¦Àí
+	// å¦‚æœåå­—æ­£å¥½åŒ¹é…å‰ç¼€, éœ€è¦ç‰¹æ®Šå¤„ç†
 	if (i == len && suffixExpr != null) {
 	    return match;
 	}
 	return i;
     }
 
-    // ÔÚÇ°×ºÎ»ÖÃºÏ²¢·ÖÖ§ºó×º
+    // åœ¨å‰ç¼€ä½ç½®åˆå¹¶åˆ†æ”¯åç¼€
     private void branchPrefix(String suffix, int fromIndex) {
 	String branch = prefix.substring(fromIndex);
 	prefix = prefix.substring(0, fromIndex);
@@ -119,7 +119,7 @@ public final class NamePattern extends NameSuffix {
 	addSuffix(suffix);
     }
 
-    // Êı×ÖÀàĞÍµÄºó×ººÏ²¢
+    // æ•°å­—ç±»å‹çš„åç¼€åˆå¹¶
     private void mergeRange(String name) {
 	final int len = name.length();
 	final long number = Long.parseLong(name);
@@ -153,29 +153,29 @@ public final class NamePattern extends NameSuffix {
 	}
     }
 
-    // ºÏ²¢Ò»¸öÃüÃûµ½¹æÔò
+    // åˆå¹¶ä¸€ä¸ªå‘½ååˆ°è§„åˆ™
     protected boolean merge(String name) {
-	// Ç°×ºÆ¥ÅäÓë·ÖÖ§ºÏ²¢
+	// å‰ç¼€åŒ¹é…ä¸åˆ†æ”¯åˆå¹¶
 	if (prefix != null) {
 	    final int match = matchPrefix(name);
 	    if (match == 0) {
-		// Ç°×ºÍêÈ«²»Æ¥Åä
+		// å‰ç¼€å®Œå…¨ä¸åŒ¹é…
 		return false;
 	    } else if (match < prefix.length()) {
-		// ×÷ÎªÒ»¸öĞÂ·ÖÖ§²åÈë, ²»ÓÃºÏ²¢ºó×º
+		// ä½œä¸ºä¸€ä¸ªæ–°åˆ†æ”¯æ’å…¥, ä¸ç”¨åˆå¹¶åç¼€
 		branchPrefix(name.substring(match), match);
 		return true;
 	    }
 	    name = name.substring(match);
 	}
 
-	// ºó×ºÆ¥ÅäºÍºÏ²¢
+	// åç¼€åŒ¹é…å’Œåˆå¹¶
 	if (suffixExpr != null) {
 	    if (NameRange.numericCheck(name)) {
-		// Êı×ÖÀàĞÍµÄºó×ººÏ²¢
+		// æ•°å­—ç±»å‹çš„åç¼€åˆå¹¶
 		mergeRange(name);
 	    } else {
-		// ×Ö·ûÀàĞÍµÄºó×ººÏ²¢
+		// å­—ç¬¦ç±»å‹çš„åç¼€åˆå¹¶
 		for (NameSuffix nameSuffix : suffixExpr) {
 		    if (nameSuffix instanceof NamePattern) {
 			NamePattern namePattern = (NamePattern) nameSuffix;
@@ -184,21 +184,21 @@ public final class NamePattern extends NameSuffix {
 			}
 		    }
 		}
-		// µ¥¶ÀµÄºó×º
+		// å•ç‹¬çš„åç¼€
 		suffixExpr.add(new NamePattern(name));
 	    }
 	    return true;
 	}
 
-	// Ã»ÓĞÆ¥ÅäµÄºó×º
+	// æ²¡æœ‰åŒ¹é…çš„åç¼€
 	return name.isEmpty();
     }
 
-    // ºÏ²¢Ò»×éÃüÃûµ½ÃüÃû¹æÔò
+    // åˆå¹¶ä¸€ç»„å‘½ååˆ°å‘½åè§„åˆ™
     public static NamePattern merge(NamePattern namePattern,
 	    Collection<String> names) {
 	for (String name : names) {
-	    // Ïû³ıÊäÈëµÄ¿Õ¸ñ
+	    // æ¶ˆé™¤è¾“å…¥çš„ç©ºæ ¼
 	    name = name.trim();
 	    if (namePattern == null) {
 		if (NameRange.numericCheck(name)) {
@@ -220,17 +220,17 @@ public final class NamePattern extends NameSuffix {
 	return namePattern;
     }
 
-    // ºÏ²¢Ò»×éÃüÃûµ½ÃüÃû¹æÔò
+    // åˆå¹¶ä¸€ç»„å‘½ååˆ°å‘½åè§„åˆ™
     public static NamePattern merge(NamePattern namePattern, String... names) {
 	return merge(namePattern, Arrays.asList(names));
     }
 
-    // ºÏ²¢Ò»×éÃüÃûµ½ÃüÃû¹æÔò
+    // åˆå¹¶ä¸€ç»„å‘½ååˆ°å‘½åè§„åˆ™
     public static NamePattern merge(Collection<String> names) {
 	return merge(null, names);
     }
 
-    // ºÏ²¢Ò»×éÃüÃûµ½ÃüÃû¹æÔò
+    // åˆå¹¶ä¸€ç»„å‘½ååˆ°å‘½åè§„åˆ™
     public static NamePattern merge(String... names) {
 	return merge(Arrays.asList(names));
     }
@@ -317,7 +317,7 @@ public final class NamePattern extends NameSuffix {
 	    char ch = input.charAt(i);
 	    switch (ch) {
 	    case '\\':
-		i++; // ´¦Àí×ªÒå×Ö·û
+		i++; // å¤„ç†è½¬ä¹‰å­—ç¬¦
 		break;
 	    case '-':
 		minusIndex = i;
@@ -328,7 +328,7 @@ public final class NamePattern extends NameSuffix {
 			prefix.isEmpty() ? null : NamePattern.unescape(prefix),
 			new ArrayList<NameSuffix>());
 		index = namePattern.loadSuffix(input, i + 1);
-		// TODO: Ó¦¸ÃÊÇ¶ººÅ: input.charAt(index)
+		// TODO: åº”è¯¥æ˜¯é€—å·: input.charAt(index)
 		suffixExpr.add(namePattern);
 		minusIndex = -1;
 		i = index - 1;
@@ -406,7 +406,7 @@ public final class NamePattern extends NameSuffix {
 
     protected StringBuilder buildString(StringBuilder buf) {
 	if (prefix != null) {
-	    // ´¦Àí×ªÒå×Ö·û
+	    // å¤„ç†è½¬ä¹‰å­—ç¬¦
 	    escape(buf, prefix);
 	}
 	if (suffixExpr != null) {

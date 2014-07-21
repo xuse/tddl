@@ -4,9 +4,9 @@ import com.alibaba.common.lang.StringUtil;
 import com.taobao.tddl.common.util.NagiosUtils;
 
 /**
- * »ùÓÚ Nagios ¸ñÊ½µÄÍ³¼ÆÈÕÖ¾Êä³öÀà¡£ <br />
+ * åŸºäº Nagios æ ¼å¼çš„ç»Ÿè®¡æ—¥å¿—è¾“å‡ºç±»ã€‚ <br />
  * 
- * ¼æÈİ StatMonitor µÄ´úÂë¡£
+ * å…¼å®¹ StatMonitor çš„ä»£ç ã€‚
  * 
  * @author changyuan.lh
  */
@@ -16,7 +16,7 @@ public class NagiosLogWriter extends StatLogWriter {
 		if (values.length < 2) {
 			throw new IllegalArgumentException("At least given 2 values");
 		}
-		// XXX: ¼æÈİ StatMonitor µÄÊä³ö, ·ÅÆú min/max Ö»Êä³öÆ½¾ùÖµ
+		// XXX: å…¼å®¹ StatMonitor çš„è¾“å‡º, æ”¾å¼ƒ min/max åªè¾“å‡ºå¹³å‡å€¼
 		long count = values[0];
 		long value = values[1];
 		String averageValueStr = "invalid";

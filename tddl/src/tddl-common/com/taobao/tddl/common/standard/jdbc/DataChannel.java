@@ -8,7 +8,7 @@ import com.taobao.tddl.common.channel.SqlMetaData;
 public interface DataChannel{
 	
 	/**
-	 * ´«µİ¸ÃsqlµÄÔªĞÅÏ¢¸øµ×²ã
+	 * ä¼ é€’è¯¥sqlçš„å…ƒä¿¡æ¯ç»™åº•å±‚
 	 * @param sqlMetaData
 	 */
 	public void fillMetaData(SqlMetaData sqlMetaData);

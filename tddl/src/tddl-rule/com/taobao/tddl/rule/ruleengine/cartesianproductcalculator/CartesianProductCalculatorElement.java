@@ -35,34 +35,34 @@ public class CartesianProductCalculatorElement implements Parent {
 		if (elementOfCartesianProductCalculation == null) {
 				return parent.parentHasNext();
 		}
-		//Èç¹ûµÚÒ»´Î½øÈëelementµÄhasNext·½·¨¡£Ôò³õÊ¼»¯Ò»ÏÂ
+		//å¦‚æœç¬¬ä¸€æ¬¡è¿›å…¥elementçš„hasNextæ–¹æ³•ã€‚åˆ™åˆå§‹åŒ–ä¸€ä¸‹
 		if (iteratorOfCartesianProductCalculation == null) {
 			iteratorOfCartesianProductCalculation = elementOfCartesianProductCalculation
 					.iterator();
 		}
 		
 		if(iteratorOfCartesianProductCalculation.hasNext()){
-			//µ±Ç°½Úµã»¹ÓĞnextÖµµÄ»°£¬Ö±½Ó»Ø´ğÓĞÖµ
+			//å½“å‰èŠ‚ç‚¹è¿˜æœ‰nextå€¼çš„è¯ï¼Œç›´æ¥å›ç­”æœ‰å€¼
 			return true;
 		}else{
-			//Ã»ÓĞnextÖµµÄ»°£¬Ñ¯ÎÊparentÊÇ·ñÓĞnextÖµ¡£
+			//æ²¡æœ‰nextå€¼çš„è¯ï¼Œè¯¢é—®parentæ˜¯å¦æœ‰nextå€¼ã€‚
 			return parent.parentHasNext();
 		}
 	}
 
 	/**
-	 * ³õÊ¼»¯µÄÂß¼­ºÍnextÂß¼­»ù±¾ÏàÍ¬£¬µ«²»ĞèÒªÍ¨Öªparent½øÎ»
+	 * åˆå§‹åŒ–çš„é€»è¾‘å’Œnexté€»è¾‘åŸºæœ¬ç›¸åŒï¼Œä½†ä¸éœ€è¦é€šçŸ¥parentè¿›ä½
 	 */
 	public void init(){
 		if (elementOfCartesianProductCalculation == null) {
 			currentObject = null;
 			return ;
 		}
-		//Èç¹ûµ±Ç°µÄlist¾ÍÓĞnextÖµ£¬ÔòÊ¹ÓÃµ±Ç°listµÄnextÖµ
+		//å¦‚æœå½“å‰çš„listå°±æœ‰nextå€¼ï¼Œåˆ™ä½¿ç”¨å½“å‰listçš„nextå€¼
 		if(iteratorOfCartesianProductCalculation.hasNext()){
 			currentObject = iteratorOfCartesianProductCalculation.next();
 		}else{
-			//·ñÔòÍ¨ÖªparentÒª½øÎ»ÁË£¬È»ºó×Ô¼º½øĞĞÖØÖÃ¡£
+			//å¦åˆ™é€šçŸ¥parentè¦è¿›ä½äº†ï¼Œç„¶åè‡ªå·±è¿›è¡Œé‡ç½®ã€‚
 			iteratorOfCartesianProductCalculation = elementOfCartesianProductCalculation.iterator();
 			if(iteratorOfCartesianProductCalculation.hasNext()){
 				currentObject = iteratorOfCartesianProductCalculation.next();
@@ -76,11 +76,11 @@ public class CartesianProductCalculatorElement implements Parent {
 			parent.add();
 			return currentObject;
 		}
-		//Èç¹ûµ±Ç°µÄlist¾ÍÓĞnextÖµ£¬ÔòÊ¹ÓÃµ±Ç°listµÄnextÖµ
+		//å¦‚æœå½“å‰çš„listå°±æœ‰nextå€¼ï¼Œåˆ™ä½¿ç”¨å½“å‰listçš„nextå€¼
 		if(iteratorOfCartesianProductCalculation.hasNext()){
 			currentObject = iteratorOfCartesianProductCalculation.next();
 		}else{
-			//·ñÔòÍ¨ÖªparentÒª½øÎ»ÁË£¬È»ºó×Ô¼º½øĞĞÖØÖÃ¡£
+			//å¦åˆ™é€šçŸ¥parentè¦è¿›ä½äº†ï¼Œç„¶åè‡ªå·±è¿›è¡Œé‡ç½®ã€‚
 			iteratorOfCartesianProductCalculation = elementOfCartesianProductCalculation.iterator();
 			parent.add();
 			if(iteratorOfCartesianProductCalculation.hasNext()){

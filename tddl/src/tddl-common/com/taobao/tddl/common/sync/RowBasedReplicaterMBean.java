@@ -2,13 +2,13 @@ package com.taobao.tddl.common.sync;
 
 
 /**
- * RowBasedReplicater JMX MBean½Ó¿Ú
+ * RowBasedReplicater JMX MBeanæ¥å£
  * 
  * @author linxuan
  */
 public interface RowBasedReplicaterMBean {
 	/**
-	 * Èı¸ö¶ÓÁĞµÄ´óĞ¡
+	 * ä¸‰ä¸ªé˜Ÿåˆ—çš„å¤§å°
 	 */
 	int getReplicationQueueSize();
 
@@ -18,23 +18,23 @@ public interface RowBasedReplicaterMBean {
 
 
 	/**
-	 * Èı¸öÏß³Ì³ØµÄÍê³ÉÈÎÎñÊı
+	 * ä¸‰ä¸ªçº¿ç¨‹æ± çš„å®Œæˆä»»åŠ¡æ•°
 	 */
 	long getCompletedReplicationCount();
 
 	/**
-	 * É¾³ıÈÕÖ¾Ïß³Ì³ØÍê³ÉÈÎÎñÊı£¬Ã¿¸öÈÎÎñ¶¼ÊÇÅúÁ¿É¾³ıµÄ 
+	 * åˆ é™¤æ—¥å¿—çº¿ç¨‹æ± å®Œæˆä»»åŠ¡æ•°ï¼Œæ¯ä¸ªä»»åŠ¡éƒ½æ˜¯æ‰¹é‡åˆ é™¤çš„ 
 	 */
 	long getCompletedDeleteSyncLogCount();
 
 	/**
-	 * ¸üĞÂÈÕÖ¾Ïß³Ì³ØÍê³ÉÈÎÎñÊı£¬Ã¿¸öÈÎÎñ¶¼ÊÇÅúÁ¿¸üĞÂµÄ 
+	 * æ›´æ–°æ—¥å¿—çº¿ç¨‹æ± å®Œæˆä»»åŠ¡æ•°ï¼Œæ¯ä¸ªä»»åŠ¡éƒ½æ˜¯æ‰¹é‡æ›´æ–°çš„ 
 	 */
 	long getCompletedUpdateSyncLogCount();
 
 	
 	/**
-	 * ¶¯Ì¬¼à¿ØºÍµ÷ÕûbucketSize
+	 * åŠ¨æ€ç›‘æ§å’Œè°ƒæ•´bucketSize
 	 */
 	int getDeleteBatchSize();
 

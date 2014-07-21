@@ -78,7 +78,7 @@
 //		for (int i = 0; i < children.getLength(); i++) {
 //			Node cNode = children.item(i);
 //
-//			// 如果为SQL节点
+//			// 濡傛灉涓篠QL鑺傜偣
 //			if (NODE_SQL.equalsIgnoreCase(cNode.getNodeName())) {
 //				Properties attributes = parseAttributes(cNode);
 //
@@ -115,7 +115,7 @@
 //	}
 //
 //	/**
-//	 * 解析路由配置的XML配置文件
+//	 * 瑙ｆ瀽璺敱閰嶇疆鐨刋ML閰嶇疆鏂囦欢
 //	 * 
 //	 * @param reader
 //	 * 
@@ -148,7 +148,7 @@
 //	}
 //
 //	/**
-//	 * 解析参数
+//	 * 瑙ｆ瀽鍙傛暟
 //	 * 
 //	 * @param n
 //	 * 

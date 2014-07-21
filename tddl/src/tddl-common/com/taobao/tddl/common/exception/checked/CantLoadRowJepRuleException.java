@@ -7,7 +7,7 @@ public class CantLoadRowJepRuleException extends TDLCheckedExcption{
 	 */
 	private static final long serialVersionUID = 1765363763147779906L;
 	public CantLoadRowJepRuleException(String expression,String vtable,String parameter) {
-		super("ÎÞ·¨Í¨¹ýparam:"+parameter+"|virtualTableName:"+vtable+"|expression:"+expression+"ÕÒµ½Ö¸¶¨µÄ¹æÔòÅÐ¶ÏÒýÇæ");
+		super("æ— æ³•é€šè¿‡param:"+parameter+"|virtualTableName:"+vtable+"|expression:"+expression+"æ‰¾åˆ°æŒ‡å®šçš„è§„åˆ™åˆ¤æ–­å¼•æ“Ž");
 	}
 
 }

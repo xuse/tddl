@@ -9,9 +9,9 @@ public class StringUtils {
 	public static final String NL=System.getProperty("line.separator");
 	
 	/**
-	 * ¶Ô×Ö¶Î½øĞĞtrimÈç¹û×Ö¶ÎÔ­À´¾ÍÎªnullÔòÈÔÈ»·µ»Ønull
-	 * @param str Ä¿±ê×Ö¶Î
-	 * @return Îª¿ÕÊ±µÄÌáÊ¾ĞÅÏ¢
+	 * å¯¹å­—æ®µè¿›è¡Œtrimå¦‚æœå­—æ®µåŸæ¥å°±ä¸ºnullåˆ™ä»ç„¶è¿”å›null
+	 * @param str ç›®æ ‡å­—æ®µ
+	 * @return ä¸ºç©ºæ—¶çš„æç¤ºä¿¡æ¯
 	 */
 	public static String trim(String str){
 		if(str!=null){
@@ -216,7 +216,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÊÇ·ñÒÔsuffix´®½áÎ²£¬ºöÂÔ´óĞ¡Ğ´
+	 * æ˜¯å¦ä»¥suffixä¸²ç»“å°¾ï¼Œå¿½ç•¥å¤§å°å†™
 	 *
 	 * @param s
 	 * @param suffix
@@ -227,12 +227,12 @@ public class StringUtils {
 	}
 
 	/**
-	 * ºöÂÔ´óĞ¡Ğ´Ìæ»»×Ö·û´®
+	 * å¿½ç•¥å¤§å°å†™æ›¿æ¢å­—ç¬¦ä¸²
 	 *
-	 * @param s Ô­Ê¼×Ö·û´®
-	 * @param oldPattern ÒªÌæ»»µÄ×Ö·û´®µÄÕıÔò±í´ïÊ½
-	 * @param newPattern ĞÂ×Ö·û´®
-	 * @return ·µ»ØÌæ»»ºóµÄ×Ö·û´®
+	 * @param s åŸå§‹å­—ç¬¦ä¸²
+	 * @param oldPattern è¦æ›¿æ¢çš„å­—ç¬¦ä¸²çš„æ­£åˆ™è¡¨è¾¾å¼
+	 * @param newPattern æ–°å­—ç¬¦ä¸²
+	 * @return è¿”å›æ›¿æ¢åçš„å­—ç¬¦ä¸²
 	 */
 	public static String replaceIgnoreCase(String s, String oldPattern, String newPattern) {
 		return Pattern.compile(oldPattern, Pattern.CASE_INSENSITIVE).matcher(s).replaceAll(newPattern);

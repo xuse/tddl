@@ -6,212 +6,212 @@ import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.SimpleCondition;
 
 public interface SqlBaseExecutor {
 	/**
-	 * ²éÑ¯µ¥¸öÊı¾İµÄ·½·¨¡£ ÓëibatisÖĞµÄÓÃ·¨Ò»ÖÂ¡£ Èç¹ûÉæ¼°¶à¿â²éÑ¯Ôò½«Å×³öibatis²úÉúµÄDataAccessExpetionÒì³£
+	 * æŸ¥è¯¢å•ä¸ªæ•°æ®çš„æ–¹æ³•ã€‚ ä¸ibatisä¸­çš„ç”¨æ³•ä¸€è‡´ã€‚ å¦‚æœæ¶‰åŠå¤šåº“æŸ¥è¯¢åˆ™å°†æŠ›å‡ºibatisäº§ç”Ÿçš„DataAccessExpetionå¼‚å¸¸
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap,Bean»ò»ù±¾ÀàĞÍ¡£
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMap,Beanæˆ–åŸºæœ¬ç±»å‹ã€‚
 	 * @param rc
-	 *            Ìõ¼ş±í´ïÊ½£¬µ¥¿âµ¥±í²éÑ¯Ó¦¸ÃÊ¹ÓÃ{@link SimpleCondition}
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍ¡£
+	 *            æ¡ä»¶è¡¨è¾¾å¼ï¼Œå•åº“å•è¡¨æŸ¥è¯¢åº”è¯¥ä½¿ç”¨{@link SimpleCondition}
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹ã€‚
 	 */
 	Object queryForObject(String statementID, Object parameterObject,
 			RouteCondition rc);
 	/**
-	 * ²éÑ¯µ¥¸öÊı¾İµÄ·½·¨¡£ ÓëibatisÖĞµÄÓÃ·¨Ò»ÖÂ¡£ Èç¹ûÉæ¼°¶à¿â²éÑ¯Ôò½«Å×³öibatis²úÉúµÄDataAccessExpetionÒì³£
+	 * æŸ¥è¯¢å•ä¸ªæ•°æ®çš„æ–¹æ³•ã€‚ ä¸ibatisä¸­çš„ç”¨æ³•ä¸€è‡´ã€‚ å¦‚æœæ¶‰åŠå¤šåº“æŸ¥è¯¢åˆ™å°†æŠ›å‡ºibatisäº§ç”Ÿçš„DataAccessExpetionå¼‚å¸¸
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap,Bean»ò»ù±¾ÀàĞÍ¡£
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍ¡£
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMap,Beanæˆ–åŸºæœ¬ç±»å‹ã€‚
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹ã€‚
 	 */
 	Object queryForObject(String statementID, Object parameterObject);
 	/**
-	 * ²éÑ¯µ¥¸öÊı¾İµÄ·½·¨£¬¿É×ö¶à±íÊıÖµĞÍÊı¾İÀÛ¼Ó
+	 * æŸ¥è¯¢å•ä¸ªæ•°æ®çš„æ–¹æ³•ï¼Œå¯åšå¤šè¡¨æ•°å€¼å‹æ•°æ®ç´¯åŠ 
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param param
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap,Bean»ò»ù±¾ÀàĞÍ¡£
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMap,Beanæˆ–åŸºæœ¬ç±»å‹ã€‚
 	 * @param isExistsQuit
-	 *            ÊÇ·ñ½«ÊıÖµĞÍÊı¾İÔÚ±éÀú¶à¿âµÄÇé¿öÏÂÀÛ¼Ó
+	 *            æ˜¯å¦å°†æ•°å€¼å‹æ•°æ®åœ¨éå†å¤šåº“çš„æƒ…å†µä¸‹ç´¯åŠ 
 	 * @param rc
-	 *            Ìõ¼ş±í´ïÊ½£¬µ¥¿âµ¥±í²éÑ¯Ó¦¸ÃÊ¹ÓÃ{@link SimpleCondition}
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍ¡£
+	 *            æ¡ä»¶è¡¨è¾¾å¼ï¼Œå•åº“å•è¡¨æŸ¥è¯¢åº”è¯¥ä½¿ç”¨{@link SimpleCondition}
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹ã€‚
 	 */
 	Object queryForObject(String statementID, Object param,
 			boolean isExistsQuit, RouteCondition rc);
 	/**
-	 * ²éÑ¯µ¥¸öÊı¾İµÄ·½·¨£¬¿É×ö¶à±íÊıÖµĞÍÊı¾İÀÛ¼Ó
+	 * æŸ¥è¯¢å•ä¸ªæ•°æ®çš„æ–¹æ³•ï¼Œå¯åšå¤šè¡¨æ•°å€¼å‹æ•°æ®ç´¯åŠ 
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param param
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap,Bean»ò»ù±¾ÀàĞÍ¡£
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMap,Beanæˆ–åŸºæœ¬ç±»å‹ã€‚
 	 * @param isExistsQuit
-	 *            ÊÇ·ñ½«ÊıÖµĞÍÊı¾İÔÚ±éÀú¶à¿âµÄÇé¿öÏÂÀÛ¼Ó
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍ¡£
+	 *            æ˜¯å¦å°†æ•°å€¼å‹æ•°æ®åœ¨éå†å¤šåº“çš„æƒ…å†µä¸‹ç´¯åŠ 
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹ã€‚
 	 */
 	Object queryForObject(String statementID, Object param,
 			boolean isExistsQuit);
 	/**
-	 * ²éÑ¯¶à¸öÊı¾İµÄ·½·¨£¬Ò»ÆÚÖ»Ö§³Öµ¥¿â¶à±íµÄ²éÑ¯£¬Èç¹ûÉæ¼°¶à±í²éÑ¯Ôò½«ËùÓĞ²éÑ¯½á¹ûºÏ²¢ºó·µ»Ø¡£
+	 * æŸ¥è¯¢å¤šä¸ªæ•°æ®çš„æ–¹æ³•ï¼Œä¸€æœŸåªæ”¯æŒå•åº“å¤šè¡¨çš„æŸ¥è¯¢ï¼Œå¦‚æœæ¶‰åŠå¤šè¡¨æŸ¥è¯¢åˆ™å°†æ‰€æœ‰æŸ¥è¯¢ç»“æœåˆå¹¶åè¿”å›ã€‚
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬<b>ÓÉÓÚBean»ò»ù±¾ÀàĞÍ²»ÄÜ¶¯Ì¬Ìí¼ÓÊôĞÔ£¬Òò´ËÈç¹ûÉæ¼°·¶Î§²éÑ¯Çë²»ÒªÊ¹ÓÃBean»ò»ù±¾ÀàĞÍ×÷Îª²ÎÊı
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼Œ<b>ç”±äºBeanæˆ–åŸºæœ¬ç±»å‹ä¸èƒ½åŠ¨æ€æ·»åŠ å±æ€§ï¼Œå› æ­¤å¦‚æœæ¶‰åŠèŒƒå›´æŸ¥è¯¢è¯·ä¸è¦ä½¿ç”¨Beanæˆ–åŸºæœ¬ç±»å‹ä½œä¸ºå‚æ•°
 	 *            </b>
 	 * @param rc
-	 *            Ìõ¼ş±í´ïÊ½£¬µ¥¿âµ¥±í²éÑ¯Ó¦¸ÃÊ¹ÓÃ{@link SimpleCondition}
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍ¡£
+	 *            æ¡ä»¶è¡¨è¾¾å¼ï¼Œå•åº“å•è¡¨æŸ¥è¯¢åº”è¯¥ä½¿ç”¨{@link SimpleCondition}
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹ã€‚
 	 */
 	List<Object> queryForList(String statementID, Object parameterObject,
 			RouteCondition rc);
 	/**
-	 * ²éÑ¯¶à¸öÊı¾İµÄ·½·¨£¬Ò»ÆÚÖ»Ö§³Öµ¥¿â¶à±íµÄ²éÑ¯£¬Èç¹ûÉæ¼°¶à±í²éÑ¯Ôò½«ËùÓĞ²éÑ¯½á¹ûºÏ²¢ºó·µ»Ø¡£
+	 * æŸ¥è¯¢å¤šä¸ªæ•°æ®çš„æ–¹æ³•ï¼Œä¸€æœŸåªæ”¯æŒå•åº“å¤šè¡¨çš„æŸ¥è¯¢ï¼Œå¦‚æœæ¶‰åŠå¤šè¡¨æŸ¥è¯¢åˆ™å°†æ‰€æœ‰æŸ¥è¯¢ç»“æœåˆå¹¶åè¿”å›ã€‚
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬<b>ÓÉÓÚBean»ò»ù±¾ÀàĞÍ²»ÄÜ¶¯Ì¬Ìí¼ÓÊôĞÔ£¬Òò´ËÈç¹ûÉæ¼°·¶Î§²éÑ¯Çë²»ÒªÊ¹ÓÃBean»ò»ù±¾ÀàĞÍ×÷Îª²ÎÊı
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼Œ<b>ç”±äºBeanæˆ–åŸºæœ¬ç±»å‹ä¸èƒ½åŠ¨æ€æ·»åŠ å±æ€§ï¼Œå› æ­¤å¦‚æœæ¶‰åŠèŒƒå›´æŸ¥è¯¢è¯·ä¸è¦ä½¿ç”¨Beanæˆ–åŸºæœ¬ç±»å‹ä½œä¸ºå‚æ•°
 	 *            </b>
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍ¡£
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹ã€‚
 	 */
 	List<Object> queryForList(String statementID, Object parameterObject);
 	/**
-	 * ²éÑ¯¶à¸öÊı¾İµÄ·½·¨£¬Ò»ÆÚÖ»Ö§³Öµ¥¿â¶à±íµÄ²éÑ¯£¬Èç¹ûÉæ¼°¶à±í²éÑ¯Ôò½«ËùÓĞ²éÑ¯½á¹ûºÏ²¢ºó·µ»Ø¡£
+	 * æŸ¥è¯¢å¤šä¸ªæ•°æ®çš„æ–¹æ³•ï¼Œä¸€æœŸåªæ”¯æŒå•åº“å¤šè¡¨çš„æŸ¥è¯¢ï¼Œå¦‚æœæ¶‰åŠå¤šè¡¨æŸ¥è¯¢åˆ™å°†æ‰€æœ‰æŸ¥è¯¢ç»“æœåˆå¹¶åè¿”å›ã€‚
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬<b>ÓÉÓÚBean»ò»ù±¾ÀàĞÍ²»ÄÜ¶¯Ì¬Ìí¼ÓÊôĞÔ£¬Òò´ËÈç¹ûÉæ¼°·¶Î§²éÑ¯Çë²»ÒªÊ¹ÓÃBean»ò»ù±¾ÀàĞÍ×÷Îª²ÎÊı
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼Œ<b>ç”±äºBeanæˆ–åŸºæœ¬ç±»å‹ä¸èƒ½åŠ¨æ€æ·»åŠ å±æ€§ï¼Œå› æ­¤å¦‚æœæ¶‰åŠèŒƒå›´æŸ¥è¯¢è¯·ä¸è¦ä½¿ç”¨Beanæˆ–åŸºæœ¬ç±»å‹ä½œä¸ºå‚æ•°
 	 *            </b>
 	 * @param isExistQuit
-	 *            ÊÇ·ñ½«ÊıÖµĞÍÊı¾İÔÚ±éÀú¶à¿âµÄÇé¿öÏÂÀÛ¼Ó
+	 *            æ˜¯å¦å°†æ•°å€¼å‹æ•°æ®åœ¨éå†å¤šåº“çš„æƒ…å†µä¸‹ç´¯åŠ 
 	 * @param rc
-	 *            Ìõ¼ş±í´ïÊ½£¬µ¥¿âµ¥±í²éÑ¯Ó¦¸ÃÊ¹ÓÃ{@link SimpleCondition}
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍµÄÁĞ±í¡£
+	 *            æ¡ä»¶è¡¨è¾¾å¼ï¼Œå•åº“å•è¡¨æŸ¥è¯¢åº”è¯¥ä½¿ç”¨{@link SimpleCondition}
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹çš„åˆ—è¡¨ã€‚
 	 */
 	List<Object> queryForList(String statementID, Object parameterObject,
 			boolean isExistQuit, RouteCondition rc);
 	/**
-	 * ²éÑ¯¶à¸öÊı¾İµÄ·½·¨£¬Ò»ÆÚÖ»Ö§³Öµ¥¿â¶à±íµÄ²éÑ¯£¬Èç¹ûÉæ¼°¶à±í²éÑ¯Ôò½«ËùÓĞ²éÑ¯½á¹ûºÏ²¢ºó·µ»Ø¡£
+	 * æŸ¥è¯¢å¤šä¸ªæ•°æ®çš„æ–¹æ³•ï¼Œä¸€æœŸåªæ”¯æŒå•åº“å¤šè¡¨çš„æŸ¥è¯¢ï¼Œå¦‚æœæ¶‰åŠå¤šè¡¨æŸ¥è¯¢åˆ™å°†æ‰€æœ‰æŸ¥è¯¢ç»“æœåˆå¹¶åè¿”å›ã€‚
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬<b>ÓÉÓÚBean»ò»ù±¾ÀàĞÍ²»ÄÜ¶¯Ì¬Ìí¼ÓÊôĞÔ£¬Òò´ËÈç¹ûÉæ¼°·¶Î§²éÑ¯Çë²»ÒªÊ¹ÓÃBean»ò»ù±¾ÀàĞÍ×÷Îª²ÎÊı
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼Œ<b>ç”±äºBeanæˆ–åŸºæœ¬ç±»å‹ä¸èƒ½åŠ¨æ€æ·»åŠ å±æ€§ï¼Œå› æ­¤å¦‚æœæ¶‰åŠèŒƒå›´æŸ¥è¯¢è¯·ä¸è¦ä½¿ç”¨Beanæˆ–åŸºæœ¬ç±»å‹ä½œä¸ºå‚æ•°
 	 *            </b>
 	 * @param isExistQuit
-	 *            ÊÇ·ñ½«ÊıÖµĞÍÊı¾İÔÚ±éÀú¶à¿âµÄÇé¿öÏÂÀÛ¼Ó
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍµÄÁĞ±í¡£
+	 *            æ˜¯å¦å°†æ•°å€¼å‹æ•°æ®åœ¨éå†å¤šåº“çš„æƒ…å†µä¸‹ç´¯åŠ 
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹çš„åˆ—è¡¨ã€‚
 	 */
 	List<Object> queryForList(String statementID, Object parameterObject,
 			boolean isExistQuit);
 	/**
-	 * ÅÅĞò²éÑ¯,µ«Ä¿Ç°Ö»Ö§³Öµ¥¿â¶à±í£¬¿ÉÒÔÅÅĞò·ÖÒ³¡£Ò»ÆÚÖĞ¾ÍÊÇ
-	 * {@link #queryForMergeSortTables(String, Object, RouteCondition)} µÄÖØÔØº¯Êı
+	 * æ’åºæŸ¥è¯¢,ä½†ç›®å‰åªæ”¯æŒå•åº“å¤šè¡¨ï¼Œå¯ä»¥æ’åºåˆ†é¡µã€‚ä¸€æœŸä¸­å°±æ˜¯
+	 * {@link #queryForMergeSortTables(String, Object, RouteCondition)} çš„é‡è½½å‡½æ•°
 	 * 
 	 * @param statementID
-	 *            . ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            . ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬<b>ÓÉÓÚBean»ò»ù±¾ÀàĞÍ²»ÄÜ¶¯Ì¬Ìí¼ÓÊôĞÔ£¬Òò´ËÈç¹ûÉæ¼°·¶Î§²éÑ¯Çë²»ÒªÊ¹ÓÃBean»ò»ù±¾ÀàĞÍ×÷Îª²ÎÊı
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼Œ<b>ç”±äºBeanæˆ–åŸºæœ¬ç±»å‹ä¸èƒ½åŠ¨æ€æ·»åŠ å±æ€§ï¼Œå› æ­¤å¦‚æœæ¶‰åŠèŒƒå›´æŸ¥è¯¢è¯·ä¸è¦ä½¿ç”¨Beanæˆ–åŸºæœ¬ç±»å‹ä½œä¸ºå‚æ•°
 	 *            </b>
 	 * @param rc
-	 *            Ìõ¼ş±í´ïÊ½£¬µ¥¿â¶à±í²éÑ¯Ó¦¸ÃÊ¹ÓÃ{@link MergeSortTablesCondition}
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍµÄÁĞ±í¡£
+	 *            æ¡ä»¶è¡¨è¾¾å¼ï¼Œå•åº“å¤šè¡¨æŸ¥è¯¢åº”è¯¥ä½¿ç”¨{@link MergeSortTablesCondition}
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹çš„åˆ—è¡¨ã€‚
 	 */
 	List<Object> queryForMergeSortList(String statementID,
 			Object parameterObject, RouteCondition rc);
 	/**
-	 * ÅÅĞò²éÑ¯,µ«Ä¿Ç°Ö»Ö§³Öµ¥¿â¶à±í£¬¿ÉÒÔÅÅĞò·ÖÒ³¡£Ò»ÆÚÖĞ¾ÍÊÇ
-	 * {@link #queryForMergeSortTables(String, Object, RouteCondition)} µÄÖØÔØº¯Êı
+	 * æ’åºæŸ¥è¯¢,ä½†ç›®å‰åªæ”¯æŒå•åº“å¤šè¡¨ï¼Œå¯ä»¥æ’åºåˆ†é¡µã€‚ä¸€æœŸä¸­å°±æ˜¯
+	 * {@link #queryForMergeSortTables(String, Object, RouteCondition)} çš„é‡è½½å‡½æ•°
 	 * 
 	 * @param statementID
-	 *            . ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            . ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬<b>ÓÉÓÚBean»ò»ù±¾ÀàĞÍ²»ÄÜ¶¯Ì¬Ìí¼ÓÊôĞÔ£¬Òò´ËÈç¹ûÉæ¼°·¶Î§²éÑ¯Çë²»ÒªÊ¹ÓÃBean»ò»ù±¾ÀàĞÍ×÷Îª²ÎÊı
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼Œ<b>ç”±äºBeanæˆ–åŸºæœ¬ç±»å‹ä¸èƒ½åŠ¨æ€æ·»åŠ å±æ€§ï¼Œå› æ­¤å¦‚æœæ¶‰åŠèŒƒå›´æŸ¥è¯¢è¯·ä¸è¦ä½¿ç”¨Beanæˆ–åŸºæœ¬ç±»å‹ä½œä¸ºå‚æ•°
 	 *            </b>
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍµÄÁĞ±í¡£
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹çš„åˆ—è¡¨ã€‚
 	 */
 	List<Object> queryForMergeSortList(String statementID,
 			Object parameterObject);
 	/**
-	 * ÅÅĞò²éÑ¯,µ«Ö»Ö§³Öµ¥¿â¶à±í²éÑ¯£¬±íÓë±íÖ®¼äµÄ´óĞ¡¹ØÏµÊÇÔÚ²åÈëÊı¾İÊ±¾ÍÒÑ¾­È·¶¨ºÃµÄ£¬Èç±í1ÄÚËùÓĞÊı¾İÓÀÔ¶Ğ¡ÓÚ±í2,ÒÔ´ËÀàÍÆ£¬¿ÉÒÔÅÅĞò·ÖÒ³¡£
-	 * ²ÎÊı±ØĞëÊÇ{@link MergeSortTablesCondition}
+	 * æ’åºæŸ¥è¯¢,ä½†åªæ”¯æŒå•åº“å¤šè¡¨æŸ¥è¯¢ï¼Œè¡¨ä¸è¡¨ä¹‹é—´çš„å¤§å°å…³ç³»æ˜¯åœ¨æ’å…¥æ•°æ®æ—¶å°±å·²ç»ç¡®å®šå¥½çš„ï¼Œå¦‚è¡¨1å†…æ‰€æœ‰æ•°æ®æ°¸è¿œå°äºè¡¨2,ä»¥æ­¤ç±»æ¨ï¼Œå¯ä»¥æ’åºåˆ†é¡µã€‚
+	 * å‚æ•°å¿…é¡»æ˜¯{@link MergeSortTablesCondition}
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬<b>ÓÉÓÚBean»ò»ù±¾ÀàĞÍ²»ÄÜ¶¯Ì¬Ìí¼ÓÊôĞÔ£¬Òò´ËÈç¹ûÉæ¼°·¶Î§²éÑ¯Çë²»ÒªÊ¹ÓÃBean»ò»ù±¾ÀàĞÍ×÷Îª²ÎÊı
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼Œ<b>ç”±äºBeanæˆ–åŸºæœ¬ç±»å‹ä¸èƒ½åŠ¨æ€æ·»åŠ å±æ€§ï¼Œå› æ­¤å¦‚æœæ¶‰åŠèŒƒå›´æŸ¥è¯¢è¯·ä¸è¦ä½¿ç”¨Beanæˆ–åŸºæœ¬ç±»å‹ä½œä¸ºå‚æ•°
 	 *            </b>
 	 * @param rc
-	 *            Ìõ¼ş±í´ïÊ½£¬µ¥¿â¶à±í²éÑ¯Ó¦¸ÃÊ¹ÓÃ{@link MergeSortTablesCondition}
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍµÄÁĞ±í¡£
+	 *            æ¡ä»¶è¡¨è¾¾å¼ï¼Œå•åº“å¤šè¡¨æŸ¥è¯¢åº”è¯¥ä½¿ç”¨{@link MergeSortTablesCondition}
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹çš„åˆ—è¡¨ã€‚
 	 */
 	List<Object> queryForMergeSortTables(String statementID,
 			Object parameterObject);
 	/**
-	 * ÅÅĞò²éÑ¯,µ«Ö»Ö§³Öµ¥¿â¶à±í²éÑ¯£¬±íÓë±íÖ®¼äµÄ´óĞ¡¹ØÏµÊÇÔÚ²åÈëÊı¾İÊ±¾ÍÒÑ¾­È·¶¨ºÃµÄ£¬Èç±í1ÄÚËùÓĞÊı¾İÓÀÔ¶Ğ¡ÓÚ±í2,ÒÔ´ËÀàÍÆ£¬¿ÉÒÔÅÅĞò·ÖÒ³¡£
-	 * ²ÎÊı±ØĞëÊÇ{@link MergeSortTablesCondition}
+	 * æ’åºæŸ¥è¯¢,ä½†åªæ”¯æŒå•åº“å¤šè¡¨æŸ¥è¯¢ï¼Œè¡¨ä¸è¡¨ä¹‹é—´çš„å¤§å°å…³ç³»æ˜¯åœ¨æ’å…¥æ•°æ®æ—¶å°±å·²ç»ç¡®å®šå¥½çš„ï¼Œå¦‚è¡¨1å†…æ‰€æœ‰æ•°æ®æ°¸è¿œå°äºè¡¨2,ä»¥æ­¤ç±»æ¨ï¼Œå¯ä»¥æ’åºåˆ†é¡µã€‚
+	 * å‚æ•°å¿…é¡»æ˜¯{@link MergeSortTablesCondition}
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬<b>ÓÉÓÚBean»ò»ù±¾ÀàĞÍ²»ÄÜ¶¯Ì¬Ìí¼ÓÊôĞÔ£¬Òò´ËÈç¹ûÉæ¼°·¶Î§²éÑ¯Çë²»ÒªÊ¹ÓÃBean»ò»ù±¾ÀàĞÍ×÷Îª²ÎÊı
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼Œ<b>ç”±äºBeanæˆ–åŸºæœ¬ç±»å‹ä¸èƒ½åŠ¨æ€æ·»åŠ å±æ€§ï¼Œå› æ­¤å¦‚æœæ¶‰åŠèŒƒå›´æŸ¥è¯¢è¯·ä¸è¦ä½¿ç”¨Beanæˆ–åŸºæœ¬ç±»å‹ä½œä¸ºå‚æ•°
 	 *            </b>
 	 * @param rc
-	 *            Ìõ¼ş±í´ïÊ½£¬µ¥¿â¶à±í²éÑ¯Ó¦¸ÃÊ¹ÓÃ{@link MergeSortTablesCondition}
-	 * @return ibatic ÅäÖÃÎÄ¼şÖĞµÄresultMapÖĞ¶ÔÓ¦µÄ¶ÔÏó»ò»ù±¾ÀàĞÍµÄÁĞ±í¡£
+	 *            æ¡ä»¶è¡¨è¾¾å¼ï¼Œå•åº“å¤šè¡¨æŸ¥è¯¢åº”è¯¥ä½¿ç”¨{@link MergeSortTablesCondition}
+	 * @return ibatic é…ç½®æ–‡ä»¶ä¸­çš„resultMapä¸­å¯¹åº”çš„å¯¹è±¡æˆ–åŸºæœ¬ç±»å‹çš„åˆ—è¡¨ã€‚
 	 */
 	List<Object> queryForMergeSortTables(String statementID,
 			Object parameterObject, RouteCondition rc);
 
 	/**
-	 * ¸üĞÂÊı¾İ¿â£¬É¾³ı»á±¨´íµ¯³ö¡£Ö»ÄÜ½øĞĞµ¥¿âµ¥±í¸üĞÂ
+	 * æ›´æ–°æ•°æ®åº“ï¼Œåˆ é™¤ä¼šæŠ¥é”™å¼¹å‡ºã€‚åªèƒ½è¿›è¡Œå•åº“å•è¡¨æ›´æ–°
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬Bean»ò»ù±¾ÀàĞÍ¡£
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼ŒBeanæˆ–åŸºæœ¬ç±»å‹ã€‚
 	 * @param rc
-	 *            Ìõ¼ş±í´ïÊ½£¬µ¥¿âµ¥±íÓ¦¸ÃÊ¹ÓÃ{@link SimpleCondition}
-	 * @return ¸üĞÂÓ°ÏìµÄĞĞÊı
+	 *            æ¡ä»¶è¡¨è¾¾å¼ï¼Œå•åº“å•è¡¨åº”è¯¥ä½¿ç”¨{@link SimpleCondition}
+	 * @return æ›´æ–°å½±å“çš„è¡Œæ•°
 	 */
 	int update(String statementID, Object parameterObject, RouteCondition rc);
 	/**
-	 * ¸üĞÂÊı¾İ¿â£¬É¾³ı»á±¨´íµ¯³ö¡£Ö»ÄÜ½øĞĞµ¥¿âµ¥±í¸üĞÂ
+	 * æ›´æ–°æ•°æ®åº“ï¼Œåˆ é™¤ä¼šæŠ¥é”™å¼¹å‡ºã€‚åªèƒ½è¿›è¡Œå•åº“å•è¡¨æ›´æ–°
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬Bean»ò»ù±¾ÀàĞÍ¡£
-	 * @return ¸üĞÂÓ°ÏìµÄĞĞÊı
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼ŒBeanæˆ–åŸºæœ¬ç±»å‹ã€‚
+	 * @return æ›´æ–°å½±å“çš„è¡Œæ•°
 	 */
 	int update(String statementID, Object parameterObject);
 	/**
-	 * ²åÈëÒ»Ìõ¼ÇÂ¼
+	 * æ’å…¥ä¸€æ¡è®°å½•
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬Bean»ò»ù±¾ÀàĞÍ¡£
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼ŒBeanæˆ–åŸºæœ¬ç±»å‹ã€‚
 	 * @param rc
-	 *            Ìõ¼ş±í´ïÊ½£¬µ¥¿âµ¥±íÓ¦¸ÃÊ¹ÓÃ{@link SimpleCondition}
-	 * @return Óëibatis·µ»ØÒ»ÖÂ
+	 *            æ¡ä»¶è¡¨è¾¾å¼ï¼Œå•åº“å•è¡¨åº”è¯¥ä½¿ç”¨{@link SimpleCondition}
+	 * @return ä¸ibatisè¿”å›ä¸€è‡´
 	 */
 	Object insert(String statementID, Object parameterObject, RouteCondition rc);
 	/**
-	 * ²åÈëÒ»Ìõ¼ÇÂ¼
+	 * æ’å…¥ä¸€æ¡è®°å½•
 	 * 
 	 * @param statementID
-	 *            ibatis ÅäÖÃÎÄ¼şÖĞµÄidÊôĞÔ¡£
+	 *            ibatis é…ç½®æ–‡ä»¶ä¸­çš„idå±æ€§ã€‚
 	 * @param parameterObject
-	 *            °ó¶¨±äÁ¿²ÎÊı£¬±ØĞëÎªMap£¬Bean»ò»ù±¾ÀàĞÍ¡£
-	 * @return Óëibatis·µ»ØÒ»ÖÂ
+	 *            ç»‘å®šå˜é‡å‚æ•°ï¼Œå¿…é¡»ä¸ºMapï¼ŒBeanæˆ–åŸºæœ¬ç±»å‹ã€‚
+	 * @return ä¸ibatisè¿”å›ä¸€è‡´
 	 */
 	Object insert(String statementID, Object parameterObject);
 

@@ -15,11 +15,11 @@ import com.taobao.tddl.rule.le.exception.ResultCompareDiffException;
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2011-5-4ÏÂÎç06:54:24
+ * @date 2011-5-4ä¸‹åˆ06:54:24
  */
 public interface TddlRuleTddl {
 	/**
-	 * ¼òµ¥µ¥Ì×¹æÔòÖ§³Ö(TDDLÊ¹ÓÃ)
+	 * ç®€å•å•å¥—è§„åˆ™æ”¯æŒ(TDDLä½¿ç”¨)
 	 * @param vtab
 	 * @param condition
 	 * @return
@@ -27,7 +27,7 @@ public interface TddlRuleTddl {
 	public MatcherResult route(String vtab,ComparativeMapChoicer choicer,List<Object> args,boolean needSourceKey);
 	
 	/**
-	 * ¶àÌ×¹æÔòÖ§³Ö(TDDLÊ¹ÓÃ)
+	 * å¤šå¥—è§„åˆ™æ”¯æŒ(TDDLä½¿ç”¨)
 	 * @param vtab
 	 * @param condition
 	 * @return
@@ -37,7 +37,7 @@ public interface TddlRuleTddl {
 			ComparativeMapChoicer choicer,List<Object> args,boolean needSourceKey);
 	
 	/**
-	 * Ö¸¶¨Ò»Ì×¹æÔò¼ÆËã
+	 * æŒ‡å®šä¸€å¥—è§„åˆ™è®¡ç®—
 	 * @param vtab
 	 * @param condition
 	 * @return
@@ -45,7 +45,7 @@ public interface TddlRuleTddl {
 	public MatcherResult route(String vtab,ComparativeMapChoicer choicer,List<Object> args,boolean needSourceKey,VirtualTableRoot specifyVtr);
 	
 	/**
-	 * ĞÂ¾É¹æÔò¼ÆËã²¢±È½Ï,²»´øÄ¿±ê¿âÅĞ¶¨
+	 * æ–°æ—§è§„åˆ™è®¡ç®—å¹¶æ¯”è¾ƒ,ä¸å¸¦ç›®æ ‡åº“åˆ¤å®š
 	 * 
 	 * @param vtab
 	 * @param conditionStr
@@ -55,7 +55,7 @@ public interface TddlRuleTddl {
 			String vtab, ComparativeMapChoicer choicer,List<Object> args,boolean needSourceKey)throws ResultCompareDiffException;
 	
 	/**
-	 * ĞÂ¾É¹æÔò¼ÆËã²¢±È½Ï,´øÄ¿±ê¿âÅĞ¶¨
+	 * æ–°æ—§è§„åˆ™è®¡ç®—å¹¶æ¯”è¾ƒ,å¸¦ç›®æ ‡åº“åˆ¤å®š
 	 * 
 	 * @param vtab
 	 * @param conditionStr

@@ -15,9 +15,9 @@
 //import org.apache.commons.logging.LogFactory;
 //
 ///**
-// * guangxia µÄmonitor²»ÊÇºÜÄÜ¹»Âú×ãĞèÇó£¬Òò´ËÕâÀïÌí¼ÓÒ»¸öĞÂµÄmonitor
+// * guangxia çš„monitorä¸æ˜¯å¾ˆèƒ½å¤Ÿæ»¡è¶³éœ€æ±‚ï¼Œå› æ­¤è¿™é‡Œæ·»åŠ ä¸€ä¸ªæ–°çš„monitor
 // * 
-// * Á½¸ökeyµÄ£¬»á»Øµ÷½Ó¿ÚµÄ
+// * ä¸¤ä¸ªkeyçš„ï¼Œä¼šå›è°ƒæ¥å£çš„
 // * 
 // * @author shenxun
 // * @author junyu
@@ -27,12 +27,12 @@
 //	private static final Log logger = LogFactory.getLog(TMonitor.class);
 //
 //	/**
-//	 * µ¥Î»ÊÇºÁÃë
+//	 * å•ä½æ˜¯æ¯«ç§’
 //	 */
 //	private static volatile long statInterval = 2 * 60 * 1000;
 //
 //	/**
-//	 * ²»ÒªĞŞ¸Ä
+//	 * ä¸è¦ä¿®æ”¹
 //	 */
 //	private static final long cleanInterval = 30 * 60 * 1000;
 //	private static int limit = 500;
@@ -58,13 +58,13 @@
 //		}
 //
 //		/**
-//		 * Æô¶¯Êä³öµ½ÈÕÖ¾µÄÈÎÎñ
+//		 * å¯åŠ¨è¾“å‡ºåˆ°æ—¥å¿—çš„ä»»åŠ¡
 //		 * 
-//		 * 1.CallBackµÄÈÕÖ¾¡£ 2.ÏŞÖÆkeyµÄÈÕÖ¾¡£ 3.·ÇÏŞ¶¨keyµÄÈÕÖ¾¡£
+//		 * 1.CallBackçš„æ—¥å¿—ã€‚ 2.é™åˆ¶keyçš„æ—¥å¿—ã€‚ 3.éé™å®škeyçš„æ—¥å¿—ã€‚
 //		 * 
-//		 * ²¢ÇÒÍ¬Ê±Çå¿Õ·ÇÏŞ¶¨keyµÄvalueÖµ¡£
+//		 * å¹¶ä¸”åŒæ—¶æ¸…ç©ºéé™å®škeyçš„valueå€¼ã€‚
 //		 * 
-//		 * Ã¿¸ô2·ÖÖÓÖ´ĞĞÒ»´Î¡£
+//		 * æ¯éš”2åˆ†é’Ÿæ‰§è¡Œä¸€æ¬¡ã€‚
 //		 */
 //		outPutTimer = new CycleExecuteTimer("LogOutPutTask", new Runnable() {
 //			public void run() {
@@ -81,7 +81,7 @@
 //		outPutTimer.start();
 //
 //		/**
-//		 * Æô¶¯Çå¿ÕÏŞÖÆkeyÊıÁ¿MapµÄÈÎÎñ Ä¬ÈÏÔÚ00:00:00,00:30:00,01:00:00,...,23:30:00ÔËĞĞ
+//		 * å¯åŠ¨æ¸…ç©ºé™åˆ¶keyæ•°é‡Mapçš„ä»»åŠ¡ é»˜è®¤åœ¨00:00:00,00:30:00,01:00:00,...,23:30:00è¿è¡Œ
 //		 */
 //		cleanTimer = new CycleExecuteTimer(
 //				"LimitLogCleanTask", new Runnable() {
@@ -98,12 +98,12 @@
 //	}
 //
 //	/**
-//	 * ÖØÖÃÕû¸öÊÜÏŞÖÆmap
+//	 * é‡ç½®æ•´ä¸ªå—é™åˆ¶map
 //	 */
 //	private static void resetLimitMap() {
 //		lockLimit.lock();
 //		try {
-//			// Ô­×ÓµÄÇå¿Õsize¸öÊıºÍËø
+//			// åŸå­çš„æ¸…ç©ºsizeä¸ªæ•°å’Œé”
 //			size = 0;
 //			ConcurrentHashMap<String, Values> oldMap = currentStatMapNeedLimit;
 //
@@ -111,14 +111,14 @@
 //					limit);
 //			// help gc
 //			oldMap.clear();
-//			logger.warn("Çå¿ÕkeyÊıÁ¿ÏŞÖÆMap");
+//			logger.warn("æ¸…ç©ºkeyæ•°é‡é™åˆ¶Map");
 //		} finally {
 //			lockLimit.unlock();
 //		}
 //	}
 //
 //	/**
-//	 * Ö»Çå¿Õvalue,±£Áôkey
+//	 * åªæ¸…ç©ºvalue,ä¿ç•™key
 //	 */
 //	private static ConcurrentHashMap<String, Values> copyNewWithOutLimitMap() {
 //		Set<String> keySet = currentStatMapWithOutLimit.keySet();
@@ -130,7 +130,7 @@
 //	}
 //
 //	/**
-//	 * À­È¡×Ô¶¨ÒåÈÕÖ¾ÄÚÈİ²¢´òÓ¡(µ¥Ïß³Ì£¬ÎŞĞèËø)
+//	 * æ‹‰å–è‡ªå®šä¹‰æ—¥å¿—å†…å®¹å¹¶æ‰“å°(å•çº¿ç¨‹ï¼Œæ— éœ€é”)
 //	 */
 //	private static void writeCallBackLog() {
 //		ConcurrentHashMap<String, Values> tempMap = new ConcurrentHashMap<String, Values>();
@@ -153,7 +153,7 @@
 //	}
 //
 //	/**
-//	 * ½«ÄÚ´æÊı¾İÊä³öµ½ÈÕÖ¾ÖĞ
+//	 * å°†å†…å­˜æ•°æ®è¾“å‡ºåˆ°æ—¥å¿—ä¸­
 //	 * 
 //	 * @param oldMap
 //	 */
@@ -164,7 +164,7 @@
 //	}
 //
 //	/**
-//	 * Ìí¼ÓÒ»ÌõÈÕÖ¾ĞÅÏ¢µ½·ÇÏŞÖÆkeyÊıÁ¿µÄmapÖĞ£¬¶¨Ê±Ë¢³öµ½ÎÄ¼şÈÕÖ¾¡£ Ë¢³öÈÕÖ¾Ê±±£Áôkey£¬Çå¿Õvalue¡£
+//	 * æ·»åŠ ä¸€æ¡æ—¥å¿—ä¿¡æ¯åˆ°éé™åˆ¶keyæ•°é‡çš„mapä¸­ï¼Œå®šæ—¶åˆ·å‡ºåˆ°æ–‡ä»¶æ—¥å¿—ã€‚ åˆ·å‡ºæ—¥å¿—æ—¶ä¿ç•™keyï¼Œæ¸…ç©ºvalueã€‚
 //	 * 
 //	 * @param key
 //	 * @param value1
@@ -178,10 +178,10 @@
 //			Values alreadyValues = currentStatMapWithOutLimit.putIfAbsent(key,
 //					newValues);
 //			if (null == alreadyValues) {
-//				// ±íÊ¾Ô­×Óput³É¹¦
+//				// è¡¨ç¤ºåŸå­putæˆåŠŸ
 //				values = newValues;
 //			} else {
-//				// ±íÊ¾Ô­×ÓputÊ±ÒÑ¾­ÓĞÖµÁË¡£
+//				// è¡¨ç¤ºåŸå­putæ—¶å·²ç»æœ‰å€¼äº†ã€‚
 //				values = alreadyValues;
 //			}
 //		}
@@ -191,11 +191,11 @@
 //	}
 //
 //	/**
-//	 * Ìí¼ÓÒ»ÌõÈÕÖ¾ĞÅÏ¢µ½ÏŞÖÆkeyÊıÁ¿µÄmapÖĞ£¬¶¨Ê±Êä³öµ½ÎÄ¼şÈÕÖ¾ÖĞ. 1.Èç¹ûkey²»´æÔÚ,²¢ÇÒµ±Ç°map keyÊıÁ¿Ğ¡ÓÚÏŞ¶¨Öµ£¬ÄÇÃ´Éú³É
-//	 * Ò»¸öĞÂµÄ<key,value>½á¹¹²åÈëµ½mapÖĞ¡£ 2.Èç¹ûkey²»´æÔÚ,²¢ÇÒµ±Ç°map keyÊıÁ¿µÈÓÚÏŞ¶¨Öµ, ÄÇÃ´Å×Æú ÕâÌõÈÕÖ¾ĞÅÏ¢¡£
-//	 * 3.Èç¹ûkey´æÔÚ,ÄÇÃ´¸ù¾İkeyÈ¡µÃvalue²¢ÇÒ¼ÓÉÏĞÂµÄÖµ¡£
+//	 * æ·»åŠ ä¸€æ¡æ—¥å¿—ä¿¡æ¯åˆ°é™åˆ¶keyæ•°é‡çš„mapä¸­ï¼Œå®šæ—¶è¾“å‡ºåˆ°æ–‡ä»¶æ—¥å¿—ä¸­. 1.å¦‚æœkeyä¸å­˜åœ¨,å¹¶ä¸”å½“å‰map keyæ•°é‡å°äºé™å®šå€¼ï¼Œé‚£ä¹ˆç”Ÿæˆ
+//	 * ä¸€ä¸ªæ–°çš„<key,value>ç»“æ„æ’å…¥åˆ°mapä¸­ã€‚ 2.å¦‚æœkeyä¸å­˜åœ¨,å¹¶ä¸”å½“å‰map keyæ•°é‡ç­‰äºé™å®šå€¼, é‚£ä¹ˆæŠ›å¼ƒ è¿™æ¡æ—¥å¿—ä¿¡æ¯ã€‚
+//	 * 3.å¦‚æœkeyå­˜åœ¨,é‚£ä¹ˆæ ¹æ®keyå–å¾—valueå¹¶ä¸”åŠ ä¸Šæ–°çš„å€¼ã€‚
 //	 * 
-//	 * Ë¢³öÈÕÖ¾Ê±²»Çå¿Õkey,value,µ«°ëĞ¡Ê±ÖØÖÃÈÕÖ¾map
+//	 * åˆ·å‡ºæ—¥å¿—æ—¶ä¸æ¸…ç©ºkey,value,ä½†åŠå°æ—¶é‡ç½®æ—¥å¿—map
 //	 * 
 //	 * @param key
 //	 * @param value1
@@ -209,26 +209,26 @@
 //
 //		Values values = currentStatMapNeedLimit.get(key);
 //		/**
-//		 * 1. ÅĞ¶ÏvalueÊÇ·ñÎªnull 2. ÅĞ¶ÏÊÇ·ñÔÊĞíÌí¼Ó ¼ÓËø ÅĞ¶ÏvalueÊÇ·ñÎªnull ÅĞ¶ÏÊÇ·ñÔÊĞíÌí¼Ó Ìí¼Ó ×ÔÔö ½âËø
+//		 * 1. åˆ¤æ–­valueæ˜¯å¦ä¸ºnull 2. åˆ¤æ–­æ˜¯å¦å…è®¸æ·»åŠ  åŠ é” åˆ¤æ–­valueæ˜¯å¦ä¸ºnull åˆ¤æ–­æ˜¯å¦å…è®¸æ·»åŠ  æ·»åŠ  è‡ªå¢ è§£é”
 //		 */
 //		if (null == values) {
 //			if (size + 1 > limit) {
-//				// Èç¹ûsize ²»ÔÊĞíÔÙÌí¼ÓÁË£¬ÄÇÃ´Ö±½Ó·µ»Ø£»
-//				logger.debug("size ³¬¹ı·¶Î§£¬¶ªÆú");
+//				// å¦‚æœsize ä¸å…è®¸å†æ·»åŠ äº†ï¼Œé‚£ä¹ˆç›´æ¥è¿”å›ï¼›
+//				logger.debug("size è¶…è¿‡èŒƒå›´ï¼Œä¸¢å¼ƒ");
 //				return;
 //			} else {
-//				// ÄÇÃ´ÕâÀïÊÇsize»¹ÔÊĞíÔö¼Ó£¬ ²¢ÇÒÃ»ÓĞÕâ¸ökeyËù¶ÔÓ¦µÄvalue
+//				// é‚£ä¹ˆè¿™é‡Œæ˜¯sizeè¿˜å…è®¸å¢åŠ ï¼Œ å¹¶ä¸”æ²¡æœ‰è¿™ä¸ªkeyæ‰€å¯¹åº”çš„value
 //
 //				lockLimit.lock();
 //				try {
-//					// Ë«¼ì²é
+//					// åŒæ£€æŸ¥
 //					values = currentStatMapNeedLimit.get(key);
 //					if (null == values) {
 //
 //						if (size + 1 > limit) {
 //							return;
 //						}
-//						// ±£Ö¤size++ ºÍputÊÇÒ»¸öÔ­×Ó²Ù×÷
+//						// ä¿è¯size++ å’Œputæ˜¯ä¸€ä¸ªåŸå­æ“ä½œ
 //						size++;
 //						values = new Values();
 //						currentStatMapNeedLimit.put(key, values);
@@ -244,7 +244,7 @@
 //
 //	}
 //
-//	private static volatile int size = 0; // ËÆºõÊÇ¿ÉÒÔ²»ÓÃvolatileµÄ£¬±£ÏÕÆğ¼û¡£
+//	private static volatile int size = 0; // ä¼¼ä¹æ˜¯å¯ä»¥ä¸ç”¨volatileçš„ï¼Œä¿é™©èµ·è§ã€‚
 //
 //	public static List<LogOutputListener> getOutputListener() {
 //		return monitorLogListeners;

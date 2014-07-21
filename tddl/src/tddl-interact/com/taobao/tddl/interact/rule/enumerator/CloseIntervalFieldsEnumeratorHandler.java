@@ -13,7 +13,7 @@ public interface CloseIntervalFieldsEnumeratorHandler {
 	 */
 	void processAllPassableFields(Comparative source ,Set<Object> retValue,Integer cumulativeTimes,Comparable<?> atomIncrValue);
 		/**
-		 * 穷举出从from到to中的所有值，根据自增value
+		 * 绌蜂妇鍑轰粠from鍒皌o涓殑鎵�鏈夊�硷紝鏍规嵁鑷value
 		 * 
 		 * @param from
 		 * @param to

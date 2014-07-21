@@ -13,7 +13,7 @@ import com.alibaba.common.lang.io.ByteArrayInputStream;
 import com.taobao.tddl.common.securety.SecureIdentityLoginModule;
 
 /**
- * TAtomÊı¾İÔ´µÄÍÆËÍÅäÖÃ½âÎöÀà
+ * TAtomæ•°æ®æºçš„æ¨é€é…ç½®è§£æç±»
  * 
  * @author qihao
  *
@@ -41,22 +41,22 @@ public class TAtomConfHelper {
 	
 	public static final String APP_DRIVER_CLASS_KEY = "driverClass";
 	/**
-	 * Ğ´£¬´ÎÊıÏŞÖÆ
+	 * å†™ï¼Œæ¬¡æ•°é™åˆ¶
 	 */
 	public static final String APP_WRITE_RESTRICT_TIMES = "writeRestrictTimes";
 	/**
-	 * ¶Á£¬´ÎÊıÏŞÖÆ
+	 * è¯»ï¼Œæ¬¡æ•°é™åˆ¶
 	 */
 	public static final String APP_READ_RESTRICT_TIMES = "readRestrictTimes";
 	/**
-	 * thread count ´ÎÊıÏŞÖÆ
+	 * thread count æ¬¡æ•°é™åˆ¶
 	 */
 	public static final String APP_THREAD_COUNT_RESTRICT = "threadCountRestrict";
 	
 	public static final String APP_TIME_SLICE_IN_MILLS = "timeSliceInMillis";
 
 	/**
-	 * Ó¦ÓÃÁ¬½ÓÏŞÖÆ: ÏŞÖÆÄ³¸öÓ¦ÓÃ¼üÖµµÄ²¢·¢Á¬½ÓÊı¡£
+	 * åº”ç”¨è¿æ¥é™åˆ¶: é™åˆ¶æŸä¸ªåº”ç”¨é”®å€¼çš„å¹¶å‘è¿æ¥æ•°ã€‚
 	 */
 	public static final String APP_CONN_RESTRICT = "connRestrict";
 	

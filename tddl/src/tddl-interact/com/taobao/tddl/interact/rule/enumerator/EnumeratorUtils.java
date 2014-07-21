@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class EnumeratorUtils {
 	/**
-	 * 将BigDecimal转换为long或者double
+	 * 灏咮igDecimal杞崲涓簂ong鎴栬�卍ouble
 	 * @param big
 	 * @return
 	 */

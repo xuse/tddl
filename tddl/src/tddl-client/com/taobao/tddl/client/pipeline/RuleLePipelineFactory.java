@@ -25,7 +25,7 @@ import com.taobao.tddl.util.IDAndDateCondition.routeCondImp.DirectlyRouteConditi
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-5-3ÏÂÎç01:31:37
+ * @date 2011-5-3ä¸‹åˆ01:31:37
  */
 public class RuleLePipelineFactory extends AbstractPipelineFactory {
 	private Pipeline defaultPipeline = new DefaultPipeline();
@@ -50,7 +50,7 @@ public class RuleLePipelineFactory extends AbstractPipelineFactory {
 
 	@Override
 	public DirectlyRouteCondition sqlPreParse(String sql) throws SQLException {
-		//Èç¹ûÓÃ»§Ö¸¶¨ÁËROUTE_CONDITION»òÕßDB_SELECTOR£¬ÄÇÃ´Ìø¹ıÔ¤½âÎö£¬·ÀÖ¹¸ÉÈÅ
+		//å¦‚æœç”¨æˆ·æŒ‡å®šäº†ROUTE_CONDITIONæˆ–è€…DB_SELECTORï¼Œé‚£ä¹ˆè·³è¿‡é¢„è§£æï¼Œé˜²æ­¢å¹²æ‰°
 		if (null != ThreadLocalMap.get(ThreadLocalString.ROUTE_CONDITION)
 				|| null != ThreadLocalMap.get(ThreadLocalString.DB_SELECTOR)
 				|| null != ThreadLocalMap.get(ThreadLocalString.RULE_SELECTOR)) {
@@ -70,7 +70,7 @@ public class RuleLePipelineFactory extends AbstractPipelineFactory {
 		logger.debug("no logic table in defaultDispather's logicTableMap,try to produce DirectlyRouteCondition");
 
 		DirectlyRouteCondition condition = new DirectlyRouteCondition();
-		//¼ì²é±íÃûÊÇ·ñÔÚdbIndexMapÖĞ add by jiechen.qzm
+		//æ£€æŸ¥è¡¨åæ˜¯å¦åœ¨dbIndexMapä¸­ add by jiechen.qzm
 		Map<String, String> dbIndexMap = this.defaultDispatcher.getVtabroot().getDbIndexMap();
 		if(dbIndexMap != null && dbIndexMap.get(firstTable) != null){
 			condition.setDBId(dbIndexMap.get(firstTable));
@@ -81,7 +81,7 @@ public class RuleLePipelineFactory extends AbstractPipelineFactory {
 		if(defaultDbIndex == null){
 		    throw new SQLException("the defaultDispatcher have no dbIndexMap and defaultDbIndex");
 		}
-		//±íÃû²»´æÔÚlogicTable map ºÍ dbIndexMapÖĞ£¬Ö¸¶¨Ö´ĞĞdbIndex·µ»Ø
+		//è¡¨åä¸å­˜åœ¨logicTable map å’Œ dbIndexMapä¸­ï¼ŒæŒ‡å®šæ‰§è¡ŒdbIndexè¿”å›
 		condition.setDBId(defaultDbIndex);
 		return condition;
 	}

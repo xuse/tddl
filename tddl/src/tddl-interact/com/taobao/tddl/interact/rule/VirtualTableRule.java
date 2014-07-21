@@ -9,9 +9,9 @@ import com.taobao.tddl.interact.rule.virtualnode.DBTableMap;
 import com.taobao.tddl.interact.rule.virtualnode.TableSlotMap;
 
 /**
- * TDataSource³ÖÓĞËùÓĞĞéÄâ±íÃûµ½¸Ã¶ÔÏóµÄÒıÓÃ
- * tddl-client¸ù¾İ½âÎö/Ô¤½âÎö½á¹ûÈ¡µÃĞéÄâ±íÃû
- * ¸ù¾İĞéÄâ±íÃûÈ¡µÃ¶ÔÓ¦µÄVirtualTableRule¶ÔÏó
+ * TDataSourceæŒæœ‰æ‰€æœ‰è™šæ‹Ÿè¡¨ååˆ°è¯¥å¯¹è±¡çš„å¼•ç”¨
+ * tddl-clientæ ¹æ®è§£æ/é¢„è§£æç»“æœå–å¾—è™šæ‹Ÿè¡¨å
+ * æ ¹æ®è™šæ‹Ÿè¡¨åå–å¾—å¯¹åº”çš„VirtualTableRuleå¯¹è±¡
  * 
  * @author linxuan
  *
@@ -19,18 +19,18 @@ import com.taobao.tddl.interact.rule.virtualnode.TableSlotMap;
 public interface VirtualTableRule<D, T> {
 
 	/**
-	 * ¿â¹æÔòÁ´
+	 * åº“è§„åˆ™é“¾
 	 */
 	List<Rule<String>> getDbShardRules();
 
 	/**
-	 * ±í¹æÔòÁ´
+	 * è¡¨è§„åˆ™é“¾
 	 */
 	List<Rule<String>> getTbShardRules();
 
 	/**
-	 * ·µ»Ø±¾¹æÔòÊµ¼Ê¶ÔÓ¦µÄÈ«²¿¿â±íÍØÆË½á¹¹
-	 * @return key:dbIndex; value:Êµ¼ÊÎïÀí±íÃûµÄ¼¯ºÏ
+	 * è¿”å›æœ¬è§„åˆ™å®é™…å¯¹åº”çš„å…¨éƒ¨åº“è¡¨æ‹“æ‰‘ç»“æ„
+	 * @return key:dbIndex; value:å®é™…ç‰©ç†è¡¨åçš„é›†åˆ
 	 */
 	Map<String, Set<String>> getActualTopology();
 
@@ -41,7 +41,7 @@ public interface VirtualTableRule<D, T> {
 	public DBTableMap getDbTableMap();
 
 	//=========================================================================
-	// ¹æÔòºÍÆäËûÊôĞÔµÄ·Ö¸îÏß
+	// è§„åˆ™å’Œå…¶ä»–å±æ€§çš„åˆ†å‰²çº¿
 	//=========================================================================
 
 	DBType getDbType();

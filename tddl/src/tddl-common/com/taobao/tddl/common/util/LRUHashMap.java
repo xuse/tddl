@@ -9,11 +9,11 @@ import java.util.concurrent.locks.ReentrantLock;
 import com.taobao.tddl.common.exception.lru.LRUHashMapException;
 
 /**
- * LRUHashMap ÊµÏÖµÄ½Ó¿Ú£º get¡¢put¡¢putIfAbsent¡¢size
- * ËµÃ÷£ºsize·½·¨È¡µÃµÄÊÇµ±Ç°ÈİÆ÷µÄ×î´óÈİÁ¿¡£²¢²»ÊÇÖ»ÕæÊµÈİÁ¿£¨ÕæÊµÈİÁ¿ºÍ×î´óÈİÁ¿»ù±¾ÉÏÏàµÈ£©
- * 1¡¢Ëø·ÖÀë»úÖÆ¡£ÄÚ²¿·Ö³ÉÁË¶à¸ösegement£¬Ã¿¸ösegementÊÇ¶ÀÁ¢¼ÓËø£¬Ïà»¥²»¸ÉÈÅ¡£
- * 2¡¢Ã¿¸ösegementÄÚ²¿Î¬»¤Ò»¸öË«ÏòÁ´±í(ÍË»¯Á´±í)¡£Ã¿´ÎÃüÖĞ/Ìí¼Ó£¬¾Í°Ñ½ÚµãÒÆ¶¯µ½ÍË»¯Á´±íÎ²²¿¡£
- * 3¡¢Ã¿´Îput²Ù×÷£¬Í¨¹ıhash£¬É¢µ½Ã¿¸ösegementÖĞ£¬ÅĞ¶ÏsegmentµÄÈİÁ¿ÊÇ·ñµ½´ïãĞÖµ¡£ Èç¹ûµ½´ïãĞÖµ£¬ÔòÉ¾³ıÍË»¯Á´±íÖĞ×îÄ©Î²µÄ½Úµã¡£
+ * LRUHashMap å®ç°çš„æ¥å£ï¼š getã€putã€putIfAbsentã€size
+ * è¯´æ˜ï¼šsizeæ–¹æ³•å–å¾—çš„æ˜¯å½“å‰å®¹å™¨çš„æœ€å¤§å®¹é‡ã€‚å¹¶ä¸æ˜¯åªçœŸå®å®¹é‡ï¼ˆçœŸå®å®¹é‡å’Œæœ€å¤§å®¹é‡åŸºæœ¬ä¸Šç›¸ç­‰ï¼‰
+ * 1ã€é”åˆ†ç¦»æœºåˆ¶ã€‚å†…éƒ¨åˆ†æˆäº†å¤šä¸ªsegementï¼Œæ¯ä¸ªsegementæ˜¯ç‹¬ç«‹åŠ é”ï¼Œç›¸äº’ä¸å¹²æ‰°ã€‚
+ * 2ã€æ¯ä¸ªsegementå†…éƒ¨ç»´æŠ¤ä¸€ä¸ªåŒå‘é“¾è¡¨(é€€åŒ–é“¾è¡¨)ã€‚æ¯æ¬¡å‘½ä¸­/æ·»åŠ ï¼Œå°±æŠŠèŠ‚ç‚¹ç§»åŠ¨åˆ°é€€åŒ–é“¾è¡¨å°¾éƒ¨ã€‚
+ * 3ã€æ¯æ¬¡putæ“ä½œï¼Œé€šè¿‡hashï¼Œæ•£åˆ°æ¯ä¸ªsegementä¸­ï¼Œåˆ¤æ–­segmentçš„å®¹é‡æ˜¯å¦åˆ°è¾¾é˜ˆå€¼ã€‚ å¦‚æœåˆ°è¾¾é˜ˆå€¼ï¼Œåˆ™åˆ é™¤é€€åŒ–é“¾è¡¨ä¸­æœ€æœ«å°¾çš„èŠ‚ç‚¹ã€‚
  * 
  * @author xudanhui.pt Dec 31, 2010,1:19:32 PM
  */
@@ -24,21 +24,21 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 	 */
 	private static final long serialVersionUID = 9078805838094458404L;
 
-	// Ä¬ÈÏÈİÁ¿
+	// é»˜è®¤å®¹é‡
 	static final int DEFAULT_INITIAL_CAPACITY = 16;
 
-	// Ä¬ÈÏ×°ÔØÒò×Ó£¬¾õµÃhash±í
+	// é»˜è®¤è£…è½½å› å­ï¼Œè§‰å¾—hashè¡¨
 	static final float DEFAULT_LOAD_FACTOR = 0.75f;
-	// Ä¬ÈÏ²¢·¢¼¶±ğ
+	// é»˜è®¤å¹¶å‘çº§åˆ«
 	static final int DEFAULT_CONCURRENCY_LEVEL = 16;
 
-	// ×î´óÈİÁ¿
+	// æœ€å¤§å®¹é‡
 	static final int MAXIMUM_CAPACITY = 1 << 30;
 
-	// ×î´ó²¢·¢¼¶±ğ--16¸ö¶Î
+	// æœ€å¤§å¹¶å‘çº§åˆ«--16ä¸ªæ®µ
 	static final int MAX_SEGMENTS = 1 << 16;
 
-	// ÉÏËøÖ®Ç°ÖØÊÔ´ÎÊı¡£
+	// ä¸Šé”ä¹‹å‰é‡è¯•æ¬¡æ•°ã€‚
 	static final int RETRIES_BEFORE_LOCK = 2;
 
 	final int segmentMask;
@@ -66,7 +66,7 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 	}
 
 	/**
-	 * Hash½Úµã
+	 * HashèŠ‚ç‚¹
 	 * 
 	 * @author xudanhui.pt Dec 31, 2010,1:24:11 PM
 	 * @param <K>
@@ -74,33 +74,33 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 	 */
 	static class HashEntry<K, V> {
 		/**
-		 * ¼ü
+		 * é”®
 		 */
 		final K key;
 		/**
-		 * hashÖµ
+		 * hashå€¼
 		 */
 		final int hash;
 		/**
-		 * Öµ
+		 * å€¼
 		 */
 		volatile V value;
 		/**
-		 * hashÁ´Ö¸Õë
+		 * hashé“¾æŒ‡é’ˆ
 		 */
 		final HashEntry<K, V> next;
 
 		/**
-		 * Ë«ÏòÁ´±íµÄÏÂÒ»¸ö½Úµã
+		 * åŒå‘é“¾è¡¨çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
 		 */
 		HashEntry<K, V> linknext;
 		/**
-		 * Ë«ÏòÁ´±íµÄÏÂÒ»¸ö½Úµã
+		 * åŒå‘é“¾è¡¨çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
 		 */
 		HashEntry<K, V> linkpref;
 
 		/**
-		 * ËÀÍö±ê¼Ç
+		 * æ­»äº¡æ ‡è®°
 		 */
 		AtomicBoolean dead;
 
@@ -122,7 +122,7 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 	}
 
 	/**
-	 * ÍË»¯Á¿±íµÄ½Úµã,¼Ì³Ğ×ÔhashÁ´½Úµã
+	 * é€€åŒ–é‡è¡¨çš„èŠ‚ç‚¹,ç»§æ‰¿è‡ªhashé“¾èŠ‚ç‚¹
 	 * 
 	 * @author xudanhui.pt Dec 31, 2010,1:57:58 PM
 	 * @param <K>
@@ -134,34 +134,34 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 		private static final long serialVersionUID = 1L;
 
 		/**
-		 * ãĞÖµ
+		 * é˜ˆå€¼
 		 */
 		transient int threshold;
 
 		/**
-		 * ¼ÆÊı
+		 * è®¡æ•°
 		 */
 		transient volatile int count;
 
 
 		/**
-		 * hash±í
+		 * hashè¡¨
 		 */
 		transient volatile HashEntry<K, V>[] table;
 
 		/**
-		 * ¶ÎÄÚÍ·½Úµã£¬Ò»¸öË«ÏòÁ´±í£¬Î¬»¤
+		 * æ®µå†…å¤´èŠ‚ç‚¹ï¼Œä¸€ä¸ªåŒå‘é“¾è¡¨ï¼Œç»´æŠ¤
 		 */
-		transient final HashEntry<K, V> header;// Í·½Úµã
+		transient final HashEntry<K, V> header;// å¤´èŠ‚ç‚¹
 
 		Segment(int initialCapacity, float lf) {
-			// ´´½¨hash±í
+			// åˆ›å»ºhashè¡¨
 			table = HashEntry.<K, V> newArray(initialCapacity);
-			// ¼ÆËããĞÖµ
+			// è®¡ç®—é˜ˆå€¼
 			threshold = (int) (initialCapacity * lf);
 
 			count = 0;
-			// ¹¹½¨Ë«ÏòÁ´±íµÄÍ·½Úµã
+			// æ„å»ºåŒå‘é“¾è¡¨çš„å¤´èŠ‚ç‚¹
 			header = new HashEntry<K, V>(null, -1, null, null, null, null,
 					new AtomicBoolean(false));
 			header.linknext = header;
@@ -173,13 +173,13 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 			return new Segment[i];
 		}
 
-		// È¡µÃhash±íÖĞµÚÒ»¸öÖµ
+		// å–å¾—hashè¡¨ä¸­ç¬¬ä¸€ä¸ªå€¼
 		HashEntry<K, V> getFirst(int hash) {
 			HashEntry<K, V>[] tab = table;
 			return tab[hash & (tab.length - 1)];
 		}
 
-		// ÔÚÓĞËøµÄÇé¿öÏÂ¶ÁÖµ
+		// åœ¨æœ‰é”çš„æƒ…å†µä¸‹è¯»å€¼
 		V readValueUnderLock(HashEntry<K, V> e) {
 			lock();
 			try {
@@ -189,16 +189,16 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 			}
 		}
 
-		// °Ñ½ÚµãÒÆ¶¯µ½Ë«ÏòÁ´±íµÄÍ·²¿
+		// æŠŠèŠ‚ç‚¹ç§»åŠ¨åˆ°åŒå‘é“¾è¡¨çš„å¤´éƒ¨
 		void moveNodeToHeader(HashEntry<K, V> e) {
 			lock();
 			try {
 				if (!e.dead.get()) {
-					// ´ÓÍË»¯Á¬±íÖĞ¶Ï¿ªÁ¬½Ó
+					// ä»é€€åŒ–è¿è¡¨ä¸­æ–­å¼€è¿æ¥
 					e.linkpref.linknext = e.linknext;
 					e.linknext.linkpref = e.linkpref;
 
-					// Ìí¼Óµ½ÍË»¯Á´±íÍ·²¿
+					// æ·»åŠ åˆ°é€€åŒ–é“¾è¡¨å¤´éƒ¨
 					header.linknext.linkpref = e;
 					e.linknext = header.linknext;
 					e.linkpref = header;
@@ -210,21 +210,21 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 
 		}
 
-		// get²Ù×÷
+		// getæ“ä½œ
 		V get(Object key, int hash) {
 			HashEntry<K, V> e = getFirst(hash);
-			// ±éÀú²éÕÒ
+			// éå†æŸ¥æ‰¾
 			while (e != null) {
 				if (e.hash == hash && key.equals(e.key)) {
 					V v = e.value;
-					// °Ñ½ÚµãÒÆ¶¯µ½Í·²¿¡£
+					// æŠŠèŠ‚ç‚¹ç§»åŠ¨åˆ°å¤´éƒ¨ã€‚
 					moveNodeToHeader(e);
 					if (v != null)
 						return v;
-					// ÔÚËøµÄÇé¿ö¶Á£¬±Ø¶¨ÄÜ¶Áµ½¡£
-					// tab[index] = new HashEntry<K,V>(key, hash, first, value)£¬
-					// value¸³ÖµºÍtab[index]¸³Öµ¿ÉÄÜ»áÖØĞÂÅÅĞò£¬ÖØĞÂÅÅĞòÖ®ºó£¬¿ÉÄÜ»á¶Á¿ÕÖµ
-					// ¶Áµ½¿ÕÖµµÄ»°£¬ÔÚÓĞËøµÄÇé¿öÔÚÔÙ¶ÁÒ»±é£¬Ò»¶¨ÄÜ¶Á£¡
+					// åœ¨é”çš„æƒ…å†µè¯»ï¼Œå¿…å®šèƒ½è¯»åˆ°ã€‚
+					// tab[index] = new HashEntry<K,V>(key, hash, first, value)ï¼Œ
+					// valueèµ‹å€¼å’Œtab[index]èµ‹å€¼å¯èƒ½ä¼šé‡æ–°æ’åºï¼Œé‡æ–°æ’åºä¹‹åï¼Œå¯èƒ½ä¼šè¯»ç©ºå€¼
+					// è¯»åˆ°ç©ºå€¼çš„è¯ï¼Œåœ¨æœ‰é”çš„æƒ…å†µåœ¨å†è¯»ä¸€éï¼Œä¸€å®šèƒ½è¯»ï¼
 					return readValueUnderLock(e); // recheck
 				}
 				e = e.next;
@@ -232,33 +232,33 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 			return null;
 		}
 
-		// ²åÈë²Ù×÷
+		// æ’å…¥æ“ä½œ
 		V put(K key, int hash, V value, boolean onlyIfAbsent)
 				throws LRUHashMapException {
 			lock();
 			try {
 				int c = count;
-				// Èç¹ûµ±Ç°½ÚµãÊıÁ¿ÒÑ¾­´óÓÚµÈÓÚãĞÖµ
+				// å¦‚æœå½“å‰èŠ‚ç‚¹æ•°é‡å·²ç»å¤§äºç­‰äºé˜ˆå€¼
 				if (c >= threshold) {
-					// Ö´ĞĞÉ¾³ı²Ù×÷¡£
+					// æ‰§è¡Œåˆ é™¤æ“ä½œã€‚
 					HashEntry<K, V> node = header.linkpref;
 					if (node == null) {
-						throw new LRUHashMapException("segmentÖĞµÄÍË»¯Á´±í±ÀÀ££¡");
+						throw new LRUHashMapException("segmentä¸­çš„é€€åŒ–é“¾è¡¨å´©æºƒï¼");
 					}
 					if (node == header) {
-						throw new LRUHashMapException("segmentÖĞÍË»¯Á´±íÒÑ¾­Îª¿Õ£¡");
+						throw new LRUHashMapException("segmentä¸­é€€åŒ–é“¾è¡¨å·²ç»ä¸ºç©ºï¼");
 					}
-					// ÒÑ¾­±ê¼ÇÎªËÀÍö£¬ÀíÂÛÉÏÀ´Ëµ£¬²»»áÓĞÕâÑùµÄÇé¿ö¡£
+					// å·²ç»æ ‡è®°ä¸ºæ­»äº¡ï¼Œç†è®ºä¸Šæ¥è¯´ï¼Œä¸ä¼šæœ‰è¿™æ ·çš„æƒ…å†µã€‚
 					if (node.dead.get()) {
-						throw new LRUHashMapException("node·ÇÕı³£ËÀÍö");
+						throw new LRUHashMapException("nodeéæ­£å¸¸æ­»äº¡");
 					}
-					// ±ê¼ÇËÀÍö
+					// æ ‡è®°æ­»äº¡
 					node.dead.set(true);
-					// °ÑÎ²²¿½Úµã´ÓÁ´±íÖĞÉ¾³ı£¡
+					// æŠŠå°¾éƒ¨èŠ‚ç‚¹ä»é“¾è¡¨ä¸­åˆ é™¤ï¼
 					node.linkpref.linknext = node.linknext;
 					node.linknext.linkpref = node.linkpref;
 
-					// °Ñ½Úµã´Óhash²ÛÖĞÉ¾³ı
+					// æŠŠèŠ‚ç‚¹ä»hashæ§½ä¸­åˆ é™¤
 					HashEntry<K, V>[] tab = table;
 					int index = node.hash & (tab.length - 1);
 					HashEntry<K, V> first = tab[index];
@@ -269,29 +269,29 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 						e = e.next;
 					}
 					if (e == null) {
-						throw new LRUHashMapException("hash²ÛÖĞ²»´æÔÚÒªÉ¾³ıµÄ½Úµã£¡");
+						throw new LRUHashMapException("hashæ§½ä¸­ä¸å­˜åœ¨è¦åˆ é™¤çš„èŠ‚ç‚¹ï¼");
 					} else {
 						HashEntry<K, V> newFirst = e.next;
-						// Ñ­»·É¾³ı
+						// å¾ªç¯åˆ é™¤
 						for (HashEntry<K, V> p = first; p != e; p = p.next) {
 							HashEntry<K, V> newNode = new HashEntry<K, V>(
 									p.key, p.hash, newFirst, p.value,
 									p.linknext, p.linkpref, new AtomicBoolean(
 											false));
-							// µ÷ÕûÁ´±í
+							// è°ƒæ•´é“¾è¡¨
 							p.linknext.linkpref = newNode;
 							p.linkpref.linknext = newNode;
-							p.dead.set(true);// ±ê¼ÇËÀÍö£¬Õâ¸öºÜÖØÒª£¡
-							// ¸³Öµ
+							p.dead.set(true);// æ ‡è®°æ­»äº¡ï¼Œè¿™ä¸ªå¾ˆé‡è¦ï¼
+							// èµ‹å€¼
 							newFirst = newNode;
 						}
 						tab[index] = newFirst;
-						c--;// ¼ÆÊı¼õ1¡£
+						c--;// è®¡æ•°å‡1ã€‚
 						count = c;
 					}
 				}
 
-				// Ö´ĞĞput²Ù×÷£¡
+				// æ‰§è¡Œputæ“ä½œï¼
 				HashEntry<K, V>[] tab = table;
 				int index = hash & (tab.length - 1);
 				HashEntry<K, V> first = tab[index];
@@ -305,7 +305,7 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 					oldValue = e.value;
 					if (!onlyIfAbsent) {
 						e.value = value;
-						moveNodeToHeader(e);// ÒÆ¶¯µ½Í·²¿
+						moveNodeToHeader(e);// ç§»åŠ¨åˆ°å¤´éƒ¨
 					}
 					
 				} else {
@@ -398,7 +398,7 @@ public class LRUHashMap<K, V> extends AbstractMap<K, V> implements Serializable 
 	
 	}
 	/**
-	 * Õâ¸ö·½·¨²»¿ÉÓÃ!
+	 * è¿™ä¸ªæ–¹æ³•ä¸å¯ç”¨!
 	 */
 	@Override
 	public Set<java.util.Map.Entry<K, V>> entrySet() {

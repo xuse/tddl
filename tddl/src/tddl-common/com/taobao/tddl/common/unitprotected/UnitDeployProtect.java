@@ -19,7 +19,7 @@ import com.taobao.tddl.common.util.TStringUtil;
 /**
  * @description
  * @author <a href="junyu@taobao.com">junyu</a>
- * @date 2013-5-8ÏÂÎç04:04:56
+ * @date 2013-5-8ä¸‹åˆ04:04:56
  */
 public class UnitDeployProtect {
 	public static void unitDeployProtect(String sql,
@@ -42,10 +42,10 @@ public class UnitDeployProtect {
 	private static void unitDeployProtectWithCause(String sql,
 			Map<Integer, ParameterContext> params)
 			throws UnitDeployInvalidException, SQLException {
-		// ÌáÈ¡threadlocal»òÕßhint
+		// æå–threadlocalæˆ–è€…hint
 		Object c = getValidKeyFromThread();
 		boolean result = true;
-		// »ñÈ¡user_id,µ÷ÓÃapi½Ó¿ÚÅĞ¶¨ÊÇ·ñÅ×Òì³£
+		// è·å–user_id,è°ƒç”¨apiæ¥å£åˆ¤å®šæ˜¯å¦æŠ›å¼‚å¸¸
 		if (c != null) {
 			result = Router.isInCurrentUnit(Long.valueOf(String.valueOf(c)));
 			eagleEyeRecord(result, c);
@@ -140,7 +140,7 @@ public class UnitDeployProtect {
 				tempMap.putAll(params);
 				params.clear();
 
-				// Õâ¶ÎĞèÒªĞÔÄÜÓÅ»¯
+				// è¿™æ®µéœ€è¦æ€§èƒ½ä¼˜åŒ–
 				int tempMapSize = tempMap.size();
 				for (int i = 1; i <= tempMapSize; i++) {
 					Integer ind = tempMap.firstKey();
@@ -172,7 +172,7 @@ public class UnitDeployProtect {
 										+ parameterSettings.size()
 										+ ",but the sql is " + sql);
 					}
-					// TDDLHINTÖ»ÄÜÉèÖÃ¼òµ¥Öµ
+					// TDDLHINTåªèƒ½è®¾ç½®ç®€å•å€¼
 					sb.append(parameterSettings.get(parameters).getArgs()[1]);
 					parameters++;
 				} else {

@@ -17,8 +17,8 @@ public class GroupByTraversalAction implements TraversalSQLAction {
 			}
 		} else {
 			if (temp != null&&!temp.isEmpty()){
-				//TODO:Õâ¸öµØ·½ÒªÌí¼ÓÒ»¸ö²âÊÔ£¬ÓÃÓÚ²âÊÔÇ¶Ì×²éÑ¯ÖĞ£¬ÍâÇ¶Ì×²éÑ¯ÓĞgroup by ºÍorder byµÄÇé¿öÏÂ£¬ÊÇ·ñ²»»áÅ×³öÕâ¸öÒì³£
-				throw new IllegalArgumentException("²»ÔÊĞíÔÚÇ¶Ì×sqlÖĞ³öÏÖ¶à¸ögroup byÌõ¼ş");
+				//TODO:è¿™ä¸ªåœ°æ–¹è¦æ·»åŠ ä¸€ä¸ªæµ‹è¯•ï¼Œç”¨äºæµ‹è¯•åµŒå¥—æŸ¥è¯¢ä¸­ï¼Œå¤–åµŒå¥—æŸ¥è¯¢æœ‰group by å’Œorder byçš„æƒ…å†µä¸‹ï¼Œæ˜¯å¦ä¸ä¼šæŠ›å‡ºè¿™ä¸ªå¼‚å¸¸
+				throw new IllegalArgumentException("ä¸å…è®¸åœ¨åµŒå¥—sqlä¸­å‡ºç°å¤šä¸ªgroup byæ¡ä»¶");
 			}
 		}
 	}

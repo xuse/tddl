@@ -13,26 +13,26 @@ import com.taobao.tddl.client.jdbc.executeplan.ExecutionPlan;
 import com.taobao.tddl.common.jdbc.ParameterContext;
 
 /**
- * @description ¹ÜÏßÈÎÎñÁ÷×ªÆô¶¯Æ÷½Ó¿Ú·½·¨¶¨Òå,Ìá¹©¸øTStatementImpÊ¹ÓÃ,
- *              °üÀ¨ÆÕÍ¨Ö´ĞĞ¼Æ»®Éú³ÉÁ÷³Ì,batch²Ù×÷µÄtargetSql listÉú³É,
- *              Ìá¹©¸ø²âÊÔµÃµ½·Ö¿â·Ö±í½á¹ûµÄ·½·¨.
+ * @description ç®¡çº¿ä»»åŠ¡æµè½¬å¯åŠ¨å™¨æ¥å£æ–¹æ³•å®šä¹‰,æä¾›ç»™TStatementImpä½¿ç”¨,
+ *              åŒ…æ‹¬æ™®é€šæ‰§è¡Œè®¡åˆ’ç”Ÿæˆæµç¨‹,batchæ“ä½œçš„targetSql listç”Ÿæˆ,
+ *              æä¾›ç»™æµ‹è¯•å¾—åˆ°åˆ†åº“åˆ†è¡¨ç»“æœçš„æ–¹æ³•.
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-09-02ÏÂÎç02:43:34
+ * @date 2010-09-02ä¸‹åˆ02:43:34
  */
 public interface Bootstrap {
     /**
-     * Õı³£Ö´ĞĞSQL½âÎö£¬¹æÔò¼ÆËã
-     * @param startInfo  °üÀ¨sql,parameters,sqlTypeĞÅÏ¢
+     * æ­£å¸¸æ‰§è¡ŒSQLè§£æï¼Œè§„åˆ™è®¡ç®—
+     * @param startInfo  åŒ…æ‹¬sql,parameters,sqlTypeä¿¡æ¯
      * @return
      * @throws SQLException
      */
 	ExecutionPlan bootstrap(StartInfo startInfo) throws SQLException;
 	
     /**
-     * Ö´ĞĞÎŞ²Îbatch sql,Ö»ĞèÒªÈ¡µÃÄ¿±êsql¼¯ºÏ¼´¿É
+     * æ‰§è¡Œæ— å‚batch sql,åªéœ€è¦å–å¾—ç›®æ ‡sqlé›†åˆå³å¯
      * @param startInfo
      * @param needRowCopy
      * @param targetSqls
@@ -44,7 +44,7 @@ public interface Bootstrap {
 			throws SQLException;
 
     /**
-     * Ö´ĞĞÓĞ²ÎÊıµÄbatch sql,Ö»ĞèÒªÈ¡µÃÄ¿±êsql¼¯ºÏ¼´¿É
+     * æ‰§è¡Œæœ‰å‚æ•°çš„batch sql,åªéœ€è¦å–å¾—ç›®æ ‡sqlé›†åˆå³å¯
      * @param startInfo
      * @param needRowCopy
      * @param targetSqls
@@ -56,8 +56,8 @@ public interface Bootstrap {
 			String selectKey) throws SQLException;
 
 	/**
-	 * ·½±ã²âÊÔ£¬¸ù¾İRouteConditionÈ¡µÃÄ¿±êÊı¾İ¿âºÍ±í(¼´Ö»½øĞĞsql½âÎöºÍ¹æÔò¼ÆËã£¬
-	 * ²»½øĞĞÖ´ĞĞ¼Æ»®Éú³É)
+	 * æ–¹ä¾¿æµ‹è¯•ï¼Œæ ¹æ®RouteConditionå–å¾—ç›®æ ‡æ•°æ®åº“å’Œè¡¨(å³åªè¿›è¡Œsqlè§£æå’Œè§„åˆ™è®¡ç®—ï¼Œ
+	 * ä¸è¿›è¡Œæ‰§è¡Œè®¡åˆ’ç”Ÿæˆ)
 	 * @param rc
 	 * @param sqlDispatcher
 	 * @return
@@ -67,8 +67,8 @@ public interface Bootstrap {
 			SqlDispatcher sqlDispatcher) throws SQLException;
 
 	/**
-	 * ·½±ã²âÊÔ£¬¸ù¾İ¾ßÌåsqlºÍargsÈ¡µÃÄ¿±êÊı¾İ¿âºÍ±í(Ö»½øĞĞsql½âÎöºÍ¹æÔò¼ÆËã£¬
-	 * ²»½øĞĞÖ´ĞĞ¼Æ»®Éú³É)
+	 * æ–¹ä¾¿æµ‹è¯•ï¼Œæ ¹æ®å…·ä½“sqlå’Œargså–å¾—ç›®æ ‡æ•°æ®åº“å’Œè¡¨(åªè¿›è¡Œsqlè§£æå’Œè§„åˆ™è®¡ç®—ï¼Œ
+	 * ä¸è¿›è¡Œæ‰§è¡Œè®¡åˆ’ç”Ÿæˆ)
 	 * @param sql
 	 * @param args
 	 * @param sqlDispatcher

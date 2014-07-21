@@ -34,7 +34,7 @@ import com.taobao.tddl.jdbc.atom.jdbc.TDataSourceWrapper;
 import com.taobao.tddl.jdbc.atom.listener.TAtomDbStatusListener;
 
 /**
- * Êı¾İ¿â¶¯Ì¬ÇĞ»»µÄHandleÀà£¬ËùÓĞÊı¾İ¿âµÄ¶¯Ì¬ÇĞ»» ¶¼ÊÇÓÉÕâ¸öÀàÍê³É
+ * æ•°æ®åº“åŠ¨æ€åˆ‡æ¢çš„Handleç±»ï¼Œæ‰€æœ‰æ•°æ®åº“çš„åŠ¨æ€åˆ‡æ¢ éƒ½æ˜¯ç”±è¿™ä¸ªç±»å®Œæˆ
  * 
  * @author qihao
  * 
@@ -49,47 +49,47 @@ class TAtomDsConfHandle {
 	private String unitName;
 
 	/**
-	 * ÔËĞĞÊ±ÅäÖÃ
+	 * è¿è¡Œæ—¶é…ç½®
 	 */
 	private volatile TAtomDsConfDO runTimeConf = new TAtomDsConfDO();
 
 	/**
-	 * ±¾µØÅäÖÃ£¬ÓÅÏÈÓÚÍÆËÍµÄ¶¯Ì¬ÅäÖÃ
+	 * æœ¬åœ°é…ç½®ï¼Œä¼˜å…ˆäºæ¨é€çš„åŠ¨æ€é…ç½®
 	 */
 	private TAtomDsConfDO localConf = new TAtomDsConfDO();
 
 	/**
-	 * È«¾ÖÅäÖÃ£¬Ó¦ÓÃÅäÖÃ¶©ÔÄ¹ÜÀí
+	 * å…¨å±€é…ç½®ï¼Œåº”ç”¨é…ç½®è®¢é˜…ç®¡ç†
 	 */
 	private DbConfManager dbConfManager;
 
 	/**
-	 * ÃÜÂëÅäÖÃ¶©ÔÄ¹ÜÀí
+	 * å¯†ç é…ç½®è®¢é˜…ç®¡ç†
 	 */
 	private DbPasswdManager dbPasswdManager;
 
 	/**
-	 * JbossÊı¾İÔ´Í¨¹ıinit³õÊ¼»¯
+	 * Jbossæ•°æ®æºé€šè¿‡initåˆå§‹åŒ–
 	 */
 	private volatile LocalTxDataSource jbossDataSource;
 
 	/**
-	 * Êı¾İ¿â×´Ì¬¸Ä±ä»Øµ÷
+	 * æ•°æ®åº“çŠ¶æ€æ”¹å˜å›è°ƒ
 	 */
 	private volatile List<TAtomDbStatusListener> dbStatusListeners;
 
 	/**
-	 * ³õÊ¼»¯±ê¼ÇÎªÒ»µ«³õÊ¼»¯¹ı£¬ËùÓĞ±¾µØµÄÅäÖÃ½ûÖ¹¸Ä¶¯
+	 * åˆå§‹åŒ–æ ‡è®°ä¸ºä¸€ä½†åˆå§‹åŒ–è¿‡ï¼Œæ‰€æœ‰æœ¬åœ°çš„é…ç½®ç¦æ­¢æ”¹åŠ¨
 	 */
 	private volatile boolean initFalg;
 
 	/**
-	 * Êı¾İÔ´²Ù×÷Ëø£¬µ±ĞèÒª¶ÔÊı¾İÔ´½øĞĞÖØ½¨»òÕßË¢ĞÂÊ±ĞèÒªÏÈ»ñµÃ¸ÃËø
+	 * æ•°æ®æºæ“ä½œé”ï¼Œå½“éœ€è¦å¯¹æ•°æ®æºè¿›è¡Œé‡å»ºæˆ–è€…åˆ·æ–°æ—¶éœ€è¦å…ˆè·å¾—è¯¥é”
 	 */
 	private final ReentrantLock lock = new ReentrantLock();
 
 	/**
-	 * ³õÊ¼»¯·½·¨£¬´´½¨¶ÔÓ¦µÄÊı¾İÔ´£¬Ö»ÄÜ±»µ÷ÓÃÒ»´Î
+	 * åˆå§‹åŒ–æ–¹æ³•ï¼Œåˆ›å»ºå¯¹åº”çš„æ•°æ®æºï¼Œåªèƒ½è¢«è°ƒç”¨ä¸€æ¬¡
 	 * 
 	 * @throws Exception
 	 */
@@ -98,26 +98,26 @@ class TAtomDsConfHandle {
 			throw new AtomAlreadyInitException(
 					"[AlreadyInit] double call Init !");
 		}
-		// 1.³õÊ¼»¯²ÎÊı¼ì²é
+		// 1.åˆå§‹åŒ–å‚æ•°æ£€æŸ¥
 		if (StringUtil.isBlank(this.appName) || StringUtil.isBlank(this.dbKey)) {
 			String errorMsg = "[attributeError] TAtomDatasource of appName Or dbKey is Empty !";
 			logger.error(errorMsg);
 			throw new AtomIllegalException(errorMsg);
 		}
-		// 2.ÅäÖÃdbConfManager
+		// 2.é…ç½®dbConfManager
 		DiamondDbConfManager defaultDbConfManager = new DiamondDbConfManager();
 		defaultDbConfManager.setGlobalConfigDataId(TAtomConstants
 				.getGlobalDataId(this.dbKey));
 		defaultDbConfManager.setAppConfigDataId(TAtomConstants.getAppDataId(
 				this.appName, this.dbKey));
-		// ³õÊ¼»¯dbConfManager
+		// åˆå§‹åŒ–dbConfManager
 		defaultDbConfManager.setUnitName(unitName);
 		defaultDbConfManager.init(appName);
 		
 		dbConfManager = defaultDbConfManager;
-		// 3.»ñÈ¡È«¾ÖÅäÖÃ
+		// 3.è·å–å…¨å±€é…ç½®
 		String globaConfStr = dbConfManager.getGlobalDbConf();
-		// ×¢²áÈ«¾ÖÅäÖÃ¼àÌı
+		// æ³¨å†Œå…¨å±€é…ç½®ç›‘å¬
 		registerGlobaDbConfListener(defaultDbConfManager);
 		if (StringUtil.isBlank(globaConfStr)) {
 
@@ -125,9 +125,9 @@ class TAtomDsConfHandle {
 			logger.error(errorMsg);
 			throw new AtomInitialException(errorMsg);
 		}
-		// 4.»ñÈ¡Ó¦ÓÃÅäÖÃ
+		// 4.è·å–åº”ç”¨é…ç½®
 		String appConfStr = dbConfManager.getAppDbDbConf();
-		// ×¢²áÓ¦ÓÃÅäÖÃ¼àÌı
+		// æ³¨å†Œåº”ç”¨é…ç½®ç›‘å¬
 		registerAppDbConfListener(defaultDbConfManager);
 		if (StringUtil.isBlank(appConfStr)) {
 
@@ -137,14 +137,14 @@ class TAtomDsConfHandle {
 		}
 		lock.lock();
 		try {
-			// 5.½âÎöÅäÖÃstring³ÉTAtomDsConfDO
+			// 5.è§£æé…ç½®stringæˆTAtomDsConfDO
 			runTimeConf = TAtomConfParser.parserTAtomDsConfDO(globaConfStr,
 					appConfStr);
-			// 6.´¦Àí±¾µØÓÅÏÈÅäÖÃ
+			// 6.å¤„ç†æœ¬åœ°ä¼˜å…ˆé…ç½®
 			overConfByLocal(localConf, runTimeConf);
-			// 7.Èç¹ûÃ»ÓĞÉèÖÃ±¾µØÃÜÂë£¬ÔòÓÃ¶©µÄÃÜÂë£¬³õÊ¼»¯passwdManager
+			// 7.å¦‚æœæ²¡æœ‰è®¾ç½®æœ¬åœ°å¯†ç ï¼Œåˆ™ç”¨è®¢çš„å¯†ç ï¼Œåˆå§‹åŒ–passwdManager
 			if (StringUtil.isBlank(this.runTimeConf.getPasswd())) {
-				// ¼ì²édbKeyºÍ¶ÔÓ¦µÄuserNameÊÇ·ñÎª¿Õ
+				// æ£€æŸ¥dbKeyå’Œå¯¹åº”çš„userNameæ˜¯å¦ä¸ºç©º
 				if (StringUtil.isBlank(runTimeConf.getUserName())) {
 					String errorMsg = "[attributeError] TAtomDatasource of UserName is Empty !";
 					logger.error(errorMsg);
@@ -159,7 +159,7 @@ class TAtomDsConfHandle {
 				diamondDbPasswdManager.init(appName);
 				diamondDbPasswdManager.setUnitName(unitName);
 				dbPasswdManager = diamondDbPasswdManager;
-				// »ñÈ¡ÃÜÂë
+				// è·å–å¯†ç 
 				String passwd = dbPasswdManager.getPasswd();
 				registerPasswdConfListener(diamondDbPasswdManager);
 				if (StringUtil.isBlank(passwd)) {
@@ -174,23 +174,23 @@ class TAtomDsConfHandle {
 				}
 				runTimeConf.setPasswd(passwd);
 			}
-			// 8.×ª»»tAtomDsConfDO
+			// 8.è½¬æ¢tAtomDsConfDO
 			OldLocalTxDataSourceDO localTxDataSourceDO = convertTAtomDsConf2JbossConf(
 					this.runTimeConf,
 					TAtomConstants.getDbNameStr(this.unitName, this.appName, this.dbKey));
-			// 9.²ÎÊı¼ì²éÈç¹û²ÎÊı²»ÕıÈ·Ö±½ÓÅ×³öÒì³£
+			// 9.å‚æ•°æ£€æŸ¥å¦‚æœå‚æ•°ä¸æ­£ç¡®ç›´æ¥æŠ›å‡ºå¼‚å¸¸
 			if (!checkLocalTxDataSourceDO(localTxDataSourceDO)) {
 				String errorMsg = "[ConfigError]init dataSource Prams Error! config is : "
 						+ localTxDataSourceDO.toString();
 				logger.error(errorMsg);
 				throw new AtomInitialException(errorMsg);
 			}
-			// 10.´´½¨Êı¾İÔ´
-			// ¹Ø±ÕTB-DATASOURCEµÄJMX×¢²á
+			// 10.åˆ›å»ºæ•°æ®æº
+			// å…³é—­TB-DATASOURCEçš„JMXæ³¨å†Œ
 			localTxDataSourceDO.setUseJmx(false);
 			LocalTxDataSource localTxDataSource = TaobaoDataSourceFactory
 					.createLocalTxDataSource(localTxDataSourceDO);
-			// 11.½«´´½¨ºÃµÄÊı¾İÔ´ÊÇÖ¸µ½TAtomDatasourceÖĞ
+			// 11.å°†åˆ›å»ºå¥½çš„æ•°æ®æºæ˜¯æŒ‡åˆ°TAtomDatasourceä¸­
 			this.jbossDataSource = localTxDataSource;
 			clearDataSourceWrapper();
 			initFalg = true;
@@ -205,7 +205,7 @@ class TAtomDsConfHandle {
 	}
 
 	/**
-	 * ×¢²áÃÜÂë±ä»¯¼àÌıÆ÷
+	 * æ³¨å†Œå¯†ç å˜åŒ–ç›‘å¬å™¨
 	 * 
 	 * @param dbPasswdManager
 	 */
@@ -222,7 +222,7 @@ class TAtomDsConfHandle {
 					String localPasswd = TAtomDsConfHandle.this.localConf
 							.getPasswd();
 					if (StringUtil.isNotBlank(localPasswd)) {
-						// Èç¹û±¾µØÅäÖÃÁËpasswdÖ±½Ó·µ»Ø²»Ö§³Ö¶¯Ì¬ĞŞ¸Ä
+						// å¦‚æœæœ¬åœ°é…ç½®äº†passwdç›´æ¥è¿”å›ä¸æ”¯æŒåŠ¨æ€ä¿®æ”¹
 						return;
 					}
 					String newPasswd = TAtomConfParser.parserPasswd(data);
@@ -232,9 +232,9 @@ class TAtomDsConfHandle {
 						TAtomDsConfHandle.this.jbossDataSource
 								.setPassword(newPasswd);
 						try {
-							// ¸üĞÂÊı¾İÔ´
+							// æ›´æ–°æ•°æ®æº
 							TAtomDsConfHandle.this.flushDataSource();
-							// ÊÇÓÃĞÂµÄÅäÖÃ¸²¸ÇÔËĞĞÊ±µÄÅäÖÃ
+							// æ˜¯ç”¨æ–°çš„é…ç½®è¦†ç›–è¿è¡Œæ—¶çš„é…ç½®
 							TAtomDsConfHandle.this.runTimeConf
 									.setPasswd(newPasswd);
 						} catch (Exception e) {
@@ -251,7 +251,7 @@ class TAtomDsConfHandle {
 	}
 
 	/**
-	 * È«¾ÖÅäÖÃ¼àÌı,È«¾ÖÅäÖÃ·¢Éú±ä»¯£¬ ĞèÒªÖØĞÂFLUSHÊı¾İÔ´
+	 * å…¨å±€é…ç½®ç›‘å¬,å…¨å±€é…ç½®å‘ç”Ÿå˜åŒ–ï¼Œ éœ€è¦é‡æ–°FLUSHæ•°æ®æº
 	 * 
 	 * @param defaultDbConfManager
 	 */
@@ -266,20 +266,20 @@ class TAtomDsConfHandle {
 				lock.lock();
 				try {
 					String globaConfStr = data;
-					// Èç¹ûÊÇÈ«¾ÖÅäÖÃ·¢Éú±ä»¯£¬¿ÉÄÜÊÇIP,PORT,DBNAME,DBTYPE,STATUS
+					// å¦‚æœæ˜¯å…¨å±€é…ç½®å‘ç”Ÿå˜åŒ–ï¼Œå¯èƒ½æ˜¯IP,PORT,DBNAME,DBTYPE,STATUS
 					TAtomDsConfDO tmpConf = TAtomConfParser
 							.parserTAtomDsConfDO(globaConfStr, null);
 					TAtomDsConfDO newConf = TAtomDsConfHandle.this.runTimeConf
 							.clone();
-					// ÊÇÓÃÍÆËÍµÄÅäÖÃ£¬¸²¸Çµ±Ç°µÄÅäÖÃ
+					// æ˜¯ç”¨æ¨é€çš„é…ç½®ï¼Œè¦†ç›–å½“å‰çš„é…ç½®
 					newConf.setIp(tmpConf.getIp());
 					newConf.setPort(tmpConf.getPort());
 					newConf.setDbName(tmpConf.getDbName());
 					newConf.setDbType(tmpConf.getDbType());
 					newConf.setDbStatus(tmpConf.getDbStatus());
-					// ´¦Àí±¾µØÓÅÏÈÅäÖÃ
+					// å¤„ç†æœ¬åœ°ä¼˜å…ˆé…ç½®
 					overConfByLocal(TAtomDsConfHandle.this.localConf, newConf);
-					// Èç¹ûÍÆËÍ¹ıÀ´µÄÊı¾İ¿â×´Ì¬ÊÇ RW/R->NA,Ö±½ÓÏú»ÙµôÊı¾İÔ´£¬ÒÔÏÂÒµÎñÂß¼­²»×ö´¦Àí
+					// å¦‚æœæ¨é€è¿‡æ¥çš„æ•°æ®åº“çŠ¶æ€æ˜¯ RW/R->NA,ç›´æ¥é”€æ¯æ‰æ•°æ®æºï¼Œä»¥ä¸‹ä¸šåŠ¡é€»è¾‘ä¸åšå¤„ç†
 					if (AtomDbStatusEnum.NA_STATUS != TAtomDsConfHandle.this.runTimeConf
 							.getDbStautsEnum()
 							&& AtomDbStatusEnum.NA_STATUS == tmpConf
@@ -293,27 +293,27 @@ class TAtomDsConfHandle {
 									e);
 						}
 					} else {
-						// ×ª»»tAtomDsConfDO
+						// è½¬æ¢tAtomDsConfDO
 						OldLocalTxDataSourceDO localTxDataSourceDO = convertTAtomDsConf2JbossConf(
 								newConf, TAtomConstants.getDbNameStr(
 										TAtomDsConfHandle.this.unitName,
 										TAtomDsConfHandle.this.appName,
 										TAtomDsConfHandle.this.dbKey));
-						// ¼ì²é×ª»»ºó½á¹ûÊÇ·ñÕıÈ·
+						// æ£€æŸ¥è½¬æ¢åç»“æœæ˜¯å¦æ­£ç¡®
 						if (!checkLocalTxDataSourceDO(localTxDataSourceDO)) {
 							logger.error("[GlobaConfError] dataSource Prams Error! dataId : "
 									+ dataId + " config : " + data);
 							return;
 						}
-						// Èç¹ûÍÆËÍµÄ×´Ì¬Ê± NA->RW/R Ê±ĞèÒªÖØĞÂ´´½¨Êı¾İÔ´£¬ÎŞĞèÔÙË¢ĞÂ
+						// å¦‚æœæ¨é€çš„çŠ¶æ€æ—¶ NA->RW/R æ—¶éœ€è¦é‡æ–°åˆ›å»ºæ•°æ®æºï¼Œæ— éœ€å†åˆ·æ–°
 						if (TAtomDsConfHandle.this.runTimeConf
 								.getDbStautsEnum() == AtomDbStatusEnum.NA_STATUS
 								&& (newConf.getDbStautsEnum() == AtomDbStatusEnum.RW_STATUS
 										|| newConf.getDbStautsEnum() == AtomDbStatusEnum.R_STATUS || newConf
 										.getDbStautsEnum() == AtomDbStatusEnum.W_STATUS)) {
-							// ´´½¨Êı¾İÔ´
+							// åˆ›å»ºæ•°æ®æº
 							try {
-								// ¹Ø±ÕTB-DATASOURCEµÄJMX×¢²á
+								// å…³é—­TB-DATASOURCEçš„JMXæ³¨å†Œ
 								localTxDataSourceDO.setUseJmx(false);
 								LocalTxDataSource localTxDataSource = TaobaoDataSourceFactory
 										.createLocalTxDataSource(localTxDataSourceDO);
@@ -327,7 +327,7 @@ class TAtomDsConfHandle {
 						} else {
 							boolean needFlush = checkGlobaConfChange(
 									TAtomDsConfHandle.this.runTimeConf, newConf);
-							// Èç¹û·¢ÉúµÄÅäÖÃ±ä»¯ÊÇ·ñĞèÒªÖØ½¨Êı¾İÔ´
+							// å¦‚æœå‘ç”Ÿçš„é…ç½®å˜åŒ–æ˜¯å¦éœ€è¦é‡å»ºæ•°æ®æº
 							if (needFlush) {
 								TAtomDsConfHandle.this.jbossDataSource
 										.setConnectionURL(localTxDataSourceDO
@@ -339,7 +339,7 @@ class TAtomDsConfHandle {
 										.setExceptionSorterClassName(localTxDataSourceDO
 												.getExceptionSorterClassName());
 								try {
-									// ¸üĞÂÊı¾İÔ´
+									// æ›´æ–°æ•°æ®æº
 									TAtomDsConfHandle.this.flushDataSource();
 								} catch (Exception e) {
 									logger.error(
@@ -349,10 +349,10 @@ class TAtomDsConfHandle {
 							}
 						}
 					}
-					//´¦ÀíÊı¾İ¿â×´Ì¬¼àÌıÆ÷
+					//å¤„ç†æ•°æ®åº“çŠ¶æ€ç›‘å¬å™¨
 					processDbStatusListener(TAtomDsConfHandle.this.runTimeConf.getDbStautsEnum(),
 							newConf.getDbStautsEnum());
-					//ÊÇÓÃĞÂµÄÅäÖÃ¸²¸ÇÔËĞĞÊ±µÄÅäÖÃ
+					//æ˜¯ç”¨æ–°çš„é…ç½®è¦†ç›–è¿è¡Œæ—¶çš„é…ç½®
 					TAtomDsConfHandle.this.runTimeConf = newConf;
 					clearDataSourceWrapper();
 				} finally {
@@ -385,7 +385,7 @@ class TAtomDsConfHandle {
 	}
 
 	/**
-	 * Ó¦ÓÃÅäÖÃ¼àÌı£¬µ±Ó¦ÓÃÅäÖÃ·¢Éú±ä»¯Ê±£¬Çø·Ö·¢Éú ±ä»¯µÄÅäÖÃ£¬À´¾ö¶¨¾ßÌåÊÇflush»¹ÊÇreCreate
+	 * åº”ç”¨é…ç½®ç›‘å¬ï¼Œå½“åº”ç”¨é…ç½®å‘ç”Ÿå˜åŒ–æ—¶ï¼ŒåŒºåˆ†å‘ç”Ÿ å˜åŒ–çš„é…ç½®ï¼Œæ¥å†³å®šå…·ä½“æ˜¯flushè¿˜æ˜¯reCreate
 	 * 
 	 * @param defaultDbConfManager
 	 */
@@ -404,7 +404,7 @@ class TAtomDsConfHandle {
 							.parserTAtomDsConfDO(null, appConfStr);
 					TAtomDsConfDO newConf = TAtomDsConfHandle.this.runTimeConf
 							.clone();
-					// ÓĞĞ©¼ÈÓĞÅäÖÃ²»ÄÜ±ä¸ü£¬ËùÒÔ¿ËÂ¡ÀÏµÄÅäÖÃ£¬È»ºó½«ĞÂµÄset½øÈ¥
+					// æœ‰äº›æ—¢æœ‰é…ç½®ä¸èƒ½å˜æ›´ï¼Œæ‰€ä»¥å…‹éš†è€çš„é…ç½®ï¼Œç„¶åå°†æ–°çš„setè¿›å»
 					newConf.setUserName(tmpConf.getUserName());
 					newConf.setMinPoolSize(tmpConf.getMinPoolSize());
 					newConf.setMaxPoolSize(tmpConf.getMaxPoolSize());
@@ -416,7 +416,7 @@ class TAtomDsConfHandle {
 					newConf.setConnectionProperties(tmpConf
 							.getConnectionProperties());
 					newConf.setOracleConType(tmpConf.getOracleConType());
-					// Ôö¼Ó3¸ö¾ßÌåµÄÊµÏÖ
+					// å¢åŠ 3ä¸ªå…·ä½“çš„å®ç°
 					newConf.setWriteRestrictTimes(tmpConf
 							.getWriteRestrictTimes());
 					newConf.setReadRestrictTimes(tmpConf.getReadRestrictTimes());
@@ -424,17 +424,17 @@ class TAtomDsConfHandle {
 							.getThreadCountRestrict());
 					newConf.setTimeSliceInMillis(tmpConf.getTimeSliceInMillis());
 					newConf.setDriverClass(tmpConf.getDriverClass());
-					// Ó¦ÓÃÁ¬½ÓÏŞÖÆÅäÖÃ
+					// åº”ç”¨è¿æ¥é™åˆ¶é…ç½®
 					newConf.setConnRestrictEntries(tmpConf.getConnRestrictEntries());
-					// ´¦Àí±¾µØÓÅÏÈÅäÖÃ
+					// å¤„ç†æœ¬åœ°ä¼˜å…ˆé…ç½®
 					overConfByLocal(TAtomDsConfHandle.this.localConf, newConf);
-					// ×ª»»tAtomDsConfDO
+					// è½¬æ¢tAtomDsConfDO
 					OldLocalTxDataSourceDO localTxDataSourceDO = convertTAtomDsConf2JbossConf(
 							newConf, TAtomConstants.getDbNameStr(
 									TAtomDsConfHandle.this.unitName,
 									TAtomDsConfHandle.this.appName,
 									TAtomDsConfHandle.this.dbKey));
-					// ¼ì²é×ª»»ºó½á¹ûÊÇ·ñÕıÈ·
+					// æ£€æŸ¥è½¬æ¢åç»“æœæ˜¯å¦æ­£ç¡®
 					if (!checkLocalTxDataSourceDO(localTxDataSourceDO)) {
 						logger.error("[GlobaConfError] dataSource Prams Error! dataId : "
 								+ dataId + " config : " + data);
@@ -444,7 +444,7 @@ class TAtomDsConfHandle {
 							TAtomDsConfHandle.this.runTimeConf, newConf);
 					if (isNeedReCreate) {
 						try {
-							//Õâ¸ö±ØĞëÔÚ×îÇ°Ãæ£¬·ñÔòÏÂ´ÎÍÆËÍ¿ÉÄÜÎŞ·¨±È½Ï³ö²»Í¬¶ø²»´´½¨ĞÂÊı¾İÔ´
+							//è¿™ä¸ªå¿…é¡»åœ¨æœ€å‰é¢ï¼Œå¦åˆ™ä¸‹æ¬¡æ¨é€å¯èƒ½æ— æ³•æ¯”è¾ƒå‡ºä¸åŒè€Œä¸åˆ›å»ºæ–°æ•°æ®æº
 							TAtomDsConfHandle.this.runTimeConf = newConf;
 							TAtomDsConfHandle.this.jbossDataSource.destroy();
 							logger.warn("[destroy OldDataSource] dataId : "
@@ -464,7 +464,7 @@ class TAtomDsConfHandle {
 						boolean isNeedFlush = isNeedFlush(
 								TAtomDsConfHandle.this.runTimeConf, newConf);
 						/**
-						 * ·§Öµ±ä»¯ÎŞĞèË¢ĞÂ³ÖÓĞµÄÊı¾İÔ´£¬Ö»Òª¸üĞÂrunTimeConf£¬²¢ÇÒÇå¿ÕwrapDataSource
+						 * é˜€å€¼å˜åŒ–æ— éœ€åˆ·æ–°æŒæœ‰çš„æ•°æ®æºï¼Œåªè¦æ›´æ–°runTimeConfï¼Œå¹¶ä¸”æ¸…ç©ºwrapDataSource
 						 */
 						boolean isRestrictChange = isRestrictChange(
 								TAtomDsConfHandle.this.runTimeConf, newConf);
@@ -476,9 +476,9 @@ class TAtomDsConfHandle {
 									.setUserName(localTxDataSourceDO
 											.getUserName());
 							try {
-								// ÊÇÓÃĞÂµÄÅäÖÃ¸²¸ÇÔËĞĞÊ±µÄÅäÖÃ
+								// æ˜¯ç”¨æ–°çš„é…ç½®è¦†ç›–è¿è¡Œæ—¶çš„é…ç½®
 								TAtomDsConfHandle.this.runTimeConf = newConf;
-								// ¸üĞÂÊı¾İÔ´
+								// æ›´æ–°æ•°æ®æº
 								TAtomDsConfHandle.this.flushDataSource();
 								clearDataSourceWrapper();
 							} catch (Exception e) {
@@ -608,7 +608,7 @@ class TAtomDsConfHandle {
 	}
 
 	/**
-	 * ½«TAtomDsConfDO×ª»»³ÉLocalTxDataSourceDO
+	 * å°†TAtomDsConfDOè½¬æ¢æˆLocalTxDataSourceDO
 	 * 
 	 * @param tAtomDsConfDO
 	 * @return
@@ -623,12 +623,12 @@ class TAtomDsConfHandle {
 		localTxDataSourceDO.setPassword(tAtomDsConfDO.getPasswd());
 		localTxDataSourceDO.setDriverClass(tAtomDsConfDO.getDriverClass());
 		localTxDataSourceDO.setExceptionSorterClassName(tAtomDsConfDO.getSorterClass());
-		//¸ù¾İÊı¾İ¿âÀàĞÍÉèÖÃconURLºÍsetConnectionProperties
+		//æ ¹æ®æ•°æ®åº“ç±»å‹è®¾ç½®conURLå’ŒsetConnectionProperties
 		if (AtomDbTypeEnum.ORACLE == tAtomDsConfDO.getDbTypeEnum()) {
 			String conUlr = TAtomConURLTools.getOracleConURL(tAtomDsConfDO.getIp(), tAtomDsConfDO.getPort(),
 					tAtomDsConfDO.getDbName(), tAtomDsConfDO.getOracleConType());
 			localTxDataSourceDO.setConnectionURL(conUlr);
-			//Èç¹ûÊÇoracleÃ»ÓĞÉèÖÃConnectionPropertiesÔò¸øÒÔ¸öÄ¬ÈÏµÄ
+			//å¦‚æœæ˜¯oracleæ²¡æœ‰è®¾ç½®ConnectionPropertiesåˆ™ç»™ä»¥ä¸ªé»˜è®¤çš„
 			if (!tAtomDsConfDO.getConnectionProperties().isEmpty()) {
 				localTxDataSourceDO.setConnectionProperties(tAtomDsConfDO.getConnectionProperties());
 			} else {
@@ -638,7 +638,7 @@ class TAtomDsConfHandle {
 			String conUlr = TAtomConURLTools.getMySqlConURL(tAtomDsConfDO.getIp(), tAtomDsConfDO.getPort(),
 					tAtomDsConfDO.getDbName(), tAtomDsConfDO.getConnectionProperties());
 			localTxDataSourceDO.setConnectionURL(conUlr);
-			//Èç¹û¿ÉÒÔÕÒµ½mysqlDriverÖĞµÄValid¾ÍÊ¹ÓÃ£¬·ñÔòÉèÖÃÄ¬ÈÏµÄ
+			//å¦‚æœå¯ä»¥æ‰¾åˆ°mysqlDriverä¸­çš„Validå°±ä½¿ç”¨ï¼Œå¦åˆ™è®¾ç½®é»˜è®¤çš„
 			Class validConnectionClass = findClass(TAtomConstants.MYSQL_VALID_CONNECTION_CHECKERCLASS);
 			if (null == validConnectionClass) {
 				logger.warn("MYSQL Driver is NOT support valid connection checker "
@@ -654,7 +654,7 @@ class TAtomDsConfHandle {
 				logger.error("NOT found default valid connection checker "
 						+ TAtomConstants.DEFAULT_MYSQL_VALID_CHECKERCLASS);
 			}
-			//Èç¹û¿ÉÒÔÕÒµ½mysqlDriverÖĞµÄintegrationSorter¾ÍÊ¹ÓÃ·ñÔòÊ¹ÓÃÄ¬ÈÏµÄ
+			//å¦‚æœå¯ä»¥æ‰¾åˆ°mysqlDriverä¸­çš„integrationSorterå°±ä½¿ç”¨å¦åˆ™ä½¿ç”¨é»˜è®¤çš„
 			Class integrationSorterClass = findClass(TAtomConstants.MYSQL_INTEGRATION_SORTER_CLASS);
 			if (null == integrationSorterClass) {
 				logger.warn("MYSQL Driver is NOT support integration sorter "
@@ -737,7 +737,7 @@ class TAtomDsConfHandle {
 	}
 
 	/**
-	 * ÊÇÓÃ±¾µØÅäÖÃ¸²¸Ç´«ÈëµÄTAtomDsConfDOµÄÊôĞÔ
+	 * æ˜¯ç”¨æœ¬åœ°é…ç½®è¦†ç›–ä¼ å…¥çš„TAtomDsConfDOçš„å±æ€§
 	 * 
 	 * @param tAtomDsConfDO
 	 */
@@ -746,7 +746,7 @@ class TAtomDsConfHandle {
 		if (null == newDsConfDO || null == localDsConfDO) {
 			return;
 		}
-		//ÔÊĞíÉèÖÃdriver
+		//å…è®¸è®¾ç½®driver
 //		if (StringUtil.isNotBlank(localDsConfDO.getDriverClass())) {
 //			newDsConfDO.setDriverClass(localDsConfDO.getDriverClass());
 //		}
@@ -764,7 +764,7 @@ class TAtomDsConfHandle {
 	}
 
 	/**
-	 * Datasource µÄ°ü×°Àà
+	 * Datasource çš„åŒ…è£…ç±»
 	 */
 	private volatile TDataSourceWrapper wrapDataSource = null;
 
@@ -773,7 +773,7 @@ class TAtomDsConfHandle {
 			lock.lock();
 			try {
 				if (wrapDataSource != null) {
-					// Ë«¼ì²éËø
+					// åŒæ£€æŸ¥é”
 					return wrapDataSource;
 				}
 				String errorMsg = "";
@@ -788,7 +788,7 @@ class TAtomDsConfHandle {
 					logger.error(errorMsg);
 					throw new SQLException(errorMsg);
 				}
-				// Èç¹ûÊı¾İ¿â×´Ì¬²»¿ÉÓÃÖ±½ÓÅ×³öÒì³£
+				// å¦‚æœæ•°æ®åº“çŠ¶æ€ä¸å¯ç”¨ç›´æ¥æŠ›å‡ºå¼‚å¸¸
 				if (null == this.getStatus()) {
 					errorMsg = "[DB Stats Error] DbStatus is Null: "
 							+ this.getDbKey();

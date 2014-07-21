@@ -55,7 +55,7 @@ public class SimpleCondition implements RuleRouteCondition,ComparativeMapChoicer
 		Map<String, Comparative> retMap = new HashMap<String, Comparative>(parameters.size());
 		for(String str : partnationSet){
 			if(str != null){
-				//ÒòÎªgroovyÊÇ´óĞ¡Ğ´Ãô¸ĞµÄ£¬Òò´ËÕâÀïÖ»ÊÇÔÚÆ¥ÅäµÄÊ±ºò×ªÎªĞ¡Ğ´£¬·ÅÈëmapÖĞµÄÊ±ºòÈÔÈ»Ê¹ÓÃÔ­À´µÄ´óĞ¡Ğ´
+				//å› ä¸ºgroovyæ˜¯å¤§å°å†™æ•æ„Ÿçš„ï¼Œå› æ­¤è¿™é‡Œåªæ˜¯åœ¨åŒ¹é…çš„æ—¶å€™è½¬ä¸ºå°å†™ï¼Œæ”¾å…¥mapä¸­çš„æ—¶å€™ä»ç„¶ä½¿ç”¨åŸæ¥çš„å¤§å°å†™
 				Comparative comp = parameters.get(str.toLowerCase());
 				if(comp != null){
 					retMap.put(str, comp);
@@ -69,7 +69,7 @@ public class SimpleCondition implements RuleRouteCondition,ComparativeMapChoicer
 	public Comparative getColumnComparative(List<Object> arguments, String partnationCol) {
 		Comparative res = null;
 		if(partnationCol != null){
-			//ÒòÎªgroovyÊÇ´óĞ¡Ğ´Ãô¸ĞµÄ£¬Òò´ËÕâÀïÖ»ÊÇÔÚÆ¥ÅäµÄÊ±ºò×ªÎªĞ¡Ğ´£¬·ÅÈëmapÖĞµÄÊ±ºòÈÔÈ»Ê¹ÓÃÔ­À´µÄ´óĞ¡Ğ´
+			//å› ä¸ºgroovyæ˜¯å¤§å°å†™æ•æ„Ÿçš„ï¼Œå› æ­¤è¿™é‡Œåªæ˜¯åœ¨åŒ¹é…çš„æ—¶å€™è½¬ä¸ºå°å†™ï¼Œæ”¾å…¥mapä¸­çš„æ—¶å€™ä»ç„¶ä½¿ç”¨åŸæ¥çš„å¤§å°å†™
 			Comparative comp = parameters.get(partnationCol.toLowerCase());
 			if(comp != null){
 				//retMap.put(str, comp);
@@ -84,21 +84,21 @@ public class SimpleCondition implements RuleRouteCondition,ComparativeMapChoicer
 	}
 
 	/**
-	 * ÉèÖÃĞéÄâ±íÃû
+	 * è®¾ç½®è™šæ‹Ÿè¡¨å
 	 *
 	 * @param virtualTableName
-	 *            ĞéÄâ±íÃû
+	 *            è™šæ‹Ÿè¡¨å
 	 */
 	public void setVirtualTableName(String virtualTableName) {
 		if(virtualTableName == null){
-			throw new IllegalArgumentException("ÇëÊäÈëÂß¼­±íÃû");
+			throw new IllegalArgumentException("è¯·è¾“å…¥é€»è¾‘è¡¨å");
 		}
 		this.virtualTableName = virtualTableName.toLowerCase();
 	}
 
 	public void setVirtualTableForJoin(Set<String> virtualTableForJoin){
 		if(virtualTableForJoin == null||virtualTableForJoin.size()==0){
-			throw new IllegalArgumentException("ÇëÊäÈëÓÃÓÚjoinµÄÂß¼­±íÃû");
+			throw new IllegalArgumentException("è¯·è¾“å…¥ç”¨äºjoinçš„é€»è¾‘è¡¨å");
 		}
 		this.virtualTableForJoin=virtualTableForJoin;
 	}
@@ -108,16 +108,16 @@ public class SimpleCondition implements RuleRouteCondition,ComparativeMapChoicer
 	}
 
 	/**
-	 * Ìí¼ÓÒ»¸öÄ¬ÈÏÎª=µÄ²ÎÊı¶Ô
+	 * æ·»åŠ ä¸€ä¸ªé»˜è®¤ä¸º=çš„å‚æ•°å¯¹
 	 *
 	 * @param str
-	 *            ²ÎÊıÏîÃû×Ö
+	 *            å‚æ•°é¡¹åå­—
 	 * @param comp
-	 *            ²ÎÊıÏîÖµ£¬Ò»°ãÎª»ù±¾ÀàĞÍ»ò¿É±È½ÏÀàĞÍ
+	 *            å‚æ•°é¡¹å€¼ï¼Œä¸€èˆ¬ä¸ºåŸºæœ¬ç±»å‹æˆ–å¯æ¯”è¾ƒç±»å‹
 	 */
 	public void put(String key, Comparable<?> parameter) {
 		if(key == null){
-			throw new IllegalArgumentException("keyÎªnull");
+			throw new IllegalArgumentException("keyä¸ºnull");
 		}
 		if(parameter instanceof Comparative){
 			parameters.put(key.toLowerCase(), (Comparative)parameter);
@@ -134,7 +134,7 @@ public class SimpleCondition implements RuleRouteCondition,ComparativeMapChoicer
 	 */
 	public void putParamIndexForBatch(String key, Integer index) {
 		if(key == null){
-			throw new IllegalArgumentException("keyÎªnull");
+			throw new IllegalArgumentException("keyä¸ºnull");
 		}
 		parametersIndexForBatch.put(key.toLowerCase(),index);
 	}

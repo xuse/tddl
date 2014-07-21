@@ -9,34 +9,34 @@ import java.util.concurrent.Executor;
  * @author <a href="zylicfc@gmail.com">junyu</a>
  * @version 1.0
  * @since 1.6
- * @date 2011-1-11ÉÏÎç11:22:29
- * @desc µÃµ½¾ßÌåµÄÅäÖÃ´¦ÀíÆ÷ÊµÀı
+ * @date 2011-1-11ä¸Šåˆ11:22:29
+ * @desc å¾—åˆ°å…·ä½“çš„é…ç½®å¤„ç†å™¨å®ä¾‹
  */
 public interface ConfigDataHandlerFactory {
 	/**
-	 * ¶ÔÄ³Ò»¸ödataId½øĞĞ¼àÌı
-	 * @param dataId   Êı¾İÔÚÅäÖÃÖĞĞÄ×¢²áµÄid
-	 * @return         ·µ»ØÅäÖÃÊı¾İ´¦ÀíÆ÷ÊµÀı
+	 * å¯¹æŸä¸€ä¸ªdataIdè¿›è¡Œç›‘å¬
+	 * @param dataId   æ•°æ®åœ¨é…ç½®ä¸­å¿ƒæ³¨å†Œçš„id
+	 * @return         è¿”å›é…ç½®æ•°æ®å¤„ç†å™¨å®ä¾‹
 	 */
 	ConfigDataHandler getConfigDataHandler(String dataId,String unitName);
 	
 	/**
-	 * ¶ÔÄ³Ò»¸ödataId½øĞĞ¼àÌı£¬Ê¹ÓÃÕßÌá¹©»Øµ÷¼àÌıÆ÷
-	 * @param dataId                Êı¾İÔÚpÚÀÖµÖĞĞÄ×¢²áµÄid
-	 * @param configDataListener    Êı¾İ»Øµ÷¼àÌıÆ÷
-	 * @return                      ·µ»ØÅäÖÃÊı¾İ´¦ÀíÆ÷ÊµÀı
+	 * å¯¹æŸä¸€ä¸ªdataIdè¿›è¡Œç›‘å¬ï¼Œä½¿ç”¨è€…æä¾›å›è°ƒç›‘å¬å™¨
+	 * @param dataId                æ•°æ®åœ¨pè¯¶å€¼ä¸­å¿ƒæ³¨å†Œçš„id
+	 * @param configDataListener    æ•°æ®å›è°ƒç›‘å¬å™¨
+	 * @return                      è¿”å›é…ç½®æ•°æ®å¤„ç†å™¨å®ä¾‹
 	 */
 	ConfigDataHandler getConfigDataHandlerWithListener(String dataId,
 			ConfigDataListener configDataListener,String unitName);
 
 	/**
-	 * ¶ÔÄ³Ò»¸ödataId½øĞĞ¼àÌı£¬Ê¹ÓÃÕßÌá¹©»Øµ÷¼àÌıÆ÷ÁĞ±í£¬
-	 * ²¢ÇÒÌá¹©Ö´ĞĞÏß³Ì³ØºÍÄÚ²¿Ò»Ğ©ÅäÖÃ(¿ÉÄÜ±»handlerºöÊÓ)
-	 * @param dataId                  Êı¾İÔÚÅäÖÃÖĞĞÄ×¢²áµÄid
-	 * @param configDataListenerList  Êı¾İ»Øµ÷¼àÌıÆ÷ÁĞ±í
-	 * @param executor                Êı¾İ½ÓÊÕ´¦ÀíÏß³Ì³Ø
-	 * @param config                  TDDLÄÚ²¿¶ÔhandlerÌá¹©µÄÒ»Ğ©ÅäÖÃ
-	 * @return                        ·µ»ØÅäÖÃÊı¾İ´¦ÀíÆ÷ÊµÀı
+	 * å¯¹æŸä¸€ä¸ªdataIdè¿›è¡Œç›‘å¬ï¼Œä½¿ç”¨è€…æä¾›å›è°ƒç›‘å¬å™¨åˆ—è¡¨ï¼Œ
+	 * å¹¶ä¸”æä¾›æ‰§è¡Œçº¿ç¨‹æ± å’Œå†…éƒ¨ä¸€äº›é…ç½®(å¯èƒ½è¢«handlerå¿½è§†)
+	 * @param dataId                  æ•°æ®åœ¨é…ç½®ä¸­å¿ƒæ³¨å†Œçš„id
+	 * @param configDataListenerList  æ•°æ®å›è°ƒç›‘å¬å™¨åˆ—è¡¨
+	 * @param executor                æ•°æ®æ¥æ”¶å¤„ç†çº¿ç¨‹æ± 
+	 * @param config                  TDDLå†…éƒ¨å¯¹handleræä¾›çš„ä¸€äº›é…ç½®
+	 * @return                        è¿”å›é…ç½®æ•°æ®å¤„ç†å™¨å®ä¾‹
 	 */
 	ConfigDataHandler getConfigDataHandlerWithFullConfig(String dataId,
 			List<ConfigDataListener> configDataListenerList, Executor executor,

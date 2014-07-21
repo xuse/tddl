@@ -31,7 +31,7 @@ import com.taobao.tddl.sqlobjecttree.traversalAction.TraversalSQLEvent;
 import com.taobao.tddl.sqlobjecttree.traversalAction.TraversalSQLEvent.StatementType;
 
 /**
- * insert update delete select¹«¹²»ùÀà
+ * insert update delete selectå…¬å…±åŸºç±»
  * 
  * @author shenxun
  * 
@@ -59,50 +59,50 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * ÓÃÓÚÓ³Éä±ğÃûÓëÊµ¼ÊsqlÖĞµÄÔªËØÖ®¼äµÄÓ³Éä¹ØÏµ£¬ÕâÑù¿ÉÒÔÖ±½ÓÍ¨¹ı±ğÃûÕÒµ½¶ÔÓ¦µÄÔªËØ
+	 * ç”¨äºæ˜ å°„åˆ«åä¸å®é™…sqlä¸­çš„å…ƒç´ ä¹‹é—´çš„æ˜ å°„å…³ç³»ï¼Œè¿™æ ·å¯ä»¥ç›´æ¥é€šè¿‡åˆ«åæ‰¾åˆ°å¯¹åº”çš„å…ƒç´ 
 	 * 
-	 * Ä¿Ç°ÔİÊ±Ö»Ö§³Ö±ğÃûµ½±í¶ÔÏó,Óë²éÑ¯ÁĞÃû¶ÔÏóµÄÓ³Éä¹ØÏµ¡£
+	 * ç›®å‰æš‚æ—¶åªæ”¯æŒåˆ«ååˆ°è¡¨å¯¹è±¡,ä¸æŸ¥è¯¢åˆ—åå¯¹è±¡çš„æ˜ å°„å…³ç³»ã€‚
 	 * 
-	 * Ö÷ÒªÓÃÓÚ½â¾öÇ¶Ì×²éÑ¯ÖĞtaobaoÄÚ¶¨µÄstr2varlistºÍstr2numlistº¯Êı¡£
+	 * ä¸»è¦ç”¨äºè§£å†³åµŒå¥—æŸ¥è¯¢ä¸­taobaoå†…å®šçš„str2varlistå’Œstr2numlistå‡½æ•°ã€‚
 	 */
 	protected volatile Map<String, SQLFragment> aliasToSQLFragementMap = new HashMap<String, SQLFragment>();
 
 	/**
-	 * ÕâÊÇÒ»¸ö¶à²ãwhereÌõ¼ş½á¹¹£¬Èç¹ûsqlÊÇÇ¶Ì×µÄ£¬ÄÇÃ´Õâ¸öList»áÓëÇ¶Ì×sqlÖĞµÄÃ¿Ò»²ãÒ»Ò»¶ÔÓ¦
+	 * è¿™æ˜¯ä¸€ä¸ªå¤šå±‚whereæ¡ä»¶ç»“æ„ï¼Œå¦‚æœsqlæ˜¯åµŒå¥—çš„ï¼Œé‚£ä¹ˆè¿™ä¸ªListä¼šä¸åµŒå¥—sqlä¸­çš„æ¯ä¸€å±‚ä¸€ä¸€å¯¹åº”
 	 * 
-	 * ¡£0²ã¶ÔÓ¦sql×îÍâ²ã£¬ÒÀ´ÎÍùÏÂ¡£
+	 * ã€‚0å±‚å¯¹åº”sqlæœ€å¤–å±‚ï¼Œä¾æ¬¡å¾€ä¸‹ã€‚
 	 * 
-	 * Ã¿Ò»²ã¶¼ÊÇ¸Ãsql²ãÖĞwhereÌõ¼şµÄÒ»¸ö½á¹ûºÏ²¢ºóµÄComparative¶ÔÏóµÄMap.
+	 * æ¯ä¸€å±‚éƒ½æ˜¯è¯¥sqlå±‚ä¸­whereæ¡ä»¶çš„ä¸€ä¸ªç»“æœåˆå¹¶åçš„Comparativeå¯¹è±¡çš„Map.
 	 * 
-	 * Ê¹ÓÃµÄÊ±ºò£¬»á±éÀúÕû¸öList,ÕÒµ½·Ö¿âºÍ·Ö±íµÄcolumn,Èç¹ûÓĞ¶à¸ö£¬Ôò»áÅ×³öÒì³£¡£
+	 * ä½¿ç”¨çš„æ—¶å€™ï¼Œä¼šéå†æ•´ä¸ªList,æ‰¾åˆ°åˆ†åº“å’Œåˆ†è¡¨çš„column,å¦‚æœæœ‰å¤šä¸ªï¼Œåˆ™ä¼šæŠ›å‡ºå¼‚å¸¸ã€‚
 	 * 
 	 */
 	protected volatile List<Map<String, Comparative>> repListMap = new ArrayList<Map<String, Comparative>>();
 	/**
-	 * °üº¬StringÓëlimit¶ÔÏó£¬ºËĞÄµÄÔ­ÀíÊÇ·ÖÀëÒ»ÌõsqlÖĞĞèÒª±ä»¯µÄºÍ²»ĞèÒª±ä»¯µÄ¶ÔÏó£¬°ÑËùÓĞĞèÒªÌí¼Ó±íÃûµÄµØ·½¿Õ³öÀ´
-	 * Ö»±£Áôsql³ıÁËĞèÒªÌæ»»µÄ±íÃûÒÔÍâµÄÆäËû×Ö¶Î£¬Í¬Ê±ÔÚÒ»´Î¶ÔÊ÷µÄ·ÖÎöÖĞ£¬»¹»á·ÖÀëlimitÖĞµÄÊı¾İ¶ÔÏó¡£ Ïàµ±ÓÚÒ»¸ö»º´æÁËsqlÖĞ²»±äÔªËØµÄ»º´æ¡£
+	 * åŒ…å«Stringä¸limitå¯¹è±¡ï¼Œæ ¸å¿ƒçš„åŸç†æ˜¯åˆ†ç¦»ä¸€æ¡sqlä¸­éœ€è¦å˜åŒ–çš„å’Œä¸éœ€è¦å˜åŒ–çš„å¯¹è±¡ï¼ŒæŠŠæ‰€æœ‰éœ€è¦æ·»åŠ è¡¨åçš„åœ°æ–¹ç©ºå‡ºæ¥
+	 * åªä¿ç•™sqlé™¤äº†éœ€è¦æ›¿æ¢çš„è¡¨åä»¥å¤–çš„å…¶ä»–å­—æ®µï¼ŒåŒæ—¶åœ¨ä¸€æ¬¡å¯¹æ ‘çš„åˆ†æä¸­ï¼Œè¿˜ä¼šåˆ†ç¦»limitä¸­çš„æ•°æ®å¯¹è±¡ã€‚ ç›¸å½“äºä¸€ä¸ªç¼“å­˜äº†sqlä¸­ä¸å˜å…ƒç´ çš„ç¼“å­˜ã€‚
 	 */
 	protected final List<Object> modifiableList = new ArrayList<Object>(2);
 	/**
-	 * Èç¹ûÃ»ÓĞskipºÍmax»á·µ»Ø´ËÖµ
+	 * å¦‚æœæ²¡æœ‰skipå’Œmaxä¼šè¿”å›æ­¤å€¼
 	 */
 	public final static int DEFAULT_SKIP_MAX = -1000;
 	Set<String> tableName = null;
 
 	/**
-	 * ±íÃûList
+	 * è¡¨åList
 	 */
 	protected List<TableName> tbNames = new ArrayList<TableName>(2);
 
 	/**
-	 * ´Ó¶à²ãwhereÌõ¼şÖĞ¸ù¾İpartnationSetÑ¡Ôñ·ûºÏÒªÇóµÄÁĞ£¬½«°ó¶¨±äÁ¿¸³Öµ£¬²¢ÇÒ·µ»ØÁĞºÍËû¶ÔÓ¦µÄÖµ¡£
+	 * ä»å¤šå±‚whereæ¡ä»¶ä¸­æ ¹æ®partnationSeté€‰æ‹©ç¬¦åˆè¦æ±‚çš„åˆ—ï¼Œå°†ç»‘å®šå˜é‡èµ‹å€¼ï¼Œå¹¶ä¸”è¿”å›åˆ—å’Œä»–å¯¹åº”çš„å€¼ã€‚
 	 * 
-	 * Èç¹û¶à²ãÌõ¼şÖĞµÄ²»Í¬²ã¶¼³öÏÖÁËÍ¬Ò»¸öÁĞ£¬ÔòÅ×Òì³£³öÈ¥¡£
+	 * å¦‚æœå¤šå±‚æ¡ä»¶ä¸­çš„ä¸åŒå±‚éƒ½å‡ºç°äº†åŒä¸€ä¸ªåˆ—ï¼Œåˆ™æŠ›å¼‚å¸¸å‡ºå»ã€‚
 	 * 
-	 * »ñÈ¡ComparativeMap. mapµÄkey ÊÇÁĞÃû valueÊÇ°ó¶¨±äÁ¿ºóµÄ{@link Comparative}
-	 * Èç¹ûÊÇ¸ö²»¿É¸³ÖµµÄ±äÁ¿£¬Ôò²»»á·µ»Ø¡£ ²»¿É¸³ÖµÖ¸µÄÊÇ£¬ËäÈ»¿ÉÒÔ½âÎö£¬µ«½âÎöÒÔºóµÄ½á¹û²»ÄÜ½øĞĞ¼ÆËã¡£ Èçwhere col =
-	 * concat(str,str); ÕâÖÖSQLËäÈ»¿ÉÒÔ½âÎö£¬µ«ÒòÎª¶ÔÓ¦µÄ´¦Àíº¯ÊıÃ»ÓĞÍê³É£¬ËùÒÔÊÇ²»ÄÜ¸³ÖµµÄ¡£ÕâÖÖÇé¿öÏÂcol
-	 * ÊÇ²»»á±»·Åµ½·µ»ØµÄmapÖĞµÄ¡£
+	 * è·å–ComparativeMap. mapçš„key æ˜¯åˆ—å valueæ˜¯ç»‘å®šå˜é‡åçš„{@link Comparative}
+	 * å¦‚æœæ˜¯ä¸ªä¸å¯èµ‹å€¼çš„å˜é‡ï¼Œåˆ™ä¸ä¼šè¿”å›ã€‚ ä¸å¯èµ‹å€¼æŒ‡çš„æ˜¯ï¼Œè™½ç„¶å¯ä»¥è§£æï¼Œä½†è§£æä»¥åçš„ç»“æœä¸èƒ½è¿›è¡Œè®¡ç®—ã€‚ å¦‚where col =
+	 * concat(str,str); è¿™ç§SQLè™½ç„¶å¯ä»¥è§£æï¼Œä½†å› ä¸ºå¯¹åº”çš„å¤„ç†å‡½æ•°æ²¡æœ‰å®Œæˆï¼Œæ‰€ä»¥æ˜¯ä¸èƒ½èµ‹å€¼çš„ã€‚è¿™ç§æƒ…å†µä¸‹col
+	 * æ˜¯ä¸ä¼šè¢«æ”¾åˆ°è¿”å›çš„mapä¸­çš„ã€‚
 	 * 
 	 * @param arguments
 	 * @param partnationSet
@@ -116,16 +116,16 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 		for (String aArgument : partnationSet) {
 			/*
 			 * for (Map<String, Comparative> map : repListMap) { //modified by
-			 * shenxun. ÒòÎªĞÂ¹æÔòÒıÇæÏÖÔÚ´«ÈëµÄstrÓĞ¿ÉÄÜÊÇ´óĞ¡Ğ´Ãô¸ĞµÄ¡£
-			 * //µ«ÔÚsqlÕâÒ»²ãÊµ¼ÊÉÏÈ´´óĞ¡²»Ãô¸ĞÁË¡£Òò´ËÒªÏÔÊ¾µÄ×ª»»Ò»ÏÂ Comparative temp =
+			 * shenxun. å› ä¸ºæ–°è§„åˆ™å¼•æ“ç°åœ¨ä¼ å…¥çš„stræœ‰å¯èƒ½æ˜¯å¤§å°å†™æ•æ„Ÿçš„ã€‚
+			 * //ä½†åœ¨sqlè¿™ä¸€å±‚å®é™…ä¸Šå´å¤§å°ä¸æ•æ„Ÿäº†ã€‚å› æ­¤è¦æ˜¾ç¤ºçš„è½¬æ¢ä¸€ä¸‹ Comparative temp =
 			 * map.get(aArgument.toUpperCase()); if (temp != null) { if
 			 * (copiedMap.containsKey(aArgument)) { throw new
 			 * IllegalArgumentException(
-			 * "²»ÔÊĞíÔÚ¶à²ãsqlµÄwhereÌõ¼şÖĞ³öÏÖ¶à¸ö³öÏÖ·Ö¿â×Ö¶ÎµÄµã¡£ÓĞÎÊÌâµÄ·Ö¿â×Ö¶ÎÊÇ£º" + aArgument); }
+			 * "ä¸å…è®¸åœ¨å¤šå±‚sqlçš„whereæ¡ä»¶ä¸­å‡ºç°å¤šä¸ªå‡ºç°åˆ†åº“å­—æ®µçš„ç‚¹ã€‚æœ‰é—®é¢˜çš„åˆ†åº“å­—æ®µæ˜¯ï¼š" + aArgument); }
 			 * Comparative comparative = temp.getVal(arguments,
 			 * aliasToSQLFragementMap); if
 			 * (!containsUnknowValueObject(comparative)) {
-			 * //µ«·ÅÈëmapµÄ»¹±ØĞëÊÇÔ­Ê¼µÄ´óĞ¡Ğ´Ãô¸ĞµÄ×Ö´®¡£·ñÔò¹æÔòÄÇ±ßÎŞ·¨Ê¹ÓÃ copiedMap.put(aArgument,
+			 * //ä½†æ”¾å…¥mapçš„è¿˜å¿…é¡»æ˜¯åŸå§‹çš„å¤§å°å†™æ•æ„Ÿçš„å­—ä¸²ã€‚å¦åˆ™è§„åˆ™é‚£è¾¹æ— æ³•ä½¿ç”¨ copiedMap.put(aArgument,
 			 * comparative); } } }
 			 */
 			Comparative comparative = getColumnComparative(arguments, aArgument);
@@ -141,20 +141,20 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 		Comparative res = null;
 		String upperCaseArg = aArgument.toUpperCase();
 		for (Map<String, Comparative> map : repListMap) {
-			// modified by shenxun. ÒòÎªĞÂ¹æÔòÒıÇæÏÖÔÚ´«ÈëµÄstrÓĞ¿ÉÄÜÊÇ´óĞ¡Ğ´Ãô¸ĞµÄ¡£
-			// µ«ÔÚsqlÕâÒ»²ãÊµ¼ÊÉÏÈ´´óĞ¡²»Ãô¸ĞÁË¡£Òò´ËÒªÏÔÊ¾µÄ×ª»»Ò»ÏÂ
+			// modified by shenxun. å› ä¸ºæ–°è§„åˆ™å¼•æ“ç°åœ¨ä¼ å…¥çš„stræœ‰å¯èƒ½æ˜¯å¤§å°å†™æ•æ„Ÿçš„ã€‚
+			// ä½†åœ¨sqlè¿™ä¸€å±‚å®é™…ä¸Šå´å¤§å°ä¸æ•æ„Ÿäº†ã€‚å› æ­¤è¦æ˜¾ç¤ºçš„è½¬æ¢ä¸€ä¸‹
 			Comparative temp = map.get(upperCaseArg);
 			if (temp != null) {
 				// if (copiedMap.containsKey(aArgument)) {
 				if (res != null) {
 					throw new IllegalArgumentException(
-							"²»ÔÊĞíÔÚ¶à²ãsqlµÄwhereÌõ¼şÖĞ³öÏÖ¶à¸ö³öÏÖ·Ö¿â×Ö¶ÎµÄµã¡£ÓĞÎÊÌâµÄ·Ö¿â×Ö¶ÎÊÇ£º"
+							"ä¸å…è®¸åœ¨å¤šå±‚sqlçš„whereæ¡ä»¶ä¸­å‡ºç°å¤šä¸ªå‡ºç°åˆ†åº“å­—æ®µçš„ç‚¹ã€‚æœ‰é—®é¢˜çš„åˆ†åº“å­—æ®µæ˜¯ï¼š"
 									+ aArgument);
 				}
 				Comparative comparative = temp.getVal(arguments,
 						aliasToSQLFragementMap);
 				if (!containsUnknowValueObject(comparative)) {
-					// µ«·ÅÈëmapµÄ»¹±ØĞëÊÇÔ­Ê¼µÄ´óĞ¡Ğ´Ãô¸ĞµÄ×Ö´®¡£·ñÔò¹æÔòÄÇ±ßÎŞ·¨Ê¹ÓÃ
+					// ä½†æ”¾å…¥mapçš„è¿˜å¿…é¡»æ˜¯åŸå§‹çš„å¤§å°å†™æ•æ„Ÿçš„å­—ä¸²ã€‚å¦åˆ™è§„åˆ™é‚£è¾¹æ— æ³•ä½¿ç”¨
 					// copiedMap.put(aArgument, comparative);
 					res = comparative;
 				}
@@ -171,13 +171,13 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 			List<Comparative> list = ((ComparativeBaseList) comparative)
 					.getList();
 			if (list != null) {
-				// Èç¹ûÄÚ²¿Ñ­»·ÓĞÒ»¸ö°üº¬unknowValueObjectµÄ¾ÍÖ±½Ó·µ»Øtrue;
+				// å¦‚æœå†…éƒ¨å¾ªç¯æœ‰ä¸€ä¸ªåŒ…å«unknowValueObjectçš„å°±ç›´æ¥è¿”å›true;
 				for (Comparative c : list) {
 					if (containsUnknowValueObject(c)) {
 						return true;
 					}
 				}
-				// Ò»¸ö¶¼Ã»ÓĞµÄÇé¿öÏÂ£¬·µ»Øfalse;
+				// ä¸€ä¸ªéƒ½æ²¡æœ‰çš„æƒ…å†µä¸‹ï¼Œè¿”å›false;
 				return false;
 			}
 		}
@@ -193,7 +193,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * Õâ¸ö·½·¨Ó¦¸ÃÈ·±£Ö»ÔÚ·½·¨ÄÚ±»µ÷ÓÃ¡£·ÇÏß³Ì°²È«
+	 * è¿™ä¸ªæ–¹æ³•åº”è¯¥ç¡®ä¿åªåœ¨æ–¹æ³•å†…è¢«è°ƒç”¨ã€‚éçº¿ç¨‹å®‰å…¨
 	 */
 	public void init() {
 
@@ -205,10 +205,10 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * ×¢²á±éÀúÃ¿Ò»¸öwhereÌõ¼şµÄaction,²¢ÇÒ»ñÈ¡½á¹û
+	 * æ³¨å†Œéå†æ¯ä¸€ä¸ªwhereæ¡ä»¶çš„action,å¹¶ä¸”è·å–ç»“æœ
 	 */
 	public void registerTraversalActionAndGet() {
-		// Ìí¼Óµ±Ç°Ò»ĞĞsqlµÄwhereeÌõ¼şÊı¾İµ½List
+		// æ·»åŠ å½“å‰ä¸€è¡Œsqlçš„whereeæ¡ä»¶æ•°æ®åˆ°List
 		List<TraversalSQLAction> traversalSQLActions = new ArrayList<TraversalSQLAction>();
 
 		TableNameTraversalAction tbNameaction = new TableNameTraversalAction();
@@ -230,7 +230,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * ×¢²á¿É±äsqlÖĞ²»±äµÄsql
+	 * æ³¨å†Œå¯å˜sqlä¸­ä¸å˜çš„sql
 	 */
 	protected void registerUnmodifiableSqlOutputFragement() {
 
@@ -251,7 +251,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * ´æ·ÅÁË±íµÄ±ğÃûºÍselect |column| from ÖĞcolumnµÄ±ğÃû
+	 * å­˜æ”¾äº†è¡¨çš„åˆ«åå’Œselect |column| from ä¸­columnçš„åˆ«å
 	 * 
 	 * @param sqlAliasMap
 	 */
@@ -266,24 +266,24 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * ³õÊ¼»¯±ğÃûµÄmapºÍComparativeMap
+	 * åˆå§‹åŒ–åˆ«åçš„mapå’ŒComparativeMap
 	 * 
 	 * @param sqlAliasMap
-	 *            ÒòÎªÖ»ĞèÒªÒ»¸ösqlAliasMap,Òò´ËÓÃ×îÍâ²ãµÄsqlAliasMap
+	 *            å› ä¸ºåªéœ€è¦ä¸€ä¸ªsqlAliasMap,å› æ­¤ç”¨æœ€å¤–å±‚çš„sqlAliasMap
 	 * @param repListMap
-	 *            ÒòÎªÖ»ĞèÒªÒ»¸öComparableMap,ËùÒÔ´«Èë×îÍâ²ãµÄrepListMap
+	 *            å› ä¸ºåªéœ€è¦ä¸€ä¸ªComparableMap,æ‰€ä»¥ä¼ å…¥æœ€å¤–å±‚çš„repListMap
 	 */
 	protected void initAliasAndComparableMap(
 			Map<String, SQLFragment> aliasToSQLFragementMap,
 			List<Map<String, Comparative>> repListMap) {
 		buildAliasToTableAndColumnMapping(aliasToSQLFragementMap);
 		boolean hasOneSubSelect = false;
-		// tbNamesÓ¦¸ÃÈ¡µ±Ç°Ç¶Ì×ÖĞµÄtbNames
+		// tbNamesåº”è¯¥å–å½“å‰åµŒå¥—ä¸­çš„tbNames
 		for (TableName name : tbNames) {
 			if (name instanceof TableNameSubQueryImp) {
 
 				if (hasOneSubSelect) {
-					throw new IllegalArgumentException("Í¬¼¶sql²»ÔÊĞí³öÏÖ¶à¸ö×Ósql");
+					throw new IllegalArgumentException("åŒçº§sqlä¸å…è®¸å‡ºç°å¤šä¸ªå­sql");
 				}
 				hasOneSubSelect = true;
 				TableNameSubQueryImp subSql = (TableNameSubQueryImp) name;
@@ -323,14 +323,14 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * Èç¹ûÒ»¸ö×ÓÀàÓĞwhereÌõ¼ş£¬ÄÇÃ´¾ÍÄÜ¹»»ñÈ¡Õâ¸ö×ÓÀàwhereÌõ¼şÖĞËùÓĞ ÁĞ->ÖµµÄmap
+	 * å¦‚æœä¸€ä¸ªå­ç±»æœ‰whereæ¡ä»¶ï¼Œé‚£ä¹ˆå°±èƒ½å¤Ÿè·å–è¿™ä¸ªå­ç±»whereæ¡ä»¶ä¸­æ‰€æœ‰ åˆ—->å€¼çš„map
 	 * 
 	 * @return
 	 */
 	protected abstract Map<String, Comparative> getSubColumnsMap();
 
 	/**
-	 * ±éÀúÃ¿Ò»¸ösqlµÄ±íÃû²¿·Ö£¬ÓÅÏÈ²éÑ¯µ±Ç°µÄwhereÌõ¼ş£¬È»ºóÊÇ±íÃû£¬Èç¹û±íÃûÄÚÓĞÇ¶Ì× Ò²°´ÕÕÉÏÊöÂß¼­½øĞĞÑ­»·±éÀú
+	 * éå†æ¯ä¸€ä¸ªsqlçš„è¡¨åéƒ¨åˆ†ï¼Œä¼˜å…ˆæŸ¥è¯¢å½“å‰çš„whereæ¡ä»¶ï¼Œç„¶åæ˜¯è¡¨åï¼Œå¦‚æœè¡¨åå†…æœ‰åµŒå¥— ä¹ŸæŒ‰ç…§ä¸Šè¿°é€»è¾‘è¿›è¡Œå¾ªç¯éå†
 	 * 
 	 * @param traversalSQLActions
 	 */
@@ -346,7 +346,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 			ExpressionGroup expgrp = where.getExpGroup();
 			traversalExpressionGroup(expgrp, traversalSQLActions);
 		}
-		// ±éÀúÃ¿Ò»¸öSQL£¬Ç¶Ì×ÄÚ²¿sqlÒ²½øĞĞ±éÀú
+		// éå†æ¯ä¸€ä¸ªSQLï¼ŒåµŒå¥—å†…éƒ¨sqlä¹Ÿè¿›è¡Œéå†
 		for (TableName tbName : tbNames) {
 			if (tbName instanceof TableNameSubQueryImp) {
 				Select select = ((TableNameSubQueryImp) tbName).getSubSelect();
@@ -356,8 +356,8 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * ±éÀúÕû¸öExpressionGroup,²éÕÒÀïÃæµÄSelect
-	 * TODO:Õâ¶Î´úÂëÓĞÑÏÖØµÄÎÊÌâ,ÈÃÍ¨¹ıactionÁ´´¦Àí,È´²»´«µİÀàĞÍ,ÈçºÎÈÃactionÊ¶±ğ?
+	 * éå†æ•´ä¸ªExpressionGroup,æŸ¥æ‰¾é‡Œé¢çš„Select
+	 * TODO:è¿™æ®µä»£ç æœ‰ä¸¥é‡çš„é—®é¢˜,è®©é€šè¿‡actioné“¾å¤„ç†,å´ä¸ä¼ é€’ç±»å‹,å¦‚ä½•è®©actionè¯†åˆ«?
 	 * 
 	 * @param expgrp
 	 * @param travelsalSQLActions
@@ -367,7 +367,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 		List<Expression> exps = expgrp.getExpressions();
 		for (Expression exp : exps) {
 			if (exp instanceof ExpressionGroup) {
-				// ±í´ïÊ½×éÇ¶Ì×¡£
+				// è¡¨è¾¾å¼ç»„åµŒå¥—ã€‚
 				traversalExpressionGroup((ExpressionGroup) exp,
 						traversalSQLActions);
 			} else if (exp instanceof ComparableExpression) {
@@ -393,7 +393,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * id in·Ö×é±ØĞëÖªµÀid inĞÅÏ¢ (ĞèÒªÖØ¹¹)
+	 * id inåˆ†ç»„å¿…é¡»çŸ¥é“id inä¿¡æ¯ (éœ€è¦é‡æ„)
 	 * 
 	 * @param right
 	 * @param left
@@ -409,7 +409,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 
 			List valuesList = (List) values;
 			if (valuesList.get(0) instanceof BindVar) {
-				// »¹ÊÇÓĞ¿ÉÄÜÓĞ id in(?,?,1,2),ÕâÖÖÇé¿ö,¾Í²»Ö§³ÖÁË
+				// è¿˜æ˜¯æœ‰å¯èƒ½æœ‰ id in(?,?,1,2),è¿™ç§æƒ…å†µ,å°±ä¸æ”¯æŒäº†
 				for (Object obj : valuesList) {
 					if (!(obj instanceof BindVar)) {
 						return;
@@ -423,7 +423,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 				this.inObjList.add(new InExpressionObject(column.getColumn(),
 						column.getAlias(), indexs, null, expStr.toString()));
 			} else {
-				// »¹ÊÇÓĞ¿ÉÄÜÓĞ id in(?,?,1,2),ÕâÖÖÇé¿ö,¾Í²»Ö§³ÖÁË
+				// è¿˜æ˜¯æœ‰å¯èƒ½æœ‰ id in(?,?,1,2),è¿™ç§æƒ…å†µ,å°±ä¸æ”¯æŒäº†
 				for (Object obj : valuesList) {
 					if (obj instanceof BindVar) {
 						return;
@@ -439,7 +439,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 						column.getAlias(), null, indexs, expStr.toString()));
 			}
 		} else if (values instanceof Select) {
-			// ÔİÊ±²»Ö§³Öid in ÔÚ×Ó²éÑ¯ÖĞµÄ¹é×é,°´Ô­À´·½°¸×ß
+			// æš‚æ—¶ä¸æ”¯æŒid in åœ¨å­æŸ¥è¯¢ä¸­çš„å½’ç»„,æŒ‰åŸæ¥æ–¹æ¡ˆèµ°
 		}
 	}
 
@@ -459,7 +459,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * »ñÈ¡whereÌõ¼ş£¬Èç¹ûÓĞµÄ»°£¬Ã×ÓĞ»á·µ»Ønull
+	 * è·å–whereæ¡ä»¶ï¼Œå¦‚æœæœ‰çš„è¯ï¼Œç±³æœ‰ä¼šè¿”å›null
 	 */
 	public abstract WhereCondition getSubWhereCondition();
 
@@ -469,7 +469,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * ±éÀúÕû¸öÊ÷£¬»ñÈ¡limit m,nÖĞµÄn »òoracle rownum < ?ÖĞµÄ?
+	 * éå†æ•´ä¸ªæ ‘ï¼Œè·å–limit m,nä¸­çš„n æˆ–oracle rownum < ?ä¸­çš„?
 	 * 
 	 * @param param
 	 * @return
@@ -479,12 +479,12 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 		int temp = DEFAULT_SKIP_MAX;
 
 		for (TableName tbName : tbNames) {
-			// ²é¿´SQLµÄÇ¶Ì×SQL,ÀïÃæÊÇ·ñÓĞRangeOrMaxÖµ¡£Èç¹û¶à¸öÇ¶Ì×SQL×é³ÉµÄ¶à²ãÇ¶Ì×SQLÖĞ£¬ÓĞ
-			// ¶à¸ö²ã¼¶¶¼ÓĞrangeOrMax,ÔòÌôÑ¡×î´óµÄ¡£
+			// æŸ¥çœ‹SQLçš„åµŒå¥—SQL,é‡Œé¢æ˜¯å¦æœ‰RangeOrMaxå€¼ã€‚å¦‚æœå¤šä¸ªåµŒå¥—SQLç»„æˆçš„å¤šå±‚åµŒå¥—SQLä¸­ï¼Œæœ‰
+			// å¤šä¸ªå±‚çº§éƒ½æœ‰rangeOrMax,åˆ™æŒ‘é€‰æœ€å¤§çš„ã€‚
 			if (tbName instanceof TableNameSubQueryImp) {
 				temp = ((TableNameSubQueryImp) tbName).getSubSelect()
 						.getRangeOrMax(param);
-				// ÎŞÂÛÔõÃ´ÓÅ»¯ maxÖµ,Öµ¶¼¿Ï¶¨ÊÇ×î´óµÄÓĞÒâÒå£¬
+				// æ— è®ºæ€ä¹ˆä¼˜åŒ– maxå€¼,å€¼éƒ½è‚¯å®šæ˜¯æœ€å¤§çš„æœ‰æ„ä¹‰ï¼Œ
 				if (temp > max) {
 					max = temp;
 				}
@@ -527,7 +527,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * ³ıÁËselectÖĞ´øÓĞgroup functionÒÔÍâµÄÆäËûsql(crud¶¼°üÀ¨)µÄgroupfunctionType¶¼ÎªNORMAL
+	 * é™¤äº†selectä¸­å¸¦æœ‰group functionä»¥å¤–çš„å…¶ä»–sql(crudéƒ½åŒ…æ‹¬)çš„groupfunctionTypeéƒ½ä¸ºNORMAL
 	 * 
 	 * @return
 	 */
@@ -557,19 +557,19 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	 * @param tables
 	 * @param args
 	 * @param skip
-	 *            ±ÕÇø¼ä£¬´ÓÄÄ¿ªÊ¼
+	 *            é—­åŒºé—´ï¼Œä»å“ªå¼€å§‹
 	 * @param max
-	 *            ¿ªÇø¼ä£¬ÖÁÄÄ
+	 *            å¼€åŒºé—´ï¼Œè‡³å“ª
 	 * @return
 	 */
 	public List<SqlAndTableAtParser> getSqlReadyToRun(
-			Collection<Map<String/* ĞéÄâ±íÃû */, String/* ÕæÊµ±íÃû */>> tables,
+			Collection<Map<String/* è™šæ‹Ÿè¡¨å */, String/* çœŸå®è¡¨å */>> tables,
 			List<Object> args, HandlerContainer handlerContainer) {
 		if (tables == null) {
-			throw new IllegalArgumentException("´ıÌæ»»±íÃûÎª¿Õ");
+			throw new IllegalArgumentException("å¾…æ›¿æ¢è¡¨åä¸ºç©º");
 		}
 		if (modifiableList.size() == 0) {
-			throw new IllegalArgumentException("Î´³õÊ¼»¯»òsql²»ÄÜÖ±½ÓÊä³ö");
+			throw new IllegalArgumentException("æœªåˆå§‹åŒ–æˆ–sqlä¸èƒ½ç›´æ¥è¾“å‡º");
 		}
 		List<SqlAndTableAtParser> retSqls = new ArrayList<SqlAndTableAtParser>(
 				tables.size());
@@ -606,8 +606,8 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 				.isAllowChangePageNumber();
 		if (allowChangePageNumber) {
 			PageWrapperCommon skipPage = null;
-			// oracleµÄmax»òÕßmysqlµÄrange¶¼¿ÉÒÔ±»×¢Èëµ½ÕâÀï£¬ÒòÎªmaxºÍrange²»»áÍ¬Ê±³öÏÖ
-			// Õâ²¿·Ö´úÂëµÄ×÷ÓÃÔÚÓÚÏÈÕÒµ½×î´óµÄÆğÊ¼ÊıÖµ£¬ºÍ½áÊøÊıÖµ¡£
+			// oracleçš„maxæˆ–è€…mysqlçš„rangeéƒ½å¯ä»¥è¢«æ³¨å…¥åˆ°è¿™é‡Œï¼Œå› ä¸ºmaxå’Œrangeä¸ä¼šåŒæ—¶å‡ºç°
+			// è¿™éƒ¨åˆ†ä»£ç çš„ä½œç”¨åœ¨äºå…ˆæ‰¾åˆ°æœ€å¤§çš„èµ·å§‹æ•°å€¼ï¼Œå’Œç»“æŸæ•°å€¼ã€‚
 			PageWrapperCommon maxOrMaxPage = null;
 			for (Object obj : modifiableTableName) {
 				if (obj instanceof SkipWrapper) {
@@ -615,11 +615,11 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 						skipPage = (SkipWrapper) obj;
 					} else if (skipPage.getVal(args) < ((SkipWrapper) obj)
 							.getVal(args)) {
-						// µ±Ç°Öµ´óÓÚsnapshotÖĞµÄÖµÊ±£¬ÓëmySelect,Select
-						// MyUpdate,Update¡­¡­ÀïÃæµÄ²ÎÊıÒ»ÖÂ¡£
+						// å½“å‰å€¼å¤§äºsnapshotä¸­çš„å€¼æ—¶ï¼Œä¸mySelect,Select
+						// MyUpdate,Updateâ€¦â€¦é‡Œé¢çš„å‚æ•°ä¸€è‡´ã€‚
 						skipPage = (SkipWrapper) obj;
 					} else {
-						// µ±Ç°ÖµĞ¡ÓÚµÈÓÚsnapÖĞµÄÖµ£¬Ê²Ã´Ò²²»×ö¡£
+						// å½“å‰å€¼å°äºç­‰äºsnapä¸­çš„å€¼ï¼Œä»€ä¹ˆä¹Ÿä¸åšã€‚
 					}
 				} else if (obj instanceof MaxWrapper
 						|| obj instanceof RangeWrapper) {
@@ -627,14 +627,14 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 						maxOrMaxPage = (PageWrapperCommon) obj;
 					} else if (maxOrMaxPage.getVal(args) < ((PageWrapperCommon) obj)
 							.getVal(args)) {
-						// µ±Ç°Öµ´óÓÚsnapshotÖĞµÄÖµÊ±£¬ÓëmySelect,Select
-						// MyUpdate,Update¡­¡­ÀïÃæµÄ²ÎÊıÒ»ÖÂ
+						// å½“å‰å€¼å¤§äºsnapshotä¸­çš„å€¼æ—¶ï¼Œä¸mySelect,Select
+						// MyUpdate,Updateâ€¦â€¦é‡Œé¢çš„å‚æ•°ä¸€è‡´
 						maxOrMaxPage = (PageWrapperCommon) obj;
 					} else {
-						// µ±Ç°ÖµĞ¡ÓÚµÈÓÚsnapÖĞµÄÖµ£¬Ê²Ã´Ò²²»×ö¡£
+						// å½“å‰å€¼å°äºç­‰äºsnapä¸­çš„å€¼ï¼Œä»€ä¹ˆä¹Ÿä¸åšã€‚
 					}
 				} else {
-					// String ÆäËûµÄÇé¿ö
+					// String å…¶ä»–çš„æƒ…å†µ
 				}
 			}
 			if (skipPage != null) {
@@ -646,19 +646,19 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 
 		}
 		Map<Integer, Object> changeParam = null;
-		// Ìæ»»²¢Êä³ö
+		// æ›¿æ¢å¹¶è¾“å‡º
 		StringBuilder sb = new StringBuilder();
 		for (Object obj : modifiableTableName) {
 			if (obj instanceof String) {
-				// Õı³£String
+				// æ­£å¸¸String
 				// sb.append(getTable(table,originalTable));
 				sb.append(obj.toString());
 			} else if (obj instanceof PageWrapper) {
-				// ´¦Àí·ÖÒ³
+				// å¤„ç†åˆ†é¡µ
 				// needAppendtableName=false;
 				RangePlaceHandler rangePlaceHandler = handlerContainer
 						.getRangePlaceHandler();
-				// ³õÊ¼»¯Á©
+				// åˆå§‹åŒ–ä¿©
 				if (changeParam == null) {
 					changeParam = new HashMap<Integer, Object>(2);
 				}
@@ -670,7 +670,7 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 						.getPlaceHolderPlaceHandler(obj);
 				String replacedTable = placeHolderHandler.getReplacedString(
 						table, (ReplacableWrapper) obj);
-				// ´¦Àíindex£¬±íÃû
+				// å¤„ç†indexï¼Œè¡¨å
 				sb.append(replacedTable);
 
 			} else {
@@ -706,8 +706,8 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	 * @see com.taobao.tddl.sqlobjecttree.SqlParserResult#getMax(java.util.List)
 	 */
 	public int getMax(List<Object> param) {
-		// ÔÚÄ¬ÈÏµÄÇé¿öÏÂ£¬ÊÇ¸ömysqlµÄÊµÏÖ£¬oracleÊµÏÖÔÚÆäËû×ÓÀàÖĞ
-		// TODO:µ¥¶À³éÀë³öÒ»¸öMySQLCommonÀ´´æ·ÅÕâ¸öÂß¼­±È½ÏÇåÎú¡£
+		// åœ¨é»˜è®¤çš„æƒ…å†µä¸‹ï¼Œæ˜¯ä¸ªmysqlçš„å®ç°ï¼Œoracleå®ç°åœ¨å…¶ä»–å­ç±»ä¸­
+		// TODO:å•ç‹¬æŠ½ç¦»å‡ºä¸€ä¸ªMySQLCommonæ¥å­˜æ”¾è¿™ä¸ªé€»è¾‘æ¯”è¾ƒæ¸…æ™°ã€‚
 		int skip = getSkip(param);
 		int max = DEFAULT_SKIP_MAX;
 		int range = getRangeOrMax(param);
@@ -716,26 +716,26 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 				if (range >= 0) {
 					if (skip >= 0) {
 						/*
-						 * Ä¿Ç°mysqlÊµÏÖÂß¼­±È½ÏÈÆ,ÒòÎªmysqlµÄĞĞÊÇ´Ó1¿ªÊ¼¡£ µ«javaList¶ÔÏóµÄÊµÏÖ´Ó0¿ªÊ¼
-						 * Òò´Ë¶ÔÓÚmysqlµ½javaµ½listµÄ¶ÔÏóÓ¦¸ÃÊÇÖµ++È»ºó--¡£Òò´Ë²»±ä
+						 * ç›®å‰mysqlå®ç°é€»è¾‘æ¯”è¾ƒç»•,å› ä¸ºmysqlçš„è¡Œæ˜¯ä»1å¼€å§‹ã€‚ ä½†javaListå¯¹è±¡çš„å®ç°ä»0å¼€å§‹
+						 * å› æ­¤å¯¹äºmysqlåˆ°javaåˆ°listçš„å¯¹è±¡åº”è¯¥æ˜¯å€¼++ç„¶å--ã€‚å› æ­¤ä¸å˜
 						 * 
-						 * oralceÖĞµÄmaxÖµµÈÓÚmysqlÖĞµÄlimit m,n¹ØÏµÖĞµÄm+n¡£
+						 * oralceä¸­çš„maxå€¼ç­‰äºmysqlä¸­çš„limit m,nå…³ç³»ä¸­çš„m+nã€‚
 						 */
 						max = skip + range;
 					} else {
-						throw new IllegalArgumentException("skip²»ÔÊĞíÎª¸ºÖµ");
+						throw new IllegalArgumentException("skipä¸å…è®¸ä¸ºè´Ÿå€¼");
 					}
 				} else {
-					throw new IllegalArgumentException("max»òrangeÖµ²»ÔÊĞíÎª¸ºÖµ");
+					throw new IllegalArgumentException("maxæˆ–rangeå€¼ä¸å…è®¸ä¸ºè´Ÿå€¼");
 				}
 			} else {
-				// Èç¹ûÃ»ÓĞskipÖµ£¬Ôòmax=range
+				// å¦‚æœæ²¡æœ‰skipå€¼ï¼Œåˆ™max=range
 				max = range;
 			}
 		}
 
 		if (skip < 0 && skip != DMLCommon.DEFAULT_SKIP_MAX) {
-			throw new IllegalArgumentException("skip²»ÔÊĞíÎª¸ºÖµ");
+			throw new IllegalArgumentException("skipä¸å…è®¸ä¸ºè´Ÿå€¼");
 		}
 		return max;
 	}
@@ -745,9 +745,9 @@ public abstract class DMLCommon implements Statement, SqlParserResult,
 	}
 
 	/**
-	 * FIXME£º ÒÑ¾­½«Distinct µ±×öÁËÒ»¸ö·½·¨£¬ Distinct ºÍºóÃæµÄcolumn£¬Ò»Æğ×÷ÎªÒ»¸öFunction column,
-	 * ´Ë´¦¼ÌĞø±£ÁôÕâ¸öDistinct£¬×÷ÎªÒ»¸öÈßÓà£¬ÊÇÒòÎªºóÃæµÄ·Ö¿â·Ö±íÊ±µÄ´úÂëĞèÒªµ÷ÓÃÕâ¸öÊôĞÔÀ´½øĞĞ²Ù×÷!
-	 * ´ËDistinctÖ»×÷ÎªÈßÓà£¬¸ù¾İParser½á¹û¶ÔÏó·½ÏòÊä³ö×é³ÉSQLµÄStringÊ±½«²»ÔÙÊä³ö´ËDistinct--add by
+	 * FIXMEï¼š å·²ç»å°†Distinct å½“åšäº†ä¸€ä¸ªæ–¹æ³•ï¼Œ Distinct å’Œåé¢çš„columnï¼Œä¸€èµ·ä½œä¸ºä¸€ä¸ªFunction column,
+	 * æ­¤å¤„ç»§ç»­ä¿ç•™è¿™ä¸ªDistinctï¼Œä½œä¸ºä¸€ä¸ªå†—ä½™ï¼Œæ˜¯å› ä¸ºåé¢çš„åˆ†åº“åˆ†è¡¨æ—¶çš„ä»£ç éœ€è¦è°ƒç”¨è¿™ä¸ªå±æ€§æ¥è¿›è¡Œæ“ä½œ!
+	 * æ­¤Distinctåªä½œä¸ºå†—ä½™ï¼Œæ ¹æ®Parserç»“æœå¯¹è±¡æ–¹å‘è¾“å‡ºç»„æˆSQLçš„Stringæ—¶å°†ä¸å†è¾“å‡ºæ­¤Distinct--add by
 	 * mazhidan.pt
 	 */
 	protected Distinct distinct = null;

@@ -41,8 +41,8 @@ import com.taobao.tddl.sqlobjecttree.oracle.function.OracleHintRegister;
 import com.taobao.tddl.sqlobjecttree.outputhandlerimpl.HandlerContainer;
 
 /**
- * SQL ½âÎöÆ÷µÄÊµÏÖÀà£¬Ö÷ÒªÊÇ½«SQL½âÎöºó´æ·Åµ½cacheÖĞ£¬
- * Èç¹ûcacheÖĞÓĞ¸ÃÌõSQL,ÔòÖ±½Ó´ÓcacheÖĞÈ¡£¬·ñÔò½øĞĞparse
+ * SQL è§£æå™¨çš„å®ç°ç±»ï¼Œä¸»è¦æ˜¯å°†SQLè§£æåå­˜æ”¾åˆ°cacheä¸­ï¼Œ
+ * å¦‚æœcacheä¸­æœ‰è¯¥æ¡SQL,åˆ™ç›´æ¥ä»cacheä¸­å–ï¼Œå¦åˆ™è¿›è¡Œparse
  * 
  * @author shenxun
  *
@@ -51,11 +51,11 @@ public class SQLParserImp implements SQLParser{
 	private static final Log log = LogFactory.getLog(SQLParserImp.class);
 	
 	/**
-	 * ³¢ÊÔ´ÓcacheÖĞÈ¡¸Ãsql,Èç¹ûÎ´È¡µ½£¬Ôò·ÖÎö¸Ãsql²¢³õÊ¼»¯¡£
+	 * å°è¯•ä»cacheä¸­å–è¯¥sql,å¦‚æœæœªå–åˆ°ï¼Œåˆ™åˆ†æè¯¥sqlå¹¶åˆå§‹åŒ–ã€‚
 	 * 
-	 * ×î»µÇé¿öÊÇ¶à´Î³õÊ¼»¯£¬µ«ÒòÎªkeyÒ»ÖÂ£¬Í¬Ò»Ìõsql·ÖÎö²¢³õÊ¼»¯ÒÔºóµÄ½á¹ûÊÇÒ»ÖÂµÄ
+	 * æœ€åæƒ…å†µæ˜¯å¤šæ¬¡åˆå§‹åŒ–ï¼Œä½†å› ä¸ºkeyä¸€è‡´ï¼ŒåŒä¸€æ¡sqlåˆ†æå¹¶åˆå§‹åŒ–ä»¥åçš„ç»“æœæ˜¯ä¸€è‡´çš„
 	 * 
-	 * µ«ÓĞ¿ÉÄÜÒòÎªÂÒĞò·¢ÉúputÔÚinitÖ®Ç°µÄÎÊÌâ,Òò´ËÕû¸ö¼ÓËø¡£
+	 * ä½†æœ‰å¯èƒ½å› ä¸ºä¹±åºå‘ç”Ÿputåœ¨initä¹‹å‰çš„é—®é¢˜,å› æ­¤æ•´ä¸ªåŠ é”ã€‚
 	 * @param sql
 	 */
 	public DMLCommon parseSQL(String sql) {
@@ -74,7 +74,7 @@ public class SQLParserImp implements SQLParser{
 		if (sql == null) {
 			throw new IllegalArgumentException("sql must not be null");
 		}
-		//ÎªÁË·ÀÖ¹¶à´ÎÖØ¸´³õÊ¼»¯£¬ËùÒÔÊ¹ÓÃÁËfuture taskÀ´È·±£³õÊ¼»¯Ö»½øĞĞÒ»´Î
+		//ä¸ºäº†é˜²æ­¢å¤šæ¬¡é‡å¤åˆå§‹åŒ–ï¼Œæ‰€ä»¥ä½¿ç”¨äº†future taskæ¥ç¡®ä¿åˆå§‹åŒ–åªè¿›è¡Œä¸€æ¬¡
 		FutureTask<DMLCommon> future = globalCache.getFutureTask(sql);
 		if (future == null) {
 			Callable<DMLCommon> handle = new Callable<DMLCommon>() {
@@ -95,7 +95,7 @@ public class SQLParserImp implements SQLParser{
 			future = globalCache.setFutureTaskIfAbsent(sql,future);
 			future.run();
 		}
-		//È·±£Å×³öÒì³£
+		//ç¡®ä¿æŠ›å‡ºå¼‚å¸¸
 		DMLCommon dmlcommon = null;
 		try {
 			dmlcommon = future.get();
@@ -106,7 +106,7 @@ public class SQLParserImp implements SQLParser{
 	}
 	
 	/**
-	 * Antlr·ÖÎösql£¬·µ»ØÓÃjava¶ÔÏó±íÊ¾µÄSQL¡£
+	 * Antlråˆ†æsqlï¼Œè¿”å›ç”¨javaå¯¹è±¡è¡¨ç¤ºçš„SQLã€‚
 	 * 
 	 * @param sql
 	 * @param isMysql
@@ -178,16 +178,16 @@ public class SQLParserImp implements SQLParser{
 			}
 		} catch (RecognitionException e) {
 			NagiosUtils.addNagiosLog(NagiosUtils.KEY_SQL_PARSE_FAIL, 1);
-			throw new RuntimeException("·ÖÎösql´íÎó£¬´íÎóµÄsqlÊÇ:"
+			throw new RuntimeException("åˆ†æsqlé”™è¯¯ï¼Œé”™è¯¯çš„sqlæ˜¯:"
 					+ sql, e);
 		}
 		return com;
 	}
 	
 	/**
-	 * ¸ù¾İSQL»ñÈ¡¶ÔÓ¦µÄjavaSQL¶ÔÏó
+	 * æ ¹æ®SQLè·å–å¯¹åº”çš„javaSQLå¯¹è±¡
 	 * @param sql
-	 * @return java SQL ¶ÔÏó¡£ Èç¹ûcacheÖĞÃ»ÓĞÔò·µ»Ø¿Õ
+	 * @return java SQL å¯¹è±¡ã€‚ å¦‚æœcacheä¸­æ²¡æœ‰åˆ™è¿”å›ç©º
 	 */
 	public Statement getStatement(String sql) {
 		try {
@@ -204,11 +204,11 @@ public class SQLParserImp implements SQLParser{
 	}
 	
 	/**
-	 * ¸ù¾İpartinationSetÀïÃæµÄStringÈ¥SQLÖĞ²éÕÒÔÚwhereÌõ¼şÖĞÊÇ·ñÓĞ¶ÔÓ¦µÄÁĞ¡£Èç¹ûÓĞÔòÈ«²¿ÕÒ³ö£¬·ÅÈëµ½ComparativemapÀï
+	 * æ ¹æ®partinationSeté‡Œé¢çš„Stringå»SQLä¸­æŸ¥æ‰¾åœ¨whereæ¡ä»¶ä¸­æ˜¯å¦æœ‰å¯¹åº”çš„åˆ—ã€‚å¦‚æœæœ‰åˆ™å…¨éƒ¨æ‰¾å‡ºï¼Œæ”¾å…¥åˆ°Comparativemapé‡Œ
 	 * 
-	 * Èç¹ûSQL¶ÔÏóÖĞÓĞµÄ»°Ôò½«ĞèÒª±»°ó¶¨µÄ±äÁ¿°ó¶¨µ½comparativeMapÀïÃæµÄComparativeÖĞ¡£
+	 * å¦‚æœSQLå¯¹è±¡ä¸­æœ‰çš„è¯åˆ™å°†éœ€è¦è¢«ç»‘å®šçš„å˜é‡ç»‘å®šåˆ°comparativeMapé‡Œé¢çš„Comparativeä¸­ã€‚
 	 * 
-	 * ¸³ÖµÍê³Éºó·µ»Ø¡£
+	 * èµ‹å€¼å®Œæˆåè¿”å›ã€‚
 	 * 
 	 * @param sql
 	 * @param argument
@@ -278,13 +278,13 @@ public class SQLParserImp implements SQLParser{
 	}
 
 	/**
-	 * @param sql Ä¿±êsql
-	 * @param tables ±íÃûMap,ĞèÒª´«ÈëĞèÒªÌæ»»µÄ±íÃû->Ä¿±ê±íÃûSet
-	 * @param args sql¶ÔÓ¦µÄ²ÎÊı
-	 * @param limitFrom ´ÓÄÄ¶ù¿ªÊ¼
-	 * @param limitTo µ½ÄÄ¶ù½áÊø
-	 * @param handlerContainer ²ßÂÔÑ¡ÔñÆ÷
-	 * @param map ´«ÈëĞèÒªĞŞ¸ÄµÄ
+	 * @param sql ç›®æ ‡sql
+	 * @param tables è¡¨åMap,éœ€è¦ä¼ å…¥éœ€è¦æ›¿æ¢çš„è¡¨å->ç›®æ ‡è¡¨åSet
+	 * @param args sqlå¯¹åº”çš„å‚æ•°
+	 * @param limitFrom ä»å“ªå„¿å¼€å§‹
+	 * @param limitTo åˆ°å“ªå„¿ç»“æŸ
+	 * @param handlerContainer ç­–ç•¥é€‰æ‹©å™¨
+	 * @param map ä¼ å…¥éœ€è¦ä¿®æ”¹çš„
 	 * @return
 	 */
 	public List<SqlAndTableAtParser> getSqlReadyToRun(String sql,Set<Map/*tables*/<String/*ori table*/,
@@ -293,7 +293,7 @@ public class SQLParserImp implements SQLParser{
 	{
 		if(sql==null)
 		{
-			throw new IllegalArgumentException("Ä¿±êsqlÎª¿Õ");
+			throw new IllegalArgumentException("ç›®æ ‡sqlä¸ºç©º");
 		}
 		try {
 			DMLCommon dmlc = ((DMLCommon)getStatement(sql));
@@ -315,7 +315,7 @@ public class SQLParserImp implements SQLParser{
 				/*
 				 * bugfix : http://jira.taobao.ali.com/browse/TDDL-78
 				 */
-				// Èç¹ûÃ»È¡µ½£¬³¢ÊÔ·ÖÎösql²¢³õÊ¼»¯
+				// å¦‚æœæ²¡å–åˆ°ï¼Œå°è¯•åˆ†æsqlå¹¶åˆå§‹åŒ–
 				com = parseSQL(sql, isMySQL);
 				table = ((DMLCommon) com).getTableName();
 				

@@ -6,7 +6,7 @@ import com.taobao.tddl.client.jdbc.listener.Context;
 
 public interface SqlExecuteListener {
 	/**
-	 * ÓÃÀ´´¦ÀíÍ³Ò»ÅäÖÃµÄ´«µİ
+	 * ç”¨æ¥å¤„ç†ç»Ÿä¸€é…ç½®çš„ä¼ é€’
 	 */
 	void init(TDataSource tDataSource);
 	void beforeSqlExecute(Context context) throws SQLException;

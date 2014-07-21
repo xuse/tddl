@@ -66,7 +66,7 @@ public class MySQLFunctionRegister {
 		
 		//str
 		funcReg.put("STRCMP", STRCMP.class);
-		//ºó¼ÓµÄ£¬ÒòÎªÓĞ¸ö°æ±¾V810Ã»ÓĞºÏ²¢µ½Ö÷¸É
+		//ååŠ çš„ï¼Œå› ä¸ºæœ‰ä¸ªç‰ˆæœ¬V810æ²¡æœ‰åˆå¹¶åˆ°ä¸»å¹²
 		funcReg.put("CONCAT", Concat.class);
 		funcReg.put("INTERVAL",Interval.class);
 	}
@@ -77,7 +77,7 @@ public class MySQLFunctionRegister {
 		Function cls=null;
 		try {
 			if(key==null||key.trim().equals("")){
-				throw new IllegalArgumentException("group function²»ÄÜÎª¿Õ");
+				throw new IllegalArgumentException("group functionä¸èƒ½ä¸ºç©º");
 			}
 			cls=funcReg.get(key.toUpperCase()).newInstance();
 		} catch (InstantiationException e) {

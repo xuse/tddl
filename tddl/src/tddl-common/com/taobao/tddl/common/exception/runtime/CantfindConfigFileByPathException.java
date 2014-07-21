@@ -7,6 +7,6 @@ public class CantfindConfigFileByPathException extends TDLRunTimeException{
 	 */
 	private static final long serialVersionUID = -3338684575935778495L;
 	public CantfindConfigFileByPathException(String path) {
-		super("无法根据path:"+path+"找到指定的xml文件");
+		super("鏃犳硶鏍规嵁path:"+path+"鎵惧埌鎸囧畾鐨剎ml鏂囦欢");
 	}
 }

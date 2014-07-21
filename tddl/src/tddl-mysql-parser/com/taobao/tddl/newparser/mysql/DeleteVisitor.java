@@ -30,7 +30,7 @@ public class DeleteVisitor extends EmptySQLASTVisitor {
 
 	private void handleTableName(DMLDeleteStatement node) {
 		TableNameImp tbName = new TableNameImp();
-		// 这里有alias和schema的问题，FIXME
+		// 杩欓噷鏈塧lias鍜宻chema鐨勯棶棰橈紝FIXME
 		tbName.setTablename(node.getTableNames().get(0).getIdTextUpUnescape());
 		tbName.setAlias(null);
 		if (node.getTableNames().get(0).getParent() != null) {

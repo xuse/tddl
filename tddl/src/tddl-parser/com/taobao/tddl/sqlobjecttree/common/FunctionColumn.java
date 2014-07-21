@@ -65,14 +65,14 @@ public class FunctionColumn implements Function,Column {
 	}
 
 	public String getTable() {
-		throw new RuntimeException("还不支持");
+		throw new RuntimeException("杩樹笉鏀寔");
 	}
 
 	public void setModifiedTableName(String table) {
-		throw new IllegalStateException("不应该被调用");
+		throw new IllegalStateException("涓嶅簲璇ヨ璋冪敤");
 	}
 	public String getModifiedTableName() {
-		throw new IllegalStateException("不应该被调用");
+		throw new IllegalStateException("涓嶅簲璇ヨ璋冪敤");
 	}
 	public StringBuilder regTableModifiable(Set<String> oraTabName, List<Object> list,
 			StringBuilder sb) {

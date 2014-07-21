@@ -19,7 +19,7 @@ public class Month extends OneArgFunction{
 			cal.setTime(((java.util.Date) days));
 			return cal.get(Calendar.MONTH);
 		}else{
-			throw new IllegalArgumentException("from days 只支持int型的参数");
+			throw new IllegalArgumentException("from days 鍙敮鎸乮nt鍨嬬殑鍙傛暟");
 		}
 	}
 }

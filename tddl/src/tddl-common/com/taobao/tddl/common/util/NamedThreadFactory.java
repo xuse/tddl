@@ -5,12 +5,12 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 可以产生命名的线程，方便查找问题
+ * 鍙互浜х敓鍛藉悕鐨勭嚎绋嬶紝鏂逛究鏌ユ壘闂
  * @description
  * @author <a href="junyu@taobao.com">junyu</a> 
  * @version 1.0
  * @since 1.6
- * @date 2010-12-28下午02:05:23
+ * @date 2010-12-28涓嬪崍02:05:23
  */
 public class NamedThreadFactory implements ThreadFactory{
     static final AtomicInteger poolNumber=new AtomicInteger();

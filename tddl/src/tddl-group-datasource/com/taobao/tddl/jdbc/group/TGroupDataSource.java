@@ -21,20 +21,20 @@ import com.taobao.tddl.jdbc.group.dbselector.DBSelector;
 import com.taobao.tddl.jdbc.group.exception.TGroupDataSourceException;
 
 /**
- * TGroupDataSource²¢²»ÊÇÏñÃû×ÖËù°µÊ¾µÄÄÇÑùÓĞÒ»×éDataSource£¬
- * ¶øÊÇÖ¸TGroupDataSourceÄÚ²¿°üº¬Ò»×é(>=1¸ö)Í¬¹¹µÄÊı¾İ¿â£¬
- * ÕâÒ»×éÊı¾İ¿âµÄ²»Í¬¸öÌåÓĞ²»Í¬µÄ¶ÁĞ´ÓÅÏÈ¼¶ºÍÈ¨ÖØ£¬
- * µ±¶ÁĞ´Êı¾İÊ±Ò²Ö»ÊÇ°´¶ÁĞ´ÓÅÏÈ¼¶ºÍÈ¨ÖØ¶ÔÆäÖĞµÄÒ»¸öÊı¾İ¿â²Ù×÷£¬
- * Èç¹ûµÚÒ»¸öÊı¾İ¿â¶ÁĞ´Ê§°ÜÁË£¬ÔÙ³¢ÊÔÏÂÒ»¸öÊı¾İ¿â£¬
- * Èç¹ûµÚÒ»¸öÊı¾İ¿â¶ÁĞ´³É¹¦ÁË£¬Ö±½Ó·µ»Ø½á¹û¸øÓ¦ÓÃ²ã£¬
- * ÆäËûÊı¾İ¿âµÄÍ¬²½¸üĞÂÓÉµ×²ãÊı¾İ¿âÄÚ²¿Íê³É£¬
- * TGroupDataSource²»¸ºÔğÊı¾İÍ¬²½¡£
+ * TGroupDataSourceå¹¶ä¸æ˜¯åƒåå­—æ‰€æš—ç¤ºçš„é‚£æ ·æœ‰ä¸€ç»„DataSourceï¼Œ
+ * è€Œæ˜¯æŒ‡TGroupDataSourceå†…éƒ¨åŒ…å«ä¸€ç»„(>=1ä¸ª)åŒæ„çš„æ•°æ®åº“ï¼Œ
+ * è¿™ä¸€ç»„æ•°æ®åº“çš„ä¸åŒä¸ªä½“æœ‰ä¸åŒçš„è¯»å†™ä¼˜å…ˆçº§å’Œæƒé‡ï¼Œ
+ * å½“è¯»å†™æ•°æ®æ—¶ä¹Ÿåªæ˜¯æŒ‰è¯»å†™ä¼˜å…ˆçº§å’Œæƒé‡å¯¹å…¶ä¸­çš„ä¸€ä¸ªæ•°æ®åº“æ“ä½œï¼Œ
+ * å¦‚æœç¬¬ä¸€ä¸ªæ•°æ®åº“è¯»å†™å¤±è´¥äº†ï¼Œå†å°è¯•ä¸‹ä¸€ä¸ªæ•°æ®åº“ï¼Œ
+ * å¦‚æœç¬¬ä¸€ä¸ªæ•°æ®åº“è¯»å†™æˆåŠŸäº†ï¼Œç›´æ¥è¿”å›ç»“æœç»™åº”ç”¨å±‚ï¼Œ
+ * å…¶ä»–æ•°æ®åº“çš„åŒæ­¥æ›´æ–°ç”±åº•å±‚æ•°æ®åº“å†…éƒ¨å®Œæˆï¼Œ
+ * TGroupDataSourceä¸è´Ÿè´£æ•°æ®åŒæ­¥ã€‚
  *
- * Ê¹ÓÃTGroupDataSourceµÄ²½Öè:
+ * ä½¿ç”¨TGroupDataSourceçš„æ­¥éª¤:
  * <pre>
  *      TGroupDataSource tGroupDataSource = new TGroupDataSource();
  *      tGroupDataSource.setDbGroupKey("myDbGroup");
- *      //......µ÷ÓÃÆäËûsetter
+ *      //......è°ƒç”¨å…¶ä»–setter
  *      tGroupDataSource.init();
  *      tGroupDataSource.getConnection();
  * </pre>
@@ -48,7 +48,7 @@ public class TGroupDataSource implements DataSource {
 	private ConfigManager configManager;
 
 	/**
-	 * ÏÂÃæÈı¸öÎªÒ»×é£¬Ö§³Ö±¾µØÅäÖÃ
+	 * ä¸‹é¢ä¸‰ä¸ªä¸ºä¸€ç»„ï¼Œæ”¯æŒæœ¬åœ°é…ç½®
 	 */
 	private String dsKeyAndWeightCommaArray;
 	private DataSourceFetcher dataSourceFetcher;
@@ -69,13 +69,13 @@ public class TGroupDataSource implements DataSource {
 	}
 	
 	/**
-	 * »ùÓÚdbGroupKey¡¢appNameÀ´³õÊ¼»¯¶à¸öTAtomDataSource
+	 * åŸºäºdbGroupKeyã€appNameæ¥åˆå§‹åŒ–å¤šä¸ªTAtomDataSource
 	 *
 	 * @throws com.taobao.tddl.jdbc.group.exception.ConfigException
 	 */
 	public void init() {
 		if (dsKeyAndWeightCommaArray != null) {
-			//±¾µØÅäÖÃ·½Ê½£ºdsKeyAndWeightCommaArray + dataSourceFetcher + dyType
+			//æœ¬åœ°é…ç½®æ–¹å¼ï¼šdsKeyAndWeightCommaArray + dataSourceFetcher + dyType
 			DataSourceFetcher wrapper = new DataSourceFetcher() {
 				@Override
 				public DataSource getDataSource(String key) {
@@ -85,7 +85,7 @@ public class TGroupDataSource implements DataSource {
 				@Override
 				public DBType getDataSourceDBType(String key) {
 					DBType type = dataSourceFetcher.getDataSourceDBType(key);
-					return type == null ? dbType : type; //Èç¹ûdataSourceFetcherÃ»dbType£¬ÓÃtgdsµÄdbType
+					return type == null ? dbType : type; //å¦‚æœdataSourceFetcheræ²¡dbTypeï¼Œç”¨tgdsçš„dbType
 				}
 			};
 			List<DataSourceWrapper> dss = ConfigManager.buildDataSourceWrapper(dsKeyAndWeightCommaArray, wrapper);
@@ -118,44 +118,44 @@ public class TGroupDataSource implements DataSource {
 	}
 
 	/**
-	 * Èç¹û¹¹ÔìµÄÊÇTAtomDataSource£¬±ØĞë¼ì²édbGroupKey¡¢appNameÁ½¸öÊôĞÔµÄÖµÊÇ·ñºÏ·¨
+	 * å¦‚æœæ„é€ çš„æ˜¯TAtomDataSourceï¼Œå¿…é¡»æ£€æŸ¥dbGroupKeyã€appNameä¸¤ä¸ªå±æ€§çš„å€¼æ˜¯å¦åˆæ³•
 	 */
 	private void checkProperties() {
 		if (dbGroupKey == null)
-			throw new TGroupDataSourceException("dbGroupKey²»ÄÜÎªnull");
+			throw new TGroupDataSourceException("dbGroupKeyä¸èƒ½ä¸ºnull");
 		dbGroupKey = dbGroupKey.trim();
 		if (dbGroupKey.length() < 1)
-			throw new TGroupDataSourceException("dbGroupKeyµÄ³¤¶ÈÒª´óÓÚ0£¬Ç°µ¼¿Õ°×ºÍÎ²²¿¿Õ°×²»ËãÔÚÄÚ");
+			throw new TGroupDataSourceException("dbGroupKeyçš„é•¿åº¦è¦å¤§äº0ï¼Œå‰å¯¼ç©ºç™½å’Œå°¾éƒ¨ç©ºç™½ä¸ç®—åœ¨å†…");
 
 		if (appName == null)
-			throw new TGroupDataSourceException("appName²»ÄÜÎªnull");
+			throw new TGroupDataSourceException("appNameä¸èƒ½ä¸ºnull");
 		appName = appName.trim();
 		if (appName.length() < 1)
-			throw new TGroupDataSourceException("appNameµÄ³¤¶ÈÒª´óÓÚ0£¬Ç°µ¼¿Õ°×ºÍÎ²²¿¿Õ°×²»ËãÔÚÄÚ");
+			throw new TGroupDataSourceException("appNameçš„é•¿åº¦è¦å¤§äº0ï¼Œå‰å¯¼ç©ºç™½å’Œå°¾éƒ¨ç©ºç™½ä¸ç®—åœ¨å†…");
 		
 		if (dataSourceType == null)
-			throw new TGroupDataSourceException("dataSouceType²»ÄÜÎªnull");
+			throw new TGroupDataSourceException("dataSouceTypeä¸èƒ½ä¸ºnull");
 	}
 
 	/**
-	 * Î£ÏÕ½Ó¿Ú¡£Ò»°ãÓÃÓÚ²âÊÔ¡£Ó¦ÓÃÒ²¿ÉÒÔÖ±½ÓÍ¨¹ı¸Ã½Ó¿ÚÖØÖÃÊı¾İÔ´ÅäÖÃ
+	 * å±é™©æ¥å£ã€‚ä¸€èˆ¬ç”¨äºæµ‹è¯•ã€‚åº”ç”¨ä¹Ÿå¯ä»¥ç›´æ¥é€šè¿‡è¯¥æ¥å£é‡ç½®æ•°æ®æºé…ç½®
 	 */
 	public void resetDbGroup(String configInfo) {
 		configManager.resetDbGroup(configInfo);
 	}
 
-	//°ü·ÃÎÊ¼¶±ğ£¬µ÷ÓÃÕß²»ÄÜ»º´æ£¬·ñÔò»áÊ§È¥¶¯Ì¬ĞÔ
+	//åŒ…è®¿é—®çº§åˆ«ï¼Œè°ƒç”¨è€…ä¸èƒ½ç¼“å­˜ï¼Œå¦åˆ™ä¼šå¤±å»åŠ¨æ€æ€§
 	DBSelector getDBSelector(boolean isRead) {
 		return configManager.getDBSelector(isRead, this.autoSelectWriteDataSource);
 	}
 
 	/* ========================================================================
-	 * ÒÔÏÂÊÇ±£Áôµ±Ç°Ğ´²Ù×÷ÊÇÔÚÄÄ¸ö¿âÉÏÖ´ĞĞµÄ, Âú×ãÀàËÆÈÕÖ¾¿â²åÈëµÄ³¡¾°
+	 * ä»¥ä¸‹æ˜¯ä¿ç•™å½“å‰å†™æ“ä½œæ˜¯åœ¨å“ªä¸ªåº“ä¸Šæ‰§è¡Œçš„, æ»¡è¶³ç±»ä¼¼æ—¥å¿—åº“æ’å…¥çš„åœºæ™¯
 	 * ======================================================================*/
 	private static ThreadLocal<DataSourceWrapper> targetThreadLocal;
 
 	/**
-	 * Í¨¹ıspring×¢Èë»òÖ±½Óµ÷ÓÃ¸Ã·½·¨¿ªÆô¡¢¹Ø±ÕÄ¿±ê¿â¼ÇÂ¼
+	 * é€šè¿‡springæ³¨å…¥æˆ–ç›´æ¥è°ƒç”¨è¯¥æ–¹æ³•å¼€å¯ã€å…³é—­ç›®æ ‡åº“è®°å½•
 	 */
 	public void setTracerWriteTarget(boolean isTraceTarget) {
 		if (isTraceTarget) {
@@ -168,8 +168,8 @@ public class TGroupDataSource implements DataSource {
 	}
 
 	/**
-	 * ÔÚÖ´ĞĞÍêĞ´²Ù×÷ºó£¬µ÷ÓÃ¸Ä·½·¨»ñµÃµ±Ç°Ïß³ÌĞ´²Ù×÷ÊÇÔÚÄÄ¸öÊı¾İÔ´Ö´ĞĞµÄ
-	 * »ñÈ¡Íê×Ô¶¯Á¢¼´Çå¿Õ
+	 * åœ¨æ‰§è¡Œå®Œå†™æ“ä½œåï¼Œè°ƒç”¨æ”¹æ–¹æ³•è·å¾—å½“å‰çº¿ç¨‹å†™æ“ä½œæ˜¯åœ¨å“ªä¸ªæ•°æ®æºæ‰§è¡Œçš„
+	 * è·å–å®Œè‡ªåŠ¨ç«‹å³æ¸…ç©º
 	 */
 	public DataSourceWrapper getCurrentTarget() {
 		if (targetThreadLocal == null) {
@@ -181,7 +181,7 @@ public class TGroupDataSource implements DataSource {
 	}
 
 	/**
-	 * ÏÂÓÎµ÷ÓÃ¸Ã·½·¨ÉèÖÃÄ¿±ê¿â
+	 * ä¸‹æ¸¸è°ƒç”¨è¯¥æ–¹æ³•è®¾ç½®ç›®æ ‡åº“
 	 */
 	void setWriteTarget(DataSourceWrapper dsw) {
 		if (targetThreadLocal != null) {
@@ -190,9 +190,9 @@ public class TGroupDataSource implements DataSource {
 	}
 
 	/* ========================================================================
-	 * ±éÀúĞèÇóAPI
+	 * éå†éœ€æ±‚API
 	 * ======================================================================*/
-//ÔÚConfigManagerÖĞÎÒÃÇ½«ÅäÖÃĞÅÏ¢×îÖÕ·â×°Îª¶ÁĞ´DBSelector£¬ÒªµÃµ½´ÓdbKeyµ½DataSourceµÄÓ³Éä£¬½«DBSelectorÖĞµÄĞÅÏ¢·½ÏòÊä³ö¡£
+//åœ¨ConfigManagerä¸­æˆ‘ä»¬å°†é…ç½®ä¿¡æ¯æœ€ç»ˆå°è£…ä¸ºè¯»å†™DBSelectorï¼Œè¦å¾—åˆ°ä»dbKeyåˆ°DataSourceçš„æ˜ å°„ï¼Œå°†DBSelectorä¸­çš„ä¿¡æ¯æ–¹å‘è¾“å‡ºã€‚
 	public Map<String, DataSource> getDataSourceMap() {
 		Map<String, DataSource> dsMap = new LinkedHashMap<String, DataSource>();
 		dsMap.putAll(this.getDBSelector(true).getDataSources());
@@ -209,7 +209,7 @@ public class TGroupDataSource implements DataSource {
 	}
 
 	/* ========================================================================
-	 * ÒÔÏÂÊÇjavax.sql.DataSourceµÄAPIÊµÏÖ
+	 * ä»¥ä¸‹æ˜¯javax.sql.DataSourceçš„APIå®ç°
 	 * ======================================================================*/
 
 	public TGroupConnection getConnection() throws SQLException {
@@ -220,9 +220,9 @@ public class TGroupDataSource implements DataSource {
 		return new TGroupConnection(this, username, password);
 	}
 
-	//ÏÂÃæÁ½¸ö×Ö¶Îµ±½¨Á¢Êµ¼ÊµÄDataSourceÊ±±ØĞë´«µİ¹ıÈ¥
+	//ä¸‹é¢ä¸¤ä¸ªå­—æ®µå½“å»ºç«‹å®é™…çš„DataSourceæ—¶å¿…é¡»ä¼ é€’è¿‡å»
 
-	//jdbc¹æ·¶: DataSource¸Õ½¨Á¢Ê±LogWriterÎªnull
+	//jdbcè§„èŒƒ: DataSourceåˆšå»ºç«‹æ—¶LogWriterä¸ºnull
 	private PrintWriter out = null;
 
 	public PrintWriter getLogWriter() throws SQLException {
@@ -233,7 +233,7 @@ public class TGroupDataSource implements DataSource {
 		this.out = out;
 	}
 
-	//jdbc¹æ·¶: DataSource¸Õ½¨Á¢Ê±LoginTimeoutÎª0
+	//jdbcè§„èŒƒ: DataSourceåˆšå»ºç«‹æ—¶LoginTimeoutä¸º0
 	private int seconds = 0;
 
 	public int getLoginTimeout() throws SQLException {
@@ -250,11 +250,11 @@ public class TGroupDataSource implements DataSource {
 
 	////////////////////////////////////////////////////////////////////////////
 	/**
-	 * ÎŞÂß¼­µÄgetter/setter
+	 * æ— é€»è¾‘çš„getter/setter
 	 */
 	
 	/**
-	 * Ê¹ÓÃtbdatasource»¹ÊÇdruid
+	 * ä½¿ç”¨tbdatasourceè¿˜æ˜¯druid
 	 */
 	private DataSourceType dataSourceType = DataSourceType.DruidDataSource;
 
@@ -300,7 +300,7 @@ public class TGroupDataSource implements DataSource {
 		this.dbGroupKey = dbGroupKey;
 	}
 
-	private int retryingTimes = 3; //Ä¬ÈÏ¶ÁĞ´Ê§°ÜÊ±ÖØÊÔ3´Î
+	private int retryingTimes = 3; //é»˜è®¤è¯»å†™å¤±è´¥æ—¶é‡è¯•3æ¬¡
 
 	public int getRetryingTimes() {
 		return retryingTimes;
@@ -310,7 +310,7 @@ public class TGroupDataSource implements DataSource {
 		this.retryingTimes = retryingTimes;
 	}
 
-	private long configReceiveTimeout = TDDLConstant.DIAMOND_GET_DATA_TIMEOUT; //È¡ÅäÖÃĞÅÏ¢µÄÄ¬ÈÏ³¬Ê±Ê±¼äÎª30Ãë
+	private long configReceiveTimeout = TDDLConstant.DIAMOND_GET_DATA_TIMEOUT; //å–é…ç½®ä¿¡æ¯çš„é»˜è®¤è¶…æ—¶æ—¶é—´ä¸º30ç§’
 
 	public long getConfigReceiveTimeout() {
 		return configReceiveTimeout;
@@ -324,7 +324,7 @@ public class TGroupDataSource implements DataSource {
 		this.dsKeyAndWeightCommaArray = dsKeyAndWeightCommaArray;
 	}
 
-	//µ±ÔËĞĞÆÚ¼äÖ÷±¸·¢ÉúÇĞ»»Ê±ÊÇ·ñĞèÒª²éÕÒµÚÒ»¸ö¿ÉĞ´µÄ¿â
+	//å½“è¿è¡ŒæœŸé—´ä¸»å¤‡å‘ç”Ÿåˆ‡æ¢æ—¶æ˜¯å¦éœ€è¦æŸ¥æ‰¾ç¬¬ä¸€ä¸ªå¯å†™çš„åº“
 	private boolean autoSelectWriteDataSource = false;
 
 	public boolean getAutoSelectWriteDataSource() {
@@ -379,7 +379,7 @@ public class TGroupDataSource implements DataSource {
 		this.dataSourceType = DataSourceType.valueOf(dataSourceType);
 	}
 	
-	/**Ïú»ÙÊı¾İÔ´£¬É÷ÓÃ
+	/**é”€æ¯æ•°æ®æºï¼Œæ…ç”¨
 	 * 
 	 * @throws Exception 
 	 */

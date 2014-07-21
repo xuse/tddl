@@ -7,13 +7,13 @@ import com.taobao.tddl.client.databus.DataBus;
 import com.taobao.tddl.client.handler.Handler;
 
 /**
- * @description ¹ÜÏß½Ó¿Ú¶¨Òå,Ö÷Òª¶¨ÒåÒ»Ğ©¶Ô¹ÜÏßÔªËØµÄ²Ù×÷ºÍÈÎÎñÁ÷×ª
- *              ·½·¨.
+ * @description ç®¡çº¿æ¥å£å®šä¹‰,ä¸»è¦å®šä¹‰ä¸€äº›å¯¹ç®¡çº¿å…ƒç´ çš„æ“ä½œå’Œä»»åŠ¡æµè½¬
+ *              æ–¹æ³•.
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.3
  * @since 1.6
- * @date 2010-08-15ÏÂÎç03:45:43
+ * @date 2010-08-15ä¸‹åˆ03:45:43
  */
 public interface Pipeline {
 	void addFirst(String name, Handler handler);
@@ -57,10 +57,10 @@ public interface Pipeline {
 	HandlerContext getContext(Class<? extends Handler> handlerType);
 
 	/**
-	 * ¿ªÊ¼Ö´ĞĞÁ÷³Ì¡£pipeline³ÖÓĞËùÓĞHandlerContext¡£
-	 * Ö±½Óµ÷ÓÃµ÷ÓÃÍ·½áµãµÄHandlerContext.flowNext()
+	 * å¼€å§‹æ‰§è¡Œæµç¨‹ã€‚pipelineæŒæœ‰æ‰€æœ‰HandlerContextã€‚
+	 * ç›´æ¥è°ƒç”¨è°ƒç”¨å¤´ç»“ç‚¹çš„HandlerContext.flowNext()
 	 * 
-	 * @param dataBus   Êı¾İ×ÜÏß
+	 * @param dataBus   æ•°æ®æ€»çº¿
 	 * @throws SQLException
 	 */
 	void startFlow(DataBus dataBus) throws SQLException;

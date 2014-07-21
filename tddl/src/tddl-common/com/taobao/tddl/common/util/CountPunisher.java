@@ -10,28 +10,28 @@ import org.apache.commons.logging.LogFactory;
 import com.taobao.tddl.common.ConfigServerHelper;
 
 /**
- * ¼ÆÊı³Í·£Æ÷
+ * è®¡æ•°æƒ©ç½šå™¨
  * 
- * ÔÚ×î½üÒ»¶ÎÊ±¼ä´°¿ÚÄÚ¼ÆÊı³¬¹ıÏŞÖÆÔò³Í·£
+ * åœ¨æœ€è¿‘ä¸€æ®µæ—¶é—´çª—å£å†…è®¡æ•°è¶…è¿‡é™åˆ¶åˆ™æƒ©ç½š
  * 
  * @author linxuan
  *
  */
 public class CountPunisher {
 	private static final Log log = LogFactory.getLog(CountPunisher.class);
-	//private static final long defaultResetTime = 5 * 60 * 100; //Ä¬ÈÏ5·ÖÖÓ¸´Î»
+	//private static final long defaultResetTime = 5 * 60 * 100; //é»˜è®¤5åˆ†é’Ÿå¤ä½
 
 	private final SmoothValve smoothValve;
-	private final long timeWindow; //ms; ÖµÎª0±íÊ¾¹Ø±ÕÕâ¸ö¹¦ÄÜ£¬ÎŞÈÎºÎÏŞÖÆ
+	private final long timeWindow; //ms; å€¼ä¸º0è¡¨ç¤ºå…³é—­è¿™ä¸ªåŠŸèƒ½ï¼Œæ— ä»»ä½•é™åˆ¶
 	private final long limit;
 	private final long resetTime;
 
-	private volatile long timeWindowBegin = 0; //0±íÊ¾Ã»ÓĞ³¬Ê±£¬Ã»ÓĞ¼ÆÊ±
+	private volatile long timeWindowBegin = 0; //0è¡¨ç¤ºæ²¡æœ‰è¶…æ—¶ï¼Œæ²¡æœ‰è®¡æ—¶
 	private volatile long punishBeginTime = Long.MAX_VALUE;
 	private final AtomicInteger count = new AtomicInteger();
 
 	/**
-	 * timeWindowÖ®ÄÚ£¬³¬Ê±£¨»òÆäËûÒâÒå£©´ÎÊı³¬¹ılimit£¬Ôò±êÊ¶Îªpunish, Õâ¸öpunish±êÖ¾resetTime¹ıºó×Ô¶¯¸´Î»
+	 * timeWindowä¹‹å†…ï¼Œè¶…æ—¶ï¼ˆæˆ–å…¶ä»–æ„ä¹‰ï¼‰æ¬¡æ•°è¶…è¿‡limitï¼Œåˆ™æ ‡è¯†ä¸ºpunish, è¿™ä¸ªpunishæ ‡å¿—resetTimeè¿‡åè‡ªåŠ¨å¤ä½
 	 * @param smoothValve
 	 * @param timeWindow
 	 * @param limit
@@ -44,7 +44,7 @@ public class CountPunisher {
 	}
 
 	public CountPunisher(SmoothValve smoothValve, long timeWindow, long limit) {
-		this(smoothValve, timeWindow, limit, 5 * 60 * 100); //Ä¬ÈÏ5·ÖÖÓ¸´Î»
+		this(smoothValve, timeWindow, limit, 5 * 60 * 100); //é»˜è®¤5åˆ†é’Ÿå¤ä½
 	}
 
 	public void count() {
@@ -72,15 +72,15 @@ public class CountPunisher {
 	}
 
 	/**
-	 * @return true±íÊ¾³Í·££»false±íÊ¾Í¨¹ı
+	 * @return trueè¡¨ç¤ºæƒ©ç½šï¼›falseè¡¨ç¤ºé€šè¿‡
 	 */
 	public boolean punish() {
 		if (punishBeginTime == Long.MAX_VALUE || timeWindow == 0) {
-			//ÕâÀï²»ĞèÒª¸´Î»
+			//è¿™é‡Œä¸éœ€è¦å¤ä½
 			return false;
 		}
 		if (System.currentTimeMillis() - punishBeginTime > resetTime) {
-			//³¬¹ı¸´Î»Ê±¼ä£¬²»ÔÙ³Í·££¬×´Ì¬¸´Î»
+			//è¶…è¿‡å¤ä½æ—¶é—´ï¼Œä¸å†æƒ©ç½šï¼ŒçŠ¶æ€å¤ä½
 			punishBeginTime = Long.MAX_VALUE;
 			resetTimeWindow();
 			smoothValve.setAvailable();

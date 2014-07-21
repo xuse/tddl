@@ -15,7 +15,7 @@ import com.taobao.tddl.common.securety.SecureIdentityLoginModule;
 import com.taobao.tddl.jdbc.druid.config.object.DruidDsConfDO;
 
 /**
- * TAtomÊı¾İÔ´µÄÍÆËÍÅäÖÃ½âÎöÀà
+ * TAtomæ•°æ®æºçš„æ¨é€é…ç½®è§£æç±»
  * 
  * @author qihao
  *
@@ -43,15 +43,15 @@ public class DruidConfParser {
 	
 	public static final String APP_DRIVER_CLASS_KEY = "driverClass";
 	/**
-	 * Ğ´£¬´ÎÊıÏŞÖÆ
+	 * å†™ï¼Œæ¬¡æ•°é™åˆ¶
 	 */
 	public static final String APP_WRITE_RESTRICT_TIMES = "writeRestrictTimes";
 	/**
-	 * ¶Á£¬´ÎÊıÏŞÖÆ
+	 * è¯»ï¼Œæ¬¡æ•°é™åˆ¶
 	 */
 	public static final String APP_READ_RESTRICT_TIMES = "readRestrictTimes";
 	/**
-	 * thread count ´ÎÊıÏŞÖÆ
+	 * thread count æ¬¡æ•°é™åˆ¶
 	 */
 	public static final String APP_THREAD_COUNT_RESTRICT = "threadCountRestrict";
 	
@@ -153,7 +153,7 @@ public class DruidConfParser {
 					}
 					
 					if(connectionProperties.containsKey(APP_PREFILL)) {
-                        // add by agapple, ¼òµ¥´¦ÀíÖ§³ÖÏÂ³õÊ¼»¯Á´½Ó
+                        // add by agapple, ç®€å•å¤„ç†æ”¯æŒä¸‹åˆå§‹åŒ–é“¾æ¥
                         String prefill = connectionProperties.remove(APP_PREFILL);
                         if(BooleanUtils.toBoolean(prefill) && pasObj.getInitPoolSize() == DruidDsConfDO.defaultInitPoolSize) {
                             pasObj.setInitPoolSize(pasObj.getMinPoolSize());  

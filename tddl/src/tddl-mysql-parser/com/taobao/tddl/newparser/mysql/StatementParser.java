@@ -56,7 +56,7 @@ public class StatementParser extends NewSqlParser {
 				cache.put(sql, future);
 				future.run();
 			}
-			// 确保抛出异常
+			// 纭繚鎶涘嚭寮傚父
 			try {
 				statement = future.get();
 			} catch (Exception e) {

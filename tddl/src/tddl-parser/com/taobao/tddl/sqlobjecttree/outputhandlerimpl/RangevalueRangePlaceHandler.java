@@ -5,7 +5,7 @@
 //import com.taobao.tddl.sqlobjecttree.PageWrapperCommon;
 //
 ///**
-// * ¶ÔÓ¦ limit m , n ÖĞµÄn ĞèÒªÌæ»»µÄÇé¿ö
+// * å¯¹åº” limit m , n ä¸­çš„n éœ€è¦æ›¿æ¢çš„æƒ…å†µ
 // * @author shenxun
 // *
 // */
@@ -21,7 +21,7 @@
 //	}
 //	
 //	/**
-//	 * »»Öµ£¬¶ÔÓ¦ÔÚ°ó¶¨±äÁ¿Àï³öÏÖm,nµÄÇé¿ö
+//	 * æ¢å€¼ï¼Œå¯¹åº”åœ¨ç»‘å®šå˜é‡é‡Œå‡ºç°m,nçš„æƒ…å†µ
 //	 * @param index
 //	 * @param limitFrom
 //	 * @param limitTo
@@ -33,7 +33,7 @@
 //		} else if (skip instanceof Integer && max instanceof Integer) {
 //			modifiedMap.put(index, getSubInt(skip, max));
 //		} else {
-//			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+//			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 //		}
 //	}
 //
@@ -43,7 +43,7 @@
 //		} else if (skip instanceof Integer && max instanceof Integer) {
 //			return String.valueOf(getSubInt(skip, max));
 //		} else {
-//			throw new IllegalArgumentException("Ö»Ö§³Öint longµÄÇé¿ö");
+//			throw new IllegalArgumentException("åªæ”¯æŒint longçš„æƒ…å†µ");
 //		}
 //
 //	}

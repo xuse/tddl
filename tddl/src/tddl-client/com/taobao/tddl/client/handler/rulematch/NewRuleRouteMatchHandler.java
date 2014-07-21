@@ -29,18 +29,18 @@ import com.taobao.tddl.interact.rule.VirtualTableRuleMatcher;
 import com.taobao.tddl.sqlobjecttree.SqlParserResult;
 
 /**
- * @description Îª2.4.4ÒıÈëµÄĞÂ¹æÔòÌåÏµÌá¹©µÄ¹æÔò¼ÆËã×é¼ş, ºÍRouteMatchHandler¹¦ÄÜÉÏ²¢ĞĞ,»¥²»Ó°Ïì,
- *              ÓëºóÕßµÄÇø±ğÔÚÓÚ¹æÔò¼ÆËãÒıÇæ±äÎªVirtualTableRuleMatcher, ²¢ÇÒ¹æÔò·â×°Àà±íÎªVirtualTable.
+ * @description ä¸º2.4.4å¼•å…¥çš„æ–°è§„åˆ™ä½“ç³»æä¾›çš„è§„åˆ™è®¡ç®—ç»„ä»¶, å’ŒRouteMatchHandleråŠŸèƒ½ä¸Šå¹¶è¡Œ,äº’ä¸å½±å“,
+ *              ä¸åè€…çš„åŒºåˆ«åœ¨äºè§„åˆ™è®¡ç®—å¼•æ“å˜ä¸ºVirtualTableRuleMatcher, å¹¶ä¸”è§„åˆ™å°è£…ç±»è¡¨ä¸ºVirtualTable.
  * 
- *              ¹æÔòÒıÇæ·µ»ØµÄÊı¾İ½á¹¹Î´±ä,ËùÒÔºóĞø´¦ÀíÂß¼­²»±ä.
+ *              è§„åˆ™å¼•æ“è¿”å›çš„æ•°æ®ç»“æ„æœªå˜,æ‰€ä»¥åç»­å¤„ç†é€»è¾‘ä¸å˜.
  * 
- *              ĞÂ¹æÔòÒıÇæÊ¹ÓÃĞèÒªÔÚTDataSourceµÄ¶¨ÒåÖĞÉè¶¨useNewRule=ture
- *              ÊôĞÔ,Ä¬ÈÏ´ËÊôĞÔÎªfalse,×ßÀÏ¹æÔò(>=2.3 && <=2.4.3),ÄÇÃ´Õâ¸ö handler²»»á±»³õÊ¼»¯
+ *              æ–°è§„åˆ™å¼•æ“ä½¿ç”¨éœ€è¦åœ¨TDataSourceçš„å®šä¹‰ä¸­è®¾å®šuseNewRule=ture
+ *              å±æ€§,é»˜è®¤æ­¤å±æ€§ä¸ºfalse,èµ°è€è§„åˆ™(>=2.3 && <=2.4.3),é‚£ä¹ˆè¿™ä¸ª handlerä¸ä¼šè¢«åˆå§‹åŒ–
  * 
  * @author <a href="junyu@taobao.com">junyu</a>
  * @version 2.4.4
  * @since 1.6
- * @date 2010-11-15ÏÂÎç02:23:42
+ * @date 2010-11-15ä¸‹åˆ02:23:42
  */
 public class NewRuleRouteMatchHandler extends AbstractHandler {
 	public static final String HANDLER_NAME = "NewRuleRouteMatchHandler";
@@ -48,7 +48,7 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 	private final VirtualTableRuleMatcher matcher = new VirtualTableRuleMatcher();
 
 	/**
-	 * RouteMatchHandler»á¶ÔNOSQLPARSEºÍDEFAULTÀàĞÍµÄÖ´ĞĞ½øĞĞ´¦Àí
+	 * RouteMatchHandlerä¼šå¯¹NOSQLPARSEå’ŒDEFAULTç±»å‹çš„æ‰§è¡Œè¿›è¡Œå¤„ç†
 	 */
 	public void handleDown(DataBus dataBus) throws SQLException {
 		FlowType flowType = getPipeLineRuntimeInfo(dataBus).getFlowType();
@@ -62,8 +62,8 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 	}
 
 	/**
-	 * ¹æÔòÂ·ÓÉÖ÷Ìå²¿·Ö£¬Ö÷ÒªµÄ²Ù×÷£¬¾ÍÊÇ½«SQLPARSEµÃµ½µÄ·Ö¿â·Ö±í×Ö¶ÎËù¶ÔÓ¦µÄ Öµ×÷Îª²ÎÊıÌîÈë¹æÔòÖĞ¼ÆËã³ö½á¹û£¬¸ù¾İtable
-	 * rule¼ÆËã³öÀ´µÄ¾ÍÊÇĞèÒª×ßµÄ ±í£¬¸ù¾İdb rule¼ÆËã³öÀ´¾ÍÊÇĞèÒª×ßµÄ¿â(¿âºó×º)¡£
+	 * è§„åˆ™è·¯ç”±ä¸»ä½“éƒ¨åˆ†ï¼Œä¸»è¦çš„æ“ä½œï¼Œå°±æ˜¯å°†SQLPARSEå¾—åˆ°çš„åˆ†åº“åˆ†è¡¨å­—æ®µæ‰€å¯¹åº”çš„ å€¼ä½œä¸ºå‚æ•°å¡«å…¥è§„åˆ™ä¸­è®¡ç®—å‡ºç»“æœï¼Œæ ¹æ®table
+	 * ruleè®¡ç®—å‡ºæ¥çš„å°±æ˜¯éœ€è¦èµ°çš„ è¡¨ï¼Œæ ¹æ®db ruleè®¡ç®—å‡ºæ¥å°±æ˜¯éœ€è¦èµ°çš„åº“(åº“åç¼€)ã€‚
 	 * 
 	 * @param dataBus
 	 */
@@ -87,11 +87,11 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 					.toLowerCase(logicTableName));
 
 			if (rule == null) {
-				throw new IllegalArgumentException("Î´ÄÜÕÒµ½¶ÔÓ¦¹æÔò,Âß¼­±í:"
+				throw new IllegalArgumentException("æœªèƒ½æ‰¾åˆ°å¯¹åº”è§„åˆ™,é€»è¾‘è¡¨:"
 						+ logicTableName);
 			}
 
-			// Ö»ÓĞsql½âÎöÆ÷½âÎö¹ıµÄ²ÅÔÊĞí·´ÏòÊä³ö
+			// åªæœ‰sqlè§£æå™¨è§£æè¿‡çš„æ‰å…è®¸åå‘è¾“å‡º
 			if (isSqlParse) {
 				isAllowReverseOutput = rule.isAllowReverseOutput();
 			} else {
@@ -108,7 +108,7 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 			}
 			
 			List<TargetDB> targetDBs = matcherResult.getCalculationResult();
-			// ¶àÁËÒ»¶Î×ªÒåµÄ¹ı³Ì£¬¶îÍâ¿ªÏú
+			// å¤šäº†ä¸€æ®µè½¬ä¹‰çš„è¿‡ç¨‹ï¼Œé¢å¤–å¼€é”€
 			List<DatabaseExecutionContext> databaseExecutionContexts = convertToDatabaseExecutionContext(
 					logicTableName, targetDBs);
 
@@ -119,7 +119,7 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 
 		} else {
 			/*
-			 * ÕâÀïÊÇÒ»¸öÓÃÓÚ¾ßÌå´¦Àíµ¥±í¶Ô¶à±íjoinºÍ¶à±í¶Ô¶à±íjoinµÄ´¦ÀíÑ¡ÔñÖ§¡£ »á·Ö±ğ¼ÆËã¶à¸ö²»Í¬µÄ±íµÄ¹æÔò£¬Èç¹ûÍ¨¹ı¼ÆËã
+			 * è¿™é‡Œæ˜¯ä¸€ä¸ªç”¨äºå…·ä½“å¤„ç†å•è¡¨å¯¹å¤šè¡¨joinå’Œå¤šè¡¨å¯¹å¤šè¡¨joinçš„å¤„ç†é€‰æ‹©æ”¯ã€‚ ä¼šåˆ†åˆ«è®¡ç®—å¤šä¸ªä¸åŒçš„è¡¨çš„è§„åˆ™ï¼Œå¦‚æœé€šè¿‡è®¡ç®—
 			 * 
 			 * @add by shenxun
 			 */
@@ -143,8 +143,8 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 								+ " ,this logic table may dont need calc");
 					}
 				} else {
-					if (isSqlParse && rule.isAllowReverseOutput()) {// Ö»ÔÊĞífalse
-						// ±äÎªtrue,¶à±íÖĞÓĞÒ»¸ö±íĞèÒª·´Ïò£¬ÄÇ¾ÍÊÇ¶¼ĞèÒª·´ÏòÊä³öÁË
+					if (isSqlParse && rule.isAllowReverseOutput()) {// åªå…è®¸false
+						// å˜ä¸ºtrue,å¤šè¡¨ä¸­æœ‰ä¸€ä¸ªè¡¨éœ€è¦åå‘ï¼Œé‚£å°±æ˜¯éƒ½éœ€è¦åå‘è¾“å‡ºäº†
 						isAllowReverseOutput = rule.isAllowReverseOutput();
 					}
 
@@ -155,18 +155,18 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 				}
 			}
 
-			// ²»µÈÓÚ1£¬ÄÇÃ´Òª¿¼ÂÇµÑ¿¨¶û»ıµÄÎÊÌâÁË
+			// ä¸ç­‰äº1ï¼Œé‚£ä¹ˆè¦è€ƒè™‘ç¬›å¡å°”ç§¯çš„é—®é¢˜äº†
 			if (targetDBList.size() > 2) {
-				throw new IllegalArgumentException("ÔİÊ±²»Ö§³ÖÈı¸ö±í¶¼×ß¹æÔòµÄjoin");
+				throw new IllegalArgumentException("æš‚æ—¶ä¸æ”¯æŒä¸‰ä¸ªè¡¨éƒ½èµ°è§„åˆ™çš„join");
 			}
 			List<TargetDB> left = targetDBList.get(leftIndex);
 			List<TargetDB> right = targetDBList.get(rightIndex);
 			/**
-			 * size¸öÊı²»µÈ£¬¿Ï¶¨ÊÇ·Ç¶Ô³Æjoin,Ö±½Ó¶ª³öÈ¥
+			 * sizeä¸ªæ•°ä¸ç­‰ï¼Œè‚¯å®šæ˜¯éå¯¹ç§°join,ç›´æ¥ä¸¢å‡ºå»
 			 */
 
 			if (left.size() != right.size()) {
-				throw new IllegalArgumentException("tddl Ä¿Ç°Ö»Ö§³Ö¶à±í¶ÔµÈjoin");
+				throw new IllegalArgumentException("tddl ç›®å‰åªæ”¯æŒå¤šè¡¨å¯¹ç­‰join");
 			}
 
 			if (left.size() == 1) {
@@ -193,7 +193,7 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 					}
 				}
 				if (count != left.size()) {
-					throw new IllegalArgumentException("¿âµÄ¸öÊı²»Æ¥Åä");
+					throw new IllegalArgumentException("åº“çš„ä¸ªæ•°ä¸åŒ¹é…");
 				}
 			}
 
@@ -274,15 +274,15 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 	private DatabaseExecutionContext buildOneDatabaseJoin(int leftIndex,
 			int rightIndex, String[] logicTableArray, TargetDB leftTarget,
 			TargetDB rightTarget, Map<String, String> alias) {
-		// Í¨¹ı¼ÆËã£¬Á½¸ö¹æÔò¶¼Ö»ÓĞÒ»¸ö¿â
+		// é€šè¿‡è®¡ç®—ï¼Œä¸¤ä¸ªè§„åˆ™éƒ½åªæœ‰ä¸€ä¸ªåº“
 		DatabaseExecutionContextImp dbec = new DatabaseExecutionContextImp();
 
-		if (leftTarget.getDbIndex().equals(rightTarget.getDbIndex())) {// dbIndexÏàÍ¬£¬±íÊ¾ÔÚÍ¬Ò»¸ö¿â
+		if (leftTarget.getDbIndex().equals(rightTarget.getDbIndex())) {// dbIndexç›¸åŒï¼Œè¡¨ç¤ºåœ¨åŒä¸€ä¸ªåº“
 
 			Map<String, Field> leftTableNameMap = leftTarget.getTableNameMap();
 			Map<String, Field> rightTableNameMap = rightTarget
 					.getTableNameMap();
-			if (leftTableNameMap.size() == 1) {// ×ó±ßµÈÓÚ1¸ö±íÃû£¬ÓÒ±ß²»µÈ£¬Ò»¶Ô¶àµÑ¿¨¶û»ı
+			if (leftTableNameMap.size() == 1) {// å·¦è¾¹ç­‰äº1ä¸ªè¡¨åï¼Œå³è¾¹ä¸ç­‰ï¼Œä¸€å¯¹å¤šç¬›å¡å°”ç§¯
 				String one = leftTableNameMap.keySet().iterator().next();
 				String dbIndex = leftTarget.getDbIndex();
 				String oneLogicTable = logicTableArray[0];
@@ -290,7 +290,7 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 				Set<String> manySet = rightTableNameMap.keySet();
 				buildOneToManyJoin(dbIndex, dbec, oneLogicTable, one,
 						manyLogicTable, manySet);
-			} else if (rightTableNameMap.size() == 1) {// ÓÒ±ßµÈÓÚ1¸ö±íÃû£¬×ó±ß²»µÈµÄÇé¿ö
+			} else if (rightTableNameMap.size() == 1) {// å³è¾¹ç­‰äº1ä¸ªè¡¨åï¼Œå·¦è¾¹ä¸ç­‰çš„æƒ…å†µ
 				String one = rightTableNameMap.keySet().iterator().next();
 				String dbIndex = rightTarget.getDbIndex();
 				String oneLogicTable = logicTableArray[1];
@@ -298,39 +298,39 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 				Set<String> manySet = leftTableNameMap.keySet();
 				buildOneToManyJoin(dbIndex, dbec, oneLogicTable, one,
 						manyLogicTable, manySet);
-			} else {// ¶¼²»µÈÓÚ1 ,ÄÇÃ´¿ÉÄÜĞèÒªµÑ¿¨¶û»ı£¬Ò²¿ÉÄÜ²»ĞèÒª
-				// ´¦Àíµ¥¿â¶à±í¶Ô¶à±íjoin
-				if (leftTableNameMap.size() == rightTableNameMap.size()) {// ÏàµÈ£¬¿ÉÄÜ¿ÉÒÔÖ±½Ó¶ÔÓ¦
+			} else {// éƒ½ä¸ç­‰äº1 ,é‚£ä¹ˆå¯èƒ½éœ€è¦ç¬›å¡å°”ç§¯ï¼Œä¹Ÿå¯èƒ½ä¸éœ€è¦
+				// å¤„ç†å•åº“å¤šè¡¨å¯¹å¤šè¡¨join
+				if (leftTableNameMap.size() == rightTableNameMap.size()) {// ç›¸ç­‰ï¼Œå¯èƒ½å¯ä»¥ç›´æ¥å¯¹åº”
 					for (Entry<String/* table name */, Field> entry : leftTableNameMap
 							.entrySet()) {
 
 						String leftTableName = entry.getKey();
 						int leftIndexNumberInt = getIndexNumberInt(leftTableName);
-						// Õâ¶Î´úÂëµÄ×÷ÓÃÊÇ:±È½ÏÁ½¸ö±í+²ÎÊı
-						// µÄmap,Èç¹ûÕÒµÃµ½ÏàÍ¬µÄ±í£¬Ôò±È½Ï²ÎÊı£¬Èç¹û²ÎÊıÒ²ÍêÈ«ÏàÍ¬
-						// ±íÊ¾×ó±íºÍÓÒ±íÊÇ¶ÔÓ¦µÄ¡£
-						// ÄÇÃ´ÕâÊ±ºò¾Í¿ÉÒÔÆ´³ÉÒ»¸öjoinÌæ»»ÓÃµÄmap.ÆäÓàµÄÇé¿ö£¬ÔòÅ×³ö²»Í¬µÄÒì³£
+						// è¿™æ®µä»£ç çš„ä½œç”¨æ˜¯:æ¯”è¾ƒä¸¤ä¸ªè¡¨+å‚æ•°
+						// çš„map,å¦‚æœæ‰¾å¾—åˆ°ç›¸åŒçš„è¡¨ï¼Œåˆ™æ¯”è¾ƒå‚æ•°ï¼Œå¦‚æœå‚æ•°ä¹Ÿå®Œå…¨ç›¸åŒ
+						// è¡¨ç¤ºå·¦è¡¨å’Œå³è¡¨æ˜¯å¯¹åº”çš„ã€‚
+						// é‚£ä¹ˆè¿™æ—¶å€™å°±å¯ä»¥æ‹¼æˆä¸€ä¸ªjoinæ›¿æ¢ç”¨çš„map.å…¶ä½™çš„æƒ…å†µï¼Œåˆ™æŠ›å‡ºä¸åŒçš„å¼‚å¸¸
 						dbec.setDbIndex(leftTarget.getDbIndex());
 						for (Entry<String/* table name */, Field> rightEntry : rightTableNameMap
 								.entrySet()) {
-							// ÕâÀïÊÇ¸öhack.
-							// £¬ÒòÎª±íÃûÊÇÓÉlogicTableName+_0000ÕâÑùµÄÄ£Ê½×é³ÉµÄ£¬ËùÒÔÖ»ĞèÒª±È½ÏºóÃæµÄÊıÖµ¼´¿É
+							// è¿™é‡Œæ˜¯ä¸ªhack.
+							// ï¼Œå› ä¸ºè¡¨åæ˜¯ç”±logicTableName+_0000è¿™æ ·çš„æ¨¡å¼ç»„æˆçš„ï¼Œæ‰€ä»¥åªéœ€è¦æ¯”è¾ƒåé¢çš„æ•°å€¼å³å¯
 							String rightTableName = rightEntry.getKey();
 							int rightIndexNumberInt = getIndexNumberInt(rightTableName);
-							if (rightIndexNumberInt == leftIndexNumberInt) {// ±íÊ¾ÊÇÍ¬Ò»¸ö±í
+							if (rightIndexNumberInt == leftIndexNumberInt) {// è¡¨ç¤ºæ˜¯åŒä¸€ä¸ªè¡¨
 								Field rightField = rightTableNameMap.get(entry
 										.getKey());
-								if (rightField == null) {// ×ó²àµÄ±íÃûÔÚÓÒ²àÃ»ÓĞ³öÏÖ£¬±íÊ¾¹æÔò²»Í¬
+								if (rightField == null) {// å·¦ä¾§çš„è¡¨ååœ¨å³ä¾§æ²¡æœ‰å‡ºç°ï¼Œè¡¨ç¤ºè§„åˆ™ä¸åŒ
 									throw new IllegalArgumentException(
-											"¶à±íjoin±íÃû£¬²»Ö§³Ö¡£"
-													+ "Ö»ÓĞÔÚ¶à±í±í¹æÔòÍêÈ«ÏàÍ¬µÄ³¡¾°ÏÂ£¬²ÅÔÊĞí½øĞĞ¶à±íM*N join");
+											"å¤šè¡¨joinè¡¨åï¼Œä¸æ”¯æŒã€‚"
+													+ "åªæœ‰åœ¨å¤šè¡¨è¡¨è§„åˆ™å®Œå…¨ç›¸åŒçš„åœºæ™¯ä¸‹ï¼Œæ‰å…è®¸è¿›è¡Œå¤šè¡¨M*N join");
 								}
 								Field leftField = entry.getValue();
 								if (!rightField.equals(leftField, alias)) {
 									throw new IllegalArgumentException(
-											"²»ÊÇ¹æÔòÍêÈ«ÏàÍ¬µÄÊı¾İ±íÖ®¼ä½øĞĞµÄjoin£¬²»Ö§³Ö¡£"
-													+ "Ö»ÓĞÔÚ¶à±í±í¹æÔòÍêÈ«ÏàÍ¬µÄ³¡¾°ÏÂ£¬²ÅÔÊĞí½øĞĞ¶à±íM*N join");
-								} else {// ÔÚÍ¬Ò»¸ö±íÄÚ£¬²¢ÇÒ¾ö¶¨±íµÄ²ÎÊıÒ²ÏàÍ¬
+											"ä¸æ˜¯è§„åˆ™å®Œå…¨ç›¸åŒçš„æ•°æ®è¡¨ä¹‹é—´è¿›è¡Œçš„joinï¼Œä¸æ”¯æŒã€‚"
+													+ "åªæœ‰åœ¨å¤šè¡¨è¡¨è§„åˆ™å®Œå…¨ç›¸åŒçš„åœºæ™¯ä¸‹ï¼Œæ‰å…è®¸è¿›è¡Œå¤šè¡¨M*N join");
+								} else {// åœ¨åŒä¸€ä¸ªè¡¨å†…ï¼Œå¹¶ä¸”å†³å®šè¡¨çš„å‚æ•°ä¹Ÿç›¸åŒ
 									String leftLogicTable = logicTableArray[leftIndex];
 									String rightLogicTable = logicTableArray[rightIndex];
 
@@ -347,14 +347,14 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 					}
 
 				} else {
-					// ¶¼²»µÈ £¬Ö±½ÓÅ×³ö
+					// éƒ½ä¸ç­‰ ï¼Œç›´æ¥æŠ›å‡º
 					throw new IllegalArgumentException(
-							"±íÃû¸öÊı²»µÈ£¬tddl Ä¿Ç°²»Ö§³Ö¶à¶Ô¶àµÑ¿¨¶û»ıjoin");
+							"è¡¨åä¸ªæ•°ä¸ç­‰ï¼Œtddl ç›®å‰ä¸æ”¯æŒå¤šå¯¹å¤šç¬›å¡å°”ç§¯join");
 				}
 			}
 
-		} else {// dbIndex²»Í¬£¬ÔÚ²»Í¬¿âÉÏ
-			throw new IllegalArgumentException("tddl ²»ÔÊĞíÔÚ¶à¿âÉÏÖ´ĞĞjoin²éÑ¯£¬Êı¾İ¿âÎŞ·¨Ö§³Ö");
+		} else {// dbIndexä¸åŒï¼Œåœ¨ä¸åŒåº“ä¸Š
+			throw new IllegalArgumentException("tddl ä¸å…è®¸åœ¨å¤šåº“ä¸Šæ‰§è¡ŒjoinæŸ¥è¯¢ï¼Œæ•°æ®åº“æ— æ³•æ”¯æŒ");
 		}
 		return dbec;
 	}
@@ -370,7 +370,7 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 		try {
 			indexNumberInt = Integer.valueOf(indexNumber);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("×ª»»¸ñÊ½´íÎó:" + indexNumber);
+			throw new IllegalArgumentException("è½¬æ¢æ ¼å¼é”™è¯¯:" + indexNumber);
 		}
 		return indexNumberInt;
 	}
@@ -387,7 +387,7 @@ public class NewRuleRouteMatchHandler extends AbstractHandler {
 	}
 
 	/**
-	 * ÉèÖÃ½á¹û£¬Ö÷Òª¾ÍÊÇÉèÖÃÒ»¸öMatcherResult,Ìá¹©¸øºóÃæHandlerÊ¹ÓÃ
+	 * è®¾ç½®ç»“æœï¼Œä¸»è¦å°±æ˜¯è®¾ç½®ä¸€ä¸ªMatcherResult,æä¾›ç»™åé¢Handlerä½¿ç”¨
 	 * 
 	 * @param matcherResult
 	 * @param runtime

@@ -43,12 +43,12 @@ public class ToDate extends OperationBeforTwoArgsFunction {
 				obj=Utils.getVal(args, arg1);
 				timeArgument=(String)obj;
 			} catch (ClassCastException e) {
-				throw new IllegalArgumentException("´íÎóµÄ×ª»»º¯Êı£¬"+obj+"¸Ã²ÎÊı±ØĞëÎªString");
+				throw new IllegalArgumentException("é”™è¯¯çš„è½¬æ¢å‡½æ•°ï¼Œ"+obj+"è¯¥å‚æ•°å¿…é¡»ä¸ºString");
 			}
 			try {
 				returnDate=df.parse(timeArgument);
 			} catch (ParseException e) {
-				throw new IllegalArgumentException("´íÎóµÄÊ±¼äº¯Êı£¬µ±Ç°Ê±¼äº¯ÊıStringÎª"+timeArgument,e);
+				throw new IllegalArgumentException("é”™è¯¯çš„æ—¶é—´å‡½æ•°ï¼Œå½“å‰æ—¶é—´å‡½æ•°Stringä¸º"+timeArgument,e);
 			}
 			return returnDate;
 	}
@@ -67,7 +67,7 @@ public class ToDate extends OperationBeforTwoArgsFunction {
 		return toDateFormat;
 	}
 	/**
-	 * Ìá¹©´ÓoracleµÄformat¸ñÊ½×ª»»Îªjava format¸ñÊ½µÄ×ª»»º¯Êı
+	 * æä¾›ä»oracleçš„formatæ ¼å¼è½¬æ¢ä¸ºjava formatæ ¼å¼çš„è½¬æ¢å‡½æ•°
 	 * @param source
 	 * @return
 	 */
@@ -79,7 +79,7 @@ public class ToDate extends OperationBeforTwoArgsFunction {
 			for(String s:dateNotSupport){
 				if(source.contains(s))
 				{
-					throw new NotSupportException("Oracle×ª»»º¯Êı²»Ö§³ÖÊ¹ÓÃµ±Ç°º¯Êı:"+s+"ÄúÊäÈëµÄÊÇ:"+source);
+					throw new NotSupportException("Oracleè½¬æ¢å‡½æ•°ä¸æ”¯æŒä½¿ç”¨å½“å‰å‡½æ•°:"+s+"æ‚¨è¾“å…¥çš„æ˜¯:"+source);
 				}
 			}
 			source=source.replaceAll("YYYY", "yyyy");

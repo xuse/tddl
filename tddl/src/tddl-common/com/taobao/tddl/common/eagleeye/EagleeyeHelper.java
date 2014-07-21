@@ -5,12 +5,12 @@ import com.taobao.tddl.common.channel.SqlMetaData;
 
 /**
  * @author jiechen.qzm
- * Eagleeye°ïÖúÀà£¬Ğ­Öú¼ÇÂ¼²éÑ¯Ê±¼ä
+ * Eagleeyeå¸®åŠ©ç±»ï¼ŒååŠ©è®°å½•æŸ¥è¯¢æ—¶é—´
  */
 public class EagleeyeHelper {
 	
 	/**
-	 * executeÖ®Ç°Ğ´ÈÕÖ¾
+	 * executeä¹‹å‰å†™æ—¥å¿—
 	 * @param datasourceWrapper
 	 * @param sqlType
 	 * @throws Exception
@@ -22,14 +22,14 @@ public class EagleeyeHelper {
 	}
 	
 	/**
-	 * execute³É¹¦Ö®ºóĞ´ÈÕÖ¾
+	 * executeæˆåŠŸä¹‹åå†™æ—¥å¿—
 	 */
 	public static void endSuccessRpc(String sql){
 		EagleEye.rpcClientRecv(EagleEye.RPC_RESULT_SUCCESS, EagleEye.TYPE_TDDL, EagleEye.index(sql));
 	}
 	
 	/**
-	 * executeÊ§°ÜÖ®ºóĞ´ÈÕÖ¾
+	 * executeå¤±è´¥ä¹‹åå†™æ—¥å¿—
 	 */
 	public static void endFailedRpc(String sql){
 		EagleEye.rpcClientRecv(EagleEye.RPC_RESULT_FAILED, EagleEye.TYPE_TDDL, EagleEye.index(sql));

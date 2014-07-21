@@ -9,7 +9,7 @@ public class MultiLogicTableNames implements LogicTableName
 	
 	public String getSingleTable()
 	{
-		throw new IllegalArgumentException("多表不支持此方法");
+		throw new IllegalArgumentException("澶氳〃涓嶆敮鎸佹鏂规硶");
 	}
 	
 	public Set<String> getLogicTables()

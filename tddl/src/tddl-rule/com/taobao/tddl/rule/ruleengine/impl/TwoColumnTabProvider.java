@@ -16,7 +16,7 @@ import com.taobao.tddl.rule.ruleengine.TableRuleProviderRegister;
 import com.taobao.tddl.rule.ruleengine.entities.inputvalue.TabRule;
 
 /**
- * Ö§³Ö2¸ö×Ö¶ÎÈ¡±íÃû
+ * æ”¯æŒ2ä¸ªå­—æ®µå–è¡¨å
  * 
  * @author liang
  * 
@@ -31,17 +31,17 @@ public class TwoColumnTabProvider extends CommonTableRuleProvider {
 
 		String[] parameter = tab.getAllParameter();
 		if (parameter.length != 2) {
-			throw new TDLCheckedExcption("TwoColumnTabProvider×Ö¶Î±ØĞëÊÇ2¸ö£¬µ±Ç°ÊÇ£º"
+			throw new TDLCheckedExcption("TwoColumnTabProviderå­—æ®µå¿…é¡»æ˜¯2ä¸ªï¼Œå½“å‰æ˜¯ï¼š"
 					+ tab.getParameter() + ".");
 		}
-		// È¡ÕæÕıµÄprovider
+		// å–çœŸæ­£çš„provider
 
 		String expFunction = tab.getExpFunction().substring(
 				tab.getExpFunction().indexOf('_') + 1);
 		String[] provider = expFunction.split("\\|");
 
 		if (provider.length != 2) {
-			throw new TDLCheckedExcption("TwoColumnTabProvider±í´ïÊ½±ØĞëÊÇ2¸ö£¬µ±Ç°ÊÇ£º"
+			throw new TDLCheckedExcption("TwoColumnTabProviderè¡¨è¾¾å¼å¿…é¡»æ˜¯2ä¸ªï¼Œå½“å‰æ˜¯ï¼š"
 					+ tab.getExpFunction() + ".");
 		}
 
@@ -80,15 +80,15 @@ public class TwoColumnTabProvider extends CommonTableRuleProvider {
 			idSetB = providerB.getTables(map, tabRuleB, "", null);
 		}
 
-		// TODO: ÕâÀïÒªÖ§³ÖÒ»¸ö²é³öÀ´½á¹ûºÍÁíÒ»¸öµÄÄ¬ÈÏÖµºÏ²¢£¬Ä¿Ç°²»Ö§³Ö
+		// TODO: è¿™é‡Œè¦æ”¯æŒä¸€ä¸ªæŸ¥å‡ºæ¥ç»“æœå’Œå¦ä¸€ä¸ªçš„é»˜è®¤å€¼åˆå¹¶ï¼Œç›®å‰ä¸æ”¯æŒ
 		if (null == idSetA || null == idSetB) {
 			return Collections.emptySet();
 		}
 
-		// ×öºÏ²¢
+		// åšåˆå¹¶
 		for (String one : idSetA) {
 			for (String two : idSetB) {
-				// ¼ì²éÊÇ·ñÔÚÄ¬ÈÏ±íÖĞ
+				// æ£€æŸ¥æ˜¯å¦åœ¨é»˜è®¤è¡¨ä¸­
 				String tmp = tabName + one + two;
 				if (tab.containThisTable(tmp)) {
 					tabNameRes.add(tmp);

@@ -10,7 +10,7 @@ import com.taobao.tddl.common.standard.atom.AtomDbTypeEnum;
 import com.taobao.tddl.jdbc.druid.common.DruidConstants;
 
 /**
- * TAtomÊı¾İÔ´È«¾ÖºÍÓ¦ÓÃÅäÖÃµÄDO
+ * TAtomæ•°æ®æºå…¨å±€å’Œåº”ç”¨é…ç½®çš„DO
  * 
  * @author qihao
  * @author shenxun
@@ -19,12 +19,12 @@ import com.taobao.tddl.jdbc.druid.common.DruidConstants;
 public class DruidDsConfDO implements Cloneable {
 	
 	/**
-	 * Ä¬ÈÏ³õÊ¼»¯µÄÏß³Ì³ØÁ¬½ÓÊıÁ¿
+	 * é»˜è®¤åˆå§‹åŒ–çš„çº¿ç¨‹æ± è¿æ¥æ•°é‡
 	 */
 	public static final int defaultInitPoolSize = 0;
 	
 	/**
-	 * Ä¬ÈÏ³õÊ¼»¯µÄdefaultMaxWait druid×¨ÓÃ£¬Ä¿Ç°ÊÇºÍjbossµÄblockingTimeoutÊÇÍ¬Ò»¸öÅäÖÃ¡£ÔËÎ¬ÈËÔ±Çë×¢Òâ¡£
+	 * é»˜è®¤åˆå§‹åŒ–çš„defaultMaxWait druidä¸“ç”¨ï¼Œç›®å‰æ˜¯å’Œjbossçš„blockingTimeoutæ˜¯åŒä¸€ä¸ªé…ç½®ã€‚è¿ç»´äººå‘˜è¯·æ³¨æ„ã€‚
 	 */
 	public static final int defaultMaxWait = 5000;
 
@@ -67,32 +67,32 @@ public class DruidDsConfDO implements Cloneable {
 	private Map<String, String> connectionProperties = new HashMap<String, String>();
 
 	/**
-	 * Ğ´ ´ÎÊıÏŞÖÆ
+	 * å†™ æ¬¡æ•°é™åˆ¶
 	 */
 	private int writeRestrictTimes;
 
 	/**
-	 * ¶Á ´ÎÊıÏŞÖÆ
+	 * è¯» æ¬¡æ•°é™åˆ¶
 	 */
 	private int readRestrictTimes;
 
 	/**
-	 * Í³¼ÆÊ±¼äÆ¬ 
+	 * ç»Ÿè®¡æ—¶é—´ç‰‡ 
 	 */
 	private int timeSliceInMillis;
 
 	/**
-	 * Ïß³Ì¼¼ÊõcountÏŞÖÆ
+	 * çº¿ç¨‹æŠ€æœ¯counté™åˆ¶
 	 */
 	private int threadCountRestrict;
 
 	/**
-	 * ÔÊĞí²¢·¢¶ÁµÄ×î´ó¸öÊı£¬0Îª²»ÏŞÖÆ
+	 * å…è®¸å¹¶å‘è¯»çš„æœ€å¤§ä¸ªæ•°ï¼Œ0ä¸ºä¸é™åˆ¶
 	 */
 	private int maxConcurrentReadRestrict;
 
 	/**
-	 * ÔÊĞí²¢·¢Ğ´µÄ×î´ó¸öÊı£¬0Îª²»ÏŞÖÆ
+	 * å…è®¸å¹¶å‘å†™çš„æœ€å¤§ä¸ªæ•°ï¼Œ0ä¸ºä¸é™åˆ¶
 	 */
 	private int maxConcurrentWriteRestrict;
 	

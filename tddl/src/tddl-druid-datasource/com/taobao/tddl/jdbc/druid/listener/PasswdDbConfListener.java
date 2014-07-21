@@ -1,6 +1,6 @@
 package com.taobao.tddl.jdbc.druid.listener;
 
-/**数据库密码变化监听器
+/**鏁版嵁搴撳瘑鐮佸彉鍖栫洃鍚櫒
  * 
  * @author qihao
  *
